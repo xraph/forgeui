@@ -127,6 +127,7 @@ func TestWatcher_FileChange(t *testing.T) {
 	// Set up callback with channel to signal when watcher is ready
 	changed := make(chan bool, 1)
 	started := make(chan bool, 1)
+
 	w.OnChange(func(event fsnotify.Event) error {
 		if filepath.Base(event.Name) == "test.txt" {
 			select {
@@ -134,6 +135,7 @@ func TestWatcher_FileChange(t *testing.T) {
 			default:
 			}
 		}
+
 		return nil
 	})
 
@@ -143,12 +145,13 @@ func TestWatcher_FileChange(t *testing.T) {
 
 	go func() {
 		started <- true
+
 		_ = w.Start(ctx)
 	}()
 
 	// Wait for watcher goroutine to start
 	<-started
-	
+
 	// Give fsnotify additional time to initialize watches (especially on Linux)
 	// Linux/Ubuntu often needs more time for inotify setup
 	time.Sleep(500 * time.Millisecond)
@@ -324,6 +327,7 @@ func TestWatcher_ContextCancellation(t *testing.T) {
 	ctx, cancel := context.WithCancel(context.Background())
 
 	done := make(chan error, 1)
+
 	go func() {
 		done <- w.Start(ctx)
 	}()
@@ -341,4 +345,3 @@ func TestWatcher_ContextCancellation(t *testing.T) {
 		t.Error("Timeout waiting for context cancellation")
 	}
 }
-

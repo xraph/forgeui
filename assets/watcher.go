@@ -5,6 +5,7 @@ import (
 	"fmt"
 	"os"
 	"path/filepath"
+	"slices"
 	"strings"
 	"sync"
 	"time"
@@ -92,9 +93,11 @@ func (w *Watcher) SetVerbose(verbose bool) {
 // Start begins watching for file changes
 func (w *Watcher) Start(ctx context.Context) error {
 	// Debounce timer
-	var debounceTimer *time.Timer
-	var debounceMu sync.Mutex
-	var lastEvent fsnotify.Event
+	var (
+		debounceTimer *time.Timer
+		debounceMu    sync.Mutex
+		lastEvent     fsnotify.Event
+	)
 
 	for {
 		select {
@@ -113,6 +116,7 @@ func (w *Watcher) Start(ctx context.Context) error {
 
 			// Debounce rapid file changes
 			debounceMu.Lock()
+
 			lastEvent = event
 
 			if debounceTimer != nil {
@@ -122,12 +126,14 @@ func (w *Watcher) Start(ctx context.Context) error {
 			debounceTimer = time.AfterFunc(w.debounce, func() {
 				w.processEvent(lastEvent)
 			})
+
 			debounceMu.Unlock()
 
 		case err, ok := <-w.watcher.Errors:
 			if !ok {
 				return nil
 			}
+
 			if w.verbose {
 				fmt.Printf("[Watcher] Error: %v\n", err)
 			}
@@ -144,13 +150,18 @@ func (w *Watcher) shouldProcess(event fsnotify.Event) bool {
 	}
 
 	// Ignore common output/build directories to prevent reload loops
+	// Only check relative path components, not absolute system paths
 	path := filepath.Clean(event.Name)
+
 	excludeDirs := []string{
-		"dist/", "build/", "output/", ".git/", "node_modules/",
-		"vendor/", "tmp/", "temp/", ".cache/",
+		"dist", "build", "output", ".git", "node_modules",
+		"vendor", ".cache",
 	}
-	for _, exclude := range excludeDirs {
-		if strings.HasPrefix(path, exclude) || strings.Contains(path, "/"+exclude) {
+
+	// Check each path component
+	parts := strings.Split(path, string(filepath.Separator))
+	for _, part := range parts {
+		if slices.Contains(excludeDirs, part) {
 			return false
 		}
 	}
@@ -222,6 +233,7 @@ func (w *Watcher) WatchDirectory(dir string) error {
 				if info.IsDir() {
 					return filepath.SkipDir
 				}
+
 				return nil
 			}
 		}
@@ -234,4 +246,3 @@ func (w *Watcher) WatchDirectory(dir string) error {
 		return nil
 	})
 }
-

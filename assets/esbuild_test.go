@@ -2,6 +2,7 @@ package assets
 
 import (
 	"context"
+	"os"
 	"path/filepath"
 	"testing"
 )
@@ -191,12 +192,22 @@ func TestESBuildProcessor_Process_NoEntryPoints(t *testing.T) {
 
 func TestESBuildProcessor_Process_CreatesOutputDir(t *testing.T) {
 	proc := NewESBuildProcessor()
-	proc.WithEntryPoints("test.js")
-	proc.WithOutfile("nested/path/bundle.js")
 	proc.Verbose = true
 
 	tempDir := t.TempDir()
 	outputDir := filepath.Join(tempDir, "output")
+
+	// Create a real test.js file with valid JavaScript content
+	testJSPath := filepath.Join(tempDir, "test.js")
+
+	testJSContent := []byte("console.log('test');")
+	if err := os.WriteFile(testJSPath, testJSContent, 0644); err != nil {
+		t.Fatalf("Failed to create test.js: %v", err)
+	}
+
+	// Use the actual file path as entry point
+	proc.WithEntryPoints(testJSPath)
+	proc.WithOutfile("nested/path/bundle.js")
 
 	cfg := ProcessorConfig{
 		InputDir:  tempDir,
@@ -280,4 +291,3 @@ func TestESBuildProcessor_DefaultValues(t *testing.T) {
 		t.Errorf("Expected default outfile 'js/app.js', got '%s'", proc.Outfile)
 	}
 }
-

@@ -2,6 +2,7 @@ package assets
 
 import (
 	"crypto/sha256"
+	"encoding/hex"
 	"fmt"
 	"io"
 	"os"
@@ -20,6 +21,7 @@ func (m *Manager) fingerprint(path string) string {
 	}
 
 	fullPath := filepath.Join(m.publicDir, path)
+
 	f, err := os.Open(fullPath)
 	if err != nil {
 		return path
@@ -31,7 +33,7 @@ func (m *Manager) fingerprint(path string) string {
 		return path
 	}
 
-	hash := fmt.Sprintf("%x", h.Sum(nil))[:8]
+	hash := hex.EncodeToString(h.Sum(nil))[:8]
 
 	// Split into name and extension
 	ext := filepath.Ext(path)
@@ -49,6 +51,7 @@ func (m *Manager) stripFingerprint(path string) string {
 		// matches[3] is the extension
 		return matches[1] + matches[3]
 	}
+
 	return path
 }
 
@@ -64,18 +67,21 @@ func isValidPath(path string) bool {
 		return false
 	}
 
-	// Reject absolute paths
+	// Reject absolute paths (cross-platform)
 	if filepath.IsAbs(path) {
+		return false
+	}
+	
+	// Additional check for Unix-style absolute paths on Windows
+	// On Windows, /etc/passwd is not detected as absolute by filepath.IsAbs
+	if strings.HasPrefix(path, "/") || strings.HasPrefix(path, "\\") {
 		return false
 	}
 
 	// Clean the path and ensure it doesn't escape
 	cleaned := filepath.Clean(path)
-	if strings.HasPrefix(cleaned, "..") {
-		return false
-	}
 
-	return true
+	return !strings.HasPrefix(cleaned, "..")
 }
 
 // FingerprintAll generates fingerprints for all assets in the public directory
@@ -95,6 +101,10 @@ func (m *Manager) FingerprintAll() error {
 		if err != nil {
 			return err
 		}
+		
+		// Normalize path separators to forward slashes for cross-platform consistency
+		// This ensures map keys are consistent regardless of OS
+		relPath = filepath.ToSlash(relPath)
 
 		// Generate fingerprint
 		fp := m.fingerprint(relPath)
@@ -107,4 +117,3 @@ func (m *Manager) FingerprintAll() error {
 		return nil
 	})
 }
-
