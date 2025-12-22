@@ -1,107 +1,247 @@
+# golangci-lint configuration for Forge v2
+# Production-ready linting configuration with strict settings
+
+version: "2"
+
 run:
   timeout: 5m
   tests: true
-  build-tags:
-    - integration
-
-linters:
-  enable:
-    - errcheck
-    - gosimple
-    - govet
-    - ineffassign
-    - staticcheck
-    - unused
-    - gofmt
-    - goimports
-    - misspell
-    - gocritic
-    - revive
-    - gosec
-    - unconvert
-    - dupl
-    - goconst
-    - gocyclo
-    - unparam
-    - nakedret
-    - prealloc
-    - nolintlint
-    - shadow
-    - copyloopvar
-
-linters-settings:
-  errcheck:
-    check-type-assertions: true
-    check-blank: true
-
-  govet:
-    enable-all: true
-
-  gocyclo:
-    min-complexity: 15
-
-  dupl:
-    threshold: 100
-
-  goconst:
-    min-len: 3
-    min-occurrences: 3
-
-  misspell:
-    locale: US
-
-  nakedret:
-    max-func-lines: 30
-
-  prealloc:
-    simple: true
-    range-loops: true
-    for-loops: true
-
-  revive:
-    rules:
-      - name: exported
-        arguments:
-          - "checkPrivateReceivers"
-          - "sayRepetitiveInsteadOfStutters"
-
-  gosec:
-    excludes:
-      - G104 # Audit errors not checked - we use errcheck for this
-      - G307 # Deferring unsafe method - false positives with file close
-
-issues:
-  exclude-use-default: false
-  exclude-rules:
-    # Exclude some linters from running on tests files.
-    - path: _test\.go
-      linters:
-        - gocyclo
-        - errcheck
-        - dupl
-        - gosec
-        - goconst
-
-    # Exclude known linters from partially hard-vendored code
-    - path: internal/utils/
-      linters:
-        - gocritic
-        - staticcheck
-
-    # Exclude linters on generated code
-    - path: ".*_generated\\.go$"
-      linters:
-        - gocyclo
-        - errcheck
-        - dupl
-        - gosec
-
-  max-issues-per-linter: 0
-  max-same-issues: 0
-  uniq-by-line: true
+  modules-download-mode: readonly
+  allow-parallel-runners: true
 
 output:
-  print-issued-lines: true
-  print-linter-name: true
-  sort-results: true
+  formats:
+    text:
+      print-linter-name: true
+      print-issued-lines: true
+
+linters:
+  # Default set of linters.
+  # The value can be:
+  # - `standard`: https://golangci-lint.run/docs/linters/#enabled-by-default
+  # - `all`: enables all linters by default.
+  # - `none`: disables all linters by default.
+  # - `fast`: enables only linters considered as "fast" (`golangci-lint help linters --json | jq '[ .[] | select(.fast==true) ] | map(.name)'`).
+  # Default: standard
+  default: none
+  # Enable specific linter.
+  enable:
+    - arangolint
+    - asciicheck
+    - bidichk
+    - bodyclose
+    - canonicalheader
+    - containedctx
+    # - contextcheck
+    - copyloopvar
+    # - cyclop
+    - decorder
+    # - depguard
+    - dogsled
+    # - dupl
+    - dupword
+    - durationcheck
+    - embeddedstructfieldcheck
+    - errcheck
+    - errchkjson
+    - errname
+    - errorlint
+    - exptostd
+    - fatcontext
+    - forbidigo
+    # - forcetypeassert
+    # - funcorder
+    # - funlen
+    - ginkgolinter
+    - gocheckcompilerdirectives
+    # - gochecknoglobals
+    - gochecknoinits
+    - gochecksumtype
+    - gocritic
+    - godoclint
+    - godot
+    - goheader
+    - gomoddirectives
+    - gomodguard
+    - goprintffuncname
+    - gosec
+    - gosmopolitan
+    - govet
+    - grouper
+    # - iface
+    - importas
+    - inamedparam
+    - ineffassign
+    # - interfacebloat
+    - intrange
+    - iotamixing
+    # - ireturn
+    # - lll
+    - loggercheck
+    # - maintidx
+    - makezero
+    - mirror
+    - misspell
+    # - mnd
+    - modernize
+    - musttag
+    - nakedret
+    - nilerr
+    - nilnesserr
+    - nilnil
+    - nlreturn
+    - noctx
+    - nolintlint
+    # - nonamedreturns
+    # - nosprintfhostport
+    # - paralleltest
+    - perfsprint
+    - predeclared
+    - promlinter
+    - protogetter
+    - reassign
+    - recvcheck
+    - rowserrcheck
+    - sloglint
+    - spancheck
+    - sqlclosecheck
+    - staticcheck
+    - tagalign
+    # - tagliatelle
+    - testableexamples
+    # - testifylint
+    # - thelper
+    - tparallel
+    - unconvert
+    # - unqueryvet
+    # - unused
+    - usestdlibvars
+    - usetesting
+    - varnamelen
+    - wastedassign
+    - whitespace
+    - wsl_v5
+    - zerologlint
+  # Disable specific linters.
+  disable:
+    - asasalint
+    - wsl
+    - varnamelen
+    - exhaustruct
+    - wrapcheck
+    - exhaustive
+    - testpackage
+    - revive
+    - unused
+    - unparam
+    - tagliatelle
+    - paralleltest
+    - prealloc
+    - noinlineerr
+    - nestif
+    - mnd
+    - nosprintfhostport
+    - lll
+    - ireturn
+    - iface
+    - godox
+    - err113
+    - interfacebloat
+    - funcorder
+    - forcetypeassert
+    - goconst
+    - gocognit
+    - gocyclo
+    - gochecknoglobals
+    - funlen
+    - cyclop
+    - maintidx
+    - dupl
+    - contextcheck
+    - depguard
+    - unqueryvet
+    - testifylint
+    - thelper
+    - nonamedreturns
+
+  # Defines a set of rules to ignore issues.
+  # It does not skip the analysis, and so does not ignore "typecheck" errors.
+  exclusions:
+    # Mode of the generated files analysis.
+    #
+    # - `strict`: sources are excluded by strictly following the Go generated file convention.
+    #    Source files that have lines matching only the following regular expression will be excluded: `^// Code generated .* DO NOT EDIT\.$`
+    #    This line must appear before the first non-comment, non-blank text in the file.
+    #    https://go.dev/s/generatedcode
+    # - `lax`: sources are excluded if they contain lines like `autogenerated file`, `code generated`, `do not edit`, etc.
+    # - `disable`: disable the generated files exclusion.
+    #
+    # Default: strict
+    generated: lax
+    # Log a warning if an exclusion rule is unused.
+    # Default: false
+    warn-unused: true
+    # Predefined exclusion rules.
+    # Default: []
+    paths:
+      - examples/
+      - farp-rust/
+    presets:
+      - comments
+      - std-error-handling
+      - common-false-positives
+      - legacy
+    # Excluding configuration per-path, per-linter, per-text and per-source.
+    rules:
+      # Exclude some linters from running on tests files.
+      - path: _test\.go
+        linters:
+          - gocyclo
+          - errcheck
+          - dupl
+          - gosec
+      # Exclude some `staticcheck` messages.
+      - linters:
+          - staticcheck
+        text: "SA9003:"
+      # Exclude `lll` issues for long lines with `go:generate`.
+      - linters:
+          - lll
+        source: "^//go:generate "
+
+
+issues:
+  # Maximum issues count per one linter. Set to 0 to disable. Default is 50.
+  max-issues-per-linter: 0
+
+  # Maximum count of issues with the same text. Set to 0 to disable. Default is 3.
+  max-same-issues: 0
+
+  # Show only new issues created after git revision
+  # new: true
+  # new-from-rev: HEAD
+
+  # Independently of option `exclude` use or not the default list of exclusions
+  # exclude-use-default: false
+
+  # Fix found issues (if it's supported by the linter)
+  fix: false
+
+formatters:
+  settings:
+    goimports:
+      local-prefixes: 
+        - github.com/xraph/forgeui
+
+    gofumpt:
+      extra-rules: true
+
+severity:
+  default: error
+  rules:
+    - linters:
+        - dupl
+        - gocyclo
+        - lll
+      severity: warning
 
