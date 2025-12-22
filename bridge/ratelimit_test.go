@@ -9,7 +9,7 @@ func TestRateLimiter_Allow(t *testing.T) {
 	rl := NewRateLimiter(10, 10) // 10 per minute, burst 10
 
 	// First 10 requests should be allowed
-	for i := 0; i < 10; i++ {
+	for i := range 10 {
 		if !rl.Allow("test-key") {
 			t.Errorf("request %d should be allowed", i+1)
 		}
@@ -25,7 +25,7 @@ func TestRateLimiter_Reset(t *testing.T) {
 	rl := NewRateLimiter(10, 10)
 
 	// Use up the bucket
-	for i := 0; i < 10; i++ {
+	for range 10 {
 		rl.Allow("test-key")
 	}
 
@@ -58,7 +58,7 @@ func TestRateLimiter_Refill(t *testing.T) {
 	rl := NewRateLimiter(60, 10) // 60 per minute = 1 per second
 
 	// Use up the bucket
-	for i := 0; i < 10; i++ {
+	for range 10 {
 		rl.Allow("test-key")
 	}
 
@@ -90,4 +90,3 @@ func TestRateLimiter_Count(t *testing.T) {
 		t.Errorf("count after 2 keys = %d, want 2", rl.Count())
 	}
 }
-

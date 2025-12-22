@@ -39,6 +39,7 @@ func TestScripts(t *testing.T) {
 			if err := node.Render(&buf); err != nil {
 				t.Fatalf("Render error: %v", err)
 			}
+
 			got := buf.String()
 
 			// Check all expected URLs are present
@@ -86,6 +87,7 @@ func TestScriptsWithVersion(t *testing.T) {
 	if !strings.Contains(got, "focus") {
 		t.Errorf("ScriptsWithVersion() missing Focus plugin")
 	}
+
 	if !strings.Contains(got, "alpinejs") {
 		t.Errorf("ScriptsWithVersion() missing Alpine")
 	}
@@ -99,6 +101,7 @@ func TestCloakCSS(t *testing.T) {
 	if !strings.Contains(got, "[x-cloak]") {
 		t.Errorf("CloakCSS() = %v, want to contain [x-cloak] selector", got)
 	}
+
 	if !strings.Contains(got, "display: none !important") {
 		t.Errorf("CloakCSS() = %v, want to contain display: none", got)
 	}
@@ -106,6 +109,7 @@ func TestCloakCSS(t *testing.T) {
 
 func TestScriptsWithNonce(t *testing.T) {
 	var buf bytes.Buffer
+
 	nonce := "random-nonce-value"
 	html.Div(ScriptsWithNonce(nonce, PluginFocus)).Render(&buf)
 	got := buf.String()

@@ -5,7 +5,7 @@ import (
 	"path/filepath"
 	"strings"
 	"text/template"
-	
+
 	"github.com/xraph/forgeui/cli/util"
 )
 
@@ -77,33 +77,34 @@ func {{.Name}}({{if .WithProps}}props {{.Name}}Props, {{end}}children ...g.Node)
 	)
 }
 `
-	
+
 	data := map[string]any{
-		"Package":     opts.Package,
-		"PackageName": opts.Package,
-		"Name":        util.ToPascalCase(opts.Name),
-		"WithProps":   opts.WithProps,
+		"Package":      opts.Package,
+		"PackageName":  opts.Package,
+		"Name":         util.ToPascalCase(opts.Name),
+		"WithProps":    opts.WithProps,
 		"WithVariants": opts.WithVariants,
 	}
-	
+
 	code, err := executeTemplate(tmpl, data)
 	if err != nil {
 		return err
 	}
-	
+
 	fileName := opts.Package + ".go"
 	if err := util.CreateFile(filepath.Join(dir, fileName), code); err != nil {
 		return err
 	}
-	
+
 	if opts.WithTest {
 		testCode := generateTestFile(opts)
+
 		testFileName := opts.Package + "_test.go"
 		if err := util.CreateFile(filepath.Join(dir, testFileName), testCode); err != nil {
 			return err
 		}
 	}
-	
+
 	return nil
 }
 
@@ -150,19 +151,20 @@ func {{.Name}}Footer(children ...g.Node) g.Node {
 	)
 }
 `
-	
+
 	data := map[string]any{
 		"Package":     opts.Package,
 		"PackageName": opts.Package,
 		"Name":        util.ToPascalCase(opts.Name),
 	}
-	
+
 	code, err := executeTemplate(tmpl, data)
 	if err != nil {
 		return err
 	}
-	
+
 	fileName := opts.Package + ".go"
+
 	return util.CreateFile(filepath.Join(dir, fileName), code)
 }
 
@@ -193,19 +195,20 @@ func {{.Name}}(props {{.Name}}Props, children ...g.Node) g.Node {
 	)
 }
 `
-	
+
 	data := map[string]any{
 		"Package":     opts.Package,
 		"PackageName": opts.Package,
 		"Name":        util.ToPascalCase(opts.Name),
 	}
-	
+
 	code, err := executeTemplate(tmpl, data)
 	if err != nil {
 		return err
 	}
-	
+
 	fileName := opts.Package + ".go"
+
 	return util.CreateFile(filepath.Join(dir, fileName), code)
 }
 
@@ -238,19 +241,20 @@ func {{.Name}}(title string, children ...g.Node) g.Node {
 	)
 }
 `
-	
+
 	data := map[string]any{
 		"Package":     opts.Package,
 		"PackageName": opts.Package,
 		"Name":        util.ToPascalCase(opts.Name),
 	}
-	
+
 	code, err := executeTemplate(tmpl, data)
 	if err != nil {
 		return err
 	}
-	
+
 	fileName := opts.Package + ".go"
+
 	return util.CreateFile(filepath.Join(dir, fileName), code)
 }
 
@@ -286,19 +290,20 @@ func {{.Name}}(items []{{.Name}}Item) g.Node {
 	)
 }
 `
-	
+
 	data := map[string]any{
 		"Package":     opts.Package,
 		"PackageName": opts.Package,
 		"Name":        util.ToPascalCase(opts.Name),
 	}
-	
+
 	code, err := executeTemplate(tmpl, data)
 	if err != nil {
 		return err
 	}
-	
+
 	fileName := opts.Package + ".go"
+
 	return util.CreateFile(filepath.Join(dir, fileName), code)
 }
 
@@ -307,12 +312,12 @@ func executeTemplate(tmplStr string, data map[string]any) (string, error) {
 	if err != nil {
 		return "", err
 	}
-	
+
 	var buf strings.Builder
 	if err := tmpl.Execute(&buf, data); err != nil {
 		return "", err
 	}
-	
+
 	return buf.String(), nil
 }
 
@@ -336,4 +341,3 @@ func Test%s(t *testing.T) {
 }
 `, opts.Package, util.ToPascalCase(opts.Name), util.ToPascalCase(opts.Name))
 }
-

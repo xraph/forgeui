@@ -64,4 +64,3 @@ func Error(text string, opts ...ErrorOption) g.Node {
 		g.Text(text),
 	)
 }
-

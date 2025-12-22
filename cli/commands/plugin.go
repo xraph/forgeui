@@ -1,13 +1,16 @@
 package commands
 
 import (
+	"errors"
 	"fmt"
 	"os"
 	"os/exec"
-	"strings"
-	
+	"slices"
+
 	"github.com/xraph/forgeui/cli"
 	"github.com/xraph/forgeui/cli/util"
+	"golang.org/x/text/cases"
+	"golang.org/x/text/language"
 )
 
 func init() {
@@ -80,74 +83,73 @@ func runPluginList(ctx *cli.Context) error {
 	if err := ctx.LoadConfig(); err != nil {
 		return fmt.Errorf("failed to load config: %w", err)
 	}
-	
+
 	if len(ctx.Config.Plugins) == 0 {
 		ctx.Printf("%sNo plugins installed%s\n", util.ColorGray, util.ColorReset)
 		ctx.Printf("\nInstall a plugin with: %sforgeui plugin add <plugin-name>%s\n", util.ColorCyan, util.ColorReset)
+
 		return nil
 	}
-	
+
 	ctx.Printf("\n%sInstalled Plugins:%s\n\n", util.ColorBold, util.ColorReset)
-	
+
 	for i, plugin := range ctx.Config.Plugins {
 		ctx.Printf("  %d. %s%s%s\n", i+1, util.ColorGreen, plugin, util.ColorReset)
 	}
-	
+
 	ctx.Println()
-	
+
 	return nil
 }
 
 func runPluginAdd(ctx *cli.Context) error {
 	if len(ctx.Args) == 0 {
-		return fmt.Errorf("plugin name is required")
+		return errors.New("plugin name is required")
 	}
-	
+
 	pluginName := ctx.Args[0]
-	
+
 	// Load config
 	if err := ctx.LoadConfig(); err != nil {
 		return fmt.Errorf("failed to load config: %w", err)
 	}
-	
+
 	// Check if already installed
-	for _, p := range ctx.Config.Plugins {
-		if p == pluginName {
-			return fmt.Errorf("plugin %s is already installed", pluginName)
-		}
+	if slices.Contains(ctx.Config.Plugins, pluginName) {
+		return fmt.Errorf("plugin %s is already installed", pluginName)
 	}
-	
+
 	ctx.Printf("\n%sAdding plugin: %s%s\n\n", util.ColorBlue, pluginName, util.ColorReset)
-	
+
 	// Install the plugin package
 	spinner := util.NewSpinner("Installing plugin package")
 	spinner.Start()
-	
-	pluginPath := fmt.Sprintf("github.com/xraph/forgeui/plugins/%s", pluginName)
+
+	pluginPath := "github.com/xraph/forgeui/plugins/" + pluginName
 	cmd := exec.Command("go", "get", pluginPath)
 	cmd.Stdout = os.Stdout
 	cmd.Stderr = os.Stderr
-	
+
 	if err := cmd.Run(); err != nil {
 		spinner.Error(fmt.Sprintf("Failed: %v", err))
 		return fmt.Errorf("failed to install plugin: %w", err)
 	}
-	
+
 	spinner.Success("Plugin package installed")
-	
+
 	// Add to config
 	spinner = util.NewSpinner("Updating configuration")
 	spinner.Start()
-	
+
 	ctx.Config.Plugins = append(ctx.Config.Plugins, pluginName)
-	
+
 	if err := ctx.Config.Save("."); err != nil {
 		spinner.Error(fmt.Sprintf("Failed: %v", err))
 		return fmt.Errorf("failed to save config: %w", err)
 	}
-	
+
 	spinner.Success("Configuration updated")
-	
+
 	// Success message
 	ctx.Printf("\n%s✓ Plugin added successfully!%s\n\n", util.ColorGreen, util.ColorReset)
 	ctx.Printf("Plugin: %s%s%s\n\n", util.ColorCyan, pluginName, util.ColorReset)
@@ -155,25 +157,26 @@ func runPluginAdd(ctx *cli.Context) error {
 	ctx.Printf("  1. Import the plugin in your code:\n")
 	ctx.Printf("     %simport \"github.com/xraph/forgeui/plugins/%s\"%s\n", util.ColorGray, pluginName, util.ColorReset)
 	ctx.Printf("  2. Register it with your ForgeUI app\n\n")
-	
+
 	return nil
 }
 
 func runPluginRemove(ctx *cli.Context) error {
 	if len(ctx.Args) == 0 {
-		return fmt.Errorf("plugin name is required")
+		return errors.New("plugin name is required")
 	}
-	
+
 	pluginName := ctx.Args[0]
-	
+
 	// Load config
 	if err := ctx.LoadConfig(); err != nil {
 		return fmt.Errorf("failed to load config: %w", err)
 	}
-	
+
 	// Find and remove plugin
 	found := false
 	newPlugins := []string{}
+
 	for _, p := range ctx.Config.Plugins {
 		if p == pluginName {
 			found = true
@@ -181,37 +184,37 @@ func runPluginRemove(ctx *cli.Context) error {
 			newPlugins = append(newPlugins, p)
 		}
 	}
-	
+
 	if !found {
 		return fmt.Errorf("plugin %s is not installed", pluginName)
 	}
-	
+
 	ctx.Config.Plugins = newPlugins
-	
+
 	// Save config
 	spinner := util.NewSpinner("Removing plugin")
 	spinner.Start()
-	
+
 	if err := ctx.Config.Save("."); err != nil {
 		spinner.Error(fmt.Sprintf("Failed: %v", err))
 		return fmt.Errorf("failed to save config: %w", err)
 	}
-	
+
 	spinner.Success("Plugin removed")
-	
+
 	ctx.Printf("\n%s✓ Plugin removed successfully!%s\n\n", util.ColorGreen, util.ColorReset)
 	ctx.Printf("Note: You may want to remove the import and registration code manually.\n\n")
-	
+
 	return nil
 }
 
 func runPluginInfo(ctx *cli.Context) error {
 	if len(ctx.Args) == 0 {
-		return fmt.Errorf("plugin name is required")
+		return errors.New("plugin name is required")
 	}
-	
+
 	pluginName := ctx.Args[0]
-	
+
 	// Built-in plugins info
 	plugins := map[string]struct {
 		Description string
@@ -242,25 +245,26 @@ func runPluginInfo(ctx *cli.Context) error {
 			Features:    []string{"HTMX as Alpine plugin", "Easy integration", "Enhanced attributes"},
 		},
 	}
-	
+
 	info, ok := plugins[pluginName]
 	if !ok {
 		ctx.Printf("%sNo information available for plugin: %s%s\n", util.ColorYellow, pluginName, util.ColorReset)
 		ctx.Printf("\nTry: %sforgeui plugin list%s\n", util.ColorCyan, util.ColorReset)
+
 		return nil
 	}
-	
-	ctx.Printf("\n%s%s%s\n", util.ColorBold, strings.Title(pluginName), util.ColorReset)
+
+	ctx.Printf("\n%s%s%s\n", util.ColorBold, cases.Title(language.Und).String(pluginName), util.ColorReset)
 	ctx.Printf("%s\n\n", info.Description)
-	
+
 	ctx.Printf("%sFeatures:%s\n", util.ColorBold, util.ColorReset)
+
 	for _, feature := range info.Features {
 		ctx.Printf("  • %s\n", feature)
 	}
-	
+
 	ctx.Printf("\n%sInstallation:%s\n", util.ColorBold, util.ColorReset)
 	ctx.Printf("  %sforgeui plugin add %s%s\n\n", util.ColorCyan, pluginName, util.ColorReset)
-	
+
 	return nil
 }
-

@@ -3,7 +3,7 @@ package templates
 import (
 	"fmt"
 	"strings"
-	
+
 	"github.com/xraph/forgeui/cli/util"
 )
 
@@ -67,18 +67,18 @@ func {{.Name}}(ctx *forgeui.PageContext) g.Node {
 	)
 }
 `
-	
+
 	data := map[string]any{
 		"Package": opts.Package,
 		"Name":    util.ToPascalCase(opts.Name),
 		"Path":    opts.Path,
 	}
-	
+
 	code, err := executeTemplate(tmpl, data)
 	if err != nil {
 		return err
 	}
-	
+
 	return util.CreateFile(filePath, code)
 }
 
@@ -86,58 +86,18 @@ func {{.Name}}(ctx *forgeui.PageContext) g.Node {
 type DynamicPageTemplate struct{}
 
 func (t *DynamicPageTemplate) Generate(filePath string, opts PageOptions) error {
-	tmpl := `package {{.Package}}
+	tmpl := "package {{.Package}}\n\nimport (\n\t\"github.com/xraph/forgeui\"\n\tg \"maragu.dev/gomponents\"\n\t\"maragu.dev/gomponents/html\"\n)\n\n// {{.Name}}Data holds the page data\ntype {{.Name}}Data struct {\n\tTitle   string\n\tContent string\n}\n\n// {{.Name}} renders the {{.Name}} page\nfunc {{.Name}}(ctx *forgeui.PageContext) g.Node {\n\t// Load data\n\t:= load{{.Name}}Data(ctx)\n\t\n\treturn html.HTML(\n\t\thtml.Lang(\"en\"),\n\t\thtml.Head(\n\t\t\thtml.Meta(html.Charset(\"utf-8\")),\n\t\t\thtml.Meta(html.Name(\"viewport\"), html.Content(\"width=device-width, initial-scale=1\")),\n\t\t\thtml.TitleEl(g.Text(data.Title)),\n\t\t),\n\t\thtml.Body(\n\t\t\thtml.H1(g.Text(data.Title)),\n\t\t\thtml.Div(g.Text(data.Content)),\n\t\t),\n\t)\n}\n\nfunc load{{.Name}}Data(ctx *forgeui.PageContext) {{.Name}}Data {\n\t// TODO: Load data from database or API\n\treturn {{.Name}}Data{\n\t\tTitle:   \"{{.Name}}\",\n\t\tContent: \"Dynamic content goes here\",\n\t}"
 
-import (
-	"github.com/xraph/forgeui"
-	g "maragu.dev/gomponents"
-	"maragu.dev/gomponents/html"
-)
-
-// {{.Name}}Data holds the page data
-type {{.Name}}Data struct {
-	Title   string
-	Content string
-}
-
-// {{.Name}} renders the {{.Name}} page
-func {{.Name}}(ctx *forgeui.PageContext) g.Node {
-	// Load data
-	data := load{{.Name}}Data(ctx)
-	
-	return html.HTML(
-		html.Lang("en"),
-		html.Head(
-			html.Meta(html.Charset("utf-8")),
-			html.Meta(html.Name("viewport"), html.Content("width=device-width, initial-scale=1")),
-			html.TitleEl(g.Text(data.Title)),
-		),
-		html.Body(
-			html.H1(g.Text(data.Title)),
-			html.Div(g.Text(data.Content)),
-		),
-	)
-}
-
-func load{{.Name}}Data(ctx *forgeui.PageContext) {{.Name}}Data {
-	// TODO: Load data from database or API
-	return {{.Name}}Data{
-		Title:   "{{.Name}}",
-		Content: "Dynamic content goes here",
-	}
-}
-`
-	
 	data := map[string]any{
 		"Package": opts.Package,
 		"Name":    util.ToPascalCase(opts.Name),
 	}
-	
+
 	code, err := executeTemplate(tmpl, data)
 	if err != nil {
 		return err
 	}
-	
+
 	return util.CreateFile(filePath, code)
 }
 
@@ -181,18 +141,18 @@ func {{.Name}}(ctx *forgeui.PageContext) g.Node {
 	)
 }
 `
-	
+
 	data := map[string]any{
 		"Package": opts.Package,
 		"Name":    util.ToPascalCase(opts.Name),
 		"Path":    opts.Path,
 	}
-	
+
 	code, err := executeTemplate(tmpl, data)
 	if err != nil {
 		return err
 	}
-	
+
 	return util.CreateFile(filePath, code)
 }
 
@@ -250,18 +210,18 @@ func load{{.Name}}Items(ctx *forgeui.PageContext) []{{.Name}}Item {
 	}
 }
 `
-	
+
 	data := map[string]any{
 		"Package": opts.Package,
 		"Name":    util.ToPascalCase(opts.Name),
 		"Path":    opts.Path,
 	}
-	
+
 	code, err := executeTemplate(tmpl, data)
 	if err != nil {
 		return err
 	}
-	
+
 	return util.CreateFile(filePath, code)
 }
 
@@ -313,18 +273,17 @@ func load{{.Name}}Detail(ctx *forgeui.PageContext, id string) {{.Name}}Detail {
 	}
 }
 `
-	
+
 	data := map[string]any{
 		"Package": opts.Package,
 		"Name":    util.ToPascalCase(opts.Name),
 		"Path":    strings.TrimSuffix(opts.Path, "/:id"),
 	}
-	
+
 	code, err := executeTemplate(tmpl, data)
 	if err != nil {
 		return err
 	}
-	
+
 	return util.CreateFile(filePath, code)
 }
-

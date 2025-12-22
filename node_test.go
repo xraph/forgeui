@@ -54,6 +54,7 @@ func TestNode_Attr(t *testing.T) {
 	if !strings.Contains(html, `type="text"`) {
 		t.Errorf("expected type attribute, got %s", html)
 	}
+
 	if !strings.Contains(html, `placeholder="Enter text"`) {
 		t.Errorf("expected placeholder attribute, got %s", html)
 	}

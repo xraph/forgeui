@@ -66,7 +66,7 @@ func TestMiddlewarePluginExecution(t *testing.T) {
 
 	wrapped := plugin.Middleware()(handler)
 
-	req := httptest.NewRequest("GET", "/", nil)
+	req := httptest.NewRequest(http.MethodGet, "/", nil)
 	w := httptest.NewRecorder()
 
 	wrapped.ServeHTTP(w, req)
@@ -141,9 +141,11 @@ func TestCollectMiddlewarePriority(t *testing.T) {
 	if mws[0].Name() != "mw2" {
 		t.Errorf("expected mw2 first (priority 10), got %s", mws[0].Name())
 	}
+
 	if mws[1].Name() != "mw3" {
 		t.Errorf("expected mw3 second (priority 30), got %s", mws[1].Name())
 	}
+
 	if mws[2].Name() != "mw1" {
 		t.Errorf("expected mw1 third (priority 50), got %s", mws[2].Name())
 	}
@@ -171,4 +173,3 @@ func TestMiddlewarePluginLifecycle(t *testing.T) {
 		t.Fatalf("Shutdown() error = %v", err)
 	}
 }
-

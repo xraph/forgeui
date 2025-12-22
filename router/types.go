@@ -29,4 +29,3 @@ func (p Params) Has(key string) bool {
 	_, ok := p[key]
 	return ok
 }
-

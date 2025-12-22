@@ -10,8 +10,9 @@ import (
 
 func TestToggle(t *testing.T) {
 	var buf bytes.Buffer
+
 	node := theme.Toggle()
-	
+
 	if err := node.Render(&buf); err != nil {
 		t.Fatalf("render error: %v", err)
 	}
@@ -46,8 +47,9 @@ func TestToggle(t *testing.T) {
 
 func TestToggleWithLabel(t *testing.T) {
 	var buf bytes.Buffer
+
 	node := theme.Toggle(theme.WithLabel(true))
-	
+
 	if err := node.Render(&buf); err != nil {
 		t.Fatalf("render error: %v", err)
 	}
@@ -62,8 +64,9 @@ func TestToggleWithLabel(t *testing.T) {
 
 func TestToggleWithCustomLabels(t *testing.T) {
 	var buf bytes.Buffer
+
 	node := theme.Toggle(theme.WithLabels("☀️ Light", "🌙 Dark"))
-	
+
 	if err := node.Render(&buf); err != nil {
 		t.Fatalf("render error: %v", err)
 	}
@@ -86,8 +89,9 @@ func TestToggleWithSize(t *testing.T) {
 	for _, size := range sizes {
 		t.Run(size, func(t *testing.T) {
 			var buf bytes.Buffer
+
 			node := theme.Toggle(theme.WithToggleSize(size))
-			
+
 			if err := node.Render(&buf); err != nil {
 				t.Fatalf("render error: %v", err)
 			}
@@ -103,8 +107,9 @@ func TestToggleWithSize(t *testing.T) {
 
 func TestSimpleToggle(t *testing.T) {
 	var buf bytes.Buffer
+
 	node := theme.SimpleToggle()
-	
+
 	if err := node.Render(&buf); err != nil {
 		t.Fatalf("render error: %v", err)
 	}
@@ -123,8 +128,9 @@ func TestSimpleToggle(t *testing.T) {
 
 func TestToggleWithSystemOption(t *testing.T) {
 	var buf bytes.Buffer
+
 	node := theme.ToggleWithSystemOption()
-	
+
 	if err := node.Render(&buf); err != nil {
 		t.Fatalf("render error: %v", err)
 	}
@@ -147,8 +153,9 @@ func TestToggleWithSystemOption(t *testing.T) {
 
 func TestToggleIcons(t *testing.T) {
 	var buf bytes.Buffer
+
 	node := theme.Toggle()
-	
+
 	if err := node.Render(&buf); err != nil {
 		t.Fatalf("render error: %v", err)
 	}
@@ -168,8 +175,9 @@ func TestToggleIcons(t *testing.T) {
 func TestTogglePersistence(t *testing.T) {
 	t.Run("default localStorage persistence", func(t *testing.T) {
 		var buf bytes.Buffer
+
 		node := theme.Toggle()
-		
+
 		if err := node.Render(&buf); err != nil {
 			t.Fatalf("render error: %v", err)
 		}
@@ -189,8 +197,9 @@ func TestTogglePersistence(t *testing.T) {
 
 	t.Run("custom storage key", func(t *testing.T) {
 		var buf bytes.Buffer
+
 		node := theme.Toggle(theme.WithToggleStorageKey("my-app-theme"))
-		
+
 		if err := node.Render(&buf); err != nil {
 			t.Fatalf("render error: %v", err)
 		}
@@ -204,8 +213,9 @@ func TestTogglePersistence(t *testing.T) {
 
 	t.Run("sessionStorage type", func(t *testing.T) {
 		var buf bytes.Buffer
+
 		node := theme.Toggle(theme.WithStorageType(theme.SessionStorage))
-		
+
 		if err := node.Render(&buf); err != nil {
 			t.Fatalf("render error: %v", err)
 		}
@@ -219,8 +229,9 @@ func TestTogglePersistence(t *testing.T) {
 
 	t.Run("no storage type", func(t *testing.T) {
 		var buf bytes.Buffer
+
 		node := theme.Toggle(theme.WithStorageType(theme.NoStorage))
-		
+
 		if err := node.Render(&buf); err != nil {
 			t.Fatalf("render error: %v", err)
 		}
@@ -237,8 +248,9 @@ func TestTogglePersistence(t *testing.T) {
 func TestToggleTabSync(t *testing.T) {
 	t.Run("tab sync enabled by default", func(t *testing.T) {
 		var buf bytes.Buffer
+
 		node := theme.Toggle()
-		
+
 		if err := node.Render(&buf); err != nil {
 			t.Fatalf("render error: %v", err)
 		}
@@ -253,8 +265,9 @@ func TestToggleTabSync(t *testing.T) {
 
 	t.Run("tab sync disabled", func(t *testing.T) {
 		var buf bytes.Buffer
+
 		node := theme.Toggle(theme.WithTabSync(false))
-		
+
 		if err := node.Render(&buf); err != nil {
 			t.Fatalf("render error: %v", err)
 		}
@@ -270,8 +283,9 @@ func TestToggleTabSync(t *testing.T) {
 
 func TestToggleSystemPreference(t *testing.T) {
 	var buf bytes.Buffer
+
 	node := theme.Toggle(theme.WithSystemPreference(true))
-	
+
 	if err := node.Render(&buf); err != nil {
 		t.Fatalf("render error: %v", err)
 	}
@@ -286,8 +300,9 @@ func TestToggleSystemPreference(t *testing.T) {
 
 func TestPersistentToggle(t *testing.T) {
 	var buf bytes.Buffer
+
 	node := theme.PersistentToggle("custom-key")
-	
+
 	if err := node.Render(&buf); err != nil {
 		t.Fatalf("render error: %v", err)
 	}
@@ -307,8 +322,9 @@ func TestPersistentToggle(t *testing.T) {
 
 func TestDropdownToggle(t *testing.T) {
 	var buf bytes.Buffer
+
 	node := theme.DropdownToggle()
-	
+
 	if err := node.Render(&buf); err != nil {
 		t.Fatalf("render error: %v", err)
 	}
@@ -338,8 +354,9 @@ func TestDropdownToggle(t *testing.T) {
 
 func TestToggleWithSystemOptionPersistence(t *testing.T) {
 	var buf bytes.Buffer
+
 	node := theme.ToggleWithSystemOption(theme.WithToggleStorageKey("app-theme"))
-	
+
 	if err := node.Render(&buf); err != nil {
 		t.Fatalf("render error: %v", err)
 	}
@@ -364,8 +381,9 @@ func TestToggleWithSystemOptionPersistence(t *testing.T) {
 
 func TestThemeTransitionCSS(t *testing.T) {
 	var buf bytes.Buffer
+
 	node := theme.ThemeTransitionCSS()
-	
+
 	if err := node.Render(&buf); err != nil {
 		t.Fatalf("render error: %v", err)
 	}
@@ -387,4 +405,3 @@ func TestThemeTransitionCSS(t *testing.T) {
 		t.Error("ThemeTransitionCSS should include background-color transition")
 	}
 }
-

@@ -282,4 +282,3 @@ func RotateIn() *Transition {
 		LeaveEnd:   "opacity-0 rotate-180 scale-50",
 	}
 }
-

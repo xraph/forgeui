@@ -54,6 +54,7 @@ func (r *Router) RegisterLayout(name string, fn LayoutFunc, opts ...LayoutOption
 func (r *Router) SetDefaultLayout(name string) {
 	r.mu.Lock()
 	defer r.mu.Unlock()
+
 	r.defaultLayout = name
 }
 
@@ -67,6 +68,7 @@ func (r *Router) GetLayout(name string) (LayoutFunc, bool) {
 	}
 
 	fn, ok := r.layouts[name]
+
 	return fn, ok
 }
 
@@ -157,4 +159,3 @@ func DashboardLayout(ctx *PageContext, content g.Node) g.Node {
 		),
 	)
 }
-

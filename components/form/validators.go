@@ -1,8 +1,10 @@
 package form
 
 import (
+	"errors"
 	"fmt"
 	"regexp"
+	"slices"
 	"strings"
 )
 
@@ -19,6 +21,7 @@ func (e *ValidationError) Error() string {
 	if e.Field != "" {
 		return fmt.Sprintf("%s: %s", e.Field, e.Message)
 	}
+
 	return e.Message
 }
 
@@ -43,6 +46,7 @@ func Required() Validator {
 		if strings.TrimSpace(value) == "" {
 			return NewValidationError("", "This field is required")
 		}
+
 		return nil
 	}
 }
@@ -53,6 +57,7 @@ func RequiredWithMessage(message string) Validator {
 		if strings.TrimSpace(value) == "" {
 			return NewValidationError("", message)
 		}
+
 		return nil
 	}
 }
@@ -67,13 +72,16 @@ func RequiredWithMessage(message string) Validator {
 //	}
 func Email() Validator {
 	emailRegex := regexp.MustCompile(`^[a-zA-Z0-9._%+\-]+@[a-zA-Z0-9.\-]+\.[a-zA-Z]{2,}$`)
+
 	return func(value string) error {
 		if value == "" {
 			return nil // Allow empty unless combined with Required()
 		}
+
 		if !emailRegex.MatchString(value) {
 			return NewValidationError("", "Invalid email address")
 		}
+
 		return nil
 	}
 }
@@ -91,9 +99,11 @@ func MinLength(min int) Validator {
 		if value == "" {
 			return nil // Allow empty unless combined with Required()
 		}
+
 		if len(value) < min {
 			return NewValidationError("", fmt.Sprintf("Must be at least %d characters", min))
 		}
+
 		return nil
 	}
 }
@@ -111,6 +121,7 @@ func MaxLength(max int) Validator {
 		if len(value) > max {
 			return NewValidationError("", fmt.Sprintf("Must not exceed %d characters", max))
 		}
+
 		return nil
 	}
 }
@@ -125,16 +136,20 @@ func MaxLength(max int) Validator {
 //	}
 func Pattern(pattern, message string) Validator {
 	regex := regexp.MustCompile(pattern)
+
 	return func(value string) error {
 		if value == "" {
 			return nil // Allow empty unless combined with Required()
 		}
+
 		if !regex.MatchString(value) {
 			if message == "" {
 				message = "Invalid format"
 			}
+
 			return NewValidationError("", message)
 		}
+
 		return nil
 	}
 }
@@ -149,13 +164,16 @@ func Pattern(pattern, message string) Validator {
 //	}
 func URL() Validator {
 	urlRegex := regexp.MustCompile(`^https?://[^\s/$.?#].[^\s]*$`)
+
 	return func(value string) error {
 		if value == "" {
 			return nil // Allow empty unless combined with Required()
 		}
+
 		if !urlRegex.MatchString(value) {
 			return NewValidationError("", "Invalid URL")
 		}
+
 		return nil
 	}
 }
@@ -170,13 +188,16 @@ func URL() Validator {
 //	}
 func Numeric() Validator {
 	numericRegex := regexp.MustCompile(`^\d+$`)
+
 	return func(value string) error {
 		if value == "" {
 			return nil // Allow empty unless combined with Required()
 		}
+
 		if !numericRegex.MatchString(value) {
 			return NewValidationError("", "Must contain only numbers")
 		}
+
 		return nil
 	}
 }
@@ -191,13 +212,16 @@ func Numeric() Validator {
 //	}
 func Alpha() Validator {
 	alphaRegex := regexp.MustCompile(`^[a-zA-Z]+$`)
+
 	return func(value string) error {
 		if value == "" {
 			return nil // Allow empty unless combined with Required()
 		}
+
 		if !alphaRegex.MatchString(value) {
 			return NewValidationError("", "Must contain only letters")
 		}
+
 		return nil
 	}
 }
@@ -212,13 +236,16 @@ func Alpha() Validator {
 //	}
 func AlphaNumeric() Validator {
 	alphaNumRegex := regexp.MustCompile(`^[a-zA-Z0-9]+$`)
+
 	return func(value string) error {
 		if value == "" {
 			return nil // Allow empty unless combined with Required()
 		}
+
 		if !alphaNumRegex.MatchString(value) {
 			return NewValidationError("", "Must contain only letters and numbers")
 		}
+
 		return nil
 	}
 }
@@ -236,12 +263,12 @@ func In(allowed []string) Validator {
 		if value == "" {
 			return nil // Allow empty unless combined with Required()
 		}
-		for _, a := range allowed {
-			if value == a {
-				return nil
-			}
+
+		if slices.Contains(allowed, value) {
+			return nil
 		}
-		return NewValidationError("", fmt.Sprintf("Must be one of: %s", strings.Join(allowed, ", ")))
+
+		return NewValidationError("", "Must be one of: "+strings.Join(allowed, ", "))
 	}
 }
 
@@ -264,6 +291,7 @@ func Combine(validators ...Validator) Validator {
 				return err
 			}
 		}
+
 		return nil
 	}
 }
@@ -277,12 +305,14 @@ func Validate(value string, validators ...Validator) error {
 func ValidateField(field, value string, validators ...Validator) error {
 	err := Validate(value, validators...)
 	if err != nil {
-		if ve, ok := err.(*ValidationError); ok {
+		var ve *ValidationError
+		if errors.As(err, &ve) {
 			ve.Field = field
 			return ve
 		}
+
 		return NewValidationError(field, err.Error())
 	}
+
 	return nil
 }
-

@@ -2,6 +2,7 @@ package theme
 
 import (
 	"fmt"
+	"strconv"
 	"strings"
 
 	g "maragu.dev/gomponents"
@@ -20,12 +21,12 @@ type Font struct {
 
 // FontConfig defines typography configuration for the theme.
 type FontConfig struct {
-	Sans       Font   // Sans-serif font
-	Serif      Font   // Serif font
-	Mono       Font   // Monospace font
-	Body       string // Body font family
-	Heading    string // Heading font family
-	Code       string // Code font family
+	Sans         Font   // Sans-serif font
+	Serif        Font   // Serif font
+	Mono         Font   // Monospace font
+	Body         string // Body font family
+	Heading      string // Heading font family
+	Code         string // Code font family
 	BaseFontSize string // Base font size (e.g., "16px")
 }
 
@@ -47,9 +48,9 @@ func DefaultFontConfig() FontConfig {
 			Fallback: []string{"SFMono-Regular", "Menlo", "Monaco", "Consolas", "monospace"},
 			Display:  "swap",
 		},
-		Body:       "sans",
-		Heading:    "sans",
-		Code:       "mono",
+		Body:         "sans",
+		Heading:      "sans",
+		Code:         "mono",
 		BaseFontSize: "16px",
 	}
 }
@@ -70,9 +71,9 @@ func InterFontConfig() FontConfig {
 			Fallback: []string{"ui-monospace", "monospace"},
 			Display:  "swap",
 		},
-		Body:       "sans",
-		Heading:    "sans",
-		Code:       "mono",
+		Body:         "sans",
+		Heading:      "sans",
+		Code:         "mono",
 		BaseFontSize: "16px",
 	}
 }
@@ -80,18 +81,20 @@ func InterFontConfig() FontConfig {
 // GenerateGoogleFontsURL generates a Google Fonts URL for the given fonts.
 //
 // Example:
-//   fonts := []Font{
-//       {Family: "Inter", Weights: []int{400, 600, 700}},
-//       {Family: "JetBrains Mono", Weights: []int{400, 500}},
-//   }
-//   url := GenerateGoogleFontsURL(fonts)
-//   // Returns: https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=JetBrains+Mono:wght@400;500&display=swap
+//
+//	fonts := []Font{
+//	    {Family: "Inter", Weights: []int{400, 600, 700}},
+//	    {Family: "JetBrains Mono", Weights: []int{400, 500}},
+//	}
+//	url := GenerateGoogleFontsURL(fonts)
+//	// Returns: https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=JetBrains+Mono:wght@400;500&display=swap
 func GenerateGoogleFontsURL(fonts []Font) string {
 	if len(fonts) == 0 {
 		return ""
 	}
 
 	var families []string
+
 	display := "swap" // Default display strategy
 
 	for _, font := range fonts {
@@ -105,8 +108,9 @@ func GenerateGoogleFontsURL(fonts []Font) string {
 		if len(font.Weights) > 0 {
 			weights := make([]string, len(font.Weights))
 			for i, w := range font.Weights {
-				weights[i] = fmt.Sprintf("%d", w)
+				weights[i] = strconv.Itoa(w)
 			}
+
 			family += ":wght@" + strings.Join(weights, ";")
 		}
 
@@ -181,13 +185,14 @@ func FontLink(fonts ...Font) g.Node {
 // This is useful for self-hosted fonts.
 //
 // Example:
-//   font := Font{
-//       Family: "CustomFont",
-//       URL:    "/fonts/custom-font.woff2",
-//       Weights: []int{400, 700},
-//       Display: "swap",
-//   }
-//   css := GenerateFontFaceCSS(font)
+//
+//	font := Font{
+//	    Family: "CustomFont",
+//	    URL:    "/fonts/custom-font.woff2",
+//	    Weights: []int{400, 700},
+//	    Display: "swap",
+//	}
+//	css := GenerateFontFaceCSS(font)
 func GenerateFontFaceCSS(font Font) string {
 	if font.URL == "" {
 		return ""
@@ -212,11 +217,11 @@ func GenerateFontFaceCSS(font Font) string {
 			b.WriteString(fmt.Sprintf("  font-weight: %d;\n", weight))
 			b.WriteString(fmt.Sprintf("  font-style: %s;\n", style))
 			b.WriteString(fmt.Sprintf("  src: url('%s') format('woff2');\n", font.URL))
-			
+
 			if font.Display != "" {
 				b.WriteString(fmt.Sprintf("  font-display: %s;\n", font.Display))
 			}
-			
+
 			b.WriteString("}\n\n")
 		}
 	}
@@ -249,7 +254,7 @@ func GenerateFontCSS(config FontConfig) string {
 
 	// Body styles
 	b.WriteString("body {\n")
-	
+
 	switch config.Body {
 	case "sans":
 		b.WriteString("  font-family: var(--font-sans);\n")
@@ -258,17 +263,17 @@ func GenerateFontCSS(config FontConfig) string {
 	case "mono":
 		b.WriteString("  font-family: var(--font-mono);\n")
 	}
-	
+
 	if config.BaseFontSize != "" {
 		b.WriteString("  font-size: var(--font-size-base);\n")
 	}
-	
+
 	b.WriteString("}\n\n")
 
 	// Heading styles
 	if config.Heading != config.Body {
 		b.WriteString("h1, h2, h3, h4, h5, h6 {\n")
-		
+
 		switch config.Heading {
 		case "sans":
 			b.WriteString("  font-family: var(--font-sans);\n")
@@ -277,7 +282,7 @@ func GenerateFontCSS(config FontConfig) string {
 		case "mono":
 			b.WriteString("  font-family: var(--font-mono);\n")
 		}
-		
+
 		b.WriteString("}\n\n")
 	}
 
@@ -293,7 +298,7 @@ func GenerateFontCSS(config FontConfig) string {
 func formatFontStack(family string, fallbacks []string) string {
 	all := append([]string{family}, fallbacks...)
 	quoted := make([]string, len(all))
-	
+
 	for i, f := range all {
 		// Quote font names with spaces
 		if strings.Contains(f, " ") {
@@ -302,16 +307,16 @@ func formatFontStack(family string, fallbacks []string) string {
 			quoted[i] = f
 		}
 	}
-	
+
 	return strings.Join(quoted, ", ")
 }
 
 // FontStyleTag returns a <style> tag with font configuration CSS.
 func FontStyleTag(config FontConfig) g.Node {
 	css := GenerateFontCSS(config)
+
 	return g.El("style",
 		g.Attr("data-forgeui-fonts", ""),
 		g.Raw(css),
 	)
 }
-

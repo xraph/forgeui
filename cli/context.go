@@ -4,7 +4,7 @@ import (
 	"fmt"
 	"io"
 	"os"
-	
+
 	"github.com/xraph/forgeui/cli/util"
 )
 
@@ -24,19 +24,19 @@ const (
 type Context struct {
 	// Args are the remaining positional arguments after flag parsing
 	Args []string
-	
+
 	// Flags are the parsed command-line flags
 	Flags map[string]any
-	
+
 	// Config is the loaded project configuration (if any)
 	Config *Config
-	
+
 	// Stdout is the standard output writer
 	Stdout io.Writer
-	
+
 	// Stderr is the standard error writer
 	Stderr io.Writer
-	
+
 	// Stdin is the standard input reader
 	Stdin io.Reader
 }
@@ -46,6 +46,7 @@ func (c *Context) GetString(name string) string {
 	if val, ok := c.Flags[name].(string); ok {
 		return val
 	}
+
 	return ""
 }
 
@@ -54,6 +55,7 @@ func (c *Context) GetBool(name string) bool {
 	if val, ok := c.Flags[name].(bool); ok {
 		return val
 	}
+
 	return false
 }
 
@@ -62,6 +64,7 @@ func (c *Context) GetInt(name string) int {
 	if val, ok := c.Flags[name].(int); ok {
 		return val
 	}
+
 	return 0
 }
 
@@ -114,8 +117,11 @@ func (c *Context) LoadConfig() error {
 			c.Config = DefaultConfig()
 			return nil
 		}
+
 		return err
 	}
+
 	c.Config = config
+
 	return nil
 }

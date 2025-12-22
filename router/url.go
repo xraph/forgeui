@@ -7,7 +7,7 @@ import (
 
 // URL generates a URL for a named route with the given parameters
 // Example: router.URL("user", 123) -> "/users/123"
-func (r *Router) URL(name string, params ...interface{}) string {
+func (r *Router) URL(name string, params ...any) string {
 	r.mu.RLock()
 	route, ok := r.namedRoutes[name]
 	r.mu.RUnlock()
@@ -20,7 +20,7 @@ func (r *Router) URL(name string, params ...interface{}) string {
 }
 
 // URL generates a URL from this route's pattern with the given parameters
-func (r *Route) URL(params ...interface{}) string {
+func (r *Route) URL(params ...any) string {
 	pattern := r.Pattern
 	paramIdx := 0
 
@@ -61,7 +61,7 @@ func (r *Route) URL(params ...interface{}) string {
 
 // URLMap generates a URL from this route's pattern with named parameters
 // Example: route.URLMap(map[string]interface{}{"id": 123, "action": "edit"})
-func (r *Route) URLMap(params map[string]interface{}) string {
+func (r *Route) URLMap(params map[string]any) string {
 	pattern := r.Pattern
 
 	// Replace parameters in pattern
@@ -69,20 +69,21 @@ func (r *Route) URLMap(params map[string]interface{}) string {
 	result := make([]string, 0, len(segments))
 
 	for _, segment := range segments {
-		if strings.HasPrefix(segment, ":") {
+		if after, ok := strings.CutPrefix(segment, ":"); ok {
 			// Named parameter
-			paramName := strings.TrimPrefix(segment, ":")
+			paramName := after
 			if val, ok := params[paramName]; ok {
 				result = append(result, fmt.Sprint(val))
 			} else {
 				result = append(result, segment)
 			}
-		} else if strings.HasPrefix(segment, "*") {
+		} else if after, ok := strings.CutPrefix(segment, "*"); ok {
 			// Wildcard
-			paramName := strings.TrimPrefix(segment, "*")
+			paramName := after
 			if paramName == "" {
 				paramName = "wildcard"
 			}
+
 			if val, ok := params[paramName]; ok {
 				result = append(result, fmt.Sprint(val))
 			} else {
@@ -100,4 +101,3 @@ func (r *Route) URLMap(params map[string]interface{}) string {
 
 	return "/" + strings.Join(result, "/")
 }
-

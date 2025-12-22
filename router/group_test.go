@@ -141,8 +141,8 @@ func TestRouteGroupInheritance(t *testing.T) {
 	if w.Header().Get("X-Parent") != "true" {
 		t.Error("Expected X-Parent header from parent group")
 	}
+
 	if w.Header().Get("X-Child") != "true" {
 		t.Error("Expected X-Child header from child group")
 	}
 }
-

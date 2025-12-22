@@ -1,6 +1,8 @@
 package layout
 
 import (
+	"strings"
+
 	g "maragu.dev/gomponents"
 	"maragu.dev/gomponents/html"
 
@@ -138,12 +140,19 @@ func GoogleFonts(families ...string) g.Node {
 
 	// Build font URL
 	fontURL := "https://fonts.googleapis.com/css2?"
+
+	var fontURLSb141 strings.Builder
+
 	for i, family := range families {
 		if i > 0 {
-			fontURL += "&"
+			fontURLSb141.WriteString("&")
 		}
-		fontURL += "family=" + family
+
+		fontURLSb141.WriteString("family=" + family)
 	}
+
+	fontURL += fontURLSb141.String()
+
 	fontURL += "&display=swap"
 
 	return g.Group([]g.Node{

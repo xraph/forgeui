@@ -20,6 +20,7 @@ func newBuilder(router *Router, route *Route) *RouteBuilder {
 func (b *RouteBuilder) Name(name string) *RouteBuilder {
 	b.route.Name = name
 	b.router.Name(name, b.route)
+
 	return b
 }
 
@@ -39,4 +40,3 @@ func (b *RouteBuilder) Handler(handler PageHandler) *RouteBuilder {
 func (b *RouteBuilder) Build() *Route {
 	return b.route
 }
-

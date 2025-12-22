@@ -37,7 +37,7 @@ func TestEmbeddedHandler(t *testing.T) {
 
 	handler := m.EmbeddedHandler()
 
-	req := httptest.NewRequest("GET", "/static/test_helpers.go", nil)
+	req := httptest.NewRequest(http.MethodGet, "/static/test_helpers.go", nil)
 	w := httptest.NewRecorder()
 
 	handler.ServeHTTP(w, req)
@@ -60,7 +60,7 @@ func TestEmbeddedHandler_404(t *testing.T) {
 
 	handler := m.EmbeddedHandler()
 
-	req := httptest.NewRequest("GET", "/static/nonexistent.txt", nil)
+	req := httptest.NewRequest(http.MethodGet, "/static/nonexistent.txt", nil)
 	w := httptest.NewRecorder()
 
 	handler.ServeHTTP(w, req)
@@ -78,7 +78,7 @@ func TestEmbeddedHandler_PathTraversal(t *testing.T) {
 
 	handler := m.EmbeddedHandler()
 
-	req := httptest.NewRequest("GET", "/static/../../../etc/passwd", nil)
+	req := httptest.NewRequest(http.MethodGet, "/static/../../../etc/passwd", nil)
 	w := httptest.NewRecorder()
 
 	handler.ServeHTTP(w, req)
@@ -97,14 +97,14 @@ func TestEmbeddedHandler_CacheHeaders_Production(t *testing.T) {
 	handler := m.EmbeddedHandler()
 
 	// Request with fingerprinted URL
-	req := httptest.NewRequest("GET", "/static/test.abc12345.go", nil)
+	req := httptest.NewRequest(http.MethodGet, "/static/test.abc12345.go", nil)
 	w := httptest.NewRecorder()
 
 	handler.ServeHTTP(w, req)
 
 	// Even if file doesn't exist, cache header logic should still be tested
 	// by making a request with a file that exists
-	req2 := httptest.NewRequest("GET", "/static/helpers.abc12345.go", nil)
+	req2 := httptest.NewRequest(http.MethodGet, "/static/helpers.abc12345.go", nil)
 	w2 := httptest.NewRecorder()
 	handler.ServeHTTP(w2, req2)
 
@@ -113,7 +113,7 @@ func TestEmbeddedHandler_CacheHeaders_Production(t *testing.T) {
 	m.fingerprints["test_helpers.go"] = "test_helpers.abc12345.go"
 	m.mu.Unlock()
 
-	req3 := httptest.NewRequest("GET", "/static/test_helpers.abc12345.go", nil)
+	req3 := httptest.NewRequest(http.MethodGet, "/static/test_helpers.abc12345.go", nil)
 	w3 := httptest.NewRecorder()
 	handler.ServeHTTP(w3, req3)
 
@@ -148,4 +148,3 @@ func TestFingerprintAllEmbedded(t *testing.T) {
 		t.Error("Expected fingerprint for test_helpers.go")
 	}
 }
-

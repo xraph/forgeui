@@ -60,6 +60,7 @@ func TestManager_URL_Production(t *testing.T) {
 
 	// Create a test file
 	testFile := filepath.Join(tmpDir, "test.css")
+
 	content := []byte("body { color: red; }")
 	if err := os.WriteFile(testFile, content, 0644); err != nil {
 		t.Fatalf("Failed to create test file: %v", err)
@@ -101,10 +102,12 @@ func TestManager_URL_Concurrent(t *testing.T) {
 	})
 
 	var wg sync.WaitGroup
-	for i := 0; i < 10; i++ {
+	for range 10 {
 		wg.Add(1)
+
 		go func() {
 			defer wg.Done()
+
 			_ = m.URL("test1.css")
 			_ = m.URL("test2.css")
 			_ = m.URL("test3.css")
@@ -175,9 +178,9 @@ func TestManager_SaveManifest(t *testing.T) {
 
 	// Check that fingerprints were loaded
 	url := m2.URL("app.css")
+
 	expected := "/static/app.abc12345.css"
 	if url != expected {
 		t.Errorf("Expected URL from manifest '%s', got '%s'", expected, url)
 	}
 }
-

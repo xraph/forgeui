@@ -5,8 +5,8 @@ import (
 	"strings"
 	"testing"
 
-	g "maragu.dev/gomponents"
 	"github.com/xraph/forgeui/components/menu"
+	g "maragu.dev/gomponents"
 )
 
 func TestMenu(t *testing.T) {
@@ -41,6 +41,7 @@ func TestMenu(t *testing.T) {
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
 			var buf bytes.Buffer
+
 			node := menu.MenuWithOptions(tt.opts, tt.children...)
 			if err := node.Render(&buf); err != nil {
 				t.Fatalf("render error: %v", err)
@@ -95,6 +96,7 @@ func TestMenuItem(t *testing.T) {
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
 			var buf bytes.Buffer
+
 			node := menu.Item(tt.href, g.Text("Item"), tt.opts...)
 			if err := node.Render(&buf); err != nil {
 				t.Fatalf("render error: %v", err)
@@ -113,6 +115,7 @@ func TestMenuItem(t *testing.T) {
 
 func TestMenuSection(t *testing.T) {
 	var buf bytes.Buffer
+
 	node := menu.Section("Main",
 		menu.Item("/", g.Text("Home")),
 	)
@@ -124,6 +127,7 @@ func TestMenuSection(t *testing.T) {
 	if !strings.Contains(html, "Main") {
 		t.Error("MenuSection missing label")
 	}
+
 	if !strings.Contains(html, "Home") {
 		t.Error("MenuSection missing items")
 	}
@@ -131,6 +135,7 @@ func TestMenuSection(t *testing.T) {
 
 func TestMenuSeparator(t *testing.T) {
 	var buf bytes.Buffer
+
 	node := menu.Separator()
 	if err := node.Render(&buf); err != nil {
 		t.Fatalf("render error: %v", err)

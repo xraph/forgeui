@@ -191,4 +191,3 @@ func TestThemePluginLifecycle(t *testing.T) {
 		t.Fatalf("Shutdown() error = %v", err)
 	}
 }
-

@@ -32,6 +32,7 @@ func TestLoaderErrorWithWrappedError(t *testing.T) {
 	if !strings.Contains(err.Error(), "Server error") {
 		t.Error("Expected error message to contain 'Server error'")
 	}
+
 	if !strings.Contains(err.Error(), "inner error") {
 		t.Error("Expected error message to contain 'inner error'")
 	}
@@ -53,6 +54,7 @@ func TestError404(t *testing.T) {
 	if loaderErr.Status != http.StatusNotFound {
 		t.Errorf("Expected status 404, got %d", loaderErr.Status)
 	}
+
 	if loaderErr.Message != "Page not found" {
 		t.Errorf("Expected message 'Page not found', got '%s'", loaderErr.Message)
 	}
@@ -83,6 +85,7 @@ func TestError500(t *testing.T) {
 	if loaderErr.Status != http.StatusInternalServerError {
 		t.Errorf("Expected status 500, got %d", loaderErr.Status)
 	}
+
 	if loaderErr.Err != innerErr {
 		t.Error("Expected wrapped error to be preserved")
 	}
@@ -116,12 +119,14 @@ func TestDefaultErrorPage(t *testing.T) {
 
 			// Render and check output
 			var buf strings.Builder
+
 			_ = node.Render(&buf)
 			output := buf.String()
 
 			if !strings.Contains(output, tc.title) {
 				t.Errorf("Expected output to contain '%s', got: %s", tc.title, output)
 			}
+
 			if !strings.Contains(output, tc.message) {
 				t.Errorf("Expected output to contain '%s', got: %s", tc.message, output)
 			}
@@ -145,7 +150,9 @@ func TestSetErrorPage(t *testing.T) {
 	}
 
 	node, _ := handler(ctx)
+
 	var buf strings.Builder
+
 	_ = node.Render(&buf)
 
 	if buf.String() != "Custom Error" {
@@ -167,7 +174,9 @@ func TestGetErrorPageDefault(t *testing.T) {
 	}
 
 	node, _ := handler(ctx)
+
 	var buf strings.Builder
+
 	_ = node.Render(&buf)
 
 	if !strings.Contains(buf.String(), "404") {
@@ -199,4 +208,3 @@ func TestCustomErrorPageIntegration(t *testing.T) {
 		t.Errorf("Expected status 500, got %d", w.Code)
 	}
 }
-

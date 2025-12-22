@@ -94,11 +94,13 @@ func AccordionWithOptions(opts []Option, children ...g.Node) g.Node {
 
 	// Build initial state based on type
 	var initialState map[string]any
+
 	if props.Type == TypeSingle {
 		defaultOpen := ""
 		if len(props.DefaultValue) > 0 {
 			defaultOpen = props.DefaultValue[0]
 		}
+
 		initialState = map[string]any{
 			"openItem":    defaultOpen,
 			"type":        "single",

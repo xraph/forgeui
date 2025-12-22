@@ -11,8 +11,8 @@ import (
 
 // ToasterProps defines toaster container configuration
 type ToasterProps struct {
-	Position string // "top-left", "top-right", "top-center", "bottom-left", "bottom-right", "bottom-center"
-	MaxToasts int   // Maximum number of visible toasts (0 = unlimited)
+	Position  string // "top-left", "top-right", "top-center", "bottom-left", "bottom-right", "bottom-center"
+	MaxToasts int    // Maximum number of visible toasts (0 = unlimited)
 	Class     string
 }
 
@@ -67,7 +67,7 @@ func Toaster(opts ...ToasterOption) g.Node {
 		Position:  "bottom-right",
 		MaxToasts: 0, // unlimited by default
 	}
-	
+
 	for _, opt := range opts {
 		opt(props)
 	}
@@ -130,8 +130,8 @@ func Toaster(opts ...ToasterOption) g.Node {
 					LeaveStart: "opacity-100 scale-100 translate-y-0",
 					LeaveEnd:   "opacity-0 scale-95 translate-y-1",
 				})),
-			html.Class("relative flex gap-3 rounded-md border p-4 shadow-lg w-full max-w-md"),
-			g.Attr(":class", `{
+				html.Class("relative flex gap-3 rounded-md border p-4 shadow-lg w-full max-w-md"),
+				g.Attr(":class", `{
 				'bg-card border-border text-foreground': toast.variant === 'success',
 				'bg-destructive/10 border-destructive/50 text-destructive': toast.variant === 'error' || toast.variant === 'destructive',
 				'bg-card border-border text-foreground': toast.variant === 'warning',
@@ -139,21 +139,21 @@ func Toaster(opts ...ToasterOption) g.Node {
 			}`),
 				g.Attr("role", "alert"),
 
-			// Icon (if variant is set)
-			html.Div(
-				alpine.XIf("toast.variant"),
-				html.Class("flex-shrink-0"),
-				html.SVG(
-					g.Attr("xmlns", "http://www.w3.org/2000/svg"),
-					g.Attr("width", "20"),
-					g.Attr("height", "20"),
-					g.Attr("viewBox", "0 0 24 24"),
-					g.Attr("fill", "none"),
-					g.Attr("stroke", "currentColor"),
-					g.Attr("stroke-width", "2"),
-					g.Attr("stroke-linecap", "round"),
-					g.Attr("stroke-linejoin", "round"),
-					html.Class("text-current"),
+				// Icon (if variant is set)
+				html.Div(
+					alpine.XIf("toast.variant"),
+					html.Class("flex-shrink-0"),
+					html.SVG(
+						g.Attr("xmlns", "http://www.w3.org/2000/svg"),
+						g.Attr("width", "20"),
+						g.Attr("height", "20"),
+						g.Attr("viewBox", "0 0 24 24"),
+						g.Attr("fill", "none"),
+						g.Attr("stroke", "currentColor"),
+						g.Attr("stroke-width", "2"),
+						g.Attr("stroke-linecap", "round"),
+						g.Attr("stroke-linejoin", "round"),
+						html.Class("text-current"),
 						g.El("path", g.Attr(":d", `
 							toast.variant === 'success' ? 'M22 11.08V12a10 10 0 1 1-5.93-9.14 M22 4 12 14.01l-3-3' :
 							toast.variant === 'error' || toast.variant === 'destructive' ? 'm21.73 18-8-8 8-8M2.27 6l8 8-8 8' :
@@ -210,10 +210,10 @@ func Toaster(opts ...ToasterOption) g.Node {
 					),
 				),
 
-			// Progress bar
-			html.Div(
-				alpine.XIf("toast.showProgress && toast.duration > 0"),
-				html.Class("absolute bottom-0 left-0 right-0 h-1 bg-muted/20 rounded-b-md overflow-hidden"),
+				// Progress bar
+				html.Div(
+					alpine.XIf("toast.showProgress && toast.duration > 0"),
+					html.Class("absolute bottom-0 left-0 right-0 h-1 bg-muted/20 rounded-b-md overflow-hidden"),
 					html.Div(
 						g.Attr(":style", "`width: ${progress}%`"),
 						html.Class("h-full bg-current transition-all duration-50"),
@@ -315,4 +315,3 @@ func getToasterPositionClass(position string) string {
 		return "fixed bottom-0 right-0"
 	}
 }
-

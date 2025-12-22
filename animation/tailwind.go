@@ -3,6 +3,7 @@ package animation
 import (
 	"encoding/json"
 	"fmt"
+	"strings"
 )
 
 // TailwindAnimation represents a Tailwind animation configuration.
@@ -55,6 +56,7 @@ func GenerateTailwindConfig() *TailwindConfig {
 			props["raw"] = properties
 			frames[selector] = props
 		}
+
 		config.Keyframes[k.Name] = frames
 	}
 
@@ -82,6 +84,7 @@ func (tc *TailwindConfig) ToJSON() (string, error) {
 	if err != nil {
 		return "", fmt.Errorf("failed to marshal config: %w", err)
 	}
+
 	return string(data), nil
 }
 
@@ -95,24 +98,48 @@ func (tc *TailwindConfig) ToJavaScript() string {
 
 	// Keyframes
 	js += "      keyframes: {\n"
+
+	var jsSb98 strings.Builder
+	var jsSb102 strings.Builder
 	for name := range tc.Keyframes {
-		js += fmt.Sprintf("        '%s': {\n", name)
+		jsSb98.WriteString(fmt.Sprintf("        '%s': {\n", name))
+
+		var jsSb100 strings.Builder
+		var jsSb105 strings.Builder
 		for selector, props := range tc.Keyframes[name] {
-			js += fmt.Sprintf("          '%s': {\n", selector)
+			jsSb100.WriteString(fmt.Sprintf("          '%s': {\n", selector))
+
+			var jsSb102 strings.Builder
 			for key, value := range props {
-				js += fmt.Sprintf("            %s: '%s',\n", key, value)
+				jsSb102.WriteString(fmt.Sprintf("            %s: '%s',\n", key, value))
 			}
-			js += "          },\n"
+
+			jsSb105.WriteString(jsSb102.String())
+
+			jsSb100.WriteString("          },\n")
 		}
-		js += "        },\n"
+		js += jsSb105.String()
+
+		jsSb102.WriteString(jsSb100.String())
+
+		jsSb98.WriteString("        },\n")
 	}
+	js += jsSb102.String()
+
+	js += jsSb98.String()
+
 	js += "      },\n"
 
 	// Animations
 	js += "      animation: {\n"
+
+	var jsSb113 strings.Builder
 	for name, value := range tc.Animations {
-		js += fmt.Sprintf("        '%s': '%s',\n", name, value)
+		jsSb113.WriteString(fmt.Sprintf("        '%s': '%s',\n", name, value))
 	}
+
+	js += jsSb113.String()
+
 	js += "      },\n"
 
 	js += "    },\n"
@@ -140,4 +167,3 @@ func TailwindClasses() []string {
 		"animate-shake",
 	}
 }
-

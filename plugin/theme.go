@@ -54,6 +54,7 @@ type ThemePlugin interface {
 // Embed this to implement only the methods you need.
 type ThemePluginBase struct {
 	*PluginBase
+
 	themes       map[string]theme.Theme
 	defaultTheme string
 	fonts        []theme.Font
@@ -114,6 +115,7 @@ func (t *ThemePluginBase) AddTheme(name string, th theme.Theme) {
 	if t.themes == nil {
 		t.themes = make(map[string]theme.Theme)
 	}
+
 	t.themes[name] = th
 }
 
@@ -121,4 +123,3 @@ func (t *ThemePluginBase) AddTheme(name string, th theme.Theme) {
 func (t *ThemePluginBase) AddFont(font theme.Font) {
 	t.fonts = append(t.fonts, font)
 }
-

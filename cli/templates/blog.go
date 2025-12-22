@@ -3,7 +3,7 @@ package templates
 import (
 	"fmt"
 	"path/filepath"
-	
+
 	"github.com/xraph/forgeui/cli/util"
 )
 
@@ -46,11 +46,11 @@ func main() {
 	}
 }
 `, modulePath)
-	
+
 	if err := util.CreateFile(filepath.Join(dir, "main.go"), mainGo); err != nil {
 		return err
 	}
-	
+
 	// Create pages/blog.go
 	blogGo := `package pages
 
@@ -147,18 +147,18 @@ h1 { color: #2c3e50; }
 .post-preview h2 a:hover { color: #3498db; }
 ` + "`" + `
 `
-	
+
 	if err := util.CreateFile(filepath.Join(dir, "pages", "blog.go"), blogGo); err != nil {
 		return err
 	}
-	
+
 	// Create config
 	config := fmt.Sprintf(`{"name":"%s","version":"1.0.0","dev":{"port":3000,"host":"localhost","auto_reload":true,"open_browser":false},"build":{"output_dir":"dist","public_dir":"public","minify":true,"binary":false,"embed_assets":true},"assets":{"css":[],"js":[]},"plugins":[],"router":{"base_path":"/","not_found":""}}`, projectName)
-	
+
 	if err := util.CreateFile(filepath.Join(dir, ".forgeui.json"), config); err != nil {
 		return err
 	}
-	
+
 	// Create .gitignore
 	gitignore := `*.exe
 *.dll
@@ -177,11 +177,11 @@ go.sum
 .DS_Store
 Thumbs.db
 `
-	
+
 	if err := util.CreateFile(filepath.Join(dir, ".gitignore"), gitignore); err != nil {
 		return err
 	}
-	
+
 	// Create README.md
 	readme := fmt.Sprintf(`# %s
 
@@ -189,13 +189,12 @@ A blog template built with ForgeUI.
 
 ## Getting Started
 
-` + "```" + `bash
+`+"```"+`bash
 forgeui dev
-` + "```" + `
+`+"```"+`
 
 Visit http://localhost:3000 to see your blog.
 `, projectName)
-	
+
 	return util.CreateFile(filepath.Join(dir, "README.md"), readme)
 }
-

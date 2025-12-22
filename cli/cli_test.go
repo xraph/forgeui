@@ -36,6 +36,7 @@ func TestCommand_Execute(t *testing.T) {
 				Run: func(ctx *Context) error {
 					name := ctx.GetString("name")
 					ctx.Printf("name: %s\n", name)
+
 					return nil
 				},
 			},
@@ -62,7 +63,7 @@ func TestCommand_Execute(t *testing.T) {
 			wantErr: false,
 		},
 	}
-	
+
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
 			err := tt.cmd.Execute(tt.args)
@@ -83,28 +84,28 @@ func TestContext_Flags(t *testing.T) {
 		Stdout: &bytes.Buffer{},
 		Stderr: &bytes.Buffer{},
 	}
-	
+
 	if got := ctx.GetString("string"); got != "test" {
 		t.Errorf("GetString() = %v, want %v", got, "test")
 	}
-	
+
 	if got := ctx.GetBool("bool"); got != true {
 		t.Errorf("GetBool() = %v, want %v", got, true)
 	}
-	
+
 	if got := ctx.GetInt("int"); got != 42 {
 		t.Errorf("GetInt() = %v, want %v", got, 42)
 	}
-	
+
 	// Test missing flags
 	if got := ctx.GetString("missing"); got != "" {
 		t.Errorf("GetString(missing) = %v, want empty string", got)
 	}
-	
+
 	if got := ctx.GetBool("missing"); got != false {
 		t.Errorf("GetBool(missing) = %v, want false", got)
 	}
-	
+
 	if got := ctx.GetInt("missing"); got != 0 {
 		t.Errorf("GetInt(missing) = %v, want 0", got)
 	}
@@ -120,7 +121,7 @@ func TestFlags(t *testing.T) {
 		{"bool flag", BoolFlag("test", "t", "Test flag"), FlagTypeBool},
 		{"int flag", IntFlag("test", "t", "Test flag", 10), FlagTypeInt},
 	}
-	
+
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
 			if tt.flag.Type != tt.want {
@@ -133,26 +134,26 @@ func TestFlags(t *testing.T) {
 func TestRegisterCommand(t *testing.T) {
 	// Save and restore root command
 	oldRoot := rootCmd
+
 	defer func() { rootCmd = oldRoot }()
-	
+
 	rootCmd = &Command{
 		Name:        "test-root",
 		Subcommands: []*Command{},
 	}
-	
+
 	testCmd := &Command{
 		Name:  "test",
 		Short: "Test command",
 	}
-	
+
 	RegisterCommand(testCmd)
-	
+
 	if len(rootCmd.Subcommands) != 1 {
 		t.Errorf("RegisterCommand() failed to add command")
 	}
-	
+
 	if rootCmd.Subcommands[0].Name != "test" {
 		t.Errorf("RegisterCommand() added wrong command")
 	}
 }
-

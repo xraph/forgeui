@@ -23,6 +23,7 @@ func TestGroup(t *testing.T) {
 		if !strings.Contains(output, "role=\"radiogroup\"") {
 			t.Error("expected group to have radiogroup role")
 		}
+
 		if !strings.Contains(output, "space-y-2") {
 			t.Error("expected group to have spacing classes")
 		}
@@ -127,9 +128,11 @@ func TestGroupItem(t *testing.T) {
 		if !strings.Contains(output, "flex") {
 			t.Error("expected item to have flex layout")
 		}
+
 		if !strings.Contains(output, "items-center") {
 			t.Error("expected item to have items-center class")
 		}
+
 		if !strings.Contains(output, "space-x-2") {
 			t.Error("expected item to have spacing")
 		}
@@ -150,6 +153,7 @@ func TestGroupItem(t *testing.T) {
 		if !strings.Contains(output, "type=\"radio\"") {
 			t.Error("expected item to contain radio input")
 		}
+
 		if !strings.Contains(output, "value=\"small\"") {
 			t.Error("expected item to contain value")
 		}
@@ -181,9 +185,11 @@ func TestGroupIntegration(t *testing.T) {
 		if !strings.Contains(output, "value=\"small\"") {
 			t.Error("expected small option")
 		}
+
 		if !strings.Contains(output, "value=\"medium\"") {
 			t.Error("expected medium option")
 		}
+
 		if !strings.Contains(output, "value=\"large\"") {
 			t.Error("expected large option")
 		}
@@ -194,4 +200,3 @@ func TestGroupIntegration(t *testing.T) {
 		}
 	})
 }
-

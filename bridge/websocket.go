@@ -3,6 +3,7 @@ package bridge
 import (
 	"context"
 	"encoding/json"
+	"errors"
 	"log"
 	"net/http"
 	"sync"
@@ -103,11 +104,13 @@ func (h *WSHandler) processMessage(wsConn *wsConnection, message []byte) {
 
 	// Check authentication
 	if err := h.security.CheckAuth(wsConn.ctx, fn); err != nil {
-		if bridgeErr, ok := err.(*Error); ok {
+		var bridgeErr *Error
+		if errors.As(err, &bridgeErr) {
 			h.sendError(wsConn, req.ID, bridgeErr)
 		} else {
 			h.sendError(wsConn, req.ID, ErrUnauthorized)
 		}
+
 		return
 	}
 
@@ -127,7 +130,13 @@ func (h *WSHandler) processMessage(wsConn *wsConnection, message []byte) {
 	}
 
 	// Send response
-	data, _ := json.Marshal(resp)
+	data, err := json.Marshal(resp)
+	if err != nil {
+		// If we can't marshal response, send error instead
+		h.sendError(wsConn, req.ID, NewError(ErrCodeInternal, "Failed to marshal response"))
+		return
+	}
+
 	wsConn.send <- data
 }
 
@@ -139,7 +148,12 @@ func (h *WSHandler) sendError(wsConn *wsConnection, id any, err *Error) {
 		Error:   err,
 	}
 
-	data, _ := json.Marshal(resp)
+	data, marshalErr := json.Marshal(resp)
+	if marshalErr != nil {
+		// Fallback to simple JSON error if marshal fails
+		data = []byte(`{"jsonrpc":"2.0","error":{"code":-32603,"message":"Internal error"}}`)
+	}
+
 	wsConn.send <- data
 }
 
@@ -157,6 +171,7 @@ func (h *WSHandler) writePump(wsConn *wsConnection) {
 
 			ctx, cancel := context.WithTimeout(context.Background(), 10*time.Second)
 			err := wsConn.conn.Write(ctx, websocket.MessageText, message)
+
 			cancel()
 
 			if err != nil {
@@ -168,6 +183,7 @@ func (h *WSHandler) writePump(wsConn *wsConnection) {
 			// Send ping
 			ctx, cancel := context.WithTimeout(context.Background(), 10*time.Second)
 			err := wsConn.conn.Ping(ctx)
+
 			cancel()
 
 			if err != nil {
@@ -193,6 +209,7 @@ func (h *WSHandler) Broadcast(event Event) {
 				// Channel full, skip
 			}
 		}
+
 		return true
 	})
 }
@@ -215,7 +232,7 @@ func (h *WSHandler) SendToUser(userID string, event Event) {
 				}
 			}
 		}
+
 		return true
 	})
 }
-

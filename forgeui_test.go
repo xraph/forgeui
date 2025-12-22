@@ -6,8 +6,8 @@ import (
 	"strings"
 	"testing"
 
-	g "maragu.dev/gomponents"
 	"github.com/xraph/forgeui"
+	g "maragu.dev/gomponents"
 )
 
 func TestIntegration_NodeWithCVA(t *testing.T) {
@@ -69,9 +69,11 @@ func TestIntegration_AppInitialization(t *testing.T) {
 	if !cfg.Debug {
 		t.Error("expected Debug to be true")
 	}
+
 	if cfg.Theme != "dark" {
 		t.Errorf("expected Theme to be 'dark', got %v", cfg.Theme)
 	}
+
 	if !app.IsDev() {
 		t.Error("IsDev() should return true when Debug is true")
 	}
@@ -96,6 +98,7 @@ func TestIntegration_UtilsWithCVA(t *testing.T) {
 	if !strings.Contains(finalClasses, "bg-blue-500") {
 		t.Error("expected bg-blue-500 for active state")
 	}
+
 	if !strings.Contains(finalClasses, "font-bold") {
 		t.Error("expected font-bold for active state")
 	}

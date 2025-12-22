@@ -26,7 +26,7 @@ func handleAssetsDemo(w http.ResponseWriter, r *http.Request, app *forgeui.App) 
 
 			// Demonstrate asset pipeline - CSS
 			app.Assets.StyleSheet("css/custom.css"),
-			
+
 			// NEW: Hot reload script in development mode
 			g.If(app.IsDev(), g.Raw(app.Assets.HotReloadScript())),
 		),
@@ -259,4 +259,3 @@ func codeExample(title, code string) g.Node {
 		),
 	)
 }
-

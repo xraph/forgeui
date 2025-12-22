@@ -58,13 +58,13 @@ func (a *App) Router() *router.Router {
 func (a *App) Initialize(ctx context.Context) error {
 	// Will be expanded in later phases:
 	// - Phase 11: Initialize plugin registry
-	
+
 	// Phase 15: Initialize asset manager
 	if !a.IsDev() && a.config.AssetManifest == "" {
 		// In production mode without a manifest, pre-generate all fingerprints
 		_ = a.Assets.FingerprintAll()
 	}
-	
+
 	return nil
 }
 

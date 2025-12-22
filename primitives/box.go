@@ -106,6 +106,7 @@ func Box(opts ...BoxOption) g.Node {
 	if classes != "" {
 		attrs = append(attrs, html.Class(classes))
 	}
+
 	attrs = append(attrs, props.Attrs...)
 
 	return g.El(props.As, g.Group(attrs), g.Group(props.Children))

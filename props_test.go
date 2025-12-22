@@ -23,6 +23,7 @@ func TestApplyOptions(t *testing.T) {
 	if props.Value != "updated" {
 		t.Errorf("Value = %v, want 'updated'", props.Value)
 	}
+
 	if props.Count != 5 {
 		t.Errorf("Count = %v, want 5", props.Count)
 	}
@@ -51,9 +52,11 @@ func TestBaseProps(t *testing.T) {
 	if props.Class != "custom-class" {
 		t.Error("Class not set correctly")
 	}
+
 	if !props.Disabled {
 		t.Error("Disabled not set correctly")
 	}
+
 	if props.ID != "test-id" {
 		t.Error("ID not set correctly")
 	}

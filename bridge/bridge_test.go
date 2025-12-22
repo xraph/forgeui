@@ -193,30 +193,31 @@ func TestBridge_ConcurrentAccess(t *testing.T) {
 	done := make(chan bool)
 
 	// Concurrent readers
-	for i := 0; i < 10; i++ {
+	for range 10 {
 		go func() {
-			for j := 0; j < 100; j++ {
+			for range 100 {
 				b.HasFunction("func1")
 				b.ListFunctions()
 			}
+
 			done <- true
 		}()
 	}
 
 	// Concurrent writers
-	for i := 0; i < 5; i++ {
+	for i := range 5 {
 		go func(n int) {
-			for j := 0; j < 20; j++ {
+			for j := range 20 {
 				name := fmt.Sprintf("func%d_%d", n, j)
 				b.Register(name, validHandler)
 			}
+
 			done <- true
 		}(i)
 	}
 
 	// Wait for all goroutines
-	for i := 0; i < 15; i++ {
+	for range 15 {
 		<-done
 	}
 }
-

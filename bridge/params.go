@@ -72,9 +72,10 @@ func validateStruct(value reflect.Value, structType reflect.Type) error {
 func validateField(field reflect.StructField, value reflect.Value) error {
 	// Get JSON tag
 	jsonTag := field.Tag.Get("json")
-	
+
 	// Check if field is required (no omitempty)
 	isRequired := true
+
 	if jsonTag != "" {
 		// Parse tag to check for omitempty
 		for i, c := range jsonTag {
@@ -85,6 +86,7 @@ func validateField(field reflect.StructField, value reflect.Value) error {
 						isRequired = false
 					}
 				}
+
 				break
 			}
 		}
@@ -93,6 +95,7 @@ func validateField(field reflect.StructField, value reflect.Value) error {
 	// If required, check if value is zero
 	if isRequired && isZero(value) {
 		fieldName := field.Name
+
 		if jsonTag != "" && jsonTag != "-" {
 			// Extract name from JSON tag
 			for i, c := range jsonTag {
@@ -101,6 +104,7 @@ func validateField(field reflect.StructField, value reflect.Value) error {
 					break
 				}
 			}
+
 			if fieldName == jsonTag {
 				fieldName = jsonTag
 			}
@@ -138,6 +142,7 @@ func isZero(v reflect.Value) bool {
 	case reflect.Interface, reflect.Ptr:
 		return v.IsNil()
 	}
+
 	return false
 }
 
@@ -176,12 +181,14 @@ func isValidEmail(email string) bool {
 	}
 
 	atIndex := -1
+
 	for i, c := range email {
 		if c == '@' {
 			if atIndex != -1 {
 				// Multiple @ symbols
 				return false
 			}
+
 			atIndex = i
 		}
 	}
@@ -192,6 +199,7 @@ func isValidEmail(email string) bool {
 
 	// Check for dot after @
 	hasDot := false
+
 	for i := atIndex + 1; i < len(email); i++ {
 		if email[i] == '.' {
 			hasDot = true
@@ -201,4 +209,3 @@ func isValidEmail(email string) bool {
 
 	return hasDot
 }
-

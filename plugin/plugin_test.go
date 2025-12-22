@@ -8,6 +8,7 @@ import (
 // mockPlugin is a test plugin implementation
 type mockPlugin struct {
 	*PluginBase
+
 	initCalled     bool
 	shutdownCalled bool
 	initError      error
@@ -120,4 +121,3 @@ func TestDependency(t *testing.T) {
 		})
 	}
 }
-

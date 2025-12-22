@@ -31,6 +31,7 @@ func newRoute(pattern, method string, handler PageHandler) *Route {
 		Middleware: make([]Middleware, 0),
 	}
 	r.compile()
+
 	return r
 }
 
@@ -40,30 +41,32 @@ func (r *Route) compile() {
 	if r.Pattern == "/" {
 		r.regex = regexp.MustCompile("^/$")
 		r.priority = 0 // Highest priority for exact root
+
 		return
 	}
 
 	// Remove trailing slash for consistency
 	pattern := strings.TrimSuffix(r.Pattern, "/")
 	segments := strings.Split(strings.Trim(pattern, "/"), "/")
-	
+
 	regexParts := make([]string, 0, len(segments))
 	paramNames := make([]string, 0)
 	priority := 0
 
 	for _, segment := range segments {
-		if strings.HasPrefix(segment, ":") {
+		if after, ok := strings.CutPrefix(segment, ":"); ok {
 			// Named parameter: :id -> capture group
-			paramName := strings.TrimPrefix(segment, ":")
+			paramName := after
 			paramNames = append(paramNames, paramName)
 			regexParts = append(regexParts, "([^/]+)")
 			priority += 10 // Parameters have lower priority than static
-		} else if strings.HasPrefix(segment, "*") {
+		} else if after, ok := strings.CutPrefix(segment, "*"); ok {
 			// Wildcard: *path -> capture everything
-			paramName := strings.TrimPrefix(segment, "*")
+			paramName := after
 			if paramName == "" {
 				paramName = "wildcard"
 			}
+
 			paramNames = append(paramNames, paramName)
 			regexParts = append(regexParts, "(.+)")
 			priority += 20 // Wildcards have lowest priority
@@ -95,6 +98,7 @@ func (r *Route) Match(path string) (params Params, ok bool) {
 
 	// Extract parameters
 	params = make(Params)
+
 	for i, name := range r.paramNames {
 		if i+1 < len(matches) {
 			params[name] = matches[i+1]

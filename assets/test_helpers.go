@@ -12,6 +12,6 @@ func renderNode(node g.Node) string {
 	if err := node.Render(&buf); err != nil {
 		return ""
 	}
+
 	return buf.String()
 }
-

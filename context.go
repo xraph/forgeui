@@ -12,12 +12,12 @@ const (
 )
 
 // WithTheme adds theme to context
-func WithTheme(ctx context.Context, theme interface{}) context.Context {
+func WithTheme(ctx context.Context, theme any) context.Context {
 	return context.WithValue(ctx, themeKey, theme)
 }
 
 // ThemeFromContext retrieves theme from context
-func ThemeFromContext(ctx context.Context) (interface{}, bool) {
+func ThemeFromContext(ctx context.Context) (any, bool) {
 	theme := ctx.Value(themeKey)
 	return theme, theme != nil
 }

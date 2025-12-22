@@ -69,6 +69,7 @@ func (sm *ScriptManager) Add(entry ScriptEntry) {
 	if entry.Position == "" {
 		entry.Position = "body"
 	}
+
 	if entry.Attrs == nil {
 		entry.Attrs = make(map[string]string)
 	}
@@ -104,6 +105,7 @@ func (sm *ScriptManager) Render(position string) []g.Node {
 
 	// Filter scripts for this position
 	var positionScripts []ScriptEntry
+
 	for _, script := range sm.scripts {
 		if script.Position == position {
 			positionScripts = append(positionScripts, script)
@@ -129,7 +131,7 @@ func (sm *ScriptManager) renderScript(entry ScriptEntry) g.Node {
 	if entry.Inline {
 		// Inline script
 		attrs := make([]g.Node, 0, len(entry.Attrs)+1)
-		
+
 		// Add custom attributes
 		for key, value := range entry.Attrs {
 			if value == "" {
@@ -138,19 +140,19 @@ func (sm *ScriptManager) renderScript(entry ScriptEntry) g.Node {
 				attrs = append(attrs, g.Attr(key, value))
 			}
 		}
-		
+
 		// Add content
 		attrs = append(attrs, g.Raw(entry.Content))
-		
+
 		return html.Script(attrs...)
 	}
 
 	// External script
 	attrs := make([]g.Node, 0, len(entry.Attrs)+1)
-	
+
 	// Add src attribute
 	attrs = append(attrs, g.Attr("src", entry.Path))
-	
+
 	// Add custom attributes
 	for key, value := range entry.Attrs {
 		if value == "" {
@@ -159,7 +161,7 @@ func (sm *ScriptManager) renderScript(entry ScriptEntry) g.Node {
 			attrs = append(attrs, g.Attr(key, value))
 		}
 	}
-	
+
 	return html.Script(attrs...)
 }
 
@@ -167,6 +169,7 @@ func (sm *ScriptManager) renderScript(entry ScriptEntry) g.Node {
 func (sm *ScriptManager) Clear() {
 	sm.mu.Lock()
 	defer sm.mu.Unlock()
+
 	sm.scripts = make([]ScriptEntry, 0)
 }
 
@@ -174,6 +177,7 @@ func (sm *ScriptManager) Clear() {
 func (sm *ScriptManager) Count() int {
 	sm.mu.RLock()
 	defer sm.mu.RUnlock()
+
 	return len(sm.scripts)
 }
 
@@ -181,13 +185,14 @@ func (sm *ScriptManager) Count() int {
 func (sm *ScriptManager) CountByPosition(position string) int {
 	sm.mu.RLock()
 	defer sm.mu.RUnlock()
-	
+
 	count := 0
+
 	for _, script := range sm.scripts {
 		if script.Position == position {
 			count++
 		}
 	}
+
 	return count
 }
-

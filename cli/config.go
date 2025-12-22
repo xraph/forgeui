@@ -9,12 +9,12 @@ import (
 
 // Config represents the ForgeUI project configuration
 type Config struct {
-	Name    string      `json:"name"`
-	Version string      `json:"version"`
-	Dev     DevConfig   `json:"dev"`
-	Build   BuildConfig `json:"build"`
+	Name    string       `json:"name"`
+	Version string       `json:"version"`
+	Dev     DevConfig    `json:"dev"`
+	Build   BuildConfig  `json:"build"`
 	Assets  AssetsConfig `json:"assets"`
-	Plugins []string    `json:"plugins"`
+	Plugins []string     `json:"plugins"`
 	Router  RouterConfig `json:"router"`
 }
 
@@ -28,11 +28,11 @@ type DevConfig struct {
 
 // BuildConfig holds build configuration
 type BuildConfig struct {
-	OutputDir    string `json:"output_dir"`
-	PublicDir    string `json:"public_dir"`
-	Minify       bool   `json:"minify"`
-	Binary       bool   `json:"binary"`
-	EmbedAssets  bool   `json:"embed_assets"`
+	OutputDir   string `json:"output_dir"`
+	PublicDir   string `json:"public_dir"`
+	Minify      bool   `json:"minify"`
+	Binary      bool   `json:"binary"`
+	EmbedAssets bool   `json:"embed_assets"`
 }
 
 // AssetsConfig holds asset configuration
@@ -84,13 +84,13 @@ func LoadConfig(dir string) (*Config, error) {
 	if _, err := os.Stat(configPath); err == nil {
 		return loadJSONConfig(configPath)
 	}
-	
+
 	// Try forgeui.json
 	configPath = filepath.Join(dir, "forgeui.json")
 	if _, err := os.Stat(configPath); err == nil {
 		return loadJSONConfig(configPath)
 	}
-	
+
 	return nil, os.ErrNotExist
 }
 
@@ -100,28 +100,27 @@ func loadJSONConfig(path string) (*Config, error) {
 	if err != nil {
 		return nil, err
 	}
-	
+
 	config := DefaultConfig()
 	if err := json.Unmarshal(data, config); err != nil {
 		return nil, fmt.Errorf("failed to parse config: %w", err)
 	}
-	
+
 	return config, nil
 }
 
 // Save saves the configuration to a file
 func (c *Config) Save(dir string) error {
 	configPath := filepath.Join(dir, ".forgeui.json")
-	
+
 	data, err := json.MarshalIndent(c, "", "  ")
 	if err != nil {
 		return fmt.Errorf("failed to marshal config: %w", err)
 	}
-	
+
 	if err := os.WriteFile(configPath, data, 0644); err != nil {
 		return fmt.Errorf("failed to write config: %w", err)
 	}
-	
+
 	return nil
 }
-

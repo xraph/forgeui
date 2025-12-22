@@ -141,6 +141,7 @@ func TestCVA_CompoundVariants(t *testing.T) {
 					t.Errorf("Classes() missing %v in %v", class, got)
 				}
 			}
+
 			for _, class := range tt.notWant {
 				if strings.Contains(got, class) {
 					t.Errorf("Classes() should not contain %v in %v", class, got)

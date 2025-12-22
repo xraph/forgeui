@@ -3,7 +3,7 @@ package templates
 import (
 	"fmt"
 	"path/filepath"
-	
+
 	"github.com/xraph/forgeui/cli/util"
 )
 
@@ -48,11 +48,11 @@ func main() {
 	}
 }
 `, modulePath)
-	
+
 	if err := util.CreateFile(filepath.Join(dir, "main.go"), mainGo); err != nil {
 		return err
 	}
-	
+
 	// Create pages/api.go
 	apiGo := `package pages
 
@@ -105,18 +105,18 @@ ul { list-style: none; padding: 0; }
 li { padding: 0.5rem; background: white; margin: 0.5rem 0; border-radius: 4px; }
 ` + "`" + `
 `
-	
+
 	if err := util.CreateFile(filepath.Join(dir, "pages", "api.go"), apiGo); err != nil {
 		return err
 	}
-	
+
 	// Create config
 	config := fmt.Sprintf(`{"name":"%s","version":"1.0.0","dev":{"port":3000,"host":"localhost","auto_reload":true,"open_browser":false},"build":{"output_dir":"dist","public_dir":"public","minify":true,"binary":false,"embed_assets":true},"assets":{"css":[],"js":[]},"plugins":[],"router":{"base_path":"/","not_found":""}}`, projectName)
-	
+
 	if err := util.CreateFile(filepath.Join(dir, ".forgeui.json"), config); err != nil {
 		return err
 	}
-	
+
 	// Create .gitignore
 	gitignore := `*.exe
 *.dll
@@ -135,24 +135,23 @@ go.sum
 .DS_Store
 Thumbs.db
 `
-	
+
 	if err := util.CreateFile(filepath.Join(dir, ".gitignore"), gitignore); err != nil {
 		return err
 	}
-	
+
 	readme := fmt.Sprintf(`# %s
 
 An API-first application with HTMX built with ForgeUI.
 
 ## Getting Started
 
-` + "```" + `bash
+`+"```"+`bash
 forgeui dev
-` + "```" + `
+`+"```"+`
 
 Visit http://localhost:3000 to see your app.
 `, projectName)
-	
+
 	return util.CreateFile(filepath.Join(dir, "README.md"), readme)
 }
-

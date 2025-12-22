@@ -73,9 +73,11 @@ func TestTopologicalSortLinear(t *testing.T) {
 	if names[0] != "A" {
 		t.Errorf("expected A first, got %s", names[0])
 	}
+
 	if names[1] != "B" {
 		t.Errorf("expected B second, got %s", names[1])
 	}
+
 	if names[2] != "C" {
 		t.Errorf("expected C third, got %s", names[2])
 	}
@@ -195,4 +197,3 @@ func TestTopologicalSortOptionalDeps(t *testing.T) {
 		t.Errorf("expected 1 plugin, got %d", len(sorted))
 	}
 }
-

@@ -67,12 +67,15 @@ func SheetContentWithOptions(props SheetContentProps, children ...g.Node) g.Node
 	if props.Side == "" {
 		props.Side = forgeui.SideRight
 	}
+
 	if props.Size == "" {
 		props.Size = forgeui.SizeMD
 	}
+
 	if !props.CloseOnOutsideClick {
 		props.CloseOnOutsideClick = true // Default to true for sheets
 	}
+
 	props.ShowClose = true // Always show close
 
 	positionClass := getDrawerPositionClass(props.Side)
@@ -179,4 +182,3 @@ func SheetTop(children ...g.Node) g.Node {
 func SheetBottom(children ...g.Node) g.Node {
 	return SheetContent(forgeui.SideBottom, children...)
 }
-

@@ -20,4 +20,3 @@ func HandlerFunc(fn http.HandlerFunc) PageHandler {
 		return nil, nil
 	}
 }
-

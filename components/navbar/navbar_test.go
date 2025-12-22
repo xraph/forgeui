@@ -5,10 +5,10 @@ import (
 	"strings"
 	"testing"
 
-	g "maragu.dev/gomponents"
-	"maragu.dev/gomponents/html"
 	"github.com/xraph/forgeui/components/menu"
 	navbar "github.com/xraph/forgeui/components/navbar"
+	g "maragu.dev/gomponents"
+	"maragu.dev/gomponents/html"
 )
 
 func TestNavbar(t *testing.T) {
@@ -47,6 +47,7 @@ func TestNavbar(t *testing.T) {
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
 			var buf bytes.Buffer
+
 			node := navbar.NavbarWithOptions(tt.opts,
 				navbar.NavbarBrand(g.Text("Brand")),
 			)
@@ -67,6 +68,7 @@ func TestNavbar(t *testing.T) {
 
 func TestNavbarBrand(t *testing.T) {
 	var buf bytes.Buffer
+
 	node := navbar.NavbarBrand(g.Text("My App"))
 	if err := node.Render(&buf); err != nil {
 		t.Fatalf("render error: %v", err)
@@ -94,6 +96,7 @@ func TestNavbarMenu(t *testing.T) {
 	if !strings.Contains(htmlStr, "Home") {
 		t.Error("NavbarMenu missing items")
 	}
+
 	if !strings.Contains(htmlStr, "mobileMenuOpen") {
 		t.Error("NavbarMenu missing mobile menu state")
 	}

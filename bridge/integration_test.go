@@ -49,7 +49,7 @@ func TestBridge_Integration(t *testing.T) {
 		}
 
 		body, _ := json.Marshal(req)
-		httpReq := httptest.NewRequest("POST", "/api/bridge", bytes.NewReader(body))
+		httpReq := httptest.NewRequest(http.MethodPost, "/api/bridge", bytes.NewReader(body))
 		w := httptest.NewRecorder()
 
 		handler.ServeHTTP(w, httpReq)
@@ -76,7 +76,7 @@ func TestBridge_Integration(t *testing.T) {
 		}
 
 		body, _ := json.Marshal(batch)
-		httpReq := httptest.NewRequest("POST", "/api/bridge", bytes.NewReader(body))
+		httpReq := httptest.NewRequest(http.MethodPost, "/api/bridge", bytes.NewReader(body))
 		w := httptest.NewRecorder()
 
 		handler.ServeHTTP(w, httpReq)
@@ -99,7 +99,7 @@ func TestBridge_Integration(t *testing.T) {
 	t.Run("Introspection", func(t *testing.T) {
 		handler := NewIntrospectionHandler(b)
 
-		httpReq := httptest.NewRequest("GET", "/api/bridge/functions", nil)
+		httpReq := httptest.NewRequest(http.MethodGet, "/api/bridge/functions", nil)
 		w := httptest.NewRecorder()
 
 		handler.ServeHTTP(w, httpReq)
@@ -120,6 +120,7 @@ func TestBridge_Integration(t *testing.T) {
 	// Test hooks
 	t.Run("Hooks", func(t *testing.T) {
 		var called atomic.Bool
+
 		done := make(chan struct{})
 
 		b.GetHooks().Register(BeforeCall, func(ctx Context, data HookData) {
@@ -127,7 +128,7 @@ func TestBridge_Integration(t *testing.T) {
 			close(done)
 		})
 
-		req := httptest.NewRequest("POST", "/", nil)
+		req := httptest.NewRequest(http.MethodPost, "/", nil)
 		ctx := NewContext(req)
 
 		b.Call(ctx, "echo", json.RawMessage(`{"message":"test"}`))
@@ -164,6 +165,7 @@ func TestBridge_Integration(t *testing.T) {
 		if !rl.Allow("test") {
 			t.Error("first request should pass")
 		}
+
 		if !rl.Allow("test") {
 			t.Error("second request should pass")
 		}
@@ -199,7 +201,7 @@ func TestBridge_AuthWorkflow(t *testing.T) {
 		}
 
 		body, _ := json.Marshal(req)
-		httpReq := httptest.NewRequest("POST", "/api/bridge", bytes.NewReader(body))
+		httpReq := httptest.NewRequest(http.MethodPost, "/api/bridge", bytes.NewReader(body))
 		w := httptest.NewRecorder()
 
 		handler.ServeHTTP(w, httpReq)
@@ -216,4 +218,3 @@ func TestBridge_AuthWorkflow(t *testing.T) {
 		}
 	})
 }
-

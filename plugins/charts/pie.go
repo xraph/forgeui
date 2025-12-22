@@ -42,7 +42,7 @@ func (c *Charts) pieChart(props any, children ...g.Node) g.Node {
 //	})
 func PieChart(data PieChartData) g.Node {
 	opts := DefaultOptions()
-	
+
 	chartData := map[string]any{
 		"labels": data.Labels,
 		"datasets": []map[string]any{
@@ -57,4 +57,3 @@ func PieChart(data PieChartData) g.Node {
 
 	return baseChartNode("pie", chartData, opts)
 }
-

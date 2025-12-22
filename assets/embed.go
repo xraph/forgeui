@@ -2,6 +2,7 @@ package assets
 
 import (
 	"crypto/sha256"
+	"encoding/hex"
 	"fmt"
 	"io"
 	"io/fs"
@@ -13,12 +14,14 @@ import (
 // EmbeddedManager extends Manager to work with embed.FS
 type EmbeddedManager struct {
 	*Manager
+
 	embedFS fs.FS
 }
 
 // NewEmbeddedManager creates a manager that serves assets from an embedded filesystem
 func NewEmbeddedManager(embedFS fs.FS, cfg Config) *EmbeddedManager {
 	m := NewManager(cfg)
+
 	return &EmbeddedManager{
 		Manager: m,
 		embedFS: embedFS,
@@ -93,7 +96,7 @@ func (m *EmbeddedManager) fingerprintEmbedded(path string) string {
 		return path
 	}
 
-	hash := fmt.Sprintf("%x", h.Sum(nil))[:8]
+	hash := hex.EncodeToString(h.Sum(nil))[:8]
 
 	// Split into name and extension
 	ext := filepath.Ext(path)
@@ -125,4 +128,3 @@ func (m *EmbeddedManager) FingerprintAllEmbedded() error {
 		return nil
 	})
 }
-

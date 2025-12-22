@@ -90,19 +90,19 @@ func handleDashboard(w http.ResponseWriter, r *http.Request) {
 							html.Class("lg:col-span-4"),
 							card.Card(
 								card.Header(
-								card.Title("Total Visitors"),
-								card.Description("Total for the last 3 months"),
-							),
-							card.Content(
-								html.Div(
-									html.Class("h-[300px] flex items-center justify-center text-muted-foreground"),
-									g.Text("Chart visualization would go here"),
+									card.Title("Total Visitors"),
+									card.Description("Total for the last 3 months"),
+								),
+								card.Content(
 									html.Div(
-										html.Class("text-xs mt-2"),
-										g.Text("(Using plugins/charts for actual implementation)"),
+										html.Class("h-[300px] flex items-center justify-center text-muted-foreground"),
+										g.Text("Chart visualization would go here"),
+										html.Div(
+											html.Class("text-xs mt-2"),
+											g.Text("(Using plugins/charts for actual implementation)"),
+										),
 									),
 								),
-							),
 							),
 						),
 
@@ -111,18 +111,18 @@ func handleDashboard(w http.ResponseWriter, r *http.Request) {
 							html.Class("lg:col-span-3"),
 							card.Card(
 								card.Header(
-								card.Title("Recent Activity"),
-								card.Description("Latest system events"),
-							),
-							card.Content(
-								html.Div(
-									html.Class("space-y-4"),
-					activityItem("New user registered", "2 minutes ago", icons.User()),
-					activityItem("Payment received", "15 minutes ago", icons.DollarSign()),
-					activityItem("New order placed", "1 hour ago", icons.Box()),
-					activityItem("System updated", "3 hours ago", icons.Settings()),
+									card.Title("Recent Activity"),
+									card.Description("Latest system events"),
 								),
-							),
+								card.Content(
+									html.Div(
+										html.Class("space-y-4"),
+										activityItem("New user registered", "2 minutes ago", icons.User()),
+										activityItem("Payment received", "15 minutes ago", icons.DollarSign()),
+										activityItem("New order placed", "1 hour ago", icons.Box()),
+										activityItem("System updated", "3 hours ago", icons.Settings()),
+									),
+								),
 							),
 						),
 					),
@@ -464,4 +464,3 @@ func dropdownMenuItem(href, label string, icon g.Node) g.Node {
 		g.Text(label),
 	)
 }
-

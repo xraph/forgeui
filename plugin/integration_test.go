@@ -5,15 +5,16 @@ import (
 	"net/http"
 	"testing"
 
-	g "maragu.dev/gomponents"
-	"maragu.dev/gomponents/html"
 	"github.com/xraph/forgeui"
 	"github.com/xraph/forgeui/theme"
+	g "maragu.dev/gomponents"
+	"maragu.dev/gomponents/html"
 )
 
 // Multi-type plugin that implements multiple interfaces
 type multiPlugin struct {
 	*PluginBase
+
 	componentConstructors map[string]ComponentConstructor
 	alpineScripts         []Script
 	themes                map[string]theme.Theme
@@ -248,6 +249,7 @@ func TestPluginDependenciesWithTypes(t *testing.T) {
 
 	// Initialize should work
 	ctx := context.Background()
+
 	err = registry.Initialize(ctx)
 	if err != nil {
 		t.Fatalf("Initialize() error = %v", err)
@@ -283,6 +285,7 @@ func TestPluginTypeCoexistence(t *testing.T) {
 	if _, ok := components["C1"]; !ok {
 		t.Error("C1 not found")
 	}
+
 	if _, ok := components["C2"]; !ok {
 		t.Error("C2 not found")
 	}
@@ -317,4 +320,3 @@ func TestAssetCollectionImmutability(t *testing.T) {
 		}
 	}
 }
-

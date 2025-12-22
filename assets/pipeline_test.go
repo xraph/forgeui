@@ -25,6 +25,7 @@ func (m *mockProcessor) Process(ctx context.Context, cfg ProcessorConfig) error 
 	if m.shouldErr {
 		return errors.New("mock processor error")
 	}
+
 	return nil
 }
 
@@ -157,8 +158,8 @@ func TestPipeline_Build_ProcessorError(t *testing.T) {
 	pipeline.AddProcessor(proc1).AddProcessor(proc2).AddProcessor(proc3)
 
 	ctx := context.Background()
-	err := pipeline.Build(ctx)
 
+	err := pipeline.Build(ctx)
 	if err == nil {
 		t.Fatal("Build should have failed")
 	}
@@ -189,6 +190,7 @@ func TestPipeline_Build_CleanOutput(t *testing.T) {
 	if err := os.MkdirAll(outputDir, 0755); err != nil {
 		t.Fatal(err)
 	}
+
 	testFile := filepath.Join(outputDir, "old-file.txt")
 	if err := os.WriteFile(testFile, []byte("old content"), 0644); err != nil {
 		t.Fatal(err)
@@ -255,11 +257,13 @@ func TestPipeline_ProcessorCount(t *testing.T) {
 	}
 
 	pipeline.AddProcessor(&mockProcessor{name: "proc1"})
+
 	if pipeline.ProcessorCount() != 1 {
 		t.Errorf("Expected 1 processor, got %d", pipeline.ProcessorCount())
 	}
 
 	pipeline.AddProcessor(&mockProcessor{name: "proc2"})
+
 	if pipeline.ProcessorCount() != 2 {
 		t.Errorf("Expected 2 processors, got %d", pipeline.ProcessorCount())
 	}
@@ -333,6 +337,7 @@ func TestPipeline_ProcessorConfig(t *testing.T) {
 
 	// Create a processor that verifies it receives correct config
 	var receivedConfig ProcessorConfig
+
 	verifyProc := &configCapturingProcessor{
 		mockProcessor: mockProcessor{name: "verify"},
 		capturedCfg:   &receivedConfig,
@@ -370,6 +375,7 @@ func TestPipeline_ProcessorConfig(t *testing.T) {
 // configCapturingProcessor captures the config passed to Process
 type configCapturingProcessor struct {
 	mockProcessor
+
 	capturedCfg *ProcessorConfig
 }
 
@@ -425,4 +431,3 @@ func (c *contextCheckingProcessor) Process(ctx context.Context, cfg ProcessorCon
 		return nil
 	}
 }
-

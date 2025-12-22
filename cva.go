@@ -48,6 +48,7 @@ func (c *CVA) Compound(conditions map[string]string, classes ...string) *CVA {
 		Conditions: conditions,
 		Classes:    classes,
 	})
+
 	return c
 }
 
@@ -67,6 +68,7 @@ func (c *CVA) Classes(variants map[string]string) string {
 			// Use default value if not provided
 			value = c.defaults[variantName]
 		}
+
 		if classes, exists := options[value]; exists {
 			result = append(result, classes...)
 		}
@@ -90,9 +92,11 @@ func (c *CVA) matchesCompound(cv CompoundVariant, variants map[string]string) bo
 			// Use default value if not provided
 			actualValue = c.defaults[key]
 		}
+
 		if actualValue != expectedValue {
 			return false
 		}
 	}
+
 	return true
 }

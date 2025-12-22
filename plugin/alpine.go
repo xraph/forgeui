@@ -243,4 +243,3 @@ func (a *AlpinePluginBase) Magics() []AlpineMagic {
 func (a *AlpinePluginBase) AlpineComponents() []AlpineComponent {
 	return nil
 }
-

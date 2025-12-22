@@ -8,10 +8,10 @@ import (
 type ProjectTemplate interface {
 	// Name returns the template name
 	Name() string
-	
+
 	// Description returns the template description
 	Description() string
-	
+
 	// Generate generates the template in the given directory
 	Generate(dir, projectName, modulePath string) error
 }
@@ -33,4 +33,3 @@ func GetProjectTemplate(name string) (ProjectTemplate, error) {
 		return nil, fmt.Errorf("unknown template: %s", name)
 	}
 }
-

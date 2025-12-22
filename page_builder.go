@@ -34,6 +34,7 @@ func (pb *PageBuilder) Loader(loader router.LoaderFunc) *PageBuilder {
 func (pb *PageBuilder) Layout(layout string) *PageBuilder {
 	pb.layout = layout
 	pb.noLayout = false
+
 	return pb
 }
 
@@ -41,6 +42,7 @@ func (pb *PageBuilder) Layout(layout string) *PageBuilder {
 func (pb *PageBuilder) NoLayout() *PageBuilder {
 	pb.noLayout = true
 	pb.layout = "none"
+
 	return pb
 }
 
@@ -49,8 +51,10 @@ func (pb *PageBuilder) Meta(title, description string) *PageBuilder {
 	if pb.meta == nil {
 		pb.meta = &router.RouteMeta{}
 	}
+
 	pb.meta.Title = title
 	pb.meta.Description = description
+
 	return pb
 }
 
@@ -86,6 +90,7 @@ func (pb *PageBuilder) Register() *router.Route {
 
 	// Create route based on method
 	var route *router.Route
+
 	switch pb.method {
 	case "GET":
 		route = pb.app.router.Get(pb.pattern, pb.handler)
@@ -160,4 +165,3 @@ func (pb *PageBuilder) DELETE() *PageBuilder {
 	pb.method = "DELETE"
 	return pb
 }
-

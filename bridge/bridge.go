@@ -165,6 +165,7 @@ func (b *Bridge) Unregister(name string) error {
 	}
 
 	delete(b.functions, name)
+
 	return nil
 }
 
@@ -218,6 +219,6 @@ func (b *Bridge) HasFunction(name string) bool {
 	defer b.mu.RUnlock()
 
 	_, exists := b.functions[name]
+
 	return exists
 }
-

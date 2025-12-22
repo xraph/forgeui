@@ -18,6 +18,7 @@ func TestBadge(t *testing.T) {
 	if !strings.Contains(html, "inline-flex") {
 		t.Error("expected inline-flex class")
 	}
+
 	if !strings.Contains(html, "New") {
 		t.Error("expected badge text")
 	}

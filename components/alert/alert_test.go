@@ -23,9 +23,11 @@ func TestAlert(t *testing.T) {
 	if !strings.Contains(html, `role="alert"`) {
 		t.Error("expected role attribute")
 	}
+
 	if !strings.Contains(html, "Alert") {
 		t.Error("expected alert title")
 	}
+
 	if !strings.Contains(html, "This is an alert") {
 		t.Error("expected alert description")
 	}

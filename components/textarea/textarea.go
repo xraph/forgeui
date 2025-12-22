@@ -2,7 +2,7 @@
 package textarea
 
 import (
-	"fmt"
+	"strconv"
 
 	g "maragu.dev/gomponents"
 	"maragu.dev/gomponents/html"
@@ -114,7 +114,7 @@ func Textarea(opts ...Option) g.Node {
 	}
 
 	if props.Rows > 0 {
-		attrs = append(attrs, html.Rows(fmt.Sprintf("%d", props.Rows)))
+		attrs = append(attrs, html.Rows(strconv.Itoa(props.Rows)))
 	}
 
 	if props.Required {

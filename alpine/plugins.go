@@ -69,4 +69,3 @@ func AllPlugins() []Plugin {
 		PluginSort,
 	}
 }
-

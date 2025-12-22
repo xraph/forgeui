@@ -65,12 +65,14 @@ func TestModal(t *testing.T) {
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
 			var buf bytes.Buffer
+
 			node := modal.Modal(tt.props, tt.trigger, tt.content...)
 			if err := node.Render(&buf); err != nil {
 				t.Fatalf("render error: %v", err)
 			}
 
 			html := buf.String()
+
 			if tt.wantRe != "" {
 				re := regexp.MustCompile(tt.wantRe)
 				if !re.MatchString(html) {
@@ -84,6 +86,7 @@ func TestModal(t *testing.T) {
 // TestModalHeader tests the ModalHeader component
 func TestModalHeader(t *testing.T) {
 	var buf bytes.Buffer
+
 	node := modal.ModalHeader("Test Title", "Test description")
 	if err := node.Render(&buf); err != nil {
 		t.Fatalf("render error: %v", err)
@@ -93,6 +96,7 @@ func TestModalHeader(t *testing.T) {
 	if !strings.Contains(html, "Test Title") {
 		t.Error("missing title")
 	}
+
 	if !strings.Contains(html, "Test description") {
 		t.Error("missing description")
 	}
@@ -101,6 +105,7 @@ func TestModalHeader(t *testing.T) {
 // TestDialog tests the Dialog component
 func TestDialog(t *testing.T) {
 	var buf bytes.Buffer
+
 	node := modal.Dialog(
 		modal.DialogTrigger(button.Button(g.Text("Open"))),
 		modal.DialogContent(
@@ -118,6 +123,7 @@ func TestDialog(t *testing.T) {
 	if !strings.Contains(html, "x-data") {
 		t.Error("missing Alpine data")
 	}
+
 	if !strings.Contains(html, "Title") {
 		t.Error("missing title")
 	}
@@ -126,6 +132,7 @@ func TestDialog(t *testing.T) {
 // TestAlertDialog tests the AlertDialog component
 func TestAlertDialog(t *testing.T) {
 	var buf bytes.Buffer
+
 	node := modal.AlertDialog(
 		modal.AlertDialogTrigger(button.Button(g.Text("Delete"))),
 		modal.AlertDialogContent(
@@ -156,6 +163,7 @@ func TestDrawer(t *testing.T) {
 	for _, side := range sides {
 		t.Run(string(side), func(t *testing.T) {
 			var buf bytes.Buffer
+
 			node := modal.Drawer(
 				modal.DrawerProps{Side: side},
 				button.Button(g.Text("Open")),
@@ -176,6 +184,7 @@ func TestDrawer(t *testing.T) {
 // TestSheet tests the Sheet component
 func TestSheet(t *testing.T) {
 	var buf bytes.Buffer
+
 	node := modal.Sheet(
 		modal.SheetTrigger(button.Button(g.Text("Open"))),
 		modal.SheetContent(
@@ -194,4 +203,3 @@ func TestSheet(t *testing.T) {
 		t.Error("missing Alpine data")
 	}
 }
-

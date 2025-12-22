@@ -19,15 +19,19 @@ func TestAlpinePluginBase(t *testing.T) {
 	if len(plugin.Scripts()) != 0 {
 		t.Error("expected empty scripts by default")
 	}
+
 	if len(plugin.Directives()) != 0 {
 		t.Error("expected empty directives by default")
 	}
+
 	if len(plugin.Stores()) != 0 {
 		t.Error("expected empty stores by default")
 	}
+
 	if len(plugin.Magics()) != 0 {
 		t.Error("expected empty magics by default")
 	}
+
 	if len(plugin.AlpineComponents()) != 0 {
 		t.Error("expected empty components by default")
 	}
@@ -117,6 +121,7 @@ func TestCollectScripts(t *testing.T) {
 
 type priorityPlugin struct {
 	*AlpinePluginBase
+
 	scripts []Script
 }
 
@@ -149,6 +154,7 @@ func TestCollectScriptsPriority(t *testing.T) {
 	if scripts[0].Name != "script2" {
 		t.Errorf("expected script2 first (priority 10), got %s", scripts[0].Name)
 	}
+
 	if scripts[1].Name != "script1" {
 		t.Errorf("expected script1 second (priority 50), got %s", scripts[1].Name)
 	}
@@ -285,14 +291,16 @@ func TestScriptStruct(t *testing.T) {
 	if script.Name != "test" {
 		t.Errorf("expected name 'test', got %s", script.Name)
 	}
+
 	if script.Priority != 10 {
 		t.Errorf("expected priority 10, got %d", script.Priority)
 	}
+
 	if !script.Defer {
 		t.Error("expected defer true")
 	}
+
 	if !script.Module {
 		t.Error("expected module true")
 	}
 }
-

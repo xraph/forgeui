@@ -6,6 +6,7 @@ import (
 	"log"
 	"net/http"
 	"runtime/debug"
+	"strconv"
 	"time"
 
 	g "maragu.dev/gomponents"
@@ -20,17 +21,18 @@ func Logger() Middleware {
 	return func(next PageHandler) PageHandler {
 		return func(ctx *PageContext) (g.Node, error) {
 			start := time.Now()
-			
+
 			// Process request
 			node, err := next(ctx)
-			
+
 			// Log request
 			duration := time.Since(start)
+
 			status := 200
 			if err != nil {
 				status = 500
 			}
-			
+
 			log.Printf("[%s] %s %s - %d (%v)",
 				ctx.Method(),
 				ctx.Path(),
@@ -38,7 +40,7 @@ func Logger() Middleware {
 				status,
 				duration,
 			)
-			
+
 			return node, err
 		}
 	}
@@ -52,9 +54,10 @@ func Recovery() Middleware {
 				if r := recover(); r != nil {
 					// Log panic with stack trace
 					log.Printf("PANIC: %v\n%s", r, debug.Stack())
-					
+
 					// Set error response
 					ctx.ResponseWriter.WriteHeader(http.StatusInternalServerError)
+
 					node = html.Div(
 						html.H1(g.Text("500 - Internal Server Error")),
 						html.P(g.Textf("The server encountered an unexpected error: %v", r)),
@@ -62,7 +65,7 @@ func Recovery() Middleware {
 					err = fmt.Errorf("panic recovered: %v", r)
 				}
 			}()
-			
+
 			return next(ctx)
 		}
 	}
@@ -76,13 +79,13 @@ func CORS(allowOrigin string) Middleware {
 			ctx.SetHeader("Access-Control-Allow-Origin", allowOrigin)
 			ctx.SetHeader("Access-Control-Allow-Methods", "GET, POST, PUT, PATCH, DELETE, OPTIONS")
 			ctx.SetHeader("Access-Control-Allow-Headers", "Content-Type, Authorization")
-			
+
 			// Handle preflight requests
 			if ctx.Method() == http.MethodOptions {
 				ctx.ResponseWriter.WriteHeader(http.StatusOK)
 				return nil, nil
 			}
-			
+
 			return next(ctx)
 		}
 	}
@@ -93,14 +96,14 @@ func RequestID() Middleware {
 	return func(next PageHandler) PageHandler {
 		return func(ctx *PageContext) (g.Node, error) {
 			// Generate simple request ID (in production, use UUID or similar)
-			requestID := fmt.Sprintf("%d", time.Now().UnixNano())
-			
+			requestID := strconv.FormatInt(time.Now().UnixNano(), 10)
+
 			// Store in context
 			ctx.Set("request_id", requestID)
-			
+
 			// Add to response header
 			ctx.SetHeader("X-Request-ID", requestID)
-			
+
 			return next(ctx)
 		}
 	}
@@ -112,14 +115,15 @@ func BasicAuth(username, password string) Middleware {
 		return func(ctx *PageContext) (g.Node, error) {
 			// Get credentials from request
 			user, pass, ok := ctx.Request.BasicAuth()
-			
+
 			// Check credentials
 			if !ok || user != username || pass != password {
 				ctx.SetHeader("WWW-Authenticate", `Basic realm="Restricted"`)
 				ctx.ResponseWriter.WriteHeader(http.StatusUnauthorized)
+
 				return g.Text("401 - Unauthorized"), nil
 			}
-			
+
 			return next(ctx)
 		}
 	}
@@ -131,14 +135,14 @@ func RequireMethod(methods ...string) Middleware {
 	for _, m := range methods {
 		methodMap[m] = true
 	}
-	
+
 	return func(next PageHandler) PageHandler {
 		return func(ctx *PageContext) (g.Node, error) {
 			if !methodMap[ctx.Method()] {
 				ctx.ResponseWriter.WriteHeader(http.StatusMethodNotAllowed)
 				return g.Textf("405 - Method Not Allowed: %s", ctx.Method()), nil
 			}
-			
+
 			return next(ctx)
 		}
 	}
@@ -151,23 +155,24 @@ func Timeout(duration time.Duration) Middleware {
 			// Create timeout context
 			timeoutCtx, cancel := context.WithTimeout(ctx.Request.Context(), duration)
 			defer cancel()
-			
+
 			// Update context
 			ctx = ctx.WithContext(timeoutCtx)
-			
+
 			// Channel for result
 			type result struct {
 				node g.Node
 				err  error
 			}
+
 			done := make(chan result, 1)
-			
+
 			// Execute handler in goroutine
 			go func() {
 				node, err := next(ctx)
 				done <- result{node, err}
 			}()
-			
+
 			// Wait for result or timeout
 			select {
 			case res := <-done:
@@ -196,7 +201,7 @@ func Chain(middleware ...Middleware) Middleware {
 		for i := len(middleware) - 1; i >= 0; i-- {
 			next = middleware[i](next)
 		}
+
 		return next
 	}
 }
-

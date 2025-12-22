@@ -166,4 +166,3 @@ func EmptyState(opts ...Option) g.Node {
 		g.Group(content),
 	)
 }
-

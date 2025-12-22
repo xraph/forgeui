@@ -24,6 +24,7 @@ func TestIntegration_FullRequestLifecycle(t *testing.T) {
 
 	r.Get("/users/:id", func(ctx *PageContext) (g.Node, error) {
 		id := ctx.Param("id")
+
 		return html.Div(
 			html.H1(g.Text("User Profile")),
 			html.P(g.Textf("User ID: %s", id)),
@@ -77,7 +78,9 @@ func TestIntegration_MiddlewareChain(t *testing.T) {
 		return func(ctx *PageContext) (g.Node, error) {
 			order = append(order, "m1-before")
 			node, err := next(ctx)
+
 			order = append(order, "m1-after")
+
 			return node, err
 		}
 	}
@@ -86,7 +89,9 @@ func TestIntegration_MiddlewareChain(t *testing.T) {
 		return func(ctx *PageContext) (g.Node, error) {
 			order = append(order, "m2-before")
 			node, err := next(ctx)
+
 			order = append(order, "m2-after")
+
 			return node, err
 		}
 	}
@@ -131,6 +136,7 @@ func TestIntegration_RouteSpecificMiddleware(t *testing.T) {
 		if ok {
 			t.Error("Public route should not have authentication")
 		}
+
 		return g.Text("Public"), nil
 	})
 
@@ -140,6 +146,7 @@ func TestIntegration_RouteSpecificMiddleware(t *testing.T) {
 		if !ok {
 			t.Error("Protected route should have authentication")
 		}
+
 		return g.Text("Protected"), nil
 	})
 	route.WithMiddleware(authMiddleware)
@@ -223,6 +230,7 @@ func TestIntegration_ContextValues(t *testing.T) {
 		return func(ctx *PageContext) (g.Node, error) {
 			ctx.Set("user_id", 42)
 			ctx.Set("username", "john")
+
 			return next(ctx)
 		}
 	})
@@ -308,4 +316,3 @@ func TestIntegration_HTTPMethods(t *testing.T) {
 		})
 	}
 }
-

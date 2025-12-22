@@ -19,6 +19,7 @@ func TestDescription(t *testing.T) {
 		if !strings.Contains(output, "Helper text for this field") {
 			t.Error("expected description to contain text")
 		}
+
 		if !strings.Contains(output, "text-muted-foreground") {
 			t.Error("expected description to have muted color")
 		}

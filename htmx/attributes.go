@@ -224,6 +224,7 @@ func HxBoost(enabled bool) g.Node {
 	if enabled {
 		return g.Attr("hx-boost", "true")
 	}
+
 	return g.Attr("hx-boost", "false")
 }
 
@@ -240,6 +241,7 @@ func HxPushURL(enabled bool) g.Node {
 	if enabled {
 		return g.Attr("hx-push-url", "true")
 	}
+
 	return g.Attr("hx-push-url", "false")
 }
 
@@ -269,6 +271,7 @@ func HxReplaceURL(enabled bool) g.Node {
 	if enabled {
 		return g.Attr("hx-replace-url", "true")
 	}
+
 	return g.Attr("hx-replace-url", "false")
 }
 
@@ -312,7 +315,12 @@ func HxSelectOOB(selector string) g.Node {
 //	    g.Text("Submit"),
 //	)
 func HxHeaders(headers map[string]string) g.Node {
-	jsonData, _ := json.Marshal(headers)
+	jsonData, err := json.Marshal(headers)
+	if err != nil {
+		// Fallback to empty object on marshal error
+		jsonData = []byte("{}")
+	}
+
 	return g.Attr("hx-headers", string(jsonData))
 }
 
@@ -329,7 +337,12 @@ func HxHeaders(headers map[string]string) g.Node {
 //	    g.Text("Submit"),
 //	)
 func HxVals(values map[string]any) g.Node {
-	jsonData, _ := json.Marshal(values)
+	jsonData, err := json.Marshal(values)
+	if err != nil {
+		// Fallback to empty object on marshal error
+		jsonData = []byte("{}")
+	}
+
 	return g.Attr("hx-vals", string(jsonData))
 }
 
@@ -424,6 +437,7 @@ func HxPreserve(enabled bool) g.Node {
 	if enabled {
 		return g.Attr("hx-preserve", "true")
 	}
+
 	return g.Attr("hx-preserve", "false")
 }
 
@@ -453,6 +467,6 @@ func HxValidate(enabled bool) g.Node {
 	if enabled {
 		return g.Attr("hx-validate", "true")
 	}
+
 	return g.Attr("hx-validate", "false")
 }
-

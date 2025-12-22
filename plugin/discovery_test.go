@@ -94,4 +94,3 @@ func TestDiscoverIgnoresDirectories(t *testing.T) {
 		t.Errorf("expected 0 plugins, got %d", r.Count())
 	}
 }
-

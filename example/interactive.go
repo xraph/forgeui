@@ -1,11 +1,11 @@
 package main
 
 import (
-	g "maragu.dev/gomponents"
-	"maragu.dev/gomponents/html"
 	"github.com/xraph/forgeui/alpine"
 	"github.com/xraph/forgeui/animation"
 	"github.com/xraph/forgeui/components/card"
+	g "maragu.dev/gomponents"
+	"maragu.dev/gomponents/html"
 )
 
 // InteractiveDemoPage creates a page demonstrating Alpine.js integration and animations.

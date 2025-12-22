@@ -14,6 +14,7 @@ import (
 // TestTooltip tests the Tooltip component
 func TestTooltip(t *testing.T) {
 	var buf bytes.Buffer
+
 	node := tooltip.Tooltip(
 		tooltip.TooltipProps{
 			Position: forgeui.PositionTop,
@@ -30,9 +31,11 @@ func TestTooltip(t *testing.T) {
 	if !strings.Contains(html, "x-data") {
 		t.Error("missing Alpine data")
 	}
+
 	if !strings.Contains(html, "Helpful tooltip") {
 		t.Error("missing tooltip content")
 	}
+
 	if !strings.Contains(html, "mouseenter") {
 		t.Error("missing hover handler")
 	}
@@ -50,6 +53,7 @@ func TestTooltipPositions(t *testing.T) {
 	for _, pos := range positions {
 		t.Run(string(pos), func(t *testing.T) {
 			var buf bytes.Buffer
+
 			node := tooltip.Tooltip(
 				tooltip.TooltipProps{Position: pos},
 				html.Button(),
@@ -61,4 +65,3 @@ func TestTooltipPositions(t *testing.T) {
 		})
 	}
 }
-

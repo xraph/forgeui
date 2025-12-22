@@ -57,7 +57,7 @@ func Form(opts []Option, children ...g.Node) g.Node {
 
 	attrs = append(attrs, props.Attrs...)
 
-	return html.FormEl(
+	return html.Form(
 		g.Group(attrs),
 		g.Group(children),
 	)

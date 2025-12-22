@@ -18,6 +18,7 @@ import (
 // HTMXPlugin wraps HTMX functionality as a ForgeUI plugin.
 type HTMXPlugin struct {
 	*plugin.PluginBase
+
 	version    string
 	extensions []string
 }
@@ -90,4 +91,3 @@ func (h *HTMXPlugin) Magics() []plugin.AlpineMagic {
 func (h *HTMXPlugin) AlpineComponents() []plugin.AlpineComponent {
 	return nil
 }
-

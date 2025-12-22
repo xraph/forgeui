@@ -13,19 +13,19 @@ const (
 type Flag struct {
 	// Name is the long flag name (e.g., "output")
 	Name string
-	
+
 	// Short is the short flag name (e.g., "o")
 	Short string
-	
+
 	// Type is the flag type (string, bool, int)
 	Type FlagType
-	
+
 	// Usage is the flag description
 	Usage string
-	
+
 	// Default is the default value if not provided
 	Default any
-	
+
 	// Required indicates if this flag is required
 	Required bool
 }
@@ -62,4 +62,3 @@ func IntFlag(name, short, usage string, defaultValue int) Flag {
 		Default: defaultValue,
 	}
 }
-

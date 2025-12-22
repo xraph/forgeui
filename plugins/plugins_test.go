@@ -142,4 +142,3 @@ func TestPluginIntegration(t *testing.T) {
 		t.Fatalf("Failed to shutdown: %v", err)
 	}
 }
-

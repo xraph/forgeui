@@ -78,6 +78,7 @@ func Toast(props ToastProps) g.Node {
 	if props.Variant == "" {
 		props.Variant = forgeui.VariantDefault
 	}
+
 	if props.Duration == 0 {
 		props.Duration = 5000 // 5 seconds default
 	}
@@ -132,14 +133,14 @@ func Toast(props ToastProps) g.Node {
 				g.Text(props.Title),
 			),
 
-		// Description
-		g.If(props.Description != "", html.Div(
-			html.Class("text-sm text-muted-foreground mt-1"),
-			g.Text(props.Description),
-		)),
+			// Description
+			g.If(props.Description != "", html.Div(
+				html.Class("text-sm text-muted-foreground mt-1"),
+				g.Text(props.Description),
+			)),
 
-		// Action button (if provided)
-		renderToastAction(props.Action),
+			// Action button (if provided)
+			renderToastAction(props.Action),
 		),
 
 		// Close button
@@ -178,6 +179,7 @@ func renderToastAction(action *ToastAction) g.Node {
 	if action == nil {
 		return g.Text("")
 	}
+
 	return html.Button(
 		g.Attr("type", "button"),
 		alpine.XOn("click", action.OnClick),
@@ -189,6 +191,7 @@ func renderToastAction(action *ToastAction) g.Node {
 // toastIcon returns the appropriate icon for each variant
 func toastIcon(variant forgeui.Variant) g.Node {
 	var path string
+
 	iconClass := "flex-shrink-0 h-5 w-5 text-current"
 
 	switch variant {
@@ -235,4 +238,3 @@ func getToastVariantClasses(variant forgeui.Variant) string {
 		return "bg-card border-border text-foreground"
 	}
 }
-

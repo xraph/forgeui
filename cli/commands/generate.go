@@ -1,9 +1,10 @@
 package commands
 
 import (
+	"errors"
 	"fmt"
 	"path/filepath"
-	
+
 	"github.com/xraph/forgeui/cli"
 	"github.com/xraph/forgeui/cli/templates"
 	"github.com/xraph/forgeui/cli/util"
@@ -16,10 +17,10 @@ func init() {
 // GenerateCommand returns the generate command with subcommands
 func GenerateCommand() *cli.Command {
 	return &cli.Command{
-		Name:  "generate",
-		Short: "Generate components, pages, and other code",
-		Long:  `Generate boilerplate code for components, pages, and other ForgeUI artifacts.`,
-		Usage: "forgeui generate <type> <name> [flags]",
+		Name:    "generate",
+		Short:   "Generate components, pages, and other code",
+		Long:    `Generate boilerplate code for components, pages, and other ForgeUI artifacts.`,
+		Usage:   "forgeui generate <type> <name> [flags]",
 		Aliases: []string{"g"},
 		Subcommands: []*cli.Command{
 			ComponentCommand(),
@@ -69,45 +70,45 @@ func PageCommand() *cli.Command {
 func runGenerateComponent(ctx *cli.Context) error {
 	// Get component name
 	if len(ctx.Args) == 0 {
-		return fmt.Errorf("component name is required")
+		return errors.New("component name is required")
 	}
-	
+
 	componentName := ctx.Args[0]
 	if err := util.ValidateProjectName(componentName); err != nil {
 		return fmt.Errorf("invalid component name: %w", err)
 	}
-	
+
 	// Get component type
 	componentType := ctx.GetString("type")
 	outputDir := ctx.GetString("dir")
 	withVariants := ctx.GetBool("with-variants")
 	withProps := ctx.GetBool("with-props")
 	withTest := ctx.GetBool("with-test")
-	
+
 	// Check if in ForgeUI project
 	projectRoot, err := util.GetProjectRoot()
 	if err != nil {
 		return fmt.Errorf("not in a Go project: %w", err)
 	}
-	
+
 	ctx.Printf("\n%sGenerating component...%s\n\n", util.ColorBlue, util.ColorReset)
-	
+
 	// Generate component
 	spinner := util.NewSpinner(fmt.Sprintf("Creating %s component", componentName))
 	spinner.Start()
-	
+
 	template, err := templates.GetComponentTemplate(componentType)
 	if err != nil {
 		spinner.Error(fmt.Sprintf("Failed: %v", err))
 		return err
 	}
-	
+
 	componentDir := filepath.Join(projectRoot, outputDir, util.ToSnakeCase(componentName))
 	if err := util.CreateDir(componentDir); err != nil {
 		spinner.Error(fmt.Sprintf("Failed: %v", err))
 		return err
 	}
-	
+
 	opts := templates.ComponentOptions{
 		Name:         componentName,
 		Package:      util.ToSnakeCase(componentName),
@@ -115,73 +116,75 @@ func runGenerateComponent(ctx *cli.Context) error {
 		WithProps:    withProps,
 		WithTest:     withTest,
 	}
-	
+
 	if err := template.Generate(componentDir, opts); err != nil {
 		spinner.Error(fmt.Sprintf("Failed: %v", err))
 		return err
 	}
-	
+
 	spinner.Success("Component created")
-	
+
 	// Success message
 	ctx.Printf("\n%s✓ Component created successfully!%s\n\n", util.ColorGreen, util.ColorReset)
 	ctx.Printf("Location: %s\n", componentDir)
 	ctx.Printf("  %s%s.go%s\n", util.ColorCyan, util.ToSnakeCase(componentName), util.ColorReset)
+
 	if withTest {
 		ctx.Printf("  %s%s_test.go%s\n", util.ColorCyan, util.ToSnakeCase(componentName), util.ColorReset)
 	}
+
 	ctx.Println()
-	
+
 	return nil
 }
 
 func runGeneratePage(ctx *cli.Context) error {
 	// Get page name
 	if len(ctx.Args) == 0 {
-		return fmt.Errorf("page name is required")
+		return errors.New("page name is required")
 	}
-	
+
 	pageName := ctx.Args[0]
 	if err := util.ValidateProjectName(pageName); err != nil {
 		return fmt.Errorf("invalid page name: %w", err)
 	}
-	
+
 	// Get page type
 	pageType := ctx.GetString("type")
 	routePath := ctx.GetString("path")
 	outputDir := ctx.GetString("dir")
 	withLoader := ctx.GetBool("with-loader")
 	withMeta := ctx.GetBool("with-meta")
-	
+
 	// Default route path
 	if routePath == "" {
 		routePath = "/" + util.ToSnakeCase(pageName)
 	}
-	
+
 	// Check if in ForgeUI project
 	projectRoot, err := util.GetProjectRoot()
 	if err != nil {
 		return fmt.Errorf("not in a Go project: %w", err)
 	}
-	
+
 	ctx.Printf("\n%sGenerating page...%s\n\n", util.ColorBlue, util.ColorReset)
-	
+
 	// Generate page
 	spinner := util.NewSpinner(fmt.Sprintf("Creating %s page", pageName))
 	spinner.Start()
-	
+
 	template, err := templates.GetPageTemplate(pageType)
 	if err != nil {
 		spinner.Error(fmt.Sprintf("Failed: %v", err))
 		return err
 	}
-	
+
 	pageDir := filepath.Join(projectRoot, outputDir)
 	if err := util.CreateDir(pageDir); err != nil {
 		spinner.Error(fmt.Sprintf("Failed: %v", err))
 		return err
 	}
-	
+
 	opts := templates.PageOptions{
 		Name:       pageName,
 		Package:    filepath.Base(outputDir),
@@ -189,17 +192,17 @@ func runGeneratePage(ctx *cli.Context) error {
 		WithLoader: withLoader,
 		WithMeta:   withMeta,
 	}
-	
+
 	fileName := util.ToSnakeCase(pageName) + ".go"
 	filePath := filepath.Join(pageDir, fileName)
-	
+
 	if err := template.Generate(filePath, opts); err != nil {
 		spinner.Error(fmt.Sprintf("Failed: %v", err))
 		return err
 	}
-	
+
 	spinner.Success("Page created")
-	
+
 	// Success message
 	ctx.Printf("\n%s✓ Page created successfully!%s\n\n", util.ColorGreen, util.ColorReset)
 	ctx.Printf("Location: %s\n", filePath)
@@ -207,7 +210,6 @@ func runGeneratePage(ctx *cli.Context) error {
 	ctx.Printf("Next steps:\n")
 	ctx.Printf("  1. Add route to your router: app.Router.Get(\"%s\", pages.%s)\n", routePath, util.ToPascalCase(pageName))
 	ctx.Printf("  2. Run: %sforgeui dev%s\n\n", util.ColorCyan, util.ColorReset)
-	
+
 	return nil
 }
-

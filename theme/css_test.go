@@ -110,7 +110,7 @@ func TestCSSVariableFormat(t *testing.T) {
 	if !strings.Contains(css, "1 0 0") {
 		t.Error("CSS should contain OKLCH values without wrapper")
 	}
-	
+
 	// Check for OKLCH-specific patterns (lightness 0-1, not 0-100%)
 	if strings.Contains(css, "100%") && !strings.Contains(css, "100% 97.3%") {
 		t.Error("CSS should use OKLCH format (0-1 range) not HSL (0-100%)")
@@ -143,4 +143,3 @@ func TestChartVariables(t *testing.T) {
 		}
 	}
 }
-

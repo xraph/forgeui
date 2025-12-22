@@ -8,7 +8,7 @@ func TestRouteMatch_Static(t *testing.T) {
 	route := newRoute("/users", MethodGet, nil)
 
 	tests := []struct {
-		path      string
+		path        string
 		shouldMatch bool
 	}{
 		{"/users", true},
@@ -76,9 +76,9 @@ func TestRoutePriority(t *testing.T) {
 		pattern  string
 		priority int
 	}{
-		{"/users", 0},           // Static - highest priority
-		{"/users/:id", 10},      // Parameter - medium priority
-		{"/files/*path", 20},    // Wildcard - lowest priority
+		{"/users", 0},        // Static - highest priority
+		{"/users/:id", 10},   // Parameter - medium priority
+		{"/files/*path", 20}, // Wildcard - lowest priority
 	}
 
 	for _, tt := range tests {
@@ -94,18 +94,19 @@ func TestRoutePriority(t *testing.T) {
 func TestRouteURL(t *testing.T) {
 	tests := []struct {
 		pattern  string
-		params   []interface{}
+		params   []any
 		expected string
 	}{
 		{"/users", nil, "/users"},
-		{"/users/:id", []interface{}{123}, "/users/123"},
-		{"/users/:userId/posts/:postId", []interface{}{42, 99}, "/users/42/posts/99"},
-		{"/files/*path", []interface{}{"docs/readme.md"}, "/files/docs/readme.md"},
+		{"/users/:id", []any{123}, "/users/123"},
+		{"/users/:userId/posts/:postId", []any{42, 99}, "/users/42/posts/99"},
+		{"/files/*path", []any{"docs/readme.md"}, "/files/docs/readme.md"},
 	}
 
 	for _, tt := range tests {
 		t.Run(tt.pattern, func(t *testing.T) {
 			route := newRoute(tt.pattern, MethodGet, nil)
+
 			url := route.URL(tt.params...)
 			if url != tt.expected {
 				t.Errorf("URL() = %q, want %q", url, tt.expected)
@@ -117,7 +118,7 @@ func TestRouteURL(t *testing.T) {
 func TestRouteURLMap(t *testing.T) {
 	route := newRoute("/users/:userId/posts/:postId", MethodGet, nil)
 
-	params := map[string]interface{}{
+	params := map[string]any{
 		"userId": 42,
 		"postId": 99,
 	}
@@ -129,4 +130,3 @@ func TestRouteURLMap(t *testing.T) {
 		t.Errorf("URLMap() = %q, want %q", url, expected)
 	}
 }
-

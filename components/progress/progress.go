@@ -3,6 +3,7 @@ package progress
 
 import (
 	"fmt"
+	"strconv"
 
 	g "maragu.dev/gomponents"
 	"maragu.dev/gomponents/html"
@@ -23,9 +24,11 @@ func WithValue(value int) Option {
 		if value < 0 {
 			value = 0
 		}
+
 		if value > 100 {
 			value = 100
 		}
+
 		p.Value = value
 	}
 }
@@ -58,7 +61,7 @@ func Progress(opts ...Option) g.Node {
 		g.Attr("role", "progressbar"),
 		g.Attr("aria-valuemin", "0"),
 		g.Attr("aria-valuemax", "100"),
-		g.Attr("aria-valuenow", fmt.Sprintf("%d", props.Value)),
+		g.Attr("aria-valuenow", strconv.Itoa(props.Value)),
 	}
 	containerAttrs = append(containerAttrs, props.Attrs...)
 
@@ -68,7 +71,7 @@ func Progress(opts ...Option) g.Node {
 		g.Group(containerAttrs),
 		html.Div(
 			html.Class("h-full w-full flex-1 bg-primary transition-all duration-500 ease-out"),
-			html.StyleAttr(indicatorStyle),
+			html.Style(indicatorStyle),
 		),
 	)
 }

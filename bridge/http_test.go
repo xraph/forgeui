@@ -32,8 +32,12 @@ func TestHTTPHandler_SingleRequest(t *testing.T) {
 		Params:  json.RawMessage(`{"name":"World"}`),
 	}
 
-	body, _ := json.Marshal(req)
-	httpReq := httptest.NewRequest("POST", "/api/bridge", bytes.NewReader(body))
+	body, err := json.Marshal(req)
+	if err != nil {
+		t.Fatalf("Failed to marshal request: %v", err)
+	}
+
+	httpReq := httptest.NewRequest(http.MethodPost, "/api/bridge", bytes.NewReader(body))
 	httpReq.Header.Set("Content-Type", "application/json")
 
 	w := httptest.NewRecorder()
@@ -79,8 +83,12 @@ func TestHTTPHandler_BatchRequest(t *testing.T) {
 		{JSONRPC: "2.0", ID: "2", Method: "double", Params: json.RawMessage(`{"n":10}`)},
 	}
 
-	body, _ := json.Marshal(batchReq)
-	httpReq := httptest.NewRequest("POST", "/api/bridge", bytes.NewReader(body))
+	body, err := json.Marshal(batchReq)
+	if err != nil {
+		t.Fatalf("Failed to marshal batch request: %v", err)
+	}
+
+	httpReq := httptest.NewRequest(http.MethodPost, "/api/bridge", bytes.NewReader(body))
 	httpReq.Header.Set("Content-Type", "application/json")
 
 	w := httptest.NewRecorder()
@@ -110,8 +118,12 @@ func TestHTTPHandler_MethodNotFound(t *testing.T) {
 		Method:  "nonexistent",
 	}
 
-	body, _ := json.Marshal(req)
-	httpReq := httptest.NewRequest("POST", "/api/bridge", bytes.NewReader(body))
+	body, err := json.Marshal(req)
+	if err != nil {
+		t.Fatalf("Failed to marshal request: %v", err)
+	}
+
+	httpReq := httptest.NewRequest(http.MethodPost, "/api/bridge", bytes.NewReader(body))
 	httpReq.Header.Set("Content-Type", "application/json")
 
 	w := httptest.NewRecorder()
@@ -134,7 +146,7 @@ func TestHTTPHandler_InvalidRequest(t *testing.T) {
 	handler := NewHTTPHandler(b)
 
 	// Send invalid JSON
-	httpReq := httptest.NewRequest("POST", "/api/bridge", bytes.NewReader([]byte("invalid json")))
+	httpReq := httptest.NewRequest(http.MethodPost, "/api/bridge", bytes.NewReader([]byte("invalid json")))
 	httpReq.Header.Set("Content-Type", "application/json")
 
 	w := httptest.NewRecorder()
@@ -152,7 +164,7 @@ func TestHTTPHandler_MethodNotAllowed(t *testing.T) {
 	b := New(WithCSRF(false))
 	handler := NewHTTPHandler(b)
 
-	httpReq := httptest.NewRequest("GET", "/api/bridge", nil)
+	httpReq := httptest.NewRequest(http.MethodGet, "/api/bridge", nil)
 	w := httptest.NewRecorder()
 
 	handler.ServeHTTP(w, httpReq)
@@ -174,7 +186,7 @@ func TestHTTPHandler_CORS(t *testing.T) {
 	handler := NewHTTPHandler(b)
 
 	// OPTIONS request
-	httpReq := httptest.NewRequest("OPTIONS", "/api/bridge", nil)
+	httpReq := httptest.NewRequest(http.MethodOptions, "/api/bridge", nil)
 	httpReq.Header.Set("Origin", "http://localhost:3000")
 
 	w := httptest.NewRecorder()
@@ -188,4 +200,3 @@ func TestHTTPHandler_CORS(t *testing.T) {
 		t.Errorf("CORS origin = %s, want http://localhost:3000", origin)
 	}
 }
-

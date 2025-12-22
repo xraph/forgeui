@@ -64,6 +64,7 @@ func (hm *HookManager) Trigger(hookType HookType, ctx Context, data HookData) {
 		// Execute hook in a goroutine to avoid blocking
 		// Use a copy of the hook to avoid closure issues
 		h := hook
+
 		go func() {
 			defer func() {
 				// Recover from panics in hooks
@@ -72,6 +73,7 @@ func (hm *HookManager) Trigger(hookType HookType, ctx Context, data HookData) {
 					// In production, you'd want to log this properly
 				}
 			}()
+
 			h(ctx, data)
 		}()
 	}
@@ -100,4 +102,3 @@ func (hm *HookManager) Count(hookType HookType) int {
 
 	return len(hm.hooks[hookType])
 }
-

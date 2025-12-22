@@ -4,6 +4,7 @@ package pagination
 
 import (
 	"fmt"
+	"strconv"
 
 	g "maragu.dev/gomponents"
 	"maragu.dev/gomponents/html"
@@ -108,6 +109,7 @@ func Pagination(opts ...Option) g.Node {
 	if classes != "" {
 		attrs = append(attrs, html.Class(classes))
 	}
+
 	attrs = append(attrs, props.Attrs...)
 
 	return html.Nav(
@@ -171,10 +173,10 @@ func buildPageNumbers(props *PaginationProps) []g.Node {
 	} else {
 		// Show ellipsis pattern
 		// [1] ... [4] [5] [6] ... [10]
-		
+
 		// Left ellipsis (shown when currentPage > 3)
 		items = append(items, html.Li(
-			g.Attr("x-show", "currentPage > "+(fmt.Sprintf("%d", 2+sibling))),
+			g.Attr("x-show", "currentPage > "+(strconv.Itoa(2+sibling))),
 			html.Class("flex items-center"),
 			Ellipsis(),
 		))
@@ -297,7 +299,7 @@ func PageButton(page int) g.Node {
 		g.Attr(":aria-current", fmt.Sprintf("currentPage === %d ? 'page' : undefined", page)),
 		html.Class("inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 hover:bg-accent hover:text-accent-foreground h-9 w-9"),
 		g.Attr(":class", fmt.Sprintf("currentPage === %d ? 'border border-input bg-background shadow-sm hover:bg-accent hover:text-accent-foreground' : ''", page)),
-		g.Text(fmt.Sprintf("%d", page)),
+		g.Text(strconv.Itoa(page)),
 	)
 }
 
@@ -323,4 +325,3 @@ func Ellipsis() g.Node {
 		),
 	)
 }
-

@@ -76,13 +76,14 @@ func (ds *DevServer) Start(ctx context.Context) error {
 func (ds *DevServer) watchProjectDirs() error {
 	// Only watch source directories, NOT output directories
 	// Watching output directories causes infinite reload loops
-	
+
 	// Watch current directory for .go files only (non-recursive)
 	// This watches the example app source files
 	cwd, _ := os.Getwd()
 	if ds.verbose {
 		fmt.Printf("[DevServer] Watching current directory for Go files: %s\n", cwd)
 	}
+
 	if err := ds.watcher.AddPath("."); err != nil {
 		if ds.verbose {
 			fmt.Printf("[DevServer] Warning: Could not watch current directory: %v\n", err)
@@ -101,10 +102,12 @@ func (ds *DevServer) watchProjectDirs() error {
 func (ds *DevServer) onFileChange(ctx context.Context, event fsnotify.Event) error {
 	// Prevent concurrent builds
 	ds.buildMu.Lock()
+
 	if ds.building {
 		ds.buildMu.Unlock()
 		return nil
 	}
+
 	ds.building = true
 	ds.buildMu.Unlock()
 
@@ -123,6 +126,7 @@ func (ds *DevServer) onFileChange(ctx context.Context, event fsnotify.Event) err
 		if ds.verbose {
 			fmt.Printf("[DevServer] Build failed: %v\n", err)
 		}
+
 		return err
 	}
 
@@ -192,6 +196,7 @@ func (ds *DevServer) SSEHandler() http.HandlerFunc {
 				if ds.verbose {
 					fmt.Println("[DevServer] SSE client disconnected")
 				}
+
 				return
 
 			case msg := <-clientChan:
@@ -237,9 +242,11 @@ func (ds *DevServer) SetVerbose(verbose bool) {
 func (ds *DevServer) Close() error {
 	// Close all SSE clients
 	ds.mu.Lock()
+
 	for _, client := range ds.sseClients {
 		close(client)
 	}
+
 	ds.sseClients = nil
 	ds.mu.Unlock()
 
@@ -255,6 +262,6 @@ func (ds *DevServer) Close() error {
 func (ds *DevServer) ClientCount() int {
 	ds.mu.RLock()
 	defer ds.mu.RUnlock()
+
 	return len(ds.sseClients)
 }
-

@@ -92,12 +92,15 @@ func Grid(opts ...GridOption) g.Node {
 	if props.ColsSM > 0 {
 		classes = append(classes, fmt.Sprintf("sm:grid-cols-%d", props.ColsSM))
 	}
+
 	if props.ColsMD > 0 {
 		classes = append(classes, fmt.Sprintf("md:grid-cols-%d", props.ColsMD))
 	}
+
 	if props.ColsLG > 0 {
 		classes = append(classes, fmt.Sprintf("lg:grid-cols-%d", props.ColsLG))
 	}
+
 	if props.ColsXL > 0 {
 		classes = append(classes, fmt.Sprintf("xl:grid-cols-%d", props.ColsXL))
 	}

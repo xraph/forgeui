@@ -45,6 +45,7 @@ type MiddlewarePlugin interface {
 // MiddlewarePluginBase provides a base implementation for middleware plugins.
 type MiddlewarePluginBase struct {
 	*PluginBase
+
 	middleware func(http.Handler) http.Handler
 	priority   int
 }
@@ -72,6 +73,6 @@ func (m *MiddlewarePluginBase) Priority() int {
 	if m.priority == 0 {
 		return 50 // Default priority
 	}
+
 	return m.priority
 }
-

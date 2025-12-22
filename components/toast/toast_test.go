@@ -21,6 +21,7 @@ func TestToast(t *testing.T) {
 		if !strings.Contains(html, "Test notification") {
 			t.Error("expected toast to contain title")
 		}
+
 		if !strings.Contains(html, "role=\"alert\"") {
 			t.Error("expected toast to have alert role")
 		}
@@ -117,6 +118,7 @@ func TestToast(t *testing.T) {
 		if !strings.Contains(html, "aria-label=\"Close\"") {
 			t.Error("expected toast to have close button")
 		}
+
 		if !strings.Contains(html, "@click") || !strings.Contains(html, "close()") {
 			t.Error("expected close button to have click handler")
 		}
@@ -134,9 +136,11 @@ func TestToaster(t *testing.T) {
 		if !strings.Contains(html, "fixed") {
 			t.Error("expected toaster to be fixed positioned")
 		}
+
 		if !strings.Contains(html, "z-[100]") {
 			t.Error("expected toaster to have high z-index")
 		}
+
 		if !strings.Contains(html, "aria-live=\"polite\"") {
 			t.Error("expected toaster to have aria-live attribute")
 		}
@@ -176,6 +180,7 @@ func TestToaster(t *testing.T) {
 		if !strings.Contains(html, "maxToasts: 3") {
 			t.Error("expected maxToasts configuration")
 		}
+
 		if !strings.Contains(html, "visibleToasts") {
 			t.Error("expected visibleToasts computed property")
 		}
@@ -191,6 +196,7 @@ func TestToaster(t *testing.T) {
 		if !strings.Contains(html, "@keydown.escape.window") {
 			t.Error("expected escape key handler")
 		}
+
 		if !strings.Contains(html, "$store.toast.clear()") {
 			t.Error("expected clear() call on escape")
 		}
@@ -206,6 +212,7 @@ func TestToaster(t *testing.T) {
 		if !strings.Contains(html, "x-for") {
 			t.Error("expected x-for loop for toasts")
 		}
+
 		if !strings.Contains(html, "visibleToasts") {
 			t.Error("expected loop over visibleToasts")
 		}
@@ -221,9 +228,11 @@ func TestToaster(t *testing.T) {
 		if !strings.Contains(html, "init()") {
 			t.Error("expected init lifecycle hook")
 		}
+
 		if !strings.Contains(html, "close()") {
 			t.Error("expected close method")
 		}
+
 		if !strings.Contains(html, "$store.toast.remove") {
 			t.Error("expected toast removal logic")
 		}
@@ -239,9 +248,11 @@ func TestToaster(t *testing.T) {
 		if !strings.Contains(html, "x-show") {
 			t.Error("expected x-show for transitions")
 		}
+
 		if !strings.Contains(html, "transition") {
 			t.Error("expected transition classes")
 		}
+
 		if !strings.Contains(html, "scale") {
 			t.Error("expected scale animation")
 		}
@@ -271,6 +282,7 @@ func TestRegisterToastStore(t *testing.T) {
 		if !strings.Contains(html, "Alpine.store") {
 			t.Error("expected Alpine.store registration")
 		}
+
 		if !strings.Contains(html, "toast") {
 			t.Error("expected toast store name")
 		}
@@ -298,6 +310,7 @@ func TestRegisterToastStore(t *testing.T) {
 		if !strings.Contains(html, "add(") {
 			t.Error("expected add method")
 		}
+
 		if !strings.Contains(html, "this.items.push") {
 			t.Error("expected push to items array")
 		}
@@ -313,6 +326,7 @@ func TestRegisterToastStore(t *testing.T) {
 		if !strings.Contains(html, "remove(") {
 			t.Error("expected remove method")
 		}
+
 		if !strings.Contains(html, "filter") {
 			t.Error("expected filter operation for removal")
 		}
@@ -362,9 +376,11 @@ func TestToastHelpers(t *testing.T) {
 		if !strings.Contains(expr, "Saved successfully") {
 			t.Error("expected success message")
 		}
+
 		if !strings.Contains(expr, "variant: 'success'") {
 			t.Error("expected success variant")
 		}
+
 		if !strings.Contains(expr, "$store.toast.add") {
 			t.Error("expected store.toast.add call")
 		}
@@ -376,6 +392,7 @@ func TestToastHelpers(t *testing.T) {
 		if !strings.Contains(expr, "Something went wrong") {
 			t.Error("expected error message")
 		}
+
 		if !strings.Contains(expr, "variant: 'error'") {
 			t.Error("expected error variant")
 		}
@@ -387,6 +404,7 @@ func TestToastHelpers(t *testing.T) {
 		if !strings.Contains(expr, "Be careful") {
 			t.Error("expected warning message")
 		}
+
 		if !strings.Contains(expr, "variant: 'warning'") {
 			t.Error("expected warning variant")
 		}
@@ -398,6 +416,7 @@ func TestToastHelpers(t *testing.T) {
 		if !strings.Contains(expr, "FYI") {
 			t.Error("expected info message")
 		}
+
 		if !strings.Contains(expr, "variant: 'default'") {
 			t.Error("expected default variant")
 		}
@@ -443,7 +462,7 @@ func TestToasterPositionClasses(t *testing.T) {
 	for _, tt := range tests {
 		t.Run(tt.position, func(t *testing.T) {
 			classes := getToasterPositionClass(tt.position)
-			
+
 			hasTop := strings.Contains(classes, "top-0")
 			hasBottom := strings.Contains(classes, "bottom-0")
 			hasLeft := strings.Contains(classes, "left-0")
@@ -452,12 +471,15 @@ func TestToasterPositionClasses(t *testing.T) {
 			if tt.wantTop && !hasTop {
 				t.Errorf("expected top-0 for position %s", tt.position)
 			}
+
 			if !tt.wantTop && !hasBottom {
 				t.Errorf("expected bottom-0 for position %s", tt.position)
 			}
+
 			if tt.wantLeft && !hasLeft {
 				t.Errorf("expected left-0 for position %s", tt.position)
 			}
+
 			if !tt.wantLeft && !tt.wantTop && !hasRight && !strings.Contains(classes, "left-1/2") {
 				// Should have right-0 or be centered
 				if !strings.Contains(classes, "left-1/2") {

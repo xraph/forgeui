@@ -120,10 +120,12 @@ func ScriptTemplate(tmpl string, data any) (g.Node, error) {
 	}
 
 	var buf string
+
 	writer := &strings.Builder{}
 	if err := t.Execute(writer, data); err != nil {
 		return nil, err
 	}
+
 	buf = writer.String()
 
 	return html.Script(
@@ -131,4 +133,3 @@ func ScriptTemplate(tmpl string, data any) (g.Node, error) {
 		g.Raw(buf),
 	), nil
 }
-

@@ -58,4 +58,3 @@ func Description(text string, opts ...DescriptionOption) g.Node {
 		g.Text(text),
 	)
 }
-

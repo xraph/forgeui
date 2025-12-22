@@ -94,6 +94,7 @@ func BreadcrumbWithOptions(opts []Option, children ...g.Node) g.Node {
 	if classes != "" {
 		attrs = append(attrs, html.Class(classes))
 	}
+
 	attrs = append(attrs, props.Attrs...)
 
 	return html.Nav(
@@ -208,4 +209,3 @@ func Ellipsis() g.Node {
 		Separator(),
 	)
 }
-

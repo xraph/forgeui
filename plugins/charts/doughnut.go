@@ -42,7 +42,7 @@ func (c *Charts) doughnutChart(props any, children ...g.Node) g.Node {
 //	})
 func DoughnutChart(data DoughnutChartData) g.Node {
 	opts := DefaultOptions()
-	
+
 	chartData := map[string]any{
 		"labels": data.Labels,
 		"datasets": []map[string]any{
@@ -57,4 +57,3 @@ func DoughnutChart(data DoughnutChartData) g.Node {
 
 	return baseChartNode("doughnut", chartData, opts)
 }
-

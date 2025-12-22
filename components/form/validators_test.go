@@ -76,6 +76,7 @@ func TestMinLength(t *testing.T) {
 			if (err != nil) != tt.wantErr {
 				t.Errorf("MinLength() error = %v, wantErr %v", err, tt.wantErr)
 			}
+
 			if err != nil && !strings.Contains(err.Error(), "at least 5") {
 				t.Errorf("MinLength() error message = %v, want 'at least 5'", err)
 			}
@@ -103,6 +104,7 @@ func TestMaxLength(t *testing.T) {
 			if (err != nil) != tt.wantErr {
 				t.Errorf("MaxLength() error = %v, wantErr %v", err, tt.wantErr)
 			}
+
 			if err != nil && !strings.Contains(err.Error(), "not exceed 10") {
 				t.Errorf("MaxLength() error message = %v, want 'not exceed 10'", err)
 			}
@@ -287,6 +289,7 @@ func TestCombine(t *testing.T) {
 			if (err != nil) != tt.wantErr {
 				t.Errorf("Combine() error = %v, wantErr %v", err, tt.wantErr)
 			}
+
 			if err != nil && tt.errMsg != "" && !strings.Contains(strings.ToLower(err.Error()), tt.errMsg) {
 				t.Errorf("Combine() error message = %v, want to contain '%s'", err, tt.errMsg)
 			}
@@ -307,6 +310,7 @@ func TestValidate(t *testing.T) {
 		if err == nil {
 			t.Error("Validate() expected error for empty required field")
 		}
+
 		if !strings.Contains(err.Error(), "required") {
 			t.Errorf("Validate() error = %v, want 'required'", err)
 		}
@@ -326,6 +330,7 @@ func TestValidateField(t *testing.T) {
 		if err == nil {
 			t.Error("ValidateField() expected error")
 		}
+
 		if !strings.Contains(err.Error(), "email") {
 			t.Errorf("ValidateField() error = %v, want to contain 'email'", err)
 		}
@@ -335,6 +340,7 @@ func TestValidateField(t *testing.T) {
 func TestValidationError(t *testing.T) {
 	t.Run("formats error with field", func(t *testing.T) {
 		err := NewValidationError("email", "Invalid email")
+
 		expected := "email: Invalid email"
 		if err.Error() != expected {
 			t.Errorf("ValidationError.Error() = %v, want %v", err.Error(), expected)
@@ -343,10 +349,10 @@ func TestValidationError(t *testing.T) {
 
 	t.Run("formats error without field", func(t *testing.T) {
 		err := NewValidationError("", "Invalid input")
+
 		expected := "Invalid input"
 		if err.Error() != expected {
 			t.Errorf("ValidationError.Error() = %v, want %v", err.Error(), expected)
 		}
 	})
 }
-

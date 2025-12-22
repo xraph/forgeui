@@ -1,8 +1,8 @@
 package alpine
 
 import (
-	g "maragu.dev/gomponents"
 	"github.com/xraph/forgeui/animation"
+	g "maragu.dev/gomponents"
 )
 
 // Transition represents Alpine.js transition configuration.
@@ -34,18 +34,23 @@ func (t *Transition) Attrs() []g.Node {
 	if t.Enter != "" {
 		attrs = append(attrs, g.Attr("x-transition:enter", t.Enter))
 	}
+
 	if t.EnterStart != "" {
 		attrs = append(attrs, g.Attr("x-transition:enter-start", t.EnterStart))
 	}
+
 	if t.EnterEnd != "" {
 		attrs = append(attrs, g.Attr("x-transition:enter-end", t.EnterEnd))
 	}
+
 	if t.Leave != "" {
 		attrs = append(attrs, g.Attr("x-transition:leave", t.Leave))
 	}
+
 	if t.LeaveStart != "" {
 		attrs = append(attrs, g.Attr("x-transition:leave-start", t.LeaveStart))
 	}
+
 	if t.LeaveEnd != "" {
 		attrs = append(attrs, g.Attr("x-transition:leave-end", t.LeaveEnd))
 	}
@@ -63,7 +68,7 @@ func (t *Transition) Attrs() []g.Node {
 //	    g.Group(alpine.XTransition(myTransition)),
 //	    g.Text("Content"),
 //	)
-func XTransition(t interface{}) []g.Node {
+func XTransition(t any) []g.Node {
 	switch v := t.(type) {
 	case *Transition:
 		return v.Attrs()
@@ -82,18 +87,23 @@ func convertAnimationTransition(t *animation.Transition) []g.Node {
 	if t.Enter != "" {
 		attrs = append(attrs, g.Attr("x-transition:enter", t.Enter))
 	}
+
 	if t.EnterStart != "" {
 		attrs = append(attrs, g.Attr("x-transition:enter-start", t.EnterStart))
 	}
+
 	if t.EnterEnd != "" {
 		attrs = append(attrs, g.Attr("x-transition:enter-end", t.EnterEnd))
 	}
+
 	if t.Leave != "" {
 		attrs = append(attrs, g.Attr("x-transition:leave", t.Leave))
 	}
+
 	if t.LeaveStart != "" {
 		attrs = append(attrs, g.Attr("x-transition:leave-start", t.LeaveStart))
 	}
+
 	if t.LeaveEnd != "" {
 		attrs = append(attrs, g.Attr("x-transition:leave-end", t.LeaveEnd))
 	}
@@ -183,4 +193,3 @@ func (b *TransitionBuilder) LeaveEnd(classes string) *TransitionBuilder {
 func (b *TransitionBuilder) Build() *Transition {
 	return b.transition
 }
-

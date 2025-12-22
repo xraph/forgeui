@@ -119,6 +119,7 @@ func TestRouter_Parameters(t *testing.T) {
 	}
 
 	body := w.Body.String()
+
 	expected := "User ID: 123"
 	if body != expected {
 		t.Errorf("Expected %q, got %q", expected, body)
@@ -139,6 +140,7 @@ func TestRouter_QueryParams(t *testing.T) {
 	r.ServeHTTP(w, req)
 
 	body := w.Body.String()
+
 	expected := "Search: golang"
 	if body != expected {
 		t.Errorf("Expected %q, got %q", expected, body)
@@ -198,6 +200,7 @@ func TestRouter_Match(t *testing.T) {
 	req := httptest.NewRequest(MethodGet, "/api", nil)
 	w := httptest.NewRecorder()
 	r.ServeHTTP(w, req)
+
 	if w.Code != http.StatusOK {
 		t.Errorf("GET /api should work, got status %d", w.Code)
 	}
@@ -206,6 +209,7 @@ func TestRouter_Match(t *testing.T) {
 	req = httptest.NewRequest(MethodPost, "/api", nil)
 	w = httptest.NewRecorder()
 	r.ServeHTTP(w, req)
+
 	if w.Code != http.StatusOK {
 		t.Errorf("POST /api should work, got status %d", w.Code)
 	}
@@ -214,6 +218,7 @@ func TestRouter_Match(t *testing.T) {
 	req = httptest.NewRequest(MethodPut, "/api", nil)
 	w = httptest.NewRecorder()
 	r.ServeHTTP(w, req)
+
 	if w.Code != http.StatusNotFound {
 		t.Errorf("PUT /api should not match, got status %d", w.Code)
 	}
@@ -254,4 +259,3 @@ func TestRouter_CustomNotFound(t *testing.T) {
 		t.Errorf("Expected 'Custom 404', got %q", body)
 	}
 }
-

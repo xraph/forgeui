@@ -240,7 +240,7 @@ func pointsToPath(points string, closed bool) string {
 	points = strings.TrimSpace(points)
 	// Replace commas with spaces and normalize whitespace
 	points = regexp.MustCompile(`[,\s]+`).ReplaceAllString(points, " ")
-	
+
 	coords := strings.Fields(points)
 	if len(coords) < 2 {
 		return ""
@@ -456,10 +456,10 @@ func isGoKeyword(name string) bool {
 // isPackageReserved checks if a name conflicts with package-level types/functions
 func isPackageReserved(name string) bool {
 	reserved := map[string]bool{
-		"Option": true,  // Functional option type
-		"Props":  true,  // Icon props struct
-		"Icon":   true,  // Icon function
-		"MultiPathIcon": true, // MultiPathIcon function
+		"Option":          true, // Functional option type
+		"Props":           true, // Icon props struct
+		"Icon":            true, // Icon function
+		"MultiPathIcon":   true, // MultiPathIcon function
 		"WithSize":        true,
 		"WithColor":       true,
 		"WithStrokeWidth": true,
@@ -520,4 +520,3 @@ func generateGoCode(icons []IconData) ([]byte, error) {
 
 	return formatted, nil
 }
-

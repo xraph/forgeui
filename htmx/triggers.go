@@ -58,7 +58,8 @@ func HxTriggerIntersect(options string) g.Node {
 	if options == "" {
 		return g.Attr("hx-trigger", "intersect")
 	}
-	return g.Attr("hx-trigger", fmt.Sprintf("intersect %s", options))
+
+	return g.Attr("hx-trigger", "intersect "+options)
 }
 
 // HxTriggerEvery creates an hx-trigger with polling interval.
@@ -70,7 +71,7 @@ func HxTriggerIntersect(options string) g.Node {
 //	    htmx.HxGet("/api/status"),
 //	)
 func HxTriggerEvery(duration string) g.Node {
-	return g.Attr("hx-trigger", fmt.Sprintf("every %s", duration))
+	return g.Attr("hx-trigger", "every "+duration)
 }
 
 // HxTriggerMouseEnter creates an hx-trigger="mouseenter" attribute.
@@ -116,7 +117,7 @@ func HxTriggerDebounce(event, delay string) g.Node {
 //	    htmx.HxGet("/api/init"),
 //	)
 func HxTriggerOnce(event string) g.Node {
-	return g.Attr("hx-trigger", fmt.Sprintf("%s once", event))
+	return g.Attr("hx-trigger", event+" once")
 }
 
 // HxTriggerFrom creates an hx-trigger from another element.
@@ -178,6 +179,5 @@ func HxTriggerTarget(event, selector string) g.Node {
 //	    htmx.HxPost("/api/action"),
 //	)
 func HxTriggerConsume(event string) g.Node {
-	return g.Attr("hx-trigger", fmt.Sprintf("%s consume", event))
+	return g.Attr("hx-trigger", event+" consume")
 }
-

@@ -156,6 +156,7 @@ func Select(opts []SelectOption, children ...g.Node) g.Node {
 
 	// Hidden input for form submission
 	var hiddenInput g.Node
+
 	if props.Name != "" {
 		hiddenAttrs := []g.Node{
 			g.Attr("type", "hidden"),
@@ -165,6 +166,7 @@ func Select(opts []SelectOption, children ...g.Node) g.Node {
 		if props.Required {
 			hiddenAttrs = append(hiddenAttrs, g.Attr("required", ""))
 		}
+
 		hiddenInput = html.Input(hiddenAttrs...)
 	}
 
@@ -239,6 +241,7 @@ func SelectTrigger(opts []SelectTriggerOption, children ...g.Node) g.Node {
 
 	// Size classes
 	var sizeClasses string
+
 	switch props.Size {
 	case SelectSizeSm:
 		sizeClasses = "h-8"
@@ -625,6 +628,7 @@ func NativeSelect(options []NativeSelectOption, opts ...SelectOption) g.Node {
 		if opt.Selected {
 			optAttrs = append(optAttrs, g.Attr("selected", ""))
 		}
+
 		if opt.Disabled {
 			optAttrs = append(optAttrs, g.Attr("disabled", ""))
 		}

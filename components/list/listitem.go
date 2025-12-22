@@ -159,4 +159,3 @@ func ListItem(opts ...ItemOption) func(...g.Node) g.Node {
 		)
 	}
 }
-

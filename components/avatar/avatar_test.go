@@ -21,6 +21,7 @@ func TestAvatar_WithImage(t *testing.T) {
 	if !strings.Contains(html, "rounded-full") {
 		t.Error("expected rounded-full class")
 	}
+
 	if !strings.Contains(html, "/avatar.jpg") {
 		t.Error("expected image src")
 	}
@@ -36,6 +37,7 @@ func TestAvatar_WithFallback(t *testing.T) {
 	if !strings.Contains(html, "AB") {
 		t.Error("expected fallback text")
 	}
+
 	if !strings.Contains(html, "bg-muted") {
 		t.Error("expected bg-muted for fallback")
 	}

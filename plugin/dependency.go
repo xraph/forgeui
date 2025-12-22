@@ -73,6 +73,7 @@ func (v *Version) Compare(other *Version) int {
 		if v.Major < other.Major {
 			return -1
 		}
+
 		return 1
 	}
 
@@ -80,6 +81,7 @@ func (v *Version) Compare(other *Version) int {
 		if v.Minor < other.Minor {
 			return -1
 		}
+
 		return 1
 	}
 
@@ -87,6 +89,7 @@ func (v *Version) Compare(other *Version) int {
 		if v.Patch < other.Patch {
 			return -1
 		}
+
 		return 1
 	}
 
@@ -151,12 +154,14 @@ func (c *VersionConstraint) Check(version *Version) bool {
 		if version.Major != c.Version.Major || version.Minor != c.Version.Minor {
 			return false
 		}
+
 		return version.Patch >= c.Version.Patch
 	case "^":
 		// ^1.2.3 means >=1.2.3 and <2.0.0
 		if version.Major != c.Version.Major {
 			return false
 		}
+
 		return cmp >= 0
 	default:
 		return false
@@ -167,4 +172,3 @@ func (c *VersionConstraint) Check(version *Version) bool {
 func (c *VersionConstraint) String() string {
 	return c.Operator + c.Version.String()
 }
-

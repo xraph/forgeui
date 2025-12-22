@@ -26,4 +26,3 @@ func (r rawJS) Render(w io.Writer) error {
 func (r rawJS) Type() string {
 	return "alpine.rawJS"
 }
-

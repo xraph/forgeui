@@ -29,6 +29,7 @@ func (c *Charts) lineChart(props any, children ...g.Node) g.Node {
 					"tension":         ds.Tension,
 				}
 			}
+
 			return datasets
 		}(),
 	}
@@ -54,7 +55,7 @@ func (c *Charts) lineChart(props any, children ...g.Node) g.Node {
 //	})
 func LineChart(data LineChartData) g.Node {
 	opts := DefaultOptions()
-	
+
 	chartData := map[string]any{
 		"labels": data.Labels,
 		"datasets": func() []map[string]any {
@@ -70,10 +71,10 @@ func LineChart(data LineChartData) g.Node {
 					"tension":         ds.Tension,
 				}
 			}
+
 			return datasets
 		}(),
 	}
 
 	return baseChartNode("line", chartData, opts)
 }
-

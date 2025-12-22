@@ -4,9 +4,9 @@ package assets
 type StyleOption func(*styleConfig)
 
 type styleConfig struct {
-	media     string
-	preload   bool
-	integrity string
+	media       string
+	preload     bool
+	integrity   string
 	crossOrigin string
 }
 
@@ -91,4 +91,3 @@ func WithNoModule() ScriptOption {
 		c.noModule = true
 	}
 }
-

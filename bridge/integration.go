@@ -62,4 +62,3 @@ func GetBridgeContext(ctx context.Context) (Context, bool) {
 	bridgeCtx, ok := ctx.Value(bridgeContextKey).(Context)
 	return bridgeCtx, ok
 }
-

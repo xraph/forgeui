@@ -94,6 +94,7 @@ func TestDataTable(t *testing.T) {
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
 			var buf bytes.Buffer
+
 			node := DataTable(tt.opts...)
 			if err := node.Render(&buf); err != nil {
 				t.Fatalf("render error: %v", err)
@@ -216,6 +217,7 @@ func TestRenderDataTableHeaders(t *testing.T) {
 	if !strings.Contains(html, "Name") {
 		t.Error("headers should contain 'Name'")
 	}
+
 	if !strings.Contains(html, "Email") {
 		t.Error("headers should contain 'Email'")
 	}
@@ -245,8 +247,8 @@ func TestRenderDataTableCells(t *testing.T) {
 	if !strings.Contains(html, "x-text") {
 		t.Error("cells should contain x-text directive")
 	}
+
 	if !strings.Contains(html, "row.name") {
 		t.Error("cells should reference row data")
 	}
 }
-

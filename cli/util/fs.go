@@ -1,7 +1,7 @@
 package util
 
 import (
-	"fmt"
+	"errors"
 	"os"
 	"path/filepath"
 	"strings"
@@ -25,6 +25,7 @@ func CreateDir(path string) error {
 	if DirExists(path) {
 		return nil
 	}
+
 	return os.MkdirAll(path, 0755)
 }
 
@@ -35,7 +36,7 @@ func CreateFile(path, content string) error {
 	if err := CreateDir(dir); err != nil {
 		return err
 	}
-	
+
 	return os.WriteFile(path, []byte(content), 0644)
 }
 
@@ -46,23 +47,26 @@ func IsGoProject(dir string) bool {
 
 // IsForgeUIProject checks if the directory is a ForgeUI project
 func IsForgeUIProject(dir string) bool {
-	return FileExists(filepath.Join(dir, ".forgeui.json")) || 
-	       FileExists(filepath.Join(dir, "forgeui.json"))
+	return FileExists(filepath.Join(dir, ".forgeui.json")) ||
+		FileExists(filepath.Join(dir, "forgeui.json"))
 }
 
 // ToSnakeCase converts a string to snake_case
 func ToSnakeCase(s string) string {
 	var result strings.Builder
+
 	for i, r := range s {
 		if unicode.IsUpper(r) {
 			if i > 0 {
 				result.WriteRune('_')
 			}
+
 			result.WriteRune(unicode.ToLower(r))
 		} else {
 			result.WriteRune(r)
 		}
 	}
+
 	return result.String()
 }
 
@@ -71,14 +75,16 @@ func ToPascalCase(s string) string {
 	parts := strings.FieldsFunc(s, func(r rune) bool {
 		return r == '_' || r == '-' || r == ' '
 	})
-	
+
 	var result strings.Builder
+
 	for _, part := range parts {
 		if len(part) > 0 {
 			result.WriteRune(unicode.ToUpper(rune(part[0])))
 			result.WriteString(part[1:])
 		}
 	}
+
 	return result.String()
 }
 
@@ -88,6 +94,7 @@ func ToCamelCase(s string) string {
 	if len(pascal) == 0 {
 		return ""
 	}
+
 	return string(unicode.ToLower(rune(pascal[0]))) + pascal[1:]
 }
 
@@ -97,60 +104,61 @@ func GetProjectRoot() (string, error) {
 	if err != nil {
 		return "", err
 	}
-	
+
 	// Walk up the directory tree
 	for {
 		if IsGoProject(dir) {
 			return dir, nil
 		}
-		
+
 		parent := filepath.Dir(dir)
 		if parent == dir {
 			// Reached filesystem root
 			break
 		}
+
 		dir = parent
 	}
-	
-	return "", fmt.Errorf("not in a Go project (no go.mod found)")
+
+	return "", errors.New("not in a Go project (no go.mod found)")
 }
 
 // ValidateProjectName validates a project name
 func ValidateProjectName(name string) error {
 	if name == "" {
-		return fmt.Errorf("project name cannot be empty")
+		return errors.New("project name cannot be empty")
 	}
-	
+
 	if strings.Contains(name, " ") {
-		return fmt.Errorf("project name cannot contain spaces")
+		return errors.New("project name cannot contain spaces")
 	}
-	
+
 	// Check first character is letter or underscore
 	if !unicode.IsLetter(rune(name[0])) && name[0] != '_' {
-		return fmt.Errorf("project name must start with a letter or underscore")
+		return errors.New("project name must start with a letter or underscore")
 	}
-	
+
 	// Check all characters are valid
 	for _, r := range name {
 		if !unicode.IsLetter(r) && !unicode.IsDigit(r) && r != '_' && r != '-' {
-			return fmt.Errorf("project name can only contain letters, digits, underscores, and hyphens")
+			return errors.New("project name can only contain letters, digits, underscores, and hyphens")
 		}
 	}
-	
+
 	return nil
 }
 
 // ValidateGoModule validates a Go module path
 func ValidateGoModule(module string) error {
 	if module == "" {
-		return fmt.Errorf("module path cannot be empty")
+		return errors.New("module path cannot be empty")
 	}
-	
+
 	// Simple validation - should contain at least one slash
 	if !strings.Contains(module, "/") {
-		return fmt.Errorf("module path should be a valid Go module (e.g., github.com/user/project)")
+		return errors.New("module path should be a valid Go module (e.g., github.com/user/project)")
 	}
-	
+
 	return nil
 }
 
@@ -160,26 +168,25 @@ func CopyDir(src, dst string) error {
 		if err != nil {
 			return err
 		}
-		
+
 		// Get relative path
 		relPath, err := filepath.Rel(src, path)
 		if err != nil {
 			return err
 		}
-		
+
 		dstPath := filepath.Join(dst, relPath)
-		
+
 		if info.IsDir() {
 			return CreateDir(dstPath)
 		}
-		
+
 		// Copy file
 		data, err := os.ReadFile(path)
 		if err != nil {
 			return err
 		}
-		
+
 		return os.WriteFile(dstPath, data, info.Mode())
 	})
 }
-

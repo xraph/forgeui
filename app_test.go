@@ -30,12 +30,15 @@ func TestApp_NewWithOptions(t *testing.T) {
 	if !cfg.Debug {
 		t.Error("expected Debug to be true")
 	}
+
 	if cfg.Theme != "dark" {
 		t.Errorf("expected Theme to be 'dark', got %v", cfg.Theme)
 	}
+
 	if cfg.StaticPath != "/assets" {
 		t.Errorf("expected StaticPath to be '/assets', got %v", cfg.StaticPath)
 	}
+
 	if cfg.DefaultSize != SizeLG {
 		t.Errorf("expected DefaultSize to be SizeLG, got %v", cfg.DefaultSize)
 	}

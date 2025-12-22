@@ -13,6 +13,7 @@ func (e *ComponentError) Error() string {
 	if e.Err != nil {
 		return fmt.Sprintf("%s: %s: %v", e.Component, e.Message, e.Err)
 	}
+
 	return fmt.Sprintf("%s: %s", e.Component, e.Message)
 }
 
@@ -41,6 +42,7 @@ func (e *PluginError) Error() string {
 	if e.Err != nil {
 		return fmt.Sprintf("plugin %s: %s: %v", e.Plugin, e.Message, e.Err)
 	}
+
 	return fmt.Sprintf("plugin %s: %s", e.Plugin, e.Message)
 }
 

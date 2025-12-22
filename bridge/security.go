@@ -4,8 +4,8 @@ import (
 	"crypto/rand"
 	"crypto/subtle"
 	"encoding/base64"
-	"fmt"
 	"net/http"
+	"slices"
 	"strings"
 )
 
@@ -40,13 +40,7 @@ func (s *Security) CheckAuth(ctx Context, fn *Function) error {
 
 	// Check required roles
 	if len(fn.RequireRoles) > 0 {
-		hasRole := false
-		for _, requiredRole := range fn.RequireRoles {
-			if user.HasRole(requiredRole) {
-				hasRole = true
-				break
-			}
-		}
+		hasRole := slices.ContainsFunc(fn.RequireRoles, user.HasRole)
 
 		if !hasRole {
 			return ErrForbidden
@@ -108,6 +102,7 @@ func GenerateCSRFToken() (string, error) {
 	if _, err := rand.Read(b); err != nil {
 		return "", err
 	}
+
 	return base64.URLEncoding.EncodeToString(b), nil
 }
 
@@ -159,11 +154,12 @@ func GetClientIP(r *http.Request) string {
 func getRateLimitKey(ctx Context) string {
 	user := ctx.User()
 	if user != nil {
-		return fmt.Sprintf("user:%s", user.ID())
+		return "user:" + user.ID()
 	}
 
 	req := ctx.Request()
-	return fmt.Sprintf("ip:%s", GetClientIP(req))
+
+	return "ip:" + GetClientIP(req)
 }
 
 // ValidateInput performs basic input sanitization
@@ -180,4 +176,3 @@ func ValidateInput(input string) error {
 
 	return nil
 }
-

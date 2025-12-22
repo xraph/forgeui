@@ -19,12 +19,15 @@ func TestError(t *testing.T) {
 		if !strings.Contains(output, "This field is required") {
 			t.Error("expected error to contain message")
 		}
+
 		if !strings.Contains(output, "text-destructive") {
 			t.Error("expected error to have destructive color")
 		}
+
 		if !strings.Contains(output, "role=\"alert\"") {
 			t.Error("expected error to have alert role")
 		}
+
 		if !strings.Contains(output, "aria-live=\"polite\"") {
 			t.Error("expected error to have aria-live attribute")
 		}

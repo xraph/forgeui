@@ -1,5 +1,7 @@
 package animation
 
+import "strings"
+
 // Keyframe represents a CSS @keyframes animation definition.
 type Keyframe struct {
 	Name   string
@@ -97,7 +99,7 @@ func PredefinedKeyframes() []Keyframe {
 		{
 			Name: "shake",
 			Frames: map[string]string{
-				"0%, 100%": "transform: translateX(0)",
+				"0%, 100%":                "transform: translateX(0)",
 				"10%, 30%, 50%, 70%, 90%": "transform: translateX(-10px)",
 				"20%, 40%, 60%, 80%":      "transform: translateX(10px)",
 			},
@@ -108,22 +110,33 @@ func PredefinedKeyframes() []Keyframe {
 // ToCSS converts a keyframe to CSS @keyframes rule.
 func (k *Keyframe) ToCSS() string {
 	css := "@keyframes " + k.Name + " {\n"
+
+	var cssSb111 strings.Builder
 	for selector, properties := range k.Frames {
-		css += "  " + selector + " {\n"
-		css += "    " + properties + ";\n"
-		css += "  }\n"
+		cssSb111.WriteString("  " + selector + " {\n")
+		cssSb111.WriteString("    " + properties + ";\n")
+		cssSb111.WriteString("  }\n")
 	}
+
+	css += cssSb111.String()
+
 	css += "}"
+
 	return css
 }
 
 // GenerateCSS generates CSS for all predefined keyframes.
 func GenerateCSS() string {
 	keyframes := PredefinedKeyframes()
+
 	css := "/* ForgeUI Keyframe Animations */\n\n"
+
+	var cssSb124 strings.Builder
 	for _, k := range keyframes {
-		css += k.ToCSS() + "\n\n"
+		cssSb124.WriteString(k.ToCSS() + "\n\n")
 	}
+
+	css += cssSb124.String()
+
 	return css
 }
-

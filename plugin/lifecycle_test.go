@@ -153,8 +153,10 @@ func TestShutdownReverseOrder(t *testing.T) {
 	r := NewRegistry()
 	ctx := context.Background()
 
-	var order []string
-	var mu sync.Mutex
+	var (
+		order []string
+		mu    sync.Mutex
+	)
 
 	// B depends on A, so init order is A, B
 	// Shutdown order should be B, A
@@ -196,6 +198,7 @@ func TestShutdownReverseOrder(t *testing.T) {
 
 type mockPluginWithOrder struct {
 	*mockPlugin
+
 	order *[]string
 	mu    *sync.Mutex
 }
@@ -204,6 +207,7 @@ func (m *mockPluginWithOrder) Shutdown(ctx context.Context) error {
 	m.mu.Lock()
 	*m.order = append(*m.order, m.Name())
 	m.mu.Unlock()
+
 	return m.mockPlugin.Shutdown(ctx)
 }
 
@@ -287,4 +291,3 @@ func TestShutdownWithoutInitialize(t *testing.T) {
 		t.Error("plugin Shutdown should not be called without Initialize")
 	}
 }
-

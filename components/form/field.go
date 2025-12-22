@@ -78,7 +78,7 @@ func Field(labelText string, control g.Node, opts ...FieldOption) g.Node {
 	}
 
 	classes := forgeui.CN("space-y-2", props.Class)
-	
+
 	children := []g.Node{
 		FieldLabel(labelText, props.ID, props.Required),
 		control,
@@ -143,4 +143,3 @@ func FieldDescription(text string) g.Node {
 		g.Text(text),
 	)
 }
-

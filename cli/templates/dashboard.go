@@ -3,7 +3,7 @@ package templates
 import (
 	"fmt"
 	"path/filepath"
-	
+
 	"github.com/xraph/forgeui/cli/util"
 )
 
@@ -45,11 +45,11 @@ func main() {
 	}
 }
 `, modulePath)
-	
+
 	if err := util.CreateFile(filepath.Join(dir, "main.go"), mainGo); err != nil {
 		return err
 	}
-	
+
 	// Create pages/dashboard.go
 	dashGo := `package pages
 
@@ -139,18 +139,18 @@ body { font-family: system-ui, -apple-system, sans-serif; background: #f5f5f5; }
 .stat-value { font-size: 2rem; font-weight: bold; color: #2c3e50; }
 ` + "`" + `
 `
-	
+
 	if err := util.CreateFile(filepath.Join(dir, "pages", "dashboard.go"), dashGo); err != nil {
 		return err
 	}
-	
+
 	// Create config
 	config := fmt.Sprintf(`{"name":"%s","version":"1.0.0","dev":{"port":3000,"host":"localhost","auto_reload":true,"open_browser":false},"build":{"output_dir":"dist","public_dir":"public","minify":true,"binary":false,"embed_assets":true},"assets":{"css":[],"js":[]},"plugins":[],"router":{"base_path":"/","not_found":""}}`, projectName)
-	
+
 	if err := util.CreateFile(filepath.Join(dir, ".forgeui.json"), config); err != nil {
 		return err
 	}
-	
+
 	// Create .gitignore
 	gitignore := `*.exe
 *.dll
@@ -169,24 +169,23 @@ go.sum
 .DS_Store
 Thumbs.db
 `
-	
+
 	if err := util.CreateFile(filepath.Join(dir, ".gitignore"), gitignore); err != nil {
 		return err
 	}
-	
+
 	readme := fmt.Sprintf(`# %s
 
 An admin dashboard built with ForgeUI.
 
 ## Getting Started
 
-` + "```" + `bash
+`+"```"+`bash
 forgeui dev
-` + "```" + `
+`+"```"+`
 
 Visit http://localhost:3000 to see your dashboard.
 `, projectName)
-	
+
 	return util.CreateFile(filepath.Join(dir, "README.md"), readme)
 }
-

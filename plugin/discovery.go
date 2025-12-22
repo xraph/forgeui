@@ -107,4 +107,3 @@ func (r *Registry) DiscoverSafe(dir string) []error {
 
 	return errs
 }
-

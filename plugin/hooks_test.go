@@ -181,9 +181,11 @@ func TestHookContext(t *testing.T) {
 		if hctx.Context != ctx {
 			t.Error("context not passed correctly")
 		}
+
 		if hctx.Data["key"] != "value" {
 			t.Error("data not passed correctly")
 		}
+
 		return nil
 	})
 
@@ -191,7 +193,6 @@ func TestHookContext(t *testing.T) {
 		Context: ctx,
 		Data:    data,
 	})
-
 	if err != nil {
 		t.Errorf("Trigger() error = %v", err)
 	}
@@ -199,13 +200,16 @@ func TestHookContext(t *testing.T) {
 
 func TestHookConcurrency(t *testing.T) {
 	m := NewHookManager()
+
 	var wg sync.WaitGroup
 
 	// Concurrent registrations
-	for i := 0; i < 10; i++ {
+	for range 10 {
 		wg.Add(1)
+
 		go func() {
 			defer wg.Done()
+
 			m.On("test", func(ctx *HookContext) error {
 				return nil
 			})
@@ -213,10 +217,12 @@ func TestHookConcurrency(t *testing.T) {
 	}
 
 	// Concurrent triggers
-	for i := 0; i < 10; i++ {
+	for range 10 {
 		wg.Add(1)
+
 		go func() {
 			defer wg.Done()
+
 			_ = m.Trigger("test", &HookContext{Context: context.Background()})
 		}()
 	}
@@ -252,4 +258,3 @@ func TestHookConstants(t *testing.T) {
 		}
 	}
 }
-

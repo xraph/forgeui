@@ -2,8 +2,8 @@ package bridge
 
 import (
 	"crypto/sha256"
+	"encoding/hex"
 	"encoding/json"
-	"fmt"
 	"sync"
 	"time"
 )
@@ -99,6 +99,7 @@ func (c *MemoryCache) cleanup() {
 
 	for range ticker.C {
 		c.mu.Lock()
+
 		now := time.Now()
 
 		for key, item := range c.items {
@@ -124,7 +125,8 @@ func generateCacheKey(funcName string, params json.RawMessage) string {
 	h := sha256.New()
 	h.Write([]byte(funcName))
 	h.Write(params)
-	return fmt.Sprintf("%x", h.Sum(nil))
+
+	return hex.EncodeToString(h.Sum(nil))
 }
 
 // WithBridgeCache adds caching to a bridge
@@ -133,4 +135,3 @@ func WithBridgeCache(b *Bridge, cache Cache) *Bridge {
 	// This is a helper function for future extension
 	return b
 }
-

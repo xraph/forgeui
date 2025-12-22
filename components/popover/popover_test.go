@@ -25,6 +25,7 @@ func TestPopover(t *testing.T) {
 	for _, pos := range positions {
 		t.Run(string(pos), func(t *testing.T) {
 			var buf bytes.Buffer
+
 			node := popover.Popover(
 				popover.PopoverProps{Position: pos},
 				button.Button(g.Text("Open")),
@@ -38,6 +39,7 @@ func TestPopover(t *testing.T) {
 			if !strings.Contains(html, "x-data") {
 				t.Error("missing Alpine data")
 			}
+
 			if !strings.Contains(html, "x-show") {
 				t.Error("missing x-show directive")
 			}
@@ -56,6 +58,7 @@ func TestPopoverAlignment(t *testing.T) {
 	for _, align := range alignments {
 		t.Run(string(align), func(t *testing.T) {
 			var buf bytes.Buffer
+
 			node := popover.Popover(
 				popover.PopoverProps{
 					Position: forgeui.PositionBottom,
@@ -70,4 +73,3 @@ func TestPopoverAlignment(t *testing.T) {
 		})
 	}
 }
-

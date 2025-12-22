@@ -2,6 +2,7 @@ package assets
 
 import (
 	"context"
+	"errors"
 	"fmt"
 	"os"
 	"os/exec"
@@ -59,6 +60,7 @@ func (tp *TailwindProcessor) Process(ctx context.Context, cfg ProcessorConfig) e
 	configPath := tp.ConfigPath
 	if configPath == "" {
 		var err error
+
 		configPath, err = tp.generateConfig(cfg.OutputDir)
 		if err != nil {
 			return fmt.Errorf("failed to generate tailwind config: %w", err)
@@ -70,6 +72,7 @@ func (tp *TailwindProcessor) Process(ctx context.Context, cfg ProcessorConfig) e
 	inputCSS := tp.InputCSS
 	if inputCSS == "" {
 		var err error
+
 		inputCSS, err = tp.createInputCSS(cfg.OutputDir)
 		if err != nil {
 			return fmt.Errorf("failed to create input CSS: %w", err)
@@ -91,7 +94,8 @@ func (tp *TailwindProcessor) Process(ctx context.Context, cfg ProcessorConfig) e
 		if tp.UseCDN {
 			return tp.generateCDNFallback(outputCSS)
 		}
-		return fmt.Errorf("tailwind CLI not found and CDN fallback disabled")
+
+		return errors.New("tailwind CLI not found and CDN fallback disabled")
 	}
 
 	// Build Tailwind CSS command
@@ -147,16 +151,23 @@ func (tp *TailwindProcessor) generateConfig(outputDir string) (string, error) {
 
 	// Build content array
 	contentJSON := "["
+
+	var contentJSONSb150 strings.Builder
+
 	for i, path := range contentPaths {
 		if i > 0 {
-			contentJSON += ", "
+			contentJSONSb150.WriteString(", ")
 		}
-		contentJSON += fmt.Sprintf(`"%s"`, path)
+
+		contentJSONSb150.WriteString(fmt.Sprintf(`"%s"`, path))
 	}
+
+	contentJSON += contentJSONSb150.String()
+
 	contentJSON += "]"
 
 	// Insert content paths into config
-	config = strings.Replace(config, "module.exports = {", 
+	config = strings.Replace(config, "module.exports = {",
 		fmt.Sprintf("module.exports = {\n  content: %s,", contentJSON), 1)
 
 	if err := os.WriteFile(configPath, []byte(config), 0644); err != nil {
@@ -195,6 +206,7 @@ func (tp *TailwindProcessor) createInputCSS(outputDir string) (string, error) {
 func (tp *TailwindProcessor) isTailwindAvailable() bool {
 	cmd := exec.Command("npx", "tailwindcss", "--help")
 	err := cmd.Run()
+
 	return err == nil
 }
 
@@ -251,4 +263,3 @@ func (tp *TailwindProcessor) WithVerbose(verbose bool) *TailwindProcessor {
 	tp.Verbose = verbose
 	return tp
 }
-

@@ -11,10 +11,10 @@ type PageContext struct {
 	ResponseWriter http.ResponseWriter
 	Request        *http.Request
 	Params         Params
-	values         map[string]interface{}
+	values         map[string]any
 	LoadedData     any
 	Meta           *RouteMeta
-	app            interface{} // Reference to EnhancedApp (interface to avoid circular dependency)
+	app            any // Reference to EnhancedApp (interface to avoid circular dependency)
 }
 
 // Param retrieves a path parameter by key
@@ -22,6 +22,7 @@ func (c *PageContext) Param(key string) string {
 	if c.Params == nil {
 		return ""
 	}
+
 	return c.Params[key]
 }
 
@@ -31,6 +32,7 @@ func (c *PageContext) ParamInt(key string) (int, error) {
 	if val == "" {
 		return 0, nil
 	}
+
 	return strconv.Atoi(val)
 }
 
@@ -40,6 +42,7 @@ func (c *PageContext) ParamInt64(key string) (int64, error) {
 	if val == "" {
 		return 0, nil
 	}
+
 	return strconv.ParseInt(val, 10, 64)
 }
 
@@ -54,6 +57,7 @@ func (c *PageContext) QueryDefault(key, defaultVal string) string {
 	if val == "" {
 		return defaultVal
 	}
+
 	return val
 }
 
@@ -63,6 +67,7 @@ func (c *PageContext) QueryInt(key string) (int, error) {
 	if val == "" {
 		return 0, nil
 	}
+
 	return strconv.Atoi(val)
 }
 
@@ -72,6 +77,7 @@ func (c *PageContext) QueryInt64(key string) (int64, error) {
 	if val == "" {
 		return 0, nil
 	}
+
 	return strconv.ParseInt(val, 10, 64)
 }
 
@@ -102,19 +108,22 @@ func (c *PageContext) SetCookie(cookie *http.Cookie) {
 }
 
 // Set stores a value in the context for the duration of the request
-func (c *PageContext) Set(key string, value interface{}) {
+func (c *PageContext) Set(key string, value any) {
 	if c.values == nil {
-		c.values = make(map[string]interface{})
+		c.values = make(map[string]any)
 	}
+
 	c.values[key] = value
 }
 
 // Get retrieves a value from the context
-func (c *PageContext) Get(key string) (interface{}, bool) {
+func (c *PageContext) Get(key string) (any, bool) {
 	if c.values == nil {
 		return nil, false
 	}
+
 	val, ok := c.values[key]
+
 	return val, ok
 }
 
@@ -125,6 +134,7 @@ func (c *PageContext) GetString(key string) string {
 			return str
 		}
 	}
+
 	return ""
 }
 
@@ -135,6 +145,7 @@ func (c *PageContext) GetInt(key string) int {
 			return i
 		}
 	}
+
 	return 0
 }
 
@@ -147,6 +158,7 @@ func (c *PageContext) Context() context.Context {
 func (c *PageContext) WithContext(ctx context.Context) *PageContext {
 	copy := *c
 	copy.Request = c.Request.WithContext(ctx)
+
 	return &copy
 }
 
@@ -196,6 +208,6 @@ func (c *PageContext) GetMeta() *RouteMeta {
 
 // App returns the application instance
 // Returns interface{} to avoid circular dependency - cast to *forgeui.EnhancedApp in usage
-func (c *PageContext) App() interface{} {
+func (c *PageContext) App() any {
 	return c.app
 }

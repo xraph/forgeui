@@ -161,7 +161,7 @@ func SidebarWithOptions(opts []SidebarOption, children ...g.Node) g.Node {
 		opt(props)
 	}
 
-	sideClass := ""
+	var sideClass string
 	if props.Side == forgeui.SideLeft {
 		sideClass = "left-0"
 	} else {
@@ -193,22 +193,24 @@ func SidebarWithOptions(opts []SidebarOption, children ...g.Node) g.Node {
 
 	// Build width class logic based on collapsible mode using object-based :class binding
 	// This is more reliable than ternary expressions with Alpine stores
-	widthClass := ""
-	if props.CollapsibleMode == CollapsibleIcon {
+	var widthClass string
+
+	switch props.CollapsibleMode {
+	case CollapsibleIcon:
 		// Icon mode: collapse to w-16 (shows only icons)
 		widthClass = `{
 			'w-64': !$store.sidebar || (!$store.sidebar.isMobile && !$store.sidebar.collapsed) || ($store.sidebar.isMobile && $store.sidebar.mobileOpen),
 			'w-16': $store.sidebar && !$store.sidebar.isMobile && $store.sidebar.collapsed,
 			'w-0 -translate-x-full': $store.sidebar && $store.sidebar.isMobile && !$store.sidebar.mobileOpen
 		}`
-	} else if props.CollapsibleMode == CollapsibleOffcanvas {
+	case CollapsibleOffcanvas:
 		// Offcanvas mode: slide completely out of view
 		widthClass = `{
 			'w-64': !$store.sidebar || !$store.sidebar.collapsed || ($store.sidebar.isMobile && $store.sidebar.mobileOpen),
 			'-translate-x-full': $store.sidebar && !$store.sidebar.isMobile && $store.sidebar.collapsed,
 			'w-0 -translate-x-full': $store.sidebar && $store.sidebar.isMobile && !$store.sidebar.mobileOpen
 		}`
-	} else {
+	default:
 		// No collapse: always w-64
 		widthClass = `'w-64'`
 	}
@@ -218,6 +220,7 @@ func SidebarWithOptions(opts []SidebarOption, children ...g.Node) g.Node {
 	if props.DefaultCollapsed {
 		collapsedStr = "true"
 	}
+
 	collapsibleStr := "true"
 	if !props.Collapsible {
 		collapsibleStr = "false"
@@ -591,7 +594,7 @@ func SidebarGroupLabelCollapsible(key string, text string, icon g.Node) g.Node {
 		html.Class("flex h-8 w-full shrink-0 items-center rounded-md px-2 text-xs font-medium text-sidebar-foreground/70 outline-none ring-sidebar-ring transition-[margin,opacity] duration-200 ease-linear hover:bg-sidebar-accent hover:text-sidebar-accent-foreground focus-visible:ring-2"),
 		g.Attr(":class", "$store.sidebar && $store.sidebar.collapsed && !$store.sidebar.isMobile ? 'justify-center' : ''"),
 		g.Attr("aria-label", fmt.Sprintf("Toggle %s section", text)),
-		g.Attr(":aria-expanded", fmt.Sprintf("%s_open ? 'true' : 'false'", key)),
+		g.Attr(":aria-expanded", key+"_open ? 'true' : 'false'"),
 		html.Span(
 			g.Attr("x-show", "$store.sidebar && (!$store.sidebar.collapsed || $store.sidebar.isMobile)"),
 			g.Text(text),
@@ -601,7 +604,7 @@ func SidebarGroupLabelCollapsible(key string, text string, icon g.Node) g.Node {
 			g.Attr("x-show", "$store.sidebar && (!$store.sidebar.collapsed || $store.sidebar.isMobile)"),
 			g.El("svg",
 				html.Class("h-4 w-4 transition-transform duration-200"),
-				g.Attr(":class", fmt.Sprintf("%s_open ? '' : '-rotate-90'", key)),
+				g.Attr(":class", key+"_open ? '' : '-rotate-90'"),
 				g.Attr("xmlns", "http://www.w3.org/2000/svg"),
 				g.Attr("fill", "none"),
 				g.Attr("viewBox", "0 0 24 24"),
@@ -626,7 +629,7 @@ func SidebarGroupLabelCollapsible(key string, text string, icon g.Node) g.Node {
 func SidebarGroupContent(key string, children ...g.Node) g.Node {
 	return html.Div(
 		g.Attr("data-slot", "sidebar-group-content"),
-		g.Attr("x-show", fmt.Sprintf("%s_open", key)),
+		g.Attr("x-show", key+"_open"),
 		g.Attr("x-collapse", ""),
 		html.Class("w-full text-sm"),
 		g.Group(children),
@@ -881,6 +884,7 @@ func SidebarMenuButton(label string, opts ...SidebarMenuButtonOption) g.Node {
 
 	if props.AsButton {
 		attrs = append(attrs, g.Attr("type", "button"))
+
 		return html.Button(
 			g.Group(attrs),
 			g.Group(contentNodes),

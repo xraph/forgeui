@@ -21,6 +21,8 @@ import (
 	"context"
 	"encoding/json"
 	"fmt"
+	"maps"
+	"strings"
 
 	g "maragu.dev/gomponents"
 	"maragu.dev/gomponents/html"
@@ -82,9 +84,9 @@ type MetaTags struct {
 	TwitterImage       string
 
 	// Robots
-	Robots      string // index,follow or noindex,nofollow
-	GoogleBot   string
-	BingBot     string
+	Robots    string // index,follow or noindex,nofollow
+	GoogleBot string
+	BingBot   string
 }
 
 // DefaultMetaTags returns default meta tags.
@@ -113,12 +115,19 @@ func MetaTagsNode(tags MetaTags) g.Node {
 
 	if len(tags.Keywords) > 0 {
 		keywords := ""
+
+		var keywordsSb116 strings.Builder
+
 		for i, kw := range tags.Keywords {
 			if i > 0 {
-				keywords += ", "
+				keywordsSb116.WriteString(", ")
 			}
-			keywords += kw
+
+			keywordsSb116.WriteString(kw)
 		}
+
+		keywords += keywordsSb116.String()
+
 		nodes = append(nodes,
 			html.Meta(html.Name("keywords"), html.Content(keywords)),
 		)
@@ -245,11 +254,13 @@ func JSONLDNode(data StructuredData) g.Node {
 		"@type":    data.Type,
 	}
 
-	for k, v := range data.Data {
-		schema[k] = v
-	}
+	maps.Copy(schema, data.Data)
 
-	jsonData, _ := json.MarshalIndent(schema, "", "  ")
+	jsonData, err := json.MarshalIndent(schema, "", "  ")
+	if err != nil {
+		// Fallback to empty object on marshal error
+		jsonData = []byte("{}")
+	}
 
 	return html.Script(
 		html.Type("application/ld+json"),
@@ -361,15 +372,18 @@ func GenerateSitemap(urls []SitemapURL) string {
 	sitemap := `<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">`
 
+	var sitemapSb368 strings.Builder
 	for _, url := range urls {
-		sitemap += fmt.Sprintf(`
+		sitemapSb368.WriteString(fmt.Sprintf(`
   <url>
     <loc>%s</loc>
     <lastmod>%s</lastmod>
     <changefreq>%s</changefreq>
     <priority>%.1f</priority>
-  </url>`, url.Loc, url.LastMod, url.ChangeFreq, url.Priority)
+  </url>`, url.Loc, url.LastMod, url.ChangeFreq, url.Priority))
 	}
+
+	sitemap += sitemapSb368.String()
 
 	sitemap += `
 </urlset>`
@@ -384,4 +398,3 @@ type SitemapURL struct {
 	ChangeFreq string
 	Priority   float64
 }
-

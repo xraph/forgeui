@@ -1,6 +1,7 @@
 package router
 
 import (
+	"errors"
 	"net/http"
 	"sort"
 	"sync"
@@ -21,7 +22,7 @@ type Router struct {
 	layoutConfigs map[string]*LayoutConfig
 	errorPages    map[int]PageHandler
 	defaultLayout string
-	app           interface{} // Reference to EnhancedApp (interface to avoid circular dependency)
+	app           any // Reference to EnhancedApp (interface to avoid circular dependency)
 }
 
 // RouterOption is a functional option for configuring the Router
@@ -71,7 +72,9 @@ func WithErrorHandler(handler ErrorHandler) RouterOption {
 func (r *Router) Use(middleware ...Middleware) *Router {
 	r.mu.Lock()
 	defer r.mu.Unlock()
+
 	r.middleware = append(r.middleware, middleware...)
+
 	return r
 }
 
@@ -138,6 +141,7 @@ func (r *Router) Match(methods []string, pattern string, handler PageHandler) []
 		route := r.Handle(method, pattern, handler)
 		routes = append(routes, route)
 	}
+
 	return routes
 }
 
@@ -145,6 +149,7 @@ func (r *Router) Match(methods []string, pattern string, handler PageHandler) []
 func (r *Router) Name(name string, route *Route) {
 	r.mu.Lock()
 	defer r.mu.Unlock()
+
 	route.Name = name
 	r.namedRoutes[name] = route
 }
@@ -171,9 +176,10 @@ func (r *Router) findRoute(method, path string) (*Route, Params) {
 }
 
 // SetApp sets the app reference for PageContext
-func (r *Router) SetApp(app interface{}) {
+func (r *Router) SetApp(app any) {
 	r.mu.Lock()
 	defer r.mu.Unlock()
+
 	r.app = app
 }
 
@@ -187,12 +193,14 @@ func (r *Router) ServeHTTP(w http.ResponseWriter, req *http.Request) {
 		ResponseWriter: w,
 		Request:        req,
 		Params:         params,
-		values:         make(map[string]interface{}),
+		values:         make(map[string]any),
 		app:            r.app,
 	}
 
-	var node g.Node
-	var err error
+	var (
+		node g.Node
+		err  error
+	)
 
 	if route == nil {
 		// No route found - call 404 handler
@@ -206,17 +214,22 @@ func (r *Router) ServeHTTP(w http.ResponseWriter, req *http.Request) {
 			data, loaderErr := route.executeLoader(req.Context(), params)
 			if loaderErr != nil {
 				// Handle loader error
-				if le, ok := loaderErr.(*LoaderError); ok {
+				var le *LoaderError
+				if errors.As(loaderErr, &le) {
 					errorHandler := r.getErrorPage(le.Status)
-					node, err = errorHandler(ctx)
+
+					node, _ = errorHandler(ctx)
 					if node != nil {
 						if ctx.ResponseWriter.Header().Get("Content-Type") == "" {
 							ctx.ResponseWriter.Header().Set("Content-Type", "text/html; charset=utf-8")
 						}
+
 						_ = node.Render(ctx.ResponseWriter)
 					}
+
 					return
 				}
+
 				err = loaderErr
 			} else {
 				ctx.LoadedData = data
@@ -264,6 +277,7 @@ func (r *Router) ServeHTTP(w http.ResponseWriter, req *http.Request) {
 		if ctx.ResponseWriter.Header().Get("Content-Type") == "" {
 			ctx.ResponseWriter.Header().Set("Content-Type", "text/html; charset=utf-8")
 		}
+
 		_ = node.Render(ctx.ResponseWriter)
 	}
 }
@@ -275,6 +289,7 @@ func (r *Router) applyLayoutChain(ctx *PageContext, content g.Node, layoutName s
 
 	// Build layout chain from child to root
 	var chain []LayoutFunc
+
 	currentLayout := layoutName
 	visited := make(map[string]bool)
 
@@ -283,6 +298,7 @@ func (r *Router) applyLayoutChain(ctx *PageContext, content g.Node, layoutName s
 		if visited[currentLayout] {
 			break
 		}
+
 		visited[currentLayout] = true
 
 		// Get layout function

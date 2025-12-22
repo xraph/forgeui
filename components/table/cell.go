@@ -149,4 +149,3 @@ func TableHeaderCell(opts ...CellOption) func(...g.Node) g.Node {
 		)
 	}
 }
-

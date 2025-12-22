@@ -113,4 +113,3 @@ func GroupItem(id, labelText string, opts ...Option) g.Node {
 		),
 	)
 }
-

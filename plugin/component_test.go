@@ -4,9 +4,9 @@ import (
 	"context"
 	"testing"
 
+	"github.com/xraph/forgeui"
 	g "maragu.dev/gomponents"
 	"maragu.dev/gomponents/html"
-	"github.com/xraph/forgeui"
 )
 
 // Mock component constructor
@@ -165,9 +165,11 @@ func TestCollectComponents(t *testing.T) {
 	if _, ok := components["Component1"]; !ok {
 		t.Error("Component1 not found")
 	}
+
 	if _, ok := components["Component2"]; !ok {
 		t.Error("Component2 not found")
 	}
+
 	if _, ok := components["Component3"]; !ok {
 		t.Error("Component3 not found")
 	}
@@ -196,4 +198,3 @@ func TestComponentPluginLifecycle(t *testing.T) {
 		t.Fatalf("Shutdown() error = %v", err)
 	}
 }
-

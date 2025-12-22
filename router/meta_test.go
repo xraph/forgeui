@@ -18,9 +18,11 @@ func TestRouteMeta(t *testing.T) {
 		if meta == nil {
 			t.Error("Expected metadata to be set")
 		}
+
 		if meta.Title != "Test Page" {
 			t.Errorf("Expected title 'Test Page', got '%s'", meta.Title)
 		}
+
 		return g.Text("content"), nil
 	}).Meta(RouteMeta{
 		Title:       "Test Page",
@@ -46,6 +48,7 @@ func TestRouteMetaTitle(t *testing.T) {
 		if meta.Title != "My Title" {
 			t.Errorf("Expected title 'My Title', got '%s'", meta.Title)
 		}
+
 		return g.Text("content"), nil
 	}).Title("My Title")
 
@@ -64,6 +67,7 @@ func TestRouteMetaDescription(t *testing.T) {
 		if meta.Description != "My Description" {
 			t.Errorf("Expected description 'My Description', got '%s'", meta.Description)
 		}
+
 		return g.Text("content"), nil
 	}).Description("My Description")
 
@@ -82,6 +86,7 @@ func TestRouteMetaKeywords(t *testing.T) {
 		if len(meta.Keywords) != 2 {
 			t.Errorf("Expected 2 keywords, got %d", len(meta.Keywords))
 		}
+
 		return g.Text("content"), nil
 	}).Keywords("go", "web")
 
@@ -100,6 +105,7 @@ func TestRouteMetaNoIndex(t *testing.T) {
 		if !meta.NoIndex {
 			t.Error("Expected NoIndex to be true")
 		}
+
 		return g.Text("content"), nil
 	}).NoIndex()
 
@@ -128,21 +134,26 @@ func TestMetaTagsGeneration(t *testing.T) {
 	for _, tag := range tags {
 		_ = tag.Render(&buf)
 	}
+
 	output := buf.String()
 
 	// Check for various meta tags
 	if !strings.Contains(output, "A test page description") {
 		t.Error("Expected description meta tag")
 	}
+
 	if !strings.Contains(output, "go, web, framework") {
 		t.Error("Expected keywords meta tag")
 	}
+
 	if !strings.Contains(output, "og:title") {
 		t.Error("Expected Open Graph title")
 	}
+
 	if !strings.Contains(output, "og:image") {
 		t.Error("Expected Open Graph image")
 	}
+
 	if !strings.Contains(output, "twitter:card") {
 		t.Error("Expected Twitter card")
 	}
@@ -160,6 +171,7 @@ func TestMetaTagsWithNoIndex(t *testing.T) {
 	for _, tag := range tags {
 		_ = tag.Render(&buf)
 	}
+
 	output := buf.String()
 
 	if !strings.Contains(output, "noindex") {
@@ -179,11 +191,13 @@ func TestMetaTagsWithCanonicalURL(t *testing.T) {
 	for _, tag := range tags {
 		_ = tag.Render(&buf)
 	}
+
 	output := buf.String()
 
 	if !strings.Contains(output, "canonical") {
 		t.Error("Expected canonical link tag")
 	}
+
 	if !strings.Contains(output, "https://example.com/page") {
 		t.Error("Expected canonical URL in output")
 	}
@@ -191,6 +205,7 @@ func TestMetaTagsWithCanonicalURL(t *testing.T) {
 
 func TestMetaTagsNil(t *testing.T) {
 	var meta *RouteMeta
+
 	tags := meta.MetaTags()
 
 	if tags != nil {
@@ -207,6 +222,7 @@ func TestMetaInLayout(t *testing.T) {
 		if ctx.Meta != nil && ctx.Meta.Title != "" {
 			title = ctx.Meta.Title
 		}
+
 		return g.El("div", g.Text(title+": "), content)
 	})
 
@@ -224,4 +240,3 @@ func TestMetaInLayout(t *testing.T) {
 		t.Errorf("Expected layout to use meta title, got '%s'", w.Body.String())
 	}
 }
-

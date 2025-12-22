@@ -80,6 +80,6 @@ func InlineScript(content string) g.Node {
 func InlineScriptWithAttrs(content string, attrs ...g.Node) g.Node {
 	allAttrs := append([]g.Node{}, attrs...)
 	allAttrs = append(allAttrs, g.Raw(content))
+
 	return html.Script(allAttrs...)
 }
-

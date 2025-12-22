@@ -76,10 +76,12 @@ func WithAssets(publicDir string, opts ...string) AppOption {
 func WithBridge(opts ...bridge.ConfigOption) AppOption {
 	return func(c *AppConfig) {
 		c.EnableBridge = true
+
 		bridgeConfig := bridge.DefaultConfig()
 		for _, opt := range opts {
 			opt(bridgeConfig)
 		}
+
 		c.BridgeConfig = bridgeConfig
 	}
 }
@@ -140,6 +142,7 @@ func NewApp(opts ...AppOption) *EnhancedApp {
 
 	// Initialize bridge if enabled
 	var b *bridge.Bridge
+
 	if config.EnableBridge {
 		if config.BridgeConfig != nil {
 			b = bridge.New(func(c *bridge.Config) {

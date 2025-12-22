@@ -65,6 +65,7 @@ func Tooltip(props TooltipProps, trigger g.Node, content string) g.Node {
 	if props.Position == "" {
 		props.Position = forgeui.PositionTop
 	}
+
 	if props.Delay == 0 {
 		props.Delay = 200
 	}
@@ -150,4 +151,3 @@ func getTooltipTransition(position forgeui.Position) *animation.Transition {
 		return animation.FadeIn()
 	}
 }
-

@@ -20,6 +20,7 @@ func (e *LoaderError) Error() string {
 	if e.Err != nil {
 		return fmt.Sprintf("%s: %v", e.Message, e.Err)
 	}
+
 	return e.Message
 }
 
@@ -61,6 +62,7 @@ func DefaultErrorPage(status int) PageHandler {
 		ctx.ResponseWriter.WriteHeader(status)
 
 		var title, message string
+
 		switch status {
 		case http.StatusNotFound:
 			title = "404 - Page Not Found"
@@ -114,4 +116,3 @@ func Error500(message string, err error) error {
 		Err:     err,
 	}
 }
-

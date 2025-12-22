@@ -2,9 +2,7 @@ package forgeui
 
 // Props is the base interface for component properties
 // Components can implement this interface to add validation
-type Props interface {
-	// Marker interface - components define their own props
-}
+type Props any
 
 // Option is a generic functional option type for configuring component properties
 type Option[T any] func(*T)

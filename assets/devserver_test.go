@@ -13,8 +13,8 @@ import (
 
 func TestNewDevServer(t *testing.T) {
 	pipeline := NewPipeline(PipelineConfig{IsDev: true}, nil)
-	ds, err := NewDevServer(pipeline)
 
+	ds, err := NewDevServer(pipeline)
 	if err != nil {
 		t.Fatalf("NewDevServer failed: %v", err)
 	}
@@ -28,6 +28,7 @@ func TestNewDevServer(t *testing.T) {
 
 func TestDevServer_SetVerbose(t *testing.T) {
 	pipeline := NewPipeline(PipelineConfig{IsDev: true}, nil)
+
 	ds, err := NewDevServer(pipeline)
 	if err != nil {
 		t.Fatal(err)
@@ -47,6 +48,7 @@ func TestDevServer_SetVerbose(t *testing.T) {
 
 func TestDevServer_ClientCount(t *testing.T) {
 	pipeline := NewPipeline(PipelineConfig{IsDev: true}, nil)
+
 	ds, err := NewDevServer(pipeline)
 	if err != nil {
 		t.Fatal(err)
@@ -70,6 +72,7 @@ func TestDevServer_ClientCount(t *testing.T) {
 
 func TestDevServer_NotifyClients(t *testing.T) {
 	pipeline := NewPipeline(PipelineConfig{IsDev: true}, nil)
+
 	ds, err := NewDevServer(pipeline)
 	if err != nil {
 		t.Fatal(err)
@@ -109,6 +112,7 @@ func TestDevServer_NotifyClients(t *testing.T) {
 
 func TestDevServer_SSEHandler(t *testing.T) {
 	pipeline := NewPipeline(PipelineConfig{IsDev: true}, nil)
+
 	ds, err := NewDevServer(pipeline)
 	if err != nil {
 		t.Fatal(err)
@@ -138,6 +142,7 @@ func TestDevServer_SSEHandler(t *testing.T) {
 
 	// Read initial connection message
 	buf := make([]byte, 256)
+
 	n, err := resp.Body.Read(buf)
 	if err != nil {
 		t.Fatalf("Failed to read initial message: %v", err)
@@ -159,6 +164,7 @@ func TestDevServer_SSEHandler(t *testing.T) {
 
 func TestDevServer_HotReloadScript(t *testing.T) {
 	pipeline := NewPipeline(PipelineConfig{IsDev: true}, nil)
+
 	ds, err := NewDevServer(pipeline)
 	if err != nil {
 		t.Fatal(err)
@@ -187,6 +193,7 @@ func TestDevServer_HotReloadScript(t *testing.T) {
 
 func TestDevServer_Close(t *testing.T) {
 	pipeline := NewPipeline(PipelineConfig{IsDev: true}, nil)
+
 	ds, err := NewDevServer(pipeline)
 	if err != nil {
 		t.Fatal(err)
@@ -231,6 +238,7 @@ func TestDevServer_OnFileChange(t *testing.T) {
 
 	// Add mock client
 	client := make(chan string, 1)
+
 	ds.mu.Lock()
 	ds.sseClients = append(ds.sseClients, client)
 	ds.mu.Unlock()
@@ -277,18 +285,18 @@ func TestDevServer_ConcurrentBuilds(t *testing.T) {
 	// Try to trigger multiple concurrent builds
 	done := make(chan bool, 3)
 
-	for i := 0; i < 3; i++ {
+	for range 3 {
 		go func() {
 			_ = ds.onFileChange(ctx, fsnotify.Event{Name: "test.go"})
+
 			done <- true
 		}()
 	}
 
 	// Wait for all goroutines
-	for i := 0; i < 3; i++ {
+	for range 3 {
 		<-done
 	}
 
 	// Should not panic or deadlock
 }
-

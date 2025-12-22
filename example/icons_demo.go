@@ -592,4 +592,3 @@ func Heart(opts ...icons.Option) g.Node {
 func Circle(opts ...icons.Option) g.Node {
 	return icons.Icon("M12 22c5.523 0 10-4.477 10-10S17.523 2 12 2 2 6.477 2 12s4.477 10 10 10Z", opts...)
 }
-

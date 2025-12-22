@@ -45,6 +45,7 @@ func TestParseVersion(t *testing.T) {
 				t.Errorf("ParseVersion() error = %v, wantErr %v", err, tt.wantErr)
 				return
 			}
+
 			if !tt.wantErr {
 				if got.Major != tt.want.Major || got.Minor != tt.want.Minor || got.Patch != tt.want.Patch {
 					t.Errorf("ParseVersion() = %v, want %v", got, tt.want)
@@ -117,6 +118,7 @@ func TestVersionCompare(t *testing.T) {
 
 func TestVersionString(t *testing.T) {
 	v := &Version{Major: 1, Minor: 2, Patch: 3}
+
 	want := "1.2.3"
 	if got := v.String(); got != want {
 		t.Errorf("String() = %v, want %v", got, want)
@@ -184,10 +186,12 @@ func TestParseConstraint(t *testing.T) {
 				t.Errorf("ParseConstraint() error = %v, wantErr %v", err, tt.wantErr)
 				return
 			}
+
 			if !tt.wantErr {
 				if got.Operator != tt.want.Operator {
 					t.Errorf("ParseConstraint() operator = %v, want %v", got.Operator, tt.want.Operator)
 				}
+
 				if got.Version.Compare(tt.want.Version) != 0 {
 					t.Errorf("ParseConstraint() version = %v, want %v", got.Version, tt.want.Version)
 				}
@@ -258,4 +262,3 @@ func TestConstraintCheck(t *testing.T) {
 		})
 	}
 }
-

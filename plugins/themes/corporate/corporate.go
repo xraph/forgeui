@@ -58,26 +58,26 @@ func (c *Corporate) Theme() *theme.Theme {
 	return &theme.Theme{
 		Colors: theme.ColorTokens{
 			// Conservative blue and gray palette (OKLCH format)
-			Background:            "1 0 0",              // Pure white
-			Foreground:            "0.1 0 0",            // Near black
-			Card:                  "0.98 0 0",           // Light gray
-			CardForeground:        "0.1 0 0",            // Near black
-			Popover:               "1 0 0",              // Pure white
-			PopoverForeground:     "0.1 0 0",            // Near black
-			Primary:               "0.4 0.2 264",        // Professional blue
-			PrimaryForeground:     "1 0 0",              // Pure white
-			Secondary:             "0.5 0 0",            // Neutral gray
-			SecondaryForeground:   "1 0 0",              // Pure white
-			Muted:                 "0.96 0 0",           // Light gray
-			MutedForeground:       "0.5 0 0",            // Neutral gray
-			Accent:                "0.92 0 0",           // Light gray
-			AccentForeground:      "0.1 0 0",            // Near black
-			Destructive:           "0.577 0.245 27.325", // Red
-			DestructiveForeground: "1 0 0",              // Pure white
+			Background:            "1 0 0",               // Pure white
+			Foreground:            "0.1 0 0",             // Near black
+			Card:                  "0.98 0 0",            // Light gray
+			CardForeground:        "0.1 0 0",             // Near black
+			Popover:               "1 0 0",               // Pure white
+			PopoverForeground:     "0.1 0 0",             // Near black
+			Primary:               "0.4 0.2 264",         // Professional blue
+			PrimaryForeground:     "1 0 0",               // Pure white
+			Secondary:             "0.5 0 0",             // Neutral gray
+			SecondaryForeground:   "1 0 0",               // Pure white
+			Muted:                 "0.96 0 0",            // Light gray
+			MutedForeground:       "0.5 0 0",             // Neutral gray
+			Accent:                "0.92 0 0",            // Light gray
+			AccentForeground:      "0.1 0 0",             // Near black
+			Destructive:           "0.577 0.245 27.325",  // Red
+			DestructiveForeground: "1 0 0",               // Pure white
 			Success:               "0.508 0.118 165.612", // Green
-			Border:                "0.85 0 0",           // Border gray
-			Input:                 "0.92 0 0",           // Input border
-			Ring:                  "0.4 0.2 264",        // Professional blue
+			Border:                "0.85 0 0",            // Border gray
+			Input:                 "0.92 0 0",            // Input border
+			Ring:                  "0.4 0.2 264",         // Professional blue
 		},
 		Radius: theme.RadiusTokens{
 			SM:   "0.125rem", // Conservative corners
@@ -217,4 +217,3 @@ func (c *Corporate) Magics() []plugin.AlpineMagic {
 func (c *Corporate) AlpineComponents() []plugin.AlpineComponent {
 	return nil
 }
-

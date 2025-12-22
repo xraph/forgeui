@@ -32,6 +32,7 @@ func (r *Route) executeLoader(ctx context.Context, params Params) (any, error) {
 		data any
 		err  error
 	}
+
 	done := make(chan result, 1)
 
 	// Execute loader in goroutine
@@ -52,4 +53,3 @@ func (r *Route) executeLoader(ctx context.Context, params Params) (any, error) {
 		}
 	}
 }
-

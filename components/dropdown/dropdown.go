@@ -69,6 +69,7 @@ func Dropdown(props DropdownProps, trigger g.Node, content ...g.Node) g.Node {
 	if props.Position == "" {
 		props.Position = forgeui.PositionBottom
 	}
+
 	if props.Align == "" {
 		props.Align = forgeui.AlignStart
 	}
@@ -175,4 +176,3 @@ func getDropdownTransition(position forgeui.Position) *animation.Transition {
 		return animation.SlideDown()
 	}
 }
-

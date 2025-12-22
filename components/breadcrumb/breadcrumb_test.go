@@ -5,8 +5,8 @@ import (
 	"strings"
 	"testing"
 
-	g "maragu.dev/gomponents"
 	"github.com/xraph/forgeui/components/breadcrumb"
+	g "maragu.dev/gomponents"
 )
 
 func TestBreadcrumb(t *testing.T) {
@@ -43,6 +43,7 @@ func TestBreadcrumb(t *testing.T) {
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
 			var buf bytes.Buffer
+
 			node := breadcrumb.BreadcrumbWithOptions(tt.opts, tt.children...)
 			if err := node.Render(&buf); err != nil {
 				t.Fatalf("render error: %v", err)
@@ -61,6 +62,7 @@ func TestBreadcrumb(t *testing.T) {
 
 func TestBreadcrumbItem(t *testing.T) {
 	var buf bytes.Buffer
+
 	node := breadcrumb.Item("/docs", g.Text("Documentation"))
 	if err := node.Render(&buf); err != nil {
 		t.Fatalf("render error: %v", err)
@@ -70,6 +72,7 @@ func TestBreadcrumbItem(t *testing.T) {
 	if !strings.Contains(html, `href="/docs"`) {
 		t.Error("BreadcrumbItem missing href")
 	}
+
 	if !strings.Contains(html, "Documentation") {
 		t.Error("BreadcrumbItem missing label")
 	}
@@ -77,6 +80,7 @@ func TestBreadcrumbItem(t *testing.T) {
 
 func TestBreadcrumbPage(t *testing.T) {
 	var buf bytes.Buffer
+
 	node := breadcrumb.Page(g.Text("Current Page"))
 	if err := node.Render(&buf); err != nil {
 		t.Fatalf("render error: %v", err)
@@ -86,6 +90,7 @@ func TestBreadcrumbPage(t *testing.T) {
 	if !strings.Contains(html, `aria-current="page"`) {
 		t.Error("BreadcrumbPage missing aria-current")
 	}
+
 	if !strings.Contains(html, "Current Page") {
 		t.Error("BreadcrumbPage missing label")
 	}
@@ -93,6 +98,7 @@ func TestBreadcrumbPage(t *testing.T) {
 
 func TestBreadcrumbSeparator(t *testing.T) {
 	var buf bytes.Buffer
+
 	node := breadcrumb.Separator()
 	if err := node.Render(&buf); err != nil {
 		t.Fatalf("render error: %v", err)
@@ -102,8 +108,8 @@ func TestBreadcrumbSeparator(t *testing.T) {
 	if !strings.Contains(html, `role="presentation"`) {
 		t.Error("Separator missing role attribute")
 	}
+
 	if !strings.Contains(html, `aria-hidden="true"`) {
 		t.Error("Separator missing aria-hidden")
 	}
 }
-

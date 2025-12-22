@@ -14,6 +14,7 @@ func TestHandler_ServeFile(t *testing.T) {
 
 	// Create test file
 	testFile := filepath.Join(tmpDir, "test.css")
+
 	content := []byte("body { color: red; }")
 	if err := os.WriteFile(testFile, content, 0644); err != nil {
 		t.Fatalf("Failed to create test file: %v", err)
@@ -26,7 +27,7 @@ func TestHandler_ServeFile(t *testing.T) {
 
 	handler := m.Handler()
 
-	req := httptest.NewRequest("GET", "/static/test.css", nil)
+	req := httptest.NewRequest(http.MethodGet, "/static/test.css", nil)
 	w := httptest.NewRecorder()
 
 	handler.ServeHTTP(w, req)
@@ -50,7 +51,7 @@ func TestHandler_404(t *testing.T) {
 
 	handler := m.Handler()
 
-	req := httptest.NewRequest("GET", "/static/nonexistent.css", nil)
+	req := httptest.NewRequest(http.MethodGet, "/static/nonexistent.css", nil)
 	w := httptest.NewRecorder()
 
 	handler.ServeHTTP(w, req)
@@ -75,7 +76,7 @@ func TestHandler_CacheHeaders_Dev(t *testing.T) {
 
 	handler := m.Handler()
 
-	req := httptest.NewRequest("GET", "/static/test.css", nil)
+	req := httptest.NewRequest(http.MethodGet, "/static/test.css", nil)
 	w := httptest.NewRecorder()
 
 	handler.ServeHTTP(w, req)
@@ -102,7 +103,7 @@ func TestHandler_CacheHeaders_Production_Fingerprinted(t *testing.T) {
 	handler := m.Handler()
 
 	// Request with fingerprinted URL
-	req := httptest.NewRequest("GET", "/static/test.abc12345.css", nil)
+	req := httptest.NewRequest(http.MethodGet, "/static/test.abc12345.css", nil)
 	w := httptest.NewRecorder()
 
 	handler.ServeHTTP(w, req)
@@ -111,6 +112,7 @@ func TestHandler_CacheHeaders_Production_Fingerprinted(t *testing.T) {
 	if !strings.Contains(cacheControl, "immutable") {
 		t.Errorf("Expected immutable cache for fingerprinted assets, got: %s", cacheControl)
 	}
+
 	if !strings.Contains(cacheControl, "max-age=31536000") {
 		t.Errorf("Expected 1-year cache for fingerprinted assets, got: %s", cacheControl)
 	}
@@ -127,7 +129,7 @@ func TestHandler_PathTraversal(t *testing.T) {
 	handler := m.Handler()
 
 	// Attempt path traversal
-	req := httptest.NewRequest("GET", "/static/../../../etc/passwd", nil)
+	req := httptest.NewRequest(http.MethodGet, "/static/../../../etc/passwd", nil)
 	w := httptest.NewRecorder()
 
 	handler.ServeHTTP(w, req)
@@ -153,7 +155,7 @@ func TestHandler_DirectoryRequest(t *testing.T) {
 
 	handler := m.Handler()
 
-	req := httptest.NewRequest("GET", "/static/css", nil)
+	req := httptest.NewRequest(http.MethodGet, "/static/css", nil)
 	w := httptest.NewRecorder()
 
 	handler.ServeHTTP(w, req)
@@ -162,4 +164,3 @@ func TestHandler_DirectoryRequest(t *testing.T) {
 		t.Errorf("Expected status 404 for directory request, got %d", w.Code)
 	}
 }
-

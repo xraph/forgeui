@@ -268,7 +268,7 @@ func TestTailwindProcessor_Process_CDNFallback(t *testing.T) {
 
 	// This should fall back to CDN since Tailwind CLI might not be available
 	err := proc.Process(ctx, cfg)
-	
+
 	// Should either succeed with CDN fallback or fail gracefully
 	if err != nil && !strings.Contains(err.Error(), "tailwind") {
 		t.Errorf("Unexpected error: %v", err)
@@ -304,8 +304,8 @@ func TestTailwindProcessor_Process_CreatesOutputDir(t *testing.T) {
 	}
 
 	ctx := context.Background()
-	err := proc.Process(ctx, cfg)
 
+	err := proc.Process(ctx, cfg)
 	if err != nil {
 		t.Fatalf("Process failed: %v", err)
 	}
@@ -341,4 +341,3 @@ func TestTailwindProcessor_FluentAPI(t *testing.T) {
 		t.Error("Fluent API failed to set Verbose")
 	}
 }
-

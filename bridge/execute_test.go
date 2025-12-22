@@ -2,6 +2,7 @@ package bridge
 
 import (
 	"encoding/json"
+	"net/http"
 	"net/http/httptest"
 	"testing"
 	"time"
@@ -16,7 +17,7 @@ func TestBridge_Execute(t *testing.T) {
 	})
 
 	// Create context
-	req := httptest.NewRequest("POST", "/", nil)
+	req := httptest.NewRequest(http.MethodPost, "/", nil)
 	ctx := NewContext(req)
 
 	// Execute function
@@ -51,7 +52,7 @@ func TestBridge_Execute_Timeout(t *testing.T) {
 		return testOutput{Result: "done"}, nil
 	})
 
-	req := httptest.NewRequest("POST", "/", nil)
+	req := httptest.NewRequest(http.MethodPost, "/", nil)
 	ctx := NewContext(req)
 
 	// Pass empty JSON object to avoid required field validation
@@ -80,7 +81,7 @@ func TestBridge_Execute_Panic(t *testing.T) {
 		panic("intentional panic")
 	})
 
-	req := httptest.NewRequest("POST", "/", nil)
+	req := httptest.NewRequest(http.MethodPost, "/", nil)
 	ctx := NewContext(req)
 
 	// Pass empty JSON object to avoid required field validation
@@ -122,7 +123,7 @@ func TestBridge_CallBatch(t *testing.T) {
 		}{Product: input.A * input.B}, nil
 	})
 
-	req := httptest.NewRequest("POST", "/", nil)
+	req := httptest.NewRequest(http.MethodPost, "/", nil)
 	ctx := NewContext(req)
 
 	requests := []Request{
@@ -160,7 +161,7 @@ func TestBridge_CallBatch(t *testing.T) {
 func TestBridge_CallBatch_ExceedsMaxSize(t *testing.T) {
 	b := New(WithMaxBatchSize(2))
 
-	req := httptest.NewRequest("POST", "/", nil)
+	req := httptest.NewRequest(http.MethodPost, "/", nil)
 	ctx := NewContext(req)
 
 	requests := []Request{
@@ -179,4 +180,3 @@ func TestBridge_CallBatch_ExceedsMaxSize(t *testing.T) {
 		t.Error("expected error for exceeding batch size")
 	}
 }
-

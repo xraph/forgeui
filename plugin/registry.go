@@ -1,7 +1,9 @@
 package plugin
 
 import (
+	"errors"
 	"fmt"
+	"maps"
 	"sync"
 )
 
@@ -39,7 +41,7 @@ func (r *Registry) Register(p Plugin) error {
 
 	name := p.Name()
 	if name == "" {
-		return fmt.Errorf("plugin name cannot be empty")
+		return errors.New("plugin name cannot be empty")
 	}
 
 	if _, exists := r.plugins[name]; exists {
@@ -75,7 +77,9 @@ func (r *Registry) Register(p Plugin) error {
 func (r *Registry) Get(name string) (Plugin, bool) {
 	r.mu.RLock()
 	defer r.mu.RUnlock()
+
 	p, ok := r.plugins[name]
+
 	return p, ok
 }
 
@@ -88,6 +92,7 @@ func (r *Registry) All() []Plugin {
 	for _, p := range r.plugins {
 		result = append(result, p)
 	}
+
 	return result
 }
 
@@ -96,6 +101,7 @@ func (r *Registry) Use(plugins ...Plugin) *Registry {
 	for _, p := range plugins {
 		_ = r.Register(p)
 	}
+
 	return r
 }
 
@@ -109,6 +115,7 @@ func (r *Registry) Unregister(name string) error {
 	}
 
 	delete(r.plugins, name)
+
 	return nil
 }
 
@@ -116,7 +123,9 @@ func (r *Registry) Unregister(name string) error {
 func (r *Registry) Has(name string) bool {
 	r.mu.RLock()
 	defer r.mu.RUnlock()
+
 	_, ok := r.plugins[name]
+
 	return ok
 }
 
@@ -124,6 +133,7 @@ func (r *Registry) Has(name string) bool {
 func (r *Registry) Count() int {
 	r.mu.RLock()
 	defer r.mu.RUnlock()
+
 	return len(r.plugins)
 }
 
@@ -144,6 +154,7 @@ func (r *Registry) ResolveDependencies() error {
 				if dep.Optional {
 					continue
 				}
+
 				return fmt.Errorf("plugin %s requires %s which is not registered",
 					name, dep.Name)
 			}
@@ -166,8 +177,8 @@ func (r *Registry) sortMiddleware() {
 	}
 
 	// Simple bubble sort (fine for small plugin counts)
-	for i := 0; i < len(r.middleware)-1; i++ {
-		for j := 0; j < len(r.middleware)-i-1; j++ {
+	for i := range len(r.middleware) - 1 {
+		for j := range len(r.middleware) - i - 1 {
 			if r.middleware[j].Priority() > r.middleware[j+1].Priority() {
 				r.middleware[j], r.middleware[j+1] = r.middleware[j+1], r.middleware[j]
 			}
@@ -179,7 +190,9 @@ func (r *Registry) sortMiddleware() {
 func (r *Registry) GetComponentPlugin(name string) (ComponentPlugin, bool) {
 	r.mu.RLock()
 	defer r.mu.RUnlock()
+
 	p, ok := r.components[name]
+
 	return p, ok
 }
 
@@ -187,7 +200,9 @@ func (r *Registry) GetComponentPlugin(name string) (ComponentPlugin, bool) {
 func (r *Registry) GetAlpinePlugin(name string) (AlpinePlugin, bool) {
 	r.mu.RLock()
 	defer r.mu.RUnlock()
+
 	p, ok := r.alpine[name]
+
 	return p, ok
 }
 
@@ -195,7 +210,9 @@ func (r *Registry) GetAlpinePlugin(name string) (AlpinePlugin, bool) {
 func (r *Registry) GetThemePlugin(name string) (ThemePlugin, bool) {
 	r.mu.RLock()
 	defer r.mu.RUnlock()
+
 	p, ok := r.themes[name]
+
 	return p, ok
 }
 
@@ -212,16 +229,19 @@ func (r *Registry) CollectScripts() []Script {
 
 	// Sort by priority
 	if len(scripts) > 1 {
-		for i := 0; i < len(scripts)-1; i++ {
-			for j := 0; j < len(scripts)-i-1; j++ {
+		for i := range len(scripts) - 1 {
+			for j := range len(scripts) - i - 1 {
 				pi := scripts[j].Priority
 				pj := scripts[j+1].Priority
+
 				if pi == 0 {
 					pi = 50
 				}
+
 				if pj == 0 {
 					pj = 50
 				}
+
 				if pi > pj {
 					scripts[j], scripts[j+1] = scripts[j+1], scripts[j]
 				}
@@ -241,6 +261,7 @@ func (r *Registry) CollectDirectives() []AlpineDirective {
 	for _, ap := range r.alpine {
 		directives = append(directives, ap.Directives()...)
 	}
+
 	return directives
 }
 
@@ -253,6 +274,7 @@ func (r *Registry) CollectStores() []AlpineStore {
 	for _, ap := range r.alpine {
 		stores = append(stores, ap.Stores()...)
 	}
+
 	return stores
 }
 
@@ -265,6 +287,7 @@ func (r *Registry) CollectMagics() []AlpineMagic {
 	for _, ap := range r.alpine {
 		magics = append(magics, ap.Magics()...)
 	}
+
 	return magics
 }
 
@@ -277,6 +300,7 @@ func (r *Registry) CollectAlpineComponents() []AlpineComponent {
 	for _, ap := range r.alpine {
 		components = append(components, ap.AlpineComponents()...)
 	}
+
 	return components
 }
 
@@ -287,11 +311,11 @@ func (r *Registry) CollectComponents() map[string]ComponentConstructor {
 	defer r.mu.RUnlock()
 
 	result := make(map[string]ComponentConstructor)
+
 	for _, cp := range r.components {
-		for name, constructor := range cp.Components() {
-			result[name] = constructor
-		}
+		maps.Copy(result, cp.Components())
 	}
+
 	return result
 }
 
@@ -304,6 +328,6 @@ func (r *Registry) CollectMiddleware() []MiddlewarePlugin {
 	// Return a copy to prevent external modification
 	result := make([]MiddlewarePlugin, len(r.middleware))
 	copy(result, r.middleware)
+
 	return result
 }
-

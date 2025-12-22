@@ -3,6 +3,7 @@ package bridge
 import (
 	"context"
 	"net/http"
+	"slices"
 )
 
 // Context provides access to request-scoped data
@@ -98,6 +99,7 @@ func (c *bridgeContext) Value(key any) any {
 	if val, ok := c.values[key]; ok {
 		return val
 	}
+
 	return c.ctx.Value(key)
 }
 
@@ -121,6 +123,7 @@ func WithSession(ctx Context, session Session) Context {
 	if bc, ok := ctx.(*bridgeContext); ok {
 		bc.session = session
 	}
+
 	return ctx
 }
 
@@ -129,16 +132,17 @@ func WithUser(ctx Context, user User) Context {
 	if bc, ok := ctx.(*bridgeContext); ok {
 		bc.user = user
 	}
+
 	return ctx
 }
 
 // SimpleUser is a basic implementation of User
 type SimpleUser struct {
-	UserID    string            `json:"id"`
-	UserEmail string            `json:"email"`
-	UserName  string            `json:"name"`
-	UserRoles []string          `json:"roles"`
-	UserData  map[string]any    `json:"data"`
+	UserID    string         `json:"id"`
+	UserEmail string         `json:"email"`
+	UserName  string         `json:"name"`
+	UserRoles []string       `json:"roles"`
+	UserData  map[string]any `json:"data"`
 }
 
 // ID returns the user's unique identifier
@@ -163,12 +167,7 @@ func (u *SimpleUser) Roles() []string {
 
 // HasRole checks if the user has a specific role
 func (u *SimpleUser) HasRole(role string) bool {
-	for _, r := range u.UserRoles {
-		if r == role {
-			return true
-		}
-	}
-	return false
+	return slices.Contains(u.UserRoles, role)
 }
 
 // Data returns additional user data
@@ -215,4 +214,3 @@ func (s *SimpleSession) Delete(key string) {
 func (s *SimpleSession) Clear() {
 	s.data = make(map[string]any)
 }
-

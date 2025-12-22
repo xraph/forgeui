@@ -66,6 +66,7 @@ func DropdownMenuContent(children ...g.Node) g.Node {
 // DropdownMenuContentWithAlign creates menu content with custom alignment
 func DropdownMenuContentWithAlign(align forgeui.Align, children ...g.Node) g.Node {
 	alignClass := ""
+
 	switch align {
 	case forgeui.AlignStart:
 		alignClass = "left-0"
@@ -107,7 +108,7 @@ func DropdownMenuCheckboxItem(id, label string, checked bool) g.Node {
 		g.Attr("x-data", fmt.Sprintf(`{checked: %t}`, checked)),
 		alpine.XOn("click", "checked = !checked"),
 		html.Class("relative flex cursor-pointer select-none items-center rounded-sm px-2 py-1.5 text-sm outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground"),
-		
+
 		// Checkbox indicator
 		html.Span(
 			html.Class("mr-2 flex h-4 w-4 items-center justify-center border border-border rounded-sm"),
@@ -146,7 +147,7 @@ func DropdownMenuRadioItem(value, label string) g.Node {
 		g.Attr("tabindex", "-1"),
 		alpine.XOn("click", fmt.Sprintf("selected = '%s'; open = false", value)),
 		html.Class("relative flex cursor-pointer select-none items-center rounded-sm px-2 py-1.5 text-sm outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground"),
-		
+
 		// Radio indicator
 		html.Span(
 			html.Class("mr-2 flex h-4 w-4 items-center justify-center border border-border rounded-full"),
@@ -189,7 +190,7 @@ func DropdownMenuSub(trigger g.Node, content ...g.Node) g.Node {
 	return html.Div(
 		alpine.XData(map[string]any{"submenuOpen": false}),
 		html.Class("relative"),
-		
+
 		// Submenu trigger
 		html.Div(
 			g.Attr("role", "menuitem"),
@@ -213,7 +214,7 @@ func DropdownMenuSub(trigger g.Node, content ...g.Node) g.Node {
 				),
 			),
 		),
-		
+
 		// Submenu content
 		html.Div(
 			alpine.XShow("submenuOpen"),
@@ -237,4 +238,3 @@ func DropdownMenuItemWithIcon(icon, label g.Node) g.Node {
 		html.Span(label),
 	)
 }
-

@@ -128,12 +128,12 @@ func Modal(props ModalProps, trigger g.Node, content ...g.Node) g.Node {
 			g.Attr("role", "dialog"),
 			g.Attr("aria-labelledby", "modal-title"),
 
-		// Backdrop
-		html.Div(
-			g.Group(alpine.XTransition(animation.FadeIn())),
-			html.Class("fixed inset-0 bg-background/80 backdrop-blur-sm transition-all"),
-			g.If(props.CloseOnOutsideClick, backdropClick),
-		),
+			// Backdrop
+			html.Div(
+				g.Group(alpine.XTransition(animation.FadeIn())),
+				html.Class("fixed inset-0 bg-background/80 backdrop-blur-sm transition-all"),
+				g.If(props.CloseOnOutsideClick, backdropClick),
+			),
 
 			// Content container - centers the modal
 			html.Div(
@@ -142,7 +142,7 @@ func Modal(props ModalProps, trigger g.Node, content ...g.Node) g.Node {
 				// Modal panel
 				html.Div(
 					g.Group(alpine.XTransition(animation.ScaleIn())),
-					alpine.XOn("click.stop", ""), // Prevent close on content click
+					alpine.XOn("click.stop", ""),      // Prevent close on content click
 					g.Attr("x-trap.noscroll", "open"), // Focus trap with Alpine Focus plugin
 					html.Class(fmt.Sprintf(
 						"relative bg-background rounded-lg shadow-lg w-full %s %s border border-border",
@@ -226,8 +226,8 @@ func closeButton() g.Node {
 			g.Attr("stroke-width", "2"),
 			g.Attr("stroke-linecap", "round"),
 			g.Attr("stroke-linejoin", "round"),
-		g.El("path", g.Attr("d", "M18 6 6 18")),
-		g.El("path", g.Attr("d", "m6 6 12 12")),
+			g.El("path", g.Attr("d", "M18 6 6 18")),
+			g.El("path", g.Attr("d", "m6 6 12 12")),
 		),
 	)
 }
@@ -249,4 +249,3 @@ func getSizeClass(size forgeui.Size) string {
 		return "max-w-md"
 	}
 }
-

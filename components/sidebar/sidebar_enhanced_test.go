@@ -5,9 +5,9 @@ import (
 	"strings"
 	"testing"
 
+	"github.com/xraph/forgeui"
 	g "maragu.dev/gomponents"
 	"maragu.dev/gomponents/html"
-	"github.com/xraph/forgeui"
 )
 
 // Helper to render a gomponents Node to a string
@@ -16,6 +16,7 @@ func renderNodeEnhanced(node g.Node) string {
 	if err := node.Render(&buf); err != nil {
 		panic(err)
 	}
+
 	return buf.String()
 }
 
@@ -587,4 +588,3 @@ func TestBackwardCompatibility(t *testing.T) {
 		}
 	})
 }
-

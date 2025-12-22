@@ -68,6 +68,7 @@ func TailwindConfigScript() g.Node {
     }
   }
 }`
+
 	return html.Script(
 		g.Raw(config),
 	)

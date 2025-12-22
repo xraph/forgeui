@@ -2,9 +2,9 @@ package main
 
 import (
 	"os"
-	
+
 	"github.com/xraph/forgeui/cli"
-	
+
 	// Import commands to register them
 	_ "github.com/xraph/forgeui/cli/commands"
 )
@@ -14,4 +14,3 @@ func main() {
 		os.Exit(1)
 	}
 }
-

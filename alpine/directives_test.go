@@ -91,11 +91,13 @@ func TestXForKeyed(t *testing.T) {
 	for _, node := range nodes {
 		node.Render(&buf)
 	}
+
 	got := buf.String()
 
 	if !strings.Contains(got, `x-for="item in items"`) {
 		t.Errorf("XForKeyed() missing x-for attribute")
 	}
+
 	if !strings.Contains(got, `:key="item.id"`) {
 		t.Errorf("XForKeyed() missing :key attribute")
 	}
@@ -297,9 +299,11 @@ func TestXInitFetch(t *testing.T) {
 	if !strings.Contains(got, `x-init=`) {
 		t.Errorf("XInitFetch() = %v, want x-init attribute", got)
 	}
+
 	if !strings.Contains(got, `/api/users`) {
 		t.Errorf("XInitFetch() missing URL")
 	}
+
 	if !strings.Contains(got, `users`) {
 		t.Errorf("XInitFetch() missing target variable")
 	}

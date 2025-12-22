@@ -68,6 +68,7 @@ func NewHookManager() *HookManager {
 func (m *HookManager) On(hook string, fn HookFunc) {
 	m.mu.Lock()
 	defer m.mu.Unlock()
+
 	m.hooks[hook] = append(m.hooks[hook], fn)
 }
 
@@ -75,6 +76,7 @@ func (m *HookManager) On(hook string, fn HookFunc) {
 func (m *HookManager) Off(hook string) {
 	m.mu.Lock()
 	defer m.mu.Unlock()
+
 	delete(m.hooks, hook)
 }
 
@@ -91,6 +93,7 @@ func (m *HookManager) Trigger(hook string, ctx *HookContext) error {
 			return err
 		}
 	}
+
 	return nil
 }
 
@@ -98,6 +101,7 @@ func (m *HookManager) Trigger(hook string, ctx *HookContext) error {
 func (m *HookManager) Has(hook string) bool {
 	m.mu.RLock()
 	defer m.mu.RUnlock()
+
 	return len(m.hooks[hook]) > 0
 }
 
@@ -105,6 +109,6 @@ func (m *HookManager) Has(hook string) bool {
 func (m *HookManager) Count(hook string) int {
 	m.mu.RLock()
 	defer m.mu.RUnlock()
+
 	return len(m.hooks[hook])
 }
-

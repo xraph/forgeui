@@ -5,8 +5,8 @@ import (
 	"strings"
 	"testing"
 
-	g "maragu.dev/gomponents"
 	"github.com/xraph/forgeui/components/accordion"
+	g "maragu.dev/gomponents"
 )
 
 func TestAccordion(t *testing.T) {
@@ -54,6 +54,7 @@ func TestAccordion(t *testing.T) {
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
 			var buf bytes.Buffer
+
 			node := accordion.AccordionWithOptions(tt.opts, tt.children...)
 			if err := node.Render(&buf); err != nil {
 				t.Fatalf("render error: %v", err)
@@ -72,6 +73,7 @@ func TestAccordion(t *testing.T) {
 
 func TestAccordionItem(t *testing.T) {
 	var buf bytes.Buffer
+
 	node := accordion.Item("test-item", "Test Title", g.Text("Test Content"))
 	if err := node.Render(&buf); err != nil {
 		t.Fatalf("render error: %v", err)
@@ -81,14 +83,16 @@ func TestAccordionItem(t *testing.T) {
 	if !strings.Contains(html, "Test Title") {
 		t.Error("AccordionItem missing title")
 	}
+
 	if !strings.Contains(html, "Test Content") {
 		t.Error("AccordionItem missing content")
 	}
+
 	if !strings.Contains(html, "x-collapse") {
 		t.Error("AccordionItem missing collapse directive")
 	}
+
 	if !strings.Contains(html, "test-item") {
 		t.Error("AccordionItem missing id reference")
 	}
 }
-

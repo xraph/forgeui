@@ -13,12 +13,14 @@ import (
 func renderNode(node g.Node) string {
 	var buf bytes.Buffer
 	node.Render(&buf)
+
 	return buf.String()
 }
 
 // Helper function to check if string contains substring
 func assertContains(t *testing.T, str, substr string) {
 	t.Helper()
+
 	if !strings.Contains(str, substr) {
 		t.Errorf("Expected string to contain %q", substr)
 	}
@@ -405,4 +407,3 @@ func TestSidebarIntegration(t *testing.T) {
 		assertContains(t, rendered, "Toggle sidebar")
 	})
 }
-

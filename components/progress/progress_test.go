@@ -16,9 +16,11 @@ func TestProgress(t *testing.T) {
 	if !strings.Contains(html, `role="progressbar"`) {
 		t.Error("expected role attribute")
 	}
+
 	if !strings.Contains(html, `aria-valuenow="50"`) {
 		t.Error("expected aria-valuenow attribute")
 	}
+
 	if !strings.Contains(html, "width: 50%") {
 		t.Error("expected 50% width style")
 	}

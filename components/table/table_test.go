@@ -47,6 +47,7 @@ func TestTable(t *testing.T) {
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
 			var buf bytes.Buffer
+
 			node := Table(tt.opts...)(tt.children...)
 			if err := node.Render(&buf); err != nil {
 				t.Fatalf("render error: %v", err)
@@ -104,6 +105,7 @@ func TestTableHeader(t *testing.T) {
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
 			var buf bytes.Buffer
+
 			node := TableHeader(tt.opts...)(tt.children...)
 			if err := node.Render(&buf); err != nil {
 				t.Fatalf("render error: %v", err)
@@ -122,6 +124,7 @@ func TestTableHeader(t *testing.T) {
 
 func TestTableBody(t *testing.T) {
 	var buf bytes.Buffer
+
 	node := TableBody()(
 		TableRow()(
 			TableCell()(g.Text("Data")),
@@ -136,6 +139,7 @@ func TestTableBody(t *testing.T) {
 	if !strings.Contains(html, "<tbody") {
 		t.Error("output should contain <tbody")
 	}
+
 	if !strings.Contains(html, "tr:last-child") {
 		t.Error("output should contain last-child border style")
 	}
@@ -184,6 +188,7 @@ func TestTableRow(t *testing.T) {
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
 			var buf bytes.Buffer
+
 			node := TableRow(tt.opts...)(tt.children...)
 			if err := node.Render(&buf); err != nil {
 				t.Fatalf("render error: %v", err)
@@ -254,6 +259,7 @@ func TestTableCell(t *testing.T) {
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
 			var buf bytes.Buffer
+
 			node := TableCell(tt.opts...)(tt.children...)
 			if err := node.Render(&buf); err != nil {
 				t.Fatalf("render error: %v", err)
@@ -306,6 +312,7 @@ func TestTableHeaderCell(t *testing.T) {
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
 			var buf bytes.Buffer
+
 			node := TableHeaderCell(tt.opts...)(tt.children...)
 			if err := node.Render(&buf); err != nil {
 				t.Fatalf("render error: %v", err)

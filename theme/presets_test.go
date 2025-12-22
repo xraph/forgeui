@@ -12,12 +12,15 @@ func TestDefaultLight(t *testing.T) {
 	if th.Colors.Background != "1 0 0" {
 		t.Errorf("DefaultLight background should be white in OKLCH, got %s", th.Colors.Background)
 	}
+
 	if th.Colors.Primary == "" {
 		t.Error("DefaultLight should have a primary color")
 	}
+
 	if th.Radius.LG == "" {
 		t.Error("DefaultLight should have radius tokens")
 	}
+
 	if th.Colors.Success == "" {
 		t.Error("DefaultLight should have Success color")
 	}
@@ -29,9 +32,11 @@ func TestDefaultDark(t *testing.T) {
 	if th.Colors.Background != "0.145 0 0" {
 		t.Errorf("DefaultDark background should be dark in OKLCH, got %s", th.Colors.Background)
 	}
+
 	if th.Colors.Primary == "" {
 		t.Error("DefaultDark should have a primary color")
 	}
+
 	if th.Colors.Success == "" {
 		t.Error("DefaultDark should have Success color")
 	}
@@ -59,9 +64,11 @@ func TestColorPresets(t *testing.T) {
 			if p.theme.Colors.Primary == "" {
 				t.Errorf("%s should have a primary color", p.name)
 			}
+
 			if p.theme.Colors.Background == "" {
 				t.Errorf("%s should have a background color", p.name)
 			}
+
 			if p.theme.Colors.Foreground == "" {
 				t.Errorf("%s should have a foreground color", p.name)
 			}
@@ -75,9 +82,11 @@ func TestChartColors(t *testing.T) {
 	if th.Colors.Chart1 == "" {
 		t.Error("DefaultLight should have Chart1 color")
 	}
+
 	if th.Colors.Chart2 == "" {
 		t.Error("DefaultLight should have Chart2 color")
 	}
+
 	if th.Colors.Chart5 == "" {
 		t.Error("DefaultLight should have Chart5 color")
 	}
@@ -85,6 +94,7 @@ func TestChartColors(t *testing.T) {
 	if th.Colors.Chart6 == "" {
 		t.Error("DefaultLight should have Chart6 color")
 	}
+
 	if th.Colors.Chart12 == "" {
 		t.Error("DefaultLight should have Chart12 color")
 	}
@@ -113,4 +123,3 @@ func TestSidebarColors(t *testing.T) {
 		}
 	}
 }
-

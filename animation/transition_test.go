@@ -10,6 +10,7 @@ func TestNewTransition(t *testing.T) {
 	if builder == nil {
 		t.Fatal("NewTransition() returned nil")
 	}
+
 	if builder.transition == nil {
 		t.Fatal("NewTransition() created builder with nil transition")
 	}
@@ -28,18 +29,23 @@ func TestTransitionBuilder(t *testing.T) {
 	if transition.Enter != "enter-class" {
 		t.Errorf("Enter = %v, want enter-class", transition.Enter)
 	}
+
 	if transition.EnterStart != "enter-start-class" {
 		t.Errorf("EnterStart = %v, want enter-start-class", transition.EnterStart)
 	}
+
 	if transition.EnterEnd != "enter-end-class" {
 		t.Errorf("EnterEnd = %v, want enter-end-class", transition.EnterEnd)
 	}
+
 	if transition.Leave != "leave-class" {
 		t.Errorf("Leave = %v, want leave-class", transition.Leave)
 	}
+
 	if transition.LeaveStart != "leave-start-class" {
 		t.Errorf("LeaveStart = %v, want leave-start-class", transition.LeaveStart)
 	}
+
 	if transition.LeaveEnd != "leave-end-class" {
 		t.Errorf("LeaveEnd = %v, want leave-end-class", transition.LeaveEnd)
 	}
@@ -50,12 +56,15 @@ func TestFadeIn(t *testing.T) {
 	if transition == nil {
 		t.Fatal("FadeIn() returned nil")
 	}
+
 	if !strings.Contains(transition.Enter, "transition-opacity") {
 		t.Errorf("FadeIn() Enter missing transition-opacity")
 	}
+
 	if !strings.Contains(transition.EnterStart, "opacity-0") {
 		t.Errorf("FadeIn() EnterStart missing opacity-0")
 	}
+
 	if !strings.Contains(transition.EnterEnd, "opacity-100") {
 		t.Errorf("FadeIn() EnterEnd missing opacity-100")
 	}
@@ -66,9 +75,11 @@ func TestFadeOut(t *testing.T) {
 	if transition == nil {
 		t.Fatal("FadeOut() returned nil")
 	}
+
 	if !strings.Contains(transition.EnterStart, "opacity-100") {
 		t.Errorf("FadeOut() should start with opacity-100")
 	}
+
 	if !strings.Contains(transition.EnterEnd, "opacity-0") {
 		t.Errorf("FadeOut() should end with opacity-0")
 	}
@@ -79,15 +90,19 @@ func TestScaleIn(t *testing.T) {
 	if transition == nil {
 		t.Fatal("ScaleIn() returned nil")
 	}
+
 	if !strings.Contains(transition.EnterStart, "scale-95") {
 		t.Errorf("ScaleIn() EnterStart missing scale-95")
 	}
+
 	if !strings.Contains(transition.EnterStart, "opacity-0") {
 		t.Errorf("ScaleIn() EnterStart missing opacity-0")
 	}
+
 	if !strings.Contains(transition.EnterEnd, "scale-100") {
 		t.Errorf("ScaleIn() EnterEnd missing scale-100")
 	}
+
 	if !strings.Contains(transition.EnterEnd, "opacity-100") {
 		t.Errorf("ScaleIn() EnterEnd missing opacity-100")
 	}
@@ -98,9 +113,11 @@ func TestScaleOut(t *testing.T) {
 	if transition == nil {
 		t.Fatal("ScaleOut() returned nil")
 	}
+
 	if !strings.Contains(transition.EnterStart, "scale-100") {
 		t.Errorf("ScaleOut() should start with scale-100")
 	}
+
 	if !strings.Contains(transition.EnterEnd, "scale-95") {
 		t.Errorf("ScaleOut() should end with scale-95")
 	}
@@ -139,10 +156,12 @@ func TestSlideTransitions(t *testing.T) {
 			if tt.transition == nil {
 				t.Fatalf("%s() returned nil", tt.name)
 			}
+
 			if !strings.Contains(tt.transition.EnterStart, tt.wantStart) {
 				t.Errorf("%s() EnterStart = %v, want to contain %v",
 					tt.name, tt.transition.EnterStart, tt.wantStart)
 			}
+
 			if !strings.Contains(tt.transition.EnterEnd, "translate-y-0") &&
 				!strings.Contains(tt.transition.EnterEnd, "translate-x-0") {
 				t.Errorf("%s() EnterEnd should contain translate to 0", tt.name)
@@ -189,10 +208,12 @@ func TestLargeSlideTransitions(t *testing.T) {
 			if tt.transition == nil {
 				t.Fatalf("%s() returned nil", tt.name)
 			}
+
 			if !strings.Contains(tt.transition.EnterStart, tt.wantStart) {
 				t.Errorf("%s() EnterStart = %v, want to contain %v",
 					tt.name, tt.transition.EnterStart, tt.wantStart)
 			}
+
 			if !strings.Contains(tt.transition.EnterEnd, tt.wantEnd) {
 				t.Errorf("%s() EnterEnd = %v, want to contain %v",
 					tt.name, tt.transition.EnterEnd, tt.wantEnd)
@@ -206,9 +227,11 @@ func TestCollapse(t *testing.T) {
 	if transition == nil {
 		t.Fatal("Collapse() returned nil")
 	}
+
 	if !strings.Contains(transition.EnterStart, "scale-y-0") {
 		t.Errorf("Collapse() should start with scale-y-0")
 	}
+
 	if !strings.Contains(transition.EnterEnd, "scale-y-100") {
 		t.Errorf("Collapse() should end with scale-y-100")
 	}
@@ -231,9 +254,11 @@ func TestRotateIn(t *testing.T) {
 	if transition == nil {
 		t.Fatal("RotateIn() returned nil")
 	}
+
 	if !strings.Contains(transition.EnterStart, "rotate-180") {
 		t.Errorf("RotateIn() should start with rotate-180")
 	}
+
 	if !strings.Contains(transition.EnterEnd, "rotate-0") {
 		t.Errorf("RotateIn() should end with rotate-0")
 	}
@@ -242,6 +267,7 @@ func TestRotateIn(t *testing.T) {
 func TestTransitionChaining(t *testing.T) {
 	// Test that builder methods return the builder for chaining
 	builder := NewTransition()
+
 	result := builder.Enter("test")
 	if result != builder {
 		t.Error("Enter() should return the builder for chaining")
@@ -290,10 +316,10 @@ func TestTransitionDurations(t *testing.T) {
 			if !strings.Contains(tt.transition.Enter, "duration-") {
 				t.Errorf("%s() Enter missing duration", tt.name)
 			}
+
 			if !strings.Contains(tt.transition.Leave, "duration-") {
 				t.Errorf("%s() Leave missing duration", tt.name)
 			}
 		})
 	}
 }
-

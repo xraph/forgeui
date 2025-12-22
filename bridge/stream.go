@@ -47,6 +47,7 @@ func (h *SSEHandler) ServeHTTP(w http.ResponseWriter, r *http.Request) {
 
 	// Get params from query
 	paramsJSON := r.URL.Query().Get("params")
+
 	var params json.RawMessage
 	if paramsJSON != "" {
 		params = json.RawMessage(paramsJSON)
@@ -118,8 +119,14 @@ func (h *SSEHandler) sendError(w http.ResponseWriter, flusher http.Flusher, mess
 		Done:  true,
 	}
 
-	data, _ := json.Marshal(chunk)
-	fmt.Fprintf(w, "data: %s\n\n", data)
+	data, err := json.Marshal(chunk)
+	if err != nil {
+		// Fallback to simple error message if marshal fails
+		fmt.Fprintf(w, "data: {\"error\":{\"code\":-32603,\"message\":\"%s\"},\"done\":true}\n\n", message)
+	} else {
+		fmt.Fprintf(w, "data: %s\n\n", data)
+	}
+
 	flusher.Flush()
 }
 
@@ -158,4 +165,3 @@ func WriteSSE(w http.ResponseWriter, event StreamEvent) error {
 
 	return nil
 }
-

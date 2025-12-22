@@ -77,11 +77,9 @@ func GenerateManifest(m *Manager) (Manifest, error) {
 
 		return nil
 	})
-
 	if err != nil {
 		return nil, err
 	}
 
 	return manifest, nil
 }
-

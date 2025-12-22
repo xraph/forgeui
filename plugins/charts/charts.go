@@ -38,6 +38,7 @@ import (
 // Charts plugin implements Component and Alpine plugins.
 type Charts struct {
 	*plugin.ComponentPluginBase
+
 	version string
 }
 
@@ -106,7 +107,12 @@ func (c *Charts) AlpineComponents() []plugin.AlpineComponent {
 
 // chartData converts data to JSON string.
 func chartData(data any) string {
-	jsonData, _ := json.Marshal(data)
+	jsonData, err := json.Marshal(data)
+	if err != nil {
+		// Fallback to empty object on marshal error
+		return "{}"
+	}
+
 	return string(jsonData)
 }
 
@@ -156,4 +162,3 @@ func baseChartNode(chartType string, data any, options ChartOptions) g.Node {
 		),
 	})
 }
-

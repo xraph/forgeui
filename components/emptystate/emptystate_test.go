@@ -91,6 +91,7 @@ func TestEmptyState(t *testing.T) {
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
 			var buf bytes.Buffer
+
 			node := EmptyState(tt.opts...)
 			if err := node.Render(&buf); err != nil {
 				t.Fatalf("render error: %v", err)
@@ -109,6 +110,7 @@ func TestEmptyState(t *testing.T) {
 
 func TestEmptyStateWithoutOptions(t *testing.T) {
 	var buf bytes.Buffer
+
 	node := EmptyState()
 	if err := node.Render(&buf); err != nil {
 		t.Fatalf("render error: %v", err)
@@ -124,6 +126,7 @@ func TestEmptyStateWithoutOptions(t *testing.T) {
 
 func TestEmptyStateStructure(t *testing.T) {
 	var buf bytes.Buffer
+
 	node := EmptyState(
 		WithIcon(html.Div(g.Text("Icon"))),
 		WithTitle("Title"),
@@ -147,8 +150,7 @@ func TestEmptyStateStructure(t *testing.T) {
 	}
 
 	// Verify order: icon -> title -> description -> action
-	if !(iconIndex < titleIndex && titleIndex < descIndex && descIndex < actionIndex) {
+	if iconIndex >= titleIndex || titleIndex >= descIndex || descIndex >= actionIndex {
 		t.Error("elements should be in correct order")
 	}
 }
-

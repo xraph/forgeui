@@ -60,6 +60,7 @@ func (g *Group) Middleware(middleware ...Middleware) *Group {
 func (g *Group) Get(pattern string, handler PageHandler) *Route {
 	route := g.router.Get(g.prefix+pattern, handler)
 	g.applyGroupConfig(route)
+
 	return route
 }
 
@@ -67,6 +68,7 @@ func (g *Group) Get(pattern string, handler PageHandler) *Route {
 func (g *Group) Post(pattern string, handler PageHandler) *Route {
 	route := g.router.Post(g.prefix+pattern, handler)
 	g.applyGroupConfig(route)
+
 	return route
 }
 
@@ -74,6 +76,7 @@ func (g *Group) Post(pattern string, handler PageHandler) *Route {
 func (g *Group) Put(pattern string, handler PageHandler) *Route {
 	route := g.router.Put(g.prefix+pattern, handler)
 	g.applyGroupConfig(route)
+
 	return route
 }
 
@@ -81,6 +84,7 @@ func (g *Group) Put(pattern string, handler PageHandler) *Route {
 func (g *Group) Patch(pattern string, handler PageHandler) *Route {
 	route := g.router.Patch(g.prefix+pattern, handler)
 	g.applyGroupConfig(route)
+
 	return route
 }
 
@@ -88,6 +92,7 @@ func (g *Group) Patch(pattern string, handler PageHandler) *Route {
 func (g *Group) Delete(pattern string, handler PageHandler) *Route {
 	route := g.router.Delete(g.prefix+pattern, handler)
 	g.applyGroupConfig(route)
+
 	return route
 }
 
@@ -95,6 +100,7 @@ func (g *Group) Delete(pattern string, handler PageHandler) *Route {
 func (g *Group) Options(pattern string, handler PageHandler) *Route {
 	route := g.router.Options(g.prefix+pattern, handler)
 	g.applyGroupConfig(route)
+
 	return route
 }
 
@@ -102,6 +108,7 @@ func (g *Group) Options(pattern string, handler PageHandler) *Route {
 func (g *Group) Head(pattern string, handler PageHandler) *Route {
 	route := g.router.Head(g.prefix+pattern, handler)
 	g.applyGroupConfig(route)
+
 	return route
 }
 

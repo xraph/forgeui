@@ -3,7 +3,7 @@ package templates
 import (
 	"fmt"
 	"path/filepath"
-	
+
 	"github.com/xraph/forgeui/cli/util"
 )
 
@@ -20,61 +20,7 @@ func (t *MinimalTemplate) Description() string {
 
 func (t *MinimalTemplate) Generate(dir, projectName, modulePath string) error {
 	// Create main.go
-	mainGo := fmt.Sprintf(`package main
-
-import (
-	"fmt"
-	"net/http"
-
-	"github.com/xraph/forgeui"
-	g "maragu.dev/gomponents"
-	"maragu.dev/gomponents/html"
-)
-
-func main() {
-	// Initialize ForgeUI app
-	app := forgeui.New(
-		forgeui.WithDebug(true),
-	)
-
-	// Define home page
-	app.Router.Get("/", homePage)
-
-	// Serve static assets
-	http.Handle("/static/", app.Assets.Handler())
-
-	// Start server
-	fmt.Println("Server starting on http://localhost:3000")
-	if err := http.ListenAndServe(":3000", app); err != nil {
-		panic(err)
-	}
-}
-
-func homePage(ctx *forgeui.PageContext) g.Node {
-	return html.HTML(
-		html.Lang("en"),
-		html.Head(
-			html.Meta(html.Charset("utf-8")),
-			html.Meta(html.Name("viewport"), html.Content("width=device-width, initial-scale=1")),
-			html.TitleEl(g.Text("Welcome to %s")),
-			html.StyleEl(g.Raw(pageStyles)),
-		),
-		html.Body(
-			html.Div(
-				html.Class("container"),
-				html.H1(g.Text("Welcome to ForgeUI")),
-				html.P(g.Text("Your minimal ForgeUI application is up and running!")),
-				html.P(
-					g.Text("Edit "),
-					html.Code(g.Text("main.go")),
-					g.Text(" to get started."),
-				),
-			),
-		),
-	)
-}
-
-const pageStyles = ` + "`" + `
+	mainGo := fmt.Sprintf("package main\n\nimport (\n\t\"fmt\"\n\t\"net/http\"\n\n\t\"github.com/xraph/forgeui\"\n\tg \"maragu.dev/gomponents\"\n\t\"maragu.dev/gomponents/html\"\n)\n\nfunc main() {\n\t// Initialize ForgeUI app\n\t:= forgeui.New(\n\t\tforgeui.WithDebug(true),\n\t)\n\n\t// Define home page\n\tapp.Router.Get(\"/\", homePage)\n\n\t// Serve static assets\n\thttp.Handle(\"/static/\", app.Assets.Handler())\n\n\t// Start server\n\tfmt.Println(\"Server starting on http://localhost:3000\")\n\tif err := http.ListenAndServe(\":3000\", app); err != nil {\n\t\tpanic(err)\n\t}\n\nfunc homePage(ctx *forgeui.PageContext) g.Node {\n\treturn html.HTML(\n\t\thtml.Lang(\"en\"),\n\t\thtml.Head(\n\t\t\thtml.Meta(html.Charset(\"utf-8\")),\n\t\t\thtml.Meta(html.Name(\"viewport\"), html.Content(\"width=device-width, initial-scale=1\")),\n\t\t\thtml.TitleEl(g.Text(\"Welcome to %s\")),\n\t\t\thtml.StyleEl(g.Raw(pageStyles)),\n\t\t),\n\t\thtml.Body(\n\t\t\thtml.Div(\n\t\t\t\thtml.Class(\"container\"),\n\t\t\t\thtml.H1(g.Text(\"Welcome to ForgeUI\")),\n\t\t\t\thtml.P(g.Text(\"Your minimal ForgeUI application is up and running!\")),\n\t\t\t\thtml.P(\n\t\t\t\t\tg.Text(\"Edit \"),\n\t\t\t\t\thtml.Code(g.Text(\"main.go\")),\n\t\t\t\t\tg.Text(\" to get started.\"),\n\t\t\t\t),\n\t)\n}\n\nconst pageStyles"+"`"+`
 body {
 	margin: 0;
 	padding: 0;
@@ -114,13 +60,13 @@ code {
 	font-family: 'Courier New', monospace;
 	color: #667eea;
 }
-` + "`" + `
+`+"`"+`
 `, projectName)
-	
+
 	if err := util.CreateFile(filepath.Join(dir, "main.go"), mainGo); err != nil {
 		return err
 	}
-	
+
 	// Create .forgeui.json
 	config := fmt.Sprintf(`{
   "name": "%s",
@@ -149,11 +95,11 @@ code {
   }
 }
 `, projectName)
-	
+
 	if err := util.CreateFile(filepath.Join(dir, ".forgeui.json"), config); err != nil {
 		return err
 	}
-	
+
 	// Create .gitignore
 	gitignore := `# Binaries
 *.exe
@@ -179,11 +125,11 @@ go.sum
 .DS_Store
 Thumbs.db
 `
-	
+
 	if err := util.CreateFile(filepath.Join(dir, ".gitignore"), gitignore); err != nil {
 		return err
 	}
-	
+
 	// Create README.md
 	readme := fmt.Sprintf(`# %s
 
@@ -193,15 +139,15 @@ A minimal ForgeUI application.
 
 Start the development server:
 
-` + "```" + `bash
+`+"```"+`bash
 forgeui dev
-` + "```" + `
+`+"```"+`
 
 Or run directly with Go:
 
-` + "```" + `bash
+`+"```"+`bash
 go run main.go
-` + "```" + `
+`+"```"+`
 
 Open [http://localhost:3000](http://localhost:3000) in your browser.
 
@@ -210,11 +156,10 @@ Open [http://localhost:3000](http://localhost:3000) in your browser.
 - [ForgeUI Documentation](https://github.com/xraph/forgeui)
 - [Go Documentation](https://go.dev/doc/)
 `, projectName)
-	
+
 	if err := util.CreateFile(filepath.Join(dir, "README.md"), readme); err != nil {
 		return err
 	}
-	
+
 	return nil
 }
-

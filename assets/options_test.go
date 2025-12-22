@@ -52,6 +52,7 @@ func TestStyleOptions(t *testing.T) {
 			for _, opt := range tt.opts {
 				opt(cfg)
 			}
+
 			tt.test(t, cfg)
 		})
 	}
@@ -125,8 +126,8 @@ func TestScriptOptions(t *testing.T) {
 			for _, opt := range tt.opts {
 				opt(cfg)
 			}
+
 			tt.test(t, cfg)
 		})
 	}
 }
-

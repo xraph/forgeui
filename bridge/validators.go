@@ -1,25 +1,27 @@
 package bridge
 
 import (
+	"errors"
 	"fmt"
 	"regexp"
+	"slices"
 	"strings"
 )
 
 // ValidateEmail validates an email address
 func ValidateEmail(email string) error {
 	if email == "" {
-		return fmt.Errorf("email is required")
+		return errors.New("email is required")
 	}
 
 	if len(email) < 3 || len(email) > 254 {
-		return fmt.Errorf("email length must be between 3 and 254 characters")
+		return errors.New("email length must be between 3 and 254 characters")
 	}
 
 	// Basic email pattern
 	emailRegex := regexp.MustCompile(`^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$`)
 	if !emailRegex.MatchString(email) {
-		return fmt.Errorf("invalid email format")
+		return errors.New("invalid email format")
 	}
 
 	return nil
@@ -83,7 +85,7 @@ func ValidateLength(value string, min, max int) error {
 // ValidateRequired validates that a value is not empty
 func ValidateRequired(value string) error {
 	if strings.TrimSpace(value) == "" {
-		return fmt.Errorf("field is required")
+		return errors.New("field is required")
 	}
 
 	return nil
@@ -92,13 +94,13 @@ func ValidateRequired(value string) error {
 // ValidateURL validates a URL
 func ValidateURL(url string) error {
 	if url == "" {
-		return fmt.Errorf("URL is required")
+		return errors.New("URL is required")
 	}
 
 	// Basic URL pattern
 	urlRegex := regexp.MustCompile(`^https?://[a-zA-Z0-9.-]+(?:\.[a-zA-Z]{2,})+(?:/.*)?$`)
 	if !urlRegex.MatchString(url) {
-		return fmt.Errorf("invalid URL format")
+		return errors.New("invalid URL format")
 	}
 
 	return nil
@@ -108,7 +110,7 @@ func ValidateURL(url string) error {
 func ValidateAlphanumeric(value string) error {
 	alphanumericRegex := regexp.MustCompile(`^[a-zA-Z0-9]+$`)
 	if !alphanumericRegex.MatchString(value) {
-		return fmt.Errorf("value must contain only alphanumeric characters")
+		return errors.New("value must contain only alphanumeric characters")
 	}
 
 	return nil
@@ -117,12 +119,12 @@ func ValidateAlphanumeric(value string) error {
 // ValidateSlug validates a URL-friendly slug
 func ValidateSlug(slug string) error {
 	if slug == "" {
-		return fmt.Errorf("slug is required")
+		return errors.New("slug is required")
 	}
 
 	slugRegex := regexp.MustCompile(`^[a-z0-9]+(?:-[a-z0-9]+)*$`)
 	if !slugRegex.MatchString(slug) {
-		return fmt.Errorf("invalid slug format (use lowercase letters, numbers, and hyphens)")
+		return errors.New("invalid slug format (use lowercase letters, numbers, and hyphens)")
 	}
 
 	return nil
@@ -130,12 +132,9 @@ func ValidateSlug(slug string) error {
 
 // ValidateOneOf validates that a value is one of the allowed values
 func ValidateOneOf(value string, allowed []string) error {
-	for _, a := range allowed {
-		if value == a {
-			return nil
-		}
+	if slices.Contains(allowed, value) {
+		return nil
 	}
 
 	return fmt.Errorf("value must be one of: %s", strings.Join(allowed, ", "))
 }
-

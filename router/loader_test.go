@@ -104,8 +104,10 @@ func TestLoaderTimeout(t *testing.T) {
 
 	// Test the route with a short timeout context
 	req := httptest.NewRequest(MethodGet, "/test", nil)
+
 	ctx, cancel := context.WithTimeout(context.Background(), 100*time.Millisecond)
 	defer cancel()
+
 	req = req.WithContext(ctx)
 
 	w := httptest.NewRecorder()
@@ -179,6 +181,7 @@ func TestNoLoader(t *testing.T) {
 		if data != nil {
 			t.Error("Expected LoaderData to be nil when no loader is set")
 		}
+
 		return g.Text("content"), nil
 	})
 
@@ -191,4 +194,3 @@ func TestNoLoader(t *testing.T) {
 		t.Errorf("Expected status 200, got %d", w.Code)
 	}
 }
-

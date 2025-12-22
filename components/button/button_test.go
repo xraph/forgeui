@@ -23,9 +23,11 @@ func TestButton(t *testing.T) {
 		if !strings.Contains(html, "<button") {
 			t.Error("expected <button tag")
 		}
+
 		if !strings.Contains(html, "Click me") {
 			t.Error("expected button text")
 		}
+
 		if !strings.Contains(html, "inline-flex") {
 			t.Error("expected base classes")
 		}
@@ -89,9 +91,11 @@ func TestButton(t *testing.T) {
 		if !strings.Contains(html, "disabled") {
 			t.Error("expected disabled attribute when loading")
 		}
+
 		if !strings.Contains(html, "aria-busy") {
 			t.Error("expected aria-busy attribute")
 		}
+
 		if !strings.Contains(html, "animate-spin") {
 			t.Error("expected spinner animation")
 		}
@@ -186,9 +190,11 @@ func TestButtonGroup(t *testing.T) {
 	if !strings.Contains(html, "flex") {
 		t.Error("expected flex class")
 	}
+
 	if !strings.Contains(html, "gap-4") {
 		t.Error("expected gap class")
 	}
+
 	if !strings.Contains(html, "Save") || !strings.Contains(html, "Cancel") {
 		t.Error("expected button content")
 	}

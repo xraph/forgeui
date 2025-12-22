@@ -21,9 +21,11 @@ func TestIcon(t *testing.T) {
 		if !strings.Contains(html, "<svg") {
 			t.Error("expected svg element")
 		}
+
 		if !strings.Contains(html, "M5 12h14") {
 			t.Error("expected path data")
 		}
+
 		if !strings.Contains(html, `viewBox="0 0 24 24"`) {
 			t.Error("expected viewBox attribute")
 		}
@@ -39,6 +41,7 @@ func TestIcon(t *testing.T) {
 		if !strings.Contains(html, `width="32"`) {
 			t.Error("expected width=32")
 		}
+
 		if !strings.Contains(html, `height="32"`) {
 			t.Error("expected height=32")
 		}
@@ -125,6 +128,7 @@ func TestMultiPathIcon(t *testing.T) {
 		if !strings.Contains(html, "M18 6 6 18") {
 			t.Error("expected first path")
 		}
+
 		if !strings.Contains(html, "m6 6 12 12") {
 			t.Error("expected second path")
 		}
@@ -169,6 +173,7 @@ func TestLucideIcons(t *testing.T) {
 			if !strings.Contains(html, "<svg") {
 				t.Error("expected svg element")
 			}
+
 			if !strings.Contains(html, "<path") && !strings.Contains(html, "d=\"") {
 				t.Error("expected svg path element with d attribute")
 			}
@@ -176,6 +181,7 @@ func TestLucideIcons(t *testing.T) {
 			if !strings.Contains(html, "xmlns") {
 				t.Error("expected xmlns attribute")
 			}
+
 			if !strings.Contains(html, "viewBox") {
 				t.Error("expected viewBox attribute")
 			}
@@ -198,12 +204,13 @@ func TestLucideIconsWithOptions(t *testing.T) {
 		if !strings.Contains(html, `width="32"`) {
 			t.Error("expected width=32")
 		}
+
 		if !strings.Contains(html, `stroke="green"`) {
 			t.Error("expected stroke=green")
 		}
+
 		if !strings.Contains(html, "success-icon") {
 			t.Error("expected success-icon class")
 		}
 	})
 }
-

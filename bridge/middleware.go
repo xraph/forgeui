@@ -2,9 +2,9 @@ package bridge
 
 import (
 	"encoding/json"
-	"fmt"
 	"log"
 	"net/http"
+	"strconv"
 	"time"
 )
 
@@ -17,6 +17,7 @@ func Chain(middlewares ...Middleware) Middleware {
 		for i := len(middlewares) - 1; i >= 0; i-- {
 			next = middlewares[i](next)
 		}
+
 		return next
 	}
 }
@@ -76,6 +77,7 @@ func CORSMiddleware(allowedOrigins []string) Middleware {
 			if origin != "" {
 				// Check if origin is allowed
 				allowed := false
+
 				for _, allowedOrigin := range allowedOrigins {
 					if allowedOrigin == "*" || allowedOrigin == origin {
 						allowed = true
@@ -122,6 +124,7 @@ func RequestIDMiddleware() Middleware {
 // responseWriter wraps http.ResponseWriter to capture status code
 type responseWriter struct {
 	http.ResponseWriter
+
 	statusCode int
 }
 
@@ -133,6 +136,5 @@ func (rw *responseWriter) WriteHeader(code int) {
 
 // generateRequestID generates a unique request ID
 func generateRequestID() string {
-	return fmt.Sprintf("%d", time.Now().UnixNano())
+	return strconv.FormatInt(time.Now().UnixNano(), 10)
 }
-

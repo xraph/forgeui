@@ -119,7 +119,11 @@ func DataTable(opts ...DataTableOption) g.Node {
 	}
 
 	// Serialize data to JSON for Alpine
-	dataJSON, _ := json.Marshal(props.Data)
+	dataJSON, err := json.Marshal(props.Data)
+	if err != nil {
+		// Fallback to empty array on marshal error
+		dataJSON = []byte("[]")
+	}
 
 	// Build Alpine data with methods
 	alpineMethods := map[string]any{
@@ -317,6 +321,7 @@ func renderDataTableHeaders(columns []Column) []g.Node {
 		if col.Width != "" {
 			cellOpts = append(cellOpts, WithWidth(col.Width))
 		}
+
 		if col.Align != "" {
 			cellOpts = append(cellOpts, WithAlign(col.Align))
 		}
@@ -335,7 +340,7 @@ func renderDataTableHeaders(columns []Column) []g.Node {
 					html.Span(
 						html.Class("ml-1"),
 						alpine.XShow(fmt.Sprintf("sortColumn === '%s'", col.Key)),
-						alpine.XText(fmt.Sprintf("sortDirection === 'asc' ? '↑' : '↓'")),
+						alpine.XText("sortDirection === 'asc' ? '↑' : '↓'"),
 					),
 				),
 			}
@@ -359,12 +364,13 @@ func renderDataTableCells(columns []Column) []g.Node {
 		if col.Width != "" {
 			cellOpts = append(cellOpts, WithWidth(col.Width))
 		}
+
 		if col.Align != "" {
 			cellOpts = append(cellOpts, WithAlign(col.Align))
 		}
 
 		cells[i] = TableCell(cellOpts...)(
-			alpine.XText(fmt.Sprintf("row.%s", col.Key)),
+			alpine.XText("row." + col.Key),
 		)
 	}
 
@@ -378,6 +384,7 @@ func hasFilterableColumns(columns []Column) bool {
 			return true
 		}
 	}
+
 	return false
 }
 
@@ -442,5 +449,6 @@ func renderFilterOptions(options []FilterOption) []g.Node {
 			g.Text(opt.Label),
 		)
 	}
+
 	return result
 }

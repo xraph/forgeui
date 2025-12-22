@@ -22,12 +22,15 @@ func TestInputGroup(t *testing.T) {
 		if !strings.Contains(output, "group/input-group") {
 			t.Error("expected input group to have group/input-group class")
 		}
+
 		if !strings.Contains(output, "relative flex w-full") {
 			t.Error("expected input group to have flex container classes")
 		}
+
 		if !strings.Contains(output, "data-slot=\"input-group\"") {
 			t.Error("expected input group to have data-slot attribute")
 		}
+
 		if !strings.Contains(output, "role=\"group\"") {
 			t.Error("expected input group to have role attribute")
 		}
@@ -123,6 +126,7 @@ func TestInputGroup(t *testing.T) {
 		if !strings.Contains(output, "&gt;input]:!border-0") {
 			t.Error("expected input group to have child input border styling")
 		}
+
 		if !strings.Contains(output, "&gt;input]:!shadow-none") {
 			t.Error("expected input group to have child input shadow styling")
 		}
@@ -143,6 +147,7 @@ func TestInputGroup(t *testing.T) {
 		if !strings.Contains(output, "&gt;textarea]:!border-0") {
 			t.Error("expected input group to have child textarea border styling")
 		}
+
 		if !strings.Contains(output, "&gt;textarea]:resize-none") {
 			t.Error("expected input group to have child textarea resize styling")
 		}
@@ -163,9 +168,11 @@ func TestInputGroupAddon(t *testing.T) {
 		if !strings.Contains(output, "https://") {
 			t.Error("expected addon to contain text")
 		}
+
 		if !strings.Contains(output, "data-align=\"inline-start\"") {
 			t.Error("expected addon to have default inline-start alignment")
 		}
+
 		if !strings.Contains(output, "order-first") {
 			t.Error("expected inline-start addon to have order-first class")
 		}
@@ -184,6 +191,7 @@ func TestInputGroupAddon(t *testing.T) {
 		if !strings.Contains(output, "data-align=\"inline-end\"") {
 			t.Error("expected addon to have inline-end alignment")
 		}
+
 		if !strings.Contains(output, "order-last") {
 			t.Error("expected inline-end addon to have order-last class")
 		}
@@ -202,6 +210,7 @@ func TestInputGroupAddon(t *testing.T) {
 		if !strings.Contains(output, "data-align=\"block-start\"") {
 			t.Error("expected addon to have block-start alignment")
 		}
+
 		if !strings.Contains(output, "w-full") {
 			t.Error("expected block-start addon to be full width")
 		}
@@ -220,6 +229,7 @@ func TestInputGroupAddon(t *testing.T) {
 		if !strings.Contains(output, "data-align=\"block-end\"") {
 			t.Error("expected addon to have block-end alignment")
 		}
+
 		if !strings.Contains(output, "order-last") {
 			t.Error("expected block-end addon to have order-last class")
 		}
@@ -267,6 +277,7 @@ func TestInputGroupButton(t *testing.T) {
 		if !strings.Contains(output, "Submit") {
 			t.Error("expected button to contain text")
 		}
+
 		if !strings.Contains(output, "h-6") {
 			t.Error("expected button to have xs size (h-6)")
 		}
@@ -344,6 +355,7 @@ func TestInputGroupText(t *testing.T) {
 		if !strings.Contains(output, "https://") {
 			t.Error("expected text element to contain text")
 		}
+
 		if !strings.Contains(output, "text-muted-foreground") {
 			t.Error("expected text to have muted foreground color")
 		}
@@ -386,6 +398,7 @@ func TestInputGroupInput(t *testing.T) {
 		if !strings.Contains(output, "placeholder:text-muted-foreground") {
 			t.Error("expected input to have placeholder styling")
 		}
+
 		if !strings.Contains(output, "text-sm") {
 			t.Error("expected input to have text-sm")
 		}
@@ -476,6 +489,7 @@ func TestInputGroupTextarea(t *testing.T) {
 		if !strings.Contains(output, "placeholder:text-muted-foreground") {
 			t.Error("expected textarea to have placeholder styling")
 		}
+
 		if !strings.Contains(output, "text-sm") {
 			t.Error("expected textarea to have text-sm")
 		}
@@ -522,6 +536,7 @@ func TestInputLeftAddon(t *testing.T) {
 		if !strings.Contains(output, "https://") {
 			t.Error("expected addon to contain text")
 		}
+
 		if !strings.Contains(output, "data-align=\"inline-start\"") {
 			t.Error("expected left addon to have inline-start alignment")
 		}
@@ -557,6 +572,7 @@ func TestInputRightAddon(t *testing.T) {
 		if !strings.Contains(output, "USD") {
 			t.Error("expected addon to contain text")
 		}
+
 		if !strings.Contains(output, "data-align=\"inline-end\"") {
 			t.Error("expected right addon to have inline-end alignment")
 		}
@@ -592,9 +608,11 @@ func TestInputLeftElement(t *testing.T) {
 		if !strings.Contains(output, "absolute left-0") {
 			t.Error("expected element to be positioned absolutely on left")
 		}
+
 		if !strings.Contains(output, "pointer-events-none") {
 			t.Error("expected element to have pointer-events-none")
 		}
+
 		if !strings.Contains(output, "Icon") {
 			t.Error("expected element to contain content")
 		}
@@ -645,6 +663,7 @@ func TestInputRightElement(t *testing.T) {
 		if !strings.Contains(output, "absolute right-0") {
 			t.Error("expected element to be positioned absolutely on right")
 		}
+
 		if !strings.Contains(output, "✕") {
 			t.Error("expected element to contain content")
 		}
@@ -686,6 +705,7 @@ func TestInputGroupIntegration(t *testing.T) {
 		if !strings.Contains(output, "https://") {
 			t.Error("expected group to contain left addon")
 		}
+
 		if !strings.Contains(output, "example.com") {
 			t.Error("expected group to contain input")
 		}
@@ -708,6 +728,7 @@ func TestInputGroupIntegration(t *testing.T) {
 		if !strings.Contains(output, "type=\"number\"") {
 			t.Error("expected group to contain number input")
 		}
+
 		if !strings.Contains(output, "USD") {
 			t.Error("expected group to contain right addon")
 		}
@@ -734,6 +755,7 @@ func TestInputGroupIntegration(t *testing.T) {
 		if !strings.Contains(output, "$") {
 			t.Error("expected group to contain left addon")
 		}
+
 		if !strings.Contains(output, ".00") {
 			t.Error("expected group to contain right addon")
 		}
@@ -789,6 +811,7 @@ func TestSearchInput(t *testing.T) {
 		if !strings.Contains(output, "Search...") {
 			t.Error("expected search input to have search placeholder")
 		}
+
 		if !strings.Contains(output, "svg") {
 			t.Error("expected search input to contain SVG icon")
 		}

@@ -16,6 +16,7 @@ func TestIntegration_DevMode(t *testing.T) {
 
 	// Create test file
 	testCSS := filepath.Join(tmpDir, "app.css")
+
 	content := []byte("body { color: red; }")
 	if err := os.WriteFile(testCSS, content, 0644); err != nil {
 		t.Fatalf("Failed to create test file: %v", err)
@@ -35,7 +36,7 @@ func TestIntegration_DevMode(t *testing.T) {
 
 	// Test serving the file
 	handler := m.Handler()
-	req := httptest.NewRequest("GET", url, nil)
+	req := httptest.NewRequest(http.MethodGet, url, nil)
 	w := httptest.NewRecorder()
 	handler.ServeHTTP(w, req)
 
@@ -61,6 +62,7 @@ func TestIntegration_ProductionMode(t *testing.T) {
 
 	// Create test file
 	testCSS := filepath.Join(tmpDir, "app.css")
+
 	content := []byte("body { color: blue; }")
 	if err := os.WriteFile(testCSS, content, 0644); err != nil {
 		t.Fatalf("Failed to create test file: %v", err)
@@ -85,7 +87,7 @@ func TestIntegration_ProductionMode(t *testing.T) {
 
 	// Test serving the fingerprinted file
 	handler := m.Handler()
-	req := httptest.NewRequest("GET", url, nil)
+	req := httptest.NewRequest(http.MethodGet, url, nil)
 	w := httptest.NewRecorder()
 	handler.ServeHTTP(w, req)
 
@@ -103,6 +105,7 @@ func TestIntegration_ProductionMode(t *testing.T) {
 	if !strings.Contains(cacheControl, "immutable") {
 		t.Errorf("Expected immutable cache, got: %s", cacheControl)
 	}
+
 	if !strings.Contains(cacheControl, "max-age=31536000") {
 		t.Errorf("Expected 1-year cache, got: %s", cacheControl)
 	}
@@ -114,8 +117,8 @@ func TestIntegration_ManifestFlow(t *testing.T) {
 
 	// Create test files
 	files := map[string]string{
-		"app.css":  "body { color: red; }",
-		"main.js":  "console.log('test');",
+		"app.css":   "body { color: red; }",
+		"main.js":   "console.log('test');",
 		"style.css": "h1 { font-size: 2rem; }",
 	}
 
@@ -153,6 +156,7 @@ func TestIntegration_ManifestFlow(t *testing.T) {
 	// Verify URLs match manifest
 	for originalFile, fingerprintedFile := range manifest {
 		url := m2.URL(originalFile)
+
 		expectedURL := "/static/" + fingerprintedFile
 		if url != expectedURL {
 			t.Errorf("For %s, expected URL %s, got %s", originalFile, expectedURL, url)
@@ -163,7 +167,7 @@ func TestIntegration_ManifestFlow(t *testing.T) {
 	handler := m2.Handler()
 	for originalFile := range manifest {
 		url := m2.URL(originalFile)
-		req := httptest.NewRequest("GET", url, nil)
+		req := httptest.NewRequest(http.MethodGet, url, nil)
 		w := httptest.NewRecorder()
 		handler.ServeHTTP(w, req)
 
@@ -172,6 +176,7 @@ func TestIntegration_ManifestFlow(t *testing.T) {
 		}
 
 		expectedContent := files[originalFile]
+
 		body, _ := io.ReadAll(w.Body)
 		if string(body) != expectedContent {
 			t.Errorf("Content mismatch for %s", originalFile)
@@ -186,17 +191,19 @@ func TestIntegration_NestedPaths(t *testing.T) {
 	// Create nested directory structure
 	cssDir := filepath.Join(tmpDir, "css")
 	jsDir := filepath.Join(tmpDir, "js")
+
 	if err := os.MkdirAll(cssDir, 0755); err != nil {
 		t.Fatalf("Failed to create css dir: %v", err)
 	}
+
 	if err := os.MkdirAll(jsDir, 0755); err != nil {
 		t.Fatalf("Failed to create js dir: %v", err)
 	}
 
 	// Create files in nested directories
 	files := map[string]string{
-		"css/main.css":  "body { margin: 0; }",
-		"js/bundle.js":  "console.log('app');",
+		"css/main.css": "body { margin: 0; }",
+		"js/bundle.js": "console.log('app');",
 	}
 
 	for name, content := range files {
@@ -214,7 +221,7 @@ func TestIntegration_NestedPaths(t *testing.T) {
 	// Test URL generation for nested paths
 	for file := range files {
 		url := m.URL(file)
-		
+
 		// Should contain directory structure
 		if !strings.Contains(url, filepath.Dir(file)) {
 			t.Errorf("URL %s doesn't preserve directory structure", url)
@@ -222,7 +229,7 @@ func TestIntegration_NestedPaths(t *testing.T) {
 
 		// Test serving
 		handler := m.Handler()
-		req := httptest.NewRequest("GET", url, nil)
+		req := httptest.NewRequest(http.MethodGet, url, nil)
 		w := httptest.NewRecorder()
 		handler.ServeHTTP(w, req)
 
@@ -255,17 +262,17 @@ func TestIntegration_ConcurrentAccess(t *testing.T) {
 	done := make(chan bool)
 	numGoroutines := 20
 
-	for i := 0; i < numGoroutines; i++ {
+	for i := range numGoroutines {
 		go func(id int) {
 			fileNum := (id % 5) + 1
 			file := "file" + string(rune(fileNum+48)) + ".css"
-			
+
 			// Get URL multiple times
-			for j := 0; j < 10; j++ {
+			for range 10 {
 				url := m.URL(file)
-				
+
 				// Make request
-				req := httptest.NewRequest("GET", url, nil)
+				req := httptest.NewRequest(http.MethodGet, url, nil)
 				w := httptest.NewRecorder()
 				handler.ServeHTTP(w, req)
 
@@ -273,14 +280,13 @@ func TestIntegration_ConcurrentAccess(t *testing.T) {
 					t.Errorf("Goroutine %d: Failed to serve %s", id, file)
 				}
 			}
-			
+
 			done <- true
 		}(i)
 	}
 
 	// Wait for all goroutines to complete
-	for i := 0; i < numGoroutines; i++ {
+	for range numGoroutines {
 		<-done
 	}
 }
-

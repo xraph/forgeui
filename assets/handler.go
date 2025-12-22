@@ -30,7 +30,9 @@ func (m *Manager) Handler() http.Handler {
 				http.NotFound(w, r)
 				return
 			}
+
 			http.Error(w, "Internal server error", http.StatusInternalServerError)
+
 			return
 		}
 
@@ -53,4 +55,3 @@ func (m *Manager) Handler() http.Handler {
 		http.ServeFile(w, r, fullPath)
 	})
 }
-

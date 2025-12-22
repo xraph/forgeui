@@ -30,4 +30,3 @@ func TestParams_Has(t *testing.T) {
 		t.Error("Expected Has(missing) to be false")
 	}
 }
-

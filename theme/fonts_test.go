@@ -5,8 +5,8 @@ import (
 	"strings"
 	"testing"
 
-	g "maragu.dev/gomponents"
 	"github.com/xraph/forgeui/theme"
+	g "maragu.dev/gomponents"
 )
 
 func TestDefaultFontConfig(t *testing.T) {
@@ -92,15 +92,16 @@ func TestGenerateGoogleFontsURLMultipleFonts(t *testing.T) {
 
 func TestFontLink(t *testing.T) {
 	var buf bytes.Buffer
+
 	fonts := []theme.Font{
 		{Family: "Inter", Weights: []int{400, 600}},
 	}
 
 	node := theme.FontLink(fonts...)
-	
+
 	// FontLink returns g.Group, so wrap it in html.Div for testing
 	testNode := g.El("div", node)
-	
+
 	if err := testNode.Render(&buf); err != nil {
 		t.Fatalf("render error: %v", err)
 	}
@@ -192,10 +193,11 @@ func TestGenerateFontCSS(t *testing.T) {
 
 func TestFontStyleTag(t *testing.T) {
 	var buf bytes.Buffer
+
 	config := theme.DefaultFontConfig()
-	
+
 	node := theme.FontStyleTag(config)
-	
+
 	if err := node.Render(&buf); err != nil {
 		t.Fatalf("render error: %v", err)
 	}
@@ -217,4 +219,3 @@ func TestFontStyleTag(t *testing.T) {
 		t.Error("Style tag should contain font CSS variables")
 	}
 }
-

@@ -11,7 +11,7 @@
 // # Features
 //
 //   - Drag-and-drop list reordering
-//   - Handle selector configuration  
+//   - Handle selector configuration
 //   - Animation options
 //   - Callback hooks (onStart, onEnd, onUpdate)
 //   - Server sync via HTMX
@@ -26,6 +26,7 @@ import (
 // Sortable plugin implements Alpine plugin.
 type Sortable struct {
 	*plugin.PluginBase
+
 	version string
 }
 
@@ -160,4 +161,3 @@ func (s *Sortable) Magics() []plugin.AlpineMagic {
 func (s *Sortable) AlpineComponents() []plugin.AlpineComponent {
 	return nil
 }
-

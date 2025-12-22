@@ -36,30 +36,36 @@ func NewSpinner(message string) *Spinner {
 // Start starts the spinner animation
 func (s *Spinner) Start() {
 	s.mu.Lock()
+
 	if s.active {
 		s.mu.Unlock()
 		return
 	}
+
 	s.active = true
 	s.mu.Unlock()
-	
+
 	s.wg.Add(1)
+
 	go s.animate()
 }
 
 // Stop stops the spinner animation
 func (s *Spinner) Stop() {
 	s.mu.Lock()
+
 	if !s.active {
 		s.mu.Unlock()
 		return
 	}
+
 	s.active = false
 	s.mu.Unlock()
-	
+
 	s.stop <- true
+
 	s.wg.Wait()
-	
+
 	// Clear the line
 	fmt.Fprintf(s.writer, "\r\033[K")
 }
@@ -86,11 +92,12 @@ func (s *Spinner) UpdateMessage(msg string) {
 // animate runs the spinner animation loop
 func (s *Spinner) animate() {
 	defer s.wg.Done()
-	
+
 	frameIndex := 0
+
 	ticker := time.NewTicker(s.delay)
 	defer ticker.Stop()
-	
+
 	for {
 		select {
 		case <-s.stop:
@@ -100,9 +107,9 @@ func (s *Spinner) animate() {
 			frame := s.frames[frameIndex]
 			msg := s.message
 			s.mu.Unlock()
-			
+
 			fmt.Fprintf(s.writer, "\r%s%s%s %s", ColorCyan, frame, ColorReset, msg)
-			
+
 			frameIndex = (frameIndex + 1) % len(s.frames)
 		}
 	}
@@ -132,15 +139,15 @@ func (s *Spinner) WithWriter(w io.Writer) *Spinner {
 func Spin(message string, fn func() error) error {
 	spinner := NewSpinner(message)
 	spinner.Start()
-	
+
 	err := fn()
-	
 	if err != nil {
 		spinner.Error(err.Error())
 		return err
 	}
-	
+
 	spinner.Success("Done")
+
 	return nil
 }
 
@@ -148,15 +155,14 @@ func Spin(message string, fn func() error) error {
 func SpinWithMessage(message, successMsg string, fn func() error) error {
 	spinner := NewSpinner(message)
 	spinner.Start()
-	
+
 	err := fn()
-	
 	if err != nil {
 		spinner.Error(err.Error())
 		return err
 	}
-	
+
 	spinner.Success(successMsg)
+
 	return nil
 }
-

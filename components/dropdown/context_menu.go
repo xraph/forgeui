@@ -140,4 +140,3 @@ func ContextMenuItemWithIcon(icon, label g.Node) g.Node {
 		html.Span(label),
 	)
 }
-

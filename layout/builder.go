@@ -105,6 +105,7 @@ func Link(rel, href string, attrs ...g.Node) g.Node {
 		html.Href(href),
 	}
 	nodes = append(nodes, attrs...)
+
 	return html.Link(nodes...)
 }
 
@@ -119,6 +120,7 @@ func Script(src string, attrs ...g.Node) g.Node {
 		html.Src(src),
 	}
 	nodes = append(nodes, attrs...)
+
 	return html.Script(nodes...)
 }
 
@@ -131,4 +133,3 @@ func InlineScript(content string) g.Node {
 func InlineStyle(content string) g.Node {
 	return html.StyleEl(g.Raw(content))
 }
-

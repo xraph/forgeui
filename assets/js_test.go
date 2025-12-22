@@ -9,6 +9,7 @@ import (
 
 func TestScript(t *testing.T) {
 	tmpDir := t.TempDir()
+
 	testFile := filepath.Join(tmpDir, "test.js")
 	if err := os.WriteFile(testFile, []byte("test"), 0644); err != nil {
 		t.Fatalf("Failed to create test file: %v", err)

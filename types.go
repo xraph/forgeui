@@ -10,7 +10,7 @@ const (
 	SizeLG   Size = "lg"
 	SizeXL   Size = "xl"
 	SizeFull Size = "full" // Full width/height for modals
-	SizeIcon Size = "icon"  // Special size for icon-only buttons
+	SizeIcon Size = "icon" // Special size for icon-only buttons
 )
 
 // Variant represents visual style variants

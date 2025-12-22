@@ -69,6 +69,6 @@ func InlineCSS(content string) g.Node {
 func InlineCSSWithAttrs(content string, attrs ...g.Node) g.Node {
 	allAttrs := append([]g.Node{}, attrs...)
 	allAttrs = append(allAttrs, g.Raw(content))
+
 	return html.StyleEl(allAttrs...)
 }
-

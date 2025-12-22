@@ -1,6 +1,7 @@
 package bridge
 
 import (
+	"net/http"
 	"net/http/httptest"
 	"testing"
 )
@@ -12,7 +13,7 @@ func TestSecurity_CheckAuth(t *testing.T) {
 	// Function that doesn't require auth
 	fn := &Function{RequireAuth: false}
 
-	req := httptest.NewRequest("GET", "/", nil)
+	req := httptest.NewRequest(http.MethodGet, "/", nil)
 	ctx := NewContext(req)
 
 	err := security.CheckAuth(ctx, fn)
@@ -53,7 +54,7 @@ func TestSecurity_CheckAuth_Roles(t *testing.T) {
 		UserRoles: []string{"user"},
 	}
 
-	req := httptest.NewRequest("GET", "/", nil)
+	req := httptest.NewRequest(http.MethodGet, "/", nil)
 	ctx := NewContext(req)
 	ctx = WithUser(ctx, user)
 
@@ -98,7 +99,7 @@ func TestGetClientIP(t *testing.T) {
 
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
-			req := httptest.NewRequest("GET", "/", nil)
+			req := httptest.NewRequest(http.MethodGet, "/", nil)
 
 			for k, v := range tt.headers {
 				req.Header.Set(k, v)
@@ -158,4 +159,3 @@ func TestValidateInput(t *testing.T) {
 		})
 	}
 }
-

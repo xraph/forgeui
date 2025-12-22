@@ -2,7 +2,7 @@
 package slider
 
 import (
-	"fmt"
+	"strconv"
 
 	g "maragu.dev/gomponents"
 	"maragu.dev/gomponents/html"
@@ -99,9 +99,9 @@ func Slider(opts ...Option) g.Node {
 	attrs := []g.Node{
 		html.Type("range"),
 		html.Class(classes),
-		g.Attr("min", fmt.Sprintf("%d", props.Min)),
-		g.Attr("max", fmt.Sprintf("%d", props.Max)),
-		g.Attr("step", fmt.Sprintf("%d", props.Step)),
+		g.Attr("min", strconv.Itoa(props.Min)),
+		g.Attr("max", strconv.Itoa(props.Max)),
+		g.Attr("step", strconv.Itoa(props.Step)),
 	}
 
 	if props.Name != "" {
@@ -113,7 +113,7 @@ func Slider(opts ...Option) g.Node {
 	}
 
 	if props.Value > 0 {
-		attrs = append(attrs, html.Value(fmt.Sprintf("%d", props.Value)))
+		attrs = append(attrs, html.Value(strconv.Itoa(props.Value)))
 	}
 
 	if props.Required {

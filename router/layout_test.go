@@ -21,6 +21,7 @@ func TestLayoutRegistration(t *testing.T) {
 	if !ok {
 		t.Error("Expected layout to be registered")
 	}
+
 	if layout == nil {
 		t.Error("Expected layout function to not be nil")
 	}
@@ -140,12 +141,14 @@ func TestDefaultLayoutFunction(t *testing.T) {
 
 	// Render and check output
 	var buf strings.Builder
+
 	_ = result.Render(&buf)
 	output := buf.String()
 
 	if !strings.Contains(output, "Test Page") {
 		t.Error("Expected layout to contain title")
 	}
+
 	if !strings.Contains(output, "Page content") {
 		t.Error("Expected layout to contain content")
 	}
@@ -162,6 +165,7 @@ func TestBlankLayoutFunction(t *testing.T) {
 
 	// Render and check output
 	var buf strings.Builder
+
 	_ = result.Render(&buf)
 	output := buf.String()
 
@@ -186,17 +190,19 @@ func TestDashboardLayoutFunction(t *testing.T) {
 
 	// Render and check output
 	var buf strings.Builder
+
 	_ = result.Render(&buf)
 	output := buf.String()
 
 	if !strings.Contains(output, "Dashboard") {
 		t.Error("Expected layout to contain title")
 	}
+
 	if !strings.Contains(output, "Dashboard content") {
 		t.Error("Expected layout to contain content")
 	}
+
 	if !strings.Contains(output, "dashboard-layout") {
 		t.Error("Expected layout to have dashboard-layout class")
 	}
 }
-

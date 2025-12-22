@@ -17,7 +17,7 @@ const (
 	ColorWhite  = "\033[37m"
 	ColorGray   = "\033[90m"
 	ColorBold   = "\033[1m"
-	
+
 	ColorBoldRed    = "\033[1;31m"
 	ColorBoldGreen  = "\033[1;32m"
 	ColorBoldYellow = "\033[1;33m"
@@ -37,6 +37,7 @@ func Colorize(color, text string) string {
 	if NoColor {
 		return text
 	}
+
 	return color + text + ColorReset
 }
 
@@ -80,6 +81,7 @@ func Bold(text string) string {
 	if NoColor {
 		return text
 	}
+
 	return "\033[1m" + text + "\033[22m"
 }
 
@@ -102,4 +104,3 @@ func Info(msg string) {
 func Warning(msg string) {
 	fmt.Printf("%s⚠%s %s\n", ColorYellow, ColorReset, msg)
 }
-

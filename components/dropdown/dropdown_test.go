@@ -16,6 +16,7 @@ import (
 // TestDropdown tests the basic Dropdown component
 func TestDropdown(t *testing.T) {
 	var buf bytes.Buffer
+
 	node := dropdown.Dropdown(
 		dropdown.DropdownProps{
 			Position: forgeui.PositionBottom,
@@ -32,6 +33,7 @@ func TestDropdown(t *testing.T) {
 	if !strings.Contains(html, "x-data") {
 		t.Error("missing Alpine data")
 	}
+
 	if !strings.Contains(html, "role=\"menu\"") {
 		t.Error("missing menu role")
 	}
@@ -40,6 +42,7 @@ func TestDropdown(t *testing.T) {
 // TestDropdownMenu tests the DropdownMenu component
 func TestDropdownMenu(t *testing.T) {
 	var buf bytes.Buffer
+
 	node := dropdown.DropdownMenu(
 		dropdown.DropdownMenuTrigger(button.Button(g.Text("Options"))),
 		dropdown.DropdownMenuContent(
@@ -56,6 +59,7 @@ func TestDropdownMenu(t *testing.T) {
 	if !strings.Contains(html, "x-data") {
 		t.Error("missing Alpine data")
 	}
+
 	if !strings.Contains(html, "menuitem") {
 		t.Error("missing menu items")
 	}
@@ -64,6 +68,7 @@ func TestDropdownMenu(t *testing.T) {
 // TestDropdownMenuCheckbox tests checkbox menu items
 func TestDropdownMenuCheckbox(t *testing.T) {
 	var buf bytes.Buffer
+
 	node := dropdown.DropdownMenuCheckboxItem("check1", "Enable feature", true)
 	if err := node.Render(&buf); err != nil {
 		t.Fatalf("render error: %v", err)
@@ -73,6 +78,7 @@ func TestDropdownMenuCheckbox(t *testing.T) {
 	if !strings.Contains(html, "menuitemcheckbox") {
 		t.Error("missing checkbox role")
 	}
+
 	if !strings.Contains(html, "Enable feature") {
 		t.Error("missing label")
 	}
@@ -81,6 +87,7 @@ func TestDropdownMenuCheckbox(t *testing.T) {
 // TestDropdownMenuRadio tests radio menu items
 func TestDropdownMenuRadio(t *testing.T) {
 	var buf bytes.Buffer
+
 	node := dropdown.DropdownMenuRadioGroup(
 		"option1",
 		dropdown.DropdownMenuRadioItem("option1", "Option 1"),
@@ -99,6 +106,7 @@ func TestDropdownMenuRadio(t *testing.T) {
 // TestContextMenu tests the ContextMenu component
 func TestContextMenu(t *testing.T) {
 	var buf bytes.Buffer
+
 	node := dropdown.ContextMenu(
 		html.Div(g.Text("Right-click me")),
 		dropdown.ContextMenuContent(
@@ -114,8 +122,8 @@ func TestContextMenu(t *testing.T) {
 	if !strings.Contains(html, "contextmenu") {
 		t.Error("missing contextmenu event handler")
 	}
+
 	if !strings.Contains(html, "x-data") {
 		t.Error("missing Alpine data")
 	}
 }
-

@@ -23,20 +23,20 @@ const (
 
 // ToggleProps defines configuration for the theme toggle button.
 type ToggleProps struct {
-	ShowLabel       bool        // Show text label alongside icon
-	LightLabel      string      // Label for light mode
-	DarkLabel       string      // Label for dark mode
-	SystemLabel     string      // Label for system mode
-	Position        string      // Button position (if floating)
-	Size            string      // Button size (sm, md, lg)
-	CustomClass     string      // Additional CSS classes
-	IconOnly        bool        // Show only icon, no label
-	StorageKey      string      // Key used for storage (default: "theme")
-	StorageType     StorageType // Storage mechanism (localStorage, sessionStorage, none)
-	SyncAcrossTabs  bool        // Sync theme changes across browser tabs
-	RespectSystem   bool        // Respect system preference when no stored value
-	DefaultTheme    string      // Default theme when no preference (light, dark, system)
-	AnimateTransition bool      // Enable smooth transition animation
+	ShowLabel         bool        // Show text label alongside icon
+	LightLabel        string      // Label for light mode
+	DarkLabel         string      // Label for dark mode
+	SystemLabel       string      // Label for system mode
+	Position          string      // Button position (if floating)
+	Size              string      // Button size (sm, md, lg)
+	CustomClass       string      // Additional CSS classes
+	IconOnly          bool        // Show only icon, no label
+	StorageKey        string      // Key used for storage (default: "theme")
+	StorageType       StorageType // Storage mechanism (localStorage, sessionStorage, none)
+	SyncAcrossTabs    bool        // Sync theme changes across browser tabs
+	RespectSystem     bool        // Respect system preference when no stored value
+	DefaultTheme      string      // Default theme when no preference (light, dark, system)
+	AnimateTransition bool        // Enable smooth transition animation
 }
 
 // ToggleOption is a functional option for configuring the Toggle.
@@ -135,17 +135,17 @@ func WithTransition(enabled bool) ToggleOption {
 // defaultToggleProps returns default toggle properties.
 func defaultToggleProps() ToggleProps {
 	return ToggleProps{
-		ShowLabel:       false,
-		LightLabel:      "Light",
-		DarkLabel:       "Dark",
-		SystemLabel:     "System",
-		Size:            "md",
-		IconOnly:        true,
-		StorageKey:      "theme",
-		StorageType:     LocalStorage,
-		SyncAcrossTabs:  true,
-		RespectSystem:   true,
-		DefaultTheme:    "light",
+		ShowLabel:         false,
+		LightLabel:        "Light",
+		DarkLabel:         "Dark",
+		SystemLabel:       "System",
+		Size:              "md",
+		IconOnly:          true,
+		StorageKey:        "theme",
+		StorageType:       LocalStorage,
+		SyncAcrossTabs:    true,
+		RespectSystem:     true,
+		DefaultTheme:      "light",
 		AnimateTransition: false,
 	}
 }
@@ -246,6 +246,7 @@ func Toggle(opts ...ToggleOption) g.Node {
 // buildToggleInitScript creates the Alpine.js init script for theme initialization.
 func buildToggleInitScript(props ToggleProps) string {
 	storageGet := getStorageGetScript(props.StorageType, props.StorageKey)
+
 	systemCheck := ""
 	if props.RespectSystem {
 		systemCheck = `
@@ -267,6 +268,7 @@ func buildToggleClickScript(props ToggleProps) string {
 
 	transitionStart := ""
 	transitionEnd := ""
+
 	if props.AnimateTransition {
 		transitionStart = `document.documentElement.classList.add('theme-transitioning');`
 		transitionEnd = `setTimeout(() => document.documentElement.classList.remove('theme-transitioning'), 300);`
@@ -350,6 +352,7 @@ func getStorageSetScript(storageType StorageType, key, valueVar string) string {
 //	ToggleWithSystemOption(IconOnly())              // Icons only, no labels
 func ToggleWithSystemOption(opts ...ToggleOption) g.Node {
 	props := defaultToggleProps()
+
 	props.DefaultTheme = "system" // Default to system for three-way toggle
 	for _, opt := range opts {
 		opt(&props)
@@ -548,6 +551,7 @@ func PersistentToggle(storageKey string) g.Node {
 //	DropdownToggle(WithStorageKey("my-theme"))
 func DropdownToggle(opts ...ToggleOption) g.Node {
 	props := defaultToggleProps()
+
 	props.DefaultTheme = "system"
 	for _, opt := range opts {
 		opt(&props)
@@ -589,11 +593,11 @@ func DropdownToggle(opts ...ToggleOption) g.Node {
 		html.Class("relative inline-block text-left"),
 		g.Attr("data-theme-toggle", "dropdown"),
 		alpine.XData(map[string]any{
-			"theme":            props.DefaultTheme,
-			"open":             false,
+			"theme":             props.DefaultTheme,
+			"open":              false,
 			"getEffectiveTheme": nil,
-			"setTheme":         nil,
-			"init":             initScript,
+			"setTheme":          nil,
+			"init":              initScript,
 		}),
 
 		// Trigger button
@@ -717,9 +721,9 @@ func ThemeTransitionCSS() g.Node {
 	transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease !important;
 }
 `
+
 	return g.El("style",
 		g.Attr("data-theme-transition", ""),
 		g.Raw(css),
 	)
 }
-

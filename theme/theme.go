@@ -38,7 +38,7 @@ type ColorTokens struct {
 	Border                string // Border color
 	Input                 string // Input border color
 	Ring                  string // Focus ring color
-	
+
 	// Chart colors for data visualization
 	Chart1  string // Chart color 1
 	Chart2  string // Chart color 2
@@ -52,16 +52,16 @@ type ColorTokens struct {
 	Chart10 string // Chart color 10
 	Chart11 string // Chart color 11
 	Chart12 string // Chart color 12
-	
+
 	// Sidebar-specific colors for independent theming
-	Sidebar                   string // Sidebar background
-	SidebarForeground         string // Sidebar text color
-	SidebarPrimary            string // Sidebar primary color
-	SidebarPrimaryForeground  string // Text on sidebar primary
-	SidebarAccent             string // Sidebar accent background
-	SidebarAccentForeground   string // Text on sidebar accent
-	SidebarBorder             string // Sidebar border color
-	SidebarRing               string // Sidebar focus ring color
+	Sidebar                  string // Sidebar background
+	SidebarForeground        string // Sidebar text color
+	SidebarPrimary           string // Sidebar primary color
+	SidebarPrimaryForeground string // Text on sidebar primary
+	SidebarAccent            string // Sidebar accent background
+	SidebarAccentForeground  string // Text on sidebar accent
+	SidebarBorder            string // Sidebar border color
+	SidebarRing              string // Sidebar focus ring color
 }
 
 // RadiusTokens defines border radius values for consistent rounded corners.
@@ -118,10 +118,10 @@ func New() Theme {
 // Base radius is 0.5rem (8px) for a clean, modern look.
 func defaultRadius() RadiusTokens {
 	return RadiusTokens{
-		SM:   "calc(0.5rem - 2px)",   // 0.375rem (6px)
-		MD:   "0.5rem",                // 0.5rem (8px) - base
-		LG:   "calc(0.5rem + 2px)",   // 0.625rem (10px)
-		XL:   "0.75rem",               // 0.75rem (12px)
+		SM:   "calc(0.5rem - 2px)", // 0.375rem (6px)
+		MD:   "0.5rem",             // 0.5rem (8px) - base
+		LG:   "calc(0.5rem + 2px)", // 0.625rem (10px)
+		XL:   "0.75rem",            // 0.75rem (12px)
 		Full: "9999px",
 	}
 }
@@ -161,4 +161,3 @@ func defaultShadow() ShadowTokens {
 		XL: "0 16px 24px -8px rgb(0 0 0 / 0.1), 0 8px 16px -4px rgb(0 0 0 / 0.08)",
 	}
 }
-

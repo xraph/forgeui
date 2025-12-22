@@ -7,11 +7,11 @@ import (
 
 // ProviderProps defines configuration for the theme provider.
 type ProviderProps struct {
-	LightTheme     Theme  // Light theme (required)
-	DarkTheme      Theme  // Dark theme (required)
-	DefaultTheme   string // Default theme if no preference ("light" or "dark")
-	EnableSystemSync bool // Sync with system preference
-	StorageKey     string // localStorage key for theme preference
+	LightTheme       Theme  // Light theme (required)
+	DarkTheme        Theme  // Dark theme (required)
+	DefaultTheme     string // Default theme if no preference ("light" or "dark")
+	EnableSystemSync bool   // Sync with system preference
+	StorageKey       string // localStorage key for theme preference
 }
 
 // ProviderOption is a functional option for configuring the Provider.
@@ -42,8 +42,9 @@ func DisableSystemSync() ProviderOption {
 // It injects CSS custom properties and dark mode script into the page.
 //
 // Usage:
-//   Provider(children...)                           // Uses default light/dark themes
-//   Provider(children..., WithDefaultTheme("dark")) // Starts with dark theme
+//
+//	Provider(children...)                           // Uses default light/dark themes
+//	Provider(children..., WithDefaultTheme("dark")) // Starts with dark theme
 func Provider(children ...g.Node) g.Node {
 	return ProviderWithThemes(DefaultLight(), DefaultDark(), children...)
 }
@@ -51,7 +52,8 @@ func Provider(children ...g.Node) g.Node {
 // ProviderWithThemes wraps the application with custom light and dark themes.
 //
 // Usage:
-//   ProviderWithThemes(theme.BlueLight(), theme.BlueDark(), children...)
+//
+//	ProviderWithThemes(theme.BlueLight(), theme.BlueDark(), children...)
 func ProviderWithThemes(lightTheme, darkTheme Theme, children ...g.Node) g.Node {
 	// Generate CSS for both themes
 	css := GenerateCSS(lightTheme, darkTheme)
@@ -74,18 +76,19 @@ func ProviderWithThemes(lightTheme, darkTheme Theme, children ...g.Node) g.Node 
 // ProviderWithOptions provides fine-grained control over theme configuration.
 //
 // Usage:
-//   ProviderWithOptions(
-//       children,
-//       WithDefaultTheme("dark"),
-//       WithStorageKey("app-theme"),
-//   )
+//
+//	ProviderWithOptions(
+//	    children,
+//	    WithDefaultTheme("dark"),
+//	    WithStorageKey("app-theme"),
+//	)
 func ProviderWithOptions(children []g.Node, opts ...ProviderOption) g.Node {
 	props := &ProviderProps{
-		LightTheme:     DefaultLight(),
-		DarkTheme:      DefaultDark(),
-		DefaultTheme:   "light",
+		LightTheme:       DefaultLight(),
+		DarkTheme:        DefaultDark(),
+		DefaultTheme:     "light",
 		EnableSystemSync: true,
-		StorageKey:     "theme",
+		StorageKey:       "theme",
 	}
 
 	for _, opt := range opts {
@@ -114,12 +117,13 @@ func ProviderWithOptions(children []g.Node, opts ...ProviderOption) g.Node {
 // This is useful for server-rendered applications.
 //
 // Usage:
-//   HTMLWrapper(
-//       theme.DefaultLight(),
-//       theme.DefaultDark(),
-//       html.Head(...),
-//       html.Body(...),
-//   )
+//
+//	HTMLWrapper(
+//	    theme.DefaultLight(),
+//	    theme.DefaultDark(),
+//	    html.Head(...),
+//	    html.Body(...),
+//	)
 func HTMLWrapper(lightTheme, darkTheme Theme, children ...g.Node) g.Node {
 	return html.HTML(
 		html.Lang("en"),
@@ -133,9 +137,9 @@ func HTMLWrapper(lightTheme, darkTheme Theme, children ...g.Node) g.Node {
 // Include this in your page's <head> section.
 //
 // It includes:
-//  - Theme color meta tag (adapts to theme)
-//  - Color scheme meta tag
-//  - Viewport meta tag
+//   - Theme color meta tag (adapts to theme)
+//   - Color scheme meta tag
+//   - Viewport meta tag
 func HeadContent(lightTheme, darkTheme Theme) g.Node {
 	return g.Group([]g.Node{
 		html.Meta(g.Attr("charset", "utf-8")),
@@ -166,9 +170,9 @@ func HeadContent(lightTheme, darkTheme Theme) g.Node {
 // Useful if you want to manually place the theme CSS.
 func StyleTag(lightTheme, darkTheme Theme) g.Node {
 	css := GenerateCSS(lightTheme, darkTheme)
+
 	return g.El("style",
 		g.Attr("data-forgeui-theme", ""),
 		g.Raw(css),
 	)
 }
-

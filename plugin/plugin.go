@@ -100,4 +100,3 @@ func (p *PluginBase) Init(ctx context.Context, r *Registry) error {
 func (p *PluginBase) Shutdown(ctx context.Context) error {
 	return nil
 }
-

@@ -50,6 +50,7 @@ func (rl *RateLimiter) Allow(key string) bool {
 			lastCheck: now,
 		}
 		rl.buckets[key] = b
+
 		return true
 	}
 
@@ -61,6 +62,7 @@ func (rl *RateLimiter) Allow(key string) bool {
 	if b.tokens > float64(rl.burst) {
 		b.tokens = float64(rl.burst)
 	}
+
 	b.lastCheck = now
 
 	// Check if we have tokens available
@@ -87,6 +89,7 @@ func (rl *RateLimiter) cleanup() {
 
 	for range ticker.C {
 		rl.mu.Lock()
+
 		now := time.Now()
 
 		for key, b := range rl.buckets {
@@ -119,4 +122,3 @@ func (rl *RateLimiter) Remaining(key string) int {
 
 	return int(b.tokens)
 }
-

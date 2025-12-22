@@ -10,8 +10,9 @@ import (
 
 func TestDarkModeScript(t *testing.T) {
 	var buf bytes.Buffer
+
 	node := theme.DarkModeScript()
-	
+
 	if err := node.Render(&buf); err != nil {
 		t.Fatalf("render error: %v", err)
 	}
@@ -46,8 +47,9 @@ func TestDarkModeScript(t *testing.T) {
 
 func TestDarkModeScriptWithDefault(t *testing.T) {
 	var buf bytes.Buffer
+
 	node := theme.DarkModeScriptWithDefault("dark")
-	
+
 	if err := node.Render(&buf); err != nil {
 		t.Fatalf("render error: %v", err)
 	}
@@ -61,8 +63,9 @@ func TestDarkModeScriptWithDefault(t *testing.T) {
 
 func TestThemeScript(t *testing.T) {
 	var buf bytes.Buffer
+
 	node := theme.ThemeScript()
-	
+
 	if err := node.Render(&buf); err != nil {
 		t.Fatalf("render error: %v", err)
 	}
@@ -101,8 +104,9 @@ func TestThemeScript(t *testing.T) {
 
 func TestThemeStyleCloak(t *testing.T) {
 	var buf bytes.Buffer
+
 	node := theme.ThemeStyleCloak()
-	
+
 	if err := node.Render(&buf); err != nil {
 		t.Fatalf("render error: %v", err)
 	}
@@ -124,4 +128,3 @@ func TestThemeStyleCloak(t *testing.T) {
 		t.Error("Should contain data-theme-loading styles")
 	}
 }
-

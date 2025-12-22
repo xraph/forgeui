@@ -15,6 +15,7 @@ func CN(classes ...string) string {
 			result = append(result, c)
 		}
 	}
+
 	return strings.Join(result, " ")
 }
 
@@ -24,6 +25,7 @@ func If(condition bool, value string) string {
 	if condition {
 		return value
 	}
+
 	return ""
 }
 
@@ -33,6 +35,7 @@ func IfElse(condition bool, trueVal, falseVal string) string {
 	if condition {
 		return trueVal
 	}
+
 	return falseVal
 }
 
@@ -42,10 +45,11 @@ func MapGet[K comparable, V any](m map[K]V, key K, defaultVal V) V {
 	if v, ok := m[key]; ok {
 		return v
 	}
+
 	return defaultVal
 }
 
 // ToString converts various types to string for HTML attributes
-func ToString(v interface{}) string {
+func ToString(v any) string {
 	return fmt.Sprintf("%v", v)
 }

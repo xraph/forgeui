@@ -9,6 +9,7 @@ import (
 
 func TestStyleSheet(t *testing.T) {
 	tmpDir := t.TempDir()
+
 	testFile := filepath.Join(tmpDir, "test.css")
 	if err := os.WriteFile(testFile, []byte("test"), 0644); err != nil {
 		t.Fatalf("Failed to create test file: %v", err)
@@ -112,4 +113,3 @@ func TestInlineCSS(t *testing.T) {
 		t.Error("Expected CSS content in style tag")
 	}
 }
-

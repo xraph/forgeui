@@ -111,4 +111,3 @@ func TestBatchRequest(t *testing.T) {
 		t.Errorf("len(batch) = %d, want 2", len(decoded))
 	}
 }
-

@@ -181,4 +181,3 @@ func OrderedList(opts ...Option) func(...g.Node) g.Node {
 		)
 	}
 }
-

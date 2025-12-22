@@ -5,17 +5,18 @@ import (
 	"strings"
 	"testing"
 
-	g "maragu.dev/gomponents"
 	"github.com/xraph/forgeui/theme"
+	g "maragu.dev/gomponents"
 )
 
 func TestProvider(t *testing.T) {
 	var buf bytes.Buffer
+
 	node := theme.Provider()
-	
+
 	// Provider returns g.Group, wrap it for testing
 	testNode := g.El("div", node)
-	
+
 	if err := testNode.Render(&buf); err != nil {
 		t.Fatalf("render error: %v", err)
 	}
@@ -40,14 +41,15 @@ func TestProvider(t *testing.T) {
 
 func TestProviderWithThemes(t *testing.T) {
 	var buf bytes.Buffer
+
 	light := theme.BlueLight()
 	dark := theme.BlueDark()
-	
+
 	node := theme.ProviderWithThemes(light, dark)
-	
+
 	// Provider returns g.Group, wrap it for testing
 	testNode := g.El("div", node)
-	
+
 	if err := testNode.Render(&buf); err != nil {
 		t.Fatalf("render error: %v", err)
 	}
@@ -65,11 +67,12 @@ func TestProviderWithThemes(t *testing.T) {
 
 func TestStyleTag(t *testing.T) {
 	var buf bytes.Buffer
+
 	light := theme.DefaultLight()
 	dark := theme.DefaultDark()
-	
+
 	node := theme.StyleTag(light, dark)
-	
+
 	if err := node.Render(&buf); err != nil {
 		t.Fatalf("render error: %v", err)
 	}
@@ -87,14 +90,15 @@ func TestStyleTag(t *testing.T) {
 
 func TestHeadContent(t *testing.T) {
 	var buf bytes.Buffer
+
 	light := theme.DefaultLight()
 	dark := theme.DefaultDark()
-	
+
 	node := theme.HeadContent(light, dark)
-	
+
 	// HeadContent returns g.Group, wrap it for testing
 	testNode := g.El("div", node)
-	
+
 	if err := testNode.Render(&buf); err != nil {
 		t.Fatalf("render error: %v", err)
 	}
@@ -118,11 +122,12 @@ func TestHeadContent(t *testing.T) {
 
 func TestHTMLWrapper(t *testing.T) {
 	var buf bytes.Buffer
+
 	light := theme.DefaultLight()
 	dark := theme.DefaultDark()
-	
+
 	node := theme.HTMLWrapper(light, dark)
-	
+
 	if err := node.Render(&buf); err != nil {
 		t.Fatalf("render error: %v", err)
 	}
@@ -137,4 +142,3 @@ func TestHTMLWrapper(t *testing.T) {
 		t.Error("HTMLWrapper should have lang attribute")
 	}
 }
-

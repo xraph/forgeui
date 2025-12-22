@@ -59,8 +59,8 @@ func TestRegisterDuplicate(t *testing.T) {
 	p2 := newMockPlugin("test", "2.0.0", nil)
 
 	_ = r.Register(p1)
-	err := r.Register(p2)
 
+	err := r.Register(p2)
 	if err == nil {
 		t.Error("expected error for duplicate plugin")
 	}
@@ -259,23 +259,28 @@ func TestResolveDependenciesVersionMismatch(t *testing.T) {
 
 func TestRegistryConcurrency(t *testing.T) {
 	r := NewRegistry()
+
 	var wg sync.WaitGroup
 
 	// Concurrent registrations
-	for i := 0; i < 10; i++ {
+	for i := range 10 {
 		wg.Add(1)
+
 		go func(n int) {
 			defer wg.Done()
+
 			p := newMockPlugin(string(rune('A'+n)), "1.0.0", nil)
 			_ = r.Register(p)
 		}(i)
 	}
 
 	// Concurrent reads
-	for i := 0; i < 10; i++ {
+	for range 10 {
 		wg.Add(1)
+
 		go func() {
 			defer wg.Done()
+
 			_ = r.Count()
 			_ = r.All()
 		}()
@@ -287,4 +292,3 @@ func TestRegistryConcurrency(t *testing.T) {
 		t.Errorf("expected 10 plugins after concurrent operations, got %d", r.Count())
 	}
 }
-

@@ -51,48 +51,48 @@ type ResponseHeaders struct {
 func SetResponseHeaders(w http.ResponseWriter, headers ResponseHeaders) {
 	if len(headers.Trigger) > 0 {
 		if jsonData, err := json.Marshal(headers.Trigger); err == nil {
-			w.Header().Set("HX-Trigger", string(jsonData))
+			w.Header().Set("Hx-Trigger", string(jsonData))
 		}
 	}
 
 	if len(headers.TriggerAfterSwap) > 0 {
 		if jsonData, err := json.Marshal(headers.TriggerAfterSwap); err == nil {
-			w.Header().Set("HX-Trigger-After-Swap", string(jsonData))
+			w.Header().Set("Hx-Trigger-After-Swap", string(jsonData))
 		}
 	}
 
 	if len(headers.TriggerAfterSettle) > 0 {
 		if jsonData, err := json.Marshal(headers.TriggerAfterSettle); err == nil {
-			w.Header().Set("HX-Trigger-After-Settle", string(jsonData))
+			w.Header().Set("Hx-Trigger-After-Settle", string(jsonData))
 		}
 	}
 
 	if headers.Redirect != "" {
-		w.Header().Set("HX-Redirect", headers.Redirect)
+		w.Header().Set("Hx-Redirect", headers.Redirect)
 	}
 
 	if headers.Refresh {
-		w.Header().Set("HX-Refresh", "true")
+		w.Header().Set("Hx-Refresh", "true")
 	}
 
 	if headers.ReplaceURL != "" {
-		w.Header().Set("HX-Replace-Url", headers.ReplaceURL)
+		w.Header().Set("Hx-Replace-Url", headers.ReplaceURL)
 	}
 
 	if headers.PushURL != "" {
-		w.Header().Set("HX-Push-Url", headers.PushURL)
+		w.Header().Set("Hx-Push-Url", headers.PushURL)
 	}
 
 	if headers.Reswap != "" {
-		w.Header().Set("HX-Reswap", headers.Reswap)
+		w.Header().Set("Hx-Reswap", headers.Reswap)
 	}
 
 	if headers.Retarget != "" {
-		w.Header().Set("HX-Retarget", headers.Retarget)
+		w.Header().Set("Hx-Retarget", headers.Retarget)
 	}
 
 	if headers.Reselect != "" {
-		w.Header().Set("HX-Reselect", headers.Reselect)
+		w.Header().Set("Hx-Reselect", headers.Reselect)
 	}
 }
 
@@ -109,7 +109,6 @@ func Middleware(next http.Handler) http.Handler {
 		// The middleware doesn't modify the request, it just allows
 		// handlers to check for HTMX-specific headers using the
 		// context helper functions
-
 		next.ServeHTTP(w, r)
 	})
 }
@@ -120,7 +119,7 @@ func Middleware(next http.Handler) http.Handler {
 //
 //	htmx.TriggerEvent(w, "showMessage")
 func TriggerEvent(w http.ResponseWriter, eventName string) {
-	w.Header().Set("HX-Trigger", eventName)
+	w.Header().Set("Hx-Trigger", eventName)
 }
 
 // TriggerEventWithDetail sets an HX-Trigger response header with event details.
@@ -134,7 +133,7 @@ func TriggerEvent(w http.ResponseWriter, eventName string) {
 func TriggerEventWithDetail(w http.ResponseWriter, eventName string, detail map[string]any) {
 	trigger := map[string]any{eventName: detail}
 	if jsonData, err := json.Marshal(trigger); err == nil {
-		w.Header().Set("HX-Trigger", string(jsonData))
+		w.Header().Set("Hx-Trigger", string(jsonData))
 	}
 }
 
@@ -148,7 +147,7 @@ func TriggerEventWithDetail(w http.ResponseWriter, eventName string, detail map[
 //	})
 func TriggerEvents(w http.ResponseWriter, events map[string]any) {
 	if jsonData, err := json.Marshal(events); err == nil {
-		w.Header().Set("HX-Trigger", string(jsonData))
+		w.Header().Set("Hx-Trigger", string(jsonData))
 	}
 }
 
@@ -163,4 +162,3 @@ func TriggerEvents(w http.ResponseWriter, events map[string]any) {
 func StopPolling(w http.ResponseWriter) {
 	w.WriteHeader(286)
 }
-

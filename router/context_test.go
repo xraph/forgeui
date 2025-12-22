@@ -187,7 +187,7 @@ func TestPageContext_SetCookie(t *testing.T) {
 
 func TestPageContext_SetGet(t *testing.T) {
 	ctx := &PageContext{
-		values: make(map[string]interface{}),
+		values: make(map[string]any),
 	}
 
 	ctx.Set("user_id", 123)
@@ -210,7 +210,7 @@ func TestPageContext_SetGet(t *testing.T) {
 
 func TestPageContext_GetString(t *testing.T) {
 	ctx := &PageContext{
-		values: make(map[string]interface{}),
+		values: make(map[string]any),
 	}
 
 	ctx.Set("name", "test")
@@ -231,7 +231,7 @@ func TestPageContext_GetString(t *testing.T) {
 
 func TestPageContext_GetInt(t *testing.T) {
 	ctx := &PageContext{
-		values: make(map[string]interface{}),
+		values: make(map[string]any),
 	}
 
 	ctx.Set("count", 42)
@@ -270,10 +270,10 @@ func TestPageContext_Path(t *testing.T) {
 
 func TestPageContext_ClientIP(t *testing.T) {
 	tests := []struct {
-		name     string
-		headers  map[string]string
+		name       string
+		headers    map[string]string
 		remoteAddr string
-		expected string
+		expected   string
 	}{
 		{
 			name:     "X-Forwarded-For",
@@ -298,6 +298,7 @@ func TestPageContext_ClientIP(t *testing.T) {
 			for k, v := range tt.headers {
 				req.Header.Set(k, v)
 			}
+
 			if tt.remoteAddr != "" {
 				req.RemoteAddr = tt.remoteAddr
 			}
@@ -310,4 +311,3 @@ func TestPageContext_ClientIP(t *testing.T) {
 		})
 	}
 }
-

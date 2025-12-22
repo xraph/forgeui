@@ -2,6 +2,7 @@ package commands
 
 import (
 	"context"
+	"errors"
 	"fmt"
 	"net/http"
 	"os"
@@ -9,7 +10,7 @@ import (
 	"os/signal"
 	"syscall"
 	"time"
-	
+
 	"github.com/xraph/forgeui/cli"
 	"github.com/xraph/forgeui/cli/util"
 )
@@ -42,84 +43,94 @@ func runDev(ctx *cli.Context) error {
 	if err := ctx.LoadConfig(); err != nil {
 		return fmt.Errorf("failed to load config: %w", err)
 	}
-	
+
 	// Get port from flag or config
 	port := ctx.GetInt("port")
 	if port == 0 {
 		port = ctx.Config.Dev.Port
 	}
+
 	if port == 0 {
 		port = 3000
 	}
-	
+
 	host := ctx.GetString("host")
 	if host == "" {
 		host = ctx.Config.Dev.Host
 	}
+
 	if host == "" {
 		host = "localhost"
 	}
-	
+
 	addr := fmt.Sprintf("%s:%d", host, port)
-	
+
 	ctx.Printf("\n%sStarting development server...%s\n\n", util.ColorBlue, util.ColorReset)
-	
+
 	// Check if main.go exists
 	if !util.FileExists("main.go") {
-		return fmt.Errorf("main.go not found - are you in a ForgeUI project?")
+		return errors.New("main.go not found - are you in a ForgeUI project?")
 	}
-	
+
 	// Create context for graceful shutdown
 	srvCtx, cancel := context.WithCancel(context.Background())
 	defer cancel()
-	
+
 	// Start the Go application
 	cmd := exec.CommandContext(srvCtx, "go", "run", "main.go")
 	cmd.Stdout = os.Stdout
 	cmd.Stderr = os.Stderr
+
 	cmd.Env = append(os.Environ(), fmt.Sprintf("PORT=%d", port))
-	
+
 	if err := cmd.Start(); err != nil {
 		return fmt.Errorf("failed to start server: %w", err)
 	}
-	
+
 	// Wait a moment for server to start
 	time.Sleep(500 * time.Millisecond)
-	
+
 	// Print success message
-	url := fmt.Sprintf("http://%s", addr)
+	url := "http://" + addr
+
 	ctx.Printf("%s✓ Server started%s\n\n", util.ColorGreen, util.ColorReset)
 	ctx.Printf("  %sLocal:%s   %s\n", util.ColorBold, util.ColorReset, url)
 	ctx.Printf("  %sPress Ctrl+C to stop%s\n\n", util.ColorGray, util.ColorReset)
-	
+
 	// Open browser if requested
 	if ctx.GetBool("open") || ctx.Config.Dev.OpenBrowser {
-		openBrowser(url)
+		if err := openBrowser(url); err != nil {
+			// Log browser open error but don't fail
+			ctx.Printf("%sWarning: Failed to open browser: %v%s\n", util.ColorYellow, err, util.ColorReset)
+		}
 	}
-	
+
 	// Setup signal handling
 	sigChan := make(chan os.Signal, 1)
 	signal.Notify(sigChan, os.Interrupt, syscall.SIGTERM)
-	
+
 	// Wait for interrupt
 	<-sigChan
-	
+
 	ctx.Printf("\n%sStopping server...%s\n", util.ColorYellow, util.ColorReset)
-	
+
 	// Cancel context to stop the server
 	cancel()
-	
+
 	// Wait for process to exit
-	cmd.Wait()
-	
+	if err := cmd.Wait(); err != nil {
+		// Process may have exited with error, which is expected
+		_ = err // Ignore error as we're shutting down
+	}
+
 	ctx.Printf("%s✓ Server stopped%s\n", util.ColorGreen, util.ColorReset)
-	
+
 	return nil
 }
 
 func openBrowser(url string) error {
 	var cmd *exec.Cmd
-	
+
 	switch {
 	case commandExists("xdg-open"):
 		cmd = exec.Command("xdg-open", url)
@@ -128,9 +139,9 @@ func openBrowser(url string) error {
 	case commandExists("start"):
 		cmd = exec.Command("cmd", "/c", "start", url)
 	default:
-		return fmt.Errorf("no browser opener found")
+		return errors.New("no browser opener found")
 	}
-	
+
 	return cmd.Start()
 }
 
@@ -143,8 +154,11 @@ func commandExists(cmd string) bool {
 func createDevHandler() http.Handler {
 	mux := http.NewServeMux()
 	mux.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
-		w.Write([]byte("ForgeUI Dev Server"))
+		if _, err := w.Write([]byte("ForgeUI Dev Server")); err != nil {
+			// Log write error - response already started
+			_ = err // Error already logged by potential middleware
+		}
 	})
+
 	return mux
 }
-

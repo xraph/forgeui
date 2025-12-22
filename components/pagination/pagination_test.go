@@ -5,8 +5,8 @@ import (
 	"strings"
 	"testing"
 
-	g "maragu.dev/gomponents"
 	"github.com/xraph/forgeui/components/pagination"
+	g "maragu.dev/gomponents"
 )
 
 func TestPagination(t *testing.T) {
@@ -66,6 +66,7 @@ func TestPagination(t *testing.T) {
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
 			var buf bytes.Buffer
+
 			node := pagination.Pagination(tt.opts...)
 			if err := node.Render(&buf); err != nil {
 				t.Fatalf("render error: %v", err)
@@ -141,4 +142,3 @@ func TestPaginationButtons(t *testing.T) {
 		})
 	}
 }
-

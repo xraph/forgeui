@@ -32,7 +32,7 @@ Features:
   - Plugin management`,
 		Usage: "forgeui <command> [flags]",
 	}
-	
+
 	// Register built-in commands (will be added by command files)
 	rootCmd.Subcommands = []*Command{}
 }
@@ -40,26 +40,29 @@ Features:
 // Execute runs the CLI application
 func Execute() error {
 	args := os.Args[1:]
-	
+
 	// Check for version flag
 	for _, arg := range args {
 		if arg == "--version" || arg == "-v" {
 			fmt.Printf("ForgeUI CLI v%s\n", Version)
+
 			if BuildCommit != "unknown" {
 				fmt.Printf("Commit: %s\n", BuildCommit)
 			}
+
 			if BuildTime != "unknown" {
 				fmt.Printf("Built: %s\n", BuildTime)
 			}
+
 			return nil
 		}
 	}
-	
+
 	if len(args) == 0 {
 		rootCmd.printHelp(os.Stdout)
 		return nil
 	}
-	
+
 	return rootCmd.Execute(args)
 }
 
@@ -72,4 +75,3 @@ func RegisterCommand(cmd *Command) {
 func GetRootCommand() *Command {
 	return rootCmd
 }
-

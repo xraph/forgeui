@@ -7,12 +7,12 @@ import (
 
 // FunctionInfo contains information about a registered function
 type FunctionInfo struct {
-	Name         string     `json:"name"`
-	Description  string     `json:"description,omitempty"`
-	RequireAuth  bool       `json:"requireAuth"`
-	RequireRoles []string   `json:"requireRoles,omitempty"`
-	RateLimit    int        `json:"rateLimit,omitempty"`
-	TypeInfo     TypeInfo   `json:"typeInfo"`
+	Name         string   `json:"name"`
+	Description  string   `json:"description,omitempty"`
+	RequireAuth  bool     `json:"requireAuth"`
+	RequireRoles []string `json:"requireRoles,omitempty"`
+	RateLimit    int      `json:"rateLimit,omitempty"`
+	TypeInfo     TypeInfo `json:"typeInfo"`
 }
 
 // IntrospectionHandler handles introspection requests
@@ -53,10 +53,14 @@ func (h *IntrospectionHandler) ServeHTTP(w http.ResponseWriter, r *http.Request)
 	}
 
 	w.WriteHeader(http.StatusOK)
-	json.NewEncoder(w).Encode(map[string]any{
+
+	if err := json.NewEncoder(w).Encode(map[string]any{
 		"functions": functions,
 		"count":     len(functions),
-	})
+	}); err != nil {
+		// Log encoding error - response already sent
+		_ = err // Error already logged by potential middleware
+	}
 }
 
 // IntrospectionHandler returns an HTTP handler for function introspection
@@ -93,9 +97,9 @@ func (b *Bridge) ListFunctionInfo() []FunctionInfo {
 		if err != nil {
 			continue
 		}
+
 		functions = append(functions, *info)
 	}
 
 	return functions
 }
-

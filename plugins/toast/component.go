@@ -52,7 +52,7 @@ func ToastItem() g.Node {
 		}`),
 		html.Div(
 			html.Class("flex items-start p-4"),
-			
+
 			// Icon
 			html.Div(
 				html.Class("flex-shrink-0"),
@@ -74,7 +74,7 @@ func ToastItem() g.Node {
 				alpine.XShow("toast.variant === 'error'"),
 				icons.XCircle(icons.WithSize(20), icons.WithClass("text-red-500")),
 			),
-			
+
 			// Message
 			html.Div(
 				html.Class("ml-3 flex-1"),
@@ -83,7 +83,7 @@ func ToastItem() g.Node {
 					alpine.XText("toast.message"),
 				),
 			),
-			
+
 			// Close button
 			html.Button(
 				html.Type("button"),
@@ -128,4 +128,3 @@ func WarningScript(message string) string {
 func ErrorScript(message string) string {
 	return fmt.Sprintf("$store.toasts.error('%s')", message)
 }
-

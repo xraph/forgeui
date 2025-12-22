@@ -29,7 +29,9 @@ func (r *Route) Title(title string) *Route {
 	if r.Metadata == nil {
 		r.Metadata = &RouteMeta{}
 	}
+
 	r.Metadata.Title = title
+
 	return r
 }
 
@@ -38,7 +40,9 @@ func (r *Route) Description(desc string) *Route {
 	if r.Metadata == nil {
 		r.Metadata = &RouteMeta{}
 	}
+
 	r.Metadata.Description = desc
+
 	return r
 }
 
@@ -47,7 +51,9 @@ func (r *Route) Keywords(keywords ...string) *Route {
 	if r.Metadata == nil {
 		r.Metadata = &RouteMeta{}
 	}
+
 	r.Metadata.Keywords = keywords
+
 	return r
 }
 
@@ -56,7 +62,9 @@ func (r *Route) OGImage(url string) *Route {
 	if r.Metadata == nil {
 		r.Metadata = &RouteMeta{}
 	}
+
 	r.Metadata.OGImage = url
+
 	return r
 }
 
@@ -65,7 +73,9 @@ func (r *Route) NoIndex() *Route {
 	if r.Metadata == nil {
 		r.Metadata = &RouteMeta{}
 	}
+
 	r.Metadata.NoIndex = true
+
 	return r
 }
 
@@ -142,6 +152,7 @@ func (m *RouteMeta) MetaTags() []g.Node {
 	if ogType == "" {
 		ogType = "website"
 	}
+
 	tags = append(tags,
 		html.Meta(
 			g.Attr("property", "og:type"),
@@ -198,4 +209,3 @@ func (m *RouteMeta) MetaTags() []g.Node {
 
 	return tags
 }
-

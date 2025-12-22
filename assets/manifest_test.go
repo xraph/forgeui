@@ -111,10 +111,12 @@ func TestGenerateManifest(t *testing.T) {
 
 	for _, file := range testFiles {
 		fullPath := filepath.Join(tmpDir, file)
+
 		dir := filepath.Dir(fullPath)
 		if err := os.MkdirAll(dir, 0755); err != nil {
 			t.Fatalf("Failed to create directory: %v", err)
 		}
+
 		if err := os.WriteFile(fullPath, []byte("test"), 0644); err != nil {
 			t.Fatalf("Failed to create test file: %v", err)
 		}
@@ -140,4 +142,3 @@ func TestGenerateManifest(t *testing.T) {
 		}
 	}
 }
-

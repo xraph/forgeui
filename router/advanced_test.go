@@ -37,6 +37,7 @@ func TestAdvancedIntegration(t *testing.T) {
 	api.Get("/users/:id", func(ctx *PageContext) (g.Node, error) {
 		data := ctx.LoaderData().(string)
 		meta := ctx.GetMeta()
+
 		return g.Text(data + ":" + meta.Title), nil
 	}).Loader(loader).Title("User Page")
 
@@ -150,7 +151,9 @@ func TestAdvancedLayoutWithMetadata(t *testing.T) {
 		if ctx.Meta != nil {
 			nodes = append(nodes, g.Group(ctx.Meta.MetaTags()))
 		}
+
 		nodes = append(nodes, g.Text("</head><body>"), content, g.Text("</body>"))
+
 		return g.El("div", nodes...)
 	})
 
@@ -175,12 +178,15 @@ func TestAdvancedLayoutWithMetadata(t *testing.T) {
 	if !strings.Contains(output, "A page with SEO") {
 		t.Error("Expected description in output")
 	}
+
 	if !strings.Contains(output, "go, web") {
 		t.Error("Expected keywords in output")
 	}
+
 	if !strings.Contains(output, "og:image") {
 		t.Error("Expected OG image tag")
 	}
+
 	if !strings.Contains(output, "Content") {
 		t.Error("Expected content in output")
 	}
@@ -223,12 +229,15 @@ func TestAdvancedMultipleMiddleware(t *testing.T) {
 		if _, ok := ctx.Get("mw1"); !ok {
 			t.Error("Expected mw1 to be set")
 		}
+
 		if _, ok := ctx.Get("mw2"); !ok {
 			t.Error("Expected mw2 to be set")
 		}
+
 		if _, ok := ctx.Get("mw3"); !ok {
 			t.Error("Expected mw3 to be set")
 		}
+
 		return g.Text("ok"), nil
 	})
 	route.WithMiddleware(mw3)
@@ -317,4 +326,3 @@ func TestAdvancedGroupLayoutOverride(t *testing.T) {
 		t.Errorf("Expected output to contain 'ROUTE:' and 'content', got '%s'", w2.Body.String())
 	}
 }
-

@@ -18,6 +18,7 @@ func TestSpinner(t *testing.T) {
 	if !strings.Contains(html, "animate-spin") {
 		t.Error("expected animate-spin class")
 	}
+
 	if !strings.Contains(html, `role="status"`) {
 		t.Error("expected role attribute")
 	}

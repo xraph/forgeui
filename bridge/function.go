@@ -104,7 +104,7 @@ func validateFunction(fn any) error {
 	}
 
 	// First parameter must implement Context interface
-	contextType := reflect.TypeOf((*Context)(nil)).Elem()
+	contextType := reflect.TypeFor[Context]()
 	if !fnType.In(0).Implements(contextType) {
 		return fmt.Errorf("first parameter must implement bridge.Context, got %s", fnType.In(0))
 	}
@@ -115,7 +115,7 @@ func validateFunction(fn any) error {
 	}
 
 	// Second return value must be error
-	errorType := reflect.TypeOf((*error)(nil)).Elem()
+	errorType := reflect.TypeFor[error]()
 	if !fnType.Out(1).Implements(errorType) {
 		return fmt.Errorf("second return value must be error, got %s", fnType.Out(1))
 	}
@@ -143,9 +143,9 @@ func analyzeFunction(fn any) (*Function, error) {
 
 // TypeInfo returns information about the function's types
 type TypeInfo struct {
-	Name       string     `json:"name"`
-	InputType  string     `json:"inputType"`
-	OutputType string     `json:"outputType"`
+	Name       string      `json:"name"`
+	InputType  string      `json:"inputType"`
+	OutputType string      `json:"outputType"`
 	Fields     []FieldInfo `json:"fields,omitempty"`
 }
 
@@ -198,12 +198,14 @@ func extractFields(t reflect.Type) []FieldInfo {
 			}
 			// Extract name from tag (before comma)
 			commaIdx := -1
+
 			for idx, c := range jsonTag {
 				if c == ',' {
 					commaIdx = idx
 					break
 				}
 			}
+
 			if commaIdx >= 0 {
 				jsonName = jsonTag[:commaIdx]
 				// Check for omitempty
@@ -230,4 +232,3 @@ func extractFields(t reflect.Type) []FieldInfo {
 
 	return fields
 }
-

@@ -93,4 +93,3 @@ func TestGenerateCacheKey(t *testing.T) {
 		t.Error("Different inputs should generate different cache keys")
 	}
 }
-

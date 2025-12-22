@@ -80,17 +80,17 @@ func handleComponentsShowcase(w http.ResponseWriter, r *http.Request) {
 						primitives.WithClass("py-4"),
 						primitives.WithChildren(
 							primitives.HStack("4",
-							html.Div(
-								html.Class("flex-1 flex items-center gap-3"),
-								icons.Menu(icons.WithSize(24)),
-								primitives.Text(
-									primitives.TextAs("span"),
-									primitives.TextSize("text-xl"),
-									primitives.TextWeight("font-bold"),
-									primitives.TextChildren(g.Text("ForgeUI Components")),
+								html.Div(
+									html.Class("flex-1 flex items-center gap-3"),
+									icons.Menu(icons.WithSize(24)),
+									primitives.Text(
+										primitives.TextAs("span"),
+										primitives.TextSize("text-xl"),
+										primitives.TextWeight("font-bold"),
+										primitives.TextChildren(g.Text("ForgeUI Components")),
+									),
+									badge.Badge("50+ Components", badge.WithVariant(forgeui.VariantSecondary)),
 								),
-								badge.Badge("50+ Components", badge.WithVariant(forgeui.VariantSecondary)),
-							),
 								primitives.HStack("2",
 									html.A(
 										html.Href("/"),
@@ -889,4 +889,3 @@ func componentDemo(title, description string, demo g.Node) g.Node {
 		card.Content(demo),
 	)
 }
-

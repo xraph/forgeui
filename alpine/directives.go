@@ -16,6 +16,7 @@ package alpine
 import (
 	"encoding/json"
 	"fmt"
+	"strings"
 
 	g "maragu.dev/gomponents"
 )
@@ -32,12 +33,13 @@ import (
 //	    "increment": alpine.RawJS("function() { this.count++ }"),
 //	})
 func XData(state map[string]any) g.Node {
-	if state == nil || len(state) == 0 {
+	if len(state) == 0 {
 		return g.Attr("x-data", "")
 	}
 
 	// Check if any value is RawJS - if so, use custom serialization
 	hasRawJS := false
+
 	for _, v := range state {
 		if _, ok := v.(rawJS); ok {
 			hasRawJS = true
@@ -47,7 +49,12 @@ func XData(state map[string]any) g.Node {
 
 	if !hasRawJS {
 		// Simple case: no RawJS, use standard JSON
-		jsonData, _ := json.Marshal(state)
+		jsonData, err := json.Marshal(state)
+		if err != nil {
+			// Fallback to empty object on marshal error
+			return g.Attr("x-data", "{}")
+		}
+
 		return g.Attr("x-data", string(jsonData))
 	}
 
@@ -62,54 +69,62 @@ func serializeXDataWithRawJS(state map[string]any) string {
 		return "{}"
 	}
 
-	result := "{"
+	var result strings.Builder
+	result.WriteString("{")
 	first := true
+
+	var resultSb72 strings.Builder
 
 	for key, value := range state {
 		if !first {
-			result += ","
+			resultSb72.WriteString(",")
 		}
+
 		first = false
 
 		// Add key (quote if necessary)
 		if needsQuoting(key) {
-			result += fmt.Sprintf("%q", key)
+			resultSb72.WriteString(fmt.Sprintf("%q", key))
 		} else {
-			result += key
+			resultSb72.WriteString(key)
 		}
-		result += ":"
+
+		resultSb72.WriteString(":")
 
 		// Add value
 		switch v := value.(type) {
 		case rawJS:
-			result += v.code
+			result.WriteString(v.code)
 		case string:
-			result += fmt.Sprintf("%q", v)
+			result.WriteString(fmt.Sprintf("%q", v))
 		case bool:
 			if v {
-				result += "true"
+				result.WriteString("true")
 			} else {
-				result += "false"
+				result.WriteString("false")
 			}
 		case int, int8, int16, int32, int64, uint, uint8, uint16, uint32, uint64:
-			result += fmt.Sprintf("%d", v)
+			result.WriteString(fmt.Sprintf("%d", v))
 		case float32, float64:
-			result += fmt.Sprintf("%v", v)
+			result.WriteString(fmt.Sprintf("%v", v))
 		case nil:
-			result += "null"
+			result.WriteString("null")
 		default:
 			// For complex types, use JSON encoding
 			jsonBytes, err := json.Marshal(v)
 			if err != nil {
-				result += "null"
+				result.WriteString("null")
 			} else {
-				result += string(jsonBytes)
+				result.WriteString(string(jsonBytes))
 			}
 		}
 	}
 
-	result += "}"
-	return result
+	result.WriteString(resultSb72.String())
+
+	result.WriteString("}")
+
+	return result.String()
 }
 
 // needsQuoting returns true if the key needs to be quoted in JavaScript
@@ -316,6 +331,7 @@ func XKeydown(key, handler string) g.Node {
 	if key == "" {
 		return XOn("keydown", handler)
 	}
+
 	return XOn("keydown."+key, handler)
 }
 
@@ -324,6 +340,7 @@ func XKeyup(key, handler string) g.Node {
 	if key == "" {
 		return XOn("keyup", handler)
 	}
+
 	return XOn("keyup."+key, handler)
 }
 
@@ -431,4 +448,3 @@ func XTeleport(selector string) g.Node {
 func XId(items string) g.Node {
 	return g.Attr("x-id", items)
 }
-

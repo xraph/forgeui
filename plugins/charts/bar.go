@@ -27,6 +27,7 @@ func (c *Charts) barChart(props any, children ...g.Node) g.Node {
 					"borderWidth":     ds.BorderWidth,
 				}
 			}
+
 			return datasets
 		}(),
 	}
@@ -52,7 +53,7 @@ func (c *Charts) barChart(props any, children ...g.Node) g.Node {
 //	})
 func BarChart(data BarChartData) g.Node {
 	opts := DefaultOptions()
-	
+
 	chartData := map[string]any{
 		"labels": data.Labels,
 		"datasets": func() []map[string]any {
@@ -66,10 +67,10 @@ func BarChart(data BarChartData) g.Node {
 					"borderWidth":     ds.BorderWidth,
 				}
 			}
+
 			return datasets
 		}(),
 	}
 
 	return baseChartNode("bar", chartData, opts)
 }
-

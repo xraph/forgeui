@@ -26,6 +26,7 @@ import (
 // Toast plugin implements Alpine and Component plugins.
 type Toast struct {
 	*plugin.PluginBase
+
 	config Config
 }
 
@@ -190,4 +191,3 @@ func (t *Toast) Magics() []plugin.AlpineMagic {
 func (t *Toast) AlpineComponents() []plugin.AlpineComponent {
 	return nil
 }
-

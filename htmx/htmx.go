@@ -145,21 +145,21 @@ const DefaultVersion = "2.0.3"
 
 // HTMX extension names
 const (
-	ExtensionSSE            = "sse"
-	ExtensionWebSockets     = "ws"
-	ExtensionClassTools     = "class-tools"
-	ExtensionPreload        = "preload"
-	ExtensionHeadSupport    = "head-support"
+	ExtensionSSE             = "sse"
+	ExtensionWebSockets      = "ws"
+	ExtensionClassTools      = "class-tools"
+	ExtensionPreload         = "preload"
+	ExtensionHeadSupport     = "head-support"
 	ExtensionResponseTargets = "response-targets"
-	ExtensionDebug          = "debug"
-	ExtensionEventHeader    = "event-header"
-	ExtensionIncludeVals    = "include-vals"
-	ExtensionJSONEnc        = "json-enc"
-	ExtensionMethodOverride = "method-override"
-	ExtensionMorphdom       = "morphdom-swap"
-	ExtensionMultiSwap      = "multi-swap"
-	ExtensionPathDeps       = "path-deps"
-	ExtensionRestoreOnError = "restored"
+	ExtensionDebug           = "debug"
+	ExtensionEventHeader     = "event-header"
+	ExtensionIncludeVals     = "include-vals"
+	ExtensionJSONEnc         = "json-enc"
+	ExtensionMethodOverride  = "method-override"
+	ExtensionMorphdom        = "morphdom-swap"
+	ExtensionMultiSwap       = "multi-swap"
+	ExtensionPathDeps        = "path-deps"
+	ExtensionRestoreOnError  = "restored"
 )
 
 // Scripts returns a script tag that loads HTMX from CDN.
@@ -176,7 +176,7 @@ func Scripts(version ...string) g.Node {
 	}
 
 	return html.Script(
-		html.Src(fmt.Sprintf("https://unpkg.com/htmx.org@%s", ver)),
+		html.Src("https://unpkg.com/htmx.org@"+ver),
 		g.Attr("integrity", ""),
 		g.Attr("crossorigin", "anonymous"),
 	)
@@ -293,10 +293,11 @@ func ConfigMeta(config map[string]string) []g.Node {
 	nodes := make([]g.Node, 0, len(config))
 	for key, value := range config {
 		nodes = append(nodes, html.Meta(
-			html.Name(fmt.Sprintf("htmx-config:%s", key)),
+			html.Name("htmx-config:"+key),
 			html.Content(value),
 		))
 	}
+
 	return nodes
 }
 
@@ -313,6 +314,7 @@ func HxDisinherit(attributes string) g.Node {
 	if attributes == "" {
 		return g.Attr("hx-disinherit", "*")
 	}
+
 	return g.Attr("hx-disinherit", attributes)
 }
 
@@ -329,6 +331,6 @@ func HxHistory(enabled bool) g.Node {
 	if enabled {
 		return g.Attr("hx-history", "true")
 	}
+
 	return g.Attr("hx-history", "false")
 }
-

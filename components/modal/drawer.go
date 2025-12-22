@@ -64,6 +64,7 @@ func Drawer(props DrawerProps, trigger g.Node, content ...g.Node) g.Node {
 	if props.Side == "" {
 		props.Side = forgeui.SideRight
 	}
+
 	if props.Size == "" {
 		props.Size = forgeui.SizeMD
 	}
@@ -108,12 +109,12 @@ func Drawer(props DrawerProps, trigger g.Node, content ...g.Node) g.Node {
 			g.Attr("aria-modal", "true"),
 			g.Attr("role", "dialog"),
 
-		// Backdrop
-		html.Div(
-			g.Group(alpine.XTransition(animation.FadeIn())),
-			html.Class("fixed inset-0 bg-background/80 backdrop-blur-sm transition-all"),
-			g.If(props.CloseOnOutsideClick, backdropClick),
-		),
+			// Backdrop
+			html.Div(
+				g.Group(alpine.XTransition(animation.FadeIn())),
+				html.Class("fixed inset-0 bg-background/80 backdrop-blur-sm transition-all"),
+				g.If(props.CloseOnOutsideClick, backdropClick),
+			),
 
 			// Drawer panel
 			html.Div(
@@ -239,4 +240,3 @@ func getDrawerSlideTransition(side forgeui.Side) *animation.Transition {
 		return animation.SlideInFromRight()
 	}
 }
-

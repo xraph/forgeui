@@ -1,8 +1,8 @@
 package plugin
 
 import (
-	g "maragu.dev/gomponents"
 	"github.com/xraph/forgeui"
+	g "maragu.dev/gomponents"
 )
 
 // ComponentPlugin extends ForgeUI with new UI components.
@@ -66,6 +66,7 @@ type ComponentConstructor func(props any, children ...g.Node) g.Node
 //	}
 type ComponentPluginBase struct {
 	*PluginBase
+
 	components map[string]ComponentConstructor
 	cva        map[string]*forgeui.CVA
 }
@@ -108,6 +109,7 @@ func (c *ComponentPluginBase) AddComponent(name string, constructor ComponentCon
 	if c.components == nil {
 		c.components = make(map[string]ComponentConstructor)
 	}
+
 	c.components[name] = constructor
 }
 
@@ -116,6 +118,6 @@ func (c *ComponentPluginBase) AddCVA(name string, cva *forgeui.CVA) {
 	if c.cva == nil {
 		c.cva = make(map[string]*forgeui.CVA)
 	}
+
 	c.cva[name] = cva
 }
-

@@ -63,6 +63,7 @@ func TestList(t *testing.T) {
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
 			var buf bytes.Buffer
+
 			node := List(tt.opts...)(tt.children...)
 			if err := node.Render(&buf); err != nil {
 				t.Fatalf("render error: %v", err)
@@ -81,6 +82,7 @@ func TestList(t *testing.T) {
 
 func TestOrderedList(t *testing.T) {
 	var buf bytes.Buffer
+
 	node := OrderedList()(
 		ListItem()(g.Text("First")),
 		ListItem()(g.Text("Second")),
@@ -94,9 +96,11 @@ func TestOrderedList(t *testing.T) {
 	if !strings.Contains(html, "<ol") {
 		t.Error("output should contain <ol")
 	}
+
 	if !strings.Contains(html, "list-decimal") {
 		t.Error("output should contain list-decimal class")
 	}
+
 	if !strings.Contains(html, "First") {
 		t.Error("output should contain 'First'")
 	}
@@ -166,6 +170,7 @@ func TestListItem(t *testing.T) {
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
 			var buf bytes.Buffer
+
 			node := ListItem(tt.opts...)(tt.children...)
 			if err := node.Render(&buf); err != nil {
 				t.Fatalf("render error: %v", err)
@@ -195,6 +200,7 @@ func TestListVariants(t *testing.T) {
 	for _, v := range variants {
 		t.Run(string(v.variant), func(t *testing.T) {
 			var buf bytes.Buffer
+
 			node := List(WithVariant(v.variant))(
 				ListItem()(g.Text("Test")),
 			)
@@ -223,6 +229,7 @@ func TestListItemVariants(t *testing.T) {
 	for _, v := range variants {
 		t.Run(string(v.variant), func(t *testing.T) {
 			var buf bytes.Buffer
+
 			node := ListItem(WithItemVariant(v.variant))(
 				g.Text("Test"),
 			)
@@ -237,4 +244,3 @@ func TestListItemVariants(t *testing.T) {
 		})
 	}
 }
-

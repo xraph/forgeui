@@ -1,6 +1,6 @@
 package plugin
 
-import "fmt"
+import "errors"
 
 // TopologicalSort returns plugins in dependency order using Kahn's algorithm.
 // Returns an error if a circular dependency is detected.
@@ -36,6 +36,7 @@ func (r *Registry) TopologicalSort() ([]Plugin, error) {
 
 	// Find all nodes with no incoming edges
 	var queue []string
+
 	for name, degree := range inDegree {
 		if degree == 0 {
 			queue = append(queue, name)
@@ -44,10 +45,12 @@ func (r *Registry) TopologicalSort() ([]Plugin, error) {
 
 	// Kahn's algorithm
 	var sorted []Plugin
+
 	for len(queue) > 0 {
 		// Dequeue
 		name := queue[0]
 		queue = queue[1:]
+
 		sorted = append(sorted, r.plugins[name])
 
 		// For each dependent of the current plugin
@@ -61,9 +64,8 @@ func (r *Registry) TopologicalSort() ([]Plugin, error) {
 
 	// If we didn't process all plugins, there's a cycle
 	if len(sorted) != len(r.plugins) {
-		return nil, fmt.Errorf("circular dependency detected")
+		return nil, errors.New("circular dependency detected")
 	}
 
 	return sorted, nil
 }
-

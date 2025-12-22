@@ -21,6 +21,7 @@ func TestBox(t *testing.T) {
 		if !strings.Contains(html, "<div") {
 			t.Error("expected <div tag")
 		}
+
 		if !strings.Contains(html, "content") {
 			t.Error("expected content")
 		}
@@ -176,9 +177,11 @@ func TestVStack(t *testing.T) {
 	if !strings.Contains(html, "flex-col") {
 		t.Error("expected flex-col class")
 	}
+
 	if !strings.Contains(html, "gap-4") {
 		t.Error("expected gap-4 class")
 	}
+
 	if !strings.Contains(html, "item1") || !strings.Contains(html, "item2") {
 		t.Error("expected children content")
 	}
@@ -194,9 +197,11 @@ func TestHStack(t *testing.T) {
 	if !strings.Contains(html, "flex") {
 		t.Error("expected flex class")
 	}
+
 	if !strings.Contains(html, "items-center") {
 		t.Error("expected items-center class")
 	}
+
 	if !strings.Contains(html, "gap-2") {
 		t.Error("expected gap-2 class")
 	}
@@ -212,9 +217,11 @@ func TestCenter(t *testing.T) {
 	if !strings.Contains(html, "justify-center") {
 		t.Error("expected justify-center class")
 	}
+
 	if !strings.Contains(html, "items-center") {
 		t.Error("expected items-center class")
 	}
+
 	if !strings.Contains(html, "centered content") {
 		t.Error("expected content")
 	}
@@ -241,9 +248,11 @@ func TestContainer(t *testing.T) {
 	if !strings.Contains(html, "container") {
 		t.Error("expected container class")
 	}
+
 	if !strings.Contains(html, "mx-auto") {
 		t.Error("expected mx-auto class")
 	}
+
 	if !strings.Contains(html, "content") {
 		t.Error("expected content")
 	}
@@ -260,6 +269,7 @@ func TestText(t *testing.T) {
 		if !strings.Contains(html, "<p") {
 			t.Error("expected <p tag")
 		}
+
 		if !strings.Contains(html, "Hello") {
 			t.Error("expected content")
 		}

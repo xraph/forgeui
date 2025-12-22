@@ -31,6 +31,7 @@ import (
 // Analytics plugin implements plugin lifecycle hooks.
 type Analytics struct {
 	*plugin.PluginBase
+
 	config Config
 }
 
@@ -86,7 +87,7 @@ func New(config Config) *Analytics {
 func (a *Analytics) Init(ctx context.Context, registry *plugin.Registry) error {
 	// Register hooks for tracking
 	hooks := registry.Hooks()
-	
+
 	if a.config.TrackPageViews {
 		// Hook into page renders to track page views
 		hooks.On(plugin.HookAfterRender, func(hctx *plugin.HookContext) error {
@@ -117,10 +118,10 @@ func (a *Analytics) Scripts() []plugin.Script {
 	case "ga4":
 		if a.config.TrackingID != "" {
 			scripts = append(scripts, plugin.Script{
-				Name: "google-analytics",
-				URL:  fmt.Sprintf("https://www.googletagmanager.com/gtag/js?id=%s", a.config.TrackingID),
+				Name:     "google-analytics",
+				URL:      "https://www.googletagmanager.com/gtag/js?id=" + a.config.TrackingID,
 				Priority: 10,
-				Defer:   true,
+				Defer:    true,
 			})
 			scripts = append(scripts, plugin.Script{
 				Name:     "ga4-init",
@@ -255,4 +256,3 @@ func (a *Analytics) Magics() []plugin.AlpineMagic {
 func (a *Analytics) AlpineComponents() []plugin.AlpineComponent {
 	return nil
 }
-

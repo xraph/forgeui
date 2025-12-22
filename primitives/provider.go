@@ -9,6 +9,7 @@ import (
 	"encoding/json"
 	"fmt"
 	"io"
+	"strconv"
 	"strings"
 
 	g "maragu.dev/gomponents"
@@ -108,6 +109,7 @@ func WithProviderHook(name, code string) ProviderOption {
 		if p.Hooks == nil {
 			p.Hooks = make(map[string]string)
 		}
+
 		p.Hooks[name] = code
 	}
 }
@@ -141,6 +143,7 @@ func (r rawHTMLAttr) Render(w io.Writer) error {
 	val = strings.ReplaceAll(val, "\"", "&quot;")
 
 	_, err := fmt.Fprintf(w, ` %s="%s"`, r.name, val)
+
 	return err
 }
 
@@ -227,8 +230,10 @@ func buildXDataValue(props *ProviderProps) string {
 
 	// Build state as JavaScript object literals (keys without quotes)
 	var stateParts []string
+
 	for key, value := range props.State {
 		var jsValue string
+
 		switch v := value.(type) {
 		case string:
 			// Escape backslashes first, then single quotes
@@ -236,7 +241,7 @@ func buildXDataValue(props *ProviderProps) string {
 			escaped = strings.ReplaceAll(escaped, `'`, `\'`)
 			jsValue = fmt.Sprintf("'%s'", escaped)
 		case bool:
-			jsValue = fmt.Sprintf("%t", v)
+			jsValue = strconv.FormatBool(v)
 		case int, int8, int16, int32, int64, uint, uint8, uint16, uint32, uint64:
 			jsValue = fmt.Sprintf("%v", v)
 		case float32, float64:
@@ -245,8 +250,13 @@ func buildXDataValue(props *ProviderProps) string {
 			jsValue = "null"
 		default:
 			// Fallback to JSON for complex types, but convert to JS object literal
-			jsonBytes, _ := json.Marshal(v)
-			jsValue = string(jsonBytes)
+			jsonBytes, err := json.Marshal(v)
+			if err != nil {
+				// Fallback to null on marshal error
+				jsValue = "null"
+			} else {
+				jsValue = string(jsonBytes)
+			}
 		}
 		// JavaScript object literal: key without quotes
 		stateParts = append(stateParts, fmt.Sprintf("%s:%s", key, jsValue))
@@ -257,6 +267,7 @@ func buildXDataValue(props *ProviderProps) string {
 		if len(stateParts) == 0 {
 			return "{}"
 		}
+
 		return "{" + strings.Join(stateParts, ",") + "}"
 	}
 
@@ -273,12 +284,14 @@ func buildXDataValue(props *ProviderProps) string {
 	for strings.Contains(methodsStr, "  ") {
 		methodsStr = strings.ReplaceAll(methodsStr, "  ", " ")
 	}
+
 	methodsStr = strings.TrimSpace(methodsStr)
 
 	// Merge state and methods
 	if len(stateParts) == 0 {
 		return "{" + methodsStr + "}"
 	}
+
 	return "{" + strings.Join(stateParts, ",") + "," + methodsStr + "}"
 }
 
@@ -305,6 +318,7 @@ func buildXInitValue(props *ProviderProps) string {
 		for strings.Contains(initCode, "  ") {
 			initCode = strings.ReplaceAll(initCode, "  ", " ")
 		}
+
 		initParts = append(initParts, strings.TrimSpace(initCode))
 	}
 
@@ -355,6 +369,7 @@ func ProviderValue(providerName, key string) string {
 //	// Generates: @click="$el.closest('[data-provider=\"sidebar\"]').__x.$data.toggle()"
 func ProviderMethod(providerName, method string, args ...string) string {
 	argsStr := strings.Join(args, ", ")
+
 	return fmt.Sprintf("$el.closest('[data-provider=\"%s\"]').__x.$data.%s(%s)",
 		providerName, method, argsStr)
 }
@@ -369,6 +384,7 @@ func ProviderDispatch(providerName, eventName, data string) string {
 	if data == "" {
 		data = "{}"
 	}
+
 	return fmt.Sprintf("$dispatch('provider:%s:%s', %s)", providerName, eventName, data)
 }
 

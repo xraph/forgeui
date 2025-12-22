@@ -12,10 +12,10 @@ type Request struct {
 
 // Response represents a JSON-RPC 2.0 response
 type Response struct {
-	JSONRPC string      `json:"jsonrpc"`
-	ID      any         `json:"id,omitempty"`
-	Result  any         `json:"result,omitempty"`
-	Error   *Error      `json:"error,omitempty"`
+	JSONRPC string `json:"jsonrpc"`
+	ID      any    `json:"id,omitempty"`
+	Result  any    `json:"result,omitempty"`
+	Error   *Error `json:"error,omitempty"`
 }
 
 // BatchRequest represents multiple requests in a single call
@@ -63,6 +63,7 @@ func NewError(code int, message string, data ...any) *Error {
 	if len(data) > 0 {
 		err.Data = data[0]
 	}
+
 	return err
 }
 
@@ -74,9 +75,9 @@ type Event struct {
 
 // StreamChunk represents a chunk of streaming data
 type StreamChunk struct {
-	Data  any  `json:"data,omitempty"`
+	Data  any    `json:"data,omitempty"`
 	Error *Error `json:"error,omitempty"`
-	Done  bool `json:"done"`
+	Done  bool   `json:"done"`
 }
 
 // Common error constructors
@@ -92,4 +93,3 @@ var (
 	ErrBadRequest     = NewError(ErrCodeBadRequest, "Bad request")
 	ErrForbidden      = NewError(ErrCodeForbidden, "Forbidden")
 )
-

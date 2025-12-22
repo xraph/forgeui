@@ -63,9 +63,9 @@ func DarkModeScriptWithDefault(defaultTheme string) g.Node {
 // This provides functions to get, set, and sync theme across tabs.
 //
 // The script exposes:
-//  - getTheme(): Returns current theme ('light' or 'dark')
-//  - setTheme(theme): Sets theme and persists to localStorage
-//  - toggleTheme(): Toggles between light and dark
+//   - getTheme(): Returns current theme ('light' or 'dark')
+//   - setTheme(theme): Sets theme and persists to localStorage
+//   - toggleTheme(): Toggles between light and dark
 func ThemeScript() g.Node {
 	script := `(function() {
   // Initialize theme on load
@@ -167,4 +167,3 @@ func ThemeStyleCloak() g.Node {
 		g.Raw(css),
 	)
 }
-

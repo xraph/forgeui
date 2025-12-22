@@ -141,6 +141,7 @@ func RadioGroup(name string, options []RadioGroupOption) g.Node {
 					if opt.Checked {
 						opts = append(opts, Checked())
 					}
+
 					return Radio(opts...)
 				}(),
 				primitives.Text(

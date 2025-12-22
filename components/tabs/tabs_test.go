@@ -5,8 +5,8 @@ import (
 	"strings"
 	"testing"
 
-	g "maragu.dev/gomponents"
 	"github.com/xraph/forgeui/components/tabs"
+	g "maragu.dev/gomponents"
 )
 
 func TestTabs(t *testing.T) {
@@ -58,6 +58,7 @@ func TestTabs(t *testing.T) {
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
 			var buf bytes.Buffer
+
 			node := tabs.TabsWithOptions(tt.opts, tt.children...)
 			if err := node.Render(&buf); err != nil {
 				t.Fatalf("render error: %v", err)
@@ -82,6 +83,7 @@ func TestTabs(t *testing.T) {
 
 func TestTabList(t *testing.T) {
 	var buf bytes.Buffer
+
 	node := tabs.TabList(
 		tabs.Tab("tab1", g.Text("Tab 1")),
 	)
@@ -93,6 +95,7 @@ func TestTabList(t *testing.T) {
 	if !strings.Contains(html, `role="tablist"`) {
 		t.Error("TabList missing role attribute")
 	}
+
 	if !strings.Contains(html, "bg-muted") {
 		t.Error("TabList missing expected classes")
 	}
@@ -100,6 +103,7 @@ func TestTabList(t *testing.T) {
 
 func TestTab(t *testing.T) {
 	var buf bytes.Buffer
+
 	node := tabs.Tab("test-tab", g.Text("Test"))
 	if err := node.Render(&buf); err != nil {
 		t.Fatalf("render error: %v", err)
@@ -109,9 +113,11 @@ func TestTab(t *testing.T) {
 	if !strings.Contains(html, `role="tab"`) {
 		t.Error("Tab missing role attribute")
 	}
+
 	if !strings.Contains(html, `test-tab`) {
 		t.Error("Tab missing id reference")
 	}
+
 	if !strings.Contains(html, "Test") {
 		t.Error("Tab missing label")
 	}
@@ -119,6 +125,7 @@ func TestTab(t *testing.T) {
 
 func TestTabPanel(t *testing.T) {
 	var buf bytes.Buffer
+
 	node := tabs.TabPanel("panel1", g.Text("Panel content"))
 	if err := node.Render(&buf); err != nil {
 		t.Fatalf("render error: %v", err)
@@ -128,11 +135,12 @@ func TestTabPanel(t *testing.T) {
 	if !strings.Contains(html, `role="tabpanel"`) {
 		t.Error("TabPanel missing role attribute")
 	}
+
 	if !strings.Contains(html, "Panel content") {
 		t.Error("TabPanel missing content")
 	}
+
 	if !strings.Contains(html, "x-show") {
 		t.Error("TabPanel missing x-show directive")
 	}
 }
-

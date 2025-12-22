@@ -21,9 +21,11 @@ func TestCard(t *testing.T) {
 		if !strings.Contains(html, "rounded-lg") {
 			t.Error("expected rounded-lg class")
 		}
+
 		if !strings.Contains(html, "border") {
 			t.Error("expected border class")
 		}
+
 		if !strings.Contains(html, "content") {
 			t.Error("expected content")
 		}
@@ -54,9 +56,11 @@ func TestCard_Header(t *testing.T) {
 	if !strings.Contains(html, "grid") {
 		t.Error("expected grid class")
 	}
+
 	if !strings.Contains(html, "px-6") {
 		t.Error("expected padding class")
 	}
+
 	if !strings.Contains(html, "header content") {
 		t.Error("expected header content")
 	}
@@ -72,12 +76,15 @@ func TestCard_Title(t *testing.T) {
 	if !strings.Contains(html, "<h3") {
 		t.Error("expected <h3 tag")
 	}
+
 	if !strings.Contains(html, "leading-none") {
 		t.Error("expected leading-none class")
 	}
+
 	if !strings.Contains(html, "font-semibold") {
 		t.Error("expected font-semibold class")
 	}
+
 	if !strings.Contains(html, "My Title") {
 		t.Error("expected title text")
 	}
@@ -93,12 +100,15 @@ func TestCard_Description(t *testing.T) {
 	if !strings.Contains(html, "<p") {
 		t.Error("expected <p tag")
 	}
+
 	if !strings.Contains(html, "text-sm") {
 		t.Error("expected text-sm class")
 	}
+
 	if !strings.Contains(html, "text-muted-foreground") {
 		t.Error("expected text-muted-foreground class")
 	}
+
 	if !strings.Contains(html, "Card description") {
 		t.Error("expected description text")
 	}
@@ -114,6 +124,7 @@ func TestCard_Content(t *testing.T) {
 	if !strings.Contains(html, "px-6") {
 		t.Error("expected px-6 class")
 	}
+
 	if !strings.Contains(html, "main content") {
 		t.Error("expected content text")
 	}
@@ -129,9 +140,11 @@ func TestCard_Footer(t *testing.T) {
 	if !strings.Contains(html, "flex") {
 		t.Error("expected flex class")
 	}
+
 	if !strings.Contains(html, "items-center") {
 		t.Error("expected items-center class")
 	}
+
 	if !strings.Contains(html, "footer content") {
 		t.Error("expected footer content")
 	}

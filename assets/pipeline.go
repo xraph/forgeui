@@ -42,7 +42,7 @@ type ProcessorConfig struct {
 	Watch bool
 
 	// CustomConfig allows processors to receive custom configuration
-	CustomConfig map[string]interface{}
+	CustomConfig map[string]any
 }
 
 // Pipeline orchestrates multiple asset processors in sequence.
@@ -87,6 +87,7 @@ func NewPipeline(cfg PipelineConfig, manager *Manager) *Pipeline {
 	if cfg.InputDir == "" {
 		cfg.InputDir = "assets"
 	}
+
 	if cfg.OutputDir == "" {
 		cfg.OutputDir = "dist"
 	}
@@ -110,6 +111,7 @@ func (p *Pipeline) AddProcessor(processor Processor) *Pipeline {
 	defer p.mu.Unlock()
 
 	p.processors = append(p.processors, processor)
+
 	return p
 }
 
@@ -173,6 +175,7 @@ func (p *Pipeline) cleanOutput() error {
 			return err
 		}
 	}
+
 	return nil
 }
 
@@ -204,6 +207,7 @@ func (p *Pipeline) generateManifest() error {
 func (p *Pipeline) ProcessorCount() int {
 	p.mu.RLock()
 	defer p.mu.RUnlock()
+
 	return len(p.processors)
 }
 
@@ -211,6 +215,7 @@ func (p *Pipeline) ProcessorCount() int {
 func (p *Pipeline) Config() PipelineConfig {
 	p.mu.RLock()
 	defer p.mu.RUnlock()
+
 	return p.config
 }
 
@@ -221,6 +226,6 @@ func (p *Pipeline) Processors() []Processor {
 
 	processors := make([]Processor, len(p.processors))
 	copy(processors, p.processors)
+
 	return processors
 }
-

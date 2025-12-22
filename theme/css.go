@@ -96,36 +96,47 @@ func generateColorVars(colors ColorTokens) string {
 	if colors.Chart1 != "" {
 		b.WriteString(fmt.Sprintf("  --chart-1: %s;\n", colors.Chart1))
 	}
+
 	if colors.Chart2 != "" {
 		b.WriteString(fmt.Sprintf("  --chart-2: %s;\n", colors.Chart2))
 	}
+
 	if colors.Chart3 != "" {
 		b.WriteString(fmt.Sprintf("  --chart-3: %s;\n", colors.Chart3))
 	}
+
 	if colors.Chart4 != "" {
 		b.WriteString(fmt.Sprintf("  --chart-4: %s;\n", colors.Chart4))
 	}
+
 	if colors.Chart5 != "" {
 		b.WriteString(fmt.Sprintf("  --chart-5: %s;\n", colors.Chart5))
 	}
+
 	if colors.Chart6 != "" {
 		b.WriteString(fmt.Sprintf("  --chart-6: %s;\n", colors.Chart6))
 	}
+
 	if colors.Chart7 != "" {
 		b.WriteString(fmt.Sprintf("  --chart-7: %s;\n", colors.Chart7))
 	}
+
 	if colors.Chart8 != "" {
 		b.WriteString(fmt.Sprintf("  --chart-8: %s;\n", colors.Chart8))
 	}
+
 	if colors.Chart9 != "" {
 		b.WriteString(fmt.Sprintf("  --chart-9: %s;\n", colors.Chart9))
 	}
+
 	if colors.Chart10 != "" {
 		b.WriteString(fmt.Sprintf("  --chart-10: %s;\n", colors.Chart10))
 	}
+
 	if colors.Chart11 != "" {
 		b.WriteString(fmt.Sprintf("  --chart-11: %s;\n", colors.Chart11))
 	}
+
 	if colors.Chart12 != "" {
 		b.WriteString(fmt.Sprintf("  --chart-12: %s;\n", colors.Chart12))
 	}
@@ -152,17 +163,21 @@ func generateRadiusVars(radius RadiusTokens) string {
 	if radius.SM != "" {
 		b.WriteString(fmt.Sprintf("  --radius-sm: %s;\n", radius.SM))
 	}
+
 	if radius.MD != "" {
 		b.WriteString(fmt.Sprintf("  --radius-md: %s;\n", radius.MD))
 	}
+
 	if radius.LG != "" {
 		b.WriteString(fmt.Sprintf("  --radius-lg: %s;\n", radius.LG))
 		// Default radius for components (using LG as per modern shadcn/ui)
 		b.WriteString(fmt.Sprintf("  --radius: %s;\n", radius.LG))
 	}
+
 	if radius.XL != "" {
 		b.WriteString(fmt.Sprintf("  --radius-xl: %s;\n", radius.XL))
 	}
+
 	if radius.Full != "" {
 		b.WriteString(fmt.Sprintf("  --radius-full: %s;\n", radius.Full))
 	}
@@ -177,20 +192,25 @@ func generateSpacingVars(spacing SpacingTokens) string {
 	if spacing.XS != "" {
 		b.WriteString(fmt.Sprintf("  --spacing-xs: %s;\n", spacing.XS))
 	}
+
 	if spacing.SM != "" {
 		b.WriteString(fmt.Sprintf("  --spacing-sm: %s;\n", spacing.SM))
 	}
+
 	if spacing.MD != "" {
 		b.WriteString(fmt.Sprintf("  --spacing-md: %s;\n", spacing.MD))
 		// Default spacing
 		b.WriteString(fmt.Sprintf("  --spacing: %s;\n", spacing.MD))
 	}
+
 	if spacing.LG != "" {
 		b.WriteString(fmt.Sprintf("  --spacing-lg: %s;\n", spacing.LG))
 	}
+
 	if spacing.XL != "" {
 		b.WriteString(fmt.Sprintf("  --spacing-xl: %s;\n", spacing.XL))
 	}
+
 	if spacing.XXL != "" {
 		b.WriteString(fmt.Sprintf("  --spacing-xxl: %s;\n", spacing.XXL))
 	}
@@ -205,21 +225,27 @@ func generateFontSizeVars(fontSize FontSizeTokens) string {
 	if fontSize.XS != "" {
 		b.WriteString(fmt.Sprintf("  --font-size-xs: %s;\n", fontSize.XS))
 	}
+
 	if fontSize.SM != "" {
 		b.WriteString(fmt.Sprintf("  --font-size-sm: %s;\n", fontSize.SM))
 	}
+
 	if fontSize.Base != "" {
 		b.WriteString(fmt.Sprintf("  --font-size-base: %s;\n", fontSize.Base))
 	}
+
 	if fontSize.LG != "" {
 		b.WriteString(fmt.Sprintf("  --font-size-lg: %s;\n", fontSize.LG))
 	}
+
 	if fontSize.XL != "" {
 		b.WriteString(fmt.Sprintf("  --font-size-xl: %s;\n", fontSize.XL))
 	}
+
 	if fontSize.XXL != "" {
 		b.WriteString(fmt.Sprintf("  --font-size-xxl: %s;\n", fontSize.XXL))
 	}
+
 	if fontSize.XXXL != "" {
 		b.WriteString(fmt.Sprintf("  --font-size-xxxl: %s;\n", fontSize.XXXL))
 	}
@@ -234,14 +260,17 @@ func generateShadowVars(shadow ShadowTokens) string {
 	if shadow.SM != "" {
 		b.WriteString(fmt.Sprintf("  --shadow-sm: %s;\n", shadow.SM))
 	}
+
 	if shadow.MD != "" {
 		b.WriteString(fmt.Sprintf("  --shadow-md: %s;\n", shadow.MD))
 		// Default shadow
 		b.WriteString(fmt.Sprintf("  --shadow: %s;\n", shadow.MD))
 	}
+
 	if shadow.LG != "" {
 		b.WriteString(fmt.Sprintf("  --shadow-lg: %s;\n", shadow.LG))
 	}
+
 	if shadow.XL != "" {
 		b.WriteString(fmt.Sprintf("  --shadow-xl: %s;\n", shadow.XL))
 	}
@@ -326,4 +355,3 @@ func GenerateTailwindConfig() string {
   },
 }`
 }
-

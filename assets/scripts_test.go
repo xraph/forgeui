@@ -13,6 +13,7 @@ func TestNewScriptManager(t *testing.T) {
 	if sm == nil {
 		t.Fatal("NewScriptManager returned nil")
 	}
+
 	if sm.Count() != 0 {
 		t.Errorf("New manager should have 0 scripts, got %d", sm.Count())
 	}
@@ -111,7 +112,7 @@ func TestScriptManager_PrioritySorting(t *testing.T) {
 		t.Fatal("Not all scripts were rendered")
 	}
 
-	if !(frameworkPos < libraryPos && libraryPos < appPos && appPos < analyticsPos) {
+	if frameworkPos >= libraryPos || libraryPos >= appPos || appPos >= analyticsPos {
 		t.Errorf("Scripts not in priority order: framework=%d, library=%d, app=%d, analytics=%d",
 			frameworkPos, libraryPos, appPos, analyticsPos)
 	}
@@ -295,13 +296,16 @@ func TestScriptManager_ConcurrentAccess(t *testing.T) {
 	sm := NewScriptManager()
 
 	var wg sync.WaitGroup
+
 	numGoroutines := 100
 
 	// Concurrent writes
-	for i := 0; i < numGoroutines; i++ {
+	for i := range numGoroutines {
 		wg.Add(1)
+
 		go func(n int) {
 			defer wg.Done()
+
 			sm.Add(ScriptEntry{
 				Path:     "/js/script" + string(rune(n)) + ".js",
 				Priority: n,
@@ -318,10 +322,12 @@ func TestScriptManager_ConcurrentAccess(t *testing.T) {
 	}
 
 	// Concurrent reads
-	for i := 0; i < numGoroutines; i++ {
+	for range numGoroutines {
 		wg.Add(1)
+
 		go func() {
 			defer wg.Done()
+
 			_ = sm.Render("body")
 			_ = sm.Count()
 			_ = sm.CountByPosition("body")
@@ -346,6 +352,6 @@ func renderNodes(nodes []g.Node) string {
 	for _, node := range nodes {
 		_ = node.Render(&sb)
 	}
+
 	return sb.String()
 }
-

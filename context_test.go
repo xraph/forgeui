@@ -15,6 +15,7 @@ func TestWithTheme(t *testing.T) {
 	if !ok {
 		t.Error("ThemeFromContext() returned false, expected true")
 	}
+
 	if retrieved != theme {
 		t.Errorf("ThemeFromContext() = %v, want %v", retrieved, theme)
 	}
@@ -42,9 +43,11 @@ func TestWithConfig(t *testing.T) {
 	if !ok {
 		t.Error("ConfigFromContext() returned false, expected true")
 	}
+
 	if retrieved != cfg {
 		t.Error("ConfigFromContext() returned different config")
 	}
+
 	if !retrieved.Debug {
 		t.Error("Config Debug should be true")
 	}

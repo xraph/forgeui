@@ -87,25 +87,24 @@ type DoughnutChartData struct {
 
 // DefaultColors provides a default color palette for charts.
 var DefaultColors = []string{
-	"rgba(59, 130, 246, 0.8)",  // blue
-	"rgba(34, 197, 94, 0.8)",   // green
-	"rgba(234, 179, 8, 0.8)",   // yellow
-	"rgba(239, 68, 68, 0.8)",   // red
-	"rgba(168, 85, 247, 0.8)",  // purple
-	"rgba(236, 72, 153, 0.8)",  // pink
-	"rgba(14, 165, 233, 0.8)",  // sky
-	"rgba(251, 146, 60, 0.8)",  // orange
+	"rgba(59, 130, 246, 0.8)", // blue
+	"rgba(34, 197, 94, 0.8)",  // green
+	"rgba(234, 179, 8, 0.8)",  // yellow
+	"rgba(239, 68, 68, 0.8)",  // red
+	"rgba(168, 85, 247, 0.8)", // purple
+	"rgba(236, 72, 153, 0.8)", // pink
+	"rgba(14, 165, 233, 0.8)", // sky
+	"rgba(251, 146, 60, 0.8)", // orange
 }
 
 // BorderColors provides border colors matching DefaultColors.
 var BorderColors = []string{
-	"rgb(59, 130, 246)",  // blue
-	"rgb(34, 197, 94)",   // green
-	"rgb(234, 179, 8)",   // yellow
-	"rgb(239, 68, 68)",   // red
-	"rgb(168, 85, 247)",  // purple
-	"rgb(236, 72, 153)",  // pink
-	"rgb(14, 165, 233)",  // sky
-	"rgb(251, 146, 60)",  // orange
+	"rgb(59, 130, 246)", // blue
+	"rgb(34, 197, 94)",  // green
+	"rgb(234, 179, 8)",  // yellow
+	"rgb(239, 68, 68)",  // red
+	"rgb(168, 85, 247)", // purple
+	"rgb(236, 72, 153)", // pink
+	"rgb(14, 165, 233)", // sky
+	"rgb(251, 146, 60)", // orange
 }
-

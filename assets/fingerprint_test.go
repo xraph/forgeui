@@ -12,6 +12,7 @@ func TestFingerprint(t *testing.T) {
 
 	// Create a test file with known content
 	testFile := filepath.Join(tmpDir, "test.css")
+
 	content := []byte("body { color: red; }")
 	if err := os.WriteFile(testFile, content, 0644); err != nil {
 		t.Fatalf("Failed to create test file: %v", err)
@@ -40,6 +41,7 @@ func TestFingerprint_Consistency(t *testing.T) {
 	tmpDir := t.TempDir()
 
 	testFile := filepath.Join(tmpDir, "test.css")
+
 	content := []byte("body { color: blue; }")
 	if err := os.WriteFile(testFile, content, 0644); err != nil {
 		t.Fatalf("Failed to create test file: %v", err)
@@ -68,6 +70,7 @@ func TestFingerprint_DifferentContent(t *testing.T) {
 	if err := os.WriteFile(file1, []byte("content1"), 0644); err != nil {
 		t.Fatalf("Failed to create test file: %v", err)
 	}
+
 	if err := os.WriteFile(file2, []byte("content2"), 0644); err != nil {
 		t.Fatalf("Failed to create test file: %v", err)
 	}
@@ -226,10 +229,12 @@ func TestFingerprintAll(t *testing.T) {
 
 	for _, file := range testFiles {
 		fullPath := filepath.Join(tmpDir, file)
+
 		dir := filepath.Dir(fullPath)
 		if err := os.MkdirAll(dir, 0755); err != nil {
 			t.Fatalf("Failed to create directory: %v", err)
 		}
+
 		if err := os.WriteFile(fullPath, []byte("test"), 0644); err != nil {
 			t.Fatalf("Failed to create test file: %v", err)
 		}
@@ -254,4 +259,3 @@ func TestFingerprintAll(t *testing.T) {
 		}
 	}
 }
-

@@ -125,7 +125,7 @@ func TestRequestID(t *testing.T) {
 	ctx := &PageContext{
 		ResponseWriter: w,
 		Request:        req,
-		values:         make(map[string]interface{}),
+		values:         make(map[string]any),
 	}
 
 	_, err := wrapped(ctx)
@@ -152,6 +152,7 @@ func TestBasicAuth_Success(t *testing.T) {
 
 	req := httptest.NewRequest(MethodGet, "/test", nil)
 	req.SetBasicAuth("admin", "secret")
+
 	w := httptest.NewRecorder()
 	ctx := &PageContext{
 		ResponseWriter: w,
@@ -178,6 +179,7 @@ func TestBasicAuth_Failure(t *testing.T) {
 
 	req := httptest.NewRequest(MethodGet, "/test", nil)
 	req.SetBasicAuth("admin", "wrong")
+
 	w := httptest.NewRecorder()
 	ctx := &PageContext{
 		ResponseWriter: w,
@@ -304,4 +306,3 @@ func TestChain(t *testing.T) {
 		t.Error("Expected X-M2 header from second middleware")
 	}
 }
-

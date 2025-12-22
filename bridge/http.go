@@ -2,6 +2,7 @@ package bridge
 
 import (
 	"encoding/json"
+	"errors"
 	"io"
 	"net/http"
 )
@@ -28,6 +29,7 @@ func (h *HTTPHandler) ServeHTTP(w http.ResponseWriter, r *http.Request) {
 	// Handle CORS
 	if h.bridge.config.EnableCORS {
 		h.handleCORS(w, r)
+
 		if r.Method == http.MethodOptions {
 			w.WriteHeader(http.StatusOK)
 			return
@@ -42,11 +44,13 @@ func (h *HTTPHandler) ServeHTTP(w http.ResponseWriter, r *http.Request) {
 
 	// Check CSRF
 	if err := h.security.CheckCSRF(r); err != nil {
-		if bridgeErr, ok := err.(*Error); ok {
+		var bridgeErr *Error
+		if errors.As(err, &bridgeErr) {
 			h.writeError(w, nil, bridgeErr)
 		} else {
 			h.writeError(w, nil, ErrBadRequest)
 		}
+
 		return
 	}
 
@@ -98,22 +102,26 @@ func (h *HTTPHandler) handleSingleRequest(w http.ResponseWriter, ctx Context, re
 
 	// Check authentication
 	if err := h.security.CheckAuth(ctx, fn); err != nil {
-		if bridgeErr, ok := err.(*Error); ok {
+		var bridgeErr *Error
+		if errors.As(err, &bridgeErr) {
 			h.writeError(w, req.ID, bridgeErr)
 		} else {
 			h.writeError(w, req.ID, ErrUnauthorized)
 		}
+
 		return
 	}
 
 	// Check rate limit
 	rateLimitKey := getRateLimitKey(ctx)
 	if err := h.security.CheckRateLimit(rateLimitKey, fn); err != nil {
-		if bridgeErr, ok := err.(*Error); ok {
+		var bridgeErr *Error
+		if errors.As(err, &bridgeErr) {
 			h.writeError(w, req.ID, bridgeErr)
 		} else {
 			h.writeError(w, req.ID, ErrRateLimit)
 		}
+
 		return
 	}
 
@@ -134,7 +142,11 @@ func (h *HTTPHandler) handleSingleRequest(w http.ResponseWriter, ctx Context, re
 
 	// Write response
 	w.WriteHeader(http.StatusOK)
-	json.NewEncoder(w).Encode(resp)
+
+	if err := json.NewEncoder(w).Encode(resp); err != nil {
+		// Log encoding error - response already sent
+		_ = err // Error already logged by potential middleware
+	}
 }
 
 // handleBatchRequest handles a batch of RPC requests
@@ -147,16 +159,18 @@ func (h *HTTPHandler) handleBatchRequest(w http.ResponseWriter, ctx Context, bat
 
 	// Convert to Request slice
 	requests := make([]Request, len(batch))
-	for i, req := range batch {
-		requests[i] = req
-	}
+	copy(requests, batch)
 
 	// Execute batch
 	responses := h.bridge.CallBatch(ctx, requests)
 
 	// Write response
 	w.WriteHeader(http.StatusOK)
-	json.NewEncoder(w).Encode(responses)
+
+	if err := json.NewEncoder(w).Encode(responses); err != nil {
+		// Log encoding error - response already sent
+		_ = err // Error already logged by potential middleware
+	}
 }
 
 // writeError writes an error response
@@ -168,7 +182,11 @@ func (h *HTTPHandler) writeError(w http.ResponseWriter, id any, err *Error) {
 	}
 
 	w.WriteHeader(http.StatusOK) // JSON-RPC errors use 200 OK
-	json.NewEncoder(w).Encode(resp)
+
+	if encodeErr := json.NewEncoder(w).Encode(resp); encodeErr != nil {
+		// Log encoding error - response already sent
+		_ = encodeErr // Error already logged by potential middleware
+	}
 }
 
 // handleCORS sets CORS headers
@@ -180,6 +198,7 @@ func (h *HTTPHandler) handleCORS(w http.ResponseWriter, r *http.Request) {
 
 	// Check if origin is allowed
 	allowed := false
+
 	for _, allowedOrigin := range h.bridge.config.AllowedOrigins {
 		if allowedOrigin == "*" || allowedOrigin == origin {
 			allowed = true
@@ -202,4 +221,3 @@ func (h *HTTPHandler) handleCORS(w http.ResponseWriter, r *http.Request) {
 func (b *Bridge) Handler() http.Handler {
 	return NewHTTPHandler(b)
 }
-

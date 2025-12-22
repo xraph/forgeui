@@ -19,7 +19,7 @@ import (
 //	    }
 //	}
 func IsHTMX(r *http.Request) bool {
-	return r.Header.Get("HX-Request") == "true"
+	return r.Header.Get("Hx-Request") == "true"
 }
 
 // IsHTMXBoosted checks if the request is from an element using hx-boost.
@@ -32,7 +32,7 @@ func IsHTMX(r *http.Request) bool {
 //	    }
 //	}
 func IsHTMXBoosted(r *http.Request) bool {
-	return r.Header.Get("HX-Boosted") == "true"
+	return r.Header.Get("Hx-Boosted") == "true"
 }
 
 // HTMXCurrentURL gets the current URL of the browser when the HTMX request was made.
@@ -41,7 +41,7 @@ func IsHTMXBoosted(r *http.Request) bool {
 //
 //	currentURL := htmx.HTMXCurrentURL(r)
 func HTMXCurrentURL(r *http.Request) string {
-	return r.Header.Get("HX-Current-URL")
+	return r.Header.Get("Hx-Current-Url")
 }
 
 // HTMXHistoryRestoreRequest checks if this request is for history restoration
@@ -53,7 +53,7 @@ func HTMXCurrentURL(r *http.Request) string {
 //	    // Handle history restoration
 //	}
 func HTMXHistoryRestoreRequest(r *http.Request) bool {
-	return r.Header.Get("HX-History-Restore-Request") == "true"
+	return r.Header.Get("Hx-History-Restore-Request") == "true"
 }
 
 // HTMXPrompt gets the user response to an hx-prompt.
@@ -65,7 +65,7 @@ func HTMXHistoryRestoreRequest(r *http.Request) bool {
 //	    processComment(prompt)
 //	}
 func HTMXPrompt(r *http.Request) string {
-	return r.Header.Get("HX-Prompt")
+	return r.Header.Get("Hx-Prompt")
 }
 
 // HTMXTarget gets the ID of the target element if it exists.
@@ -74,7 +74,7 @@ func HTMXPrompt(r *http.Request) string {
 //
 //	targetID := htmx.HTMXTarget(r)
 func HTMXTarget(r *http.Request) string {
-	return r.Header.Get("HX-Target")
+	return r.Header.Get("Hx-Target")
 }
 
 // HTMXTriggerName gets the name of the triggered element if it exists.
@@ -83,7 +83,7 @@ func HTMXTarget(r *http.Request) string {
 //
 //	triggerName := htmx.HTMXTriggerName(r)
 func HTMXTriggerName(r *http.Request) string {
-	return r.Header.Get("HX-Trigger-Name")
+	return r.Header.Get("Hx-Trigger-Name")
 }
 
 // HTMXTrigger gets the ID of the triggered element if it exists.
@@ -92,7 +92,7 @@ func HTMXTriggerName(r *http.Request) string {
 //
 //	triggerID := htmx.HTMXTrigger(r)
 func HTMXTrigger(r *http.Request) string {
-	return r.Header.Get("HX-Trigger")
+	return r.Header.Get("Hx-Trigger")
 }
 
 // SetHTMXTrigger is a convenience function to set the HX-Trigger response header.
@@ -104,7 +104,7 @@ func HTMXTrigger(r *http.Request) string {
 //	})
 func SetHTMXTrigger(w http.ResponseWriter, events map[string]any) {
 	if jsonData, err := json.Marshal(events); err == nil {
-		w.Header().Set("HX-Trigger", string(jsonData))
+		w.Header().Set("Hx-Trigger", string(jsonData))
 	}
 }
 
@@ -114,7 +114,7 @@ func SetHTMXTrigger(w http.ResponseWriter, events map[string]any) {
 //
 //	htmx.SetHTMXLocation(w, "/new-page")
 func SetHTMXLocation(w http.ResponseWriter, path string) {
-	w.Header().Set("HX-Location", path)
+	w.Header().Set("Hx-Location", path)
 }
 
 // SetHTMXLocationWithContext performs a client-side redirect with context.
@@ -128,7 +128,7 @@ func SetHTMXLocation(w http.ResponseWriter, path string) {
 //	})
 func SetHTMXLocationWithContext(w http.ResponseWriter, context map[string]any) {
 	if jsonData, err := json.Marshal(context); err == nil {
-		w.Header().Set("HX-Location", string(jsonData))
+		w.Header().Set("Hx-Location", string(jsonData))
 	}
 }
 
@@ -138,7 +138,7 @@ func SetHTMXLocationWithContext(w http.ResponseWriter, context map[string]any) {
 //
 //	htmx.SetHTMXRedirect(w, "/login")
 func SetHTMXRedirect(w http.ResponseWriter, url string) {
-	w.Header().Set("HX-Redirect", url)
+	w.Header().Set("Hx-Redirect", url)
 }
 
 // SetHTMXRefresh tells HTMX to do a full page refresh.
@@ -147,7 +147,7 @@ func SetHTMXRedirect(w http.ResponseWriter, url string) {
 //
 //	htmx.SetHTMXRefresh(w)
 func SetHTMXRefresh(w http.ResponseWriter) {
-	w.Header().Set("HX-Refresh", "true")
+	w.Header().Set("Hx-Refresh", "true")
 }
 
 // SetHTMXReplaceURL replaces the current URL in the location bar.
@@ -156,7 +156,7 @@ func SetHTMXRefresh(w http.ResponseWriter) {
 //
 //	htmx.SetHTMXReplaceURL(w, "/new-url")
 func SetHTMXReplaceURL(w http.ResponseWriter, url string) {
-	w.Header().Set("HX-Replace-Url", url)
+	w.Header().Set("Hx-Replace-Url", url)
 }
 
 // SetHTMXPushURL pushes a new URL into the browser history stack.
@@ -165,7 +165,7 @@ func SetHTMXReplaceURL(w http.ResponseWriter, url string) {
 //
 //	htmx.SetHTMXPushURL(w, "/page/2")
 func SetHTMXPushURL(w http.ResponseWriter, url string) {
-	w.Header().Set("HX-Push-Url", url)
+	w.Header().Set("Hx-Push-Url", url)
 }
 
 // SetHTMXReswap allows you to specify how the response will be swapped.
@@ -174,7 +174,7 @@ func SetHTMXPushURL(w http.ResponseWriter, url string) {
 //
 //	htmx.SetHTMXReswap(w, "outerHTML")
 func SetHTMXReswap(w http.ResponseWriter, swapMethod string) {
-	w.Header().Set("HX-Reswap", swapMethod)
+	w.Header().Set("Hx-Reswap", swapMethod)
 }
 
 // SetHTMXRetarget allows you to specify a new target for the swap.
@@ -183,7 +183,7 @@ func SetHTMXReswap(w http.ResponseWriter, swapMethod string) {
 //
 //	htmx.SetHTMXRetarget(w, "#different-target")
 func SetHTMXRetarget(w http.ResponseWriter, target string) {
-	w.Header().Set("HX-Retarget", target)
+	w.Header().Set("Hx-Retarget", target)
 }
 
 // SetHTMXReselect allows you to select a subset of the response to swap.
@@ -192,6 +192,5 @@ func SetHTMXRetarget(w http.ResponseWriter, target string) {
 //
 //	htmx.SetHTMXReselect(w, "#content")
 func SetHTMXReselect(w http.ResponseWriter, selector string) {
-	w.Header().Set("HX-Reselect", selector)
+	w.Header().Set("Hx-Reselect", selector)
 }
-

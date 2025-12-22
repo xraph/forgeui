@@ -24,6 +24,7 @@ func TestField(t *testing.T) {
 		if !strings.Contains(output, "Email") {
 			t.Error("expected field to contain label text")
 		}
+
 		if !strings.Contains(output, "space-y-2") {
 			t.Error("expected field to have spacing classes")
 		}
@@ -75,6 +76,7 @@ func TestField(t *testing.T) {
 		if !strings.Contains(output, "We will never share your email") {
 			t.Error("expected field to contain description")
 		}
+
 		if !strings.Contains(output, "text-muted-foreground") {
 			t.Error("expected description to have muted text color")
 		}
@@ -94,9 +96,11 @@ func TestField(t *testing.T) {
 		if !strings.Contains(output, "Invalid email address") {
 			t.Error("expected field to contain error message")
 		}
+
 		if !strings.Contains(output, "text-destructive") {
 			t.Error("expected error to have destructive color")
 		}
+
 		if !strings.Contains(output, "role=\"alert\"") {
 			t.Error("expected error to have alert role")
 		}
@@ -168,6 +172,7 @@ func TestFieldControl(t *testing.T) {
 
 		// Verify by rendering both and comparing output
 		var controlBuf, resultBuf strings.Builder
+
 		_ = control.Render(&controlBuf)
 		_ = result.Render(&resultBuf)
 
@@ -189,9 +194,11 @@ func TestFieldError(t *testing.T) {
 		if !strings.Contains(output, "This field is required") {
 			t.Error("expected error to contain message")
 		}
+
 		if !strings.Contains(output, "text-destructive") {
 			t.Error("expected error to have destructive color")
 		}
+
 		if !strings.Contains(output, "role=\"alert\"") {
 			t.Error("expected error to have alert role")
 		}
@@ -217,6 +224,7 @@ func TestFieldDescription(t *testing.T) {
 		if !strings.Contains(output, "Helper text") {
 			t.Error("expected description to contain text")
 		}
+
 		if !strings.Contains(output, "text-muted-foreground") {
 			t.Error("expected description to have muted color")
 		}
@@ -255,15 +263,19 @@ func TestFieldIntegration(t *testing.T) {
 		if !strings.Contains(output, "Email Address") {
 			t.Error("expected label text")
 		}
+
 		if !strings.Contains(output, "*") {
 			t.Error("expected required indicator")
 		}
+
 		if !strings.Contains(output, "We will never share your email") {
 			t.Error("expected description")
 		}
+
 		if !strings.Contains(output, "Please enter a valid email address") {
 			t.Error("expected error message")
 		}
+
 		if !strings.Contains(output, "you@example.com") {
 			t.Error("expected placeholder")
 		}

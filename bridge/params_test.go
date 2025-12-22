@@ -22,19 +22,19 @@ func TestParseParams(t *testing.T) {
 		{
 			name:       "valid params",
 			params:     json.RawMessage(`{"name":"John","age":30,"email":"john@example.com"}`),
-			targetType: reflect.TypeOf(testStruct{}),
+			targetType: reflect.TypeFor[testStruct](),
 			wantErr:    false,
 		},
 		{
 			name:       "empty params",
 			params:     json.RawMessage(``),
-			targetType: reflect.TypeOf(testStruct{}),
+			targetType: reflect.TypeFor[testStruct](),
 			wantErr:    false,
 		},
 		{
 			name:       "invalid JSON",
 			params:     json.RawMessage(`{invalid}`),
-			targetType: reflect.TypeOf(testStruct{}),
+			targetType: reflect.TypeFor[testStruct](),
 			wantErr:    true,
 		},
 	}
@@ -130,4 +130,3 @@ func TestIsZero(t *testing.T) {
 		})
 	}
 }
-

@@ -71,9 +71,11 @@ func DialogContentWithOptions(props DialogContentProps, children ...g.Node) g.No
 	if props.Size == "" {
 		props.Size = forgeui.SizeMD
 	}
+
 	if !props.CloseOnOutsideClick {
 		props.CloseOnOutsideClick = false // Default to false for dialogs
 	}
+
 	props.ShowClose = true // Always show close for dialogs
 
 	sizeClass := getSizeClass(props.Size)
@@ -183,4 +185,3 @@ func DialogXL(children ...g.Node) g.Node {
 func DialogFull(children ...g.Node) g.Node {
 	return DialogContentWithOptions(DialogContentProps{Size: forgeui.SizeFull}, children...)
 }
-

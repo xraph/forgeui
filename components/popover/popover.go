@@ -83,9 +83,11 @@ func Popover(props PopoverProps, trigger g.Node, content ...g.Node) g.Node {
 	if props.Position == "" {
 		props.Position = forgeui.PositionBottom
 	}
+
 	if props.Align == "" {
 		props.Align = forgeui.AlignCenter
 	}
+
 	if props.Offset == 0 {
 		props.Offset = 8
 	}
@@ -151,10 +153,7 @@ func popoverArrow(position forgeui.Position) g.Node {
 	arrowClass := getArrowPositionClass(position)
 
 	return html.Div(
-		html.Class(fmt.Sprintf(
-			"absolute w-2 h-2 bg-popover border-border rotate-45 %s",
-			arrowClass,
-		)),
+		html.Class("absolute w-2 h-2 bg-popover border-border rotate-45 " + arrowClass),
 	)
 }
 
@@ -228,4 +227,3 @@ func getPopoverTransition(position forgeui.Position) *animation.Transition {
 		return animation.SlideDown()
 	}
 }
-

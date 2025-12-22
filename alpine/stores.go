@@ -66,7 +66,11 @@ func RegisterStores(stores ...Store) g.Node {
 	js.WriteString("document.addEventListener('alpine:init', () => {\n")
 
 	for _, store := range stores {
-		stateJSON, _ := json.Marshal(store.State)
+		stateJSON, err := json.Marshal(store.State)
+		if err != nil {
+			// Fallback to empty object on marshal error
+			stateJSON = []byte("{}")
+		}
 
 		// If methods are provided, merge them with state
 		if store.Methods != "" {
@@ -108,6 +112,5 @@ func StoreMethod(storeName, method, args string) string {
 //
 //	alpine.XStore("cart") // x-data="$store.cart"
 func XStore(storeName string) g.Node {
-	return g.Attr("x-data", fmt.Sprintf("$store.%s", storeName))
+	return g.Attr("x-data", "$store."+storeName)
 }
-

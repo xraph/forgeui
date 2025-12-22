@@ -40,9 +40,9 @@ type ESBuildProcessor struct {
 // NewESBuildProcessor creates a new ESBuild processor with sensible defaults
 func NewESBuildProcessor() *ESBuildProcessor {
 	return &ESBuildProcessor{
-		Format: "iife",
-		Target: "es2020",
-		Bundle: true,
+		Format:  "iife",
+		Target:  "es2020",
+		Bundle:  true,
 		Outfile: "js/app.js",
 	}
 }
@@ -65,6 +65,7 @@ func (ep *ESBuildProcessor) Process(ctx context.Context, cfg ProcessorConfig) er
 			fmt.Println("[ESBuild] ESBuild not found, skipping JavaScript bundling")
 			fmt.Println("[ESBuild] Install with: npm install -D esbuild")
 		}
+
 		return nil // Don't fail, just skip
 	}
 
@@ -73,6 +74,7 @@ func (ep *ESBuildProcessor) Process(ctx context.Context, cfg ProcessorConfig) er
 		if ep.Verbose {
 			fmt.Println("[ESBuild] No entry points specified, skipping")
 		}
+
 		return nil
 	}
 
@@ -89,9 +91,7 @@ func (ep *ESBuildProcessor) Process(ctx context.Context, cfg ProcessorConfig) er
 	args := []string{"esbuild"}
 
 	// Add entry points
-	for _, entry := range ep.EntryPoints {
-		args = append(args, entry)
-	}
+	args = append(args, ep.EntryPoints...)
 
 	// Add output file
 	args = append(args, "--outfile="+outfile)
@@ -157,6 +157,7 @@ func (ep *ESBuildProcessor) Process(ctx context.Context, cfg ProcessorConfig) er
 func (ep *ESBuildProcessor) isESBuildAvailable() bool {
 	cmd := exec.Command("npx", "esbuild", "--version")
 	err := cmd.Run()
+
 	return err == nil
 }
 
@@ -207,4 +208,3 @@ func (ep *ESBuildProcessor) WithVerbose(verbose bool) *ESBuildProcessor {
 	ep.Verbose = verbose
 	return ep
 }
-

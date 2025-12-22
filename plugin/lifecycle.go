@@ -51,10 +51,12 @@ func (r *Registry) Initialize(ctx context.Context) error {
 
 	// Store initialization order for shutdown
 	r.mu.Lock()
+
 	r.order = make([]string, len(sorted))
 	for i, p := range sorted {
 		r.order[i] = p.Name()
 	}
+
 	r.mu.Unlock()
 
 	return nil
@@ -113,4 +115,3 @@ func (r *Registry) Shutdown(ctx context.Context) error {
 
 	return nil
 }
-

@@ -1,12 +1,13 @@
 package bridge
 
 import (
+	"net/http"
 	"net/http/httptest"
 	"testing"
 )
 
 func TestNewContext(t *testing.T) {
-	req := httptest.NewRequest("GET", "/test", nil)
+	req := httptest.NewRequest(http.MethodGet, "/test", nil)
 	ctx := NewContext(req)
 
 	if ctx.Request() != req {
@@ -19,7 +20,7 @@ func TestNewContext(t *testing.T) {
 }
 
 func TestContext_Value(t *testing.T) {
-	req := httptest.NewRequest("GET", "/test", nil)
+	req := httptest.NewRequest(http.MethodGet, "/test", nil)
 	ctx := NewContext(req)
 
 	key := "test-key"
@@ -34,7 +35,7 @@ func TestContext_Value(t *testing.T) {
 }
 
 func TestWithSession(t *testing.T) {
-	req := httptest.NewRequest("GET", "/test", nil)
+	req := httptest.NewRequest(http.MethodGet, "/test", nil)
 	ctx := NewContext(req)
 
 	session := NewSimpleSession("session-123")
@@ -50,7 +51,7 @@ func TestWithSession(t *testing.T) {
 }
 
 func TestWithUser(t *testing.T) {
-	req := httptest.NewRequest("GET", "/test", nil)
+	req := httptest.NewRequest(http.MethodGet, "/test", nil)
 	ctx := NewContext(req)
 
 	user := &SimpleUser{
@@ -114,10 +115,12 @@ func TestSimpleSession(t *testing.T) {
 
 	// Test Set and Get
 	session.Set("key1", "value1")
+
 	val, ok := session.Get("key1")
 	if !ok {
 		t.Error("Get(key1) returned false, want true")
 	}
+
 	if val != "value1" {
 		t.Errorf("Get(key1) = %v, want value1", val)
 	}
@@ -130,6 +133,7 @@ func TestSimpleSession(t *testing.T) {
 
 	// Test Delete
 	session.Delete("key1")
+
 	_, ok = session.Get("key1")
 	if ok {
 		t.Error("Get(key1) after Delete returned true, want false")
@@ -139,9 +143,9 @@ func TestSimpleSession(t *testing.T) {
 	session.Set("key2", "value2")
 	session.Set("key3", "value3")
 	session.Clear()
+
 	_, ok = session.Get("key2")
 	if ok {
 		t.Error("Get(key2) after Clear returned true, want false")
 	}
 }
-

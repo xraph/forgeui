@@ -3,6 +3,7 @@ package bridge
 import (
 	"context"
 	"encoding/json"
+	"errors"
 	"fmt"
 	"reflect"
 	"runtime/debug"
@@ -36,9 +37,11 @@ func (b *Bridge) execute(ctx Context, funcName string, params json.RawMessage) E
 	// Parse parameters
 	paramValue, err := parseParams(params, fn.InputType)
 	if err != nil {
-		if bridgeErr, ok := err.(*Error); ok {
+		var bridgeErr *Error
+		if errors.As(err, &bridgeErr) {
 			return ExecuteResult{Error: bridgeErr}
 		}
+
 		return ExecuteResult{
 			Error: NewError(ErrCodeInvalidParams, "Invalid parameters", err.Error()),
 		}
@@ -46,9 +49,11 @@ func (b *Bridge) execute(ctx Context, funcName string, params json.RawMessage) E
 
 	// Validate parameters
 	if err := validateParams(paramValue, fn.InputType); err != nil {
-		if bridgeErr, ok := err.(*Error); ok {
+		var bridgeErr *Error
+		if errors.As(err, &bridgeErr) {
 			return ExecuteResult{Error: bridgeErr}
 		}
+
 		return ExecuteResult{
 			Error: NewError(ErrCodeInvalidParams, "Parameter validation failed", err.Error()),
 		}
@@ -117,14 +122,17 @@ func (b *Bridge) executeWithTimeout(ctx Context, fn *Function, paramValue reflec
 		})
 
 		// Extract result and error
-		var result any
-		var err error
+		var (
+			result any
+			err    error
+		)
 
 		// Check if result can be nil before calling IsNil()
 		// Only pointer, interface, slice, map, chan, and func types can be nil
-		if results[0].Kind() == reflect.Ptr || results[0].Kind() == reflect.Interface || 
-		   results[0].Kind() == reflect.Slice || results[0].Kind() == reflect.Map || 
-		   results[0].Kind() == reflect.Chan || results[0].Kind() == reflect.Func {
+
+		if results[0].Kind() == reflect.Ptr || results[0].Kind() == reflect.Interface ||
+			results[0].Kind() == reflect.Slice || results[0].Kind() == reflect.Map ||
+			results[0].Kind() == reflect.Chan || results[0].Kind() == reflect.Func {
 			if !results[0].IsNil() {
 				result = results[0].Interface()
 			}
@@ -140,7 +148,8 @@ func (b *Bridge) executeWithTimeout(ctx Context, fn *Function, paramValue reflec
 
 		if err != nil {
 			// Check if it's already a bridge error
-			if bridgeErr, ok := err.(*Error); ok {
+			var bridgeErr *Error
+			if errors.As(err, &bridgeErr) {
 				resultChan <- ExecuteResult{Error: bridgeErr}
 			} else {
 				resultChan <- ExecuteResult{
@@ -170,6 +179,7 @@ func (b *Bridge) Call(ctx Context, funcName string, params json.RawMessage) (any
 	if result.Error != nil {
 		return nil, result.Error
 	}
+
 	return result.Result, nil
 }
 
@@ -214,4 +224,3 @@ func (b *Bridge) CallBatch(ctx Context, requests []Request) []Response {
 
 	return responses
 }
-

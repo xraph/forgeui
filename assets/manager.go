@@ -3,7 +3,9 @@ package assets
 import (
 	"context"
 	"encoding/json"
+	"errors"
 	"fmt"
+	"maps"
 	"os"
 	"path/filepath"
 	"sync"
@@ -25,13 +27,13 @@ type Manager struct {
 type Config struct {
 	// PublicDir is the source directory for static assets (e.g., "public")
 	PublicDir string
-	
+
 	// OutputDir is the output directory for processed assets (e.g., "dist")
 	OutputDir string
-	
+
 	// IsDev enables development mode (no fingerprinting)
 	IsDev bool
-	
+
 	// Manifest is the path to a manifest file for production builds
 	Manifest string
 }
@@ -41,6 +43,7 @@ func NewManager(cfg Config) *Manager {
 	if cfg.PublicDir == "" {
 		cfg.PublicDir = "public"
 	}
+
 	if cfg.OutputDir == "" {
 		cfg.OutputDir = "dist"
 	}
@@ -69,6 +72,7 @@ func (m *Manager) URL(path string) string {
 
 	// Check manifest first
 	m.mu.RLock()
+
 	if fp, ok := m.manifest[path]; ok {
 		m.mu.RUnlock()
 		return "/static/" + fp
@@ -79,6 +83,7 @@ func (m *Manager) URL(path string) string {
 		m.mu.RUnlock()
 		return "/static/" + fp
 	}
+
 	m.mu.RUnlock()
 
 	// Generate fingerprint
@@ -122,10 +127,10 @@ func (m *Manager) loadManifest(path string) error {
 // SaveManifest writes the current fingerprint mappings to a manifest file
 func (m *Manager) SaveManifest(path string) error {
 	m.mu.RLock()
+
 	data := make(map[string]string)
-	for k, v := range m.fingerprints {
-		data[k] = v
-	}
+	maps.Copy(data, m.fingerprints)
+
 	m.mu.RUnlock()
 
 	jsonData, err := json.MarshalIndent(data, "", "  ")
@@ -183,15 +188,17 @@ func (m *Manager) Build(ctx context.Context) error {
 func (m *Manager) StartDevServer(ctx context.Context) error {
 	// Check if already running (with lock)
 	m.mu.Lock()
+
 	if m.devServer != nil {
 		m.mu.Unlock()
-		return fmt.Errorf("dev server already running")
+		return errors.New("dev server already running")
 	}
+
 	m.mu.Unlock()
 
 	// Get pipeline (this will acquire its own lock)
 	pipeline := m.Pipeline()
-	
+
 	// Add default processors if none exist
 	if pipeline.ProcessorCount() == 0 {
 		// Add Tailwind CSS processor
@@ -209,7 +216,7 @@ func (m *Manager) StartDevServer(ctx context.Context) error {
 	}
 
 	devServer.SetVerbose(false)
-	
+
 	// Set dev server (with lock)
 	m.mu.Lock()
 	m.devServer = devServer
@@ -221,7 +228,7 @@ func (m *Manager) StartDevServer(ctx context.Context) error {
 // SSEHandler returns the Server-Sent Events handler for hot reload.
 // Mount this at /_forgeui/reload in your HTTP server.
 // Returns nil if dev server is not running.
-func (m *Manager) SSEHandler() interface{} {
+func (m *Manager) SSEHandler() any {
 	m.mu.RLock()
 	ds := m.devServer
 	m.mu.RUnlock()
@@ -258,6 +265,6 @@ func (m *Manager) StopDevServer() error {
 
 	err := m.devServer.Close()
 	m.devServer = nil
+
 	return err
 }
-
