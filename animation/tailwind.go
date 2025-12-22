@@ -1,0 +1,143 @@
+package animation
+
+import (
+	"encoding/json"
+	"fmt"
+)
+
+// TailwindAnimation represents a Tailwind animation configuration.
+type TailwindAnimation struct {
+	Name      string
+	Animation string
+}
+
+// TailwindKeyframe represents a Tailwind keyframe configuration.
+type TailwindKeyframe struct {
+	Name   string
+	Frames map[string]map[string]string
+}
+
+// TailwindConfig generates Tailwind CSS configuration for animations.
+// This can be merged into your tailwind.config.js theme.extend section.
+//
+// Example usage:
+//
+//	config := animation.TailwindConfig()
+//	// Add to tailwind.config.js:
+//	// module.exports = {
+//	//   theme: {
+//	//     extend: {
+//	//       keyframes: config.Keyframes,
+//	//       animation: config.Animations,
+//	//     }
+//	//   }
+//	// }
+type TailwindConfig struct {
+	Keyframes  map[string]map[string]map[string]string `json:"keyframes"`
+	Animations map[string]string                       `json:"animation"`
+}
+
+// GenerateTailwindConfig creates a TailwindConfig with predefined animations.
+func GenerateTailwindConfig() *TailwindConfig {
+	config := &TailwindConfig{
+		Keyframes:  make(map[string]map[string]map[string]string),
+		Animations: make(map[string]string),
+	}
+
+	// Add keyframes
+	keyframes := PredefinedKeyframes()
+	for _, k := range keyframes {
+		frames := make(map[string]map[string]string)
+		for selector, properties := range k.Frames {
+			// Parse properties string into map
+			props := make(map[string]string)
+			// Simple parsing - in real usage, properties would be structured
+			props["raw"] = properties
+			frames[selector] = props
+		}
+		config.Keyframes[k.Name] = frames
+	}
+
+	// Add animations
+	config.Animations["fade-in"] = "fadeIn 0.2s ease-out"
+	config.Animations["fade-out"] = "fadeOut 0.15s ease-in"
+	config.Animations["slide-in-from-top"] = "slideInFromTop 0.3s ease-out"
+	config.Animations["slide-in-from-bottom"] = "slideInFromBottom 0.3s ease-out"
+	config.Animations["slide-in-from-left"] = "slideInFromLeft 0.3s ease-out"
+	config.Animations["slide-in-from-right"] = "slideInFromRight 0.3s ease-out"
+	config.Animations["scale-in"] = "scaleIn 0.2s ease-out"
+	config.Animations["scale-out"] = "scaleOut 0.15s ease-in"
+	config.Animations["spin"] = "spin 1s linear infinite"
+	config.Animations["pulse"] = "pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite"
+	config.Animations["bounce"] = "bounce 1s infinite"
+	config.Animations["shimmer"] = "shimmer 2s infinite"
+	config.Animations["shake"] = "shake 0.5s"
+
+	return config
+}
+
+// ToJSON converts the Tailwind config to JSON format.
+func (tc *TailwindConfig) ToJSON() (string, error) {
+	data, err := json.MarshalIndent(tc, "", "  ")
+	if err != nil {
+		return "", fmt.Errorf("failed to marshal config: %w", err)
+	}
+	return string(data), nil
+}
+
+// ToJavaScript generates JavaScript code for tailwind.config.js.
+func (tc *TailwindConfig) ToJavaScript() string {
+	js := "// ForgeUI Animation Configuration for Tailwind CSS\n"
+	js += "// Add this to your tailwind.config.js theme.extend section\n\n"
+	js += "module.exports = {\n"
+	js += "  theme: {\n"
+	js += "    extend: {\n"
+
+	// Keyframes
+	js += "      keyframes: {\n"
+	for name := range tc.Keyframes {
+		js += fmt.Sprintf("        '%s': {\n", name)
+		for selector, props := range tc.Keyframes[name] {
+			js += fmt.Sprintf("          '%s': {\n", selector)
+			for key, value := range props {
+				js += fmt.Sprintf("            %s: '%s',\n", key, value)
+			}
+			js += "          },\n"
+		}
+		js += "        },\n"
+	}
+	js += "      },\n"
+
+	// Animations
+	js += "      animation: {\n"
+	for name, value := range tc.Animations {
+		js += fmt.Sprintf("        '%s': '%s',\n", name, value)
+	}
+	js += "      },\n"
+
+	js += "    },\n"
+	js += "  },\n"
+	js += "};\n"
+
+	return js
+}
+
+// TailwindClasses returns utility class names that can be used in ForgeUI components.
+func TailwindClasses() []string {
+	return []string{
+		"animate-fade-in",
+		"animate-fade-out",
+		"animate-slide-in-from-top",
+		"animate-slide-in-from-bottom",
+		"animate-slide-in-from-left",
+		"animate-slide-in-from-right",
+		"animate-scale-in",
+		"animate-scale-out",
+		"animate-spin",
+		"animate-pulse",
+		"animate-bounce",
+		"animate-shimmer",
+		"animate-shake",
+	}
+}
+
