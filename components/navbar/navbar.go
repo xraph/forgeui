@@ -1,4 +1,4 @@
-package menu
+package navbar
 
 import (
 	"github.com/xraph/forgeui/alpine"
@@ -87,7 +87,7 @@ func NavbarWithOptions(opts []NavbarOption, children ...g.Node) g.Node {
 		bgClass = "bg-transparent"
 	}
 
-	classes := positionClass + " z-40 w-full border-b " + bgClass
+	classes := positionClass + " z-40 w-full border-border border-b " + bgClass
 	if props.Class != "" {
 		classes += " " + props.Class
 	}
@@ -256,4 +256,3 @@ func NavbarActions(children ...g.Node) g.Node {
 		g.Group(children),
 	)
 }
-

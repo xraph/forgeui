@@ -1,0 +1,17 @@
+/* ForgeUI Custom Styles */
+
+.custom-banner {
+  padding: 1rem;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  border-radius: 0.5rem;
+  margin-bottom: 2rem;
+}
+
+.asset-demo-box {
+  border: 2px solid #667eea;
+  padding: 1.5rem;
+  border-radius: 0.5rem;
+  background: #f8f9fa;
+}
+
