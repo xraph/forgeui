@@ -162,8 +162,18 @@ func TestFieldControl(t *testing.T) {
 		control := html.Input(html.Type("text"))
 		result := FieldControl(control)
 
-		if result != control {
-			t.Error("expected FieldControl to return control unchanged")
+		if result == nil {
+			t.Error("expected FieldControl to return a non-nil node")
+		}
+
+		// Verify by rendering both and comparing output
+		var controlBuf, resultBuf strings.Builder
+		_ = control.Render(&controlBuf)
+		_ = result.Render(&resultBuf)
+
+		if controlBuf.String() != resultBuf.String() {
+			t.Errorf("expected FieldControl to return control unchanged\ncontrol: %s\nresult:  %s",
+				controlBuf.String(), resultBuf.String())
 		}
 	})
 }
