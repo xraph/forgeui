@@ -1,7 +1,5 @@
-# golangci-lint configuration for Forge v2
+# golangci-lint configuration for ForgeUI
 # Production-ready linting configuration with strict settings
-
-version: "2"
 
 run:
   timeout: 5m
@@ -10,10 +8,8 @@ run:
   allow-parallel-runners: true
 
 output:
-  formats:
-    text:
-      print-linter-name: true
-      print-issued-lines: true
+  print-linter-name: true
+  print-issued-lines: true
 
 linters:
   # Default set of linters.
@@ -324,14 +320,11 @@ linters-settings:
     # Default: 3
     min-name-length: 2
 
-formatters:
-  settings:
-    goimports:
-      local-prefixes: 
-        - github.com/xraph/forgeui
+  goimports:
+    local-prefixes: github.com/xraph/forgeui
 
-    gofumpt:
-      extra-rules: true
+  gofumpt:
+    extra-rules: true
 
 severity:
   default: error
