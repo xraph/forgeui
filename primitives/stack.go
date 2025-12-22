@@ -1,6 +1,6 @@
 package primitives
 
-import g "github.com/maragudk/gomponents"
+import g "maragu.dev/gomponents"
 
 // VStack creates a vertical stack (flex column)
 // This is a convenience wrapper around Flex for vertical layouts

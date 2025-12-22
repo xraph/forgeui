@@ -5,8 +5,8 @@ import (
 	"strings"
 	"testing"
 
-	g "github.com/maragudk/gomponents"
-	"github.com/maragudk/gomponents/html"
+	g "maragu.dev/gomponents"
+	"maragu.dev/gomponents/html"
 )
 
 func TestEmptyState(t *testing.T) {

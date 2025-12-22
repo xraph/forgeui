@@ -1,8 +1,8 @@
 package list
 
 import (
-	g "github.com/maragudk/gomponents"
-	"github.com/maragudk/gomponents/html"
+	g "maragu.dev/gomponents"
+	"maragu.dev/gomponents/html"
 )
 
 // ItemVariant represents the visual style of the list item.

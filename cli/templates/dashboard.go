@@ -55,8 +55,8 @@ func main() {
 
 import (
 	"github.com/xraph/forgeui"
-	g "github.com/maragudk/gomponents"
-	"github.com/maragudk/gomponents/html"
+	g "maragu.dev/gomponents"
+	"maragu.dev/gomponents/html"
 )
 
 func Dashboard(ctx *forgeui.PageContext) g.Node {

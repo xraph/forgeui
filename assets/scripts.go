@@ -4,8 +4,8 @@ import (
 	"sort"
 	"sync"
 
-	g "github.com/maragudk/gomponents"
-	"github.com/maragudk/gomponents/html"
+	g "maragu.dev/gomponents"
+	"maragu.dev/gomponents/html"
 )
 
 // ScriptEntry represents a script with metadata for ordering and rendering.

@@ -7,7 +7,7 @@ import (
 	"strings"
 	"testing"
 
-	g "github.com/maragudk/gomponents"
+	g "maragu.dev/gomponents"
 )
 
 func TestLoaderErrorType(t *testing.T) {

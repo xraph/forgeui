@@ -3,8 +3,8 @@ package forgeui
 import (
 	"strings"
 
-	g "github.com/maragudk/gomponents"
-	"github.com/maragudk/gomponents/html"
+	g "maragu.dev/gomponents"
+	"maragu.dev/gomponents/html"
 )
 
 // Node wraps gomponents.Node with a fluent API for building HTML elements

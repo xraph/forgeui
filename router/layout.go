@@ -1,8 +1,8 @@
 package router
 
 import (
-	g "github.com/maragudk/gomponents"
-	"github.com/maragudk/gomponents/html"
+	g "maragu.dev/gomponents"
+	"maragu.dev/gomponents/html"
 )
 
 // LayoutFunc wraps page content with a layout

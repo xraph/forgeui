@@ -5,7 +5,7 @@ import (
 	"strings"
 	"testing"
 
-	g "github.com/maragudk/gomponents"
+	g "maragu.dev/gomponents"
 )
 
 func TestIntegration_ComplexLayout(t *testing.T) {

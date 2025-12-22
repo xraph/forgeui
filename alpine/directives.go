@@ -17,7 +17,7 @@ import (
 	"encoding/json"
 	"fmt"
 
-	g "github.com/maragudk/gomponents"
+	g "maragu.dev/gomponents"
 )
 
 // XData creates an x-data attribute with the given state.

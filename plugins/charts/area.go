@@ -1,7 +1,7 @@
 package charts
 
 import (
-	g "github.com/maragudk/gomponents"
+	g "maragu.dev/gomponents"
 )
 
 // areaChart creates an area chart component (filled line chart).

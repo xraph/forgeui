@@ -5,7 +5,7 @@ import (
 	"strings"
 	"testing"
 
-	g "github.com/maragudk/gomponents"
+	g "maragu.dev/gomponents"
 )
 
 func TestBox(t *testing.T) {

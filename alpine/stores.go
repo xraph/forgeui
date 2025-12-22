@@ -5,8 +5,8 @@ import (
 	"fmt"
 	"strings"
 
-	g "github.com/maragudk/gomponents"
-	"github.com/maragudk/gomponents/html"
+	g "maragu.dev/gomponents"
+	"maragu.dev/gomponents/html"
 )
 
 // Store represents an Alpine.js global store definition.

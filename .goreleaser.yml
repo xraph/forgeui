@@ -1,0 +1,176 @@
+# GoReleaser configuration for ForgeUI CLI
+# Build system for cross-platform releases
+version: 2
+
+project_name: forgeui
+
+# Pre-build hooks
+before:
+  hooks:
+    - go mod tidy
+    - go mod verify
+    - go generate ./...
+
+builds:
+  - id: forgeui
+    main: ./cmd/forgeui
+    binary: forgeui
+    env:
+      - CGO_ENABLED=0
+    goos:
+      - linux
+      - windows
+      - darwin
+    goarch:
+      - amd64
+      - arm64
+    # Ignore 32-bit architectures for modern CLI
+    ignore:
+      - goos: windows
+        goarch: arm64
+    ldflags:
+      - -s -w
+      - -X github.com/xraph/forgeui/cli.Version={{.Version}}
+      - -X github.com/xraph/forgeui/cli.BuildCommit={{.Commit}}
+      - -X github.com/xraph/forgeui/cli.BuildTime={{.Date}}
+    flags:
+      - -trimpath
+
+archives:
+  - id: forgeui-archives
+    name_template: >-
+      {{ .ProjectName }}-
+      {{- .Version }}-
+      {{- .Os }}-
+      {{- if eq .Arch "amd64" }}x86_64
+      {{- else if eq .Arch "386" }}i386
+      {{- else }}{{ .Arch }}{{ end }}
+    files:
+      - README.md
+      - LICENSE
+      - CHANGELOG.md
+    format: tar.gz
+    format_overrides:
+      - goos: windows
+        format: zip
+
+checksum:
+  name_template: 'checksums.txt'
+  algorithm: sha256
+
+changelog:
+  sort: asc
+  use: github
+  filters:
+    exclude:
+      - '^docs:'
+      - '^test:'
+      - '^ci:'
+      - '^chore:'
+      - merge conflict
+      - Merge pull request
+      - Merge remote-tracking branch
+      - Merge branch
+  groups:
+    - title: 'New Features'
+      regexp: '^.*?feat(\(.+\))??!?:.+$'
+      order: 0
+    - title: 'Security Updates'
+      regexp: '^.*?sec(\(.+\))??!?:.+$'
+      order: 1
+    - title: 'Bug Fixes'
+      regexp: '^.*?fix(\(.+\))??!?:.+$'
+      order: 2
+    - title: 'Performance Improvements'
+      regexp: '^.*?perf(\(.+\))??!?:.+$'
+      order: 3
+    - title: 'Refactoring'
+      regexp: '^.*?refactor(\(.+\))??!?:.+$'
+      order: 4
+    - title: 'Documentation Updates'
+      regexp: '^.*?docs(\(.+\))??!?:.+$'
+      order: 5
+    - title: 'Build System'
+      regexp: '^.*?build(\(.+\))??!?:.+$'
+      order: 6
+    - title: 'Other Changes'
+      order: 999
+
+release:
+  github:
+    owner: xraph
+    name: forgeui
+  draft: false
+  prerelease: auto
+  mode: replace
+  header: |
+    ## ForgeUI {{ .Tag }} ({{ .Date }})
+    
+    Welcome to this new release of ForgeUI - the SSR-first UI framework for Go!
+
+  footer: |
+    ## Installation
+    
+    ### Using Go Install
+    ```bash
+    go install github.com/xraph/forgeui/cmd/forgeui@{{ .Tag }}
+    ```
+    
+    ### Download Binary
+    Download the appropriate binary for your platform from the assets below.
+    
+    ### Using Homebrew (macOS/Linux)
+    ```bash
+    brew install xraph/tap/forgeui
+    ```
+    
+    ## Library Usage
+    
+    To use ForgeUI as a library in your Go project:
+    ```bash
+    go get github.com/xraph/forgeui@{{ .Tag }}
+    ```
+    
+    ## What's Changed
+    Full changelog: https://github.com/xraph/forgeui/compare/{{ .PreviousTag }}...{{ .Tag }}
+    
+    ## Documentation
+    
+    - [README](https://github.com/xraph/forgeui/blob/{{ .Tag }}/README.md)
+    - [Quick Start](https://github.com/xraph/forgeui/blob/{{ .Tag }}/QUICKSTART.md)
+    - [Examples](https://github.com/xraph/forgeui/tree/{{ .Tag }}/example)
+
+# Homebrew tap
+brews:
+  - repository:
+      owner: xraph
+      name: homebrew-tap
+    commit_author:
+      name: goreleaserbot
+      email: bot@goreleaser.com
+    directory: Formula
+    homepage: https://github.com/xraph/forgeui
+    description: "SSR-first UI framework for Go with 35+ components, Tailwind CSS, and Alpine.js integration"
+    license: MIT
+    dependencies:
+      - name: go
+        type: optional
+    install: |
+      bin.install "forgeui"
+    test: |
+      system "#{bin}/forgeui", "--version"
+
+# Git settings
+git:
+  tag_sort: -version:refname
+
+# Metadata
+metadata:
+  mod_timestamp: '{{ .CommitTimestamp }}'
+
+# Announce (optional - can be enabled later for Discord/Slack notifications)
+# announces:
+#   - discord:
+#       enabled: true
+#       message_template: 'ForgeUI {{ .Tag }} is out! Check it out at {{ .ReleaseURL }}'
+

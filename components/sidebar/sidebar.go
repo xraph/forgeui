@@ -11,8 +11,8 @@ import (
 	"github.com/xraph/forgeui/alpine"
 	"github.com/xraph/forgeui/animation"
 
-	g "github.com/maragudk/gomponents"
-	"github.com/maragudk/gomponents/html"
+	g "maragu.dev/gomponents"
+	"maragu.dev/gomponents/html"
 )
 
 // SidebarVariant defines the visual style of the sidebar

@@ -5,7 +5,7 @@ go 1.25.0
 replace github.com/xraph/forgeui => ../
 
 require (
-	github.com/maragudk/gomponents v0.20.1
+	maragu.dev/gomponents v0.20.1
 	github.com/xraph/forgeui v0.0.0-00010101000000-000000000000
 )
 

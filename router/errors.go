@@ -4,8 +4,8 @@ import (
 	"fmt"
 	"net/http"
 
-	g "github.com/maragudk/gomponents"
-	"github.com/maragudk/gomponents/html"
+	g "maragu.dev/gomponents"
+	"maragu.dev/gomponents/html"
 )
 
 // LoaderError represents an error that occurred during data loading

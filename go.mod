@@ -4,7 +4,7 @@ go 1.25.0
 
 require (
 	github.com/fsnotify/fsnotify v1.7.0
-	github.com/maragudk/gomponents v0.20.1
+	maragu.dev/gomponents v1.2.0
 	nhooyr.io/websocket v1.8.17
 )
 

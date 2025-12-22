@@ -1,6 +1,6 @@
 package primitives
 
-import g "github.com/maragudk/gomponents"
+import g "maragu.dev/gomponents"
 
 // Container creates a responsive container with max-width constraints
 // Commonly used for page layouts

@@ -3,7 +3,7 @@ package assets
 import (
 	"bytes"
 
-	g "github.com/maragudk/gomponents"
+	g "maragu.dev/gomponents"
 )
 
 // renderNode renders a gomponents node to an HTML string for testing

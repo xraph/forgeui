@@ -8,7 +8,7 @@ import (
 	"testing"
 	"time"
 
-	g "github.com/maragudk/gomponents"
+	g "maragu.dev/gomponents"
 )
 
 func TestLoaderExecution(t *testing.T) {

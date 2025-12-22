@@ -5,7 +5,7 @@ import (
 	"strings"
 	"testing"
 
-	"github.com/maragudk/gomponents/html"
+	"maragu.dev/gomponents/html"
 
 	"github.com/xraph/forgeui/components/input"
 )

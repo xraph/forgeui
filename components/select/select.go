@@ -4,8 +4,8 @@ package selectc
 import (
 	"fmt"
 
-	g "github.com/maragudk/gomponents"
-	"github.com/maragudk/gomponents/html"
+	g "maragu.dev/gomponents"
+	"maragu.dev/gomponents/html"
 
 	"github.com/xraph/forgeui"
 	"github.com/xraph/forgeui/alpine"

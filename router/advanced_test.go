@@ -7,7 +7,7 @@ import (
 	"strings"
 	"testing"
 
-	g "github.com/maragudk/gomponents"
+	g "maragu.dev/gomponents"
 )
 
 // TestAdvancedIntegration tests the full integration of groups, layouts, loaders, and metadata

@@ -5,8 +5,8 @@ import (
 	"net/http/httptest"
 	"testing"
 
-	g "github.com/maragudk/gomponents"
-	"github.com/maragudk/gomponents/html"
+	g "maragu.dev/gomponents"
+	"maragu.dev/gomponents/html"
 )
 
 // TestIntegration_FullRequestLifecycle tests a complete HTTP request through the router

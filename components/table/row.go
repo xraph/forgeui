@@ -1,8 +1,8 @@
 package table
 
 import (
-	g "github.com/maragudk/gomponents"
-	"github.com/maragudk/gomponents/html"
+	g "maragu.dev/gomponents"
+	"maragu.dev/gomponents/html"
 )
 
 // RowProps defines the properties for the TableRow component.

@@ -47,8 +47,8 @@ func (t *SimplePageTemplate) Generate(filePath string, opts PageOptions) error {
 
 import (
 	"github.com/xraph/forgeui"
-	g "github.com/maragudk/gomponents"
-	"github.com/maragudk/gomponents/html"
+	g "maragu.dev/gomponents"
+	"maragu.dev/gomponents/html"
 )
 
 // {{.Name}} renders the {{.Name}} page
@@ -90,8 +90,8 @@ func (t *DynamicPageTemplate) Generate(filePath string, opts PageOptions) error 
 
 import (
 	"github.com/xraph/forgeui"
-	g "github.com/maragudk/gomponents"
-	"github.com/maragudk/gomponents/html"
+	g "maragu.dev/gomponents"
+	"maragu.dev/gomponents/html"
 )
 
 // {{.Name}}Data holds the page data
@@ -149,8 +149,8 @@ func (t *FormPageTemplate) Generate(filePath string, opts PageOptions) error {
 
 import (
 	"github.com/xraph/forgeui"
-	g "github.com/maragudk/gomponents"
-	"github.com/maragudk/gomponents/html"
+	g "maragu.dev/gomponents"
+	"maragu.dev/gomponents/html"
 )
 
 // {{.Name}} renders the {{.Name}} form page
@@ -204,8 +204,8 @@ func (t *ListPageTemplate) Generate(filePath string, opts PageOptions) error {
 
 import (
 	"github.com/xraph/forgeui"
-	g "github.com/maragudk/gomponents"
-	"github.com/maragudk/gomponents/html"
+	g "maragu.dev/gomponents"
+	"maragu.dev/gomponents/html"
 )
 
 // {{.Name}}Item represents a list item
@@ -273,8 +273,8 @@ func (t *DetailPageTemplate) Generate(filePath string, opts PageOptions) error {
 
 import (
 	"github.com/xraph/forgeui"
-	g "github.com/maragudk/gomponents"
-	"github.com/maragudk/gomponents/html"
+	g "maragu.dev/gomponents"
+	"maragu.dev/gomponents/html"
 )
 
 // {{.Name}}Detail holds the detail data

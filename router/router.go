@@ -5,7 +5,7 @@ import (
 	"sort"
 	"sync"
 
-	g "github.com/maragudk/gomponents"
+	g "maragu.dev/gomponents"
 )
 
 // Router handles HTTP routing for ForgeUI applications

@@ -48,8 +48,8 @@ func (t *BasicComponentTemplate) Generate(dir string, opts ComponentOptions) err
 	tmpl := `package {{.Package}}
 
 import (
-	g "github.com/maragudk/gomponents"
-	"github.com/maragudk/gomponents/html"
+	g "maragu.dev/gomponents"
+	"maragu.dev/gomponents/html"
 {{- if .WithProps}}
 	"github.com/xraph/forgeui"
 {{- end}}
@@ -114,8 +114,8 @@ func (t *CompoundComponentTemplate) Generate(dir string, opts ComponentOptions) 
 	tmpl := `package {{.Package}}
 
 import (
-	g "github.com/maragudk/gomponents"
-	"github.com/maragudk/gomponents/html"
+	g "maragu.dev/gomponents"
+	"maragu.dev/gomponents/html"
 )
 
 // {{.Name}} renders a {{.Name}} component
@@ -173,8 +173,8 @@ func (t *FormComponentTemplate) Generate(dir string, opts ComponentOptions) erro
 	tmpl := `package {{.Package}}
 
 import (
-	g "github.com/maragudk/gomponents"
-	"github.com/maragudk/gomponents/html"
+	g "maragu.dev/gomponents"
+	"maragu.dev/gomponents/html"
 )
 
 // {{.Name}}Props defines properties for the form
@@ -216,8 +216,8 @@ func (t *LayoutComponentTemplate) Generate(dir string, opts ComponentOptions) er
 	tmpl := `package {{.Package}}
 
 import (
-	g "github.com/maragudk/gomponents"
-	"github.com/maragudk/gomponents/html"
+	g "maragu.dev/gomponents"
+	"maragu.dev/gomponents/html"
 )
 
 // {{.Name}} renders a layout component
@@ -261,8 +261,8 @@ func (t *DataComponentTemplate) Generate(dir string, opts ComponentOptions) erro
 	tmpl := `package {{.Package}}
 
 import (
-	g "github.com/maragudk/gomponents"
-	"github.com/maragudk/gomponents/html"
+	g "maragu.dev/gomponents"
+	"maragu.dev/gomponents/html"
 )
 
 // {{.Name}}Item represents a data item
@@ -322,7 +322,7 @@ func generateTestFile(opts ComponentOptions) string {
 import (
 	"testing"
 
-	g "github.com/maragudk/gomponents"
+	g "maragu.dev/gomponents"
 )
 
 func Test%s(t *testing.T) {

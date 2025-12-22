@@ -15,7 +15,7 @@ Versatile button component with multiple variants, sizes, and states.
 ```go
 import (
     "github.com/xraph/forgeui/components/button"
-    g "github.com/maragudk/gomponents"
+    g "maragu.dev/gomponents"
 )
 
 // Simple button

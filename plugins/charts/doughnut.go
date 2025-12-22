@@ -1,7 +1,7 @@
 package charts
 
 import (
-	g "github.com/maragudk/gomponents"
+	g "maragu.dev/gomponents"
 )
 
 // doughnutChart creates a doughnut chart component (hollow pie chart).

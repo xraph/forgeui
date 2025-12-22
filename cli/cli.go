@@ -9,8 +9,12 @@ import (
 	"os"
 )
 
-// Version is the CLI version
-const Version = "1.0.0"
+// Version information - populated via ldflags during build
+var (
+	Version     = "dev"
+	BuildCommit = "unknown"
+	BuildTime   = "unknown"
+)
 
 var rootCmd *Command
 
@@ -41,6 +45,12 @@ func Execute() error {
 	for _, arg := range args {
 		if arg == "--version" || arg == "-v" {
 			fmt.Printf("ForgeUI CLI v%s\n", Version)
+			if BuildCommit != "unknown" {
+				fmt.Printf("Commit: %s\n", BuildCommit)
+			}
+			if BuildTime != "unknown" {
+				fmt.Printf("Built: %s\n", BuildTime)
+			}
 			return nil
 		}
 	}

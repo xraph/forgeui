@@ -282,8 +282,8 @@ package main
 import (
     "github.com/xraph/forgeui/components/sidebar"
     "github.com/xraph/forgeui/icons"
-    g "github.com/maragudk/gomponents"
-    "github.com/maragudk/gomponents/html"
+    g "maragu.dev/gomponents"
+    "maragu.dev/gomponents/html"
 )
 
 func DashboardLayout() g.Node {

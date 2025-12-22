@@ -3,7 +3,7 @@
 
 package icons
 
-import g "github.com/maragudk/gomponents"
+import g "maragu.dev/gomponents"
 
 // This file contains 1666 auto-generated icon functions from Lucide Icons
 // See https://lucide.dev for the complete icon reference

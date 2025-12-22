@@ -6,8 +6,8 @@
 package layout
 
 import (
-	g "github.com/maragudk/gomponents"
-	"github.com/maragudk/gomponents/html"
+	g "maragu.dev/gomponents"
+	"maragu.dev/gomponents/html"
 )
 
 // Builder represents a layout builder for creating complete HTML documents

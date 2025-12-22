@@ -63,8 +63,8 @@ func main() {
 import (
 	"github.com/xraph/forgeui"
 	"%s/components"
-	g "github.com/maragudk/gomponents"
-	"github.com/maragudk/gomponents/html"
+	g "maragu.dev/gomponents"
+	"maragu.dev/gomponents/html"
 )
 
 func Home(ctx *forgeui.PageContext) g.Node {
@@ -102,8 +102,8 @@ func Home(ctx *forgeui.PageContext) g.Node {
 import (
 	"github.com/xraph/forgeui"
 	"%s/components"
-	g "github.com/maragudk/gomponents"
-	"github.com/maragudk/gomponents/html"
+	g "maragu.dev/gomponents"
+	"maragu.dev/gomponents/html"
 )
 
 func About(ctx *forgeui.PageContext) g.Node {
@@ -136,8 +136,8 @@ func About(ctx *forgeui.PageContext) g.Node {
 import (
 	"github.com/xraph/forgeui"
 	"%s/components"
-	g "github.com/maragudk/gomponents"
-	"github.com/maragudk/gomponents/html"
+	g "maragu.dev/gomponents"
+	"maragu.dev/gomponents/html"
 )
 
 func Contact(ctx *forgeui.PageContext) g.Node {
@@ -178,8 +178,8 @@ func Contact(ctx *forgeui.PageContext) g.Node {
 	layoutGo := `package components
 
 import (
-	g "github.com/maragudk/gomponents"
-	"github.com/maragudk/gomponents/html"
+	g "maragu.dev/gomponents"
+	"maragu.dev/gomponents/html"
 )
 
 func Layout(title string, content ...g.Node) g.Node {

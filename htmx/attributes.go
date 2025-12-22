@@ -18,7 +18,7 @@ import (
 	"encoding/json"
 	"fmt"
 
-	g "github.com/maragudk/gomponents"
+	g "maragu.dev/gomponents"
 )
 
 // HxGet creates an hx-get attribute for GET requests.

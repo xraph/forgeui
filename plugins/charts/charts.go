@@ -30,7 +30,7 @@ import (
 	"context"
 	"encoding/json"
 
-	g "github.com/maragudk/gomponents"
+	g "maragu.dev/gomponents"
 
 	"github.com/xraph/forgeui/plugin"
 )

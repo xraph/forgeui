@@ -15,7 +15,7 @@ The `icons` package provides a flexible icon system with comprehensive Lucide ic
 ```go
 import (
     "github.com/xraph/forgeui/icons"
-    g "github.com/maragudk/gomponents"
+    g "maragu.dev/gomponents"
 )
 
 // Use a pre-built icon

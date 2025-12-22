@@ -3,7 +3,7 @@ package htmx
 import (
 	"fmt"
 
-	g "github.com/maragudk/gomponents"
+	g "maragu.dev/gomponents"
 )
 
 // HxTrigger creates an hx-trigger attribute with a custom event.

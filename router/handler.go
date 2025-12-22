@@ -3,7 +3,7 @@ package router
 import (
 	"net/http"
 
-	g "github.com/maragudk/gomponents"
+	g "maragu.dev/gomponents"
 )
 
 // PageHandler is a function that handles a page request and returns a Node for rendering

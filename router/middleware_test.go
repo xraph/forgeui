@@ -5,7 +5,7 @@ import (
 	"net/http/httptest"
 	"testing"
 
-	g "github.com/maragudk/gomponents"
+	g "maragu.dev/gomponents"
 )
 
 func TestLogger(t *testing.T) {

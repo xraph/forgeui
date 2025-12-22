@@ -8,8 +8,8 @@ import (
 	"runtime/debug"
 	"time"
 
-	g "github.com/maragudk/gomponents"
-	"github.com/maragudk/gomponents/html"
+	g "maragu.dev/gomponents"
+	"maragu.dev/gomponents/html"
 )
 
 // Middleware is a function that wraps a PageHandler

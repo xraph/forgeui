@@ -1,8 +1,8 @@
 package theme
 
 import (
-	g "github.com/maragudk/gomponents"
-	"github.com/maragudk/gomponents/html"
+	g "maragu.dev/gomponents"
+	"maragu.dev/gomponents/html"
 )
 
 // TailwindConfigScript returns an inline script that configures Tailwind CSS

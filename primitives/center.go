@@ -1,6 +1,6 @@
 package primitives
 
-import g "github.com/maragudk/gomponents"
+import g "maragu.dev/gomponents"
 
 // Center creates a centered container using flexbox
 // Centers both horizontally and vertically

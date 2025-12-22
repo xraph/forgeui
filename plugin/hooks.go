@@ -4,7 +4,7 @@ import (
 	"context"
 	"sync"
 
-	g "github.com/maragudk/gomponents"
+	g "maragu.dev/gomponents"
 )
 
 // Hook names for plugin lifecycle and rendering.

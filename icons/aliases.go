@@ -1,6 +1,6 @@
 package icons
 
-import g "github.com/maragudk/gomponents"
+import g "maragu.dev/gomponents"
 
 // Aliases for backward compatibility with the previous manual icon set
 // These map old icon names to their new Lucide equivalents

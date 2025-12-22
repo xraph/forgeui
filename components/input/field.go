@@ -1,7 +1,7 @@
 package input
 
 import (
-	g "github.com/maragudk/gomponents"
+	g "maragu.dev/gomponents"
 
 	"github.com/xraph/forgeui/primitives"
 )

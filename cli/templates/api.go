@@ -58,8 +58,8 @@ func main() {
 
 import (
 	"github.com/xraph/forgeui"
-	g "github.com/maragudk/gomponents"
-	"github.com/maragudk/gomponents/html"
+	g "maragu.dev/gomponents"
+	"maragu.dev/gomponents/html"
 	"github.com/xraph/forgeui/htmx"
 )
 

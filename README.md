@@ -57,8 +57,8 @@ import (
     "log"
     "net/http"
     
-    g "github.com/maragudk/gomponents"
-    "github.com/maragudk/gomponents/html"
+    g "maragu.dev/gomponents"
+    "maragu.dev/gomponents/html"
     
     "github.com/xraph/forgeui"
     "github.com/xraph/forgeui/components/button"
@@ -1058,7 +1058,7 @@ MIT License - See [LICENSE](LICENSE) file for details
 
 ForgeUI stands on the shoulders of giants:
 
-- **[gomponents](https://github.com/maragudk/gomponents)** - The foundation for Go HTML components
+- **[gomponents](https://maragu.dev/gomponents)** - The foundation for Go HTML components
 - **[shadcn/ui](https://ui.shadcn.com/)** - Design inspiration and component patterns
 - **[Tailwind CSS](https://tailwindcss.com/)** - Utility-first CSS framework
 - **[Alpine.js](https://alpinejs.dev/)** - Lightweight JavaScript framework
