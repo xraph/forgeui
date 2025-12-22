@@ -108,6 +108,9 @@ func TestWatcher_FileChange(t *testing.T) {
 	}
 	defer w.Close()
 
+	// Disable debouncing for more predictable test timing
+	w.SetDebounce(0)
+
 	tempDir := t.TempDir()
 	testFile := filepath.Join(tempDir, "test.txt")
 
@@ -121,11 +124,15 @@ func TestWatcher_FileChange(t *testing.T) {
 		t.Fatal(err)
 	}
 
-	// Set up callback
+	// Set up callback with channel to signal when watcher is ready
 	changed := make(chan bool, 1)
+	started := make(chan bool, 1)
 	w.OnChange(func(event fsnotify.Event) error {
 		if filepath.Base(event.Name) == "test.txt" {
-			changed <- true
+			select {
+			case changed <- true:
+			default:
+			}
 		}
 		return nil
 	})
@@ -135,22 +142,31 @@ func TestWatcher_FileChange(t *testing.T) {
 	defer cancel()
 
 	go func() {
+		started <- true
 		_ = w.Start(ctx)
 	}()
 
-	// Give watcher time to start
-	time.Sleep(100 * time.Millisecond)
+	// Wait for watcher goroutine to start
+	<-started
+	
+	// Give fsnotify additional time to initialize watches (especially on Linux)
+	// Linux/Ubuntu often needs more time for inotify setup
+	time.Sleep(500 * time.Millisecond)
 
 	// Modify file
 	if err := os.WriteFile(testFile, []byte("modified"), 0644); err != nil {
 		t.Fatal(err)
 	}
 
-	// Wait for change notification (with timeout)
+	// Wait for change notification with increased timeout for slower CI environments
+	// fsnotify behavior varies significantly across OSes:
+	// - macOS: typically fast (<100ms)
+	// - Linux: can be slower, especially with inotify (100-500ms)
+	// - Windows: ReadDirectoryChangesW can also have latency
 	select {
 	case <-changed:
 		// Success
-	case <-time.After(2 * time.Second):
+	case <-time.After(5 * time.Second):
 		t.Error("Timeout waiting for file change notification")
 	}
 }

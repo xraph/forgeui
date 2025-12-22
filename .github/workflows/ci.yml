@@ -31,11 +31,13 @@ jobs:
           cache-dependency-path: go.sum
 
       - name: Download dependencies
+        shell: bash
         run: |
           go mod download
           go mod verify
 
       - name: Run tests
+        shell: bash
         run: go test -v -race -coverprofile=coverage.out -covermode=atomic ./...
 
       - name: Upload coverage
