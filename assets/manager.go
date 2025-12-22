@@ -1,0 +1,263 @@
+package assets
+
+import (
+	"context"
+	"encoding/json"
+	"fmt"
+	"os"
+	"path/filepath"
+	"sync"
+)
+
+// Manager handles static assets with caching and fingerprinting
+type Manager struct {
+	publicDir    string
+	outputDir    string
+	fingerprints map[string]string
+	mu           sync.RWMutex
+	isDev        bool
+	manifest     map[string]string
+	pipeline     *Pipeline
+	devServer    *DevServer
+}
+
+// Config defines configuration options for asset management
+type Config struct {
+	// PublicDir is the source directory for static assets (e.g., "public")
+	PublicDir string
+	
+	// OutputDir is the output directory for processed assets (e.g., "dist")
+	OutputDir string
+	
+	// IsDev enables development mode (no fingerprinting)
+	IsDev bool
+	
+	// Manifest is the path to a manifest file for production builds
+	Manifest string
+}
+
+// NewManager creates a new asset manager with the given configuration
+func NewManager(cfg Config) *Manager {
+	if cfg.PublicDir == "" {
+		cfg.PublicDir = "public"
+	}
+	if cfg.OutputDir == "" {
+		cfg.OutputDir = "dist"
+	}
+
+	m := &Manager{
+		publicDir:    cfg.PublicDir,
+		outputDir:    cfg.OutputDir,
+		fingerprints: make(map[string]string),
+		isDev:        cfg.IsDev,
+		manifest:     make(map[string]string),
+	}
+
+	// Load manifest if exists
+	if cfg.Manifest != "" {
+		_ = m.loadManifest(cfg.Manifest)
+	}
+
+	return m
+}
+
+// URL returns the URL for an asset, with fingerprint in production
+func (m *Manager) URL(path string) string {
+	if m.isDev {
+		return "/static/" + path
+	}
+
+	// Check manifest first
+	m.mu.RLock()
+	if fp, ok := m.manifest[path]; ok {
+		m.mu.RUnlock()
+		return "/static/" + fp
+	}
+
+	// Check cached fingerprints
+	if fp, ok := m.fingerprints[path]; ok {
+		m.mu.RUnlock()
+		return "/static/" + fp
+	}
+	m.mu.RUnlock()
+
+	// Generate fingerprint
+	fp := m.fingerprint(path)
+	m.mu.Lock()
+	m.fingerprints[path] = fp
+	m.mu.Unlock()
+
+	return "/static/" + fp
+}
+
+// IsDev returns whether the manager is in development mode
+func (m *Manager) IsDev() bool {
+	return m.isDev
+}
+
+// PublicDir returns the configured public directory
+func (m *Manager) PublicDir() string {
+	return m.publicDir
+}
+
+// loadManifest loads asset mappings from a manifest file
+func (m *Manager) loadManifest(path string) error {
+	data, err := os.ReadFile(path)
+	if err != nil {
+		return err
+	}
+
+	var manifest map[string]string
+	if err := json.Unmarshal(data, &manifest); err != nil {
+		return err
+	}
+
+	m.mu.Lock()
+	m.manifest = manifest
+	m.mu.Unlock()
+
+	return nil
+}
+
+// SaveManifest writes the current fingerprint mappings to a manifest file
+func (m *Manager) SaveManifest(path string) error {
+	m.mu.RLock()
+	data := make(map[string]string)
+	for k, v := range m.fingerprints {
+		data[k] = v
+	}
+	m.mu.RUnlock()
+
+	jsonData, err := json.MarshalIndent(data, "", "  ")
+	if err != nil {
+		return err
+	}
+
+	// Ensure directory exists
+	dir := filepath.Dir(path)
+	if err := os.MkdirAll(dir, 0755); err != nil {
+		return err
+	}
+
+	return os.WriteFile(path, jsonData, 0644)
+}
+
+// Pipeline returns the asset pipeline for this manager.
+// Creates a new pipeline if one doesn't exist.
+func (m *Manager) Pipeline() *Pipeline {
+	m.mu.Lock()
+	defer m.mu.Unlock()
+
+	if m.pipeline == nil {
+		m.pipeline = NewPipeline(PipelineConfig{
+			InputDir:  m.publicDir,
+			OutputDir: m.outputDir,
+			IsDev:     m.isDev,
+		}, m)
+	}
+
+	return m.pipeline
+}
+
+// Build runs the asset pipeline to process all assets.
+// This is typically used for production builds.
+func (m *Manager) Build(ctx context.Context) error {
+	pipeline := m.Pipeline()
+
+	// Add default processors if none exist
+	if pipeline.ProcessorCount() == 0 {
+		// Add Tailwind CSS processor
+		tailwind := NewTailwindProcessor()
+		pipeline.AddProcessor(tailwind)
+
+		// Add ESBuild processor (optional, only if entry points exist)
+		esbuild := NewESBuildProcessor()
+		pipeline.AddProcessor(esbuild)
+	}
+
+	return pipeline.Build(ctx)
+}
+
+// StartDevServer starts the development server with hot reload.
+// This watches for file changes and automatically rebuilds assets.
+func (m *Manager) StartDevServer(ctx context.Context) error {
+	// Check if already running (with lock)
+	m.mu.Lock()
+	if m.devServer != nil {
+		m.mu.Unlock()
+		return fmt.Errorf("dev server already running")
+	}
+	m.mu.Unlock()
+
+	// Get pipeline (this will acquire its own lock)
+	pipeline := m.Pipeline()
+	
+	// Add default processors if none exist
+	if pipeline.ProcessorCount() == 0 {
+		// Add Tailwind CSS processor
+		tailwind := NewTailwindProcessor().WithVerbose(false)
+		pipeline.AddProcessor(tailwind)
+
+		// Add ESBuild processor (optional)
+		esbuild := NewESBuildProcessor().WithVerbose(false)
+		pipeline.AddProcessor(esbuild)
+	}
+
+	devServer, err := NewDevServer(pipeline)
+	if err != nil {
+		return fmt.Errorf("failed to create dev server: %w", err)
+	}
+
+	devServer.SetVerbose(false)
+	
+	// Set dev server (with lock)
+	m.mu.Lock()
+	m.devServer = devServer
+	m.mu.Unlock()
+
+	return devServer.Start(ctx)
+}
+
+// SSEHandler returns the Server-Sent Events handler for hot reload.
+// Mount this at /_forgeui/reload in your HTTP server.
+// Returns nil if dev server is not running.
+func (m *Manager) SSEHandler() interface{} {
+	m.mu.RLock()
+	ds := m.devServer
+	m.mu.RUnlock()
+
+	if ds == nil {
+		return nil
+	}
+
+	return ds.SSEHandler()
+}
+
+// HotReloadScript returns the client-side JavaScript for hot reload.
+// Include this in your HTML during development.
+func (m *Manager) HotReloadScript() string {
+	m.mu.RLock()
+	ds := m.devServer
+	m.mu.RUnlock()
+
+	if ds == nil {
+		return ""
+	}
+
+	return ds.HotReloadScript()
+}
+
+// StopDevServer stops the development server if running
+func (m *Manager) StopDevServer() error {
+	m.mu.Lock()
+	defer m.mu.Unlock()
+
+	if m.devServer == nil {
+		return nil
+	}
+
+	err := m.devServer.Close()
+	m.devServer = nil
+	return err
+}
+
