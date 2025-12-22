@@ -5,6 +5,7 @@ import (
 	"encoding/json"
 	"net/http"
 	"net/http/httptest"
+	"sync/atomic"
 	"testing"
 	"time"
 )
@@ -118,10 +119,12 @@ func TestBridge_Integration(t *testing.T) {
 
 	// Test hooks
 	t.Run("Hooks", func(t *testing.T) {
-		called := false
+		var called atomic.Bool
+		done := make(chan struct{})
 
 		b.GetHooks().Register(BeforeCall, func(ctx Context, data HookData) {
-			called = true
+			called.Store(true)
+			close(done)
 		})
 
 		req := httptest.NewRequest("POST", "/", nil)
@@ -129,10 +132,14 @@ func TestBridge_Integration(t *testing.T) {
 
 		b.Call(ctx, "echo", json.RawMessage(`{"message":"test"}`))
 
-		// Wait a bit for async hook
-		if !called {
-			// Note: hooks are async, in real scenarios you'd use sync mechanisms
-			t.Log("Hook was not called (async behavior)")
+		// Wait for async hook to complete
+		select {
+		case <-done:
+			if !called.Load() {
+				t.Error("Hook was not called")
+			}
+		case <-time.After(1 * time.Second):
+			t.Error("Hook timed out")
 		}
 	})
 

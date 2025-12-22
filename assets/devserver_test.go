@@ -2,6 +2,7 @@ package assets
 
 import (
 	"context"
+	"net/http"
 	"net/http/httptest"
 	"strings"
 	"testing"
@@ -114,35 +115,41 @@ func TestDevServer_SSEHandler(t *testing.T) {
 	}
 	defer ds.Close()
 
-	handler := ds.SSEHandler()
+	// Use a real HTTP server for SSE testing to avoid race conditions
+	// with httptest.ResponseRecorder
+	server := httptest.NewServer(ds.SSEHandler())
+	defer server.Close()
 
-	req := httptest.NewRequest("GET", "/_forgeui/reload", nil)
-	rec := httptest.NewRecorder()
-
-	// Run handler in goroutine since it blocks
-	done := make(chan bool)
-	go func() {
-		handler(rec, req)
-		done <- true
-	}()
-
-	// Give handler time to set headers and send initial message
-	time.Sleep(100 * time.Millisecond)
+	// Make request to SSE endpoint
+	resp, err := http.Get(server.URL)
+	if err != nil {
+		t.Fatalf("Failed to connect to SSE endpoint: %v", err)
+	}
+	defer resp.Body.Close()
 
 	// Check headers
-	if rec.Header().Get("Content-Type") != "text/event-stream" {
+	if resp.Header.Get("Content-Type") != "text/event-stream" {
 		t.Error("Missing or incorrect Content-Type header")
 	}
 
-	if rec.Header().Get("Cache-Control") != "no-cache" {
+	if resp.Header.Get("Cache-Control") != "no-cache" {
 		t.Error("Missing or incorrect Cache-Control header")
 	}
 
-	// Check initial connection message
-	body := rec.Body.String()
-	if !strings.Contains(body, "data: connected") {
-		t.Error("Missing initial connection message")
+	// Read initial connection message
+	buf := make([]byte, 256)
+	n, err := resp.Body.Read(buf)
+	if err != nil {
+		t.Fatalf("Failed to read initial message: %v", err)
 	}
+
+	body := string(buf[:n])
+	if !strings.Contains(body, "data: connected") {
+		t.Errorf("Missing initial connection message, got: %s", body)
+	}
+
+	// Give a moment for client registration
+	time.Sleep(50 * time.Millisecond)
 
 	// Client should be registered
 	if ds.ClientCount() != 1 {
