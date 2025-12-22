@@ -24,8 +24,8 @@ func WithSeparator(sep g.Node) Option {
 }
 
 // WithMaxItems sets maximum items to display (middle items collapse to ellipsis)
-func WithMaxItems(max int) Option {
-	return func(p *BreadcrumbProps) { p.MaxItems = max }
+func WithMaxItems(maxItems int) Option {
+	return func(p *BreadcrumbProps) { p.MaxItems = maxItems }
 }
 
 // WithClass adds custom classes

@@ -144,7 +144,7 @@ func (m *Manager) SaveManifest(path string) error {
 		return err
 	}
 
-	return os.WriteFile(path, jsonData, 0644)
+	return os.WriteFile(path, jsonData, 0600)
 }
 
 // Pipeline returns the asset pipeline for this manager.

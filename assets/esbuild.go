@@ -7,6 +7,7 @@ import (
 	"os/exec"
 	"path/filepath"
 	"strings"
+	"time"
 )
 
 // ESBuildProcessor bundles and minifies JavaScript files using esbuild.
@@ -155,7 +156,10 @@ func (ep *ESBuildProcessor) Process(ctx context.Context, cfg ProcessorConfig) er
 
 // isESBuildAvailable checks if esbuild CLI is available
 func (ep *ESBuildProcessor) isESBuildAvailable() bool {
-	cmd := exec.Command("npx", "esbuild", "--version")
+	ctx, cancel := context.WithTimeout(context.Background(), 5*time.Second)
+	defer cancel()
+
+	cmd := exec.CommandContext(ctx, "npx", "esbuild", "--version")
 	err := cmd.Run()
 
 	return err == nil

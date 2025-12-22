@@ -43,6 +43,7 @@ func Separator(opts ...Option) g.Node {
 	}
 
 	baseClasses := "shrink-0 bg-border"
+
 	var orientationClass string
 
 	if props.Orientation == "vertical" {

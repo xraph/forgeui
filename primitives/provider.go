@@ -1,8 +1,3 @@
-// Package primitives provides the Provider pattern for Alpine.js integration.
-//
-// The Provider pattern enables React-like context API for Alpine.js components,
-// allowing parent components to share state and methods with deeply nested children
-// without prop drilling.
 package primitives
 
 import (

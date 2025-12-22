@@ -15,6 +15,7 @@ import (
 	"github.com/xraph/forgeui/cli/util"
 )
 
+//nolint:gochecknoinits // init used for command registration
 func init() {
 	cli.RegisterCommand(DevCommand())
 }
@@ -131,13 +132,16 @@ func runDev(ctx *cli.Context) error {
 func openBrowser(url string) error {
 	var cmd *exec.Cmd
 
+	ctx, cancel := context.WithTimeout(context.Background(), 10*time.Second)
+	defer cancel()
+
 	switch {
 	case commandExists("xdg-open"):
-		cmd = exec.Command("xdg-open", url)
+		cmd = exec.CommandContext(ctx, "xdg-open", url)
 	case commandExists("open"):
-		cmd = exec.Command("open", url)
+		cmd = exec.CommandContext(ctx, "open", url)
 	case commandExists("start"):
-		cmd = exec.Command("cmd", "/c", "start", url)
+		cmd = exec.CommandContext(ctx, "cmd", "/c", "start", url)
 	default:
 		return errors.New("no browser opener found")
 	}

@@ -18,11 +18,8 @@ func (r *Route) Loader(fn LoaderFunc) *Route {
 }
 
 // executeLoader runs the loader function with timeout support
+// This function assumes LoaderFn is not nil and should only be called when LoaderFn is set
 func (r *Route) executeLoader(ctx context.Context, params Params) (any, error) {
-	if r.LoaderFn == nil {
-		return nil, nil
-	}
-
 	// Create timeout context
 	loaderCtx, cancel := context.WithTimeout(ctx, LoaderTimeout)
 	defer cancel()

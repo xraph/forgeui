@@ -1,16 +1,3 @@
-// Package alpine provides Alpine.js integration helpers for ForgeUI.
-//
-// Alpine.js is a lightweight JavaScript framework for adding interactivity
-// to server-rendered HTML. This package provides Go functions that generate
-// Alpine directives as HTML attributes.
-//
-// Basic usage:
-//
-//	html.Div(
-//	    alpine.XData(map[string]any{"count": 0}),
-//	    alpine.XClick("count++"),
-//	    alpine.XText("count"),
-//	)
 package alpine
 
 import (
@@ -71,6 +58,7 @@ func serializeXDataWithRawJS(state map[string]any) string {
 
 	var result strings.Builder
 	result.WriteString("{")
+
 	first := true
 
 	var resultSb72 strings.Builder
@@ -115,7 +103,7 @@ func serializeXDataWithRawJS(state map[string]any) string {
 			if err != nil {
 				result.WriteString("null")
 			} else {
-				result.WriteString(string(jsonBytes))
+				result.Write(jsonBytes)
 			}
 		}
 	}
@@ -135,7 +123,7 @@ func needsQuoting(key string) bool {
 
 	// Check for spaces or special characters
 	for _, r := range key {
-		if !((r >= 'a' && r <= 'z') || (r >= 'A' && r <= 'Z') || (r >= '0' && r <= '9') || r == '_' || r == '$') {
+		if (r < 'a' || r > 'z') && (r < 'A' || r > 'Z') && (r < '0' || r > '9') && r != '_' && r != '$' {
 			return true
 		}
 	}

@@ -25,8 +25,8 @@ func WithPosition(pos string) ToasterOption {
 }
 
 // WithMaxToasts sets the maximum number of visible toasts
-func WithMaxToasts(max int) ToasterOption {
-	return func(p *ToasterProps) { p.MaxToasts = max }
+func WithMaxToasts(maxToasts int) ToasterOption {
+	return func(p *ToasterProps) { p.MaxToasts = maxToasts }
 }
 
 // WithToasterClass adds custom classes to the toaster

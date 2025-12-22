@@ -130,7 +130,7 @@ func CloakCSS() g.Node {
 	)
 }
 
-// CSPNonce adds a nonce attribute to script tags for Content Security Policy.
+// ScriptsWithNonce adds a nonce attribute to script tags for Content Security Policy.
 // Use this when you have CSP enabled.
 //
 // Example:

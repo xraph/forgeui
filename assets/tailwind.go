@@ -8,6 +8,7 @@ import (
 	"os/exec"
 	"path/filepath"
 	"strings"
+	"time"
 
 	"github.com/xraph/forgeui/theme"
 )
@@ -170,7 +171,7 @@ func (tp *TailwindProcessor) generateConfig(outputDir string) (string, error) {
 	config = strings.Replace(config, "module.exports = {",
 		fmt.Sprintf("module.exports = {\n  content: %s,", contentJSON), 1)
 
-	if err := os.WriteFile(configPath, []byte(config), 0644); err != nil {
+	if err := os.WriteFile(configPath, []byte(config), 0600); err != nil {
 		return "", err
 	}
 
@@ -195,7 +196,7 @@ func (tp *TailwindProcessor) createInputCSS(outputDir string) (string, error) {
 @tailwind utilities;
 `
 
-	if err := os.WriteFile(inputPath, []byte(content), 0644); err != nil {
+	if err := os.WriteFile(inputPath, []byte(content), 0600); err != nil {
 		return "", err
 	}
 
@@ -204,7 +205,10 @@ func (tp *TailwindProcessor) createInputCSS(outputDir string) (string, error) {
 
 // isTailwindAvailable checks if Tailwind CLI is available
 func (tp *TailwindProcessor) isTailwindAvailable() bool {
-	cmd := exec.Command("npx", "tailwindcss", "--help")
+	ctx, cancel := context.WithTimeout(context.Background(), 5*time.Second)
+	defer cancel()
+
+	cmd := exec.CommandContext(ctx, "npx", "tailwindcss", "--help")
 	err := cmd.Run()
 
 	return err == nil
@@ -223,7 +227,7 @@ func (tp *TailwindProcessor) generateCDNFallback(outputPath string) error {
 }
 `
 
-	if err := os.WriteFile(outputPath, []byte(content), 0644); err != nil {
+	if err := os.WriteFile(outputPath, []byte(content), 0600); err != nil {
 		return fmt.Errorf("failed to write CDN fallback: %w", err)
 	}
 

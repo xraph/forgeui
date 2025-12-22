@@ -1,11 +1,13 @@
 package commands
 
 import (
+	"context"
 	"errors"
 	"fmt"
 	"os"
 	"os/exec"
 	"slices"
+	"time"
 
 	"github.com/xraph/forgeui/cli"
 	"github.com/xraph/forgeui/cli/util"
@@ -13,6 +15,7 @@ import (
 	"golang.org/x/text/language"
 )
 
+//nolint:gochecknoinits // init used for command registration
 func init() {
 	cli.RegisterCommand(PluginCommand())
 }
@@ -125,8 +128,11 @@ func runPluginAdd(ctx *cli.Context) error {
 	spinner := util.NewSpinner("Installing plugin package")
 	spinner.Start()
 
+	cmdCtx, cancel := context.WithTimeout(context.Background(), 60*time.Second)
+	defer cancel()
+
 	pluginPath := "github.com/xraph/forgeui/plugins/" + pluginName
-	cmd := exec.Command("go", "get", pluginPath)
+	cmd := exec.CommandContext(cmdCtx, "go", "get", pluginPath)
 	cmd.Stdout = os.Stdout
 	cmd.Stderr = os.Stderr
 

@@ -1,4 +1,4 @@
-// Package switch provides toggle switch components.
+// Package switchc provides toggle switch components.
 package switchc
 
 import (

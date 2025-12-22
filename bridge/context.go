@@ -68,7 +68,7 @@ type User interface {
 
 // bridgeContext is the default implementation of Context
 type bridgeContext struct {
-	ctx     context.Context
+	ctx     context.Context //nolint:containedctx // Context is intentionally stored to wrap http.Request context
 	req     *http.Request
 	session Session
 	user    User

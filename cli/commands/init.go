@@ -1,16 +1,19 @@
 package commands
 
 import (
+	"context"
 	"fmt"
 	"os"
 	"os/exec"
 	"path/filepath"
+	"time"
 
 	"github.com/xraph/forgeui/cli"
 	"github.com/xraph/forgeui/cli/templates"
 	"github.com/xraph/forgeui/cli/util"
 )
 
+//nolint:gochecknoinits // init used for command registration
 func init() {
 	cli.RegisterCommand(InitCommand())
 }
@@ -171,7 +174,10 @@ func createProjectStructure(projectDir string) error {
 }
 
 func initGoModule(projectDir, modulePath string) error {
-	cmd := exec.Command("go", "mod", "init", modulePath)
+	ctx, cancel := context.WithTimeout(context.Background(), 30*time.Second)
+	defer cancel()
+
+	cmd := exec.CommandContext(ctx, "go", "mod", "init", modulePath)
 	cmd.Dir = projectDir
 	cmd.Stdout = os.Stdout
 	cmd.Stderr = os.Stderr
@@ -184,8 +190,11 @@ func initGoModule(projectDir, modulePath string) error {
 }
 
 func installDependencies(projectDir string) error {
+	ctx, cancel := context.WithTimeout(context.Background(), 120*time.Second)
+	defer cancel()
+
 	// go get forgeui
-	cmd := exec.Command("go", "get", "github.com/xraph/forgeui@latest")
+	cmd := exec.CommandContext(ctx, "go", "get", "github.com/xraph/forgeui@latest")
 	cmd.Dir = projectDir
 	cmd.Stdout = os.Stdout
 	cmd.Stderr = os.Stderr
@@ -195,7 +204,7 @@ func installDependencies(projectDir string) error {
 	}
 
 	// go mod tidy
-	cmd = exec.Command("go", "mod", "tidy")
+	cmd = exec.CommandContext(ctx, "go", "mod", "tidy")
 	cmd.Dir = projectDir
 	cmd.Stdout = os.Stdout
 	cmd.Stderr = os.Stderr

@@ -140,7 +140,7 @@ import (
 	"maragu.dev/gomponents/html"
 )
 
-// Default HTMX version
+// DefaultVersion is the default HTMX version.
 const DefaultVersion = "2.0.3"
 
 // HTMX extension names

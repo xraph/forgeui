@@ -28,26 +28,26 @@ func ValidateEmail(email string) error {
 }
 
 // ValidateRange validates that a number is within a range
-func ValidateRange(value, min, max int) error {
-	if value < min {
-		return fmt.Errorf("value %d is less than minimum %d", value, min)
+func ValidateRange(value, minValue, maxValue int) error {
+	if value < minValue {
+		return fmt.Errorf("value %d is less than minimum %d", value, minValue)
 	}
 
-	if value > max {
-		return fmt.Errorf("value %d is greater than maximum %d", value, max)
+	if value > maxValue {
+		return fmt.Errorf("value %d is greater than maximum %d", value, maxValue)
 	}
 
 	return nil
 }
 
 // ValidateFloatRange validates that a float is within a range
-func ValidateFloatRange(value, min, max float64) error {
-	if value < min {
-		return fmt.Errorf("value %f is less than minimum %f", value, min)
+func ValidateFloatRange(value, minValue, maxValue float64) error {
+	if value < minValue {
+		return fmt.Errorf("value %f is less than minimum %f", value, minValue)
 	}
 
-	if value > max {
-		return fmt.Errorf("value %f is greater than maximum %f", value, max)
+	if value > maxValue {
+		return fmt.Errorf("value %f is greater than maximum %f", value, maxValue)
 	}
 
 	return nil
@@ -68,15 +68,15 @@ func ValidatePattern(value, pattern string) error {
 }
 
 // ValidateLength validates string length
-func ValidateLength(value string, min, max int) error {
+func ValidateLength(value string, minLength, maxLength int) error {
 	length := len(value)
 
-	if length < min {
-		return fmt.Errorf("string length %d is less than minimum %d", length, min)
+	if length < minLength {
+		return fmt.Errorf("string length %d is less than minimum %d", length, minLength)
 	}
 
-	if length > max {
-		return fmt.Errorf("string length %d is greater than maximum %d", length, max)
+	if length > maxLength {
+		return fmt.Errorf("string length %d is greater than maximum %d", length, maxLength)
 	}
 
 	return nil

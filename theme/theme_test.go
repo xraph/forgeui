@@ -51,8 +51,7 @@ func TestColorTokens(t *testing.T) {
 		t.Run(tt.name, func(t *testing.T) {
 			var got string
 
-			switch tt.field {
-			case "Background":
+			if tt.field == "Background" {
 				got = tt.theme.Colors.Background
 			}
 

@@ -166,7 +166,7 @@ func SheetClose(child g.Node) g.Node {
 	)
 }
 
-// Convenience functions for different sides
+// SheetLeft creates a sheet that slides in from the left side.
 func SheetLeft(children ...g.Node) g.Node {
 	return SheetContent(forgeui.SideLeft, children...)
 }

@@ -50,7 +50,8 @@ func validateParams(value reflect.Value, targetType reflect.Type) error {
 
 // validateStruct validates struct fields
 func validateStruct(value reflect.Value, structType reflect.Type) error {
-	for i := 0; i < structType.NumField(); i++ {
+	numFields := structType.NumField()
+	for i := range numFields {
 		field := structType.Field(i)
 		fieldValue := value.Field(i)
 

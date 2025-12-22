@@ -72,24 +72,24 @@ func DataVisualizationPlugins() []any {
 
 // Re-export plugin constructors for convenience
 var (
-	// Toast notification system
+	// NewToast is the toast notification system.
 	NewToast = toast.New
 
-	// Sortable drag-and-drop
+	// NewSortable provides sortable drag-and-drop functionality.
 	NewSortable = sortable.New
 
-	// Charts data visualization
+	// NewCharts provides charts data visualization.
 	NewCharts = charts.New
 
-	// Analytics event tracking
+	// NewAnalytics provides analytics event tracking.
 	NewAnalytics = analytics.New
 
-	// SEO meta tags
+	// NewSEO provides SEO meta tags.
 	NewSEO = seo.New
 
-	// HTMX wrapper
+	// NewHTMX is the HTMX wrapper plugin.
 	NewHTMX = htmxplugin.New
 
-	// Corporate theme
+	// NewCorporateTheme is the corporate theme plugin.
 	NewCorporateTheme = corporate.New
 )

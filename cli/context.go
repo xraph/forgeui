@@ -78,8 +78,8 @@ func (c *Context) Println(args ...any) {
 	fmt.Fprintln(c.Stdout, args...)
 }
 
-// Error prints formatted error to stderr
-func (c *Context) Error(format string, args ...any) {
+// Errorf prints formatted error to stderr
+func (c *Context) Errorf(format string, args ...any) {
 	fmt.Fprintf(c.Stderr, format, args...)
 }
 

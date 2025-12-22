@@ -19,7 +19,7 @@ func TestComponentError(t *testing.T) {
 			t.Errorf("Error() = %v, want %v", err.Error(), expected)
 		}
 
-		if unwrapped := err.Unwrap(); unwrapped != innerErr {
+		if unwrapped := err.Unwrap(); !errors.Is(unwrapped, innerErr) {
 			t.Errorf("Unwrap() = %v, want %v", unwrapped, innerErr)
 		}
 	})
@@ -67,7 +67,7 @@ func TestPluginError(t *testing.T) {
 			t.Errorf("Error() = %v, want %v", err.Error(), expected)
 		}
 
-		if unwrapped := err.Unwrap(); unwrapped != innerErr {
+		if unwrapped := err.Unwrap(); !errors.Is(unwrapped, innerErr) {
 			t.Errorf("Unwrap() = %v, want %v", unwrapped, innerErr)
 		}
 	})

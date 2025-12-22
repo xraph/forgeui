@@ -179,7 +179,8 @@ func (f *Function) GetTypeInfo() TypeInfo {
 func extractFields(t reflect.Type) []FieldInfo {
 	var fields []FieldInfo
 
-	for i := 0; i < t.NumField(); i++ {
+	numFields := t.NumField()
+	for i := range numFields {
 		field := t.Field(i)
 
 		// Skip unexported fields

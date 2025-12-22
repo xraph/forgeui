@@ -658,7 +658,6 @@ func SidebarGroupAction(icon g.Node, label string) g.Node {
 //
 //	sidebar.SidebarMenu(
 //	    sidebar.SidebarMenuItem(...),
-//	    sidebar.SidebarMenuItem(...),
 //	)
 func SidebarMenu(children ...g.Node) g.Node {
 	return html.Ul(
@@ -913,7 +912,6 @@ func SidebarMenuButton(label string, opts ...SidebarMenuButtonOption) g.Node {
 // Example:
 //
 //	sidebar.SidebarMenuSub(
-//	    sidebar.SidebarMenuSubItem(...),
 //	    sidebar.SidebarMenuSubItem(...),
 //	)
 func SidebarMenuSub(children ...g.Node) g.Node {

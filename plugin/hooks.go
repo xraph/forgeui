@@ -46,7 +46,7 @@ type HookFunc func(ctx *HookContext) error
 
 // HookContext provides context to hook handlers.
 type HookContext struct {
-	Context context.Context
+	Context context.Context //nolint:containedctx // Context is intentionally passed to hook handlers
 	Data    map[string]any
 	Nodes   []g.Node // For render hooks
 }

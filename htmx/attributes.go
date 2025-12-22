@@ -1,17 +1,3 @@
-// Package htmx provides HTMX integration helpers for ForgeUI.
-//
-// HTMX allows you to access AJAX, CSS Transitions, WebSockets and Server Sent Events
-// directly in HTML, using attributes, so you can build modern user interfaces with
-// the simplicity and power of hypertext.
-//
-// Basic usage:
-//
-//	html.Button(
-//	    htmx.HxGet("/api/users"),
-//	    htmx.HxTarget("#results"),
-//	    htmx.HxSwap("innerHTML"),
-//	    g.Text("Load Users"),
-//	)
 package htmx
 
 import (

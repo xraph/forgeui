@@ -2,6 +2,7 @@ package assets
 
 import (
 	"context"
+	"errors"
 	"os"
 	"path/filepath"
 	"testing"
@@ -140,7 +141,7 @@ func TestWatcher_FileChange(t *testing.T) {
 	})
 
 	// Start watcher
-	ctx, cancel := context.WithCancel(context.Background())
+	ctx, cancel := context.WithCancel(t.Context())
 	defer cancel()
 
 	go func() {
@@ -338,7 +339,7 @@ func TestWatcher_ContextCancellation(t *testing.T) {
 	// Wait for Start to return
 	select {
 	case err := <-done:
-		if err != context.Canceled {
+		if !errors.Is(err, context.Canceled) {
 			t.Errorf("Expected context.Canceled, got %v", err)
 		}
 	case <-time.After(1 * time.Second):

@@ -17,6 +17,7 @@ func TestRouteMeta(t *testing.T) {
 		meta := ctx.GetMeta()
 		if meta == nil {
 			t.Error("Expected metadata to be set")
+			return g.Text("content"), nil
 		}
 
 		if meta.Title != "Test Page" {

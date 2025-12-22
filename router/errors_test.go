@@ -38,7 +38,7 @@ func TestLoaderErrorWithWrappedError(t *testing.T) {
 	}
 
 	// Test Unwrap
-	if errors.Unwrap(err) != innerErr {
+	if !errors.Is(errors.Unwrap(err), innerErr) {
 		t.Error("Expected Unwrap to return inner error")
 	}
 }
@@ -46,8 +46,8 @@ func TestLoaderErrorWithWrappedError(t *testing.T) {
 func TestError404(t *testing.T) {
 	err := Error404("Page not found")
 
-	loaderErr, ok := err.(*LoaderError)
-	if !ok {
+	var loaderErr *LoaderError
+	if !errors.As(err, &loaderErr) {
 		t.Fatal("Expected LoaderError")
 	}
 
@@ -63,8 +63,8 @@ func TestError404(t *testing.T) {
 func TestError403(t *testing.T) {
 	err := Error403("Access denied")
 
-	loaderErr, ok := err.(*LoaderError)
-	if !ok {
+	var loaderErr *LoaderError
+	if !errors.As(err, &loaderErr) {
 		t.Fatal("Expected LoaderError")
 	}
 
@@ -77,8 +77,8 @@ func TestError500(t *testing.T) {
 	innerErr := errors.New("database error")
 	err := Error500("Internal error", innerErr)
 
-	loaderErr, ok := err.(*LoaderError)
-	if !ok {
+	var loaderErr *LoaderError
+	if !errors.As(err, &loaderErr) {
 		t.Fatal("Expected LoaderError")
 	}
 
@@ -86,7 +86,7 @@ func TestError500(t *testing.T) {
 		t.Errorf("Expected status 500, got %d", loaderErr.Status)
 	}
 
-	if loaderErr.Err != innerErr {
+	if !errors.Is(loaderErr.Err, innerErr) {
 		t.Error("Expected wrapped error to be preserved")
 	}
 }

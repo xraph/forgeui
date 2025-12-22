@@ -33,12 +33,12 @@ func WithID(id string) Option {
 	return func(p *Props) { p.ID = id }
 }
 
-func WithMin(min int) Option {
-	return func(p *Props) { p.Min = min }
+func WithMin(minVal int) Option {
+	return func(p *Props) { p.Min = minVal }
 }
 
-func WithMax(max int) Option {
-	return func(p *Props) { p.Max = max }
+func WithMax(maxVal int) Option {
+	return func(p *Props) { p.Max = maxVal }
 }
 
 func WithValue(value int) Option {

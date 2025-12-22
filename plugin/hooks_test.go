@@ -97,7 +97,7 @@ func TestHookTriggerError(t *testing.T) {
 		t.Error("expected error from trigger")
 	}
 
-	if err != expectedErr {
+	if !errors.Is(err, expectedErr) {
 		t.Errorf("Trigger() error = %v, want %v", err, expectedErr)
 	}
 }

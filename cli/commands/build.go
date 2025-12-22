@@ -11,6 +11,7 @@ import (
 	"github.com/xraph/forgeui/cli/util"
 )
 
+//nolint:gochecknoinits // init used for command registration
 func init() {
 	cli.RegisterCommand(BuildCommand())
 }
@@ -163,7 +164,7 @@ func processAssets(outputDir string, config *cli.Config, minify bool) error {
 				return err
 			}
 
-			if err := os.WriteFile(destFile, data, 0644); err != nil {
+		if err := os.WriteFile(destFile, data, 0600); err != nil {
 				return err
 			}
 		}
@@ -182,7 +183,7 @@ func processAssets(outputDir string, config *cli.Config, minify bool) error {
 				return err
 			}
 
-			if err := os.WriteFile(destFile, data, 0644); err != nil {
+		if err := os.WriteFile(destFile, data, 0600); err != nil {
 				return err
 			}
 		}

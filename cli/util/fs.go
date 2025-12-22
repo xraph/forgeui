@@ -37,7 +37,7 @@ func CreateFile(path, content string) error {
 		return err
 	}
 
-	return os.WriteFile(path, []byte(content), 0644)
+	return os.WriteFile(path, []byte(content), 0600)
 }
 
 // IsGoProject checks if the directory is a Go project

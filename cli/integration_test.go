@@ -1,10 +1,12 @@
 package cli
 
 import (
+	"context"
 	"os"
 	"os/exec"
 	"path/filepath"
 	"testing"
+	"time"
 
 	"github.com/xraph/forgeui/cli/templates"
 	"github.com/xraph/forgeui/cli/util"
@@ -60,7 +62,10 @@ func TestInitWorkflow(t *testing.T) {
 	}
 
 	// Initialize go module (without network access)
-	cmd := exec.Command("go", "mod", "init", modulePath)
+	ctx, cancel := context.WithTimeout(context.Background(), 30*time.Second)
+	defer cancel()
+
+	cmd := exec.CommandContext(ctx, "go", "mod", "init", modulePath)
 
 	cmd.Dir = projectDir
 	if err := cmd.Run(); err != nil {

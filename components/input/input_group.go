@@ -781,6 +781,7 @@ func InputGroupTextarea(opts ...GroupTextareaOption) g.Node {
 // Legacy support - keeping backward compatible functions
 
 // InputLeftAddon creates a left addon (prefix) attached to the input.
+//
 // Deprecated: Use InputGroupAddon with WithAddonAlign(AlignInlineStart) instead.
 func InputLeftAddon(opts []AddonOption, children ...g.Node) g.Node {
 	opts = append([]AddonOption{WithAddonAlign(AlignInlineStart)}, opts...)
@@ -788,6 +789,7 @@ func InputLeftAddon(opts []AddonOption, children ...g.Node) g.Node {
 }
 
 // InputRightAddon creates a right addon (suffix) attached to the input.
+//
 // Deprecated: Use InputGroupAddon with WithAddonAlign(AlignInlineEnd) instead.
 func InputRightAddon(opts []AddonOption, children ...g.Node) g.Node {
 	opts = append([]AddonOption{WithAddonAlign(AlignInlineEnd)}, opts...)
@@ -814,6 +816,7 @@ func WithElementAttrs(attrs ...g.Node) ElementOption {
 }
 
 // InputLeftElement creates a left element positioned absolutely inside the input.
+//
 // Deprecated: Use InputGroupAddon with WithAddonAlign(AlignInlineStart) instead.
 func InputLeftElement(opts []ElementOption, children ...g.Node) g.Node {
 	props := &ElementProps{}
@@ -838,6 +841,7 @@ func InputLeftElement(opts []ElementOption, children ...g.Node) g.Node {
 }
 
 // InputRightElement creates a right element positioned absolutely inside the input.
+//
 // Deprecated: Use InputGroupAddon with WithAddonAlign(AlignInlineEnd) instead.
 func InputRightElement(opts []ElementOption, children ...g.Node) g.Node {
 	props := &ElementProps{}

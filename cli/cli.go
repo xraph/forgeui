@@ -18,6 +18,7 @@ var (
 
 var rootCmd *Command
 
+//nolint:gochecknoinits // init used for CLI root command initialization
 func init() {
 	rootCmd = &Command{
 		Name:  "forgeui",

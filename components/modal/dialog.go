@@ -169,7 +169,7 @@ func DialogClose(child g.Node) g.Node {
 	)
 }
 
-// Dialog size options for convenience
+// DialogSM creates a small dialog for convenience.
 func DialogSM(children ...g.Node) g.Node {
 	return DialogContentWithOptions(DialogContentProps{Size: forgeui.SizeSM}, children...)
 }

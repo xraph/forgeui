@@ -81,9 +81,9 @@ func WithPosition(position string) Option {
 }
 
 // WithMaxVisible sets the maximum visible toasts.
-func WithMaxVisible(max int) Option {
+func WithMaxVisible(maxVisible int) Option {
 	return func(c *Config) {
-		c.MaxVisible = max
+		c.MaxVisible = maxVisible
 	}
 }
 

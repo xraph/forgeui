@@ -10,6 +10,7 @@ import (
 	"github.com/xraph/forgeui/cli/util"
 )
 
+//nolint:gochecknoinits // init used for command registration
 func init() {
 	cli.RegisterCommand(GenerateCommand())
 }

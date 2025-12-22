@@ -156,10 +156,10 @@ func (c *PageContext) Context() context.Context {
 
 // WithContext returns a shallow copy of PageContext with a new context
 func (c *PageContext) WithContext(ctx context.Context) *PageContext {
-	copy := *c
-	copy.Request = c.Request.WithContext(ctx)
+	copied := *c
+	copied.Request = c.Request.WithContext(ctx)
 
-	return &copy
+	return &copied
 }
 
 // Method returns the HTTP method of the request

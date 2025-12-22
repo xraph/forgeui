@@ -94,14 +94,14 @@ func Email() Validator {
 //	if err := validator("short"); err != nil {
 //	    // Handle error: "Must be at least 8 characters"
 //	}
-func MinLength(min int) Validator {
+func MinLength(minLen int) Validator {
 	return func(value string) error {
 		if value == "" {
 			return nil // Allow empty unless combined with Required()
 		}
 
-		if len(value) < min {
-			return NewValidationError("", fmt.Sprintf("Must be at least %d characters", min))
+		if len(value) < minLen {
+			return NewValidationError("", fmt.Sprintf("Must be at least %d characters", minLen))
 		}
 
 		return nil
@@ -116,10 +116,10 @@ func MinLength(min int) Validator {
 //	if err := validator("very long text..."); err != nil {
 //	    // Handle error: "Must not exceed 100 characters"
 //	}
-func MaxLength(max int) Validator {
+func MaxLength(maxLen int) Validator {
 	return func(value string) error {
-		if len(value) > max {
-			return NewValidationError("", fmt.Sprintf("Must not exceed %d characters", max))
+		if len(value) > maxLen {
+			return NewValidationError("", fmt.Sprintf("Must not exceed %d characters", maxLen))
 		}
 
 		return nil

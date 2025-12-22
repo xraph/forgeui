@@ -159,7 +159,7 @@ func (w *Watcher) shouldProcess(event fsnotify.Event) bool {
 	}
 
 	// Check each path component
-	parts := strings.Split(path, string(filepath.Separator))
+	parts := strings.Split(path, string(filepath.Separator)) //nolint:modernize // strings.SplitSeq not available in Go 1.24
 	for _, part := range parts {
 		if slices.Contains(excludeDirs, part) {
 			return false

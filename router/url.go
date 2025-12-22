@@ -29,7 +29,8 @@ func (r *Route) URL(params ...any) string {
 	result := make([]string, 0, len(segments))
 
 	for _, segment := range segments {
-		if strings.HasPrefix(segment, ":") {
+		switch {
+		case strings.HasPrefix(segment, ":"):
 			// Named parameter - replace with provided value
 			if paramIdx < len(params) {
 				result = append(result, fmt.Sprint(params[paramIdx]))
@@ -38,7 +39,7 @@ func (r *Route) URL(params ...any) string {
 				// Not enough parameters provided
 				result = append(result, segment)
 			}
-		} else if strings.HasPrefix(segment, "*") {
+		case strings.HasPrefix(segment, "*"):
 			// Wildcard - replace with provided value
 			if paramIdx < len(params) {
 				result = append(result, fmt.Sprint(params[paramIdx]))
@@ -46,7 +47,7 @@ func (r *Route) URL(params ...any) string {
 			} else {
 				result = append(result, segment)
 			}
-		} else {
+		default:
 			// Static segment
 			result = append(result, segment)
 		}

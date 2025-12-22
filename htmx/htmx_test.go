@@ -88,17 +88,17 @@ func TestHxSwap(t *testing.T) {
 func TestHxSwapConvenience(t *testing.T) {
 	tests := []struct {
 		name     string
-		fn       func() interface{ Render(io.Writer) error }
+		fn       func() interface{ Render(w io.Writer) error }
 		expected string
 	}{
-		{"innerHTML", func() interface{ Render(io.Writer) error } { return HxSwapInnerHTML() }, `hx-swap="innerHTML"`},
-		{"outerHTML", func() interface{ Render(io.Writer) error } { return HxSwapOuterHTML() }, `hx-swap="outerHTML"`},
-		{"beforebegin", func() interface{ Render(io.Writer) error } { return HxSwapBeforeBegin() }, `hx-swap="beforebegin"`},
-		{"afterbegin", func() interface{ Render(io.Writer) error } { return HxSwapAfterBegin() }, `hx-swap="afterbegin"`},
-		{"beforeend", func() interface{ Render(io.Writer) error } { return HxSwapBeforeEnd() }, `hx-swap="beforeend"`},
-		{"afterend", func() interface{ Render(io.Writer) error } { return HxSwapAfterEnd() }, `hx-swap="afterend"`},
-		{"delete", func() interface{ Render(io.Writer) error } { return HxSwapDelete() }, `hx-swap="delete"`},
-		{"none", func() interface{ Render(io.Writer) error } { return HxSwapNone() }, `hx-swap="none"`},
+		{"innerHTML", func() interface{ Render(w io.Writer) error } { return HxSwapInnerHTML() }, `hx-swap="innerHTML"`},
+		{"outerHTML", func() interface{ Render(w io.Writer) error } { return HxSwapOuterHTML() }, `hx-swap="outerHTML"`},
+		{"beforebegin", func() interface{ Render(w io.Writer) error } { return HxSwapBeforeBegin() }, `hx-swap="beforebegin"`},
+		{"afterbegin", func() interface{ Render(w io.Writer) error } { return HxSwapAfterBegin() }, `hx-swap="afterbegin"`},
+		{"beforeend", func() interface{ Render(w io.Writer) error } { return HxSwapBeforeEnd() }, `hx-swap="beforeend"`},
+		{"afterend", func() interface{ Render(w io.Writer) error } { return HxSwapAfterEnd() }, `hx-swap="afterend"`},
+		{"delete", func() interface{ Render(w io.Writer) error } { return HxSwapDelete() }, `hx-swap="delete"`},
+		{"none", func() interface{ Render(w io.Writer) error } { return HxSwapNone() }, `hx-swap="none"`},
 	}
 
 	for _, tt := range tests {
@@ -323,7 +323,7 @@ func TestScriptsWithVersion(t *testing.T) {
 }
 
 // Helper function to render a node to string
-func renderNode(node interface{ Render(io.Writer) error }) string {
+func renderNode(node interface{ Render(w io.Writer) error }) string {
 	var sb strings.Builder
 	if err := node.Render(&sb); err != nil {
 		return ""

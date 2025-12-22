@@ -90,22 +90,27 @@ func (tc *TailwindConfig) ToJSON() (string, error) {
 
 // ToJavaScript generates JavaScript code for tailwind.config.js.
 func (tc *TailwindConfig) ToJavaScript() string {
-	js := "// ForgeUI Animation Configuration for Tailwind CSS\n"
-	js += "// Add this to your tailwind.config.js theme.extend section\n\n"
-	js += "module.exports = {\n"
-	js += "  theme: {\n"
-	js += "    extend: {\n"
+	var js strings.Builder
+	js.WriteString("// ForgeUI Animation Configuration for Tailwind CSS\n")
+	js.WriteString("// Add this to your tailwind.config.js theme.extend section\n\n")
+	js.WriteString("module.exports = {\n")
+	js.WriteString("  theme: {\n")
+	js.WriteString("    extend: {\n")
 
 	// Keyframes
-	js += "      keyframes: {\n"
+	js.WriteString("      keyframes: {\n")
 
 	var jsSb98 strings.Builder
+
 	var jsSb102 strings.Builder
+
 	for name := range tc.Keyframes {
 		jsSb98.WriteString(fmt.Sprintf("        '%s': {\n", name))
 
 		var jsSb100 strings.Builder
+
 		var jsSb105 strings.Builder
+
 		for selector, props := range tc.Keyframes[name] {
 			jsSb100.WriteString(fmt.Sprintf("          '%s': {\n", selector))
 
@@ -118,35 +123,37 @@ func (tc *TailwindConfig) ToJavaScript() string {
 
 			jsSb100.WriteString("          },\n")
 		}
-		js += jsSb105.String()
+
+		js.WriteString(jsSb105.String())
 
 		jsSb102.WriteString(jsSb100.String())
 
 		jsSb98.WriteString("        },\n")
 	}
-	js += jsSb102.String()
 
-	js += jsSb98.String()
+	js.WriteString(jsSb102.String())
 
-	js += "      },\n"
+	js.WriteString(jsSb98.String())
+
+	js.WriteString("      },\n")
 
 	// Animations
-	js += "      animation: {\n"
+	js.WriteString("      animation: {\n")
 
 	var jsSb113 strings.Builder
 	for name, value := range tc.Animations {
 		jsSb113.WriteString(fmt.Sprintf("        '%s': '%s',\n", name, value))
 	}
 
-	js += jsSb113.String()
+	js.WriteString(jsSb113.String())
 
-	js += "      },\n"
+	js.WriteString("      },\n")
 
-	js += "    },\n"
-	js += "  },\n"
-	js += "};\n"
+	js.WriteString("    },\n")
+	js.WriteString("  },\n")
+	js.WriteString("};\n")
 
-	return js
+	return js.String()
 }
 
 // TailwindClasses returns utility class names that can be used in ForgeUI components.

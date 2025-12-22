@@ -9,7 +9,7 @@ import (
 	"sync"
 	"time"
 
-	"nhooyr.io/websocket"
+	"nhooyr.io/websocket" //nolint:staticcheck // Library moved to github.com/coder/websocket - migration pending
 )
 
 // WSHandler handles WebSocket connections
@@ -21,7 +21,7 @@ type WSHandler struct {
 
 // wsConnection represents a WebSocket connection
 type wsConnection struct {
-	conn   *websocket.Conn
+	conn   *websocket.Conn //nolint:staticcheck // Library moved to github.com/coder/websocket
 	ctx    Context
 	send   chan []byte
 	userID string
@@ -38,7 +38,7 @@ func NewWSHandler(bridge *Bridge) *WSHandler {
 // ServeHTTP handles WebSocket upgrade requests
 func (h *WSHandler) ServeHTTP(w http.ResponseWriter, r *http.Request) {
 	// Upgrade to WebSocket
-	conn, err := websocket.Accept(w, r, &websocket.AcceptOptions{
+	conn, err := websocket.Accept(w, r, &websocket.AcceptOptions{ //nolint:staticcheck // Library moved to github.com/coder/websocket
 		OriginPatterns: h.bridge.config.AllowedOrigins,
 	})
 	if err != nil {
@@ -68,7 +68,7 @@ func (h *WSHandler) ServeHTTP(w http.ResponseWriter, r *http.Request) {
 func (h *WSHandler) handleConnection(connID string, wsConn *wsConnection) {
 	defer func() {
 		h.connections.Delete(connID)
-		wsConn.conn.Close(websocket.StatusNormalClosure, "connection closed")
+		wsConn.conn.Close(websocket.StatusNormalClosure, "connection closed") //nolint:staticcheck // Library moved to github.com/coder/websocket
 	}()
 
 	// Start write pump
@@ -76,7 +76,7 @@ func (h *WSHandler) handleConnection(connID string, wsConn *wsConnection) {
 
 	// Read messages
 	for {
-		_, message, err := wsConn.conn.Read(context.Background())
+		_, message, err := wsConn.conn.Read(context.Background()) //nolint:staticcheck // Library moved to github.com/coder/websocket
 		if err != nil {
 			log.Printf("WebSocket read error: %v", err)
 			return
@@ -170,7 +170,7 @@ func (h *WSHandler) writePump(wsConn *wsConnection) {
 			}
 
 			ctx, cancel := context.WithTimeout(context.Background(), 10*time.Second)
-			err := wsConn.conn.Write(ctx, websocket.MessageText, message)
+			err := wsConn.conn.Write(ctx, websocket.MessageText, message) //nolint:staticcheck // Library moved to github.com/coder/websocket
 
 			cancel()
 
@@ -182,7 +182,7 @@ func (h *WSHandler) writePump(wsConn *wsConnection) {
 		case <-ticker.C:
 			// Send ping
 			ctx, cancel := context.WithTimeout(context.Background(), 10*time.Second)
-			err := wsConn.conn.Ping(ctx)
+			err := wsConn.conn.Ping(ctx) //nolint:staticcheck // Library moved to github.com/coder/websocket
 
 			cancel()
 
