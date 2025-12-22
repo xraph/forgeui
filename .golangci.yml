@@ -1,5 +1,7 @@
-# golangci-lint configuration for ForgeUI
+# golangci-lint configuration for Forge v2
 # Production-ready linting configuration with strict settings
+
+version: "2"
 
 run:
   timeout: 5m
@@ -8,8 +10,10 @@ run:
   allow-parallel-runners: true
 
 output:
-  print-linter-name: true
-  print-issued-lines: true
+  formats:
+    text:
+      print-linter-name: true
+      print-issued-lines: true
 
 linters:
   # Default set of linters.
@@ -55,7 +59,7 @@ linters:
     - gochecksumtype
     - gocritic
     - godoclint
-    - godot
+    # - godot
     - goheader
     - gomoddirectives
     - gomodguard
@@ -85,7 +89,7 @@ linters:
     - nilerr
     - nilnesserr
     - nilnil
-    - nlreturn
+    # - nlreturn
     - noctx
     - nolintlint
     # - nonamedreturns
@@ -141,6 +145,8 @@ linters:
     - ireturn
     - iface
     - godox
+    - godot
+    - nlreturn
     - err113
     - interfacebloat
     - funcorder
@@ -159,25 +165,6 @@ linters:
     - testifylint
     - thelper
     - nonamedreturns
-    # Disable overly strict style linters
-    - godot          # Too strict about comment punctuation
-    - nlreturn       # Too strict about blank lines before returns
-    - godoclint      # Too strict about godoc formatting
-    - inamedparam    # Too strict about interface parameter names
-    - containedctx   # Sometimes necessary for certain patterns
-    - predeclared    # Too strict about using predeclared identifiers
-    - noctx          # Too strict about context parameter requirements
-    - gochecknoinits # Init functions are acceptable for registration patterns
-    - wsl_v5         # Too strict about whitespace (superseded by gofmt)
-    - mirror         # Too strict about string builder usage
-    - dupword        # Too strict about duplicate words in comments
-    - nilnil         # Sometimes returning nil, nil is valid (optional pattern)
-    - gocritic       # Too many opinionated suggestions
-    - intrange       # Go 1.22+ feature, may have side effects
-    - modernize      # Too opinionated about Go 1.22+ features
-    - ineffassign    # Sometimes ineffectual assignments are intentional
-    - goprintffuncname # Sometimes Error functions without 'f' suffix are valid
-    - perfsprint     # Too opinionated about string performance optimizations
 
   # Defines a set of rules to ignore issues.
   # It does not skip the analysis, and so does not ignore "typecheck" errors.
@@ -215,33 +202,10 @@ linters:
           - errcheck
           - dupl
           - gosec
-          - errorlint
-      # Allow fmt.Print* in dev server, example, assets, and CLI files (build/dev tools)
-      - path: (devserver\.go|example/|assets/|cli/)
-        linters:
-          - forbidigo
-      # Allow file permissions 0644 in assets and CLI (build/dev tools, not secrets)
-      - path: (assets/|cli/)
-        linters:
-          - gosec
-        text: "G306"
       # Exclude some `staticcheck` messages.
       - linters:
           - staticcheck
         text: "SA9003:"
-      # Exclude De Morgan's law simplification (style preference)
-      - linters:
-          - staticcheck
-        text: "QF1001"
-      # Exclude websocket library deprecation warnings (library migration outside linting scope)
-      - linters:
-          - staticcheck
-        text: "websocket"
-      # Exclude nil pointer dereference warnings in test files that have explicit nil checks
-      - path: _test\.go
-        linters:
-          - staticcheck
-        text: "SA5011"
       # Exclude `lll` issues for long lines with `go:generate`.
       - linters:
           - lll
@@ -265,66 +229,14 @@ issues:
   # Fix found issues (if it's supported by the linter)
   fix: false
 
-linters-settings:
-  forbidigo:
-    # Forbid the following identifiers (list of regexp).
-    forbid:
-      - ^print.*$
-      - 'fmt\.Print.*'
-    # Exclude godoc examples from forbidigo checks.
-    # Default: true
-    exclude-godoc-examples: true
-    # Instead of matching the literal source code, use type information to replace
-    # identifiers with fully qualified names.
-    # Default: true
-    analyze-types: true
+formatters:
+  settings:
+    goimports:
+      local-prefixes: 
+        - github.com/xraph/forge
 
-  errcheck:
-    # Report about not checking of errors in type assertions: `a := b.(MyStruct)`.
-    # Such cases aren't reported by default.
-    # Default: false
-    check-type-assertions: true
-    # Report about assignment of errors to blank identifier: `num, _ := strconv.Atoi(numStr)`.
-    # Such cases aren't reported by default.
-    # Default: false
-    check-blank: true
-
-  errchkjson:
-    # Issue on struct encoding that doesn't have exported fields.
-    # Default: false
-    report-no-exported: false
-
-  gocritic:
-    # Enable multiple checks by tags, run `GL_DEBUG=gocritic golangci-lint run` to see all tags and checks.
-    # Empty list by default. See https://github.com/go-critic/go-critic#usage -> section "Tags".
-    enabled-tags:
-      - diagnostic
-      - style
-      - performance
-    disabled-checks:
-      - unnamedResult
-      - hugeParam
-
-  gosec:
-    # Exclude generated files
-    # Default: false
-    exclude-generated: true
-
-  varnamelen:
-    # The longest distance, in source lines, that is being considered a "small scope".
-    # Variables used in at most this many lines will be ignored.
-    # Default: 5
-    max-distance: 10
-    # The minimum length of a variable's name that is considered "long".
-    # Variable names that are at least this long will be ignored.
-    # Default: 3
-    min-name-length: 2
-
-  goimports:
-    local-prefixes: github.com/xraph/forgeui
-
-  gofumpt:
-    extra-rules: true
+    gofumpt:
+      extra-rules: true
 
 severity:
   default: error
