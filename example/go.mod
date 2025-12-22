@@ -1,6 +1,6 @@
 module example
 
-go 1.25.0
+go 1.23
 
 replace github.com/xraph/forgeui => ../
 
@@ -10,7 +10,7 @@ require (
 )
 
 require (
-	github.com/fsnotify/fsnotify v1.7.0 // indirect
-	golang.org/x/sys v0.4.0 // indirect
+	github.com/fsnotify/fsnotify v1.9.0 // indirect
+	golang.org/x/sys v0.13.0 // indirect
 	nhooyr.io/websocket v1.8.17 // indirect
 )
