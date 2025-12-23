@@ -1,6 +1,6 @@
 module example
 
-go 1.23
+go 1.24.0
 
 replace github.com/xraph/forgeui => ../
 
