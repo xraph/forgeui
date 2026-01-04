@@ -33,3 +33,5 @@ func GetProjectTemplate(name string) (ProjectTemplate, error) {
 		return nil, fmt.Errorf("unknown template: %s", name)
 	}
 }
+
+

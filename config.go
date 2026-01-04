@@ -1,6 +1,7 @@
 package forgeui
 
 // Config holds ForgeUI application configuration
+// Deprecated: Use AppConfig instead. Config is kept for backward compatibility.
 type Config struct {
 	// Debug enables debug mode
 	Debug bool
@@ -34,6 +35,7 @@ type Config struct {
 }
 
 // DefaultConfig returns sensible defaults for ForgeUI configuration
+// Deprecated: Use DefaultAppConfig instead
 func DefaultConfig() *Config {
 	return &Config{
 		Debug:          false,
@@ -50,54 +52,16 @@ func DefaultConfig() *Config {
 }
 
 // ConfigOption is a functional option for Config
-type ConfigOption func(*Config)
+// Note: ConfigOption is now an alias for AppOption for unified configuration
+type ConfigOption = AppOption
 
-// WithDebug enables or disables debug mode
-func WithDebug(debug bool) ConfigOption {
-	return func(c *Config) { c.Debug = debug }
-}
-
-// WithThemeName sets the theme name
-func WithThemeName(theme string) ConfigOption {
-	return func(c *Config) { c.Theme = theme }
-}
-
-// WithStaticPath sets the static assets path
-func WithStaticPath(path string) ConfigOption {
-	return func(c *Config) { c.StaticPath = path }
-}
-
-// WithAssetsPath sets the filesystem assets path
-func WithAssetsPath(path string) ConfigOption {
-	return func(c *Config) { c.AssetsPath = path }
-}
-
-// WithDefaultSize sets the default component size
-func WithDefaultSize(size Size) ConfigOption {
-	return func(c *Config) { c.DefaultSize = size }
-}
-
-// WithDefaultVariant sets the default component variant
-func WithDefaultVariant(variant Variant) ConfigOption {
-	return func(c *Config) { c.DefaultVariant = variant }
-}
-
-// WithDefaultRadius sets the default border radius
-func WithDefaultRadius(radius Radius) ConfigOption {
-	return func(c *Config) { c.DefaultRadius = radius }
-}
-
-// WithAssetPublicDir sets the source directory for static assets
-func WithAssetPublicDir(dir string) ConfigOption {
-	return func(c *Config) { c.AssetPublicDir = dir }
-}
-
-// WithAssetOutputDir sets the output directory for processed assets
-func WithAssetOutputDir(dir string) ConfigOption {
-	return func(c *Config) { c.AssetOutputDir = dir }
-}
-
-// WithAssetManifest sets the path to a manifest file for production builds
-func WithAssetManifest(path string) ConfigOption {
-	return func(c *Config) { c.AssetManifest = path }
-}
+// Migration Guide:
+// ----------------
+// Old way (deprecated):
+//   app := forgeui.New(forgeui.WithDebug(true), forgeui.WithStaticPath("/assets"))
+//
+// New way (recommended):
+//   app := forgeui.New(forgeui.WithDev(true), forgeui.WithStaticPath("/assets"))
+//
+// The API is backward compatible, but new features (bridge, themes) require AppConfig.
+// All With* functions now work with both Config and AppConfig.

@@ -22,7 +22,7 @@ type Router struct {
 	layoutConfigs map[string]*LayoutConfig
 	errorPages    map[int]PageHandler
 	defaultLayout string
-	app           any // Reference to EnhancedApp (interface to avoid circular dependency)
+	app           any // Reference to App (interface to avoid circular dependency)
 }
 
 // RouterOption is a functional option for configuring the Router

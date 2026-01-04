@@ -19,7 +19,7 @@ import (
 )
 
 // ModernDemo demonstrates the new ForgeUI API with:
-// - NewApp() initialization
+// - New() initialization
 // - Fluent Page builder API
 // - Root layout pattern with nested layouts
 // - Auto-initialized bridge system
@@ -30,7 +30,7 @@ func RunModernDemo() {
 	lightTheme := theme.DefaultLight()
 	darkTheme := theme.DefaultDark()
 
-	app := forgeui.NewApp(
+	app := forgeui.New(
 		forgeui.WithDev(true),
 		forgeui.WithAssets("example/static"),
 		forgeui.WithBridge(
@@ -88,7 +88,7 @@ func RunModernDemo() {
 // This is the single source of truth for head/body configuration
 func RootLayout(ctx *router.PageContext, content g.Node) g.Node {
 	// Type assert to get app (interface{} to avoid circular dependency)
-	app := ctx.App().(*forgeui.EnhancedApp)
+	app := ctx.App().(*forgeui.App)
 
 	return layout.Build(
 		layout.Head(

@@ -14,7 +14,7 @@ type PageContext struct {
 	values         map[string]any
 	LoadedData     any
 	Meta           *RouteMeta
-	app            any // Reference to EnhancedApp (interface to avoid circular dependency)
+	app            any // Reference to App (interface to avoid circular dependency)
 }
 
 // Param retrieves a path parameter by key
@@ -207,7 +207,7 @@ func (c *PageContext) GetMeta() *RouteMeta {
 }
 
 // App returns the application instance
-// Returns interface{} to avoid circular dependency - cast to *forgeui.EnhancedApp in usage
+// Returns interface{} to avoid circular dependency - cast to *forgeui.App in usage
 func (c *PageContext) App() any {
 	return c.app
 }

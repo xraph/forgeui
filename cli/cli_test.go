@@ -157,3 +157,5 @@ func TestRegisterCommand(t *testing.T) {
 		t.Errorf("RegisterCommand() added wrong command")
 	}
 }
+
+

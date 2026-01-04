@@ -35,7 +35,7 @@ func TestDefaultConfig(t *testing.T) {
 }
 
 func TestConfigOptions(t *testing.T) {
-	cfg := DefaultConfig()
+	cfg := DefaultAppConfig()
 
 	WithDebug(true)(cfg)
 

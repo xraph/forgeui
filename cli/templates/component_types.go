@@ -341,3 +341,5 @@ func Test%s(t *testing.T) {
 }
 `, opts.Package, util.ToPascalCase(opts.Name), util.ToPascalCase(opts.Name))
 }
+
+
