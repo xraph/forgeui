@@ -35,4 +35,4 @@
 package forgeui
 
 // Version is the current version of ForgeUI
-const Version = "0.1.0"
+const Version = "0.0.2"
