@@ -112,6 +112,15 @@ func (g *Group) Head(pattern string, handler PageHandler) *Route {
 	return route
 }
 
+// Page creates a new page builder for this group with fluent API
+func (g *Group) Page(pattern string) *GroupPageBuilder {
+	return &GroupPageBuilder{
+		group:   g,
+		pattern: pattern,
+		method:  MethodGet,
+	}
+}
+
 // Group creates a nested route group
 func (g *Group) Group(prefix string, opts ...GroupOption) *Group {
 	nested := &Group{
