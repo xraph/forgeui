@@ -14,12 +14,45 @@ on:
 permissions:
   contents: write
   packages: write
+  # Note: Default GITHUB_TOKEN cannot push to other repos (homebrew-tap)
+  # If Homebrew fails, you'll need to create a PAT with 'repo' scope
+  # and add it as HOMEBREW_TAP_GITHUB_TOKEN secret
 
 jobs:
+  # Detect release type (stable vs pre-release)
+  prepare:
+    name: Prepare Release
+    runs-on: ubuntu-latest
+    outputs:
+      is_prerelease: ${{ steps.check.outputs.is_prerelease }}
+      tag_name: ${{ steps.check.outputs.tag_name }}
+    
+    steps:
+      - name: Check release type
+        id: check
+        run: |
+          if [ "${{ github.event_name }}" = "workflow_dispatch" ]; then
+            TAG="${{ inputs.version }}"
+          else
+            TAG="${{ github.ref_name }}"
+          fi
+          
+          echo "tag_name=$TAG" >> $GITHUB_OUTPUT
+          
+          # Check if it's a pre-release (contains -rc, -beta, -alpha)
+          if [[ "$TAG" =~ -(rc|beta|alpha) ]]; then
+            echo "is_prerelease=true" >> $GITHUB_OUTPUT
+            echo "📦 Pre-release detected: $TAG"
+          else
+            echo "is_prerelease=false" >> $GITHUB_OUTPUT
+            echo "🚀 Stable release detected: $TAG"
+          fi
+
   # Run CI gates as a safety check before release
   ci-gates:
     name: CI Quality Gates
     runs-on: ubuntu-latest
+    needs: prepare
     
     steps:
       - name: Checkout code
@@ -67,7 +100,7 @@ jobs:
   release:
     name: Release with GoReleaser
     runs-on: ubuntu-latest
-    needs: ci-gates
+    needs: [prepare, ci-gates]
     
     steps:
       - name: Checkout code
@@ -93,21 +126,44 @@ jobs:
           git tag -a ${{ inputs.version }} -m "Release ${{ inputs.version }}"
           git push origin ${{ inputs.version }}
 
-      - name: Run GoReleaser
+      - name: Verify GoReleaser config
+        run: |
+          go install github.com/goreleaser/goreleaser/v2@latest
+          # goreleaser check exits with code 2 for deprecation warnings (acceptable)
+          goreleaser check || EXIT_CODE=$?
+          if [ -n "$EXIT_CODE" ] && [ "$EXIT_CODE" != "2" ]; then
+            echo "❌ GoReleaser config validation failed"
+            exit "$EXIT_CODE"
+          fi
+          echo "✅ GoReleaser config is valid"
+
+      - name: Run GoReleaser (Dry Run / Snapshot)
+        if: needs.prepare.outputs.is_prerelease == 'true'
+        run: |
+          echo "📦 Running snapshot build for pre-release ${{ needs.prepare.outputs.tag_name }}"
+          goreleaser release --snapshot --clean --skip=publish
+        env:
+          GITHUB_TOKEN: ${{ secrets.GORELEASER_TOKEN || secrets.GITHUB_TOKEN }}
+
+      - name: Run GoReleaser (Production Release)
+        if: needs.prepare.outputs.is_prerelease == 'false'
         uses: goreleaser/goreleaser-action@v6
         with:
           distribution: goreleaser
-          version: latest
+          version: '~> v2'
           args: release --clean
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          # If you have a custom Homebrew tap token, uncomment:
-          # HOMEBREW_TAP_GITHUB_TOKEN: ${{ secrets.HOMEBREW_TAP_GITHUB_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.GORELEASER_TOKEN || secrets.GITHUB_TOKEN }}
+          HOMEBREW_TAP_GITHUB_TOKEN: ${{ secrets.HOMEBREW_TAP_GITHUB_TOKEN }}
 
-      - name: Upload artifacts
+      - name: Upload release artifacts
         uses: actions/upload-artifact@v6
+        if: always()
         with:
-          name: release-artifacts
-          path: dist/*
+          name: release-artifacts-${{ needs.prepare.outputs.tag_name }}
+          path: |
+            dist/*.tar.gz
+            dist/*.zip
+            dist/checksums.txt
           retention-days: 30
 
