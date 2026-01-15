@@ -114,23 +114,23 @@ func (w *Watcher) Start(ctx context.Context) error {
 				continue
 			}
 
-		// Debounce rapid file changes
-		debounceMu.Lock()
+			// Debounce rapid file changes
+			debounceMu.Lock()
 
-		lastEvent = event
+			lastEvent = event
 
-		if debounceTimer != nil {
-			debounceTimer.Stop()
-		}
+			if debounceTimer != nil {
+				debounceTimer.Stop()
+			}
 
-		// Capture event locally to avoid race condition
-		// when the timer callback executes after the lock is released
-		eventToProcess := lastEvent
-		debounceTimer = time.AfterFunc(w.debounce, func() {
-			w.processEvent(eventToProcess)
-		})
+			// Capture event locally to avoid race condition
+			// when the timer callback executes after the lock is released
+			eventToProcess := lastEvent
+			debounceTimer = time.AfterFunc(w.debounce, func() {
+				w.processEvent(eventToProcess)
+			})
 
-		debounceMu.Unlock()
+			debounceMu.Unlock()
 
 		case err, ok := <-w.watcher.Errors:
 			if !ok {

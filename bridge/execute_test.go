@@ -12,7 +12,7 @@ func TestBridge_Execute(t *testing.T) {
 	b := New()
 
 	// Register a test function
-	b.Register("echo", func(ctx Context, input testInput) (testOutput, error) {
+	_ = b.Register("echo", func(ctx Context, input testInput) (testOutput, error) {
 		return testOutput{Result: input.Name}, nil
 	})
 
@@ -47,7 +47,7 @@ func TestBridge_Execute_Timeout(t *testing.T) {
 	}
 
 	// Register function that takes too long
-	b.Register("slow", func(ctx Context, input emptyInput) (testOutput, error) {
+	_ = b.Register("slow", func(ctx Context, input emptyInput) (testOutput, error) {
 		time.Sleep(500 * time.Millisecond)
 		return testOutput{Result: "done"}, nil
 	})
@@ -77,7 +77,7 @@ func TestBridge_Execute_Panic(t *testing.T) {
 	}
 
 	// Register function that panics
-	b.Register("panic", func(ctx Context, input emptyInput) (testOutput, error) {
+	_ = b.Register("panic", func(ctx Context, input emptyInput) (testOutput, error) {
 		panic("intentional panic")
 	})
 
@@ -101,7 +101,7 @@ func TestBridge_CallBatch(t *testing.T) {
 	b := New()
 
 	// Register test functions
-	b.Register("add", func(ctx Context, input struct {
+	_ = b.Register("add", func(ctx Context, input struct {
 		A int `json:"a"`
 		B int `json:"b"`
 	}) (struct {
@@ -112,7 +112,7 @@ func TestBridge_CallBatch(t *testing.T) {
 		}{Sum: input.A + input.B}, nil
 	})
 
-	b.Register("multiply", func(ctx Context, input struct {
+	_ = b.Register("multiply", func(ctx Context, input struct {
 		A int `json:"a"`
 		B int `json:"b"`
 	}) (struct {

@@ -75,7 +75,7 @@ func TestScripts(t *testing.T) {
 
 func TestScriptsWithVersion(t *testing.T) {
 	var buf bytes.Buffer
-	html.Div(ScriptsWithVersion("3.13.3", PluginFocus)).Render(&buf)
+	_ = html.Div(ScriptsWithVersion("3.13.3", PluginFocus)).Render(&buf)
 	got := buf.String()
 
 	// Check version is in URL
@@ -95,7 +95,7 @@ func TestScriptsWithVersion(t *testing.T) {
 
 func TestCloakCSS(t *testing.T) {
 	var buf bytes.Buffer
-	CloakCSS().Render(&buf)
+	_ = CloakCSS().Render(&buf)
 	got := buf.String()
 
 	if !strings.Contains(got, "[x-cloak]") {
@@ -111,7 +111,7 @@ func TestScriptsWithNonce(t *testing.T) {
 	var buf bytes.Buffer
 
 	nonce := "random-nonce-value"
-	html.Div(ScriptsWithNonce(nonce, PluginFocus)).Render(&buf)
+	_ = html.Div(ScriptsWithNonce(nonce, PluginFocus)).Render(&buf)
 	got := buf.String()
 
 	if !strings.Contains(got, `nonce="`+nonce+`"`) {

@@ -162,8 +162,8 @@ func TestBridge_ListFunctions(t *testing.T) {
 	b := New()
 
 	_ = b.Register("func1", validHandler)
-	b.Register("func2", validHandler)
-	b.Register("func3", validHandler)
+	_ = b.Register("func2", validHandler)
+	_ = b.Register("func3", validHandler)
 
 	names := b.ListFunctions()
 	if len(names) != 3 {
@@ -209,7 +209,7 @@ func TestBridge_ConcurrentAccess(t *testing.T) {
 		go func(n int) {
 			for j := range 20 {
 				name := fmt.Sprintf("func%d_%d", n, j)
-				b.Register(name, validHandler)
+				_ = b.Register(name, validHandler)
 			}
 
 			done <- true

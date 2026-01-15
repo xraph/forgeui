@@ -103,7 +103,7 @@ func (h *SSEHandler) streamExecution(w http.ResponseWriter, flusher http.Flusher
 			continue
 		}
 
-		fmt.Fprintf(w, "data: %s\n\n", data)
+		_, _ = fmt.Fprintf(w, "data: %s\n\n", data)
 		flusher.Flush()
 
 		if chunk.Done {
@@ -122,9 +122,9 @@ func (h *SSEHandler) sendError(w http.ResponseWriter, flusher http.Flusher, mess
 	data, err := json.Marshal(chunk)
 	if err != nil {
 		// Fallback to simple error message if marshal fails
-		fmt.Fprintf(w, "data: {\"error\":{\"code\":-32603,\"message\":\"%s\"},\"done\":true}\n\n", message)
+		_, _ = fmt.Fprintf(w, "data: {\"error\":{\"code\":-32603,\"message\":\"%s\"},\"done\":true}\n\n", message)
 	} else {
-		fmt.Fprintf(w, "data: %s\n\n", data)
+		_, _ = fmt.Fprintf(w, "data: %s\n\n", data)
 	}
 
 	flusher.Flush()
@@ -145,11 +145,11 @@ type StreamEvent struct {
 // WriteSSE writes an SSE event
 func WriteSSE(w http.ResponseWriter, event StreamEvent) error {
 	if event.Event != "" {
-		fmt.Fprintf(w, "event: %s\n", event.Event)
+		_, _ = fmt.Fprintf(w, "event: %s\n", event.Event)
 	}
 
 	if event.ID != "" {
-		fmt.Fprintf(w, "id: %s\n", event.ID)
+		_, _ = fmt.Fprintf(w, "id: %s\n", event.ID)
 	}
 
 	data, err := json.Marshal(event.Data)
@@ -157,7 +157,7 @@ func WriteSSE(w http.ResponseWriter, event StreamEvent) error {
 		return err
 	}
 
-	fmt.Fprintf(w, "data: %s\n\n", data)
+	_, _ = fmt.Fprintf(w, "data: %s\n\n", data)
 
 	if f, ok := w.(http.Flusher); ok {
 		f.Flush()

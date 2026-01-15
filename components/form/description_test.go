@@ -13,7 +13,9 @@ func TestDescription(t *testing.T) {
 		desc := Description("Helper text for this field")
 
 		var buf bytes.Buffer
-		desc.Render(&buf)
+		if err := desc.Render(&buf); err != nil {
+			t.Fatalf("Render() error = %v", err)
+		}
 		output := buf.String()
 
 		if !strings.Contains(output, "Helper text for this field") {
@@ -40,7 +42,9 @@ func TestDescription(t *testing.T) {
 		)
 
 		var buf bytes.Buffer
-		desc.Render(&buf)
+		if err := desc.Render(&buf); err != nil {
+			t.Fatalf("Render() error = %v", err)
+		}
 		output := buf.String()
 
 		if !strings.Contains(output, "mt-4") {
@@ -55,7 +59,9 @@ func TestDescription(t *testing.T) {
 		)
 
 		var buf bytes.Buffer
-		desc.Render(&buf)
+		if err := desc.Render(&buf); err != nil {
+			t.Fatalf("Render() error = %v", err)
+		}
 		output := buf.String()
 
 		if !strings.Contains(output, "data-testid=\"field-description\"") {
@@ -67,7 +73,9 @@ func TestDescription(t *testing.T) {
 		desc := Description("Helper text")
 
 		var buf bytes.Buffer
-		desc.Render(&buf)
+		if err := desc.Render(&buf); err != nil {
+			t.Fatalf("Render() error = %v", err)
+		}
 		output := buf.String()
 
 		expectedClasses := []string{

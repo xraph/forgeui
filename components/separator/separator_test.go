@@ -10,7 +10,9 @@ func TestSeparator_Horizontal(t *testing.T) {
 	sep := Separator()
 
 	var buf bytes.Buffer
-	sep.Render(&buf)
+	if err := sep.Render(&buf); err != nil {
+		t.Fatalf("Render() error = %v", err)
+	}
 	html := buf.String()
 
 	if !strings.Contains(html, "h-[1px]") {
@@ -30,7 +32,9 @@ func TestSeparator_Vertical(t *testing.T) {
 	sep := Separator(Vertical())
 
 	var buf bytes.Buffer
-	sep.Render(&buf)
+	if err := sep.Render(&buf); err != nil {
+		t.Fatalf("Render() error = %v", err)
+	}
 	html := buf.String()
 
 	if !strings.Contains(html, "h-full") {

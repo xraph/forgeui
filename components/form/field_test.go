@@ -18,7 +18,9 @@ func TestField(t *testing.T) {
 		)
 
 		var buf bytes.Buffer
-		field.Render(&buf)
+		if err := field.Render(&buf); err != nil {
+			t.Fatalf("Render() error = %v", err)
+		}
 		output := buf.String()
 
 		if !strings.Contains(output, "Email") {
@@ -38,7 +40,9 @@ func TestField(t *testing.T) {
 		)
 
 		var buf bytes.Buffer
-		field.Render(&buf)
+		if err := field.Render(&buf); err != nil {
+			t.Fatalf("Render() error = %v", err)
+		}
 		output := buf.String()
 
 		if !strings.Contains(output, "email") {
@@ -54,7 +58,9 @@ func TestField(t *testing.T) {
 		)
 
 		var buf bytes.Buffer
-		field.Render(&buf)
+		if err := field.Render(&buf); err != nil {
+			t.Fatalf("Render() error = %v", err)
+		}
 		output := buf.String()
 
 		if !strings.Contains(output, "*") {
@@ -70,7 +76,9 @@ func TestField(t *testing.T) {
 		)
 
 		var buf bytes.Buffer
-		field.Render(&buf)
+		if err := field.Render(&buf); err != nil {
+			t.Fatalf("Render() error = %v", err)
+		}
 		output := buf.String()
 
 		if !strings.Contains(output, "We will never share your email") {
@@ -90,7 +98,9 @@ func TestField(t *testing.T) {
 		)
 
 		var buf bytes.Buffer
-		field.Render(&buf)
+		if err := field.Render(&buf); err != nil {
+			t.Fatalf("Render() error = %v", err)
+		}
 		output := buf.String()
 
 		if !strings.Contains(output, "Invalid email address") {
@@ -114,7 +124,9 @@ func TestField(t *testing.T) {
 		)
 
 		var buf bytes.Buffer
-		field.Render(&buf)
+		if err := field.Render(&buf); err != nil {
+			t.Fatalf("Render() error = %v", err)
+		}
 		output := buf.String()
 
 		if !strings.Contains(output, "custom-field") {
@@ -128,7 +140,9 @@ func TestFieldLabel(t *testing.T) {
 		label := FieldLabel("Username", "username", false)
 
 		var buf bytes.Buffer
-		label.Render(&buf)
+		if err := label.Render(&buf); err != nil {
+			t.Fatalf("Render() error = %v", err)
+		}
 		output := buf.String()
 
 		if !strings.Contains(output, "Username") {
@@ -140,7 +154,9 @@ func TestFieldLabel(t *testing.T) {
 		label := FieldLabel("Username", "username", true)
 
 		var buf bytes.Buffer
-		label.Render(&buf)
+		if err := label.Render(&buf); err != nil {
+			t.Fatalf("Render() error = %v", err)
+		}
 		output := buf.String()
 
 		if !strings.Contains(output, "*") {
@@ -152,7 +168,9 @@ func TestFieldLabel(t *testing.T) {
 		label := FieldLabel("Username", "username", false)
 
 		var buf bytes.Buffer
-		label.Render(&buf)
+		if err := label.Render(&buf); err != nil {
+			t.Fatalf("Render() error = %v", err)
+		}
 		output := buf.String()
 
 		if !strings.Contains(output, "for=\"username\"") {
@@ -188,7 +206,9 @@ func TestFieldError(t *testing.T) {
 		err := FieldError("This field is required")
 
 		var buf bytes.Buffer
-		err.Render(&buf)
+		if err := err.Render(&buf); err != nil {
+			t.Fatalf("Render() error = %v", err)
+		}
 		output := buf.String()
 
 		if !strings.Contains(output, "This field is required") {
@@ -218,7 +238,9 @@ func TestFieldDescription(t *testing.T) {
 		desc := FieldDescription("Helper text")
 
 		var buf bytes.Buffer
-		desc.Render(&buf)
+		if err := desc.Render(&buf); err != nil {
+			t.Fatalf("Render() error = %v", err)
+		}
 		output := buf.String()
 
 		if !strings.Contains(output, "Helper text") {
@@ -256,7 +278,9 @@ func TestFieldIntegration(t *testing.T) {
 		)
 
 		var buf bytes.Buffer
-		field.Render(&buf)
+		if err := field.Render(&buf); err != nil {
+			t.Fatalf("Render() error = %v", err)
+		}
 		output := buf.String()
 
 		// Check all elements are present

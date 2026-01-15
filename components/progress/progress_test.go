@@ -10,7 +10,9 @@ func TestProgress(t *testing.T) {
 	progress := Progress(WithValue(50))
 
 	var buf bytes.Buffer
-	progress.Render(&buf)
+	if err := progress.Render(&buf); err != nil {
+		t.Fatalf("Render() error = %v", err)
+	}
 	html := buf.String()
 
 	if !strings.Contains(html, `role="progressbar"`) {
@@ -44,7 +46,9 @@ func TestProgress_Bounds(t *testing.T) {
 			progress := Progress(WithValue(tt.value))
 
 			var buf bytes.Buffer
-			progress.Render(&buf)
+			if err := progress.Render(&buf); err != nil {
+				t.Fatalf("Render() error = %v", err)
+			}
 
 			if !strings.Contains(buf.String(), tt.want) {
 				t.Errorf("expected %v in progress", tt.want)

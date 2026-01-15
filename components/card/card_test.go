@@ -38,7 +38,9 @@ func TestCard(t *testing.T) {
 		)
 
 		var buf bytes.Buffer
-		card.Render(&buf)
+		if err := card.Render(&buf); err != nil {
+			t.Fatalf("Render() error = %v", err)
+		}
 
 		if !strings.Contains(buf.String(), "custom-card") {
 			t.Error("expected custom-card class")
@@ -50,7 +52,9 @@ func TestCard_Header(t *testing.T) {
 	header := Header(g.Text("header content"))
 
 	var buf bytes.Buffer
-	header.Render(&buf)
+	if err := header.Render(&buf); err != nil {
+		t.Fatalf("Render() error = %v", err)
+	}
 	html := buf.String()
 
 	if !strings.Contains(html, "grid") {
@@ -70,7 +74,9 @@ func TestCard_Title(t *testing.T) {
 	title := Title("My Title")
 
 	var buf bytes.Buffer
-	title.Render(&buf)
+	if err := title.Render(&buf); err != nil {
+		t.Fatalf("Render() error = %v", err)
+	}
 	html := buf.String()
 
 	if !strings.Contains(html, "<h3") {
@@ -94,7 +100,9 @@ func TestCard_Description(t *testing.T) {
 	desc := Description("Card description")
 
 	var buf bytes.Buffer
-	desc.Render(&buf)
+	if err := desc.Render(&buf); err != nil {
+		t.Fatalf("Render() error = %v", err)
+	}
 	html := buf.String()
 
 	if !strings.Contains(html, "<p") {
@@ -118,7 +126,9 @@ func TestCard_Content(t *testing.T) {
 	content := Content(g.Text("main content"))
 
 	var buf bytes.Buffer
-	content.Render(&buf)
+	if err := content.Render(&buf); err != nil {
+		t.Fatalf("Render() error = %v", err)
+	}
 	html := buf.String()
 
 	if !strings.Contains(html, "px-6") {
@@ -134,7 +144,9 @@ func TestCard_Footer(t *testing.T) {
 	footer := Footer(g.Text("footer content"))
 
 	var buf bytes.Buffer
-	footer.Render(&buf)
+	if err := footer.Render(&buf); err != nil {
+		t.Fatalf("Render() error = %v", err)
+	}
 	html := buf.String()
 
 	if !strings.Contains(html, "flex") {
@@ -192,7 +204,9 @@ func TestCard_TitleWithOptions(t *testing.T) {
 	title := Title("Title", WithClass("custom-title"))
 
 	var buf bytes.Buffer
-	title.Render(&buf)
+	if err := title.Render(&buf); err != nil {
+		t.Fatalf("Render() error = %v", err)
+	}
 
 	if !strings.Contains(buf.String(), "custom-title") {
 		t.Error("expected custom-title class")
@@ -203,7 +217,9 @@ func TestCard_DescriptionWithOptions(t *testing.T) {
 	desc := Description("Description", WithClass("custom-desc"))
 
 	var buf bytes.Buffer
-	desc.Render(&buf)
+	if err := desc.Render(&buf); err != nil {
+		t.Fatalf("Render() error = %v", err)
+	}
 
 	if !strings.Contains(buf.String(), "custom-desc") {
 		t.Error("expected custom-desc class")

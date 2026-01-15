@@ -17,7 +17,9 @@ func TestAlert(t *testing.T) {
 	)
 
 	var buf bytes.Buffer
-	alert.Render(&buf)
+	if err := alert.Render(&buf); err != nil {
+		t.Fatalf("Render() error = %v", err)
+	}
 	html := buf.String()
 
 	if !strings.Contains(html, `role="alert"`) {
@@ -50,7 +52,9 @@ func TestAlert_Variants(t *testing.T) {
 			)
 
 			var buf bytes.Buffer
-			alert.Render(&buf)
+			if err := alert.Render(&buf); err != nil {
+				t.Fatalf("Render() error = %v", err)
+			}
 
 			if !strings.Contains(buf.String(), tt.want) {
 				t.Errorf("expected %v class", tt.want)

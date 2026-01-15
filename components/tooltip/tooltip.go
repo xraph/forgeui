@@ -36,14 +36,6 @@ type TooltipProps struct {
 	Class string
 }
 
-// defaultTooltipProps returns default tooltip properties
-func defaultTooltipProps() TooltipProps {
-	return TooltipProps{
-		Position: forgeui.PositionTop,
-		Delay:    200,
-	}
-}
-
 // Tooltip creates a tooltip that shows on hover/focus.
 //
 // Tooltips are lightweight, non-interactive popups for displaying

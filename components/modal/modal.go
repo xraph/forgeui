@@ -59,16 +59,6 @@ type ModalProps struct {
 	Class string
 }
 
-// defaultModalProps returns default modal properties
-func defaultModalProps() ModalProps {
-	return ModalProps{
-		Size:                forgeui.SizeMD,
-		CloseOnEscape:       true,
-		CloseOnOutsideClick: false,
-		ShowClose:           true,
-	}
-}
-
 // Modal creates a modal dialog with Alpine.js state management.
 //
 // The modal consists of three main parts:

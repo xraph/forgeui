@@ -70,7 +70,7 @@ func (c *Context) GetInt(name string) int {
 
 // Printf prints formatted output to stdout
 func (c *Context) Printf(format string, args ...any) {
-	fmt.Fprintf(c.Stdout, format, args...)
+	_, _ = fmt.Fprintf(c.Stdout, format, args...)
 }
 
 // Println prints a line to stdout
@@ -80,7 +80,7 @@ func (c *Context) Println(args ...any) {
 
 // Errorf prints formatted error to stderr
 func (c *Context) Errorf(format string, args ...any) {
-	fmt.Fprintf(c.Stderr, format, args...)
+	_, _ = fmt.Fprintf(c.Stderr, format, args...)
 }
 
 // Errorln prints an error line to stderr
@@ -90,22 +90,22 @@ func (c *Context) Errorln(args ...any) {
 
 // Success prints a success message in green
 func (c *Context) Success(msg string) {
-	fmt.Fprintf(c.Stdout, "%s%s%s\n", ColorGreen, msg, ColorReset)
+	_, _ = fmt.Fprintf(c.Stdout, "%s%s%s\n", ColorGreen, msg, ColorReset)
 }
 
 // Info prints an info message in blue
 func (c *Context) Info(msg string) {
-	fmt.Fprintf(c.Stdout, "%s%s%s\n", ColorBlue, msg, ColorReset)
+	_, _ = fmt.Fprintf(c.Stdout, "%s%s%s\n", ColorBlue, msg, ColorReset)
 }
 
 // Warning prints a warning message in yellow
 func (c *Context) Warning(msg string) {
-	fmt.Fprintf(c.Stdout, "%s%s%s\n", ColorYellow, msg, ColorReset)
+	_, _ = fmt.Fprintf(c.Stdout, "%s%s%s\n", ColorYellow, msg, ColorReset)
 }
 
 // ErrorMsg prints an error message in red
 func (c *Context) ErrorMsg(msg string) {
-	fmt.Fprintf(c.Stderr, "%s%s%s\n", ColorRed, msg, ColorReset)
+	_, _ = fmt.Fprintf(c.Stderr, "%s%s%s\n", ColorRed, msg, ColorReset)
 }
 
 // LoadConfig loads the project configuration file

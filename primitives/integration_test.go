@@ -94,7 +94,7 @@ func TestBox_WithAllOptions(t *testing.T) {
 	)
 
 	var buf bytes.Buffer
-	box.Render(&buf)
+	_ = box.Render(&buf)
 	html := buf.String()
 
 	expected := []string{
@@ -171,7 +171,7 @@ func TestFlex_AllVariants(t *testing.T) {
 			flex := Flex(tt.opts...)
 
 			var buf bytes.Buffer
-			flex.Render(&buf)
+			_ = flex.Render(&buf)
 			html := buf.String()
 
 			for _, want := range tt.want {
@@ -199,7 +199,7 @@ func TestGrid_ResponsiveLayout(t *testing.T) {
 	)
 
 	var buf bytes.Buffer
-	grid.Render(&buf)
+	_ = grid.Render(&buf)
 	html := buf.String()
 
 	expected := []string{
@@ -233,7 +233,7 @@ func TestText_AllOptions(t *testing.T) {
 	)
 
 	var buf bytes.Buffer
-	text.Render(&buf)
+	_ = text.Render(&buf)
 	html := buf.String()
 
 	expected := []string{
@@ -264,7 +264,7 @@ func TestStack_WithMultipleChildren(t *testing.T) {
 	vstack := VStack("4", items...)
 
 	var buf bytes.Buffer
-	vstack.Render(&buf)
+	_ = vstack.Render(&buf)
 	html := buf.String()
 
 	if !strings.Contains(html, "Item 1") || !strings.Contains(html, "Item 2") || !strings.Contains(html, "Item 3") {

@@ -10,7 +10,9 @@ func TestSkeleton(t *testing.T) {
 	skeleton := Skeleton()
 
 	var buf bytes.Buffer
-	skeleton.Render(&buf)
+	if err := skeleton.Render(&buf); err != nil {
+		t.Fatalf("Render() error = %v", err)
+	}
 	html := buf.String()
 
 	if !strings.Contains(html, "animate-pulse") {
@@ -29,7 +31,9 @@ func TestSkeleton_WithDimensions(t *testing.T) {
 	)
 
 	var buf bytes.Buffer
-	skeleton.Render(&buf)
+	if err := skeleton.Render(&buf); err != nil {
+		t.Fatalf("Render() error = %v", err)
+	}
 	html := buf.String()
 
 	if !strings.Contains(html, "w-full") {

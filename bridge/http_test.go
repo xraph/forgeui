@@ -12,7 +12,7 @@ func TestHTTPHandler_SingleRequest(t *testing.T) {
 	b := New(WithCSRF(false)) // Disable CSRF for testing
 
 	// Register test function
-	b.Register("greet", func(ctx Context, input struct {
+	_ = b.Register("greet", func(ctx Context, input struct {
 		Name string `json:"name"`
 	}) (struct {
 		Message string `json:"message"`
@@ -65,7 +65,7 @@ func TestHTTPHandler_BatchRequest(t *testing.T) {
 	b := New(WithCSRF(false))
 
 	// Register test functions
-	b.Register("double", func(ctx Context, input struct {
+	_ = b.Register("double", func(ctx Context, input struct {
 		N int `json:"n"`
 	}) (struct {
 		Result int `json:"result"`

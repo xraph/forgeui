@@ -182,7 +182,7 @@ func (ds *DevServer) SSEHandler() http.HandlerFunc {
 		}()
 
 		// Send initial connection message
-		fmt.Fprintf(w, "data: connected\n\n")
+		_, _ = fmt.Fprintf(w, "data: connected\n\n")
 		w.(http.Flusher).Flush()
 
 		if ds.verbose {
@@ -200,7 +200,7 @@ func (ds *DevServer) SSEHandler() http.HandlerFunc {
 				return
 
 			case msg := <-clientChan:
-				fmt.Fprintf(w, "data: %s\n\n", msg)
+				_, _ = fmt.Fprintf(w, "data: %s\n\n", msg)
 				w.(http.Flusher).Flush()
 			}
 		}

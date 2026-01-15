@@ -40,7 +40,9 @@ func TestButton(t *testing.T) {
 		)
 
 		var buf bytes.Buffer
-		btn.Render(&buf)
+		if err := btn.Render(&buf); err != nil {
+			t.Fatalf("Render() error = %v", err)
+		}
 		html := buf.String()
 
 		if !strings.Contains(html, "bg-destructive") {
@@ -55,7 +57,9 @@ func TestButton(t *testing.T) {
 		)
 
 		var buf bytes.Buffer
-		btn.Render(&buf)
+		if err := btn.Render(&buf); err != nil {
+			t.Fatalf("Render() error = %v", err)
+		}
 		html := buf.String()
 
 		if !strings.Contains(html, "h-10") {
@@ -70,7 +74,9 @@ func TestButton(t *testing.T) {
 		)
 
 		var buf bytes.Buffer
-		btn.Render(&buf)
+		if err := btn.Render(&buf); err != nil {
+			t.Fatalf("Render() error = %v", err)
+		}
 		html := buf.String()
 
 		if !strings.Contains(html, "disabled") {
@@ -85,7 +91,9 @@ func TestButton(t *testing.T) {
 		)
 
 		var buf bytes.Buffer
-		btn.Render(&buf)
+		if err := btn.Render(&buf); err != nil {
+			t.Fatalf("Render() error = %v", err)
+		}
 		html := buf.String()
 
 		if !strings.Contains(html, "disabled") {
@@ -108,7 +116,9 @@ func TestButton(t *testing.T) {
 		)
 
 		var buf bytes.Buffer
-		btn.Render(&buf)
+		if err := btn.Render(&buf); err != nil {
+			t.Fatalf("Render() error = %v", err)
+		}
 		html := buf.String()
 
 		if !strings.Contains(html, "custom-class") {
@@ -123,7 +133,9 @@ func TestButton(t *testing.T) {
 		)
 
 		var buf bytes.Buffer
-		btn.Render(&buf)
+		if err := btn.Render(&buf); err != nil {
+			t.Fatalf("Render() error = %v", err)
+		}
 		html := buf.String()
 
 		if !strings.Contains(html, `type="submit"`) {
@@ -151,7 +163,9 @@ func TestButton_Variants(t *testing.T) {
 			btn := tt.fn(g.Text("Test"))
 
 			var buf bytes.Buffer
-			btn.Render(&buf)
+			if err := btn.Render(&buf); err != nil {
+				t.Fatalf("Render() error = %v", err)
+			}
 			html := buf.String()
 
 			if !strings.Contains(html, tt.wantText) {
@@ -165,7 +179,9 @@ func TestIconButton(t *testing.T) {
 	btn := IconButton(g.Text("X"))
 
 	var buf bytes.Buffer
-	btn.Render(&buf)
+	if err := btn.Render(&buf); err != nil {
+		t.Fatalf("Render() error = %v", err)
+	}
 	html := buf.String()
 
 	if !strings.Contains(html, "size-9") {
@@ -212,7 +228,9 @@ func TestButton_AllOptions(t *testing.T) {
 	)
 
 	var buf bytes.Buffer
-	btn.Render(&buf)
+	if err := btn.Render(&buf); err != nil {
+		t.Fatalf("Render() error = %v", err)
+	}
 	html := buf.String()
 
 	expected := []string{

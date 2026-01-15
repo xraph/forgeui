@@ -13,7 +13,9 @@ func TestError(t *testing.T) {
 		err := Error("This field is required")
 
 		var buf bytes.Buffer
-		err.Render(&buf)
+		if err := err.Render(&buf); err != nil {
+			t.Fatalf("Render() error = %v", err)
+		}
 		output := buf.String()
 
 		if !strings.Contains(output, "This field is required") {
@@ -48,7 +50,9 @@ func TestError(t *testing.T) {
 		)
 
 		var buf bytes.Buffer
-		err.Render(&buf)
+		if err := err.Render(&buf); err != nil {
+			t.Fatalf("Render() error = %v", err)
+		}
 		output := buf.String()
 
 		if !strings.Contains(output, "mt-4") {
@@ -63,7 +67,9 @@ func TestError(t *testing.T) {
 		)
 
 		var buf bytes.Buffer
-		err.Render(&buf)
+		if err := err.Render(&buf); err != nil {
+			t.Fatalf("Render() error = %v", err)
+		}
 		output := buf.String()
 
 		if !strings.Contains(output, "data-testid=\"error-message\"") {
@@ -75,7 +81,9 @@ func TestError(t *testing.T) {
 		err := Error("Error message")
 
 		var buf bytes.Buffer
-		err.Render(&buf)
+		if err := err.Render(&buf); err != nil {
+			t.Fatalf("Render() error = %v", err)
+		}
 		output := buf.String()
 
 		expectedClasses := []string{

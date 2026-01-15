@@ -10,9 +10,12 @@ import (
 )
 
 // Helper function to render a node to string
-func renderNode(node g.Node) string {
+func renderNode(t *testing.T, node g.Node) string {
+	t.Helper()
 	var buf bytes.Buffer
-	node.Render(&buf)
+	if err := node.Render(&buf); err != nil {
+		t.Fatalf("Render() error = %v", err)
+	}
 
 	return buf.String()
 }
@@ -33,7 +36,7 @@ func TestSidebar(t *testing.T) {
 			SidebarContent(g.Text("Content")),
 		)
 
-		rendered := renderNode(sidebar)
+		rendered := renderNode(t, sidebar)
 
 		// Should have provider wrapper
 		assertContains(t, rendered, `data-provider="sidebar"`)
@@ -58,7 +61,7 @@ func TestSidebar(t *testing.T) {
 			SidebarContent(g.Text("Content")),
 		)
 
-		rendered := renderNode(sidebar)
+		rendered := renderNode(t, sidebar)
 
 		assertContains(t, rendered, `data-provider="sidebar"`)
 		assertContains(t, rendered, `custom-sidebar`)
@@ -67,7 +70,7 @@ func TestSidebar(t *testing.T) {
 	t.Run("includes Alpine store integration", func(t *testing.T) {
 		sidebar := Sidebar()
 
-		rendered := renderNode(sidebar)
+		rendered := renderNode(t, sidebar)
 
 		// Should have Alpine store for state management
 		assertContains(t, rendered, `Alpine.store('sidebar'`)
@@ -79,7 +82,7 @@ func TestSidebar(t *testing.T) {
 	t.Run("includes mobile backdrop and toggle", func(t *testing.T) {
 		sidebar := Sidebar()
 
-		rendered := renderNode(sidebar)
+		rendered := renderNode(t, sidebar)
 
 		// Should have backdrop
 		assertContains(t, rendered, `backdrop-blur`)
@@ -96,7 +99,7 @@ func TestSidebarHeader(t *testing.T) {
 			g.Text("My App"),
 		)
 
-		rendered := renderNode(header)
+		rendered := renderNode(t, header)
 
 		assertContains(t, rendered, "/logo.svg")
 		assertContains(t, rendered, "My App")
@@ -105,7 +108,7 @@ func TestSidebarHeader(t *testing.T) {
 	t.Run("has responsive visibility", func(t *testing.T) {
 		header := SidebarHeader(g.Text("Title"))
 
-		rendered := renderNode(header)
+		rendered := renderNode(t, header)
 
 		// Should adjust padding/layout when collapsed via :class
 		assertContains(t, rendered, `:class`)
@@ -120,7 +123,7 @@ func TestSidebarContent(t *testing.T) {
 			g.Text("Navigation items"),
 		)
 
-		rendered := renderNode(content)
+		rendered := renderNode(t, content)
 
 		assertContains(t, rendered, "Navigation items")
 		assertContains(t, rendered, "overflow-auto")
@@ -134,7 +137,7 @@ func TestSidebarFooter(t *testing.T) {
 			g.Text("© 2024"),
 		)
 
-		rendered := renderNode(footer)
+		rendered := renderNode(t, footer)
 
 		assertContains(t, rendered, "© 2024")
 		assertContains(t, rendered, "border-t")
@@ -145,7 +148,7 @@ func TestSidebarToggle(t *testing.T) {
 	t.Run("renders toggle button", func(t *testing.T) {
 		toggle := SidebarToggle()
 
-		rendered := renderNode(toggle)
+		rendered := renderNode(t, toggle)
 
 		assertContains(t, rendered, "Toggle sidebar")
 		assertContains(t, rendered, `x-show`)
@@ -161,7 +164,7 @@ func TestSidebarGroup(t *testing.T) {
 			g.Text("Items"),
 		)
 
-		rendered := renderNode(group)
+		rendered := renderNode(t, group)
 
 		assertContains(t, rendered, "Navigation")
 		assertContains(t, rendered, "Items")
@@ -179,7 +182,7 @@ func TestSidebarGroupCollapsible(t *testing.T) {
 			g.Text("Project items"),
 		)
 
-		rendered := renderNode(group)
+		rendered := renderNode(t, group)
 
 		assertContains(t, rendered, `projects_open`)
 		assertContains(t, rendered, "Projects")
@@ -191,7 +194,7 @@ func TestSidebarGroupLabel(t *testing.T) {
 	t.Run("renders group label", func(t *testing.T) {
 		label := SidebarGroupLabel("Settings")
 
-		rendered := renderNode(label)
+		rendered := renderNode(t, label)
 
 		assertContains(t, rendered, "Settings")
 		assertContains(t, rendered, `data-slot="sidebar-group-label"`)
@@ -202,7 +205,7 @@ func TestSidebarGroupLabel(t *testing.T) {
 	t.Run("hides when collapsed", func(t *testing.T) {
 		label := SidebarGroupLabel("Settings")
 
-		rendered := renderNode(label)
+		rendered := renderNode(t, label)
 
 		assertContains(t, rendered, `:class`)
 		assertContains(t, rendered, `collapsed`)
@@ -217,7 +220,7 @@ func TestSidebarMenu(t *testing.T) {
 			SidebarMenuItem(g.Text("Item 2")),
 		)
 
-		rendered := renderNode(menu)
+		rendered := renderNode(t, menu)
 
 		assertContains(t, rendered, "Item 1")
 		assertContains(t, rendered, "Item 2")
@@ -231,7 +234,7 @@ func TestSidebarMenuItem(t *testing.T) {
 			g.Text("Menu content"),
 		)
 
-		rendered := renderNode(item)
+		rendered := renderNode(t, item)
 
 		assertContains(t, rendered, "Menu content")
 		assertContains(t, rendered, "group/menu-item")
@@ -245,7 +248,7 @@ func TestSidebarMenuButton(t *testing.T) {
 			WithMenuHref("/dashboard"),
 		)
 
-		rendered := renderNode(button)
+		rendered := renderNode(t, button)
 
 		assertContains(t, rendered, "Dashboard")
 		assertContains(t, rendered, `href="/dashboard"`)
@@ -258,7 +261,7 @@ func TestSidebarMenuButton(t *testing.T) {
 			WithMenuAsButton(),
 		)
 
-		rendered := renderNode(button)
+		rendered := renderNode(t, button)
 
 		assertContains(t, rendered, "Action")
 		assertContains(t, rendered, `type="button"`)
@@ -271,7 +274,7 @@ func TestSidebarMenuButton(t *testing.T) {
 			WithMenuIcon(html.Span(g.Text("icon"))),
 		)
 
-		rendered := renderNode(button)
+		rendered := renderNode(t, button)
 
 		assertContains(t, rendered, "icon")
 		assertContains(t, rendered, "Dashboard")
@@ -283,7 +286,7 @@ func TestSidebarMenuButton(t *testing.T) {
 			WithMenuBadge(SidebarMenuBadge("5")),
 		)
 
-		rendered := renderNode(button)
+		rendered := renderNode(t, button)
 
 		assertContains(t, rendered, "Messages")
 		assertContains(t, rendered, "5")
@@ -295,7 +298,7 @@ func TestSidebarMenuButton(t *testing.T) {
 			WithMenuActive(),
 		)
 
-		rendered := renderNode(button)
+		rendered := renderNode(t, button)
 
 		assertContains(t, rendered, "bg-sidebar-accent")
 		assertContains(t, rendered, "text-sidebar-accent-foreground")
@@ -304,7 +307,7 @@ func TestSidebarMenuButton(t *testing.T) {
 	t.Run("hides label when collapsed", func(t *testing.T) {
 		button := SidebarMenuButton("Label")
 
-		rendered := renderNode(button)
+		rendered := renderNode(t, button)
 
 		assertContains(t, rendered, `x-show`)
 		assertContains(t, rendered, `$store.sidebar`)
@@ -317,7 +320,7 @@ func TestSidebarMenuBadge(t *testing.T) {
 	t.Run("renders badge with text", func(t *testing.T) {
 		badge := SidebarMenuBadge("12")
 
-		rendered := renderNode(badge)
+		rendered := renderNode(t, badge)
 
 		assertContains(t, rendered, "12")
 		assertContains(t, rendered, "bg-sidebar-primary")
@@ -330,7 +333,7 @@ func TestSidebarInset(t *testing.T) {
 			html.Main(g.Text("Main content")),
 		)
 
-		rendered := renderNode(inset)
+		rendered := renderNode(t, inset)
 
 		assertContains(t, rendered, "Main content")
 		assertContains(t, rendered, `:class`)
@@ -346,7 +349,7 @@ func TestSidebarLayoutContent(t *testing.T) {
 			html.Div(g.Text("Page content")),
 		)
 
-		rendered := renderNode(content)
+		rendered := renderNode(t, content)
 
 		assertContains(t, rendered, "Page content")
 		assertContains(t, rendered, `:class`)
@@ -360,7 +363,7 @@ func TestSidebarTrigger(t *testing.T) {
 	t.Run("renders trigger button", func(t *testing.T) {
 		trigger := SidebarTrigger()
 
-		rendered := renderNode(trigger)
+		rendered := renderNode(t, trigger)
 
 		assertContains(t, rendered, "Toggle sidebar")
 		assertContains(t, rendered, `type="button"`)
@@ -391,7 +394,7 @@ func TestSidebarIntegration(t *testing.T) {
 			SidebarToggle(),
 		)
 
-		rendered := renderNode(sidebar)
+		rendered := renderNode(t, sidebar)
 
 		// Verify provider integration
 		assertContains(t, rendered, `data-provider="sidebar"`)

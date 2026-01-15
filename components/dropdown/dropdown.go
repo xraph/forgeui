@@ -38,14 +38,6 @@ type DropdownProps struct {
 	Class string
 }
 
-// defaultDropdownProps returns default dropdown properties
-func defaultDropdownProps() DropdownProps {
-	return DropdownProps{
-		Position: forgeui.PositionBottom,
-		Align:    forgeui.AlignStart,
-	}
-}
-
 // Dropdown creates a basic dropdown with positioning.
 //
 // The dropdown toggles open/closed on click and closes when clicking

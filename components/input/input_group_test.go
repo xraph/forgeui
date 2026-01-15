@@ -16,7 +16,9 @@ func TestInputGroup(t *testing.T) {
 		)
 
 		var buf bytes.Buffer
-		group.Render(&buf)
+		if err := group.Render(&buf); err != nil {
+			t.Fatalf("Render() error = %v", err)
+		}
 		output := buf.String()
 
 		if !strings.Contains(output, "group/input-group") {
@@ -43,7 +45,9 @@ func TestInputGroup(t *testing.T) {
 		)
 
 		var buf bytes.Buffer
-		group.Render(&buf)
+		if err := group.Render(&buf); err != nil {
+			t.Fatalf("Render() error = %v", err)
+		}
 		output := buf.String()
 
 		if !strings.Contains(output, "custom-class") {
@@ -58,7 +62,9 @@ func TestInputGroup(t *testing.T) {
 		)
 
 		var buf bytes.Buffer
-		group.Render(&buf)
+		if err := group.Render(&buf); err != nil {
+			t.Fatalf("Render() error = %v", err)
+		}
 		output := buf.String()
 
 		if !strings.Contains(output, "data-testid=\"group\"") {
@@ -73,7 +79,9 @@ func TestInputGroup(t *testing.T) {
 		)
 
 		var buf bytes.Buffer
-		group.Render(&buf)
+		if err := group.Render(&buf); err != nil {
+			t.Fatalf("Render() error = %v", err)
+		}
 		output := buf.String()
 
 		if !strings.Contains(output, "data-disabled=\"true\"") {
@@ -88,7 +96,9 @@ func TestInputGroup(t *testing.T) {
 		)
 
 		var buf bytes.Buffer
-		group.Render(&buf)
+		if err := group.Render(&buf); err != nil {
+			t.Fatalf("Render() error = %v", err)
+		}
 		output := buf.String()
 
 		if !strings.Contains(output, "has-[[data-slot=input-group-control]:focus-visible]:border-ring") {
@@ -103,7 +113,9 @@ func TestInputGroup(t *testing.T) {
 		)
 
 		var buf bytes.Buffer
-		group.Render(&buf)
+		if err := group.Render(&buf); err != nil {
+			t.Fatalf("Render() error = %v", err)
+		}
 		output := buf.String()
 
 		if !strings.Contains(output, "has-[[data-slot][aria-invalid=true]]:border-destructive") {
@@ -118,7 +130,9 @@ func TestInputGroup(t *testing.T) {
 		)
 
 		var buf bytes.Buffer
-		group.Render(&buf)
+		if err := group.Render(&buf); err != nil {
+			t.Fatalf("Render() error = %v", err)
+		}
 		output := buf.String()
 
 		// InputGroup should have selectors to style child inputs
@@ -139,7 +153,9 @@ func TestInputGroup(t *testing.T) {
 		)
 
 		var buf bytes.Buffer
-		group.Render(&buf)
+		if err := group.Render(&buf); err != nil {
+			t.Fatalf("Render() error = %v", err)
+		}
 		output := buf.String()
 
 		// InputGroup should have selectors to style child textareas
@@ -162,7 +178,9 @@ func TestInputGroupAddon(t *testing.T) {
 		)
 
 		var buf bytes.Buffer
-		addon.Render(&buf)
+		if err := addon.Render(&buf); err != nil {
+			t.Fatalf("Render() error = %v", err)
+		}
 		output := buf.String()
 
 		if !strings.Contains(output, "https://") {
@@ -185,7 +203,9 @@ func TestInputGroupAddon(t *testing.T) {
 		)
 
 		var buf bytes.Buffer
-		addon.Render(&buf)
+		if err := addon.Render(&buf); err != nil {
+			t.Fatalf("Render() error = %v", err)
+		}
 		output := buf.String()
 
 		if !strings.Contains(output, "data-align=\"inline-end\"") {
@@ -204,7 +224,9 @@ func TestInputGroupAddon(t *testing.T) {
 		)
 
 		var buf bytes.Buffer
-		addon.Render(&buf)
+		if err := addon.Render(&buf); err != nil {
+			t.Fatalf("Render() error = %v", err)
+		}
 		output := buf.String()
 
 		if !strings.Contains(output, "data-align=\"block-start\"") {
@@ -223,7 +245,9 @@ func TestInputGroupAddon(t *testing.T) {
 		)
 
 		var buf bytes.Buffer
-		addon.Render(&buf)
+		if err := addon.Render(&buf); err != nil {
+			t.Fatalf("Render() error = %v", err)
+		}
 		output := buf.String()
 
 		if !strings.Contains(output, "data-align=\"block-end\"") {
@@ -242,7 +266,9 @@ func TestInputGroupAddon(t *testing.T) {
 		)
 
 		var buf bytes.Buffer
-		addon.Render(&buf)
+		if err := addon.Render(&buf); err != nil {
+			t.Fatalf("Render() error = %v", err)
+		}
 		output := buf.String()
 
 		if !strings.Contains(output, "custom-addon") {
@@ -257,7 +283,9 @@ func TestInputGroupAddon(t *testing.T) {
 		)
 
 		var buf bytes.Buffer
-		addon.Render(&buf)
+		if err := addon.Render(&buf); err != nil {
+			t.Fatalf("Render() error = %v", err)
+		}
 		output := buf.String()
 
 		if !strings.Contains(output, "data-slot=\"input-group-addon\"") {
@@ -271,7 +299,9 @@ func TestInputGroupButton(t *testing.T) {
 		btn := InputGroupButton(g.Text("Submit"))
 
 		var buf bytes.Buffer
-		btn.Render(&buf)
+		if err := btn.Render(&buf); err != nil {
+			t.Fatalf("Render() error = %v", err)
+		}
 		output := buf.String()
 
 		if !strings.Contains(output, "Submit") {
@@ -290,7 +320,9 @@ func TestInputGroupButton(t *testing.T) {
 		)
 
 		var buf bytes.Buffer
-		btn.Render(&buf)
+		if err := btn.Render(&buf); err != nil {
+			t.Fatalf("Render() error = %v", err)
+		}
 		output := buf.String()
 
 		if !strings.Contains(output, "h-8") {
@@ -305,7 +337,9 @@ func TestInputGroupButton(t *testing.T) {
 		)
 
 		var buf bytes.Buffer
-		btn.Render(&buf)
+		if err := btn.Render(&buf); err != nil {
+			t.Fatalf("Render() error = %v", err)
+		}
 		output := buf.String()
 
 		if !strings.Contains(output, "size-6") {
@@ -320,7 +354,9 @@ func TestInputGroupButton(t *testing.T) {
 		)
 
 		var buf bytes.Buffer
-		btn.Render(&buf)
+		if err := btn.Render(&buf); err != nil {
+			t.Fatalf("Render() error = %v", err)
+		}
 		output := buf.String()
 
 		if !strings.Contains(output, "size-8") {
@@ -335,7 +371,9 @@ func TestInputGroupButton(t *testing.T) {
 		)
 
 		var buf bytes.Buffer
-		btn.Render(&buf)
+		if err := btn.Render(&buf); err != nil {
+			t.Fatalf("Render() error = %v", err)
+		}
 		output := buf.String()
 
 		if !strings.Contains(output, "custom-btn") {
@@ -349,7 +387,9 @@ func TestInputGroupText(t *testing.T) {
 		text := InputGroupText("https://")
 
 		var buf bytes.Buffer
-		text.Render(&buf)
+		if err := text.Render(&buf); err != nil {
+			t.Fatalf("Render() error = %v", err)
+		}
 		output := buf.String()
 
 		if !strings.Contains(output, "https://") {
@@ -365,7 +405,9 @@ func TestInputGroupText(t *testing.T) {
 		text := InputGroupText("$", WithTextClass("custom-text"))
 
 		var buf bytes.Buffer
-		text.Render(&buf)
+		if err := text.Render(&buf); err != nil {
+			t.Fatalf("Render() error = %v", err)
+		}
 		output := buf.String()
 
 		if !strings.Contains(output, "custom-text") {
@@ -379,7 +421,9 @@ func TestInputGroupInput(t *testing.T) {
 		input := InputGroupInput()
 
 		var buf bytes.Buffer
-		input.Render(&buf)
+		if err := input.Render(&buf); err != nil {
+			t.Fatalf("Render() error = %v", err)
+		}
 		output := buf.String()
 
 		if !strings.Contains(output, "data-slot=\"input-group-control\"") {
@@ -391,7 +435,9 @@ func TestInputGroupInput(t *testing.T) {
 		input := InputGroupInput()
 
 		var buf bytes.Buffer
-		input.Render(&buf)
+		if err := input.Render(&buf); err != nil {
+			t.Fatalf("Render() error = %v", err)
+		}
 		output := buf.String()
 
 		// Border/shadow styling is handled by parent InputGroup via [&>input] selectors
@@ -408,7 +454,9 @@ func TestInputGroupInput(t *testing.T) {
 		input := InputGroupInput(WithGroupInputPlaceholder("Enter value"))
 
 		var buf bytes.Buffer
-		input.Render(&buf)
+		if err := input.Render(&buf); err != nil {
+			t.Fatalf("Render() error = %v", err)
+		}
 		output := buf.String()
 
 		if !strings.Contains(output, "placeholder=\"Enter value\"") {
@@ -420,7 +468,9 @@ func TestInputGroupInput(t *testing.T) {
 		input := InputGroupInput(WithGroupInputName("email"))
 
 		var buf bytes.Buffer
-		input.Render(&buf)
+		if err := input.Render(&buf); err != nil {
+			t.Fatalf("Render() error = %v", err)
+		}
 		output := buf.String()
 
 		if !strings.Contains(output, "name=\"email\"") {
@@ -432,7 +482,9 @@ func TestInputGroupInput(t *testing.T) {
 		input := InputGroupInput(GroupInputInvalid())
 
 		var buf bytes.Buffer
-		input.Render(&buf)
+		if err := input.Render(&buf); err != nil {
+			t.Fatalf("Render() error = %v", err)
+		}
 		output := buf.String()
 
 		if !strings.Contains(output, "aria-invalid=\"true\"") {
@@ -444,7 +496,9 @@ func TestInputGroupInput(t *testing.T) {
 		input := InputGroupInput(GroupInputDisabled())
 
 		var buf bytes.Buffer
-		input.Render(&buf)
+		if err := input.Render(&buf); err != nil {
+			t.Fatalf("Render() error = %v", err)
+		}
 		output := buf.String()
 
 		if !strings.Contains(output, "disabled") {
@@ -456,7 +510,9 @@ func TestInputGroupInput(t *testing.T) {
 		input := InputGroupInput(GroupInputRequired())
 
 		var buf bytes.Buffer
-		input.Render(&buf)
+		if err := input.Render(&buf); err != nil {
+			t.Fatalf("Render() error = %v", err)
+		}
 		output := buf.String()
 
 		if !strings.Contains(output, "required") {
@@ -470,7 +526,9 @@ func TestInputGroupTextarea(t *testing.T) {
 		textarea := InputGroupTextarea()
 
 		var buf bytes.Buffer
-		textarea.Render(&buf)
+		if err := textarea.Render(&buf); err != nil {
+			t.Fatalf("Render() error = %v", err)
+		}
 		output := buf.String()
 
 		if !strings.Contains(output, "data-slot=\"input-group-control\"") {
@@ -482,7 +540,9 @@ func TestInputGroupTextarea(t *testing.T) {
 		textarea := InputGroupTextarea()
 
 		var buf bytes.Buffer
-		textarea.Render(&buf)
+		if err := textarea.Render(&buf); err != nil {
+			t.Fatalf("Render() error = %v", err)
+		}
 		output := buf.String()
 
 		// Border/shadow/resize styling is handled by parent InputGroup via [&>textarea] selectors
@@ -499,7 +559,9 @@ func TestInputGroupTextarea(t *testing.T) {
 		textarea := InputGroupTextarea(WithGroupTextareaPlaceholder("Enter message"))
 
 		var buf bytes.Buffer
-		textarea.Render(&buf)
+		if err := textarea.Render(&buf); err != nil {
+			t.Fatalf("Render() error = %v", err)
+		}
 		output := buf.String()
 
 		if !strings.Contains(output, "placeholder=\"Enter message\"") {
@@ -511,7 +573,9 @@ func TestInputGroupTextarea(t *testing.T) {
 		textarea := InputGroupTextarea(GroupTextareaInvalid())
 
 		var buf bytes.Buffer
-		textarea.Render(&buf)
+		if err := textarea.Render(&buf); err != nil {
+			t.Fatalf("Render() error = %v", err)
+		}
 		output := buf.String()
 
 		if !strings.Contains(output, "aria-invalid=\"true\"") {
@@ -530,7 +594,9 @@ func TestInputLeftAddon(t *testing.T) {
 		)
 
 		var buf bytes.Buffer
-		addon.Render(&buf)
+		if err := addon.Render(&buf); err != nil {
+			t.Fatalf("Render() error = %v", err)
+		}
 		output := buf.String()
 
 		if !strings.Contains(output, "https://") {
@@ -549,7 +615,9 @@ func TestInputLeftAddon(t *testing.T) {
 		)
 
 		var buf bytes.Buffer
-		addon.Render(&buf)
+		if err := addon.Render(&buf); err != nil {
+			t.Fatalf("Render() error = %v", err)
+		}
 		output := buf.String()
 
 		if !strings.Contains(output, "custom-addon") {
@@ -566,7 +634,9 @@ func TestInputRightAddon(t *testing.T) {
 		)
 
 		var buf bytes.Buffer
-		addon.Render(&buf)
+		if err := addon.Render(&buf); err != nil {
+			t.Fatalf("Render() error = %v", err)
+		}
 		output := buf.String()
 
 		if !strings.Contains(output, "USD") {
@@ -585,7 +655,9 @@ func TestInputRightAddon(t *testing.T) {
 		)
 
 		var buf bytes.Buffer
-		addon.Render(&buf)
+		if err := addon.Render(&buf); err != nil {
+			t.Fatalf("Render() error = %v", err)
+		}
 		output := buf.String()
 
 		if !strings.Contains(output, "text-muted-foreground") {
@@ -602,7 +674,9 @@ func TestInputLeftElement(t *testing.T) {
 		)
 
 		var buf bytes.Buffer
-		element.Render(&buf)
+		if err := element.Render(&buf); err != nil {
+			t.Fatalf("Render() error = %v", err)
+		}
 		output := buf.String()
 
 		if !strings.Contains(output, "absolute left-0") {
@@ -625,7 +699,9 @@ func TestInputLeftElement(t *testing.T) {
 		)
 
 		var buf bytes.Buffer
-		element.Render(&buf)
+		if err := element.Render(&buf); err != nil {
+			t.Fatalf("Render() error = %v", err)
+		}
 		output := buf.String()
 
 		if !strings.Contains(output, "flex items-center justify-center") {
@@ -640,7 +716,9 @@ func TestInputLeftElement(t *testing.T) {
 		)
 
 		var buf bytes.Buffer
-		element.Render(&buf)
+		if err := element.Render(&buf); err != nil {
+			t.Fatalf("Render() error = %v", err)
+		}
 		output := buf.String()
 
 		if !strings.Contains(output, "custom-element") {
@@ -657,7 +735,9 @@ func TestInputRightElement(t *testing.T) {
 		)
 
 		var buf bytes.Buffer
-		element.Render(&buf)
+		if err := element.Render(&buf); err != nil {
+			t.Fatalf("Render() error = %v", err)
+		}
 		output := buf.String()
 
 		if !strings.Contains(output, "absolute right-0") {
@@ -676,7 +756,9 @@ func TestInputRightElement(t *testing.T) {
 		)
 
 		var buf bytes.Buffer
-		element.Render(&buf)
+		if err := element.Render(&buf); err != nil {
+			t.Fatalf("Render() error = %v", err)
+		}
 		output := buf.String()
 
 		// Right elements shouldn't have pointer-events-none by default
@@ -699,7 +781,9 @@ func TestInputGroupIntegration(t *testing.T) {
 		)
 
 		var buf bytes.Buffer
-		group.Render(&buf)
+		if err := group.Render(&buf); err != nil {
+			t.Fatalf("Render() error = %v", err)
+		}
 		output := buf.String()
 
 		if !strings.Contains(output, "https://") {
@@ -722,7 +806,9 @@ func TestInputGroupIntegration(t *testing.T) {
 		)
 
 		var buf bytes.Buffer
-		group.Render(&buf)
+		if err := group.Render(&buf); err != nil {
+			t.Fatalf("Render() error = %v", err)
+		}
 		output := buf.String()
 
 		if !strings.Contains(output, "type=\"number\"") {
@@ -749,7 +835,9 @@ func TestInputGroupIntegration(t *testing.T) {
 		)
 
 		var buf bytes.Buffer
-		group.Render(&buf)
+		if err := group.Render(&buf); err != nil {
+			t.Fatalf("Render() error = %v", err)
+		}
 		output := buf.String()
 
 		if !strings.Contains(output, "$") {
@@ -772,7 +860,9 @@ func TestInputGroupIntegration(t *testing.T) {
 		)
 
 		var buf bytes.Buffer
-		group.Render(&buf)
+		if err := group.Render(&buf); err != nil {
+			t.Fatalf("Render() error = %v", err)
+		}
 		output := buf.String()
 
 		if !strings.Contains(output, "Search") {
@@ -791,7 +881,9 @@ func TestInputGroupIntegration(t *testing.T) {
 		)
 
 		var buf bytes.Buffer
-		group.Render(&buf)
+		if err := group.Render(&buf); err != nil {
+			t.Fatalf("Render() error = %v", err)
+		}
 		output := buf.String()
 
 		if !strings.Contains(output, "Message...") {
@@ -805,7 +897,9 @@ func TestSearchInput(t *testing.T) {
 		search := SearchInput()
 
 		var buf bytes.Buffer
-		search.Render(&buf)
+		if err := search.Render(&buf); err != nil {
+			t.Fatalf("Render() error = %v", err)
+		}
 		output := buf.String()
 
 		if !strings.Contains(output, "Search...") {

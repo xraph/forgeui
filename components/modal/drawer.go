@@ -30,17 +30,6 @@ type DrawerProps struct {
 	Class string
 }
 
-// defaultDrawerProps returns default drawer properties
-func defaultDrawerProps() DrawerProps {
-	return DrawerProps{
-		Side:                forgeui.SideRight,
-		Size:                forgeui.SizeMD,
-		CloseOnEscape:       true,
-		CloseOnOutsideClick: true,
-		ShowClose:           true,
-	}
-}
-
 // Drawer creates a drawer that slides in from a screen edge.
 //
 // Drawers are panels that slide in from the edge of the screen,

@@ -12,7 +12,9 @@ func TestSpinner(t *testing.T) {
 	spinner := Spinner()
 
 	var buf bytes.Buffer
-	spinner.Render(&buf)
+	if err := spinner.Render(&buf); err != nil {
+		t.Fatalf("Render() error = %v", err)
+	}
 	html := buf.String()
 
 	if !strings.Contains(html, "animate-spin") {
@@ -39,7 +41,9 @@ func TestSpinner_Sizes(t *testing.T) {
 			spinner := Spinner(WithSize(tt.size))
 
 			var buf bytes.Buffer
-			spinner.Render(&buf)
+			if err := spinner.Render(&buf); err != nil {
+				t.Fatalf("Render() error = %v", err)
+			}
 
 			if !strings.Contains(buf.String(), tt.want) {
 				t.Errorf("expected %v size classes", tt.want)

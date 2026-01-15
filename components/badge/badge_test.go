@@ -12,7 +12,9 @@ func TestBadge(t *testing.T) {
 	badge := Badge("New")
 
 	var buf bytes.Buffer
-	badge.Render(&buf)
+	if err := badge.Render(&buf); err != nil {
+		t.Fatalf("Render() error = %v", err)
+	}
 	html := buf.String()
 
 	if !strings.Contains(html, "inline-flex") {
@@ -40,7 +42,9 @@ func TestBadge_Variants(t *testing.T) {
 			badge := Badge("Test", WithVariant(tt.variant))
 
 			var buf bytes.Buffer
-			badge.Render(&buf)
+			if err := badge.Render(&buf); err != nil {
+				t.Fatalf("Render() error = %v", err)
+			}
 
 			if !strings.Contains(buf.String(), tt.want) {
 				t.Errorf("expected %v class", tt.want)

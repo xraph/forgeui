@@ -15,7 +15,9 @@ func TestAvatar_WithImage(t *testing.T) {
 	)
 
 	var buf bytes.Buffer
-	avatar.Render(&buf)
+	if err := avatar.Render(&buf); err != nil {
+		t.Fatalf("Render() error = %v", err)
+	}
 	html := buf.String()
 
 	if !strings.Contains(html, "rounded-full") {
@@ -31,7 +33,9 @@ func TestAvatar_WithFallback(t *testing.T) {
 	avatar := Avatar(WithFallback("AB"))
 
 	var buf bytes.Buffer
-	avatar.Render(&buf)
+	if err := avatar.Render(&buf); err != nil {
+		t.Fatalf("Render() error = %v", err)
+	}
 	html := buf.String()
 
 	if !strings.Contains(html, "AB") {
@@ -59,7 +63,9 @@ func TestAvatar_Sizes(t *testing.T) {
 			avatar := Avatar(WithSize(tt.size), WithFallback("A"))
 
 			var buf bytes.Buffer
-			avatar.Render(&buf)
+			if err := avatar.Render(&buf); err != nil {
+				t.Fatalf("Render() error = %v", err)
+			}
 
 			if !strings.Contains(buf.String(), tt.want) {
 				t.Errorf("expected %v size classes", tt.want)

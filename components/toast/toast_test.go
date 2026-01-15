@@ -15,7 +15,9 @@ func TestToast(t *testing.T) {
 		})
 
 		var buf bytes.Buffer
-		toast.Render(&buf)
+		if err := toast.Render(&buf); err != nil {
+			t.Fatalf("Render() error = %v", err)
+		}
 		html := buf.String()
 
 		if !strings.Contains(html, "Test notification") {
@@ -34,7 +36,9 @@ func TestToast(t *testing.T) {
 		})
 
 		var buf bytes.Buffer
-		toast.Render(&buf)
+		if err := toast.Render(&buf); err != nil {
+			t.Fatalf("Render() error = %v", err)
+		}
 		html := buf.String()
 
 		if !strings.Contains(html, "Operation completed") {
@@ -49,7 +53,9 @@ func TestToast(t *testing.T) {
 		})
 
 		var buf bytes.Buffer
-		toast.Render(&buf)
+		if err := toast.Render(&buf); err != nil {
+			t.Fatalf("Render() error = %v", err)
+		}
 		html := buf.String()
 
 		if !strings.Contains(html, "bg-card") {
@@ -64,7 +70,9 @@ func TestToast(t *testing.T) {
 		})
 
 		var buf bytes.Buffer
-		toast.Render(&buf)
+		if err := toast.Render(&buf); err != nil {
+			t.Fatalf("Render() error = %v", err)
+		}
 		html := buf.String()
 
 		if !strings.Contains(html, "bg-destructive") {
@@ -80,7 +88,9 @@ func TestToast(t *testing.T) {
 		})
 
 		var buf bytes.Buffer
-		toast.Render(&buf)
+		if err := toast.Render(&buf); err != nil {
+			t.Fatalf("Render() error = %v", err)
+		}
 		html := buf.String()
 
 		if !strings.Contains(html, "progress") {
@@ -98,7 +108,9 @@ func TestToast(t *testing.T) {
 		})
 
 		var buf bytes.Buffer
-		toast.Render(&buf)
+		if err := toast.Render(&buf); err != nil {
+			t.Fatalf("Render() error = %v", err)
+		}
 		html := buf.String()
 
 		if !strings.Contains(html, "Update now") {
@@ -112,7 +124,9 @@ func TestToast(t *testing.T) {
 		})
 
 		var buf bytes.Buffer
-		toast.Render(&buf)
+		if err := toast.Render(&buf); err != nil {
+			t.Fatalf("Render() error = %v", err)
+		}
 		html := buf.String()
 
 		if !strings.Contains(html, "aria-label=\"Close\"") {
@@ -130,7 +144,9 @@ func TestToaster(t *testing.T) {
 		toaster := Toaster()
 
 		var buf bytes.Buffer
-		toaster.Render(&buf)
+		if err := toaster.Render(&buf); err != nil {
+			t.Fatalf("Render() error = %v", err)
+		}
 		html := buf.String()
 
 		if !strings.Contains(html, "fixed") {
@@ -150,7 +166,9 @@ func TestToaster(t *testing.T) {
 		toaster := Toaster()
 
 		var buf bytes.Buffer
-		toaster.Render(&buf)
+		if err := toaster.Render(&buf); err != nil {
+			t.Fatalf("Render() error = %v", err)
+		}
 		html := buf.String()
 
 		if !strings.Contains(html, "bottom-0") || !strings.Contains(html, "right-0") {
@@ -162,7 +180,9 @@ func TestToaster(t *testing.T) {
 		toaster := Toaster(WithPosition("top-left"))
 
 		var buf bytes.Buffer
-		toaster.Render(&buf)
+		if err := toaster.Render(&buf); err != nil {
+			t.Fatalf("Render() error = %v", err)
+		}
 		html := buf.String()
 
 		if !strings.Contains(html, "top-0") || !strings.Contains(html, "left-0") {
@@ -174,7 +194,9 @@ func TestToaster(t *testing.T) {
 		toaster := Toaster(WithMaxToasts(3))
 
 		var buf bytes.Buffer
-		toaster.Render(&buf)
+		if err := toaster.Render(&buf); err != nil {
+			t.Fatalf("Render() error = %v", err)
+		}
 		html := buf.String()
 
 		if !strings.Contains(html, "maxToasts: 3") {
@@ -190,7 +212,9 @@ func TestToaster(t *testing.T) {
 		toaster := Toaster()
 
 		var buf bytes.Buffer
-		toaster.Render(&buf)
+		if err := toaster.Render(&buf); err != nil {
+			t.Fatalf("Render() error = %v", err)
+		}
 		html := buf.String()
 
 		if !strings.Contains(html, "@keydown.escape.window") {
@@ -206,7 +230,9 @@ func TestToaster(t *testing.T) {
 		toaster := Toaster()
 
 		var buf bytes.Buffer
-		toaster.Render(&buf)
+		if err := toaster.Render(&buf); err != nil {
+			t.Fatalf("Render() error = %v", err)
+		}
 		html := buf.String()
 
 		if !strings.Contains(html, "x-for") {
@@ -222,7 +248,9 @@ func TestToaster(t *testing.T) {
 		toaster := Toaster()
 
 		var buf bytes.Buffer
-		toaster.Render(&buf)
+		if err := toaster.Render(&buf); err != nil {
+			t.Fatalf("Render() error = %v", err)
+		}
 		html := buf.String()
 
 		if !strings.Contains(html, "init()") {
@@ -242,7 +270,9 @@ func TestToaster(t *testing.T) {
 		toaster := Toaster()
 
 		var buf bytes.Buffer
-		toaster.Render(&buf)
+		if err := toaster.Render(&buf); err != nil {
+			t.Fatalf("Render() error = %v", err)
+		}
 		html := buf.String()
 
 		if !strings.Contains(html, "x-show") {
@@ -262,7 +292,9 @@ func TestToaster(t *testing.T) {
 		toaster := Toaster(WithToasterClass("custom-toaster"))
 
 		var buf bytes.Buffer
-		toaster.Render(&buf)
+		if err := toaster.Render(&buf); err != nil {
+			t.Fatalf("Render() error = %v", err)
+		}
 		html := buf.String()
 
 		if !strings.Contains(html, "custom-toaster") {
@@ -276,7 +308,9 @@ func TestRegisterToastStore(t *testing.T) {
 		store := RegisterToastStore()
 
 		var buf bytes.Buffer
-		store.Render(&buf)
+		if err := store.Render(&buf); err != nil {
+			t.Fatalf("Render() error = %v", err)
+		}
 		html := buf.String()
 
 		if !strings.Contains(html, "Alpine.store") {
@@ -292,7 +326,9 @@ func TestRegisterToastStore(t *testing.T) {
 		store := RegisterToastStore()
 
 		var buf bytes.Buffer
-		store.Render(&buf)
+		if err := store.Render(&buf); err != nil {
+			t.Fatalf("Render() error = %v", err)
+		}
 		html := buf.String()
 
 		if !strings.Contains(html, "items") {
@@ -304,7 +340,9 @@ func TestRegisterToastStore(t *testing.T) {
 		store := RegisterToastStore()
 
 		var buf bytes.Buffer
-		store.Render(&buf)
+		if err := store.Render(&buf); err != nil {
+			t.Fatalf("Render() error = %v", err)
+		}
 		html := buf.String()
 
 		if !strings.Contains(html, "add(") {
@@ -320,7 +358,9 @@ func TestRegisterToastStore(t *testing.T) {
 		store := RegisterToastStore()
 
 		var buf bytes.Buffer
-		store.Render(&buf)
+		if err := store.Render(&buf); err != nil {
+			t.Fatalf("Render() error = %v", err)
+		}
 		html := buf.String()
 
 		if !strings.Contains(html, "remove(") {
@@ -336,7 +376,9 @@ func TestRegisterToastStore(t *testing.T) {
 		store := RegisterToastStore()
 
 		var buf bytes.Buffer
-		store.Render(&buf)
+		if err := store.Render(&buf); err != nil {
+			t.Fatalf("Render() error = %v", err)
+		}
 		html := buf.String()
 
 		if !strings.Contains(html, "clear()") {
@@ -348,7 +390,9 @@ func TestRegisterToastStore(t *testing.T) {
 		store := RegisterToastStore()
 
 		var buf bytes.Buffer
-		store.Render(&buf)
+		if err := store.Render(&buf); err != nil {
+			t.Fatalf("Render() error = %v", err)
+		}
 		html := buf.String()
 
 		if !strings.Contains(html, "Date.now()") && !strings.Contains(html, "Math.random()") {
@@ -360,7 +404,9 @@ func TestRegisterToastStore(t *testing.T) {
 		store := RegisterToastStore()
 
 		var buf bytes.Buffer
-		store.Render(&buf)
+		if err := store.Render(&buf); err != nil {
+			t.Fatalf("Render() error = %v", err)
+		}
 		html := buf.String()
 
 		if !strings.Contains(html, "duration: toast.duration || 5000") {
@@ -495,7 +541,9 @@ func TestMultiToastSupport(t *testing.T) {
 		toaster := Toaster()
 
 		var buf bytes.Buffer
-		toaster.Render(&buf)
+		if err := toaster.Render(&buf); err != nil {
+			t.Fatalf("Render() error = %v", err)
+		}
 		html := buf.String()
 
 		// Verify it uses x-for for multiple toasts
@@ -518,7 +566,9 @@ func TestMultiToastSupport(t *testing.T) {
 		toaster := Toaster(WithMaxToasts(5))
 
 		var buf bytes.Buffer
-		toaster.Render(&buf)
+		if err := toaster.Render(&buf); err != nil {
+			t.Fatalf("Render() error = %v", err)
+		}
 		html := buf.String()
 
 		if !strings.Contains(html, "maxToasts: 5") {
@@ -534,7 +584,9 @@ func TestMultiToastSupport(t *testing.T) {
 		store := RegisterToastStore()
 
 		var buf bytes.Buffer
-		store.Render(&buf)
+		if err := store.Render(&buf); err != nil {
+			t.Fatalf("Render() error = %v", err)
+		}
 		html := buf.String()
 
 		// Verify items state exists
@@ -552,7 +604,9 @@ func TestMultiToastSupport(t *testing.T) {
 		toaster := Toaster()
 
 		var buf bytes.Buffer
-		toaster.Render(&buf)
+		if err := toaster.Render(&buf); err != nil {
+			t.Fatalf("Render() error = %v", err)
+		}
 		html := buf.String()
 
 		// Each toast should have its own x-data

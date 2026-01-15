@@ -173,10 +173,10 @@ func (c *Command) parseFlags(ctx *Context, args []string) ([]string, error) {
 
 // printHelp prints the command's help information
 func (c *Command) printHelp(w io.Writer) {
-	fmt.Fprintf(w, "%s\n\n", c.Short)
+	_, _ = fmt.Fprintf(w, "%s\n\n", c.Short)
 
 	if c.Long != "" {
-		fmt.Fprintf(w, "%s\n\n", c.Long)
+		_, _ = fmt.Fprintf(w, "%s\n\n", c.Long)
 	}
 
 	// Usage
@@ -192,24 +192,24 @@ func (c *Command) printHelp(w io.Writer) {
 		}
 	}
 
-	fmt.Fprintf(w, "Usage:\n  %s\n\n", usage)
+	_, _ = fmt.Fprintf(w, "Usage:\n  %s\n\n", usage)
 
 	// Subcommands
 	if len(c.Subcommands) > 0 {
-		fmt.Fprintf(w, "Available Commands:\n")
+		_, _ = fmt.Fprintf(w, "Available Commands:\n")
 
 		for _, sub := range c.Subcommands {
 			if !sub.Hidden {
-				fmt.Fprintf(w, "  %-15s %s\n", sub.Name, sub.Short)
+				_, _ = fmt.Fprintf(w, "  %-15s %s\n", sub.Name, sub.Short)
 			}
 		}
 
-		fmt.Fprintf(w, "\n")
+		_, _ = fmt.Fprintf(w, "\n")
 	}
 
 	// Flags
 	if len(c.Flags) > 0 {
-		fmt.Fprintf(w, "Flags:\n")
+		_, _ = fmt.Fprintf(w, "Flags:\n")
 
 		for _, flag := range c.Flags {
 			shortFlag := ""
@@ -217,14 +217,14 @@ func (c *Command) printHelp(w io.Writer) {
 				shortFlag = fmt.Sprintf("-%s, ", flag.Short)
 			}
 
-			fmt.Fprintf(w, "  %s--%-15s %s\n", shortFlag, flag.Name, flag.Usage)
+			_, _ = fmt.Fprintf(w, "  %s--%-15s %s\n", shortFlag, flag.Name, flag.Usage)
 		}
 
-		fmt.Fprintf(w, "\n")
+		_, _ = fmt.Fprintf(w, "\n")
 	}
 
 	// Footer
-	fmt.Fprintf(w, "Use \"forgeui %s <command> --help\" for more information about a command.\n", c.Name)
+	_, _ = fmt.Fprintf(w, "Use \"forgeui %s <command> --help\" for more information about a command.\n", c.Name)
 }
 
 // contains checks if a slice contains a string

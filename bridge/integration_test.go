@@ -16,7 +16,7 @@ func TestBridge_Integration(t *testing.T) {
 	b := New(WithCSRF(false))
 
 	// Register functions
-	b.Register("echo", func(ctx Context, input struct {
+	_ = b.Register("echo", func(ctx Context, input struct {
 		Message string `json:"message"`
 	}) (struct {
 		Echo string `json:"echo"`
@@ -26,7 +26,7 @@ func TestBridge_Integration(t *testing.T) {
 		}{Echo: input.Message}, nil
 	})
 
-	b.Register("add", func(ctx Context, input struct {
+	_ = b.Register("add", func(ctx Context, input struct {
 		A int `json:"a"`
 		B int `json:"b"`
 	}) (struct {
@@ -59,7 +59,7 @@ func TestBridge_Integration(t *testing.T) {
 		}
 
 		var resp Response
-		json.Unmarshal(w.Body.Bytes(), &resp)
+		_ = json.Unmarshal(w.Body.Bytes(), &resp)
 
 		if resp.Error != nil {
 			t.Errorf("unexpected error: %v", resp.Error)
@@ -82,7 +82,7 @@ func TestBridge_Integration(t *testing.T) {
 		handler.ServeHTTP(w, httpReq)
 
 		var responses BatchResponse
-		json.Unmarshal(w.Body.Bytes(), &responses)
+		_ = json.Unmarshal(w.Body.Bytes(), &responses)
 
 		if len(responses) != 2 {
 			t.Errorf("len(responses) = %d, want 2", len(responses))
@@ -109,7 +109,7 @@ func TestBridge_Integration(t *testing.T) {
 		}
 
 		var result map[string]any
-		json.Unmarshal(w.Body.Bytes(), &result)
+		_ = json.Unmarshal(w.Body.Bytes(), &result)
 
 		count, ok := result["count"].(float64)
 		if !ok || count != 2 {
@@ -182,7 +182,7 @@ func TestBridge_AuthWorkflow(t *testing.T) {
 	b := New(WithCSRF(false))
 
 	// Register protected function
-	b.Register("protected", func(ctx Context, input struct{}) (struct {
+	_ = b.Register("protected", func(ctx Context, input struct{}) (struct {
 		Message string `json:"message"`
 	}, error) {
 		return struct {
@@ -207,7 +207,7 @@ func TestBridge_AuthWorkflow(t *testing.T) {
 		handler.ServeHTTP(w, httpReq)
 
 		var resp Response
-		json.Unmarshal(w.Body.Bytes(), &resp)
+		_ = json.Unmarshal(w.Body.Bytes(), &resp)
 
 		if resp.Error == nil {
 			t.Error("expected error for unauthenticated request")

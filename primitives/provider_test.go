@@ -12,7 +12,7 @@ import (
 // Helper function to render a node to string
 func renderNode(node g.Node) string {
 	var buf bytes.Buffer
-	node.Render(&buf)
+	_ = node.Render(&buf)
 
 	return buf.String()
 }

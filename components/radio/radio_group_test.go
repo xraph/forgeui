@@ -17,7 +17,9 @@ func TestGroup(t *testing.T) {
 		)
 
 		var buf bytes.Buffer
-		group.Render(&buf)
+		if err := group.Render(&buf); err != nil {
+			t.Fatalf("Render() error = %v", err)
+		}
 		output := buf.String()
 
 		if !strings.Contains(output, "role=\"radiogroup\"") {
@@ -35,7 +37,9 @@ func TestGroup(t *testing.T) {
 		)
 
 		var buf bytes.Buffer
-		group.Render(&buf)
+		if err := group.Render(&buf); err != nil {
+			t.Fatalf("Render() error = %v", err)
+		}
 		output := buf.String()
 
 		if !strings.Contains(output, "data-name=\"size\"") {
@@ -52,7 +56,9 @@ func TestGroup(t *testing.T) {
 		)
 
 		var buf bytes.Buffer
-		group.Render(&buf)
+		if err := group.Render(&buf); err != nil {
+			t.Fatalf("Render() error = %v", err)
+		}
 		output := buf.String()
 
 		if !strings.Contains(output, "data-value=\"medium\"") {
@@ -69,7 +75,9 @@ func TestGroup(t *testing.T) {
 		)
 
 		var buf bytes.Buffer
-		group.Render(&buf)
+		if err := group.Render(&buf); err != nil {
+			t.Fatalf("Render() error = %v", err)
+		}
 		output := buf.String()
 
 		if !strings.Contains(output, "aria-disabled=\"true\"") {
@@ -86,7 +94,9 @@ func TestGroup(t *testing.T) {
 		)
 
 		var buf bytes.Buffer
-		group.Render(&buf)
+		if err := group.Render(&buf); err != nil {
+			t.Fatalf("Render() error = %v", err)
+		}
 		output := buf.String()
 
 		if !strings.Contains(output, "custom-group") {
@@ -103,7 +113,9 @@ func TestGroup(t *testing.T) {
 		)
 
 		var buf bytes.Buffer
-		group.Render(&buf)
+		if err := group.Render(&buf); err != nil {
+			t.Fatalf("Render() error = %v", err)
+		}
 		output := buf.String()
 
 		if !strings.Contains(output, "data-testid=\"size-group\"") {
@@ -122,7 +134,9 @@ func TestGroupItem(t *testing.T) {
 		)
 
 		var buf bytes.Buffer
-		item.Render(&buf)
+		if err := item.Render(&buf); err != nil {
+			t.Fatalf("Render() error = %v", err)
+		}
 		output := buf.String()
 
 		if !strings.Contains(output, "flex") {
@@ -147,7 +161,9 @@ func TestGroupItem(t *testing.T) {
 		)
 
 		var buf bytes.Buffer
-		item.Render(&buf)
+		if err := item.Render(&buf); err != nil {
+			t.Fatalf("Render() error = %v", err)
+		}
 		output := buf.String()
 
 		if !strings.Contains(output, "type=\"radio\"") {
@@ -173,7 +189,9 @@ func TestGroupIntegration(t *testing.T) {
 		)
 
 		var buf bytes.Buffer
-		group.Render(&buf)
+		if err := group.Render(&buf); err != nil {
+			t.Fatalf("Render() error = %v", err)
+		}
 		output := buf.String()
 
 		// Check group structure

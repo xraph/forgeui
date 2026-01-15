@@ -35,7 +35,9 @@ func TestIcon(t *testing.T) {
 		icon := Icon("M5 12h14", WithSize(32))
 
 		var buf bytes.Buffer
-		icon.Render(&buf)
+		if err := icon.Render(&buf); err != nil {
+			t.Fatalf("Render() error = %v", err)
+		}
 		html := buf.String()
 
 		if !strings.Contains(html, `width="32"`) {
@@ -51,7 +53,9 @@ func TestIcon(t *testing.T) {
 		icon := Icon("M5 12h14", WithColor("red"))
 
 		var buf bytes.Buffer
-		icon.Render(&buf)
+		if err := icon.Render(&buf); err != nil {
+			t.Fatalf("Render() error = %v", err)
+		}
 		html := buf.String()
 
 		if !strings.Contains(html, `stroke="red"`) {
@@ -63,7 +67,9 @@ func TestIcon(t *testing.T) {
 		icon := Icon("M5 12h14", WithStrokeWidth(3.0))
 
 		var buf bytes.Buffer
-		icon.Render(&buf)
+		if err := icon.Render(&buf); err != nil {
+			t.Fatalf("Render() error = %v", err)
+		}
 		html := buf.String()
 
 		if !strings.Contains(html, `stroke-width="3"`) {
@@ -75,7 +81,9 @@ func TestIcon(t *testing.T) {
 		icon := Icon("M5 12h14", WithClass("custom-icon"))
 
 		var buf bytes.Buffer
-		icon.Render(&buf)
+		if err := icon.Render(&buf); err != nil {
+			t.Fatalf("Render() error = %v", err)
+		}
 		html := buf.String()
 
 		if !strings.Contains(html, "custom-icon") {
@@ -94,7 +102,9 @@ func TestIcon(t *testing.T) {
 		)
 
 		var buf bytes.Buffer
-		icon.Render(&buf)
+		if err := icon.Render(&buf); err != nil {
+			t.Fatalf("Render() error = %v", err)
+		}
 		html := buf.String()
 
 		expected := []string{
@@ -122,7 +132,9 @@ func TestMultiPathIcon(t *testing.T) {
 		})
 
 		var buf bytes.Buffer
-		icon.Render(&buf)
+		if err := icon.Render(&buf); err != nil {
+			t.Fatalf("Render() error = %v", err)
+		}
 		html := buf.String()
 
 		if !strings.Contains(html, "M18 6 6 18") {
@@ -198,7 +210,9 @@ func TestLucideIconsWithOptions(t *testing.T) {
 		)
 
 		var buf bytes.Buffer
-		icon.Render(&buf)
+		if err := icon.Render(&buf); err != nil {
+			t.Fatalf("Render() error = %v", err)
+		}
 		html := buf.String()
 
 		if !strings.Contains(html, `width="32"`) {

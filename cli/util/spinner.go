@@ -108,7 +108,7 @@ func (s *Spinner) animate() {
 			msg := s.message
 			s.mu.Unlock()
 
-			fmt.Fprintf(s.writer, "\r%s%s%s %s", ColorCyan, frame, ColorReset, msg)
+			_, _ = fmt.Fprintf(s.writer, "\r%s%s%s %s", ColorCyan, frame, ColorReset, msg)
 
 			frameIndex = (frameIndex + 1) % len(s.frames)
 		}

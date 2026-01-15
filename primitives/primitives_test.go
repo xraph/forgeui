@@ -34,7 +34,7 @@ func TestBox(t *testing.T) {
 		)
 
 		var buf bytes.Buffer
-		box.Render(&buf)
+		_ = box.Render(&buf)
 
 		if !strings.Contains(buf.String(), "<section") {
 			t.Error("expected <section tag")
@@ -51,7 +51,7 @@ func TestBox(t *testing.T) {
 		)
 
 		var buf bytes.Buffer
-		box.Render(&buf)
+		_ = box.Render(&buf)
 		html := buf.String()
 
 		classes := []string{"p-4", "m-2", "bg-blue-500", "rounded-lg", "shadow-md"}
@@ -68,7 +68,7 @@ func TestFlex(t *testing.T) {
 		flex := Flex(FlexChildren(g.Text("content")))
 
 		var buf bytes.Buffer
-		flex.Render(&buf)
+		_ = flex.Render(&buf)
 
 		html := buf.String()
 		if !strings.Contains(html, "flex") {
@@ -91,7 +91,7 @@ func TestFlex(t *testing.T) {
 				flex := Flex(FlexDirection(tt.direction))
 
 				var buf bytes.Buffer
-				flex.Render(&buf)
+				_ = flex.Render(&buf)
 
 				if !strings.Contains(buf.String(), tt.want) {
 					t.Errorf("expected %v class", tt.want)
@@ -104,7 +104,7 @@ func TestFlex(t *testing.T) {
 		flex := Flex(FlexJustify("center"))
 
 		var buf bytes.Buffer
-		flex.Render(&buf)
+		_ = flex.Render(&buf)
 
 		if !strings.Contains(buf.String(), "justify-center") {
 			t.Error("expected justify-center class")
@@ -115,7 +115,7 @@ func TestFlex(t *testing.T) {
 		flex := Flex(FlexGap("4"))
 
 		var buf bytes.Buffer
-		flex.Render(&buf)
+		_ = flex.Render(&buf)
 
 		if !strings.Contains(buf.String(), "gap-4") {
 			t.Error("expected gap-4 class")
@@ -128,7 +128,7 @@ func TestGrid(t *testing.T) {
 		grid := Grid(GridChildren(g.Text("content")))
 
 		var buf bytes.Buffer
-		grid.Render(&buf)
+		_ = grid.Render(&buf)
 
 		if !strings.Contains(buf.String(), "grid") {
 			t.Error("expected grid class")
@@ -139,7 +139,7 @@ func TestGrid(t *testing.T) {
 		grid := Grid(GridCols(3))
 
 		var buf bytes.Buffer
-		grid.Render(&buf)
+		_ = grid.Render(&buf)
 
 		if !strings.Contains(buf.String(), "grid-cols-3") {
 			t.Error("expected grid-cols-3 class")
@@ -155,7 +155,7 @@ func TestGrid(t *testing.T) {
 		)
 
 		var buf bytes.Buffer
-		grid.Render(&buf)
+		_ = grid.Render(&buf)
 		html := buf.String()
 
 		classes := []string{"grid-cols-1", "sm:grid-cols-2", "md:grid-cols-3", "lg:grid-cols-4"}
@@ -171,7 +171,7 @@ func TestVStack(t *testing.T) {
 	stack := VStack("4", g.Text("item1"), g.Text("item2"))
 
 	var buf bytes.Buffer
-	stack.Render(&buf)
+	_ = stack.Render(&buf)
 	html := buf.String()
 
 	if !strings.Contains(html, "flex-col") {
@@ -191,7 +191,7 @@ func TestHStack(t *testing.T) {
 	stack := HStack("2", g.Text("item1"), g.Text("item2"))
 
 	var buf bytes.Buffer
-	stack.Render(&buf)
+	_ = stack.Render(&buf)
 	html := buf.String()
 
 	if !strings.Contains(html, "flex") {
@@ -211,7 +211,7 @@ func TestCenter(t *testing.T) {
 	center := Center(g.Text("centered content"))
 
 	var buf bytes.Buffer
-	center.Render(&buf)
+	_ = center.Render(&buf)
 	html := buf.String()
 
 	if !strings.Contains(html, "justify-center") {
@@ -231,7 +231,7 @@ func TestSpacer(t *testing.T) {
 	spacer := Spacer()
 
 	var buf bytes.Buffer
-	spacer.Render(&buf)
+	_ = spacer.Render(&buf)
 
 	if !strings.Contains(buf.String(), "flex-1") {
 		t.Error("expected flex-1 class")
@@ -242,7 +242,7 @@ func TestContainer(t *testing.T) {
 	container := Container(g.Text("content"))
 
 	var buf bytes.Buffer
-	container.Render(&buf)
+	_ = container.Render(&buf)
 	html := buf.String()
 
 	if !strings.Contains(html, "container") {
@@ -263,7 +263,7 @@ func TestText(t *testing.T) {
 		text := Text(TextChildren(g.Text("Hello")))
 
 		var buf bytes.Buffer
-		text.Render(&buf)
+		_ = text.Render(&buf)
 		html := buf.String()
 
 		if !strings.Contains(html, "<p") {
@@ -282,7 +282,7 @@ func TestText(t *testing.T) {
 		)
 
 		var buf bytes.Buffer
-		text.Render(&buf)
+		_ = text.Render(&buf)
 
 		if !strings.Contains(buf.String(), "<h1") {
 			t.Error("expected <h1 tag")
@@ -298,7 +298,7 @@ func TestText(t *testing.T) {
 		)
 
 		var buf bytes.Buffer
-		text.Render(&buf)
+		_ = text.Render(&buf)
 		html := buf.String()
 
 		classes := []string{"text-lg", "font-bold", "text-blue-500", "text-center"}

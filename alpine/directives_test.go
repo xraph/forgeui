@@ -78,7 +78,7 @@ func TestXIf(t *testing.T) {
 
 func TestXFor(t *testing.T) {
 	var buf bytes.Buffer
-	XFor("item in items").Render(&buf)
+	_ = XFor("item in items").Render(&buf)
 	got := buf.String()
 
 	if !strings.Contains(got, `x-for="item in items"`) {
@@ -135,7 +135,7 @@ func TestXBind(t *testing.T) {
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
 			var buf bytes.Buffer
-			XBind(tt.attr, tt.expr).Render(&buf)
+			_ = XBind(tt.attr, tt.expr).Render(&buf)
 			got := buf.String()
 
 			if !strings.Contains(got, `:`+tt.attr+`=`) {
@@ -147,7 +147,7 @@ func TestXBind(t *testing.T) {
 
 func TestXModel(t *testing.T) {
 	var buf bytes.Buffer
-	XModel("name").Render(&buf)
+	_ = XModel("name").Render(&buf)
 	got := buf.String()
 
 	if !strings.Contains(got, `x-model="name"`) {
@@ -157,7 +157,7 @@ func TestXModel(t *testing.T) {
 
 func TestXModelNumber(t *testing.T) {
 	var buf bytes.Buffer
-	XModelNumber("age").Render(&buf)
+	_ = XModelNumber("age").Render(&buf)
 	got := buf.String()
 
 	if !strings.Contains(got, `x-model.number="age"`) {
@@ -167,7 +167,7 @@ func TestXModelNumber(t *testing.T) {
 
 func TestXModelLazy(t *testing.T) {
 	var buf bytes.Buffer
-	XModelLazy("description").Render(&buf)
+	_ = XModelLazy("description").Render(&buf)
 	got := buf.String()
 
 	if !strings.Contains(got, `x-model.lazy="description"`) {
@@ -177,7 +177,7 @@ func TestXModelLazy(t *testing.T) {
 
 func TestXModelDebounce(t *testing.T) {
 	var buf bytes.Buffer
-	XModelDebounce("searchQuery", 300).Render(&buf)
+	_ = XModelDebounce("searchQuery", 300).Render(&buf)
 	got := buf.String()
 
 	if !strings.Contains(got, `x-model.debounce.300ms="searchQuery"`) {
@@ -209,7 +209,7 @@ func TestXOn(t *testing.T) {
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
 			var buf bytes.Buffer
-			XOn(tt.event, tt.handler).Render(&buf)
+			_ = XOn(tt.event, tt.handler).Render(&buf)
 			got := buf.String()
 
 			if !strings.Contains(got, `@`+tt.event) {
@@ -221,7 +221,7 @@ func TestXOn(t *testing.T) {
 
 func TestXClick(t *testing.T) {
 	var buf bytes.Buffer
-	XClick("doSomething()").Render(&buf)
+	_ = XClick("doSomething()").Render(&buf)
 	got := buf.String()
 
 	if !strings.Contains(got, `@click=`) {
@@ -231,7 +231,7 @@ func TestXClick(t *testing.T) {
 
 func TestXSubmit(t *testing.T) {
 	var buf bytes.Buffer
-	XSubmit("submit()").Render(&buf)
+	_ = XSubmit("submit()").Render(&buf)
 	got := buf.String()
 
 	if !strings.Contains(got, `@submit.prevent=`) {
@@ -241,7 +241,7 @@ func TestXSubmit(t *testing.T) {
 
 func TestXInput(t *testing.T) {
 	var buf bytes.Buffer
-	XInput("update()").Render(&buf)
+	_ = XInput("update()").Render(&buf)
 	got := buf.String()
 
 	if !strings.Contains(got, `@input=`) {
@@ -251,7 +251,7 @@ func TestXInput(t *testing.T) {
 
 func TestXChange(t *testing.T) {
 	var buf bytes.Buffer
-	XChange("onChange()").Render(&buf)
+	_ = XChange("onChange()").Render(&buf)
 	got := buf.String()
 
 	if !strings.Contains(got, `@change=`) {
@@ -261,7 +261,7 @@ func TestXChange(t *testing.T) {
 
 func TestXText(t *testing.T) {
 	var buf bytes.Buffer
-	XText("user.name").Render(&buf)
+	_ = XText("user.name").Render(&buf)
 	got := buf.String()
 
 	if !strings.Contains(got, `x-text="user.name"`) {
@@ -271,7 +271,7 @@ func TestXText(t *testing.T) {
 
 func TestXHtml(t *testing.T) {
 	var buf bytes.Buffer
-	XHtml("content").Render(&buf)
+	_ = XHtml("content").Render(&buf)
 	got := buf.String()
 
 	if !strings.Contains(got, `x-html="content"`) {
@@ -281,7 +281,7 @@ func TestXHtml(t *testing.T) {
 
 func TestXRef(t *testing.T) {
 	var buf bytes.Buffer
-	XRef("emailInput").Render(&buf)
+	_ = XRef("emailInput").Render(&buf)
 	got := buf.String()
 
 	if !strings.Contains(got, `x-ref="emailInput"`) {
@@ -291,7 +291,7 @@ func TestXRef(t *testing.T) {
 
 func TestXInit(t *testing.T) {
 	var buf bytes.Buffer
-	XInit("loadData()").Render(&buf)
+	_ = XInit("loadData()").Render(&buf)
 	got := buf.String()
 
 	if !strings.Contains(got, `x-init="loadData()"`) {
@@ -301,7 +301,7 @@ func TestXInit(t *testing.T) {
 
 func TestXInitFetch(t *testing.T) {
 	var buf bytes.Buffer
-	XInitFetch("/api/users", "users").Render(&buf)
+	_ = XInitFetch("/api/users", "users").Render(&buf)
 	got := buf.String()
 
 	if !strings.Contains(got, `x-init=`) {
@@ -319,7 +319,7 @@ func TestXInitFetch(t *testing.T) {
 
 func TestXCloak(t *testing.T) {
 	var buf bytes.Buffer
-	XCloak().Render(&buf)
+	_ = XCloak().Render(&buf)
 	got := buf.String()
 
 	if !strings.Contains(got, `x-cloak=""`) {
@@ -329,7 +329,7 @@ func TestXCloak(t *testing.T) {
 
 func TestXIgnore(t *testing.T) {
 	var buf bytes.Buffer
-	XIgnore().Render(&buf)
+	_ = XIgnore().Render(&buf)
 	got := buf.String()
 
 	if !strings.Contains(got, `x-ignore=""`) {

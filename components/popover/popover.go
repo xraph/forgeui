@@ -48,17 +48,6 @@ type PopoverProps struct {
 	Class string
 }
 
-// defaultPopoverProps returns default popover properties
-func defaultPopoverProps() PopoverProps {
-	return PopoverProps{
-		Position:            forgeui.PositionBottom,
-		Align:               forgeui.AlignCenter,
-		ShowArrow:           false,
-		Offset:              8,
-		CloseOnOutsideClick: true,
-	}
-}
-
 // Popover creates a popover with floating content anchored to a trigger.
 //
 // The popover uses Alpine.js for state management and can be positioned

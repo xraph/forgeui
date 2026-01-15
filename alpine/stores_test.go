@@ -63,10 +63,10 @@ func TestRegisterStores(t *testing.T) {
 				return
 			}
 
-		if err := node.Render(&buf); err != nil {
-			t.Fatalf("Render() error = %v", err)
-		}
-		got := buf.String()
+			if err := node.Render(&buf); err != nil {
+				t.Fatalf("Render() error = %v", err)
+			}
+			got := buf.String()
 
 			// Check all expected strings are present
 			for _, w := range tt.want {
@@ -157,7 +157,7 @@ func TestStoreMethod(t *testing.T) {
 
 func TestXStore(t *testing.T) {
 	var buf bytes.Buffer
-	XStore("cart").Render(&buf)
+	_ = XStore("cart").Render(&buf)
 	got := buf.String()
 
 	if !strings.Contains(got, `x-data="$store.cart"`) {
