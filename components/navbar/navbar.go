@@ -103,7 +103,7 @@ func NavbarWithOptions(opts []NavbarOption, children ...g.Node) g.Node {
 	return html.Nav(
 		g.Group(attrs),
 		html.Div(
-			html.Class("container flex h-16 items-center justify-between px-4"),
+			html.Class("container flex h-12 items-center justify-between px-4"),
 			g.Group(children),
 		),
 	)

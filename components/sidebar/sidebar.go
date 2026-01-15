@@ -200,7 +200,7 @@ func SidebarWithOptions(opts []SidebarOption, children ...g.Node) g.Node {
 		// Icon mode: collapse to w-16 (shows only icons)
 		widthClass = `{
 			'w-64': !$store.sidebar || (!$store.sidebar.isMobile && !$store.sidebar.collapsed) || ($store.sidebar.isMobile && $store.sidebar.mobileOpen),
-			'w-16': $store.sidebar && !$store.sidebar.isMobile && $store.sidebar.collapsed,
+			'w-12': $store.sidebar && !$store.sidebar.isMobile && $store.sidebar.collapsed,
 			'w-0 -translate-x-full': $store.sidebar && $store.sidebar.isMobile && !$store.sidebar.mobileOpen
 		}`
 	case CollapsibleOffcanvas:
@@ -361,7 +361,7 @@ func SidebarWithOptions(opts []SidebarOption, children ...g.Node) g.Node {
 //	)
 func SidebarHeader(children ...g.Node) g.Node {
 	return html.Div(
-		html.Class("flex items-center border-b border-border py-4 font-semibold"),
+		html.Class("flex items-center border-b border-border py-1.5 font-semibold"),
 		g.Attr("x-data", "{}"),
 		// Dynamic padding and centering for collapsed state
 		g.Attr(":class", "$store.sidebar && $store.sidebar.collapsed && !$store.sidebar.isMobile ? 'justify-center px-2' : 'gap-2 px-4'"),
@@ -727,6 +727,11 @@ func WithMenuActive() SidebarMenuButtonOption {
 	return func(p *SidebarMenuButtonProps) { p.Active = true }
 }
 
+// WithMenuActive marks the menu item as active
+func WithActive(active bool) SidebarMenuButtonOption {
+	return func(p *SidebarMenuButtonProps) { p.Active = active }
+}
+
 // WithMenuIcon adds an icon to the menu button
 func WithMenuIcon(icon g.Node) SidebarMenuButtonOption {
 	return func(p *SidebarMenuButtonProps) { p.Icon = icon }
@@ -1032,7 +1037,7 @@ func SidebarInset(children ...g.Node) g.Node {
 //	)
 func SidebarInsetHeader(children ...g.Node) g.Node {
 	return html.Header(
-		html.Class("sticky top-0 z-10 flex h-16 shrink-0 items-center gap-2 border-border border-b bg-background px-4"),
+		html.Class("sticky top-0 z-10 flex h-12 shrink-0 items-center gap-2 border-border border-b bg-background px-4"),
 		g.Group(children),
 	)
 }

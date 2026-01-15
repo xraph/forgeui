@@ -1,6 +1,7 @@
 package main
 
 import (
+	"log"
 	"net/http"
 
 	g "maragu.dev/gomponents"
@@ -51,6 +52,7 @@ func RunModernDemo() {
 	app.RegisterLayout("root", RootLayout)
 
 	// Register dashboard layout - inherits from root, adds sidebar
+	// The parent layout (root) will wrap this layout
 	app.RegisterLayout("dashboard", DashboardLayout, router.WithParentLayout("root"))
 
 	// Register pages using fluent API
@@ -81,7 +83,16 @@ func RunModernDemo() {
 		Register()
 
 	// Start server - ForgeUI integrates with any framework
-	http.ListenAndServe(":8080", app.Handler())
+	log.Println("🚀 ForgeUI Modern Demo running at http://localhost:8080")
+	log.Println("📄 Home: http://localhost:8080/modern")
+	log.Println("📖 About: http://localhost:8080/modern/about")
+	log.Println("📊 Dashboard: http://localhost:8080/modern/dashboard")
+	log.Println("⚙️  Settings: http://localhost:8080/modern/dashboard/settings")
+	log.Println("🔌 API Status: http://localhost:8080/modern/api/status")
+
+	if err := http.ListenAndServe(":8080", app.Handler()); err != nil {
+		log.Fatal(err)
+	}
 }
 
 // RootLayout - THE ONLY layout with full HTML structure
@@ -101,9 +112,10 @@ func RootLayout(ctx *router.PageContext, content g.Node) g.Node {
 			// Alpine.js cloak CSS
 			layout.Alpine(),
 
-			// Custom stylesheets
-			layout.Styles(
-				app.Assets.StyleSheet("css/tailwind.css"),
+			// Tailwind CSS (using CDN for demo simplicity)
+			// In production, use: app.Assets.StyleSheet("css/tailwind.css")
+			html.Script(
+				html.Src("https://cdn.tailwindcss.com"),
 			),
 
 			// Page-specific metadata
@@ -128,8 +140,8 @@ func RootLayout(ctx *router.PageContext, content g.Node) g.Node {
 				layout.AlpineScripts(alpine.PluginCollapse),
 			),
 
-			// Auto-inject based on app configuration
-			g.If(app.IsDev(), layout.HotReload()),
+			// Auto-inject based on app configuration (disabled for now to avoid errors)
+			// g.If(app.IsDev(), layout.HotReload()),
 			g.If(app.HasBridge(), layout.BridgeClient()),
 		),
 	)
@@ -149,8 +161,8 @@ func DashboardLayout(ctx *router.PageContext, content g.Node) g.Node {
 					html.Class("text-lg font-semibold mb-4"),
 					g.Text("Dashboard"),
 				),
-				NavLink("/modern/dashboard", "Home", "home"),
-				NavLink("/modern/dashboard/settings", "Settings", "settings"),
+				NavLink("/modern/dashboard", "Home", icons.Home(icons.WithSize(18))),
+				NavLink("/modern/dashboard/settings", "Settings", icons.Settings(icons.WithSize(18))),
 			),
 		),
 
@@ -163,11 +175,11 @@ func DashboardLayout(ctx *router.PageContext, content g.Node) g.Node {
 }
 
 // NavLink creates a navigation link
-func NavLink(href, label, icon string) g.Node {
+func NavLink(href, label string, iconNode g.Node) g.Node {
 	return html.A(
 		html.Href(href),
 		html.Class("flex items-center gap-2 px-3 py-2 rounded-md hover:bg-accent transition-colors"),
-		icons.Icon(icon, icons.WithSize(18)),
+		iconNode,
 		g.Text(label),
 	)
 }

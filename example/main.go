@@ -31,6 +31,15 @@ import (
 )
 
 func main() {
+	// Run the modern ForgeUI demo with Next.js-inspired API
+	// RunModernDemo()
+
+	mainLegacy()
+}
+
+// mainLegacy contains the original demo implementation
+// Uncomment this and swap with main() to run the legacy demo
+func mainLegacy() {
 	// Initialize ForgeUI App with asset management
 	app := forgeui.New(
 		forgeui.WithDebug(true),
