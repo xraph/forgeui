@@ -161,5 +161,3 @@ func (gpb *GroupPageBuilder) DELETE() *GroupPageBuilder {
 	gpb.method = MethodDelete
 	return gpb
 }
-
-

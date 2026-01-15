@@ -164,7 +164,7 @@ func processAssets(outputDir string, config *cli.Config, minify bool) error {
 				return err
 			}
 
-		if err := os.WriteFile(destFile, data, 0600); err != nil {
+			if err := os.WriteFile(destFile, data, 0600); err != nil {
 				return err
 			}
 		}
@@ -183,7 +183,7 @@ func processAssets(outputDir string, config *cli.Config, minify bool) error {
 				return err
 			}
 
-		if err := os.WriteFile(destFile, data, 0600); err != nil {
+			if err := os.WriteFile(destFile, data, 0600); err != nil {
 				return err
 			}
 		}

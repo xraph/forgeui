@@ -165,4 +165,3 @@ func WithDefaultRadius(radius Radius) AppOption {
 func WithAssetsPath(path string) AppOption {
 	return func(c *AppConfig) { c.AssetPublicDir = path }
 }
-

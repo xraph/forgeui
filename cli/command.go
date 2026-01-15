@@ -231,5 +231,3 @@ func (c *Command) printHelp(w io.Writer) {
 func contains(slice []string, item string) bool {
 	return slices.Contains(slice, item)
 }
-
-

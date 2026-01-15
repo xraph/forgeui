@@ -71,7 +71,7 @@ func isValidPath(path string) bool {
 	if filepath.IsAbs(path) {
 		return false
 	}
-	
+
 	// Additional check for Unix-style absolute paths on Windows
 	// On Windows, /etc/passwd is not detected as absolute by filepath.IsAbs
 	if strings.HasPrefix(path, "/") || strings.HasPrefix(path, "\\") {
@@ -101,7 +101,7 @@ func (m *Manager) FingerprintAll() error {
 		if err != nil {
 			return err
 		}
-		
+
 		// Normalize path separators to forward slashes for cross-platform consistency
 		// This ensures map keys are consistent regardless of OS
 		relPath = filepath.ToSlash(relPath)
