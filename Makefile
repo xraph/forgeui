@@ -4,7 +4,8 @@
 .PHONY: help test lint coverage build clean install release-test release-snapshot
 .PHONY: fmt lint-fix f l t b c check ci all verify deps test-integration watch
 .PHONY: test-verbose test-watch pre-commit update-deps info run-example bench
-.PHONY: profile-cpu profile-mem check-deps audit vet build-release
+.PHONY: profile-cpu profile-mem check-deps audit vet build-release test-short
+.PHONY: test-race test-race-verbose
 
 # Default target
 help:
@@ -12,6 +13,8 @@ help:
 	@echo ""
 	@echo "Testing & Quality:"
 	@echo "  make test (t)          Run all tests with race detector"
+	@echo "  make test-short        Run tests without race detector (fast)"
+	@echo "  make test-race         Run race detector tests only"
 	@echo "  make test-coverage     Run tests with coverage report"
 	@echo "  make test-integration  Run integration tests"
 	@echo "  make test-verbose      Run tests with verbose output"
@@ -39,13 +42,29 @@ help:
 	@echo "  make release-snapshot  Create snapshot release (local testing)"
 	@echo ""
 
-# Run tests with race detector
+# Run tests with race detector (default)
 test:
 	@echo "Running tests with race detector..."
 	go test -v -race -coverprofile=coverage.out -covermode=atomic ./...
 
 # Short alias for test
 t: test
+
+# Run tests without race detector (faster for quick iterations)
+test-short:
+	@echo "Running tests (no race detector)..."
+	go test -v -short -coverprofile=coverage.out ./...
+
+# Run race detector tests only (focused race detection)
+test-race:
+	@echo "Running race detector tests..."
+	@echo "Checking for data races..."
+	go test -race -count=1 ./...
+
+# Run race detector with verbose output
+test-race-verbose:
+	@echo "Running race detector tests (verbose)..."
+	go test -v -race -count=1 ./...
 
 # Run tests with verbose output (no coverage)
 test-verbose:

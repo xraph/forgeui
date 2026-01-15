@@ -321,7 +321,7 @@ func (r *Router) applyLayoutChain(ctx *PageContext, content g.Node, layoutName s
 	// Apply layouts in order (innermost first, outermost last)
 	// Chain is built from child to root, so apply forward to wrap correctly
 	result := content
-	for i := range len(chain) {
+	for i := range chain {
 		result = chain[i](ctx, result)
 	}
 
