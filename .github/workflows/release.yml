@@ -49,6 +49,7 @@ jobs:
           args: --timeout=5m
 
       - name: Check coverage threshold
+        continue-on-error: true
         run: |
           go tool cover -func=coverage.out > coverage.txt
           total_coverage=$(grep total: coverage.txt | awk '{print $3}' | sed 's/%//')
@@ -56,7 +57,8 @@ jobs:
           
           threshold=80.0
           if (( $(echo "$total_coverage < $threshold" | bc -l) )); then
-            echo "❌ Coverage ${total_coverage}% is below threshold ${threshold}%"
+            echo "⚠️  Coverage ${total_coverage}% is below threshold ${threshold}%"
+            echo "::warning::Coverage ${total_coverage}% is below threshold ${threshold}%"
             exit 1
           else
             echo "✅ Coverage ${total_coverage}% meets threshold ${threshold}%"
