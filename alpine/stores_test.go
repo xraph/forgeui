@@ -63,8 +63,10 @@ func TestRegisterStores(t *testing.T) {
 				return
 			}
 
-			node.Render(&buf)
-			got := buf.String()
+		if err := node.Render(&buf); err != nil {
+			t.Fatalf("Render() error = %v", err)
+		}
+		got := buf.String()
 
 			// Check all expected strings are present
 			for _, w := range tt.want {

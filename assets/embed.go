@@ -49,7 +49,7 @@ func (m *EmbeddedManager) EmbeddedHandler() http.Handler {
 			http.NotFound(w, r)
 			return
 		}
-		defer file.Close()
+		defer func() { _ = file.Close() }()
 
 		// Get file info
 		info, err := file.Stat()
@@ -89,7 +89,7 @@ func (m *EmbeddedManager) fingerprintEmbedded(path string) string {
 	if err != nil {
 		return path
 	}
-	defer file.Close()
+	defer func() { _ = file.Close() }()
 
 	h := sha256.New()
 	if _, err := io.Copy(h, file); err != nil {

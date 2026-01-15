@@ -23,7 +23,7 @@ func TestNewDevServer(t *testing.T) {
 		t.Fatal("NewDevServer returned nil")
 	}
 
-	defer ds.Close()
+	defer func() { _ = ds.Close() }()
 }
 
 func TestDevServer_SetVerbose(t *testing.T) {
@@ -33,7 +33,7 @@ func TestDevServer_SetVerbose(t *testing.T) {
 	if err != nil {
 		t.Fatal(err)
 	}
-	defer ds.Close()
+	defer func() { _ = ds.Close() }()
 
 	if ds.verbose {
 		t.Error("Verbose should be false by default")
@@ -53,7 +53,7 @@ func TestDevServer_ClientCount(t *testing.T) {
 	if err != nil {
 		t.Fatal(err)
 	}
-	defer ds.Close()
+	defer func() { _ = ds.Close() }()
 
 	if ds.ClientCount() != 0 {
 		t.Errorf("Expected 0 clients, got %d", ds.ClientCount())
@@ -77,7 +77,7 @@ func TestDevServer_NotifyClients(t *testing.T) {
 	if err != nil {
 		t.Fatal(err)
 	}
-	defer ds.Close()
+	defer func() { _ = ds.Close() }()
 
 	// Create mock clients
 	client1 := make(chan string, 1)
@@ -117,12 +117,12 @@ func TestDevServer_SSEHandler(t *testing.T) {
 	if err != nil {
 		t.Fatal(err)
 	}
-	defer ds.Close()
+	defer func() { _ = ds.Close() }()
 
 	// Use a real HTTP server for SSE testing to avoid race conditions
 	// with httptest.ResponseRecorder
 	server := httptest.NewServer(ds.SSEHandler())
-	defer server.Close()
+	defer func() { _ = server.Close() }()
 
 	// Make request to SSE endpoint
 	req, err := http.NewRequestWithContext(context.Background(), http.MethodGet, server.URL, nil)
@@ -134,7 +134,7 @@ func TestDevServer_SSEHandler(t *testing.T) {
 	if err != nil {
 		t.Fatalf("Failed to connect to SSE endpoint: %v", err)
 	}
-	defer resp.Body.Close()
+	defer func() { _ = resp.Body.Close() }()
 
 	// Check headers
 	if resp.Header.Get("Content-Type") != "text/event-stream" {
@@ -174,7 +174,7 @@ func TestDevServer_HotReloadScript(t *testing.T) {
 	if err != nil {
 		t.Fatal(err)
 	}
-	defer ds.Close()
+	defer func() { _ = ds.Close() }()
 
 	script := ds.HotReloadScript()
 
@@ -237,7 +237,7 @@ func TestDevServer_OnFileChange(t *testing.T) {
 	if err != nil {
 		t.Fatal(err)
 	}
-	defer ds.Close()
+	defer func() { _ = ds.Close() }()
 
 	ds.SetVerbose(false) // Disable verbose for cleaner test output
 
@@ -281,7 +281,7 @@ func TestDevServer_ConcurrentBuilds(t *testing.T) {
 	if err != nil {
 		t.Fatal(err)
 	}
-	defer ds.Close()
+	defer func() { _ = ds.Close() }()
 
 	ds.SetVerbose(false)
 

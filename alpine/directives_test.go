@@ -40,7 +40,9 @@ func TestXData(t *testing.T) {
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
 			var buf bytes.Buffer
-			XData(tt.state).Render(&buf)
+			if err := XData(tt.state).Render(&buf); err != nil {
+				t.Fatalf("Render() error = %v", err)
+			}
 			got := buf.String()
 
 			if !strings.Contains(got, tt.want) {
@@ -52,7 +54,9 @@ func TestXData(t *testing.T) {
 
 func TestXShow(t *testing.T) {
 	var buf bytes.Buffer
-	XShow("isVisible").Render(&buf)
+	if err := XShow("isVisible").Render(&buf); err != nil {
+		t.Fatalf("Render() error = %v", err)
+	}
 	got := buf.String()
 
 	if !strings.Contains(got, `x-show="isVisible"`) {
@@ -62,7 +66,9 @@ func TestXShow(t *testing.T) {
 
 func TestXIf(t *testing.T) {
 	var buf bytes.Buffer
-	XIf("count > 5").Render(&buf)
+	if err := XIf("count > 5").Render(&buf); err != nil {
+		t.Fatalf("Render() error = %v", err)
+	}
 	got := buf.String()
 
 	if !strings.Contains(got, `x-if="count &gt; 5"`) {
@@ -89,7 +95,9 @@ func TestXForKeyed(t *testing.T) {
 
 	var buf bytes.Buffer
 	for _, node := range nodes {
-		node.Render(&buf)
+		if err := node.Render(&buf); err != nil {
+			t.Fatalf("Render() error = %v", err)
+		}
 	}
 
 	got := buf.String()

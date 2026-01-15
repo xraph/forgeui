@@ -1,0 +1,11 @@
+{
+  "exclude-rules": [
+    "G104"
+  ],
+  "exclude-generated": true,
+  "severity": "medium",
+  "confidence": "medium",
+  "concurrency": 12,
+  "tests": false
+}
+

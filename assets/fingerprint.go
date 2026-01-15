@@ -26,7 +26,7 @@ func (m *Manager) fingerprint(path string) string {
 	if err != nil {
 		return path
 	}
-	defer f.Close()
+	defer func() { _ = f.Close() }()
 
 	h := sha256.New()
 	if _, err := io.Copy(h, f); err != nil {

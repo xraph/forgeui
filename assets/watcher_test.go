@@ -16,7 +16,7 @@ func TestNewWatcher(t *testing.T) {
 	if err != nil {
 		t.Fatalf("NewWatcher failed: %v", err)
 	}
-	defer w.Close()
+	defer func() { _ = w.Close() }()
 
 	if w == nil {
 		t.Fatal("NewWatcher returned nil")
@@ -28,7 +28,7 @@ func TestWatcher_AddPath(t *testing.T) {
 	if err != nil {
 		t.Fatalf("NewWatcher failed: %v", err)
 	}
-	defer w.Close()
+	defer func() { _ = w.Close() }()
 
 	tempDir := t.TempDir()
 
@@ -43,7 +43,7 @@ func TestWatcher_AddPattern(t *testing.T) {
 	if err != nil {
 		t.Fatalf("NewWatcher failed: %v", err)
 	}
-	defer w.Close()
+	defer func() { _ = w.Close() }()
 
 	w.AddPattern("*.go")
 	w.AddPattern("*.css")
@@ -58,7 +58,7 @@ func TestWatcher_OnChange(t *testing.T) {
 	if err != nil {
 		t.Fatalf("NewWatcher failed: %v", err)
 	}
-	defer w.Close()
+	defer func() { _ = w.Close() }()
 
 	w.OnChange(func(event fsnotify.Event) error {
 		return nil
@@ -74,7 +74,7 @@ func TestWatcher_SetDebounce(t *testing.T) {
 	if err != nil {
 		t.Fatalf("NewWatcher failed: %v", err)
 	}
-	defer w.Close()
+	defer func() { _ = w.Close() }()
 
 	customDebounce := 500 * time.Millisecond
 	w.SetDebounce(customDebounce)
@@ -89,7 +89,7 @@ func TestWatcher_SetVerbose(t *testing.T) {
 	if err != nil {
 		t.Fatalf("NewWatcher failed: %v", err)
 	}
-	defer w.Close()
+	defer func() { _ = w.Close() }()
 
 	if w.verbose {
 		t.Error("Verbose should be false by default")
@@ -107,7 +107,7 @@ func TestWatcher_FileChange(t *testing.T) {
 	if err != nil {
 		t.Fatalf("NewWatcher failed: %v", err)
 	}
-	defer w.Close()
+	defer func() { _ = w.Close() }()
 
 	// Disable debouncing for more predictable test timing
 	w.SetDebounce(0)
@@ -180,7 +180,7 @@ func TestWatcher_PatternFiltering(t *testing.T) {
 	if err != nil {
 		t.Fatalf("NewWatcher failed: %v", err)
 	}
-	defer w.Close()
+	defer func() { _ = w.Close() }()
 
 	// Only watch .go files
 	w.AddPattern("*.go")
@@ -210,7 +210,7 @@ func TestWatcher_IgnoreNonWriteEvents(t *testing.T) {
 	if err != nil {
 		t.Fatalf("NewWatcher failed: %v", err)
 	}
-	defer w.Close()
+	defer func() { _ = w.Close() }()
 
 	// Test different event types
 	events := []struct {
@@ -254,7 +254,7 @@ func TestWatcher_WatchDirectory(t *testing.T) {
 	if err != nil {
 		t.Fatalf("NewWatcher failed: %v", err)
 	}
-	defer w.Close()
+	defer func() { _ = w.Close() }()
 
 	tempDir := t.TempDir()
 
@@ -281,7 +281,7 @@ func TestWatcher_MultipleCallbacks(t *testing.T) {
 	if err != nil {
 		t.Fatalf("NewWatcher failed: %v", err)
 	}
-	defer w.Close()
+	defer func() { _ = w.Close() }()
 
 	callback1Called := false
 	callback2Called := false
@@ -318,7 +318,7 @@ func TestWatcher_ContextCancellation(t *testing.T) {
 	if err != nil {
 		t.Fatalf("NewWatcher failed: %v", err)
 	}
-	defer w.Close()
+	defer func() { _ = w.Close() }()
 
 	tempDir := t.TempDir()
 	if err := w.AddPath(tempDir); err != nil {
