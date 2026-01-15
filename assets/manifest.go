@@ -71,6 +71,9 @@ func GenerateManifest(m *Manager) (Manifest, error) {
 			return err
 		}
 
+		// Normalize to forward slashes for web assets (cross-platform compatibility)
+		relPath = filepath.ToSlash(relPath)
+
 		// Generate fingerprint
 		fp := m.fingerprint(relPath)
 		manifest[relPath] = fp
