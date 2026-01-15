@@ -1,6 +1,7 @@
 package forgeui
 
 // Config holds ForgeUI application configuration
+//
 // Deprecated: Use AppConfig instead. Config is kept for backward compatibility.
 type Config struct {
 	// Debug enables debug mode
@@ -35,6 +36,7 @@ type Config struct {
 }
 
 // DefaultConfig returns sensible defaults for ForgeUI configuration
+//
 // Deprecated: Use DefaultAppConfig instead
 func DefaultConfig() *Config {
 	return &Config{

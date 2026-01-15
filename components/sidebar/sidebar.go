@@ -727,7 +727,7 @@ func WithMenuActive() SidebarMenuButtonOption {
 	return func(p *SidebarMenuButtonProps) { p.Active = true }
 }
 
-// WithMenuActive marks the menu item as active
+// WithActive marks the menu item as active
 func WithActive(active bool) SidebarMenuButtonOption {
 	return func(p *SidebarMenuButtonProps) { p.Active = active }
 }
