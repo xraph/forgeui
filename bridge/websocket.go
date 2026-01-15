@@ -68,7 +68,7 @@ func (h *WSHandler) ServeHTTP(w http.ResponseWriter, r *http.Request) {
 func (h *WSHandler) handleConnection(connID string, wsConn *wsConnection) {
 	defer func() {
 		h.connections.Delete(connID)
-		wsConn.conn.Close(websocket.StatusNormalClosure, "connection closed") //nolint:staticcheck // Library moved to github.com/coder/websocket
+		_ = wsConn.conn.Close(websocket.StatusNormalClosure, "connection closed") //nolint:staticcheck // Library moved to github.com/coder/websocket
 	}()
 
 	// Start write pump

@@ -122,7 +122,7 @@ func TestDevServer_SSEHandler(t *testing.T) {
 	// Use a real HTTP server for SSE testing to avoid race conditions
 	// with httptest.ResponseRecorder
 	server := httptest.NewServer(ds.SSEHandler())
-	defer func() { _ = server.Close() }()
+	defer server.Close()
 
 	// Make request to SSE endpoint
 	req, err := http.NewRequestWithContext(context.Background(), http.MethodGet, server.URL, nil)

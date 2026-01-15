@@ -2,18 +2,8 @@ package router
 
 // RouteBuilder provides a fluent API for building routes
 type RouteBuilder struct {
-	router     *Router
-	route      *Route
-	registered bool
-}
-
-// newBuilder creates a new RouteBuilder
-func newBuilder(router *Router, route *Route) *RouteBuilder {
-	return &RouteBuilder{
-		router:     router,
-		route:      route,
-		registered: false,
-	}
+	router *Router
+	route  *Route
 }
 
 // Name sets the name of the route for URL generation

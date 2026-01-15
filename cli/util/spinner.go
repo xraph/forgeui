@@ -67,19 +67,19 @@ func (s *Spinner) Stop() {
 	s.wg.Wait()
 
 	// Clear the line
-	fmt.Fprintf(s.writer, "\r\033[K")
+	_, _ = fmt.Fprintf(s.writer, "\r\033[K")
 }
 
 // Success stops the spinner and shows a success message
 func (s *Spinner) Success(msg string) {
 	s.Stop()
-	fmt.Fprintf(s.writer, "%s✓%s %s\n", ColorGreen, ColorReset, msg)
+	_, _ = fmt.Fprintf(s.writer, "%s✓%s %s\n", ColorGreen, ColorReset, msg)
 }
 
 // Error stops the spinner and shows an error message
 func (s *Spinner) Error(msg string) {
 	s.Stop()
-	fmt.Fprintf(s.writer, "%s✗%s %s\n", ColorRed, ColorReset, msg)
+	_, _ = fmt.Fprintf(s.writer, "%s✗%s %s\n", ColorRed, ColorReset, msg)
 }
 
 // UpdateMessage updates the spinner message

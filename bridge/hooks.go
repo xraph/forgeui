@@ -67,11 +67,12 @@ func (hm *HookManager) Trigger(hookType HookType, ctx Context, data HookData) {
 
 		go func() {
 			defer func() {
-				// Recover from panics in hooks
-				if r := recover(); r != nil {
-					// Log panic but don't propagate
-					// In production, you'd want to log this properly
-				}
+			// Recover from panics in hooks
+			if r := recover(); r != nil {
+				// Log panic but don't propagate
+				// In production, you'd want to log this properly
+				_ = r // Silence unused variable warning
+			}
 			}()
 
 			h(ctx, data)

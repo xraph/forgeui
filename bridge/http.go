@@ -60,7 +60,7 @@ func (h *HTTPHandler) ServeHTTP(w http.ResponseWriter, r *http.Request) {
 		h.writeError(w, nil, NewError(ErrCodeBadRequest, "Failed to read request body"))
 		return
 	}
-	defer r.Body.Close()
+	defer func() { _ = r.Body.Close() }()
 
 	// Create bridge context
 	ctx := NewContext(r)

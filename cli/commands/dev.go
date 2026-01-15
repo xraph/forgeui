@@ -4,7 +4,6 @@ import (
 	"context"
 	"errors"
 	"fmt"
-	"net/http"
 	"os"
 	"os/exec"
 	"os/signal"
@@ -154,15 +153,3 @@ func commandExists(cmd string) bool {
 	return err == nil
 }
 
-// Placeholder for http.NewServeMux (not used in this simplified version)
-func createDevHandler() http.Handler {
-	mux := http.NewServeMux()
-	mux.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
-		if _, err := w.Write([]byte("ForgeUI Dev Server")); err != nil {
-			// Log write error - response already started
-			_ = err // Error already logged by potential middleware
-		}
-	})
-
-	return mux
-}

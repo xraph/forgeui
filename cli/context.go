@@ -75,7 +75,7 @@ func (c *Context) Printf(format string, args ...any) {
 
 // Println prints a line to stdout
 func (c *Context) Println(args ...any) {
-	fmt.Fprintln(c.Stdout, args...)
+	_, _ = fmt.Fprintln(c.Stdout, args...)
 }
 
 // Errorf prints formatted error to stderr
@@ -85,7 +85,7 @@ func (c *Context) Errorf(format string, args ...any) {
 
 // Errorln prints an error line to stderr
 func (c *Context) Errorln(args ...any) {
-	fmt.Fprintln(c.Stderr, args...)
+	_, _ = fmt.Fprintln(c.Stderr, args...)
 }
 
 // Success prints a success message in green

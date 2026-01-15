@@ -130,7 +130,7 @@ func TestHTTPHandler_MethodNotFound(t *testing.T) {
 	handler.ServeHTTP(w, httpReq)
 
 	var resp Response
-	json.Unmarshal(w.Body.Bytes(), &resp)
+	_ = json.Unmarshal(w.Body.Bytes(), &resp)
 
 	if resp.Error == nil {
 		t.Error("expected error for method not found")
@@ -153,7 +153,7 @@ func TestHTTPHandler_InvalidRequest(t *testing.T) {
 	handler.ServeHTTP(w, httpReq)
 
 	var resp Response
-	json.Unmarshal(w.Body.Bytes(), &resp)
+	_ = json.Unmarshal(w.Body.Bytes(), &resp)
 
 	if resp.Error == nil {
 		t.Error("expected error for invalid request")
@@ -170,7 +170,7 @@ func TestHTTPHandler_MethodNotAllowed(t *testing.T) {
 	handler.ServeHTTP(w, httpReq)
 
 	var resp Response
-	json.Unmarshal(w.Body.Bytes(), &resp)
+	_ = json.Unmarshal(w.Body.Bytes(), &resp)
 
 	if resp.Error == nil {
 		t.Error("expected error for GET request")

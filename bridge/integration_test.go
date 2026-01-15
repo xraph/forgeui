@@ -131,7 +131,7 @@ func TestBridge_Integration(t *testing.T) {
 		req := httptest.NewRequest(http.MethodPost, "/", nil)
 		ctx := NewContext(req)
 
-		b.Call(ctx, "echo", json.RawMessage(`{"message":"test"}`))
+		_, _ = b.Call(ctx, "echo", json.RawMessage(`{"message":"test"}`))
 
 		// Wait for async hook to complete
 		select {

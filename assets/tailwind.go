@@ -66,7 +66,7 @@ func (tp *TailwindProcessor) Process(ctx context.Context, cfg ProcessorConfig) e
 		if err != nil {
 			return fmt.Errorf("failed to generate tailwind config: %w", err)
 		}
-		defer os.Remove(configPath) // Clean up after processing
+		defer func() { _ = os.Remove(configPath) }() // Clean up after processing
 	}
 
 	// Create input CSS if not provided
@@ -78,7 +78,7 @@ func (tp *TailwindProcessor) Process(ctx context.Context, cfg ProcessorConfig) e
 		if err != nil {
 			return fmt.Errorf("failed to create input CSS: %w", err)
 		}
-		defer os.Remove(inputCSS) // Clean up after processing
+		defer func() { _ = os.Remove(inputCSS) }() // Clean up after processing
 	}
 
 	// Determine output path

@@ -119,7 +119,7 @@ func TestBridge_Register_WithOptions(t *testing.T) {
 func TestBridge_Unregister(t *testing.T) {
 	b := New()
 
-	b.Register("testFunc", validHandler)
+	_ = b.Register("testFunc", validHandler)
 
 	err := b.Unregister("testFunc")
 	if err != nil {
@@ -140,7 +140,7 @@ func TestBridge_Unregister(t *testing.T) {
 func TestBridge_GetFunction(t *testing.T) {
 	b := New()
 
-	b.Register("testFunc", validHandler)
+	_ = b.Register("testFunc", validHandler)
 
 	fn, err := b.GetFunction("testFunc")
 	if err != nil {
@@ -161,7 +161,7 @@ func TestBridge_GetFunction(t *testing.T) {
 func TestBridge_ListFunctions(t *testing.T) {
 	b := New()
 
-	b.Register("func1", validHandler)
+	_ = b.Register("func1", validHandler)
 	b.Register("func2", validHandler)
 	b.Register("func3", validHandler)
 
@@ -187,7 +187,7 @@ func TestBridge_ConcurrentAccess(t *testing.T) {
 	b := New()
 
 	// Register initial function
-	b.Register("func1", validHandler)
+	_ = b.Register("func1", validHandler)
 
 	// Test concurrent read and write
 	done := make(chan bool)

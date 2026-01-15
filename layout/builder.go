@@ -12,10 +12,6 @@ import (
 
 // Builder represents a layout builder for creating complete HTML documents
 type Builder struct {
-	headContent []g.Node
-	bodyContent []g.Node
-	bodyAttrs   []g.Node
-	lang        string
 }
 
 // Build creates a new layout builder and returns the complete HTML document
