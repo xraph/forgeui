@@ -15,6 +15,7 @@ import (
 type Manager struct {
 	publicDir    string
 	outputDir    string
+	staticPath   string
 	fingerprints map[string]string
 	mu           sync.RWMutex
 	isDev        bool
@@ -30,6 +31,9 @@ type Config struct {
 
 	// OutputDir is the output directory for processed assets (e.g., "dist")
 	OutputDir string
+
+	// StaticPath is the URL path prefix for static assets (e.g., "/static")
+	StaticPath string
 
 	// IsDev enables development mode (no fingerprinting)
 	IsDev bool
@@ -48,9 +52,26 @@ func NewManager(cfg Config) *Manager {
 		cfg.OutputDir = "dist"
 	}
 
+	// Default static path to "/static" if not provided
+	staticPath := cfg.StaticPath
+	if staticPath == "" {
+		staticPath = "/static"
+	}
+
+	// Ensure leading slash
+	if staticPath[0] != '/' {
+		staticPath = "/" + staticPath
+	}
+
+	// Ensure trailing slash for consistent URL building
+	if staticPath[len(staticPath)-1] != '/' {
+		staticPath += "/"
+	}
+
 	m := &Manager{
 		publicDir:    cfg.PublicDir,
 		outputDir:    cfg.OutputDir,
+		staticPath:   staticPath,
 		fingerprints: make(map[string]string),
 		isDev:        cfg.IsDev,
 		manifest:     make(map[string]string),
@@ -67,7 +88,7 @@ func NewManager(cfg Config) *Manager {
 // URL returns the URL for an asset, with fingerprint in production
 func (m *Manager) URL(path string) string {
 	if m.isDev {
-		return "/static/" + path
+		return m.staticPath + path
 	}
 
 	// Check manifest first
@@ -75,13 +96,13 @@ func (m *Manager) URL(path string) string {
 
 	if fp, ok := m.manifest[path]; ok {
 		m.mu.RUnlock()
-		return "/static/" + fp
+		return m.staticPath + fp
 	}
 
 	// Check cached fingerprints
 	if fp, ok := m.fingerprints[path]; ok {
 		m.mu.RUnlock()
-		return "/static/" + fp
+		return m.staticPath + fp
 	}
 
 	m.mu.RUnlock()
@@ -92,7 +113,7 @@ func (m *Manager) URL(path string) string {
 	m.fingerprints[path] = fp
 	m.mu.Unlock()
 
-	return "/static/" + fp
+	return m.staticPath + fp
 }
 
 // IsDev returns whether the manager is in development mode

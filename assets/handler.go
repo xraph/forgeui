@@ -10,8 +10,8 @@ import (
 // Handler returns an http.Handler for serving static files
 func (m *Manager) Handler() http.Handler {
 	return http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
-		// Get path and remove /static/ prefix
-		path := strings.TrimPrefix(r.URL.Path, "/static/")
+		// Get path and remove static path prefix
+		path := strings.TrimPrefix(r.URL.Path, m.staticPath)
 
 		// Validate path
 		if !isValidPath(path) {

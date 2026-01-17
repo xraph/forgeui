@@ -30,10 +30,11 @@ func New(opts ...AppOption) *App {
 
 	// Initialize asset manager
 	assetManager := assets.NewManager(assets.Config{
-		PublicDir: config.AssetPublicDir,
-		OutputDir: config.AssetOutputDir,
-		IsDev:     config.Debug,
-		Manifest:  config.AssetManifest,
+		PublicDir:  config.AssetPublicDir,
+		OutputDir:  config.AssetOutputDir,
+		StaticPath: config.StaticPath,
+		IsDev:      config.Debug,
+		Manifest:   config.AssetManifest,
 	})
 
 	// Initialize router

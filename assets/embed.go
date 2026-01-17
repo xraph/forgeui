@@ -31,8 +31,8 @@ func NewEmbeddedManager(embedFS fs.FS, cfg Config) *EmbeddedManager {
 // EmbeddedHandler returns an http.Handler for serving embedded static files
 func (m *EmbeddedManager) EmbeddedHandler() http.Handler {
 	return http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
-		// Get path and remove /static/ prefix
-		path := strings.TrimPrefix(r.URL.Path, "/static/")
+		// Get path and remove static path prefix
+		path := strings.TrimPrefix(r.URL.Path, m.staticPath)
 
 		// Validate path
 		if !isValidPath(path) {
