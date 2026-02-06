@@ -5,6 +5,7 @@ import (
 	"encoding/json"
 	"errors"
 	"fmt"
+	"io/fs"
 	"maps"
 	"os"
 	"path/filepath"
@@ -22,6 +23,7 @@ type Manager struct {
 	manifest     map[string]string
 	pipeline     *Pipeline
 	devServer    *DevServer
+	fileSystem   fs.FS // Filesystem abstraction for serving files
 }
 
 // Config defines configuration options for asset management
@@ -40,6 +42,10 @@ type Config struct {
 
 	// Manifest is the path to a manifest file for production builds
 	Manifest string
+
+	// FileSystem is an optional custom filesystem (e.g., embed.FS)
+	// If nil, os.DirFS(PublicDir) will be used
+	FileSystem fs.FS
 }
 
 // NewManager creates a new asset manager with the given configuration
@@ -68,6 +74,12 @@ func NewManager(cfg Config) *Manager {
 		staticPath += "/"
 	}
 
+	// Use custom filesystem if provided, otherwise default to os.DirFS
+	fileSystem := cfg.FileSystem
+	if fileSystem == nil {
+		fileSystem = os.DirFS(cfg.PublicDir)
+	}
+
 	m := &Manager{
 		publicDir:    cfg.PublicDir,
 		outputDir:    cfg.OutputDir,
@@ -75,6 +87,7 @@ func NewManager(cfg Config) *Manager {
 		fingerprints: make(map[string]string),
 		isDev:        cfg.IsDev,
 		manifest:     make(map[string]string),
+		fileSystem:   fileSystem,
 	}
 
 	// Load manifest if exists
@@ -124,6 +137,14 @@ func (m *Manager) IsDev() bool {
 // PublicDir returns the configured public directory
 func (m *Manager) PublicDir() string {
 	return m.publicDir
+}
+
+// SetFileSystem allows setting a custom filesystem for serving assets.
+// This is useful when using embed.FS or other fs.FS implementations.
+func (m *Manager) SetFileSystem(fsys fs.FS) {
+	m.mu.Lock()
+	defer m.mu.Unlock()
+	m.fileSystem = fsys
 }
 
 // loadManifest loads asset mappings from a manifest file

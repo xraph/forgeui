@@ -1,8 +1,9 @@
 package assets
 
 import (
+	"io"
+	"mime"
 	"net/http"
-	"os"
 	"path/filepath"
 	"strings"
 )
@@ -21,18 +22,19 @@ func (m *Manager) Handler() http.Handler {
 
 		// Remove fingerprint for lookup if present
 		actualPath := m.stripFingerprint(path)
-		fullPath := filepath.Join(m.publicDir, actualPath)
 
-		// Check if file exists
-		info, err := os.Stat(fullPath)
+		// Try to open file from filesystem
+		file, err := m.fileSystem.Open(actualPath)
 		if err != nil {
-			if os.IsNotExist(err) {
-				http.NotFound(w, r)
-				return
-			}
+			http.NotFound(w, r)
+			return
+		}
+		defer func() { _ = file.Close() }()
 
+		// Get file info
+		info, err := file.Stat()
+		if err != nil {
 			http.Error(w, "Internal server error", http.StatusInternalServerError)
-
 			return
 		}
 
@@ -40,6 +42,12 @@ func (m *Manager) Handler() http.Handler {
 		if info.IsDir() {
 			http.Error(w, "Not found", http.StatusNotFound)
 			return
+		}
+
+		// Set Content-Type based on file extension
+		ext := filepath.Ext(actualPath)
+		if contentType := mime.TypeByExtension(ext); contentType != "" {
+			w.Header().Set("Content-Type", contentType)
 		}
 
 		// Set cache headers
@@ -51,7 +59,7 @@ func (m *Manager) Handler() http.Handler {
 			w.Header().Set("Cache-Control", "public, max-age=3600")
 		}
 
-		// Serve the file
-		http.ServeFile(w, r, fullPath)
+		// Serve the file content
+		http.ServeContent(w, r, filepath.Base(actualPath), info.ModTime(), file.(io.ReadSeeker))
 	})
 }

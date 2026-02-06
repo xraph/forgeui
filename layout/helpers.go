@@ -67,12 +67,18 @@ func AlpineScripts(plugins ...alpine.Plugin) g.Node {
 
 // HotReload injects the hot reload script for development mode
 // This should only be used in development
+// Deprecated: Use HotReloadWithPath instead for custom base paths
 func HotReload() g.Node {
-	return g.Raw(`
+	return HotReloadWithPath("/_forgeui/reload")
+}
+
+// HotReloadWithPath injects the hot reload script with a custom SSE endpoint path
+func HotReloadWithPath(path string) g.Node {
+	script := `
 <script>
 	// ForgeUI Hot Reload
 	(function() {
-		const source = new EventSource('/_forgeui/reload');
+		const source = new EventSource('` + path + `');
 		source.onmessage = function(e) {
 			if (e.data === 'reload') {
 				console.log('[ForgeUI] Reloading...');
@@ -84,21 +90,34 @@ func HotReload() g.Node {
 		};
 	})();
 </script>
-`)
+`
+	return g.Raw(script)
 }
 
 // BridgeClient injects the ForgeUI bridge client script
+// Deprecated: Use BridgeClientWithPath instead for custom base paths
 func BridgeClient() g.Node {
+	return BridgeClientWithPath("/static/js/forge-bridge.js")
+}
+
+// BridgeClientWithPath injects the ForgeUI bridge client script with a custom path
+func BridgeClientWithPath(path string) g.Node {
 	return html.Script(
-		html.Src("/static/js/forge-bridge.js"),
+		html.Src(path),
 		html.Type("module"),
 	)
 }
 
 // AlpineBridgeClient injects the Alpine.js bridge client script
+// Deprecated: Use AlpineBridgeClientWithPath instead for custom base paths
 func AlpineBridgeClient() g.Node {
+	return AlpineBridgeClientWithPath("/static/js/alpine-bridge.js")
+}
+
+// AlpineBridgeClientWithPath injects the Alpine.js bridge client script with a custom path
+func AlpineBridgeClientWithPath(path string) g.Node {
 	return html.Script(
-		html.Src("/static/js/alpine-bridge.js"),
+		html.Src(path),
 		html.Type("module"),
 	)
 }

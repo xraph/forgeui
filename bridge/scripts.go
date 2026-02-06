@@ -21,6 +21,7 @@ type ScriptConfig struct {
 	Endpoint      string
 	CSRFToken     string
 	IncludeAlpine bool
+	StaticPath    string // Base path for static assets (e.g., "/static" or "/api/identity/ui/static")
 }
 
 // BridgeScripts returns script tags for the bridge client
@@ -67,17 +68,23 @@ if (window.ForgeBridge && window.bridge) {
 func BridgeScriptsExternal(config ScriptConfig) g.Node {
 	scripts := []g.Node{}
 
+	// Use provided static path or default to "/static"
+	staticPath := config.StaticPath
+	if staticPath == "" {
+		staticPath = "/static"
+	}
+
 	// Add bridge client script
 	scripts = append(scripts, html.Script(
 		g.Attr("type", "text/javascript"),
-		g.Attr("src", "/static/js/forge-bridge.js"),
+		g.Attr("src", staticPath+"/js/forge-bridge.js"),
 	))
 
 	// Add Alpine integration if requested
 	if config.IncludeAlpine {
 		scripts = append(scripts, html.Script(
 			g.Attr("type", "text/javascript"),
-			g.Attr("src", "/static/js/alpine-bridge.js"),
+			g.Attr("src", staticPath+"/js/alpine-bridge.js"),
 		))
 	}
 

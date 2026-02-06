@@ -100,6 +100,9 @@ func mainLegacy() {
 	// Overlays demo page
 	http.HandleFunc("/overlays", handleOverlays)
 
+	// Router demo page (Pinecone Router)
+	http.HandleFunc("/router", handleRouterDemo)
+
 	// Navigation demo page
 	http.HandleFunc("/navigation", handleNavigation)
 
@@ -137,6 +140,7 @@ func mainLegacy() {
 	log.Println("🎯 Icons Library: http://localhost:8080/icons")
 	log.Println("📦 Assets Pipeline Demo: http://localhost:8080/assets")
 	log.Println("🌉 Bridge System Demo: http://localhost:8080/bridge")
+	log.Println("🔀 Router Demo: http://localhost:8080/router")
 
 	if app.IsDev() {
 		log.Println("🔥 Hot reload enabled - edit Go files to see changes instantly!")

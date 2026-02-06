@@ -10,6 +10,8 @@
 - **Intelligent Caching**: Immutable cache for fingerprinted assets (1 year), moderate cache for dev
 - **Security**: Path traversal protection, proper MIME types, optional SRI
 - **Embedded FS Support**: Single-binary deployments with `embed.FS`
+- **Custom Filesystem Support**: Use any `fs.FS` implementation (embed.FS, in-memory, remote, etc.)
+- **Library-Friendly**: Works correctly when used as a library in other projects
 - **Manifest System**: Pre-computed hashes for production builds
 - **Dev/Prod Modes**: Zero-config development, optimized production
 - **Thread-Safe**: Concurrent asset serving with RWMutex protection
@@ -136,7 +138,7 @@ app := forgeui.New(
 
 ## Embedded Filesystem
 
-For single-binary deployments:
+For single-binary deployments, pass `embed.FS` directly to the Manager:
 
 ```go
 package main
@@ -151,20 +153,75 @@ import (
 var staticFS embed.FS
 
 func main() {
-    m := assets.NewEmbeddedManager(staticFS, assets.Config{
-        PublicDir: "static",
-        IsDev:     false,
+    // Create manager with embedded filesystem
+    m := assets.NewManager(assets.Config{
+        PublicDir:  "static",
+        IsDev:      false,
+        FileSystem: staticFS,
     })
 
     // Pre-generate fingerprints
-    m.FingerprintAllEmbedded()
+    m.FingerprintAll()
 
     // Serve from embedded FS
-    http.Handle("/static/", m.EmbeddedHandler())
+    http.Handle("/static/", m.Handler())
     
     http.ListenAndServe(":8080", nil)
 }
 ```
+
+### Using ForgeUI as a Library
+
+When using ForgeUI as a library in another project:
+
+```go
+package main
+
+import (
+    "embed"
+    "io/fs"
+    "net/http"
+    "github.com/xraph/forgeui"
+)
+
+//go:embed myapp/dist/*
+var appAssets embed.FS
+
+func main() {
+    // Extract subdirectory from embed.FS
+    distFS, _ := fs.Sub(appAssets, "myapp/dist")
+
+    // Create ForgeUI app with embedded assets
+    app := forgeui.New(
+        forgeui.WithDebug(false),
+        forgeui.WithEmbedFS(distFS),
+    )
+
+    // Assets are served from embedded filesystem
+    // regardless of working directory
+    http.ListenAndServe(":8080", app.Handler())
+}
+```
+
+**Alternative: Set filesystem after creation**
+
+```go
+m := assets.NewManager(assets.Config{
+    PublicDir: "dist",
+    IsDev:     false,
+})
+
+// Set custom filesystem (embed.FS, in-memory, remote, etc.)
+m.SetFileSystem(distFS)
+
+http.Handle("/static/", m.Handler())
+```
+
+This unified approach ensures assets work correctly when:
+- ForgeUI is used as a library dependency
+- The consuming application runs from a different directory
+- Assets are embedded in the library binary
+- Using custom filesystem implementations (in-memory, remote, etc.)
 
 ---
 
@@ -184,6 +241,9 @@ func (m *Manager) URL(path string) string
 
 // Handler returns an http.Handler for serving static files
 func (m *Manager) Handler() http.Handler
+
+// SetFileSystem allows setting a custom filesystem (embed.FS, etc.)
+func (m *Manager) SetFileSystem(fsys fs.FS)
 
 // StyleSheet creates a <link> element for CSS
 func (m *Manager) StyleSheet(path string, opts ...StyleOption) g.Node
@@ -206,6 +266,7 @@ type Config struct {
     OutputDir  string // Output directory (default: "dist")
     IsDev      bool   // Development mode
     Manifest   string // Manifest file path
+    FileSystem fs.FS  // Custom filesystem (optional, defaults to os.DirFS)
 }
 ```
 

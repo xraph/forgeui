@@ -35,10 +35,15 @@ const (
 	// PluginSort provides drag-and-drop sorting
 	// https://alpinejs.dev/plugins/sort
 	PluginSort Plugin = "sort"
+
+	// PluginRouter provides client-side routing for Alpine.js
+	// https://github.com/pinecone-router/router
+	PluginRouter Plugin = "router"
 )
 
 // pluginURLs maps plugins to their CDN URLs.
 // Using 3.x.x for automatic minor/patch updates while staying on v3.
+// Note: Pinecone Router uses its own versioning scheme, pinned at 7.3.0.
 var pluginURLs = map[Plugin]string{
 	PluginMask:      "https://cdn.jsdelivr.net/npm/@alpinejs/mask@3.x.x/dist/cdn.min.js",
 	PluginIntersect: "https://cdn.jsdelivr.net/npm/@alpinejs/intersect@3.x.x/dist/cdn.min.js",
@@ -48,6 +53,7 @@ var pluginURLs = map[Plugin]string{
 	PluginAnchor:    "https://cdn.jsdelivr.net/npm/@alpinejs/anchor@3.x.x/dist/cdn.min.js",
 	PluginMorph:     "https://cdn.jsdelivr.net/npm/@alpinejs/morph@3.x.x/dist/cdn.min.js",
 	PluginSort:      "https://cdn.jsdelivr.net/npm/@alpinejs/sort@3.x.x/dist/cdn.min.js",
+	PluginRouter:    "https://cdn.jsdelivr.net/npm/pinecone-router@7.3.0/dist/router.min.js",
 }
 
 // PluginURL returns the CDN URL for the given plugin.
@@ -67,5 +73,6 @@ func AllPlugins() []Plugin {
 		PluginAnchor,
 		PluginMorph,
 		PluginSort,
+		PluginRouter,
 	}
 }

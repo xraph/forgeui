@@ -12,30 +12,32 @@ import (
 //go:embed test_helpers.go
 var testFS embed.FS
 
-func TestNewEmbeddedManager(t *testing.T) {
+func TestManagerWithEmbedFS(t *testing.T) {
 	cfg := Config{
-		PublicDir: "testdata",
-		IsDev:     false,
+		PublicDir:  "testdata",
+		IsDev:      false,
+		FileSystem: testFS,
 	}
 
-	m := NewEmbeddedManager(testFS, cfg)
-
-	if m.embedFS == nil {
-		t.Error("Expected embedFS to be set")
-	}
+	m := NewManager(cfg)
 
 	if m.publicDir != "testdata" {
 		t.Errorf("Expected publicDir to be 'testdata', got '%s'", m.publicDir)
 	}
+
+	if m.fileSystem == nil {
+		t.Error("Expected fileSystem to be set")
+	}
 }
 
 func TestEmbeddedHandler(t *testing.T) {
-	m := NewEmbeddedManager(testFS, Config{
-		PublicDir: "",
-		IsDev:     true,
+	m := NewManager(Config{
+		PublicDir:  "",
+		IsDev:      true,
+		FileSystem: testFS,
 	})
 
-	handler := m.EmbeddedHandler()
+	handler := m.Handler()
 
 	req := httptest.NewRequest(http.MethodGet, "/static/test_helpers.go", nil)
 	w := httptest.NewRecorder()
@@ -53,12 +55,13 @@ func TestEmbeddedHandler(t *testing.T) {
 }
 
 func TestEmbeddedHandler_404(t *testing.T) {
-	m := NewEmbeddedManager(testFS, Config{
-		PublicDir: "",
-		IsDev:     true,
+	m := NewManager(Config{
+		PublicDir:  "",
+		IsDev:      true,
+		FileSystem: testFS,
 	})
 
-	handler := m.EmbeddedHandler()
+	handler := m.Handler()
 
 	req := httptest.NewRequest(http.MethodGet, "/static/nonexistent.txt", nil)
 	w := httptest.NewRecorder()
@@ -71,12 +74,13 @@ func TestEmbeddedHandler_404(t *testing.T) {
 }
 
 func TestEmbeddedHandler_PathTraversal(t *testing.T) {
-	m := NewEmbeddedManager(testFS, Config{
-		PublicDir: "",
-		IsDev:     true,
+	m := NewManager(Config{
+		PublicDir:  "",
+		IsDev:      true,
+		FileSystem: testFS,
 	})
 
-	handler := m.EmbeddedHandler()
+	handler := m.Handler()
 
 	req := httptest.NewRequest(http.MethodGet, "/static/../../../etc/passwd", nil)
 	w := httptest.NewRecorder()
@@ -89,12 +93,13 @@ func TestEmbeddedHandler_PathTraversal(t *testing.T) {
 }
 
 func TestEmbeddedHandler_CacheHeaders_Production(t *testing.T) {
-	m := NewEmbeddedManager(testFS, Config{
-		PublicDir: "",
-		IsDev:     false,
+	m := NewManager(Config{
+		PublicDir:  "",
+		IsDev:      false,
+		FileSystem: testFS,
 	})
 
-	handler := m.EmbeddedHandler()
+	handler := m.Handler()
 
 	// Request with fingerprinted URL
 	req := httptest.NewRequest(http.MethodGet, "/static/test.abc12345.go", nil)
@@ -125,14 +130,15 @@ func TestEmbeddedHandler_CacheHeaders_Production(t *testing.T) {
 	}
 }
 
-func TestFingerprintAllEmbedded(t *testing.T) {
-	m := NewEmbeddedManager(testFS, Config{
-		PublicDir: "",
-		IsDev:     false,
+func TestFingerprintAllWithEmbedFS(t *testing.T) {
+	m := NewManager(Config{
+		PublicDir:  "",
+		IsDev:      false,
+		FileSystem: testFS,
 	})
 
-	if err := m.FingerprintAllEmbedded(); err != nil {
-		t.Fatalf("FingerprintAllEmbedded failed: %v", err)
+	if err := m.FingerprintAll(); err != nil {
+		t.Fatalf("FingerprintAll failed: %v", err)
 	}
 
 	// Verify fingerprints were generated

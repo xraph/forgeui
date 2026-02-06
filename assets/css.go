@@ -1,12 +1,15 @@
 package assets
 
 import (
+	"fmt"
+
 	g "maragu.dev/gomponents"
 	"maragu.dev/gomponents/html"
 )
 
 // StyleSheet creates a <link> element for a CSS file
 func (m *Manager) StyleSheet(path string, opts ...StyleOption) g.Node {
+	fmt.Println("StyleSheet", path)
 	cfg := &styleConfig{}
 	for _, opt := range opts {
 		opt(cfg)
@@ -15,8 +18,8 @@ func (m *Manager) StyleSheet(path string, opts ...StyleOption) g.Node {
 	url := m.URL(path)
 
 	attrs := []g.Node{
-		g.Attr("rel", "stylesheet"),
-		g.Attr("href", url),
+		html.Rel("stylesheet"),
+		html.Href(url),
 	}
 
 	if cfg.media != "" {
@@ -44,9 +47,9 @@ func (m *Manager) PreloadStyleSheet(path string, opts ...StyleOption) g.Node {
 	url := m.URL(path)
 
 	attrs := []g.Node{
-		g.Attr("rel", "preload"),
-		g.Attr("as", "style"),
-		g.Attr("href", url),
+		html.Rel("preload"),
+		html.As("style"),
+		html.Href(url),
 	}
 
 	if cfg.integrity != "" {

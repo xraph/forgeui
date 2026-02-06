@@ -34,7 +34,7 @@ func NavigationDemo() g.Node {
 			),
 		),
 
-		// Tabs
+		// Tabs - Basic
 		componentSection(
 			"Tabs",
 			"Organize content into switchable panels with keyboard navigation",
@@ -63,6 +63,284 @@ func NavigationDemo() g.Node {
 							html.Div(
 								html.Class("py-4"),
 								html.P(g.Text("Configure your settings in this tab.")),
+							),
+						),
+					),
+				),
+			),
+		),
+
+		// Tabs - Scrollable
+		componentSection(
+			"Tabs (Scrollable)",
+			"Horizontal scrolling tabs - WithScrollable() auto-sizes tabs to content",
+			card.Card(
+				card.Content(
+					tabs.TabsWithOptions(
+						[]tabs.Option{tabs.WithDefaultTab("monday")},
+						tabs.TabListWithOptions(
+							[]tabs.TabListOption{tabs.WithScrollable()},
+							tabs.Tab("monday", g.Text("Monday")),
+							tabs.Tab("tuesday", g.Text("Tuesday")),
+							tabs.Tab("wednesday", g.Text("Wednesday")),
+							tabs.Tab("thursday", g.Text("Thursday")),
+							tabs.Tab("friday", g.Text("Friday")),
+							tabs.Tab("saturday", g.Text("Saturday")),
+							tabs.Tab("sunday", g.Text("Sunday")),
+						),
+						tabs.TabPanel("monday",
+							html.Div(
+								html.Class("py-4"),
+								html.P(g.Text("Monday schedule and tasks.")),
+							),
+						),
+						tabs.TabPanel("tuesday",
+							html.Div(
+								html.Class("py-4"),
+								html.P(g.Text("Tuesday schedule and tasks.")),
+							),
+						),
+						tabs.TabPanel("wednesday",
+							html.Div(
+								html.Class("py-4"),
+								html.P(g.Text("Wednesday schedule and tasks.")),
+							),
+						),
+						tabs.TabPanel("thursday",
+							html.Div(
+								html.Class("py-4"),
+								html.P(g.Text("Thursday schedule and tasks.")),
+							),
+						),
+						tabs.TabPanel("friday",
+							html.Div(
+								html.Class("py-4"),
+								html.P(g.Text("Friday schedule and tasks.")),
+							),
+						),
+						tabs.TabPanel("saturday",
+							html.Div(
+								html.Class("py-4"),
+								html.P(g.Text("Saturday schedule and tasks.")),
+							),
+						),
+						tabs.TabPanel("sunday",
+							html.Div(
+								html.Class("py-4"),
+								html.P(g.Text("Sunday schedule and tasks.")),
+							),
+						),
+					),
+				),
+			),
+		),
+
+		// Tabs - Link-Based
+		componentSection(
+			"Tabs (Link-Based)",
+			"Tabs using links for better SEO and navigation",
+			card.Card(
+				card.Content(
+					html.Div(
+						html.Class("space-y-4"),
+						html.P(
+							html.Class("text-sm text-muted-foreground"),
+							g.Text("These tabs render as <a> tags with href attributes. Great for navigation!"),
+						),
+						tabs.TabsWithOptions(
+							[]tabs.Option{tabs.WithDefaultTab("home")},
+							tabs.TabList(
+								tabs.Tab("home", g.Text("Home"), tabs.WithHref("#home")),
+								tabs.Tab("products", g.Text("Products"), tabs.WithHref("#products")),
+								tabs.Tab("about", g.Text("About"), tabs.WithHref("#about")),
+								tabs.Tab("contact", g.Text("Contact"), tabs.WithHref("#contact")),
+							),
+							tabs.TabPanel("home",
+								html.Div(
+									html.Class("py-4"),
+									html.P(g.Text("Welcome to our home page.")),
+								),
+							),
+							tabs.TabPanel("products",
+								html.Div(
+									html.Class("py-4"),
+									html.P(g.Text("Browse our product catalog.")),
+								),
+							),
+							tabs.TabPanel("about",
+								html.Div(
+									html.Class("py-4"),
+									html.P(g.Text("Learn more about our company.")),
+								),
+							),
+							tabs.TabPanel("contact",
+								html.Div(
+									html.Class("py-4"),
+									html.P(g.Text("Get in touch with us.")),
+								),
+							),
+						),
+					),
+				),
+			),
+		),
+
+		// Tabs - Custom Styled
+		componentSection(
+			"Tabs (Custom Styled)",
+			"Tabs with custom CSS classes for unique designs",
+			card.Card(
+				card.Content(
+					tabs.TabsWithOptions(
+						[]tabs.Option{tabs.WithDefaultTab("design")},
+						tabs.TabListWithOptions(
+							[]tabs.TabListOption{tabs.WithTabListClass("bg-primary/10")},
+							tabs.Tab("design", g.Text("🎨 Design"), tabs.WithTabClass("font-bold")),
+							tabs.Tab("develop", g.Text("💻 Develop"), tabs.WithTabClass("font-bold")),
+							tabs.Tab("deploy", g.Text("🚀 Deploy"), tabs.WithTabClass("font-bold")),
+						),
+						tabs.TabPanel("design",
+							html.Div(
+								html.Class("py-4"),
+								html.P(g.Text("Design phase: Create mockups and prototypes.")),
+							),
+						),
+						tabs.TabPanel("develop",
+							html.Div(
+								html.Class("py-4"),
+								html.P(g.Text("Development phase: Build and test features.")),
+							),
+						),
+						tabs.TabPanel("deploy",
+							html.Div(
+								html.Class("py-4"),
+								html.P(g.Text("Deployment phase: Ship to production.")),
+							),
+						),
+					),
+				),
+			),
+		),
+
+		// Tabs - With Active State and Attributes
+		componentSection(
+			"Tabs (Active & Attributes)",
+			"Demonstrating WithActive() and WithAttr() options",
+			card.Card(
+				card.Content(
+					html.Div(
+						html.Class("space-y-4"),
+						html.P(
+							html.Class("text-sm text-muted-foreground"),
+							g.Text("The middle tab is marked as active on initial render using WithActive(), and all tabs have custom data attributes using WithAttr()."),
+						),
+						tabs.TabsWithOptions(
+							[]tabs.Option{tabs.WithDefaultTab("step2")},
+							tabs.TabList(
+								tabs.Tab("step1", g.Text("Step 1"),
+									tabs.WithAttr(g.Attr("data-step", "1")),
+									tabs.WithAttr(g.Attr("data-status", "completed")),
+								),
+								tabs.Tab("step2", g.Text("Step 2"),
+									tabs.WithAttr(g.Attr("data-step", "2")),
+									tabs.WithAttr(g.Attr("data-status", "current")),
+								),
+								tabs.Tab("step3", g.Text("Step 3"),
+									tabs.WithAttr(g.Attr("data-step", "3")),
+									tabs.WithAttr(g.Attr("data-status", "pending")),
+								),
+							),
+							tabs.TabPanel("step1",
+								html.Div(
+									html.Class("py-4"),
+									html.P(g.Text("Step 1: Initial setup completed ✓")),
+								),
+							),
+							tabs.TabPanel("step2",
+								html.Div(
+									html.Class("py-4"),
+									html.P(g.Text("Step 2: Currently in progress... This tab is active by default!")),
+								),
+							),
+							tabs.TabPanel("step3",
+								html.Div(
+									html.Class("py-4"),
+									html.P(g.Text("Step 3: Ready to start")),
+								),
+							),
+						),
+					),
+				),
+			),
+		),
+
+		// Tabs - Underline Variant (Vercel-style)
+		componentSection(
+			"Tabs (Underline Variant)",
+			"Minimal tabs with bottom border like Vercel",
+			card.Card(
+				card.Content(
+					tabs.TabsWithOptions(
+						[]tabs.Option{tabs.WithDefaultTab("preview")},
+						tabs.TabListWithOptions(
+							[]tabs.TabListOption{tabs.WithTabListVariant(tabs.TabListVariantUnderline)},
+							tabs.Tab("preview", g.Text("Preview"), tabs.WithTabVariant(tabs.TabVariantUnderline)),
+							tabs.Tab("code", g.Text("Code"), tabs.WithTabVariant(tabs.TabVariantUnderline)),
+							tabs.Tab("output", g.Text("Output"), tabs.WithTabVariant(tabs.TabVariantUnderline)),
+						),
+						tabs.TabPanel("preview",
+							html.Div(
+								html.Class("py-4"),
+								html.P(g.Text("Preview pane showing live component rendering.")),
+							),
+						),
+						tabs.TabPanel("code",
+							html.Div(
+								html.Class("py-4"),
+								html.P(g.Text("Code editor with syntax highlighting.")),
+							),
+						),
+						tabs.TabPanel("output",
+							html.Div(
+								html.Class("py-4"),
+								html.P(g.Text("Console output and logs.")),
+							),
+						),
+					),
+				),
+			),
+		),
+
+		// Tabs - Pills Variant
+		componentSection(
+			"Tabs (Pills Variant)",
+			"Rounded pill-style tabs",
+			card.Card(
+				card.Content(
+					tabs.TabsWithOptions(
+						[]tabs.Option{tabs.WithDefaultTab("all")},
+						tabs.TabListWithOptions(
+							[]tabs.TabListOption{tabs.WithTabListVariant(tabs.TabListVariantPills)},
+							tabs.Tab("all", g.Text("All"), tabs.WithTabVariant(tabs.TabVariantPills)),
+							tabs.Tab("active", g.Text("Active"), tabs.WithTabVariant(tabs.TabVariantPills)),
+							tabs.Tab("archived", g.Text("Archived"), tabs.WithTabVariant(tabs.TabVariantPills)),
+						),
+						tabs.TabPanel("all",
+							html.Div(
+								html.Class("py-4"),
+								html.P(g.Text("All items displayed here.")),
+							),
+						),
+						tabs.TabPanel("active",
+							html.Div(
+								html.Class("py-4"),
+								html.P(g.Text("Only active items.")),
+							),
+						),
+						tabs.TabPanel("archived",
+							html.Div(
+								html.Class("py-4"),
+								html.P(g.Text("Archived items.")),
 							),
 						),
 					),

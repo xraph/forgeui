@@ -5,7 +5,7 @@ import (
 	"encoding/hex"
 	"fmt"
 	"io"
-	"os"
+	"io/fs"
 	"path/filepath"
 	"regexp"
 	"strings"
@@ -20,9 +20,8 @@ func (m *Manager) fingerprint(path string) string {
 		return path
 	}
 
-	fullPath := filepath.Join(m.publicDir, path)
-
-	f, err := os.Open(fullPath)
+	// Open file from filesystem (works with both os.DirFS and embed.FS)
+	f, err := m.fileSystem.Open(path)
 	if err != nil {
 		return path
 	}
@@ -84,34 +83,28 @@ func isValidPath(path string) bool {
 	return !strings.HasPrefix(cleaned, "..")
 }
 
-// FingerprintAll generates fingerprints for all assets in the public directory
+// FingerprintAll generates fingerprints for all assets using the configured filesystem
 func (m *Manager) FingerprintAll() error {
-	return filepath.Walk(m.publicDir, func(path string, info os.FileInfo, err error) error {
+	return fs.WalkDir(m.fileSystem, ".", func(path string, d fs.DirEntry, err error) error {
 		if err != nil {
 			return err
 		}
 
-		// Skip directories
-		if info.IsDir() {
+		// Skip directories and the root
+		if d.IsDir() || path == "." {
 			return nil
-		}
-
-		// Get relative path
-		relPath, err := filepath.Rel(m.publicDir, path)
-		if err != nil {
-			return err
 		}
 
 		// Normalize path separators to forward slashes for cross-platform consistency
 		// This ensures map keys are consistent regardless of OS
-		relPath = filepath.ToSlash(relPath)
+		path = filepath.ToSlash(path)
 
 		// Generate fingerprint
-		fp := m.fingerprint(relPath)
+		fp := m.fingerprint(path)
 
 		// Cache it
 		m.mu.Lock()
-		m.fingerprints[relPath] = fp
+		m.fingerprints[path] = fp
 		m.mu.Unlock()
 
 		return nil

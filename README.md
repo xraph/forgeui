@@ -13,6 +13,7 @@ ForgeUI is a comprehensive SSR-first UI framework for Go, built on gomponents wi
 
 ### Frontend Integration
 - ✅ **Alpine.js Integration**: Directives, stores, magic helpers, and plugins
+- ✅ **Client-Side Routing**: Pinecone Router integration for SPA navigation
 - ✅ **HTMX Support**: Complete HTMX attribute helpers and server-side utilities
 - ✅ **Icons**: 1600+ Lucide icons with customization options
 - ✅ **Animation System**: Tailwind animations, transitions, and keyframes
@@ -828,6 +829,7 @@ Visit `http://localhost:8080` to see:
 - **Component Showcase**: All UI components with variations
 - **Dashboard Demo**: Real-world dashboard layout
 - **Interactive Examples**: Alpine.js and HTMX integration
+- **Router Demo**: Client-side routing with Pinecone Router
 - **Bridge Demo**: Go-JavaScript RPC examples
 - **Assets Demo**: Asset pipeline in action
 

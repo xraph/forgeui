@@ -1,6 +1,8 @@
 package forgeui
 
 import (
+	"io/fs"
+
 	"github.com/xraph/forgeui/bridge"
 	"github.com/xraph/forgeui/theme"
 )
@@ -22,6 +24,9 @@ type AppConfig struct {
 	// AssetManifest is the path to a manifest file for production builds
 	AssetManifest string
 
+	// AssetFileSystem is an optional custom filesystem for assets (e.g., embed.FS)
+	AssetFileSystem fs.FS
+
 	// Bridge configuration (optional)
 	BridgeConfig *bridge.Config
 	EnableBridge bool
@@ -33,7 +38,14 @@ type AppConfig struct {
 	// DefaultLayout is the default layout name for all pages
 	DefaultLayout string
 
-	// StaticPath is the URL path for static assets
+	// BasePath is the base URL path for all ForgeUI routes (static, bridge, etc.)
+	// Example: "/api/identity/ui" results in:
+	//   - Static: /api/identity/ui/static/...
+	//   - Bridge: /api/identity/ui/bridge/...
+	BasePath string
+
+	// StaticPath is the URL path for static assets (relative to BasePath if set)
+	// Default: "/static"
 	StaticPath string
 
 	// Component defaults (from legacy Config)
@@ -55,6 +67,7 @@ func DefaultAppConfig() *AppConfig {
 		LightTheme:     nil,
 		DarkTheme:      nil,
 		DefaultLayout:  "",
+		BasePath:       "",
 		StaticPath:     "/static",
 		DefaultSize:    SizeMD,
 		DefaultVariant: VariantDefault,
@@ -100,6 +113,17 @@ func WithAssetManifest(path string) AppOption {
 	return func(c *AppConfig) { c.AssetManifest = path }
 }
 
+// WithAssetFileSystem sets a custom filesystem for serving assets (e.g., embed.FS)
+// This is useful when embedding assets in the binary or using custom filesystem implementations
+func WithAssetFileSystem(fsys fs.FS) AppOption {
+	return func(c *AppConfig) { c.AssetFileSystem = fsys }
+}
+
+// WithEmbedFS is an alias for WithAssetFileSystem for better discoverability
+func WithEmbedFS(fsys fs.FS) AppOption {
+	return func(c *AppConfig) { c.AssetFileSystem = fsys }
+}
+
 // WithBridge enables and configures the bridge system
 func WithBridge(opts ...bridge.ConfigOption) AppOption {
 	return func(c *AppConfig) {
@@ -139,6 +163,15 @@ func WithAppStaticPath(path string) AppOption {
 // WithStaticPath sets the static assets path (alias for WithAppStaticPath)
 func WithStaticPath(path string) AppOption {
 	return func(c *AppConfig) { c.StaticPath = path }
+}
+
+// WithBasePath sets the base URL path for all ForgeUI routes
+// This prefixes static, bridge, and other ForgeUI endpoints
+// Example: WithBasePath("/api/identity/ui") results in:
+//   - Static: /api/identity/ui/static/...
+//   - Bridge: /api/identity/ui/bridge/...
+func WithBasePath(path string) AppOption {
+	return func(c *AppConfig) { c.BasePath = path }
 }
 
 // WithThemeName sets the theme name (legacy support)

@@ -115,6 +115,19 @@ func TestSidebarHeader(t *testing.T) {
 		assertContains(t, rendered, `collapsed`)
 		assertContains(t, rendered, `isMobile`)
 	})
+
+	t.Run("renders with custom class", func(t *testing.T) {
+		header := SidebarHeaderWithOptions(
+			[]SidebarHeaderOption{WithSidebarHeaderClass("custom-header bg-primary")},
+			g.Text("Brand"),
+		)
+
+		rendered := renderNode(t, header)
+
+		assertContains(t, rendered, "custom-header")
+		assertContains(t, rendered, "bg-primary")
+		assertContains(t, rendered, "flex items-center") // Base classes preserved
+	})
 }
 
 func TestSidebarContent(t *testing.T) {
@@ -141,6 +154,19 @@ func TestSidebarFooter(t *testing.T) {
 
 		assertContains(t, rendered, "© 2024")
 		assertContains(t, rendered, "border-t")
+	})
+
+	t.Run("renders with custom class", func(t *testing.T) {
+		footer := SidebarFooterWithOptions(
+			[]SidebarFooterOption{WithSidebarFooterClass("custom-footer bg-secondary")},
+			g.Text("© 2024"),
+		)
+
+		rendered := renderNode(t, footer)
+
+		assertContains(t, rendered, "custom-footer")
+		assertContains(t, rendered, "bg-secondary")
+		assertContains(t, rendered, "border-t") // Base classes preserved
 	})
 }
 
@@ -340,6 +366,34 @@ func TestSidebarInset(t *testing.T) {
 		// Should use provider value for margin calculation
 		assertContains(t, rendered, `md:ml-64`)
 		assertContains(t, rendered, `md:ml-16`)
+	})
+}
+
+func TestSidebarInsetHeader(t *testing.T) {
+	t.Run("renders inset header with default classes", func(t *testing.T) {
+		header := SidebarInsetHeader(
+			g.Text("Dashboard"),
+		)
+
+		rendered := renderNode(t, header)
+
+		assertContains(t, rendered, "Dashboard")
+		assertContains(t, rendered, "sticky top-0")
+		assertContains(t, rendered, "border-b")
+	})
+
+	t.Run("renders with custom class", func(t *testing.T) {
+		header := SidebarInsetHeaderWithOptions(
+			[]SidebarInsetHeaderOption{WithSidebarInsetHeaderClass("custom-inset-header shadow-lg")},
+			g.Text("Dashboard"),
+		)
+
+		rendered := renderNode(t, header)
+
+		assertContains(t, rendered, "custom-inset-header")
+		assertContains(t, rendered, "shadow-lg")
+		assertContains(t, rendered, "sticky top-0") // Base classes preserved
+		assertContains(t, rendered, "border-b")
 	})
 }
 

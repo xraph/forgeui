@@ -359,12 +359,38 @@ func SidebarWithOptions(opts []SidebarOption, children ...g.Node) g.Node {
 //	    html.Img(g.Attr("src", "/logo.svg")),
 //	    g.Text("My App"),
 //	)
+//
+// SidebarHeaderOption is a functional option for configuring the sidebar header
+type SidebarHeaderOption func(*string)
+
+// WithSidebarHeaderClass adds custom classes to the sidebar header
+func WithSidebarHeaderClass(class string) SidebarHeaderOption {
+	return func(customClass *string) {
+		*customClass = class
+	}
+}
+
 func SidebarHeader(children ...g.Node) g.Node {
+	return SidebarHeaderWithOptions(nil, children...)
+}
+
+func SidebarHeaderWithOptions(opts []SidebarHeaderOption, children ...g.Node) g.Node {
+	var customClass string
+	for _, opt := range opts {
+		opt(&customClass)
+	}
+
+	baseClasses := "flex items-center py-1.5 font-semibold"
+	classes := baseClasses
+	if customClass != "" {
+		classes = forgeui.CN(baseClasses, customClass)
+	}
+
 	return html.Div(
-		html.Class("flex items-center border-b border-border py-1.5 font-semibold"),
+		html.Class(classes),
 		g.Attr("x-data", "{}"),
 		// Dynamic padding and centering for collapsed state
-		g.Attr(":class", "$store.sidebar && $store.sidebar.collapsed && !$store.sidebar.isMobile ? 'justify-center px-2' : 'gap-2 px-4'"),
+		g.Attr(":class", "$store.sidebar && $store.sidebar.collapsed && !$store.sidebar.isMobile ? 'justify-center px-2 pb-4' : 'gap-2 px-4'"),
 		g.Group(children),
 	)
 }
@@ -396,11 +422,37 @@ func SidebarContent(children ...g.Node) g.Node {
 //	sidebar.SidebarFooter(
 //	    menu.Item("#", g.Text("Settings")),
 //	)
+//
+// SidebarFooterOption is a functional option for configuring the sidebar footer
+type SidebarFooterOption func(*string)
+
+// WithSidebarFooterClass adds custom classes to the sidebar footer
+func WithSidebarFooterClass(class string) SidebarFooterOption {
+	return func(customClass *string) {
+		*customClass = class
+	}
+}
+
 func SidebarFooter(children ...g.Node) g.Node {
+	return SidebarFooterWithOptions(nil, children...)
+}
+
+func SidebarFooterWithOptions(opts []SidebarFooterOption, children ...g.Node) g.Node {
+	var customClass string
+	for _, opt := range opts {
+		opt(&customClass)
+	}
+
+	baseClasses := "border-t"
+	classes := baseClasses
+	if customClass != "" {
+		classes = forgeui.CN(baseClasses, customClass)
+	}
+
 	return html.Div(
-		html.Class("border-t border-border"),
+		html.Class(classes),
 		g.Attr("x-data", "{}"),
-		g.Attr(":class", "$store.sidebar && $store.sidebar.collapsed && !$store.sidebar.isMobile ? 'p-2' : 'p-4'"),
+		g.Attr(":class", "$store.sidebar && $store.sidebar.collapsed && !$store.sidebar.isMobile ? 'p-2' : 'px-4 py-2'"),
 		g.Group(children),
 	)
 }
@@ -1035,9 +1087,34 @@ func SidebarInset(children ...g.Node) g.Node {
 //	    sidebar.SidebarTrigger(),
 //	    breadcrumb.Breadcrumb(...),
 //	)
+// SidebarInsetHeaderOption is a functional option for configuring the sidebar inset header
+type SidebarInsetHeaderOption func(*string)
+
+// WithSidebarInsetHeaderClass adds custom classes to the sidebar inset header
+func WithSidebarInsetHeaderClass(class string) SidebarInsetHeaderOption {
+	return func(customClass *string) {
+		*customClass = class
+	}
+}
+
 func SidebarInsetHeader(children ...g.Node) g.Node {
+	return SidebarInsetHeaderWithOptions(nil, children...)
+}
+
+func SidebarInsetHeaderWithOptions(opts []SidebarInsetHeaderOption, children ...g.Node) g.Node {
+	var customClass string
+	for _, opt := range opts {
+		opt(&customClass)
+	}
+
+	baseClasses := "sticky top-0 z-10 flex h-12 shrink-0 items-center gap-2 border-border border-b bg-background px-4"
+	classes := baseClasses
+	if customClass != "" {
+		classes = forgeui.CN(baseClasses, customClass)
+	}
+
 	return html.Header(
-		html.Class("sticky top-0 z-10 flex h-12 shrink-0 items-center gap-2 border-border border-b bg-background px-4"),
+		html.Class(classes),
 		g.Group(children),
 	)
 }

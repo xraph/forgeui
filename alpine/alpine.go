@@ -99,6 +99,51 @@
 //	    g.Text("Content"),
 //	)
 //
+// # Routing
+//
+// Use Pinecone Router for client-side navigation (requires PluginRouter):
+//
+//	html.Div(
+//	    alpine.XData(map[string]any{}),
+//	    // Static route with inline template
+//	    html.Template(
+//	        alpine.XRoute("/"),
+//	        alpine.XTemplateInline(),
+//	        html.H1(g.Text("Home")),
+//	    ),
+//	    // Dynamic route with parameters
+//	    html.Template(
+//	        alpine.XRoute("/users/:id"),
+//	        alpine.XTemplate("/views/user.html", TargetID("app")),
+//	        alpine.XHandler("loadUser"),
+//	    ),
+//	    // 404 route
+//	    html.Template(
+//	        alpine.XRoute("notfound"),
+//	        alpine.XTemplate("/views/404.html", Preload()),
+//	    ),
+//	)
+//	
+//	// Navigation buttons
+//	html.Button(
+//	    alpine.XClick(alpine.NavigateTo("/dashboard")),
+//	    g.Text("Dashboard"),
+//	)
+//	html.Button(
+//	    alpine.XClick(alpine.RouterBack()),
+//	    alpine.XBindDisabled("!"+alpine.RouterCanGoBack()),
+//	    g.Text("Back"),
+//	)
+//
+// Load router plugin:
+//
+//	alpine.Scripts(alpine.PluginRouter)
+//
+// Router provides magic helpers in Alpine expressions:
+//   - $router: Access to PineconeRouter object
+//   - $params: Access to route parameters (e.g., $params.id)
+//   - $history: Navigation history operations
+//
 // # Best Practices
 //
 // 1. Keep component state small and focused
