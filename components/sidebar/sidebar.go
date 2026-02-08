@@ -1087,6 +1087,7 @@ func SidebarInset(children ...g.Node) g.Node {
 //	    sidebar.SidebarTrigger(),
 //	    breadcrumb.Breadcrumb(...),
 //	)
+//
 // SidebarInsetHeaderOption is a functional option for configuring the sidebar inset header
 type SidebarInsetHeaderOption func(*string)
 

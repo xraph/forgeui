@@ -65,11 +65,11 @@ func TestCommand(t *testing.T) {
 		if !strings.Contains(html, "visibleItems") {
 			t.Error("expected visibleItems state in Alpine data")
 		}
-		
+
 		if !strings.Contains(html, "filter") {
 			t.Error("expected filter function in Alpine data")
 		}
-		
+
 		if !strings.Contains(html, "updateVisible") {
 			t.Error("expected updateVisible function in Alpine data")
 		}

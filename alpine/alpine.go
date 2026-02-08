@@ -123,7 +123,7 @@
 //	        alpine.XTemplate("/views/404.html", Preload()),
 //	    ),
 //	)
-//	
+//
 //	// Navigation buttons
 //	html.Button(
 //	    alpine.XClick(alpine.NavigateTo("/dashboard")),

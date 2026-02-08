@@ -565,7 +565,7 @@ func routerQuickLinkCard(title, description, path, iconName string) g.Node {
 	default:
 		iconNode = icons.Info(icons.WithSize(24), icons.WithClass("text-blue-500"))
 	}
-	
+
 	return html.Div(
 		html.Class("p-4 border border-gray-200 rounded-lg cursor-pointer hover:border-blue-500 hover:shadow-md transition-all"),
 		alpine.XClick(alpine.NavigateTo(path)),

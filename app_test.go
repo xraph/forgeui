@@ -102,12 +102,12 @@ func TestApp_Config(t *testing.T) {
 
 func TestApp_BridgeScriptHandler(t *testing.T) {
 	tests := []struct {
-		name           string
-		basePath       string
-		requestPath    string
-		expectStatus   int
-		expectContent  string
-		expectMIME     string
+		name          string
+		basePath      string
+		requestPath   string
+		expectStatus  int
+		expectContent string
+		expectMIME    string
 	}{
 		{
 			name:          "forge-bridge.js without base path",

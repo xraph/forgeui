@@ -11,6 +11,14 @@ import (
 	"testing/fstest"
 )
 
+// isValidJavaScriptMIME checks if the content type is a valid JavaScript MIME type
+// Both "text/javascript" and "application/javascript" are valid per RFC 9239
+func isValidJavaScriptMIME(contentType string) bool {
+	return contentType == "text/javascript; charset=utf-8" ||
+		contentType == "application/javascript" ||
+		contentType == "text/javascript"
+}
+
 func TestHandler_ServeFile(t *testing.T) {
 	tmpDir := t.TempDir()
 
@@ -173,6 +181,7 @@ func TestHandler_MIMETypes(t *testing.T) {
 		filename     string
 		content      string
 		expectedMIME string
+		checkJSMIME  bool // Special handling for JavaScript MIME types
 	}{
 		{
 			name:         "CSS file",
@@ -181,10 +190,10 @@ func TestHandler_MIMETypes(t *testing.T) {
 			expectedMIME: "text/css; charset=utf-8",
 		},
 		{
-			name:         "JavaScript file",
-			filename:     "script.js",
-			content:      "console.log('test');",
-			expectedMIME: "text/javascript; charset=utf-8",
+			name:        "JavaScript file",
+			filename:    "script.js",
+			content:     "console.log('test');",
+			checkJSMIME: true,
 		},
 		{
 			name:         "JSON file",
@@ -233,7 +242,12 @@ func TestHandler_MIMETypes(t *testing.T) {
 			}
 
 			contentType := w.Header().Get("Content-Type")
-			if contentType != tt.expectedMIME {
+			if tt.checkJSMIME {
+				// Platform-specific JavaScript MIME types
+				if !isValidJavaScriptMIME(contentType) {
+					t.Errorf("Expected valid JavaScript MIME type, got '%s'", contentType)
+				}
+			} else if contentType != tt.expectedMIME {
 				t.Errorf("Expected Content-Type '%s', got '%s'", tt.expectedMIME, contentType)
 			}
 		})
@@ -268,6 +282,7 @@ func TestHandler_CustomFileSystem(t *testing.T) {
 		expectedCode int
 		expectedMIME string
 		expectedBody string
+		checkJSMIME  bool // Special handling for JavaScript MIME types
 	}{
 		{
 			name:         "CSS file from custom FS",
@@ -280,7 +295,7 @@ func TestHandler_CustomFileSystem(t *testing.T) {
 			name:         "JS file from custom FS",
 			path:         "/static/js/forge-bridge.js",
 			expectedCode: http.StatusOK,
-			expectedMIME: "text/javascript; charset=utf-8",
+			checkJSMIME:  true,
 			expectedBody: "console.log('bridge loaded');",
 		},
 		{
@@ -303,7 +318,12 @@ func TestHandler_CustomFileSystem(t *testing.T) {
 
 			if tt.expectedCode == http.StatusOK {
 				contentType := w.Header().Get("Content-Type")
-				if contentType != tt.expectedMIME {
+				if tt.checkJSMIME {
+					// Platform-specific JavaScript MIME types
+					if !isValidJavaScriptMIME(contentType) {
+						t.Errorf("Expected valid JavaScript MIME type, got '%s'", contentType)
+					}
+				} else if contentType != tt.expectedMIME {
 					t.Errorf("Expected Content-Type '%s', got '%s'", tt.expectedMIME, contentType)
 				}
 
@@ -364,7 +384,7 @@ func TestHandler_WithEmbedFS(t *testing.T) {
 		t.Errorf("Expected status 200 for JS, got %d", w.Code)
 	}
 
-	if ct := w.Header().Get("Content-Type"); ct != "text/javascript; charset=utf-8" {
-		t.Errorf("Expected JS MIME type, got '%s'", ct)
+	if ct := w.Header().Get("Content-Type"); !isValidJavaScriptMIME(ct) {
+		t.Errorf("Expected valid JavaScript MIME type, got '%s'", ct)
 	}
 }

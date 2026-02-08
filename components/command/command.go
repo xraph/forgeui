@@ -305,7 +305,7 @@ func CommandGroup(heading string, children ...g.Node) g.Node {
 		html.Class(commandGroupCVA.Classes(map[string]string{})),
 		g.Attr("role", "group"),
 		g.If(heading != "", g.Attr("aria-label", heading)),
-		
+
 		// Add heading if provided
 		g.If(heading != "",
 			html.Div(
@@ -314,7 +314,7 @@ func CommandGroup(heading string, children ...g.Node) g.Node {
 				g.Text(heading),
 			),
 		),
-		
+
 		g.Group(children),
 	)
 }

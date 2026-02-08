@@ -267,7 +267,7 @@ func TabListWithOptions(opts []TabListOption, children ...g.Node) g.Node {
 
 	// Base classes for all variants
 	baseClasses := "inline-flex items-center"
-	
+
 	// Variant-specific styles
 	switch props.Variant {
 	case TabListVariantUnderline:
@@ -277,7 +277,7 @@ func TabListWithOptions(opts []TabListOption, children ...g.Node) g.Node {
 	default: // TabListVariantDefault
 		baseClasses += " h-10 justify-center rounded-md bg-muted p-1 text-muted-foreground"
 	}
-	
+
 	// Scrollable handling
 	if props.Scrollable {
 		if props.Variant == TabListVariantDefault {
@@ -298,12 +298,12 @@ func TabListWithOptions(opts []TabListOption, children ...g.Node) g.Node {
 		g.Attr("role", "tablist"),
 		html.Class(classes),
 	}
-	
+
 	// Add scrollable data attribute so child tabs can detect it
 	if props.Scrollable {
 		attrs = append(attrs, g.Attr("data-scrollable", "true"))
 	}
-	
+
 	attrs = append(attrs, props.Attrs...)
 
 	return html.Div(
@@ -336,12 +336,12 @@ func Tab(id string, label g.Node, opts ...TabOption) g.Node {
 
 	// Base classes common to all variants (natural width by default)
 	baseClasses := "inline-flex items-center justify-center whitespace-nowrap text-sm font-medium ring-offset-background transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50"
-	
+
 	// Add flex-1 for equal width distribution if requested
 	if props.Grow {
 		baseClasses += " flex-1"
 	}
-	
+
 	// Variant-specific styles
 	switch props.Variant {
 	case TabVariantUnderline:
@@ -372,7 +372,7 @@ func Tab(id string, label g.Node, opts ...TabOption) g.Node {
 			if (prev) prev.click();
 		};
 	`
-	
+
 	// If active, set the activeTab on init
 	if props.Active {
 		xInitContent += fmt.Sprintf("\n\t\tactiveTab = '%s';", id)
