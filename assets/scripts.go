@@ -1,11 +1,14 @@
 package assets
 
 import (
+	"context"
+	"fmt"
+	stdhtml "html"
+	"io"
 	"sort"
 	"sync"
 
-	g "maragu.dev/gomponents"
-	"maragu.dev/gomponents/html"
+	"github.com/a-h/templ"
 )
 
 // ScriptEntry represents a script with metadata for ordering and rendering.
@@ -99,7 +102,7 @@ func (sm *ScriptManager) AddInline(content string, priority int, position string
 
 // Render generates script tags for the specified position ("head" or "body").
 // Scripts are sorted by priority (lower numbers first) before rendering.
-func (sm *ScriptManager) Render(position string) []g.Node {
+func (sm *ScriptManager) Render(position string) []templ.Component {
 	sm.mu.RLock()
 	defer sm.mu.RUnlock()
 
@@ -117,52 +120,61 @@ func (sm *ScriptManager) Render(position string) []g.Node {
 		return positionScripts[i].Priority < positionScripts[j].Priority
 	})
 
-	// Generate script nodes
-	nodes := make([]g.Node, 0, len(positionScripts))
+	// Generate script components
+	components := make([]templ.Component, 0, len(positionScripts))
 	for _, script := range positionScripts {
-		nodes = append(nodes, sm.renderScript(script))
+		components = append(components, sm.renderScript(script))
 	}
 
-	return nodes
+	return components
 }
 
-// renderScript creates a single script node from an entry
-func (sm *ScriptManager) renderScript(entry ScriptEntry) g.Node {
-	if entry.Inline {
-		// Inline script
-		attrs := make([]g.Node, 0, len(entry.Attrs)+1)
+// renderScript creates a single script component from an entry
+func (sm *ScriptManager) renderScript(entry ScriptEntry) templ.Component {
+	return templ.ComponentFunc(func(_ context.Context, w io.Writer) error {
+		if entry.Inline {
+			if _, err := io.WriteString(w, `<script`); err != nil {
+				return err
+			}
+
+			// Add custom attributes
+			for key, value := range entry.Attrs {
+				if value == "" {
+					if _, err := fmt.Fprintf(w, ` %s`, key); err != nil {
+						return err
+					}
+				} else {
+					if _, err := fmt.Fprintf(w, ` %s="%s"`, key, stdhtml.EscapeString(value)); err != nil {
+						return err
+					}
+				}
+			}
+
+			_, err := fmt.Fprintf(w, `>%s</script>`, entry.Content)
+			return err
+		}
+
+		// External script
+		if _, err := fmt.Fprintf(w, `<script src="%s"`, stdhtml.EscapeString(entry.Path)); err != nil {
+			return err
+		}
 
 		// Add custom attributes
 		for key, value := range entry.Attrs {
 			if value == "" {
-				attrs = append(attrs, g.Attr(key))
+				if _, err := fmt.Fprintf(w, ` %s`, key); err != nil {
+					return err
+				}
 			} else {
-				attrs = append(attrs, g.Attr(key, value))
+				if _, err := fmt.Fprintf(w, ` %s="%s"`, key, stdhtml.EscapeString(value)); err != nil {
+					return err
+				}
 			}
 		}
 
-		// Add content
-		attrs = append(attrs, g.Raw(entry.Content))
-
-		return html.Script(attrs...)
-	}
-
-	// External script
-	attrs := make([]g.Node, 0, len(entry.Attrs)+1)
-
-	// Add src attribute
-	attrs = append(attrs, g.Attr("src", entry.Path))
-
-	// Add custom attributes
-	for key, value := range entry.Attrs {
-		if value == "" {
-			attrs = append(attrs, g.Attr(key))
-		} else {
-			attrs = append(attrs, g.Attr(key, value))
-		}
-	}
-
-	return html.Script(attrs...)
+		_, err := io.WriteString(w, `></script>`)
+		return err
+	})
 }
 
 // Clear removes all scripts from the manager

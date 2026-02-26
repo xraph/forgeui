@@ -2,14 +2,15 @@ package assets
 
 import (
 	"bytes"
+	"context"
 
-	g "maragu.dev/gomponents"
+	"github.com/a-h/templ"
 )
 
-// renderNode renders a gomponents node to an HTML string for testing
-func renderNode(node g.Node) string {
+// renderComponent renders a templ.Component to an HTML string for testing
+func renderComponent(comp templ.Component) string {
 	var buf bytes.Buffer
-	if err := node.Render(&buf); err != nil {
+	if err := comp.Render(context.Background(), &buf); err != nil {
 		return ""
 	}
 

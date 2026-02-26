@@ -35,7 +35,7 @@ func main() {
 
 	// Pages
 	app.Router.Get("/", pages.Home)
-	
+
 	// API endpoints
 	app.Router.Get("/api/users", pages.APIUsers)
 	app.Router.Post("/api/users", pages.APICreateUser)
@@ -53,60 +53,79 @@ func main() {
 		return err
 	}
 
-	// Create pages/api.go
-	apiGo := `package pages
+	// Create pages/handlers.go
+	handlersGo := `package pages
 
 import (
-	"github.com/xraph/forgeui"
-	g "maragu.dev/gomponents"
-	"maragu.dev/gomponents/html"
-	"github.com/xraph/forgeui/htmx"
+	"github.com/a-h/templ"
+	"github.com/xraph/forgeui/router"
 )
 
-func Home(ctx *forgeui.PageContext) g.Node {
-	return html.HTML(
-		html.Lang("en"),
-		html.Head(
-			html.Meta(html.Charset("utf-8")),
-			html.TitleEl(g.Text("HTMX API Demo")),
-			htmx.Script(),
-			html.StyleEl(g.Raw(apiStyles)),
-		),
-		html.Body(
-			html.H1(g.Text("HTMX API Demo")),
-			html.Div(
-				html.ID("user-list"),
-				htmx.HxGet("/api/users"),
-				htmx.HxTrigger("load"),
-				html.P(g.Text("Loading users...")),
-			),
-		),
-	)
+func Home(ctx *router.PageContext) (templ.Component, error) {
+	return HomePage(), nil
 }
 
-func APIUsers(ctx *forgeui.PageContext) g.Node {
+func APIUsers(ctx *router.PageContext) (templ.Component, error) {
 	users := []string{"Alice", "Bob", "Charlie"}
-	return html.Ul(
-		g.Group(g.Map(users, func(name string) g.Node {
-			return html.Li(g.Text(name))
-		})),
-	)
+	return UserList(users), nil
 }
 
-func APICreateUser(ctx *forgeui.PageContext) g.Node {
-	return html.P(g.Text("User created!"))
+func APICreateUser(ctx *router.PageContext) (templ.Component, error) {
+	return UserCreated(), nil
 }
-
-const apiStyles = ` + "`" + `
-body { font-family: system-ui, -apple-system, sans-serif; max-width: 800px; margin: 0 auto; padding: 2rem; }
-h1 { color: #2c3e50; margin-bottom: 2rem; }
-#user-list { background: #f5f5f5; padding: 1rem; border-radius: 8px; }
-ul { list-style: none; padding: 0; }
-li { padding: 0.5rem; background: white; margin: 0.5rem 0; border-radius: 4px; }
-` + "`" + `
 `
 
-	if err := util.CreateFile(filepath.Join(dir, "pages", "api.go"), apiGo); err != nil {
+	if err := util.CreateFile(filepath.Join(dir, "pages", "handlers.go"), handlersGo); err != nil {
+		return err
+	}
+
+	// Create pages/api.templ
+	apiTempl := `package pages
+
+import "github.com/xraph/forgeui/htmx"
+
+templ HomePage() {
+	<!DOCTYPE html>
+	<html lang="en">
+		<head>
+			<meta charset="utf-8"/>
+			<title>HTMX API Demo</title>
+			@htmx.Scripts()
+			@apiStyles()
+		</head>
+		<body>
+			<h1>HTMX API Demo</h1>
+			<div id="user-list" { htmx.HxGet("/api/users")... } { htmx.HxTrigger("load")... }>
+				<p>Loading users...</p>
+			</div>
+		</body>
+	</html>
+}
+
+templ UserList(users []string) {
+	<ul>
+		for _, name := range users {
+			<li>{ name }</li>
+		}
+	</ul>
+}
+
+templ UserCreated() {
+	<p>User created!</p>
+}
+
+templ apiStyles() {
+	<style>
+		body { font-family: system-ui, -apple-system, sans-serif; max-width: 800px; margin: 0 auto; padding: 2rem; }
+		h1 { color: #2c3e50; margin-bottom: 2rem; }
+		#user-list { background: #f5f5f5; padding: 1rem; border-radius: 8px; }
+		ul { list-style: none; padding: 0; }
+		li { padding: 0.5rem; background: white; margin: 0.5rem 0; border-radius: 4px; }
+	</style>
+}
+`
+
+	if err := util.CreateFile(filepath.Join(dir, "pages", "api.templ"), apiTempl); err != nil {
 		return err
 	}
 
@@ -127,6 +146,7 @@ dist/
 *.test
 *.out
 go.sum
+*_templ.go
 .vscode/
 .idea/
 *.swp
@@ -148,6 +168,12 @@ An API-first application with HTMX built with ForgeUI.
 
 `+"```"+`bash
 forgeui dev
+`+"```"+`
+
+Or run directly:
+
+`+"```"+`bash
+templ generate && go run .
 `+"```"+`
 
 Visit http://localhost:3000 to see your app.

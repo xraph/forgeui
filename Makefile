@@ -5,7 +5,7 @@
 .PHONY: fmt lint-fix f l t b c check ci all verify deps test-integration watch
 .PHONY: test-verbose test-watch pre-commit update-deps info run-example bench
 .PHONY: profile-cpu profile-mem check-deps audit vet build-release test-short
-.PHONY: test-race test-race-verbose
+.PHONY: test-race test-race-verbose generate
 
 # Default target
 help:
@@ -42,8 +42,14 @@ help:
 	@echo "  make release-snapshot  Create snapshot release (local testing)"
 	@echo ""
 
+# Generate templ files
+generate:
+	@echo "Generating templ files..."
+	templ generate ./...
+	@echo "Templ generation complete"
+
 # Run tests with race detector (default)
-test:
+test: generate
 	@echo "Running tests with race detector..."
 	go test -v -race -coverprofile=coverage.out -covermode=atomic ./...
 
@@ -115,7 +121,7 @@ coverage: test
 	fi
 
 # Build CLI binary
-build:
+build: generate
 	@echo "Building ForgeUI CLI..."
 	go build -v -o forgeui ./cmd/forgeui
 	@echo "Binary created: ./forgeui"

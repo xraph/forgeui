@@ -9,21 +9,20 @@ import (
 	"strconv"
 	"time"
 
-	g "maragu.dev/gomponents"
-	"maragu.dev/gomponents/html"
+	"github.com/a-h/templ"
 )
 
-// Middleware is a function that wraps a PageHandler
+// Middleware is a function that wraps a PageHandler.
 type Middleware func(PageHandler) PageHandler
 
-// Logger returns middleware that logs requests
+// Logger returns middleware that logs requests.
 func Logger() Middleware {
 	return func(next PageHandler) PageHandler {
-		return func(ctx *PageContext) (g.Node, error) {
+		return func(ctx *PageContext) (templ.Component, error) {
 			start := time.Now()
 
 			// Process request
-			node, err := next(ctx)
+			comp, err := next(ctx)
 
 			// Log request
 			duration := time.Since(start)
@@ -41,15 +40,15 @@ func Logger() Middleware {
 				duration,
 			)
 
-			return node, err
+			return comp, err
 		}
 	}
 }
 
-// Recovery returns middleware that recovers from panics
+// Recovery returns middleware that recovers from panics.
 func Recovery() Middleware {
 	return func(next PageHandler) PageHandler {
-		return func(ctx *PageContext) (node g.Node, err error) {
+		return func(ctx *PageContext) (comp templ.Component, err error) {
 			defer func() {
 				if r := recover(); r != nil {
 					// Log panic with stack trace
@@ -58,10 +57,7 @@ func Recovery() Middleware {
 					// Set error response
 					ctx.ResponseWriter.WriteHeader(http.StatusInternalServerError)
 
-					node = html.Div(
-						html.H1(g.Text("500 - Internal Server Error")),
-						html.P(g.Textf("The server encountered an unexpected error: %v", r)),
-					)
+					comp = templ.Raw(fmt.Sprintf("<div><h1>500 - Internal Server Error</h1><p>The server encountered an unexpected error: %v</p></div>", r))
 					err = fmt.Errorf("panic recovered: %v", r)
 				}
 			}()
@@ -71,10 +67,10 @@ func Recovery() Middleware {
 	}
 }
 
-// CORS returns middleware that adds CORS headers
+// CORS returns middleware that adds CORS headers.
 func CORS(allowOrigin string) Middleware {
 	return func(next PageHandler) PageHandler {
-		return func(ctx *PageContext) (g.Node, error) {
+		return func(ctx *PageContext) (templ.Component, error) {
 			// Set CORS headers
 			ctx.SetHeader("Access-Control-Allow-Origin", allowOrigin)
 			ctx.SetHeader("Access-Control-Allow-Methods", "GET, POST, PUT, PATCH, DELETE, OPTIONS")
@@ -91,10 +87,10 @@ func CORS(allowOrigin string) Middleware {
 	}
 }
 
-// RequestID returns middleware that adds a unique request ID
+// RequestID returns middleware that adds a unique request ID.
 func RequestID() Middleware {
 	return func(next PageHandler) PageHandler {
-		return func(ctx *PageContext) (g.Node, error) {
+		return func(ctx *PageContext) (templ.Component, error) {
 			// Generate simple request ID (in production, use UUID or similar)
 			requestID := strconv.FormatInt(time.Now().UnixNano(), 10)
 
@@ -109,10 +105,10 @@ func RequestID() Middleware {
 	}
 }
 
-// BasicAuth returns middleware that requires HTTP basic authentication
+// BasicAuth returns middleware that requires HTTP basic authentication.
 func BasicAuth(username, password string) Middleware {
 	return func(next PageHandler) PageHandler {
-		return func(ctx *PageContext) (g.Node, error) {
+		return func(ctx *PageContext) (templ.Component, error) {
 			// Get credentials from request
 			user, pass, ok := ctx.Request.BasicAuth()
 
@@ -121,7 +117,7 @@ func BasicAuth(username, password string) Middleware {
 				ctx.SetHeader("WWW-Authenticate", `Basic realm="Restricted"`)
 				ctx.ResponseWriter.WriteHeader(http.StatusUnauthorized)
 
-				return g.Text("401 - Unauthorized"), nil
+				return templ.Raw("401 - Unauthorized"), nil
 			}
 
 			return next(ctx)
@@ -129,7 +125,7 @@ func BasicAuth(username, password string) Middleware {
 	}
 }
 
-// RequireMethod returns middleware that only allows specific HTTP methods
+// RequireMethod returns middleware that only allows specific HTTP methods.
 func RequireMethod(methods ...string) Middleware {
 	methodMap := make(map[string]bool)
 	for _, m := range methods {
@@ -137,10 +133,10 @@ func RequireMethod(methods ...string) Middleware {
 	}
 
 	return func(next PageHandler) PageHandler {
-		return func(ctx *PageContext) (g.Node, error) {
+		return func(ctx *PageContext) (templ.Component, error) {
 			if !methodMap[ctx.Method()] {
 				ctx.ResponseWriter.WriteHeader(http.StatusMethodNotAllowed)
-				return g.Textf("405 - Method Not Allowed: %s", ctx.Method()), nil
+				return templ.Raw(fmt.Sprintf("405 - Method Not Allowed: %s", ctx.Method())), nil
 			}
 
 			return next(ctx)
@@ -148,10 +144,10 @@ func RequireMethod(methods ...string) Middleware {
 	}
 }
 
-// Timeout returns middleware that enforces a timeout on requests
+// Timeout returns middleware that enforces a timeout on requests.
 func Timeout(duration time.Duration) Middleware {
 	return func(next PageHandler) PageHandler {
-		return func(ctx *PageContext) (g.Node, error) {
+		return func(ctx *PageContext) (templ.Component, error) {
 			// Create timeout context
 			timeoutCtx, cancel := context.WithTimeout(ctx.Request.Context(), duration)
 			defer cancel()
@@ -161,7 +157,7 @@ func Timeout(duration time.Duration) Middleware {
 
 			// Channel for result
 			type result struct {
-				node g.Node
+				comp templ.Component
 				err  error
 			}
 
@@ -169,33 +165,33 @@ func Timeout(duration time.Duration) Middleware {
 
 			// Execute handler in goroutine
 			go func() {
-				node, err := next(ctx)
-				done <- result{node, err}
+				comp, err := next(ctx)
+				done <- result{comp, err}
 			}()
 
 			// Wait for result or timeout
 			select {
 			case res := <-done:
-				return res.node, res.err
+				return res.comp, res.err
 			case <-timeoutCtx.Done():
 				ctx.ResponseWriter.WriteHeader(http.StatusRequestTimeout)
-				return g.Text("408 - Request Timeout"), fmt.Errorf("request timeout after %v", duration)
+				return templ.Raw("408 - Request Timeout"), fmt.Errorf("request timeout after %v", duration)
 			}
 		}
 	}
 }
 
-// SetHeader returns middleware that sets a response header
+// SetHeader returns middleware that sets a response header.
 func SetHeader(key, value string) Middleware {
 	return func(next PageHandler) PageHandler {
-		return func(ctx *PageContext) (g.Node, error) {
+		return func(ctx *PageContext) (templ.Component, error) {
 			ctx.SetHeader(key, value)
 			return next(ctx)
 		}
 	}
 }
 
-// Chain chains multiple middleware into one
+// Chain chains multiple middleware into one.
 func Chain(middleware ...Middleware) Middleware {
 	return func(next PageHandler) PageHandler {
 		for i := len(middleware) - 1; i >= 0; i-- {

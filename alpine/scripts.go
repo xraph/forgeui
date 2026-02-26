@@ -1,161 +1,97 @@
 package alpine
 
 import (
+	"context"
 	"fmt"
+	"io"
 
-	g "maragu.dev/gomponents"
-	"maragu.dev/gomponents/html"
+	"github.com/a-h/templ"
 )
 
 const (
 	// AlpineCDN is the default CDN URL for Alpine.js
-	// Using 3.x.x for automatic minor/patch updates
 	AlpineCDN = "https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"
 )
 
-// Scripts returns script tags for Alpine.js and any requested plugins.
+// Scripts returns a templ.Component that renders script tags for Alpine.js and any requested plugins.
 //
 // IMPORTANT: Plugins MUST be loaded BEFORE Alpine.js core.
 // This function ensures correct loading order.
 //
-// Example:
+// Example (in .templ files):
 //
-//	alpine.Scripts(alpine.PluginFocus, alpine.PluginCollapse)
-//
-// Generates:
-//
-//	<script defer src="...focus@3.x.x..."></script>
-//	<script defer src="...collapse@3.x.x..."></script>
-//	<script defer src="...alpinejs@3.x.x..."></script>
-func Scripts(plugins ...Plugin) g.Node {
-	scripts := make([]g.Node, 0, len(plugins)+1)
-
-	// Plugin scripts must load BEFORE Alpine core
-	for _, p := range plugins {
-		if url := pluginURLs[p]; url != "" {
-			scripts = append(scripts, html.Script(
-				g.Attr("defer", ""),
-				g.Attr("src", url),
-			))
+//	@alpine.Scripts(alpine.PluginFocus, alpine.PluginCollapse)
+func Scripts(plugins ...Plugin) templ.Component {
+	return templ.ComponentFunc(func(_ context.Context, w io.Writer) error {
+		// Plugin scripts must load BEFORE Alpine core
+		for _, p := range plugins {
+			if url := pluginURLs[p]; url != "" {
+				if _, err := fmt.Fprintf(w, `<script defer src="%s"></script>`, url); err != nil {
+					return err
+				}
+			}
 		}
-	}
 
-	// Alpine.js core (must be last)
-	scripts = append(scripts, html.Script(
-		g.Attr("defer", ""),
-		g.Attr("src", AlpineCDN),
-	))
-
-	return g.Group(scripts)
+		// Alpine.js core (must be last)
+		_, err := fmt.Fprintf(w, `<script defer src="%s"></script>`, AlpineCDN)
+		return err
+	})
 }
 
 // ScriptsWithVersion returns script tags with a specific Alpine.js version.
-// Useful for pinning to a specific version in production.
-//
-// Example:
-//
-//	alpine.ScriptsWithVersion("3.13.3", alpine.PluginFocus)
-func ScriptsWithVersion(version string, plugins ...Plugin) g.Node {
-	scripts := make([]g.Node, 0, len(plugins)+1)
-
-	// Plugin scripts
-	for _, p := range plugins {
-		if url := pluginURLs[p]; url != "" {
-			// Replace version in URL
-			versionedURL := fmt.Sprintf("https://cdn.jsdelivr.net/npm/@alpinejs/%s@%s/dist/cdn.min.js", p, version)
-			scripts = append(scripts, html.Script(
-				g.Attr("defer", ""),
-				g.Attr("src", versionedURL),
-			))
+func ScriptsWithVersion(version string, plugins ...Plugin) templ.Component {
+	return templ.ComponentFunc(func(_ context.Context, w io.Writer) error {
+		for _, p := range plugins {
+			if pluginURLs[p] != "" {
+				versionedURL := fmt.Sprintf("https://cdn.jsdelivr.net/npm/@alpinejs/%s@%s/dist/cdn.min.js", p, version)
+				if _, err := fmt.Fprintf(w, `<script defer src="%s"></script>`, versionedURL); err != nil {
+					return err
+				}
+			}
 		}
-	}
 
-	// Alpine.js core with specific version
-	alpineURL := fmt.Sprintf("https://cdn.jsdelivr.net/npm/alpinejs@%s/dist/cdn.min.js", version)
-	scripts = append(scripts, html.Script(
-		g.Attr("defer", ""),
-		g.Attr("src", alpineURL),
-	))
-
-	return g.Group(scripts)
+		alpineURL := fmt.Sprintf("https://cdn.jsdelivr.net/npm/alpinejs@%s/dist/cdn.min.js", version)
+		_, err := fmt.Fprintf(w, `<script defer src="%s"></script>`, alpineURL)
+		return err
+	})
 }
 
 // ScriptsImmediate returns script tags for Alpine.js WITHOUT the defer attribute.
-//
-// Use this when placing scripts at the END of the <body> tag with inline store
-// registrations. The scripts will execute immediately in document order.
-//
-// IMPORTANT: Only use this when Alpine stores are registered inline in the body.
-// If stores are not needed or scripts are in <head>, use Scripts() instead.
-//
-// Example:
-//
-//	html.Body(
-//	    toast.RegisterToastStore(),  // Inline store registration
-//	    // ... content
-//	    alpine.ScriptsImmediate(alpine.PluginFocus),  // Execute immediately
-//	)
-func ScriptsImmediate(plugins ...Plugin) g.Node {
-	scripts := make([]g.Node, 0, len(plugins)+1)
-
-	// Plugin scripts must load BEFORE Alpine core
-	for _, p := range plugins {
-		if url := pluginURLs[p]; url != "" {
-			scripts = append(scripts, html.Script(
-				g.Attr("src", url),
-			))
+func ScriptsImmediate(plugins ...Plugin) templ.Component {
+	return templ.ComponentFunc(func(_ context.Context, w io.Writer) error {
+		for _, p := range plugins {
+			if url := pluginURLs[p]; url != "" {
+				if _, err := fmt.Fprintf(w, `<script src="%s"></script>`, url); err != nil {
+					return err
+				}
+			}
 		}
-	}
 
-	// Alpine.js core (must be last)
-	scripts = append(scripts, html.Script(
-		g.Attr("src", AlpineCDN),
-	))
-
-	return g.Group(scripts)
+		_, err := fmt.Fprintf(w, `<script src="%s"></script>`, AlpineCDN)
+		return err
+	})
 }
 
-// CloakCSS returns a style tag with CSS to prevent flash of unstyled content.
-// Add this to your <head> section when using x-cloak.
-//
-// Example:
-//
-//	html.Head(
-//	    alpine.CloakCSS(),
-//	    // ... other head elements
-//	)
-func CloakCSS() g.Node {
-	return html.StyleEl(
-		g.Raw("[x-cloak] { display: none !important; }"),
-	)
+// CloakCSS returns a templ.Component with CSS to prevent flash of unstyled content.
+func CloakCSS() templ.Component {
+	return templ.ComponentFunc(func(_ context.Context, w io.Writer) error {
+		_, err := io.WriteString(w, `<style>[x-cloak] { display: none !important; }</style>`)
+		return err
+	})
 }
 
 // ScriptsWithNonce adds a nonce attribute to script tags for Content Security Policy.
-// Use this when you have CSP enabled.
-//
-// Example:
-//
-//	alpine.ScriptsWithNonce("random-nonce-value", alpine.PluginFocus)
-func ScriptsWithNonce(nonce string, plugins ...Plugin) g.Node {
-	scripts := make([]g.Node, 0, len(plugins)+1)
-
-	// Plugin scripts
-	for _, p := range plugins {
-		if url := pluginURLs[p]; url != "" {
-			scripts = append(scripts, html.Script(
-				g.Attr("defer", ""),
-				g.Attr("src", url),
-				g.Attr("nonce", nonce),
-			))
+func ScriptsWithNonce(nonce string, plugins ...Plugin) templ.Component {
+	return templ.ComponentFunc(func(_ context.Context, w io.Writer) error {
+		for _, p := range plugins {
+			if url := pluginURLs[p]; url != "" {
+				if _, err := fmt.Fprintf(w, `<script defer src="%s" nonce="%s"></script>`, url, nonce); err != nil {
+					return err
+				}
+			}
 		}
-	}
 
-	// Alpine.js core
-	scripts = append(scripts, html.Script(
-		g.Attr("defer", ""),
-		g.Attr("src", AlpineCDN),
-		g.Attr("nonce", nonce),
-	))
-
-	return g.Group(scripts)
+		_, err := fmt.Fprintf(w, `<script defer src="%s" nonce="%s"></script>`, AlpineCDN, nonce)
+		return err
+	})
 }

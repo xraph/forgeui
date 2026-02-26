@@ -2,6 +2,7 @@ package alpine
 
 import (
 	"bytes"
+	"context"
 	"strings"
 	"testing"
 )
@@ -55,27 +56,30 @@ func TestRegisterStores(t *testing.T) {
 		t.Run(tt.name, func(t *testing.T) {
 			var buf bytes.Buffer
 
-			node := RegisterStores(tt.stores...)
+			comp := RegisterStores(tt.stores...)
 
 			if len(tt.stores) == 0 {
-				// With no stores, function returns g.Group(nil) which can't be rendered directly
-				// Just verify it doesn't panic
+				// With no stores, Render should produce no output
+				if err := comp.Render(context.Background(), &buf); err != nil {
+					t.Fatalf("Render() error = %v", err)
+				}
+				if buf.Len() != 0 {
+					t.Errorf("RegisterStores() with no stores should produce empty output, got %q", buf.String())
+				}
 				return
 			}
 
-			if err := node.Render(&buf); err != nil {
+			if err := comp.Render(context.Background(), &buf); err != nil {
 				t.Fatalf("Render() error = %v", err)
 			}
 			got := buf.String()
 
-			// Check all expected strings are present
 			for _, w := range tt.want {
 				if !strings.Contains(got, w) {
 					t.Errorf("RegisterStores() = %v, want to contain %v", got, w)
 				}
 			}
 
-			// Check it's wrapped in a script tag
 			if !strings.Contains(got, "<script>") {
 				t.Errorf("RegisterStores() missing script tag")
 			}
@@ -156,11 +160,9 @@ func TestStoreMethod(t *testing.T) {
 }
 
 func TestXStore(t *testing.T) {
-	var buf bytes.Buffer
-	_ = XStore("cart").Render(&buf)
-	got := buf.String()
+	attrs := XStore("cart")
 
-	if !strings.Contains(got, `x-data="$store.cart"`) {
-		t.Errorf("XStore() = %v, want x-data with store reference", got)
+	if v, ok := attrs["x-data"]; !ok || v != "$store.cart" {
+		t.Errorf("XStore() = %v, want x-data=$store.cart", attrs)
 	}
 }

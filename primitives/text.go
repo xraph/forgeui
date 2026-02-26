@@ -1,22 +1,24 @@
 package primitives
 
 import (
-	g "maragu.dev/gomponents"
-	"maragu.dev/gomponents/html"
+	"context"
+	"io"
+
+	"github.com/a-h/templ"
 
 	"github.com/xraph/forgeui"
 )
 
 // TextProps defines properties for the Text component
 type TextProps struct {
-	As       string // HTML tag (p, span, div, h1-h6)
-	Size     string // text size class
-	Weight   string // font weight class
-	Color    string // text color class
-	Align    string // text alignment
-	Class    string
-	Children []g.Node
-	Attrs    []g.Node
+	As         string // HTML tag (p, span, div, h1-h6)
+	Size       string // text size class
+	Weight     string // font weight class
+	Color      string // text color class
+	Align      string // text alignment
+	Class      string
+	Children   []templ.Component
+	Attributes templ.Attributes
 }
 
 // TextOption is a functional option for configuring Text
@@ -52,18 +54,25 @@ func TextClass(class string) TextOption {
 	return func(p *TextProps) { p.Class = class }
 }
 
-// TextChildren adds child nodes
-func TextChildren(children ...g.Node) TextOption {
+// TextChildren adds child components
+func TextChildren(children ...templ.Component) TextOption {
 	return func(p *TextProps) { p.Children = append(p.Children, children...) }
 }
 
 // TextAttrs adds custom attributes
-func TextAttrs(attrs ...g.Node) TextOption {
-	return func(p *TextProps) { p.Attrs = append(p.Attrs, attrs...) }
+func TextAttrs(attrs templ.Attributes) TextOption {
+	return func(p *TextProps) {
+		if p.Attributes == nil {
+			p.Attributes = templ.Attributes{}
+		}
+		for k, v := range attrs {
+			p.Attributes[k] = v
+		}
+	}
 }
 
-// Text creates a typography primitive
-func Text(opts ...TextOption) g.Node {
+// Text creates a typography primitive.
+func Text(opts ...TextOption) templ.Component {
 	props := &TextProps{
 		As: "p",
 	}
@@ -80,12 +89,13 @@ func Text(opts ...TextOption) g.Node {
 		props.Class,
 	)
 
-	attrs := []g.Node{}
-	if classes != "" {
-		attrs = append(attrs, html.Class(classes))
-	}
-
-	attrs = append(attrs, props.Attrs...)
-
-	return g.El(props.As, g.Group(attrs), g.Group(props.Children))
+	return templ.ComponentFunc(func(ctx context.Context, w io.Writer) error {
+		if err := writeOpenTag(w, props.As, classes, props.Attributes); err != nil {
+			return err
+		}
+		if err := renderChildren(ctx, w, props.Children); err != nil {
+			return err
+		}
+		return writeCloseTag(w, props.As)
+	})
 }

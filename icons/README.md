@@ -12,28 +12,20 @@ The `icons` package provides a flexible icon system with comprehensive Lucide ic
 
 ## Basic Usage
 
-```go
-import (
-    "github.com/xraph/forgeui/icons"
-    g "maragu.dev/gomponents"
-)
+```templ
+import "github.com/xraph/forgeui/icons"
 
 // Use a pre-built icon
-checkIcon := icons.Check()
+@icons.Check()
 
 // Customize icon properties
-largeIcon := icons.Search(
-    icons.WithSize(32),
-    icons.WithColor("blue"),
-)
+@icons.Search(icons.WithSize(32), icons.WithColor("blue"))
 
 // Use in a button
-btn := button.Button(
-    g.Group([]g.Node{
-        icons.Plus(icons.WithSize(16)),
-        g.Text("Add Item"),
-    }),
-)
+@button.Button(button.Props{}) {
+    @icons.Plus(icons.WithSize(16))
+    Add Item
+}
 ```
 
 ## Available Icons
@@ -117,10 +109,10 @@ icons.Check(icons.WithClass("text-green-500 hover:text-green-600"))
 
 ```go
 icons.Check(
-    icons.WithAttrs(
-        g.Attr("aria-label", "Success"),
-        g.Attr("data-testid", "check-icon"),
-    ),
+    icons.WithAttrs(templ.Attributes{
+        "aria-label":   "Success",
+        "data-testid":  "check-icon",
+    }),
 )
 ```
 
@@ -145,53 +137,38 @@ customIcon := icons.MultiPathIcon([]string{
 
 ### Icon in Button
 
-```go
-saveButton := button.Primary(
-    g.Group([]g.Node{
-        icons.Check(icons.WithSize(16)),
-        g.Text("Save"),
-    }),
-)
+```templ
+@button.Button(button.Props{}) {
+    @icons.Check(icons.WithSize(16))
+    Save
+}
 ```
 
 ### Icon-Only Button
 
-```go
-closeButton := button.IconButton(
-    icons.X(icons.WithSize(16)),
-    button.WithVariant(forgeui.VariantGhost),
-)
+```templ
+@button.Button(button.Props{Variant: button.VariantGhost, Size: button.SizeIcon}) {
+    @icons.X(icons.WithSize(16))
+}
 ```
 
 ### Status Indicator
 
-```go
-successMessage := alert.Alert(
-    g.Group([]g.Node{
-        icons.CheckCircle(
-            icons.WithSize(20),
-            icons.WithColor("green"),
-        ),
-        alert.AlertTitle("Success"),
-        alert.AlertDescription("Your changes have been saved."),
-    }),
-    alert.WithVariant(forgeui.VariantSuccess),
-)
+```templ
+@alert.Alert(alert.Props{Variant: alert.VariantSuccess}) {
+    @icons.CircleCheck(icons.WithSize(20), icons.WithColor("green"))
+    @alert.Title() { Success }
+    @alert.Description() { Your changes have been saved. }
+}
 ```
 
 ### Loading Spinner
 
-```go
-loadingButton := button.Button(
-    g.Group([]g.Node{
-        icons.Loader(
-            icons.WithSize(16),
-            icons.WithClass("animate-spin"),
-        ),
-        g.Text("Loading..."),
-    }),
-    button.Disabled(),
-)
+```templ
+@button.Button(button.Props{Disabled: true}) {
+    @icons.Loader(icons.WithSize(16), icons.WithClass("animate-spin"))
+    Loading...
+}
 ```
 
 ## Regenerating Icons

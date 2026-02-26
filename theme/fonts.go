@@ -1,12 +1,13 @@
 package theme
 
 import (
+	"context"
 	"fmt"
+	"io"
 	"strconv"
 	"strings"
 
-	g "maragu.dev/gomponents"
-	"maragu.dev/gomponents/html"
+	"github.com/a-h/templ"
 )
 
 // Font defines a font family with its properties.
@@ -79,15 +80,6 @@ func InterFontConfig() FontConfig {
 }
 
 // GenerateGoogleFontsURL generates a Google Fonts URL for the given fonts.
-//
-// Example:
-//
-//	fonts := []Font{
-//	    {Family: "Inter", Weights: []int{400, 600, 700}},
-//	    {Family: "JetBrains Mono", Weights: []int{400, 500}},
-//	}
-//	url := GenerateGoogleFontsURL(fonts)
-//	// Returns: https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=JetBrains+Mono:wght@400;500&display=swap
 func GenerateGoogleFontsURL(fonts []Font) string {
 	if len(fonts) == 0 {
 		return ""
@@ -99,7 +91,6 @@ func GenerateGoogleFontsURL(fonts []Font) string {
 
 	for _, font := range fonts {
 		if font.URL != "" {
-			// Skip fonts with custom URLs
 			continue
 		}
 
@@ -130,69 +121,43 @@ func GenerateGoogleFontsURL(fonts []Font) string {
 		"&display=" + display
 }
 
-// FontLink returns a <link> tag for loading fonts.
+// FontLink returns link tags for loading fonts.
 // It automatically uses Google Fonts for standard fonts or custom URLs.
-func FontLink(fonts ...Font) g.Node {
-	googleFonts := []Font{}
-	customFonts := []g.Node{}
+func FontLink(fonts ...Font) templ.Component {
+	return templ.ComponentFunc(func(_ context.Context, w io.Writer) error {
+		googleFonts := []Font{}
 
-	for _, font := range fonts {
-		if font.URL != "" {
-			// Custom font URL
-			customFonts = append(customFonts, html.Link(
-				g.Attr("rel", "stylesheet"),
-				g.Attr("href", font.URL),
-			))
-		} else {
-			// Google Font
-			googleFonts = append(googleFonts, font)
+		for _, font := range fonts {
+			if font.URL != "" {
+				// Custom font URL
+				if _, err := fmt.Fprintf(w, `<link rel="stylesheet" href="%s">`, font.URL); err != nil {
+					return err
+				}
+			} else {
+				googleFonts = append(googleFonts, font)
+			}
 		}
-	}
 
-	nodes := []g.Node{}
-
-	// Add Google Fonts link if any
-	if len(googleFonts) > 0 {
-		url := GenerateGoogleFontsURL(googleFonts)
-		if url != "" {
-			nodes = append(nodes,
-				// Preconnect for faster loading
-				html.Link(
-					g.Attr("rel", "preconnect"),
-					g.Attr("href", "https://fonts.googleapis.com"),
-				),
-				html.Link(
-					g.Attr("rel", "preconnect"),
-					g.Attr("href", "https://fonts.gstatic.com"),
-					g.Attr("crossorigin", ""),
-				),
-				// Font stylesheet
-				html.Link(
-					g.Attr("rel", "stylesheet"),
-					g.Attr("href", url),
-				),
-			)
+		if len(googleFonts) > 0 {
+			url := GenerateGoogleFontsURL(googleFonts)
+			if url != "" {
+				if _, err := io.WriteString(w, `<link rel="preconnect" href="https://fonts.googleapis.com">`); err != nil {
+					return err
+				}
+				if _, err := io.WriteString(w, `<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>`); err != nil {
+					return err
+				}
+				if _, err := fmt.Fprintf(w, `<link rel="stylesheet" href="%s">`, url); err != nil {
+					return err
+				}
+			}
 		}
-	}
 
-	// Add custom font links
-	nodes = append(nodes, customFonts...)
-
-	return g.Group(nodes)
+		return nil
+	})
 }
 
 // GenerateFontFaceCSS generates @font-face CSS rules for custom fonts.
-// This is useful for self-hosted fonts.
-//
-// Example:
-//
-//	font := Font{
-//	    Family: "CustomFont",
-//	    URL:    "/fonts/custom-font.woff2",
-//	    Weights: []int{400, 700},
-//	    Display: "swap",
-//	}
-//	css := GenerateFontFaceCSS(font)
 func GenerateFontFaceCSS(font Font) string {
 	if font.URL == "" {
 		return ""
@@ -202,7 +167,7 @@ func GenerateFontFaceCSS(font Font) string {
 
 	weights := font.Weights
 	if len(weights) == 0 {
-		weights = []int{400} // Default to normal weight
+		weights = []int{400}
 	}
 
 	styles := font.Styles
@@ -230,13 +195,11 @@ func GenerateFontFaceCSS(font Font) string {
 }
 
 // GenerateFontCSS generates CSS for font configuration.
-// This includes CSS custom properties for font families.
 func GenerateFontCSS(config FontConfig) string {
 	var b strings.Builder
 
 	b.WriteString(":root {\n")
 
-	// Font families
 	sansFallback := formatFontStack(config.Sans.Family, config.Sans.Fallback)
 	serifFallback := formatFontStack(config.Serif.Family, config.Serif.Fallback)
 	monoFallback := formatFontStack(config.Mono.Family, config.Mono.Fallback)
@@ -245,14 +208,12 @@ func GenerateFontCSS(config FontConfig) string {
 	b.WriteString(fmt.Sprintf("  --font-serif: %s;\n", serifFallback))
 	b.WriteString(fmt.Sprintf("  --font-mono: %s;\n", monoFallback))
 
-	// Base font size
 	if config.BaseFontSize != "" {
 		b.WriteString(fmt.Sprintf("  --font-size-base: %s;\n", config.BaseFontSize))
 	}
 
 	b.WriteString("}\n\n")
 
-	// Body styles
 	b.WriteString("body {\n")
 
 	switch config.Body {
@@ -270,7 +231,6 @@ func GenerateFontCSS(config FontConfig) string {
 
 	b.WriteString("}\n\n")
 
-	// Heading styles
 	if config.Heading != config.Body {
 		b.WriteString("h1, h2, h3, h4, h5, h6 {\n")
 
@@ -286,7 +246,6 @@ func GenerateFontCSS(config FontConfig) string {
 		b.WriteString("}\n\n")
 	}
 
-	// Code styles
 	b.WriteString("code, pre, kbd, samp {\n")
 	b.WriteString("  font-family: var(--font-mono);\n")
 	b.WriteString("}\n")
@@ -300,7 +259,6 @@ func formatFontStack(family string, fallbacks []string) string {
 	quoted := make([]string, len(all))
 
 	for i, f := range all {
-		// Quote font names with spaces
 		if strings.Contains(f, " ") {
 			quoted[i] = fmt.Sprintf(`'%s'`, f)
 		} else {
@@ -312,11 +270,11 @@ func formatFontStack(family string, fallbacks []string) string {
 }
 
 // FontStyleTag returns a <style> tag with font configuration CSS.
-func FontStyleTag(config FontConfig) g.Node {
+func FontStyleTag(config FontConfig) templ.Component {
 	css := GenerateFontCSS(config)
 
-	return g.El("style",
-		g.Attr("data-forgeui-fonts", ""),
-		g.Raw(css),
-	)
+	return templ.ComponentFunc(func(_ context.Context, w io.Writer) error {
+		_, err := fmt.Fprintf(w, `<style data-forgeui-fonts>%s</style>`, css)
+		return err
+	})
 }

@@ -1,0 +1,83 @@
+package main
+
+import "github.com/xraph/forgeui/icons"
+
+templ HomePageView() {
+	@PageLayout("Home") {
+		<!-- Hero Section -->
+		<div class="bg-gradient-to-r from-blue-500 to-purple-600 py-24 md:py-32">
+			<div class="container mx-auto px-4 text-center">
+				<h1 class="text-5xl md:text-6xl lg:text-7xl font-bold text-white tracking-tight mb-4">
+					ForgeUI Component Library
+				</h1>
+				<p class="text-xl md:text-2xl text-white/90 max-w-3xl mx-auto mb-8">
+					SSR-first UI components for Go with templ and Tailwind CSS
+				</p>
+				<a href="/alpine" class="inline-flex items-center gap-2 px-8 py-3 bg-white text-blue-600 rounded-lg font-medium hover:bg-blue-50 transition-colors">
+					@icons.ChevronRight(icons.WithSize(16))
+					Get Started
+				</a>
+			</div>
+		</div>
+
+		<!-- Feature Cards -->
+		<div class="container mx-auto px-4 py-16">
+			<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+				@featureCard("Type Safe", "Full Go type checking with templ templates. No runtime template errors.") {
+					@icons.Code(icons.WithSize(24))
+				}
+				@featureCard("Component Library", "35+ production-ready UI components via templui.") {
+					@icons.LayoutGrid(icons.WithSize(24))
+				}
+				@featureCard("Alpine.js Integration", "Seamless Alpine.js directives via templ.Attributes spread syntax.") {
+					@icons.Zap(icons.WithSize(24))
+				}
+				@featureCard("Theme System", "Light/dark mode with CSS custom properties and Tailwind integration.") {
+					@icons.Palette(icons.WithSize(24))
+				}
+				@featureCard("Asset Pipeline", "Built-in asset management with fingerprinting, dev server, and hot reload.") {
+					@icons.PackageIcon(icons.WithSize(24))
+				}
+				@featureCard("Plugin System", "Extensible plugin architecture for components, themes, and middleware.") {
+					@icons.Puzzle(icons.WithSize(24))
+				}
+			</div>
+		</div>
+
+		<!-- Code Example -->
+		<div class="container mx-auto px-4 pb-16">
+			<div class="max-w-3xl mx-auto">
+				<h2 class="text-3xl font-bold tracking-tight mb-6">Simple and Expressive</h2>
+				<div class="bg-gray-900 rounded-lg p-6 overflow-x-auto">
+					<pre class="text-sm text-gray-100"><code>{ codeExample() }</code></pre>
+				</div>
+			</div>
+		</div>
+	}
+}
+
+templ featureCard(title, description string) {
+	<div class="bg-card rounded-lg border border-border p-6 hover:shadow-md transition-shadow">
+		<div class="flex items-center gap-3 mb-3">
+			<div class="text-primary">
+				{ children... }
+			</div>
+			<h3 class="text-lg font-semibold">{ title }</h3>
+		</div>
+		<p class="text-sm text-muted-foreground leading-relaxed">{ description }</p>
+	</div>
+}
+
+func codeExample() string {
+	return `templ HomePage() {
+    @Layout("Home") {
+        <h1 class="text-4xl font-bold">Welcome</h1>
+        <div { alpine.XData("{ count: 0 }")... }>
+            <p>Count: <span x-text="count"></span></p>
+            <button @click="count++" class="btn">
+                Increment
+            </button>
+        </div>
+    }
+}`
+}

@@ -1,14 +1,16 @@
 package assets
 
 import (
+	"context"
 	"fmt"
+	stdhtml "html"
+	"io"
 
-	g "maragu.dev/gomponents"
-	"maragu.dev/gomponents/html"
+	"github.com/a-h/templ"
 )
 
 // StyleSheet creates a <link> element for a CSS file
-func (m *Manager) StyleSheet(path string, opts ...StyleOption) g.Node {
+func (m *Manager) StyleSheet(path string, opts ...StyleOption) templ.Component {
 	fmt.Println("StyleSheet", path)
 	cfg := &styleConfig{}
 	for _, opt := range opts {
@@ -17,28 +19,36 @@ func (m *Manager) StyleSheet(path string, opts ...StyleOption) g.Node {
 
 	url := m.URL(path)
 
-	attrs := []g.Node{
-		html.Rel("stylesheet"),
-		html.Href(url),
-	}
+	return templ.ComponentFunc(func(_ context.Context, w io.Writer) error {
+		if _, err := fmt.Fprintf(w, `<link rel="stylesheet" href="%s"`, stdhtml.EscapeString(url)); err != nil {
+			return err
+		}
 
-	if cfg.media != "" {
-		attrs = append(attrs, g.Attr("media", cfg.media))
-	}
+		if cfg.media != "" {
+			if _, err := fmt.Fprintf(w, ` media="%s"`, stdhtml.EscapeString(cfg.media)); err != nil {
+				return err
+			}
+		}
 
-	if cfg.integrity != "" {
-		attrs = append(attrs, g.Attr("integrity", cfg.integrity))
-	}
+		if cfg.integrity != "" {
+			if _, err := fmt.Fprintf(w, ` integrity="%s"`, stdhtml.EscapeString(cfg.integrity)); err != nil {
+				return err
+			}
+		}
 
-	if cfg.crossOrigin != "" {
-		attrs = append(attrs, g.Attr("crossorigin", cfg.crossOrigin))
-	}
+		if cfg.crossOrigin != "" {
+			if _, err := fmt.Fprintf(w, ` crossorigin="%s"`, stdhtml.EscapeString(cfg.crossOrigin)); err != nil {
+				return err
+			}
+		}
 
-	return html.Link(attrs...)
+		_, err := io.WriteString(w, `>`)
+		return err
+	})
 }
 
 // PreloadStyleSheet creates a <link rel="preload"> element for a CSS file
-func (m *Manager) PreloadStyleSheet(path string, opts ...StyleOption) g.Node {
+func (m *Manager) PreloadStyleSheet(path string, opts ...StyleOption) templ.Component {
 	cfg := &styleConfig{}
 	for _, opt := range opts {
 		opt(cfg)
@@ -46,32 +56,56 @@ func (m *Manager) PreloadStyleSheet(path string, opts ...StyleOption) g.Node {
 
 	url := m.URL(path)
 
-	attrs := []g.Node{
-		html.Rel("preload"),
-		html.As("style"),
-		html.Href(url),
-	}
+	return templ.ComponentFunc(func(_ context.Context, w io.Writer) error {
+		if _, err := fmt.Fprintf(w, `<link rel="preload" as="style" href="%s"`, stdhtml.EscapeString(url)); err != nil {
+			return err
+		}
 
-	if cfg.integrity != "" {
-		attrs = append(attrs, g.Attr("integrity", cfg.integrity))
-	}
+		if cfg.integrity != "" {
+			if _, err := fmt.Fprintf(w, ` integrity="%s"`, stdhtml.EscapeString(cfg.integrity)); err != nil {
+				return err
+			}
+		}
 
-	if cfg.crossOrigin != "" {
-		attrs = append(attrs, g.Attr("crossorigin", cfg.crossOrigin))
-	}
+		if cfg.crossOrigin != "" {
+			if _, err := fmt.Fprintf(w, ` crossorigin="%s"`, stdhtml.EscapeString(cfg.crossOrigin)); err != nil {
+				return err
+			}
+		}
 
-	return html.Link(attrs...)
+		_, err := io.WriteString(w, `>`)
+		return err
+	})
 }
 
 // InlineCSS creates a <style> element with inline CSS content
-func InlineCSS(content string) g.Node {
-	return html.StyleEl(g.Raw(content))
+func InlineCSS(content string) templ.Component {
+	return templ.ComponentFunc(func(_ context.Context, w io.Writer) error {
+		_, err := fmt.Fprintf(w, `<style>%s</style>`, content)
+		return err
+	})
 }
 
 // InlineCSSWithAttrs creates a <style> element with inline CSS and custom attributes
-func InlineCSSWithAttrs(content string, attrs ...g.Node) g.Node {
-	allAttrs := append([]g.Node{}, attrs...)
-	allAttrs = append(allAttrs, g.Raw(content))
+func InlineCSSWithAttrs(content string, attrs templ.Attributes) templ.Component {
+	return templ.ComponentFunc(func(_ context.Context, w io.Writer) error {
+		if _, err := io.WriteString(w, `<style`); err != nil {
+			return err
+		}
 
-	return html.StyleEl(allAttrs...)
+		for k, v := range attrs {
+			if s, ok := v.(string); ok {
+				if _, err := fmt.Fprintf(w, ` %s="%s"`, k, stdhtml.EscapeString(s)); err != nil {
+					return err
+				}
+			} else if v == true {
+				if _, err := fmt.Fprintf(w, ` %s`, k); err != nil {
+					return err
+				}
+			}
+		}
+
+		_, err := fmt.Fprintf(w, `>%s</style>`, content)
+		return err
+	})
 }

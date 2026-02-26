@@ -8,7 +8,7 @@ import (
 	"testing"
 	"time"
 
-	g "maragu.dev/gomponents"
+	"github.com/a-h/templ"
 )
 
 func TestLoaderExecution(t *testing.T) {
@@ -20,9 +20,9 @@ func TestLoaderExecution(t *testing.T) {
 	}
 
 	// Create a route with loader
-	r.Get("/test", func(ctx *PageContext) (g.Node, error) {
+	r.Get("/test", func(ctx *PageContext) (templ.Component, error) {
 		data := ctx.LoaderData().(string)
-		return g.Text(data), nil
+		return templ.Raw(data), nil
 	}).Loader(loader)
 
 	// Test the route
@@ -49,9 +49,9 @@ func TestLoaderWithParams(t *testing.T) {
 	}
 
 	// Create a route with loader
-	r.Get("/users/:id", func(ctx *PageContext) (g.Node, error) {
+	r.Get("/users/:id", func(ctx *PageContext) (templ.Component, error) {
 		data := ctx.LoaderData().(string)
-		return g.Text(data), nil
+		return templ.Raw(data), nil
 	}).Loader(loader)
 
 	// Test the route
@@ -73,8 +73,8 @@ func TestLoaderError(t *testing.T) {
 	}
 
 	// Create a route with loader
-	r.Get("/test", func(ctx *PageContext) (g.Node, error) {
-		return g.Text("should not reach here"), nil
+	r.Get("/test", func(ctx *PageContext) (templ.Component, error) {
+		return templ.Raw("should not reach here"), nil
 	}).Loader(loader)
 
 	// Test the route
@@ -97,8 +97,8 @@ func TestLoaderTimeout(t *testing.T) {
 	}
 
 	// Create a route with loader
-	route := r.Get("/test", func(ctx *PageContext) (g.Node, error) {
-		return g.Text("content"), nil
+	route := r.Get("/test", func(ctx *PageContext) (templ.Component, error) {
+		return templ.Raw("content"), nil
 	})
 	route.LoaderFn = loader
 
@@ -133,9 +133,9 @@ func TestLoaderDataAccess(t *testing.T) {
 	}
 
 	// Create a route with loader
-	r.Get("/user", func(ctx *PageContext) (g.Node, error) {
+	r.Get("/user", func(ctx *PageContext) (templ.Component, error) {
 		user := ctx.LoaderData().(*User)
-		return g.Text(user.Name), nil
+		return templ.Raw(user.Name), nil
 	}).Loader(loader)
 
 	// Test the route
@@ -157,8 +157,8 @@ func TestLoaderWithNonLoaderError(t *testing.T) {
 	}
 
 	// Create a route with loader
-	r.Get("/test", func(ctx *PageContext) (g.Node, error) {
-		return g.Text("should not reach here"), nil
+	r.Get("/test", func(ctx *PageContext) (templ.Component, error) {
+		return templ.Raw("should not reach here"), nil
 	}).Loader(loader)
 
 	// Test the route
@@ -176,13 +176,13 @@ func TestNoLoader(t *testing.T) {
 	r := New()
 
 	// Create a route without loader
-	r.Get("/test", func(ctx *PageContext) (g.Node, error) {
+	r.Get("/test", func(ctx *PageContext) (templ.Component, error) {
 		data := ctx.LoaderData()
 		if data != nil {
 			t.Error("Expected LoaderData to be nil when no loader is set")
 		}
 
-		return g.Text("content"), nil
+		return templ.Raw("content"), nil
 	})
 
 	// Test the route

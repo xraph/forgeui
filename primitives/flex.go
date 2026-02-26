@@ -1,22 +1,24 @@
 package primitives
 
 import (
-	g "maragu.dev/gomponents"
-	"maragu.dev/gomponents/html"
+	"context"
+	"io"
+
+	"github.com/a-h/templ"
 
 	"github.com/xraph/forgeui"
 )
 
 // FlexProps defines properties for the Flex component
 type FlexProps struct {
-	Direction string // row, col, row-reverse, col-reverse
-	Wrap      string // wrap, nowrap, wrap-reverse
-	Justify   string // start, end, center, between, around, evenly
-	Align     string // start, end, center, stretch, baseline
-	Gap       string // gap size
-	Class     string
-	Children  []g.Node
-	Attrs     []g.Node
+	Direction  string // row, col, row-reverse, col-reverse
+	Wrap       string // wrap, nowrap, wrap-reverse
+	Justify    string // start, end, center, between, around, evenly
+	Align      string // start, end, center, stretch, baseline
+	Gap        string // gap size
+	Class      string
+	Children   []templ.Component
+	Attributes templ.Attributes
 }
 
 // FlexOption is a functional option for configuring Flex
@@ -52,30 +54,27 @@ func FlexClass(class string) FlexOption {
 	return func(p *FlexProps) { p.Class = class }
 }
 
-// FlexChildren adds child nodes
-func FlexChildren(children ...g.Node) FlexOption {
+// FlexChildren adds child components
+func FlexChildren(children ...templ.Component) FlexOption {
 	return func(p *FlexProps) { p.Children = append(p.Children, children...) }
 }
 
 // FlexAttrs adds custom attributes
-func FlexAttrs(attrs ...g.Node) FlexOption {
-	return func(p *FlexProps) { p.Attrs = append(p.Attrs, attrs...) }
+func FlexAttrs(attrs templ.Attributes) FlexOption {
+	return func(p *FlexProps) {
+		if p.Attributes == nil {
+			p.Attributes = templ.Attributes{}
+		}
+		for k, v := range attrs {
+			p.Attributes[k] = v
+		}
+	}
 }
 
-// Flex creates a flexbox container
-func Flex(opts ...FlexOption) g.Node {
-	props := &FlexProps{
-		Direction: "row",
-		Wrap:      "nowrap",
-	}
-
-	for _, opt := range opts {
-		opt(props)
-	}
-
+// flexClasses computes the CSS classes for a Flex component.
+func flexClasses(props *FlexProps) string {
 	classes := []string{"flex"}
 
-	// Direction
 	switch props.Direction {
 	case "col", "column":
 		classes = append(classes, "flex-col")
@@ -83,10 +82,8 @@ func Flex(opts ...FlexOption) g.Node {
 		classes = append(classes, "flex-row-reverse")
 	case "col-reverse", "column-reverse":
 		classes = append(classes, "flex-col-reverse")
-		// "row" is default, no extra class needed
 	}
 
-	// Wrap
 	switch props.Wrap {
 	case "wrap":
 		classes = append(classes, "flex-wrap")
@@ -96,7 +93,6 @@ func Flex(opts ...FlexOption) g.Node {
 		classes = append(classes, "flex-nowrap")
 	}
 
-	// Justify
 	switch props.Justify {
 	case "start":
 		classes = append(classes, "justify-start")
@@ -112,7 +108,6 @@ func Flex(opts ...FlexOption) g.Node {
 		classes = append(classes, "justify-evenly")
 	}
 
-	// Align
 	switch props.Align {
 	case "start":
 		classes = append(classes, "items-start")
@@ -126,18 +121,37 @@ func Flex(opts ...FlexOption) g.Node {
 		classes = append(classes, "items-baseline")
 	}
 
-	// Gap
 	if props.Gap != "" {
 		classes = append(classes, "gap-"+props.Gap)
 	}
 
-	// Custom class
 	if props.Class != "" {
 		classes = append(classes, props.Class)
 	}
 
-	attrs := []g.Node{html.Class(forgeui.CN(classes...))}
-	attrs = append(attrs, props.Attrs...)
+	return forgeui.CN(classes...)
+}
 
-	return html.Div(g.Group(attrs), g.Group(props.Children))
+// Flex creates a flexbox container.
+func Flex(opts ...FlexOption) templ.Component {
+	props := &FlexProps{
+		Direction: "row",
+		Wrap:      "nowrap",
+	}
+
+	for _, opt := range opts {
+		opt(props)
+	}
+
+	classes := flexClasses(props)
+
+	return templ.ComponentFunc(func(ctx context.Context, w io.Writer) error {
+		if err := writeOpenTag(w, "div", classes, props.Attributes); err != nil {
+			return err
+		}
+		if err := renderChildren(ctx, w, props.Children); err != nil {
+			return err
+		}
+		return writeCloseTag(w, "div")
+	})
 }

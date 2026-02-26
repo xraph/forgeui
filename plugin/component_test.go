@@ -2,19 +2,27 @@ package plugin
 
 import (
 	"context"
+	"io"
 	"testing"
 
+	"github.com/a-h/templ"
 	"github.com/xraph/forgeui"
-	g "maragu.dev/gomponents"
-	"maragu.dev/gomponents/html"
 )
 
 // Mock component constructor
-func mockComponentConstructor(props any, children ...g.Node) g.Node {
-	return html.Div(
-		html.Class("mock-component"),
-		g.Group(children),
-	)
+func mockComponentConstructor(props any, children ...templ.Component) templ.Component {
+	return templ.ComponentFunc(func(ctx context.Context, w io.Writer) error {
+		if _, err := io.WriteString(w, `<div class="mock-component">`); err != nil {
+			return err
+		}
+		for _, child := range children {
+			if err := child.Render(ctx, w); err != nil {
+				return err
+			}
+		}
+		_, err := io.WriteString(w, `</div>`)
+		return err
+	})
 }
 
 func TestComponentPluginBase(t *testing.T) {
@@ -125,7 +133,6 @@ func TestComponentPluginRegistration(t *testing.T) {
 		t.Fatalf("Register() error = %v", err)
 	}
 
-	// Should be retrievable as ComponentPlugin
 	cp, ok := registry.GetComponentPlugin("components")
 	if !ok {
 		t.Error("component plugin not found in registry")

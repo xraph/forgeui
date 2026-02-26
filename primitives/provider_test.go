@@ -2,17 +2,17 @@ package primitives
 
 import (
 	"bytes"
+	"context"
 	"strings"
 	"testing"
 
-	g "maragu.dev/gomponents"
-	"maragu.dev/gomponents/html"
+	"github.com/a-h/templ"
 )
 
-// Helper function to render a node to string
-func renderNode(node g.Node) string {
+// Helper function to render a component to string
+func renderComponent(comp templ.Component) string {
 	var buf bytes.Buffer
-	_ = node.Render(&buf)
+	_ = comp.Render(context.Background(), &buf)
 
 	return buf.String()
 }
@@ -36,7 +36,7 @@ func TestProvider(t *testing.T) {
 			}),
 		)
 
-		rendered := renderNode(provider)
+		rendered := renderComponent(provider)
 
 		// Should have data-provider attribute
 		assertContains(t, rendered, `data-provider="test"`)
@@ -58,7 +58,7 @@ func TestProvider(t *testing.T) {
 			`),
 		)
 
-		rendered := renderNode(provider)
+		rendered := renderComponent(provider)
 
 		assertContains(t, rendered, `data-provider="counter"`)
 		assertContains(t, rendered, `increment()`)
@@ -72,7 +72,7 @@ func TestProvider(t *testing.T) {
 			WithProviderInit("this.ready = true"),
 		)
 
-		rendered := renderNode(provider)
+		rendered := renderComponent(provider)
 
 		assertContains(t, rendered, `x-init=`)
 		assertContains(t, rendered, `this.ready = true`)
@@ -84,7 +84,7 @@ func TestProvider(t *testing.T) {
 			WithProviderClass("custom-class"),
 		)
 
-		rendered := renderNode(provider)
+		rendered := renderComponent(provider)
 
 		assertContains(t, rendered, `class="custom-class"`)
 	})
@@ -93,11 +93,11 @@ func TestProvider(t *testing.T) {
 		provider := Provider(
 			WithProviderName("test"),
 			WithProviderChildren(
-				html.Div(g.Text("child content")),
+				templ.Raw("<div>child content</div>"),
 			),
 		)
 
-		rendered := renderNode(provider)
+		rendered := renderComponent(provider)
 
 		assertContains(t, rendered, "child content")
 	})
@@ -109,7 +109,7 @@ func TestProvider(t *testing.T) {
 			WithProviderDebug(true),
 		)
 
-		rendered := renderNode(provider)
+		rendered := renderComponent(provider)
 
 		assertContains(t, rendered, `x-init=`)
 		assertContains(t, rendered, `console.log`)
@@ -123,7 +123,7 @@ func TestProvider(t *testing.T) {
 			WithProviderHook("onUpdate", "console.log('updated')"),
 		)
 
-		rendered := renderNode(provider)
+		rendered := renderComponent(provider)
 
 		assertContains(t, rendered, `x-init=`)
 		assertContains(t, rendered, `console.log`)
@@ -135,12 +135,10 @@ func TestProvider(t *testing.T) {
 	t.Run("returns children without wrapper when no name", func(t *testing.T) {
 		provider := Provider(
 			WithProviderChildren(
-				html.Div(g.Text("content")),
+				templ.Raw("<div>content</div>"),
 			),
 		)
 
-		// Provider returns a group when no name, which can't be rendered directly
-		// This is expected behavior - just verify it doesn't panic during construction
 		if provider == nil {
 			t.Error("Expected provider to be non-nil")
 		}
@@ -204,7 +202,7 @@ func TestProviderScriptUtilities(t *testing.T) {
 	t.Run("generates script with utilities", func(t *testing.T) {
 		script := ProviderScriptUtilities()
 
-		rendered := renderNode(script)
+		rendered := renderComponent(script)
 
 		// Should be a script tag
 		assertContains(t, rendered, "<script>")
@@ -235,10 +233,7 @@ func TestProviderStack(t *testing.T) {
 			),
 		)
 
-		// ProviderStack returns a group, which can't be rendered directly
-		// Wrap it in a container for testing
-		wrapper := html.Div(stack)
-		rendered := renderNode(wrapper)
+		rendered := renderComponent(stack)
 
 		// Should have both providers
 		assertContains(t, rendered, `data-provider="theme"`)
@@ -279,12 +274,12 @@ func TestProviderIntegration(t *testing.T) {
 			WithProviderInit("console.log('Counter initialized')"),
 			WithProviderClass("counter-provider"),
 			WithProviderChildren(
-				html.Button(g.Text("Increment")),
-				html.Span(g.Text("Count")),
+				templ.Raw("<button>Increment</button>"),
+				templ.Raw("<span>Count</span>"),
 			),
 		)
 
-		rendered := renderNode(provider)
+		rendered := renderComponent(provider)
 
 		// Verify all parts are present
 		assertContains(t, rendered, `data-provider="counter"`)

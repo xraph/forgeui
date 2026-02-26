@@ -20,50 +20,99 @@ func (t *MinimalTemplate) Description() string {
 
 func (t *MinimalTemplate) Generate(dir, projectName, modulePath string) error {
 	// Create main.go
-	mainGo := fmt.Sprintf("package main\n\nimport (\n\t\"fmt\"\n\t\"net/http\"\n\n\t\"github.com/xraph/forgeui\"\n\tg \"maragu.dev/gomponents\"\n\t\"maragu.dev/gomponents/html\"\n)\n\nfunc main() {\n\t// Initialize ForgeUI app\n\t:= forgeui.New(\n\t\tforgeui.WithDebug(true),\n\t)\n\n\t// Define home page\n\tapp.Router.Get(\"/\", homePage)\n\n\t// Serve static assets\n\thttp.Handle(\"/static/\", app.Assets.Handler())\n\n\t// Start server\n\tfmt.Println(\"Server starting on http://localhost:3000\")\n\tif err := http.ListenAndServe(\":3000\", app); err != nil {\n\t\tpanic(err)\n\t}\n\nfunc homePage(ctx *forgeui.PageContext) g.Node {\n\treturn html.HTML(\n\t\thtml.Lang(\"en\"),\n\t\thtml.Head(\n\t\t\thtml.Meta(html.Charset(\"utf-8\")),\n\t\t\thtml.Meta(html.Name(\"viewport\"), html.Content(\"width=device-width, initial-scale=1\")),\n\t\t\thtml.TitleEl(g.Text(\"Welcome to %s\")),\n\t\t\thtml.StyleEl(g.Raw(pageStyles)),\n\t\t),\n\t\thtml.Body(\n\t\t\thtml.Div(\n\t\t\t\thtml.Class(\"container\"),\n\t\t\t\thtml.H1(g.Text(\"Welcome to ForgeUI\")),\n\t\t\t\thtml.P(g.Text(\"Your minimal ForgeUI application is up and running!\")),\n\t\t\t\thtml.P(\n\t\t\t\t\tg.Text(\"Edit \"),\n\t\t\t\t\thtml.Code(g.Text(\"main.go\")),\n\t\t\t\t\tg.Text(\" to get started.\"),\n\t\t\t\t),\n\t)\n}\n\nconst pageStyles"+"`"+`
-body {
-	margin: 0;
-	padding: 0;
-	font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
-	background: linear-gradient(135deg, #667eea 0%%, #764ba2 100%%);
-	min-height: 100vh;
-	display: flex;
-	align-items: center;
-	justify-content: center;
+	mainGo := fmt.Sprintf(`package main
+
+import (
+	"fmt"
+	"net/http"
+
+	"github.com/a-h/templ"
+	"github.com/xraph/forgeui"
+	"github.com/xraph/forgeui/router"
+)
+
+func main() {
+	// Initialize ForgeUI app
+	app := forgeui.New(
+		forgeui.WithDebug(true),
+	)
+
+	// Define home page
+	app.Router.Get("/", homePage)
+
+	// Serve static assets
+	http.Handle("/static/", app.Assets.Handler())
+
+	// Start server
+	fmt.Println("Server starting on http://localhost:3000")
+	if err := http.ListenAndServe(":3000", app); err != nil {
+		panic(err)
+	}
 }
 
-.container {
-	background: white;
-	border-radius: 12px;
-	padding: 3rem;
-	box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
-	text-align: center;
-	max-width: 600px;
+func homePage(ctx *router.PageContext) (templ.Component, error) {
+	return HomePageView(ctx), nil
 }
-
-h1 {
-	color: #667eea;
-	margin-top: 0;
-	font-size: 2.5rem;
-}
-
-p {
-	color: #4a5568;
-	line-height: 1.6;
-	font-size: 1.1rem;
-}
-
-code {
-	background: #f7fafc;
-	padding: 0.2rem 0.5rem;
-	border-radius: 4px;
-	font-family: 'Courier New', monospace;
-	color: #667eea;
-}
-`+"`"+`
-`, projectName)
+`)
 
 	if err := util.CreateFile(filepath.Join(dir, "main.go"), mainGo); err != nil {
+		return err
+	}
+
+	// Create home.templ
+	homeTempl := fmt.Sprintf(`package main
+
+import "github.com/xraph/forgeui/router"
+
+templ HomePageView(ctx *router.PageContext) {
+	<!DOCTYPE html>
+	<html lang="en">
+		<head>
+			<meta charset="utf-8"/>
+			<meta name="viewport" content="width=device-width, initial-scale=1"/>
+			<title>Welcome to %s</title>
+			<style>
+				body {
+					margin: 0;
+					padding: 0;
+					font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+					background: linear-gradient(135deg, #667eea 0%%, #764ba2 100%%);
+					min-height: 100vh;
+					display: flex;
+					align-items: center;
+					justify-content: center;
+				}
+				.container {
+					background: white;
+					border-radius: 12px;
+					padding: 3rem;
+					box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+					text-align: center;
+					max-width: 600px;
+				}
+				h1 { color: #667eea; margin-top: 0; font-size: 2.5rem; }
+				p { color: #4a5568; line-height: 1.6; font-size: 1.1rem; }
+				code {
+					background: #f7fafc;
+					padding: 0.2rem 0.5rem;
+					border-radius: 4px;
+					font-family: 'Courier New', monospace;
+					color: #667eea;
+				}
+			</style>
+		</head>
+		<body>
+			<div class="container">
+				<h1>Welcome to ForgeUI</h1>
+				<p>Your minimal ForgeUI application is up and running!</p>
+				<p>Edit <code>main.go</code> to get started.</p>
+			</div>
+		</body>
+	</html>
+}
+`, projectName)
+
+	if err := util.CreateFile(filepath.Join(dir, "home.templ"), homeTempl); err != nil {
 		return err
 	}
 
@@ -114,6 +163,9 @@ dist/
 *.out
 go.sum
 
+# Templ generated
+*_templ.go
+
 # IDE
 .vscode/
 .idea/
@@ -146,7 +198,7 @@ forgeui dev
 Or run directly with Go:
 
 `+"```"+`bash
-go run main.go
+templ generate && go run .
 `+"```"+`
 
 Open [http://localhost:3000](http://localhost:3000) in your browser.

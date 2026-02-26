@@ -5,7 +5,7 @@ import (
 	"net/http/httptest"
 	"testing"
 
-	g "maragu.dev/gomponents"
+	"github.com/a-h/templ"
 )
 
 func TestNew(t *testing.T) {
@@ -26,8 +26,8 @@ func TestNew(t *testing.T) {
 func TestRouter_Get(t *testing.T) {
 	r := New()
 
-	handler := func(ctx *PageContext) (g.Node, error) {
-		return g.Text("Hello"), nil
+	handler := func(ctx *PageContext) (templ.Component, error) {
+		return templ.Raw("Hello"), nil
 	}
 
 	route := r.Get("/test", handler)
@@ -48,8 +48,8 @@ func TestRouter_Get(t *testing.T) {
 func TestRouter_ServeHTTP_Success(t *testing.T) {
 	r := New()
 
-	r.Get("/hello", func(ctx *PageContext) (g.Node, error) {
-		return g.Text("Hello, World!"), nil
+	r.Get("/hello", func(ctx *PageContext) (templ.Component, error) {
+		return templ.Raw("Hello, World!"), nil
 	})
 
 	req := httptest.NewRequest(MethodGet, "/hello", nil)
@@ -70,8 +70,8 @@ func TestRouter_ServeHTTP_Success(t *testing.T) {
 func TestRouter_ServeHTTP_NotFound(t *testing.T) {
 	r := New()
 
-	r.Get("/hello", func(ctx *PageContext) (g.Node, error) {
-		return g.Text("Hello"), nil
+	r.Get("/hello", func(ctx *PageContext) (templ.Component, error) {
+		return templ.Raw("Hello"), nil
 	})
 
 	req := httptest.NewRequest(MethodGet, "/notfound", nil)
@@ -87,8 +87,8 @@ func TestRouter_ServeHTTP_NotFound(t *testing.T) {
 func TestRouter_ServeHTTP_MethodMismatch(t *testing.T) {
 	r := New()
 
-	r.Get("/hello", func(ctx *PageContext) (g.Node, error) {
-		return g.Text("Hello"), nil
+	r.Get("/hello", func(ctx *PageContext) (templ.Component, error) {
+		return templ.Raw("Hello"), nil
 	})
 
 	req := httptest.NewRequest(MethodPost, "/hello", nil)
@@ -104,9 +104,9 @@ func TestRouter_ServeHTTP_MethodMismatch(t *testing.T) {
 func TestRouter_Parameters(t *testing.T) {
 	r := New()
 
-	r.Get("/users/:id", func(ctx *PageContext) (g.Node, error) {
+	r.Get("/users/:id", func(ctx *PageContext) (templ.Component, error) {
 		id := ctx.Param("id")
-		return g.Text("User ID: " + id), nil
+		return templ.Raw("User ID: " + id), nil
 	})
 
 	req := httptest.NewRequest(MethodGet, "/users/123", nil)
@@ -129,9 +129,9 @@ func TestRouter_Parameters(t *testing.T) {
 func TestRouter_QueryParams(t *testing.T) {
 	r := New()
 
-	r.Get("/search", func(ctx *PageContext) (g.Node, error) {
+	r.Get("/search", func(ctx *PageContext) (templ.Component, error) {
 		q := ctx.Query("q")
-		return g.Text("Search: " + q), nil
+		return templ.Raw("Search: " + q), nil
 	})
 
 	req := httptest.NewRequest(MethodGet, "/search?q=golang", nil)
@@ -152,14 +152,14 @@ func TestRouter_Middleware(t *testing.T) {
 
 	// Add middleware that adds a header
 	r.Use(func(next PageHandler) PageHandler {
-		return func(ctx *PageContext) (g.Node, error) {
+		return func(ctx *PageContext) (templ.Component, error) {
 			ctx.SetHeader("X-Test", "middleware")
 			return next(ctx)
 		}
 	})
 
-	r.Get("/test", func(ctx *PageContext) (g.Node, error) {
-		return g.Text("OK"), nil
+	r.Get("/test", func(ctx *PageContext) (templ.Component, error) {
+		return templ.Raw("OK"), nil
 	})
 
 	req := httptest.NewRequest(MethodGet, "/test", nil)
@@ -175,8 +175,8 @@ func TestRouter_Middleware(t *testing.T) {
 func TestRouter_NamedRoutes(t *testing.T) {
 	r := New()
 
-	route := r.Get("/users/:id", func(ctx *PageContext) (g.Node, error) {
-		return g.Text("User"), nil
+	route := r.Get("/users/:id", func(ctx *PageContext) (templ.Component, error) {
+		return templ.Raw("User"), nil
 	})
 
 	r.Name("user", route)
@@ -192,8 +192,8 @@ func TestRouter_NamedRoutes(t *testing.T) {
 func TestRouter_Match(t *testing.T) {
 	r := New()
 
-	r.Match([]string{MethodGet, MethodPost}, "/api", func(ctx *PageContext) (g.Node, error) {
-		return g.Text("API"), nil
+	r.Match([]string{MethodGet, MethodPost}, "/api", func(ctx *PageContext) (templ.Component, error) {
+		return templ.Raw("API"), nil
 	})
 
 	// Test GET
@@ -227,8 +227,8 @@ func TestRouter_Match(t *testing.T) {
 func TestRouter_BasePath(t *testing.T) {
 	r := New(WithBasePath("/api/v1"))
 
-	r.Get("/users", func(ctx *PageContext) (g.Node, error) {
-		return g.Text("Users"), nil
+	r.Get("/users", func(ctx *PageContext) (templ.Component, error) {
+		return templ.Raw("Users"), nil
 	})
 
 	req := httptest.NewRequest(MethodGet, "/api/v1/users", nil)
@@ -242,9 +242,9 @@ func TestRouter_BasePath(t *testing.T) {
 }
 
 func TestRouter_CustomNotFound(t *testing.T) {
-	customHandler := func(ctx *PageContext) (g.Node, error) {
+	customHandler := func(ctx *PageContext) (templ.Component, error) {
 		ctx.ResponseWriter.WriteHeader(http.StatusNotFound)
-		return g.Text("Custom 404"), nil
+		return templ.Raw("Custom 404"), nil
 	}
 
 	r := New(WithNotFound(customHandler))

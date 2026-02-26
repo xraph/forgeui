@@ -2,6 +2,7 @@ package theme_test
 
 import (
 	"bytes"
+	"context"
 	"strings"
 	"testing"
 
@@ -13,7 +14,7 @@ func TestDarkModeScript(t *testing.T) {
 
 	node := theme.DarkModeScript()
 
-	if err := node.Render(&buf); err != nil {
+	if err := node.Render(context.Background(), &buf); err != nil {
 		t.Fatalf("render error: %v", err)
 	}
 
@@ -50,7 +51,7 @@ func TestDarkModeScriptWithDefault(t *testing.T) {
 
 	node := theme.DarkModeScriptWithDefault("dark")
 
-	if err := node.Render(&buf); err != nil {
+	if err := node.Render(context.Background(), &buf); err != nil {
 		t.Fatalf("render error: %v", err)
 	}
 
@@ -66,7 +67,7 @@ func TestThemeScript(t *testing.T) {
 
 	node := theme.ThemeScript()
 
-	if err := node.Render(&buf); err != nil {
+	if err := node.Render(context.Background(), &buf); err != nil {
 		t.Fatalf("render error: %v", err)
 	}
 
@@ -107,7 +108,7 @@ func TestThemeStyleCloak(t *testing.T) {
 
 	node := theme.ThemeStyleCloak()
 
-	if err := node.Render(&buf); err != nil {
+	if err := node.Render(context.Background(), &buf); err != nil {
 		t.Fatalf("render error: %v", err)
 	}
 

@@ -5,7 +5,7 @@ import (
 	"fmt"
 	"strings"
 
-	g "maragu.dev/gomponents"
+	"github.com/a-h/templ"
 )
 
 // XData creates an x-data attribute with the given state.
@@ -19,9 +19,9 @@ import (
 //	    "count": 0,
 //	    "increment": alpine.RawJS("function() { this.count++ }"),
 //	})
-func XData(state map[string]any) g.Node {
+func XData(state map[string]any) templ.Attributes {
 	if len(state) == 0 {
-		return g.Attr("x-data", "")
+		return templ.Attributes{"x-data": ""}
 	}
 
 	// Check if any value is RawJS - if so, use custom serialization
@@ -39,14 +39,14 @@ func XData(state map[string]any) g.Node {
 		jsonData, err := json.Marshal(state)
 		if err != nil {
 			// Fallback to empty object on marshal error
-			return g.Attr("x-data", "{}")
+			return templ.Attributes{"x-data": "{}"}
 		}
 
-		return g.Attr("x-data", string(jsonData))
+		return templ.Attributes{"x-data": string(jsonData)}
 	}
 
 	// Complex case: contains RawJS, use custom serialization
-	return g.Attr("x-data", serializeXDataWithRawJS(state))
+	return templ.Attributes{"x-data": serializeXDataWithRawJS(state)}
 }
 
 // serializeXDataWithRawJS creates a JavaScript object string that can contain
@@ -137,7 +137,7 @@ func needsQuoting(key string) bool {
 }
 
 // Data is an alias for XData for consistency.
-func Data(state map[string]any) g.Node {
+func Data(state map[string]any) templ.Attributes {
 	return XData(state)
 }
 
@@ -148,22 +148,15 @@ func Data(state map[string]any) g.Node {
 //
 //	alpine.XShow("open")
 //	alpine.XShow("count > 5")
-func XShow(expr string) g.Node {
-	return g.Attr("x-show", expr)
+func XShow(expr string) templ.Attributes {
+	return templ.Attributes{"x-show": expr}
 }
 
 // XIf creates an x-if directive for conditional rendering.
 // Should be used on <template> elements. The element will be
 // added/removed from the DOM based on the expression.
-//
-// Example:
-//
-//	html.Template(
-//	    alpine.XIf("isVisible"),
-//	    html.Div(g.Text("Content")),
-//	)
-func XIf(expr string) g.Node {
-	return g.Attr("x-if", expr)
+func XIf(expr string) templ.Attributes {
+	return templ.Attributes{"x-if": expr}
 }
 
 // XFor creates an x-for directive for list rendering.
@@ -173,37 +166,34 @@ func XIf(expr string) g.Node {
 //
 //	alpine.XFor("item in items")
 //	alpine.XFor("(item, index) in items")
-func XFor(expr string) g.Node {
-	return g.Attr("x-for", expr)
+func XFor(expr string) templ.Attributes {
+	return templ.Attributes{"x-for": expr}
 }
 
 // XForKeyed creates an x-for directive with a :key binding
 // for optimized list rendering.
 //
-// Example:
+// Example (in .templ files):
 //
-//	html.Template(
-//	    g.Group(alpine.XForKeyed("item in items", "item.id")),
-//	    html.Div(alpine.XText("item.name")),
-//	)
-func XForKeyed(expr, key string) []g.Node {
-	return []g.Node{
-		g.Attr("x-for", expr),
-		g.Attr(":key", key),
+//	<template { alpine.XForKeyed("item in items", "item.id")... }>
+func XForKeyed(expr, key string) templ.Attributes {
+	return templ.Attributes{
+		"x-for": expr,
+		":key":  key,
 	}
 }
 
 // XCloak creates an x-cloak attribute to prevent flash of
 // unstyled content before Alpine initializes.
 // Add CSS: [x-cloak] { display: none !important; }
-func XCloak() g.Node {
-	return g.Attr("x-cloak", "")
+func XCloak() templ.Attributes {
+	return templ.Attributes{"x-cloak": ""}
 }
 
 // XIgnore creates an x-ignore attribute to prevent Alpine
 // from initializing this element and its children.
-func XIgnore() g.Node {
-	return g.Attr("x-ignore", "")
+func XIgnore() templ.Attributes {
+	return templ.Attributes{"x-ignore": ""}
 }
 
 // XBind creates a dynamic attribute binding using the :attr shorthand.
@@ -212,8 +202,8 @@ func XIgnore() g.Node {
 //
 //	alpine.XBind("disabled", "loading")
 //	alpine.XBind("href", "'/users/' + userId")
-func XBind(attr, expr string) g.Node {
-	return g.Attr(":"+attr, expr)
+func XBind(attr, expr string) templ.Attributes {
+	return templ.Attributes{":" + attr: expr}
 }
 
 // XBindClass creates a :class binding for dynamic classes.
@@ -222,8 +212,8 @@ func XBind(attr, expr string) g.Node {
 //
 //	alpine.XBindClass("{'active': isActive, 'disabled': isDisabled}")
 //	alpine.XBindClass("isActive ? 'text-green-500' : 'text-gray-500'")
-func XBindClass(expr string) g.Node {
-	return g.Attr(":class", expr)
+func XBindClass(expr string) templ.Attributes {
+	return templ.Attributes{":class": expr}
 }
 
 // XBindStyle creates a :style binding for dynamic styles.
@@ -231,30 +221,27 @@ func XBindClass(expr string) g.Node {
 // Example:
 //
 //	alpine.XBindStyle("{'color': textColor, 'fontSize': size + 'px'}")
-func XBindStyle(expr string) g.Node {
-	return g.Attr(":style", expr)
+func XBindStyle(expr string) templ.Attributes {
+	return templ.Attributes{":style": expr}
 }
 
 // XBindDisabled creates a :disabled binding.
-func XBindDisabled(expr string) g.Node {
-	return g.Attr(":disabled", expr)
+func XBindDisabled(expr string) templ.Attributes {
+	return templ.Attributes{":disabled": expr}
 }
 
 // XBindValue creates a :value binding.
-func XBindValue(expr string) g.Node {
-	return g.Attr(":value", expr)
+func XBindValue(expr string) templ.Attributes {
+	return templ.Attributes{":value": expr}
 }
 
 // XModel creates an x-model directive for two-way data binding.
 //
-// Example:
+// Example (in .templ files):
 //
-//	html.Input(
-//	    html.Type("text"),
-//	    alpine.XModel("name"),
-//	)
-func XModel(expr string) g.Node {
-	return g.Attr("x-model", expr)
+//	<input type="text" { alpine.XModel("name")... }/>
+func XModel(expr string) templ.Attributes {
+	return templ.Attributes{"x-model": expr}
 }
 
 // XModelDebounce creates an x-model directive with debouncing.
@@ -262,20 +249,20 @@ func XModel(expr string) g.Node {
 // Example:
 //
 //	alpine.XModelDebounce("searchQuery", 300)
-func XModelDebounce(expr string, ms int) g.Node {
-	return g.Attr(fmt.Sprintf("x-model.debounce.%dms", ms), expr)
+func XModelDebounce(expr string, ms int) templ.Attributes {
+	return templ.Attributes{fmt.Sprintf("x-model.debounce.%dms", ms): expr}
 }
 
 // XModelNumber creates an x-model.number directive that
 // automatically converts the value to a number.
-func XModelNumber(expr string) g.Node {
-	return g.Attr("x-model.number", expr)
+func XModelNumber(expr string) templ.Attributes {
+	return templ.Attributes{"x-model.number": expr}
 }
 
 // XModelLazy creates an x-model.lazy directive that only
 // updates on the 'change' event instead of 'input'.
-func XModelLazy(expr string) g.Node {
-	return g.Attr("x-model.lazy", expr)
+func XModelLazy(expr string) templ.Attributes {
+	return templ.Attributes{"x-model.lazy": expr}
 }
 
 // XOn creates an event listener using the @event shorthand.
@@ -284,28 +271,28 @@ func XModelLazy(expr string) g.Node {
 //
 //	alpine.XOn("click", "count++")
 //	alpine.XOn("submit", "handleSubmit()")
-func XOn(event, handler string) g.Node {
-	return g.Attr("@"+event, handler)
+func XOn(event, handler string) templ.Attributes {
+	return templ.Attributes{"@" + event: handler}
 }
 
 // XClick creates a @click event handler.
-func XClick(handler string) g.Node {
+func XClick(handler string) templ.Attributes {
 	return XOn("click", handler)
 }
 
 // XSubmit creates a @submit.prevent event handler
 // (prevents default form submission).
-func XSubmit(handler string) g.Node {
+func XSubmit(handler string) templ.Attributes {
 	return XOn("submit.prevent", handler)
 }
 
 // XInput creates an @input event handler.
-func XInput(handler string) g.Node {
+func XInput(handler string) templ.Attributes {
 	return XOn("input", handler)
 }
 
 // XChange creates an @change event handler.
-func XChange(handler string) g.Node {
+func XChange(handler string) templ.Attributes {
 	return XOn("change", handler)
 }
 
@@ -315,7 +302,7 @@ func XChange(handler string) g.Node {
 //
 //	alpine.XKeydown("escape", "close()")
 //	alpine.XKeydown("enter", "submit()")
-func XKeydown(key, handler string) g.Node {
+func XKeydown(key, handler string) templ.Attributes {
 	if key == "" {
 		return XOn("keydown", handler)
 	}
@@ -324,7 +311,7 @@ func XKeydown(key, handler string) g.Node {
 }
 
 // XKeyup creates a @keyup event handler with optional key modifier.
-func XKeyup(key, handler string) g.Node {
+func XKeyup(key, handler string) templ.Attributes {
 	if key == "" {
 		return XOn("keyup", handler)
 	}
@@ -334,57 +321,48 @@ func XKeyup(key, handler string) g.Node {
 
 // XClickOutside creates a @click.outside event handler
 // that triggers when clicking outside the element.
-func XClickOutside(handler string) g.Node {
+func XClickOutside(handler string) templ.Attributes {
 	return XOn("click.outside", handler)
 }
 
 // XClickOnce creates a @click.once event handler
 // that only triggers once.
-func XClickOnce(handler string) g.Node {
+func XClickOnce(handler string) templ.Attributes {
 	return XOn("click.once", handler)
 }
 
 // XClickPrevent creates a @click.prevent event handler
 // that prevents the default action.
-func XClickPrevent(handler string) g.Node {
+func XClickPrevent(handler string) templ.Attributes {
 	return XOn("click.prevent", handler)
 }
 
 // XClickStop creates a @click.stop event handler
 // that stops event propagation.
-func XClickStop(handler string) g.Node {
+func XClickStop(handler string) templ.Attributes {
 	return XOn("click.stop", handler)
 }
 
 // XText creates an x-text directive to set text content.
 //
-// Example:
+// Example (in .templ files):
 //
-//	html.Span(alpine.XText("user.name"))
-func XText(expr string) g.Node {
-	return g.Attr("x-text", expr)
+//	<span { alpine.XText("user.name")... }></span>
+func XText(expr string) templ.Attributes {
+	return templ.Attributes{"x-text": expr}
 }
 
 // XHtml creates an x-html directive to set HTML content.
-// ⚠️ WARNING: Be careful with x-html as it can introduce XSS vulnerabilities.
+// WARNING: Be careful with x-html as it can introduce XSS vulnerabilities.
 // Only use with trusted content.
-//
-// Example:
-//
-//	html.Div(alpine.XHtml("sanitizedContent"))
-func XHtml(expr string) g.Node {
-	return g.Attr("x-html", expr)
+func XHtml(expr string) templ.Attributes {
+	return templ.Attributes{"x-html": expr}
 }
 
 // XRef creates an x-ref attribute to register an element reference.
 // Access via $refs.name in Alpine expressions.
-//
-// Example:
-//
-//	html.Input(alpine.XRef("emailInput"))
-//	html.Button(alpine.XClick("$refs.emailInput.focus()"))
-func XRef(name string) g.Node {
-	return g.Attr("x-ref", name)
+func XRef(name string) templ.Attributes {
+	return templ.Attributes{"x-ref": name}
 }
 
 // XInit creates an x-init directive that runs when Alpine initializes.
@@ -392,9 +370,8 @@ func XRef(name string) g.Node {
 // Example:
 //
 //	alpine.XInit("console.log('initialized')")
-//	alpine.XInit("fetch('/api/data').then(r => r.json()).then(d => items = d)")
-func XInit(expr string) g.Node {
-	return g.Attr("x-init", expr)
+func XInit(expr string) templ.Attributes {
+	return templ.Attributes{"x-init": expr}
 }
 
 // XInitFetch creates an x-init directive that fetches data from a URL.
@@ -402,18 +379,14 @@ func XInit(expr string) g.Node {
 // Example:
 //
 //	alpine.XInitFetch("/api/users", "users")
-func XInitFetch(url, target string) g.Node {
-	return g.Attr("x-init", fmt.Sprintf("%s = await (await fetch('%s')).json()", target, url))
+func XInitFetch(url, target string) templ.Attributes {
+	return templ.Attributes{"x-init": fmt.Sprintf("%s = await (await fetch('%s')).json()", target, url)}
 }
 
 // XEffect creates an x-effect directive that automatically
 // re-runs when any referenced data changes.
-//
-// Example:
-//
-//	alpine.XEffect("console.log('count is now', count)")
-func XEffect(expr string) g.Node {
-	return g.Attr("x-effect", expr)
+func XEffect(expr string) templ.Attributes {
+	return templ.Attributes{"x-effect": expr}
 }
 
 // XTeleport creates an x-teleport directive to move an element
@@ -423,16 +396,12 @@ func XEffect(expr string) g.Node {
 //
 //	alpine.XTeleport("body")
 //	alpine.XTeleport("#modal-container")
-func XTeleport(selector string) g.Node {
-	return g.Attr("x-teleport", selector)
+func XTeleport(selector string) templ.Attributes {
+	return templ.Attributes{"x-teleport": selector}
 }
 
 // XId creates an x-id directive for generating unique IDs
 // that are consistent across server/client.
-//
-// Example:
-//
-//	alpine.XId("['input']")
-func XId(items string) g.Node {
-	return g.Attr("x-id", items)
+func XId(items string) templ.Attributes {
+	return templ.Attributes{"x-id": items}
 }

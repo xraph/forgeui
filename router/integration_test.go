@@ -1,12 +1,12 @@
 package router
 
 import (
+	"fmt"
 	"net/http"
 	"net/http/httptest"
 	"testing"
 
-	g "maragu.dev/gomponents"
-	"maragu.dev/gomponents/html"
+	"github.com/a-h/templ"
 )
 
 // TestIntegration_FullRequestLifecycle tests a complete HTTP request through the router
@@ -18,21 +18,17 @@ func TestIntegration_FullRequestLifecycle(t *testing.T) {
 	r.Use(RequestID())
 
 	// Register routes
-	r.Get("/", func(ctx *PageContext) (g.Node, error) {
-		return html.H1(g.Text("Home")), nil
+	r.Get("/", func(ctx *PageContext) (templ.Component, error) {
+		return templ.Raw("<h1>Home</h1>"), nil
 	})
 
-	r.Get("/users/:id", func(ctx *PageContext) (g.Node, error) {
+	r.Get("/users/:id", func(ctx *PageContext) (templ.Component, error) {
 		id := ctx.Param("id")
-
-		return html.Div(
-			html.H1(g.Text("User Profile")),
-			html.P(g.Textf("User ID: %s", id)),
-		), nil
+		return templ.Raw(fmt.Sprintf(`<div><h1>User Profile</h1><p>User ID: %s</p></div>`, id)), nil
 	})
 
-	r.Post("/users", func(ctx *PageContext) (g.Node, error) {
-		return html.P(g.Text("User created")), nil
+	r.Post("/users", func(ctx *PageContext) (templ.Component, error) {
+		return templ.Raw("<p>User created</p>"), nil
 	})
 
 	// Test GET /
@@ -75,32 +71,32 @@ func TestIntegration_MiddlewareChain(t *testing.T) {
 	order := []string{}
 
 	m1 := func(next PageHandler) PageHandler {
-		return func(ctx *PageContext) (g.Node, error) {
+		return func(ctx *PageContext) (templ.Component, error) {
 			order = append(order, "m1-before")
-			node, err := next(ctx)
+			comp, err := next(ctx)
 
 			order = append(order, "m1-after")
 
-			return node, err
+			return comp, err
 		}
 	}
 
 	m2 := func(next PageHandler) PageHandler {
-		return func(ctx *PageContext) (g.Node, error) {
+		return func(ctx *PageContext) (templ.Component, error) {
 			order = append(order, "m2-before")
-			node, err := next(ctx)
+			comp, err := next(ctx)
 
 			order = append(order, "m2-after")
 
-			return node, err
+			return comp, err
 		}
 	}
 
 	r.Use(m1, m2)
 
-	r.Get("/test", func(ctx *PageContext) (g.Node, error) {
+	r.Get("/test", func(ctx *PageContext) (templ.Component, error) {
 		order = append(order, "handler")
-		return g.Text("OK"), nil
+		return templ.Raw("OK"), nil
 	})
 
 	req := httptest.NewRequest(MethodGet, "/test", nil)
@@ -124,30 +120,30 @@ func TestIntegration_RouteSpecificMiddleware(t *testing.T) {
 	r := New()
 
 	authMiddleware := func(next PageHandler) PageHandler {
-		return func(ctx *PageContext) (g.Node, error) {
+		return func(ctx *PageContext) (templ.Component, error) {
 			ctx.Set("authenticated", true)
 			return next(ctx)
 		}
 	}
 
 	// Public route
-	r.Get("/public", func(ctx *PageContext) (g.Node, error) {
+	r.Get("/public", func(ctx *PageContext) (templ.Component, error) {
 		_, ok := ctx.Get("authenticated")
 		if ok {
 			t.Error("Public route should not have authentication")
 		}
 
-		return g.Text("Public"), nil
+		return templ.Raw("Public"), nil
 	})
 
 	// Protected route
-	route := r.Get("/protected", func(ctx *PageContext) (g.Node, error) {
+	route := r.Get("/protected", func(ctx *PageContext) (templ.Component, error) {
 		_, ok := ctx.Get("authenticated")
 		if !ok {
 			t.Error("Protected route should have authentication")
 		}
 
-		return g.Text("Protected"), nil
+		return templ.Raw("Protected"), nil
 	})
 	route.WithMiddleware(authMiddleware)
 
@@ -167,12 +163,12 @@ func TestIntegration_OverlappingRoutes(t *testing.T) {
 	r := New()
 
 	// Register routes in non-priority order
-	r.Get("/users/:id", func(ctx *PageContext) (g.Node, error) {
-		return g.Text("User by ID"), nil
+	r.Get("/users/:id", func(ctx *PageContext) (templ.Component, error) {
+		return templ.Raw("User by ID"), nil
 	})
 
-	r.Get("/users/new", func(ctx *PageContext) (g.Node, error) {
-		return g.Text("New User Form"), nil
+	r.Get("/users/new", func(ctx *PageContext) (templ.Component, error) {
+		return templ.Raw("New User Form"), nil
 	})
 
 	// Static route should match first
@@ -198,16 +194,13 @@ func TestIntegration_OverlappingRoutes(t *testing.T) {
 
 // TestIntegration_ErrorHandling tests error handling through the stack
 func TestIntegration_ErrorHandling(t *testing.T) {
-	customError := func(ctx *PageContext, err error) g.Node {
-		return html.Div(
-			html.H1(g.Text("Custom Error")),
-			html.P(g.Text(err.Error())),
-		)
+	customError := func(ctx *PageContext, err error) templ.Component {
+		return templ.Raw(fmt.Sprintf(`<div><h1>Custom Error</h1><p>%s</p></div>`, err.Error()))
 	}
 
 	r := New(WithErrorHandler(customError))
 
-	r.Get("/error", func(ctx *PageContext) (g.Node, error) {
+	r.Get("/error", func(ctx *PageContext) (templ.Component, error) {
 		return nil, http.ErrAbortHandler
 	})
 
@@ -227,7 +220,7 @@ func TestIntegration_ContextValues(t *testing.T) {
 
 	// Middleware that sets a value
 	r.Use(func(next PageHandler) PageHandler {
-		return func(ctx *PageContext) (g.Node, error) {
+		return func(ctx *PageContext) (templ.Component, error) {
 			ctx.Set("user_id", 42)
 			ctx.Set("username", "john")
 
@@ -235,7 +228,7 @@ func TestIntegration_ContextValues(t *testing.T) {
 		}
 	})
 
-	r.Get("/profile", func(ctx *PageContext) (g.Node, error) {
+	r.Get("/profile", func(ctx *PageContext) (templ.Component, error) {
 		userID := ctx.GetInt("user_id")
 		username := ctx.GetString("username")
 
@@ -247,7 +240,7 @@ func TestIntegration_ContextValues(t *testing.T) {
 			t.Errorf("Expected username=john, got %s", username)
 		}
 
-		return g.Text("Profile"), nil
+		return templ.Raw("Profile"), nil
 	})
 
 	req := httptest.NewRequest(MethodGet, "/profile", nil)
@@ -259,8 +252,8 @@ func TestIntegration_ContextValues(t *testing.T) {
 func TestIntegration_NamedRoutesURLGeneration(t *testing.T) {
 	r := New()
 
-	route := r.Get("/users/:id/posts/:postId", func(ctx *PageContext) (g.Node, error) {
-		return g.Text("Post"), nil
+	route := r.Get("/users/:id/posts/:postId", func(ctx *PageContext) (templ.Component, error) {
+		return templ.Raw("Post"), nil
 	})
 
 	r.Name("user.post", route)
@@ -287,8 +280,8 @@ func TestIntegration_NamedRoutesURLGeneration(t *testing.T) {
 func TestIntegration_HTTPMethods(t *testing.T) {
 	r := New()
 
-	handler := func(ctx *PageContext) (g.Node, error) {
-		return g.Text(ctx.Method()), nil
+	handler := func(ctx *PageContext) (templ.Component, error) {
+		return templ.Raw(ctx.Method()), nil
 	}
 
 	r.Get("/test", handler)

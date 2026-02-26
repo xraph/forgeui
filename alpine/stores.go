@@ -1,35 +1,16 @@
 package alpine
 
 import (
+	"context"
 	"encoding/json"
 	"fmt"
+	"io"
 	"strings"
 
-	g "maragu.dev/gomponents"
-	"maragu.dev/gomponents/html"
+	"github.com/a-h/templ"
 )
 
 // Store represents an Alpine.js global store definition.
-//
-// Example:
-//
-//	Store{
-//	    Name: "notifications",
-//	    State: map[string]any{
-//	        "items": []any{},
-//	        "count": 0,
-//	    },
-//	    Methods: `
-//	        add(item) {
-//	            this.items.push(item);
-//	            this.count++;
-//	        },
-//	        clear() {
-//	            this.items = [];
-//	            this.count = 0;
-//	        }
-//	    `,
-//	}
 type Store struct {
 	// Name is the store identifier (accessed via $store.name)
 	Name string
@@ -42,75 +23,52 @@ type Store struct {
 	Methods string
 }
 
-// RegisterStores creates a script tag that registers Alpine stores.
+// RegisterStores creates a templ.Component that renders a script tag registering Alpine stores.
 // This should be placed before the Alpine.js script tag.
-//
-// Example:
-//
-//	alpine.RegisterStores(
-//	    Store{
-//	        Name: "cart",
-//	        State: map[string]any{"items": []any{}, "total": 0},
-//	        Methods: `
-//	            addItem(item) { this.items.push(item); },
-//	            clear() { this.items = []; this.total = 0; }
-//	        `,
-//	    },
-//	)
-func RegisterStores(stores ...Store) g.Node {
+func RegisterStores(stores ...Store) templ.Component {
 	if len(stores) == 0 {
-		return g.Group(nil)
+		return templ.ComponentFunc(func(_ context.Context, _ io.Writer) error {
+			return nil
+		})
 	}
 
-	var js strings.Builder
-	js.WriteString("document.addEventListener('alpine:init', () => {\n")
+	return templ.ComponentFunc(func(_ context.Context, w io.Writer) error {
+		var js strings.Builder
+		js.WriteString("<script>document.addEventListener('alpine:init', () => {\n")
 
-	for _, store := range stores {
-		stateJSON, err := json.Marshal(store.State)
-		if err != nil {
-			// Fallback to empty object on marshal error
-			stateJSON = []byte("{}")
+		for _, store := range stores {
+			stateJSON, err := json.Marshal(store.State)
+			if err != nil {
+				stateJSON = []byte("{}")
+			}
+
+			if store.Methods != "" {
+				js.WriteString(fmt.Sprintf("  Alpine.store('%s', { ...%s, %s });\n",
+					store.Name, stateJSON, strings.TrimSpace(store.Methods)))
+			} else {
+				js.WriteString(fmt.Sprintf("  Alpine.store('%s', %s);\n",
+					store.Name, stateJSON))
+			}
 		}
 
-		// If methods are provided, merge them with state
-		if store.Methods != "" {
-			js.WriteString(fmt.Sprintf("  Alpine.store('%s', { ...%s, %s });\n",
-				store.Name, stateJSON, strings.TrimSpace(store.Methods)))
-		} else {
-			js.WriteString(fmt.Sprintf("  Alpine.store('%s', %s);\n",
-				store.Name, stateJSON))
-		}
-	}
+		js.WriteString("});</script>")
 
-	js.WriteString("});")
-
-	return html.Script(g.Raw(js.String()))
+		_, err := io.WriteString(w, js.String())
+		return err
+	})
 }
 
 // StoreAccess returns the JavaScript expression to access a store property.
-//
-// Example:
-//
-//	alpine.StoreAccess("cart", "items") // Returns: "$store.cart.items"
 func StoreAccess(storeName, key string) string {
 	return fmt.Sprintf("$store.%s.%s", storeName, key)
 }
 
 // StoreMethod returns the JavaScript expression to call a store method.
-//
-// Example:
-//
-//	alpine.StoreMethod("cart", "addItem", "product") // Returns: "$store.cart.addItem(product)"
 func StoreMethod(storeName, method, args string) string {
 	return fmt.Sprintf("$store.%s.%s(%s)", storeName, method, args)
 }
 
 // XStore creates an x-data directive that initializes with a reference to a store.
-// This allows components to reactively use store data.
-//
-// Example:
-//
-//	alpine.XStore("cart") // x-data="$store.cart"
-func XStore(storeName string) g.Node {
-	return g.Attr("x-data", "$store."+storeName)
+func XStore(storeName string) templ.Attributes {
+	return templ.Attributes{"x-data": "$store." + storeName}
 }

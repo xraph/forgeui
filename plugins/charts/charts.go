@@ -1,36 +1,13 @@
 // Package charts provides data visualization components using Chart.js.
-//
-// The charts plugin provides beautiful, responsive charts that integrate
-// seamlessly with ForgeUI's theme system.
-//
-// # Basic Usage
-//
-//	registry := plugin.NewRegistry()
-//	registry.Use(charts.New())
-//
-// # Available Charts
-//
-//   - LineChart - Time series and trends
-//   - BarChart - Categorical comparisons
-//   - PieChart - Proportional data
-//   - AreaChart - Filled line charts
-//   - DoughnutChart - Hollow pie charts
-//
-// # Features
-//
-//   - Responsive sizing
-//   - Theme integration (matches ForgeUI colors)
-//   - Animation configuration
-//   - Legend positioning
-//   - Tooltip formatting
-//   - Data point styling
 package charts
 
 import (
 	"context"
 	"encoding/json"
+	"fmt"
+	"io"
 
-	g "maragu.dev/gomponents"
+	"github.com/a-h/templ"
 
 	"github.com/xraph/forgeui/plugin"
 )
@@ -106,10 +83,9 @@ func (c *Charts) AlpineComponents() []plugin.AlpineComponent {
 }
 
 // chartData converts data to JSON string.
-func chartData(data any) string {
+func chartDataJSON(data any) string {
 	jsonData, err := json.Marshal(data)
 	if err != nil {
-		// Fallback to empty object on marshal error
 		return "{}"
 	}
 
@@ -117,7 +93,7 @@ func chartData(data any) string {
 }
 
 // baseChartNode creates the base canvas element for charts.
-func baseChartNode(chartType string, data any, options ChartOptions) g.Node {
+func baseChartNode(chartType string, data any, options ChartOptions) templ.Component {
 	config := map[string]any{
 		"type": chartType,
 		"data": data,
@@ -143,22 +119,43 @@ func baseChartNode(chartType string, data any, options ChartOptions) g.Node {
 		}
 	}
 
-	configJSON := chartData(config)
+	configJSON := chartDataJSON(config)
 
-	return g.Group([]g.Node{
-		g.El("canvas",
-			g.Attr("x-data", "{ chart: null }"),
-			g.Attr("x-init", `
-				chart = new Chart($el, `+configJSON+`);
-				$watch('data', value => {
-					if (chart && value) {
-						chart.data = value;
-						chart.update();
-					}
-				});
-			`),
-			g.If(options.Width != "", g.Attr("width", options.Width)),
-			g.If(options.Height != "", g.Attr("height", options.Height)),
-		),
+	return templ.ComponentFunc(func(_ context.Context, w io.Writer) error {
+		if _, err := io.WriteString(w, `<canvas x-data="{ chart: null }" x-init="`); err != nil {
+			return err
+		}
+
+		initCode := fmt.Sprintf(`chart = new Chart($el, %s); $watch('data', value => { if (chart && value) { chart.data = value; chart.update(); } });`, configJSON)
+		if _, err := io.WriteString(w, initCode); err != nil {
+			return err
+		}
+
+		if _, err := io.WriteString(w, `"`); err != nil {
+			return err
+		}
+
+		if options.Width != "" {
+			if _, err := fmt.Fprintf(w, ` width="%s"`, options.Width); err != nil {
+				return err
+			}
+		}
+
+		if options.Height != "" {
+			if _, err := fmt.Fprintf(w, ` height="%s"`, options.Height); err != nil {
+				return err
+			}
+		}
+
+		_, err := io.WriteString(w, `></canvas>`)
+		return err
+	})
+}
+
+// textComponent creates a simple text component for error messages.
+func textComponent(text string) templ.Component {
+	return templ.ComponentFunc(func(_ context.Context, w io.Writer) error {
+		_, err := io.WriteString(w, text)
+		return err
 	})
 }

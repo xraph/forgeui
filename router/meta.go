@@ -1,10 +1,12 @@
 package router
 
 import (
+	"context"
+	"fmt"
+	"io"
 	"strings"
 
-	g "maragu.dev/gomponents"
-	"maragu.dev/gomponents/html"
+	"github.com/a-h/templ"
 )
 
 // RouteMeta contains SEO and page metadata
@@ -79,133 +81,98 @@ func (r *Route) NoIndex() *Route {
 	return r
 }
 
-// MetaTags generates HTML meta tags from the metadata
-func (m *RouteMeta) MetaTags() []g.Node {
+// MetaTags generates HTML meta tags from the metadata as a templ.Component.
+func (m *RouteMeta) MetaTags() templ.Component {
 	if m == nil {
-		return nil
+		return templ.ComponentFunc(func(_ context.Context, _ io.Writer) error {
+			return nil
+		})
 	}
 
-	tags := make([]g.Node, 0)
-
-	// Description
-	if m.Description != "" {
-		tags = append(tags,
-			html.Meta(
-				g.Attr("name", "description"),
-				g.Attr("content", m.Description),
-			),
-		)
-	}
-
-	// Keywords
-	if len(m.Keywords) > 0 {
-		tags = append(tags,
-			html.Meta(
-				g.Attr("name", "keywords"),
-				g.Attr("content", strings.Join(m.Keywords, ", ")),
-			),
-		)
-	}
-
-	// Robots
-	if m.NoIndex {
-		tags = append(tags,
-			html.Meta(
-				g.Attr("name", "robots"),
-				g.Attr("content", "noindex, nofollow"),
-			),
-		)
-	}
-
-	// Open Graph - Title
-	if m.Title != "" {
-		tags = append(tags,
-			html.Meta(
-				g.Attr("property", "og:title"),
-				g.Attr("content", m.Title),
-			),
-		)
-	}
-
-	// Open Graph - Description
-	if m.Description != "" {
-		tags = append(tags,
-			html.Meta(
-				g.Attr("property", "og:description"),
-				g.Attr("content", m.Description),
-			),
-		)
-	}
-
-	// Open Graph - Image
-	if m.OGImage != "" {
-		tags = append(tags,
-			html.Meta(
-				g.Attr("property", "og:image"),
-				g.Attr("content", m.OGImage),
-			),
-		)
-	}
-
-	// Open Graph - Type
-	ogType := m.OGType
-	if ogType == "" {
-		ogType = "website"
-	}
-
-	tags = append(tags,
-		html.Meta(
-			g.Attr("property", "og:type"),
-			g.Attr("content", ogType),
-		),
-	)
-
-	// Canonical URL
-	if m.CanonicalURL != "" {
-		tags = append(tags,
-			html.Link(
-				g.Attr("rel", "canonical"),
-				g.Attr("href", m.CanonicalURL),
-			),
-		)
-	}
-
-	// Twitter Card
-	if m.Description != "" || m.OGImage != "" {
-		tags = append(tags,
-			html.Meta(
-				g.Attr("name", "twitter:card"),
-				g.Attr("content", "summary_large_image"),
-			),
-		)
-
-		if m.Title != "" {
-			tags = append(tags,
-				html.Meta(
-					g.Attr("name", "twitter:title"),
-					g.Attr("content", m.Title),
-				),
-			)
-		}
-
+	return templ.ComponentFunc(func(_ context.Context, w io.Writer) error {
+		// Description
 		if m.Description != "" {
-			tags = append(tags,
-				html.Meta(
-					g.Attr("name", "twitter:description"),
-					g.Attr("content", m.Description),
-				),
-			)
+			if _, err := fmt.Fprintf(w, `<meta name="description" content="%s"/>`, m.Description); err != nil {
+				return err
+			}
 		}
 
+		// Keywords
+		if len(m.Keywords) > 0 {
+			if _, err := fmt.Fprintf(w, `<meta name="keywords" content="%s"/>`, strings.Join(m.Keywords, ", ")); err != nil {
+				return err
+			}
+		}
+
+		// Robots
+		if m.NoIndex {
+			if _, err := io.WriteString(w, `<meta name="robots" content="noindex, nofollow"/>`); err != nil {
+				return err
+			}
+		}
+
+		// Open Graph - Title
+		if m.Title != "" {
+			if _, err := fmt.Fprintf(w, `<meta property="og:title" content="%s"/>`, m.Title); err != nil {
+				return err
+			}
+		}
+
+		// Open Graph - Description
+		if m.Description != "" {
+			if _, err := fmt.Fprintf(w, `<meta property="og:description" content="%s"/>`, m.Description); err != nil {
+				return err
+			}
+		}
+
+		// Open Graph - Image
 		if m.OGImage != "" {
-			tags = append(tags,
-				html.Meta(
-					g.Attr("name", "twitter:image"),
-					g.Attr("content", m.OGImage),
-				),
-			)
+			if _, err := fmt.Fprintf(w, `<meta property="og:image" content="%s"/>`, m.OGImage); err != nil {
+				return err
+			}
 		}
-	}
 
-	return tags
+		// Open Graph - Type
+		ogType := m.OGType
+		if ogType == "" {
+			ogType = "website"
+		}
+		if _, err := fmt.Fprintf(w, `<meta property="og:type" content="%s"/>`, ogType); err != nil {
+			return err
+		}
+
+		// Canonical URL
+		if m.CanonicalURL != "" {
+			if _, err := fmt.Fprintf(w, `<link rel="canonical" href="%s"/>`, m.CanonicalURL); err != nil {
+				return err
+			}
+		}
+
+		// Twitter Card
+		if m.Description != "" || m.OGImage != "" {
+			if _, err := io.WriteString(w, `<meta name="twitter:card" content="summary_large_image"/>`); err != nil {
+				return err
+			}
+
+			if m.Title != "" {
+				if _, err := fmt.Fprintf(w, `<meta name="twitter:title" content="%s"/>`, m.Title); err != nil {
+					return err
+				}
+			}
+
+			if m.Description != "" {
+				if _, err := fmt.Fprintf(w, `<meta name="twitter:description" content="%s"/>`, m.Description); err != nil {
+					return err
+				}
+			}
+
+			if m.OGImage != "" {
+				if _, err := fmt.Fprintf(w, `<meta name="twitter:image" content="%s"/>`, m.OGImage); err != nil {
+					return err
+				}
+			}
+		}
+
+		return nil
+	})
 }

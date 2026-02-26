@@ -2,11 +2,11 @@ package theme_test
 
 import (
 	"bytes"
+	"context"
 	"strings"
 	"testing"
 
 	"github.com/xraph/forgeui/theme"
-	g "maragu.dev/gomponents"
 )
 
 func TestDefaultFontConfig(t *testing.T) {
@@ -99,10 +99,7 @@ func TestFontLink(t *testing.T) {
 
 	node := theme.FontLink(fonts...)
 
-	// FontLink returns g.Group, so wrap it in html.Div for testing
-	testNode := g.El("div", node)
-
-	if err := testNode.Render(&buf); err != nil {
+	if err := node.Render(context.Background(), &buf); err != nil {
 		t.Fatalf("render error: %v", err)
 	}
 
@@ -198,7 +195,7 @@ func TestFontStyleTag(t *testing.T) {
 
 	node := theme.FontStyleTag(config)
 
-	if err := node.Render(&buf); err != nil {
+	if err := node.Render(context.Background(), &buf); err != nil {
 		t.Fatalf("render error: %v", err)
 	}
 

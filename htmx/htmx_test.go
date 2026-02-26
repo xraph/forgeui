@@ -1,86 +1,60 @@
 package htmx
 
 import (
-	"io"
+	"bytes"
+	"context"
 	"net/http"
 	"net/http/httptest"
 	"strings"
 	"testing"
+
+	"github.com/a-h/templ"
 )
 
 func TestHxGet(t *testing.T) {
-	node := HxGet("/api/users")
-
-	html := renderNode(node)
-	if html != `hx-get="/api/users"` {
-		t.Errorf("Expected hx-get attribute, got: %s", html)
-	}
+	attrs := HxGet("/api/users")
+	assertAttr(t, attrs, "hx-get", "/api/users")
 }
 
 func TestHxPost(t *testing.T) {
-	node := HxPost("/api/create")
-
-	html := renderNode(node)
-	if html != `hx-post="/api/create"` {
-		t.Errorf("Expected hx-post attribute, got: %s", html)
-	}
+	attrs := HxPost("/api/create")
+	assertAttr(t, attrs, "hx-post", "/api/create")
 }
 
 func TestHxPut(t *testing.T) {
-	node := HxPut("/api/update")
-
-	html := renderNode(node)
-	if html != `hx-put="/api/update"` {
-		t.Errorf("Expected hx-put attribute, got: %s", html)
-	}
+	attrs := HxPut("/api/update")
+	assertAttr(t, attrs, "hx-put", "/api/update")
 }
 
 func TestHxPatch(t *testing.T) {
-	node := HxPatch("/api/patch")
-
-	html := renderNode(node)
-	if html != `hx-patch="/api/patch"` {
-		t.Errorf("Expected hx-patch attribute, got: %s", html)
-	}
+	attrs := HxPatch("/api/patch")
+	assertAttr(t, attrs, "hx-patch", "/api/patch")
 }
 
 func TestHxDelete(t *testing.T) {
-	node := HxDelete("/api/delete")
-
-	html := renderNode(node)
-	if html != `hx-delete="/api/delete"` {
-		t.Errorf("Expected hx-delete attribute, got: %s", html)
-	}
+	attrs := HxDelete("/api/delete")
+	assertAttr(t, attrs, "hx-delete", "/api/delete")
 }
 
 func TestHxTarget(t *testing.T) {
-	node := HxTarget("#results")
-
-	html := renderNode(node)
-	if html != `hx-target="#results"` {
-		t.Errorf("Expected hx-target attribute, got: %s", html)
-	}
+	attrs := HxTarget("#results")
+	assertAttr(t, attrs, "hx-target", "#results")
 }
 
 func TestHxSwap(t *testing.T) {
 	tests := []struct {
 		name     string
 		strategy string
-		expected string
 	}{
-		{"innerHTML", "innerHTML", `hx-swap="innerHTML"`},
-		{"outerHTML", "outerHTML", `hx-swap="outerHTML"`},
-		{"beforebegin", "beforebegin", `hx-swap="beforebegin"`},
+		{"innerHTML", "innerHTML"},
+		{"outerHTML", "outerHTML"},
+		{"beforebegin", "beforebegin"},
 	}
 
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
-			node := HxSwap(tt.strategy)
-
-			html := renderNode(node)
-			if html != tt.expected {
-				t.Errorf("Expected %s, got: %s", tt.expected, html)
-			}
+			attrs := HxSwap(tt.strategy)
+			assertAttr(t, attrs, "hx-swap", tt.strategy)
 		})
 	}
 }
@@ -88,90 +62,64 @@ func TestHxSwap(t *testing.T) {
 func TestHxSwapConvenience(t *testing.T) {
 	tests := []struct {
 		name     string
-		fn       func() interface{ Render(w io.Writer) error }
+		fn       func() templ.Attributes
 		expected string
 	}{
-		{"innerHTML", func() interface{ Render(w io.Writer) error } { return HxSwapInnerHTML() }, `hx-swap="innerHTML"`},
-		{"outerHTML", func() interface{ Render(w io.Writer) error } { return HxSwapOuterHTML() }, `hx-swap="outerHTML"`},
-		{"beforebegin", func() interface{ Render(w io.Writer) error } { return HxSwapBeforeBegin() }, `hx-swap="beforebegin"`},
-		{"afterbegin", func() interface{ Render(w io.Writer) error } { return HxSwapAfterBegin() }, `hx-swap="afterbegin"`},
-		{"beforeend", func() interface{ Render(w io.Writer) error } { return HxSwapBeforeEnd() }, `hx-swap="beforeend"`},
-		{"afterend", func() interface{ Render(w io.Writer) error } { return HxSwapAfterEnd() }, `hx-swap="afterend"`},
-		{"delete", func() interface{ Render(w io.Writer) error } { return HxSwapDelete() }, `hx-swap="delete"`},
-		{"none", func() interface{ Render(w io.Writer) error } { return HxSwapNone() }, `hx-swap="none"`},
+		{"innerHTML", HxSwapInnerHTML, "innerHTML"},
+		{"outerHTML", HxSwapOuterHTML, "outerHTML"},
+		{"beforebegin", HxSwapBeforeBegin, "beforebegin"},
+		{"afterbegin", HxSwapAfterBegin, "afterbegin"},
+		{"beforeend", HxSwapBeforeEnd, "beforeend"},
+		{"afterend", HxSwapAfterEnd, "afterend"},
+		{"delete", HxSwapDelete, "delete"},
+		{"none", HxSwapNone, "none"},
 	}
 
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
-			node := tt.fn()
-
-			html := renderNode(node)
-			if html != tt.expected {
-				t.Errorf("Expected %s, got: %s", tt.expected, html)
-			}
+			attrs := tt.fn()
+			assertAttr(t, attrs, "hx-swap", tt.expected)
 		})
 	}
 }
 
 func TestHxBoost(t *testing.T) {
-	node := HxBoost(true)
+	attrs := HxBoost(true)
+	assertAttr(t, attrs, "hx-boost", "true")
 
-	html := renderNode(node)
-	if html != `hx-boost="true"` {
-		t.Errorf("Expected hx-boost=true, got: %s", html)
-	}
-
-	node = HxBoost(false)
-
-	html = renderNode(node)
-	if html != `hx-boost="false"` {
-		t.Errorf("Expected hx-boost=false, got: %s", html)
-	}
+	attrs = HxBoost(false)
+	assertAttr(t, attrs, "hx-boost", "false")
 }
 
 func TestHxTrigger(t *testing.T) {
-	node := HxTrigger("click")
-
-	html := renderNode(node)
-	if html != `hx-trigger="click"` {
-		t.Errorf("Expected hx-trigger, got: %s", html)
-	}
+	attrs := HxTrigger("click")
+	assertAttr(t, attrs, "hx-trigger", "click")
 }
 
 func TestHxTriggerDebounce(t *testing.T) {
-	node := HxTriggerDebounce("keyup", "500ms")
-
-	html := renderNode(node)
-	if !strings.Contains(html, "keyup changed delay:500ms") {
-		t.Errorf("Expected debounced trigger, got: %s", html)
+	attrs := HxTriggerDebounce("keyup", "500ms")
+	v := attrs["hx-trigger"]
+	if !strings.Contains(v.(string), "keyup changed delay:500ms") {
+		t.Errorf("Expected debounced trigger, got: %s", v)
 	}
 }
 
 func TestHxTriggerThrottle(t *testing.T) {
-	node := HxTriggerThrottle("scroll", "1s")
-
-	html := renderNode(node)
-	if !strings.Contains(html, "scroll throttle:1s") {
-		t.Errorf("Expected throttled trigger, got: %s", html)
+	attrs := HxTriggerThrottle("scroll", "1s")
+	v := attrs["hx-trigger"]
+	if !strings.Contains(v.(string), "scroll throttle:1s") {
+		t.Errorf("Expected throttled trigger, got: %s", v)
 	}
 }
 
 func TestHxIndicator(t *testing.T) {
-	node := HxIndicator("#spinner")
-
-	html := renderNode(node)
-	if html != `hx-indicator="#spinner"` {
-		t.Errorf("Expected hx-indicator, got: %s", html)
-	}
+	attrs := HxIndicator("#spinner")
+	assertAttr(t, attrs, "hx-indicator", "#spinner")
 }
 
 func TestHxConfirm(t *testing.T) {
-	node := HxConfirm("Are you sure?")
-
-	html := renderNode(node)
-	if html != `hx-confirm="Are you sure?"` {
-		t.Errorf("Expected hx-confirm, got: %s", html)
-	}
+	attrs := HxConfirm("Are you sure?")
+	assertAttr(t, attrs, "hx-confirm", "Are you sure?")
 }
 
 func TestIsHTMX(t *testing.T) {
@@ -305,8 +253,8 @@ func TestStopPolling(t *testing.T) {
 }
 
 func TestScripts(t *testing.T) {
-	node := Scripts()
-	html := renderNode(node)
+	comp := Scripts()
+	html := renderComponent(comp)
 
 	if !strings.Contains(html, "htmx.org") {
 		t.Errorf("Expected htmx.org CDN URL, got: %s", html)
@@ -314,20 +262,32 @@ func TestScripts(t *testing.T) {
 }
 
 func TestScriptsWithVersion(t *testing.T) {
-	node := Scripts("1.9.0")
-	html := renderNode(node)
+	comp := Scripts("1.9.0")
+	html := renderComponent(comp)
 
 	if !strings.Contains(html, "1.9.0") {
 		t.Errorf("Expected version 1.9.0, got: %s", html)
 	}
 }
 
-// Helper function to render a node to string
-func renderNode(node interface{ Render(w io.Writer) error }) string {
-	var sb strings.Builder
-	if err := node.Render(&sb); err != nil {
+// Helper function to render a templ.Component to string
+func renderComponent(comp templ.Component) string {
+	var buf bytes.Buffer
+	if err := comp.Render(context.Background(), &buf); err != nil {
 		return ""
 	}
-	// Trim leading/trailing whitespace - gomponents attributes render with leading space
-	return strings.TrimSpace(sb.String())
+	return strings.TrimSpace(buf.String())
+}
+
+// Helper function to assert a templ.Attributes key-value pair
+func assertAttr(t *testing.T, attrs templ.Attributes, key, expected string) {
+	t.Helper()
+	v, ok := attrs[key]
+	if !ok {
+		t.Errorf("Expected attribute %q to exist", key)
+		return
+	}
+	if v != expected {
+		t.Errorf("Expected %s=%q, got %q", key, expected, v)
+	}
 }

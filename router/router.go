@@ -2,14 +2,15 @@ package router
 
 import (
 	"errors"
+	"fmt"
 	"net/http"
 	"sort"
 	"sync"
 
-	g "maragu.dev/gomponents"
+	"github.com/a-h/templ"
 )
 
-// Router handles HTTP routing for ForgeUI applications
+// Router handles HTTP routing for ForgeUI applications.
 type Router struct {
 	mu            sync.RWMutex
 	routes        []*Route
@@ -25,10 +26,10 @@ type Router struct {
 	app           any // Reference to App (interface to avoid circular dependency)
 }
 
-// RouterOption is a functional option for configuring the Router
+// RouterOption is a functional option for configuring the Router.
 type RouterOption func(*Router)
 
-// New creates a new router with optional configuration
+// New creates a new router with optional configuration.
 func New(opts ...RouterOption) *Router {
 	r := &Router{
 		routes:       make([]*Route, 0),
@@ -47,28 +48,28 @@ func New(opts ...RouterOption) *Router {
 	return r
 }
 
-// WithBasePath sets a base path for all routes
+// WithBasePath sets a base path for all routes.
 func WithBasePath(path string) RouterOption {
 	return func(r *Router) {
 		r.basePath = path
 	}
 }
 
-// WithNotFound sets a custom 404 handler
+// WithNotFound sets a custom 404 handler.
 func WithNotFound(handler PageHandler) RouterOption {
 	return func(r *Router) {
 		r.notFound = handler
 	}
 }
 
-// WithErrorHandler sets a custom error handler
+// WithErrorHandler sets a custom error handler.
 func WithErrorHandler(handler ErrorHandler) RouterOption {
 	return func(r *Router) {
 		r.errorHandler = handler
 	}
 }
 
-// Use adds global middleware to the router
+// Use adds global middleware to the router.
 func (r *Router) Use(middleware ...Middleware) *Router {
 	r.mu.Lock()
 	defer r.mu.Unlock()
@@ -78,7 +79,7 @@ func (r *Router) Use(middleware ...Middleware) *Router {
 	return r
 }
 
-// Handle registers a route with the given method, pattern, and handler
+// Handle registers a route with the given method, pattern, and handler.
 func (r *Router) Handle(method, pattern string, handler PageHandler) *Route {
 	r.mu.Lock()
 	defer r.mu.Unlock()
@@ -99,42 +100,42 @@ func (r *Router) Handle(method, pattern string, handler PageHandler) *Route {
 	return route
 }
 
-// Get registers a GET route
+// Get registers a GET route.
 func (r *Router) Get(pattern string, handler PageHandler) *Route {
 	return r.Handle(MethodGet, pattern, handler)
 }
 
-// Post registers a POST route
+// Post registers a POST route.
 func (r *Router) Post(pattern string, handler PageHandler) *Route {
 	return r.Handle(MethodPost, pattern, handler)
 }
 
-// Put registers a PUT route
+// Put registers a PUT route.
 func (r *Router) Put(pattern string, handler PageHandler) *Route {
 	return r.Handle(MethodPut, pattern, handler)
 }
 
-// Patch registers a PATCH route
+// Patch registers a PATCH route.
 func (r *Router) Patch(pattern string, handler PageHandler) *Route {
 	return r.Handle(MethodPatch, pattern, handler)
 }
 
-// Delete registers a DELETE route
+// Delete registers a DELETE route.
 func (r *Router) Delete(pattern string, handler PageHandler) *Route {
 	return r.Handle(MethodDelete, pattern, handler)
 }
 
-// Options registers an OPTIONS route
+// Options registers an OPTIONS route.
 func (r *Router) Options(pattern string, handler PageHandler) *Route {
 	return r.Handle(MethodOptions, pattern, handler)
 }
 
-// Head registers a HEAD route
+// Head registers a HEAD route.
 func (r *Router) Head(pattern string, handler PageHandler) *Route {
 	return r.Handle(MethodHead, pattern, handler)
 }
 
-// Match registers a route that matches multiple HTTP methods
+// Match registers a route that matches multiple HTTP methods.
 func (r *Router) Match(methods []string, pattern string, handler PageHandler) []*Route {
 	routes := make([]*Route, 0, len(methods))
 	for _, method := range methods {
@@ -145,7 +146,7 @@ func (r *Router) Match(methods []string, pattern string, handler PageHandler) []
 	return routes
 }
 
-// Name registers a named route for URL generation
+// Name registers a named route for URL generation.
 func (r *Router) Name(name string, route *Route) {
 	r.mu.Lock()
 	defer r.mu.Unlock()
@@ -154,7 +155,7 @@ func (r *Router) Name(name string, route *Route) {
 	r.namedRoutes[name] = route
 }
 
-// findRoute finds a matching route for the given method and path
+// findRoute finds a matching route for the given method and path.
 func (r *Router) findRoute(method, path string) (*Route, Params) {
 	r.mu.RLock()
 	defer r.mu.RUnlock()
@@ -175,7 +176,7 @@ func (r *Router) findRoute(method, path string) (*Route, Params) {
 	return nil, nil
 }
 
-// SetApp sets the app reference for PageContext
+// SetApp sets the app reference for PageContext.
 func (r *Router) SetApp(app any) {
 	r.mu.Lock()
 	defer r.mu.Unlock()
@@ -183,7 +184,7 @@ func (r *Router) SetApp(app any) {
 	r.app = app
 }
 
-// ServeHTTP implements http.Handler interface
+// ServeHTTP implements http.Handler interface.
 func (r *Router) ServeHTTP(w http.ResponseWriter, req *http.Request) {
 	// Find matching route
 	route, params := r.findRoute(req.Method, req.URL.Path)
@@ -198,13 +199,13 @@ func (r *Router) ServeHTTP(w http.ResponseWriter, req *http.Request) {
 	}
 
 	var (
-		node g.Node
+		comp templ.Component
 		err  error
 	)
 
 	if route == nil {
 		// No route found - call 404 handler
-		node, err = r.notFound(ctx)
+		comp, err = r.notFound(ctx)
 	} else {
 		// Set metadata in context
 		ctx.Meta = route.Metadata
@@ -218,13 +219,13 @@ func (r *Router) ServeHTTP(w http.ResponseWriter, req *http.Request) {
 				if errors.As(loaderErr, &le) {
 					errorHandler := r.getErrorPage(le.Status)
 
-					node, _ = errorHandler(ctx)
-					if node != nil {
+					comp, _ = errorHandler(ctx)
+					if comp != nil {
 						if ctx.ResponseWriter.Header().Get("Content-Type") == "" {
 							ctx.ResponseWriter.Header().Set("Content-Type", "text/html; charset=utf-8")
 						}
 
-						_ = node.Render(ctx.ResponseWriter)
+						_ = comp.Render(req.Context(), ctx.ResponseWriter)
 					}
 
 					return
@@ -251,39 +252,39 @@ func (r *Router) ServeHTTP(w http.ResponseWriter, req *http.Request) {
 
 		// Execute handler
 		if err == nil {
-			node, err = handler(ctx)
+			comp, err = handler(ctx)
 		}
 
 		// Apply layout if configured (with composition support)
-		if node != nil && err == nil {
+		if comp != nil && err == nil {
 			layoutName := route.Layout
 			if layoutName == "" && r.defaultLayout != "" {
 				layoutName = r.defaultLayout
 			}
 
 			if layoutName != "" && layoutName != "none" {
-				node = r.applyLayoutChain(ctx, node, layoutName)
+				comp = r.applyLayoutChain(ctx, comp, layoutName)
 			}
 		}
 	}
 
 	// Handle errors
 	if err != nil {
-		node = r.errorHandler(ctx, err)
+		comp = r.errorHandler(ctx, err)
 	}
 
-	// Render node if present
-	if node != nil {
+	// Render component if present
+	if comp != nil {
 		if ctx.ResponseWriter.Header().Get("Content-Type") == "" {
 			ctx.ResponseWriter.Header().Set("Content-Type", "text/html; charset=utf-8")
 		}
 
-		_ = node.Render(ctx.ResponseWriter)
+		_ = comp.Render(req.Context(), ctx.ResponseWriter)
 	}
 }
 
-// applyLayoutChain applies layouts in composition order (child -> parent -> root)
-func (r *Router) applyLayoutChain(ctx *PageContext, content g.Node, layoutName string) g.Node {
+// applyLayoutChain applies layouts in composition order (child -> parent -> root).
+func (r *Router) applyLayoutChain(ctx *PageContext, content templ.Component, layoutName string) templ.Component {
 	r.mu.RLock()
 	defer r.mu.RUnlock()
 
@@ -328,14 +329,14 @@ func (r *Router) applyLayoutChain(ctx *PageContext, content g.Node, layoutName s
 	return result
 }
 
-// defaultNotFound is the default 404 handler
-func defaultNotFound(ctx *PageContext) (g.Node, error) {
+// defaultNotFound is the default 404 handler.
+func defaultNotFound(ctx *PageContext) (templ.Component, error) {
 	ctx.ResponseWriter.WriteHeader(http.StatusNotFound)
-	return g.Text("404 Not Found"), nil
+	return templ.Raw("404 Not Found"), nil
 }
 
-// defaultError is the default error handler
-func defaultError(ctx *PageContext, err error) g.Node {
+// defaultError is the default error handler.
+func defaultError(ctx *PageContext, err error) templ.Component {
 	ctx.ResponseWriter.WriteHeader(http.StatusInternalServerError)
-	return g.Text("500 Internal Server Error: " + err.Error())
+	return templ.Raw(fmt.Sprintf("500 Internal Server Error: %s", err.Error()))
 }

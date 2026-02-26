@@ -4,8 +4,7 @@ import (
 	"fmt"
 	"net/http"
 
-	g "maragu.dev/gomponents"
-	"maragu.dev/gomponents/html"
+	"github.com/a-h/templ"
 )
 
 // LoaderError represents an error that occurred during data loading
@@ -58,7 +57,7 @@ func (r *Router) getErrorPage(status int) PageHandler {
 
 // DefaultErrorPage returns a default error page for the given status code
 func DefaultErrorPage(status int) PageHandler {
-	return func(ctx *PageContext) (g.Node, error) {
+	return func(ctx *PageContext) (templ.Component, error) {
 		ctx.ResponseWriter.WriteHeader(status)
 
 		var title, message string
@@ -84,11 +83,7 @@ func DefaultErrorPage(status int) PageHandler {
 			message = "An error occurred while processing your request."
 		}
 
-		return html.Div(
-			html.Class("error-page"),
-			html.H1(g.Text(title)),
-			html.P(g.Text(message)),
-		), nil
+		return templ.Raw(fmt.Sprintf(`<div class="error-page"><h1>%s</h1><p>%s</p></div>`, title, message)), nil
 	}
 }
 

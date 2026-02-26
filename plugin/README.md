@@ -189,8 +189,7 @@ Component plugins extend ForgeUI with new UI components:
 package chartplugin
 
 import (
-    g "maragu.dev/gomponents"
-    "maragu.dev/gomponents/html"
+    "github.com/a-h/templ"
     "github.com/xraph/forgeui/plugin"
 )
 
@@ -213,14 +212,10 @@ func New() *ChartPlugin {
     }
 }
 
-func lineChartConstructor(props any, children ...g.Node) g.Node {
+func lineChartConstructor(props any, children ...templ.Component) templ.Component {
     opts := props.(*ChartOptions)
-    return html.Div(
-        html.Class("chart-container"),
-        g.Attr("data-chart-type", "line"),
-        g.Attr("data-chart-data", opts.DataJSON()),
-        g.Group(children),
-    )
+    // Return a templ component that renders the chart
+    return LineChart(opts)
 }
 ```
 

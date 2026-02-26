@@ -1,8 +1,8 @@
 package alpine
 
 import (
+	"github.com/a-h/templ"
 	"github.com/xraph/forgeui/animation"
-	g "maragu.dev/gomponents"
 )
 
 // Transition represents Alpine.js transition configuration.
@@ -28,31 +28,31 @@ type Transition struct {
 }
 
 // Attrs converts the transition to Alpine.js x-transition attributes.
-func (t *Transition) Attrs() []g.Node {
-	var attrs []g.Node
+func (t *Transition) Attrs() templ.Attributes {
+	attrs := templ.Attributes{}
 
 	if t.Enter != "" {
-		attrs = append(attrs, g.Attr("x-transition:enter", t.Enter))
+		attrs["x-transition:enter"] = t.Enter
 	}
 
 	if t.EnterStart != "" {
-		attrs = append(attrs, g.Attr("x-transition:enter-start", t.EnterStart))
+		attrs["x-transition:enter-start"] = t.EnterStart
 	}
 
 	if t.EnterEnd != "" {
-		attrs = append(attrs, g.Attr("x-transition:enter-end", t.EnterEnd))
+		attrs["x-transition:enter-end"] = t.EnterEnd
 	}
 
 	if t.Leave != "" {
-		attrs = append(attrs, g.Attr("x-transition:leave", t.Leave))
+		attrs["x-transition:leave"] = t.Leave
 	}
 
 	if t.LeaveStart != "" {
-		attrs = append(attrs, g.Attr("x-transition:leave-start", t.LeaveStart))
+		attrs["x-transition:leave-start"] = t.LeaveStart
 	}
 
 	if t.LeaveEnd != "" {
-		attrs = append(attrs, g.Attr("x-transition:leave-end", t.LeaveEnd))
+		attrs["x-transition:leave-end"] = t.LeaveEnd
 	}
 
 	return attrs
@@ -61,51 +61,46 @@ func (t *Transition) Attrs() []g.Node {
 // XTransition applies transition attributes to an element.
 // Accepts both alpine.Transition and animation.Transition.
 //
-// Example:
+// Example (in .templ files):
 //
-//	html.Div(
-//	    alpine.XShow("open"),
-//	    g.Group(alpine.XTransition(myTransition)),
-//	    g.Text("Content"),
-//	)
-func XTransition(t any) []g.Node {
+//	<div { alpine.XShow("open")... } { alpine.XTransition(myTransition)... }>
+func XTransition(t any) templ.Attributes {
 	switch v := t.(type) {
 	case *Transition:
 		return v.Attrs()
 	case *animation.Transition:
-		// Convert animation.Transition to alpine attributes
 		return convertAnimationTransition(v)
 	default:
-		return nil
+		return templ.Attributes{}
 	}
 }
 
 // convertAnimationTransition converts an animation.Transition to Alpine attributes.
-func convertAnimationTransition(t *animation.Transition) []g.Node {
-	var attrs []g.Node
+func convertAnimationTransition(t *animation.Transition) templ.Attributes {
+	attrs := templ.Attributes{}
 
 	if t.Enter != "" {
-		attrs = append(attrs, g.Attr("x-transition:enter", t.Enter))
+		attrs["x-transition:enter"] = t.Enter
 	}
 
 	if t.EnterStart != "" {
-		attrs = append(attrs, g.Attr("x-transition:enter-start", t.EnterStart))
+		attrs["x-transition:enter-start"] = t.EnterStart
 	}
 
 	if t.EnterEnd != "" {
-		attrs = append(attrs, g.Attr("x-transition:enter-end", t.EnterEnd))
+		attrs["x-transition:enter-end"] = t.EnterEnd
 	}
 
 	if t.Leave != "" {
-		attrs = append(attrs, g.Attr("x-transition:leave", t.Leave))
+		attrs["x-transition:leave"] = t.Leave
 	}
 
 	if t.LeaveStart != "" {
-		attrs = append(attrs, g.Attr("x-transition:leave-start", t.LeaveStart))
+		attrs["x-transition:leave-start"] = t.LeaveStart
 	}
 
 	if t.LeaveEnd != "" {
-		attrs = append(attrs, g.Attr("x-transition:leave-end", t.LeaveEnd))
+		attrs["x-transition:leave-end"] = t.LeaveEnd
 	}
 
 	return attrs
@@ -113,32 +108,20 @@ func convertAnimationTransition(t *animation.Transition) []g.Node {
 
 // XTransitionSimple creates a simple x-transition attribute without custom classes.
 // Alpine will use default transition behavior.
-func XTransitionSimple() g.Node {
-	return g.Attr("x-transition", "")
+func XTransitionSimple() templ.Attributes {
+	return templ.Attributes{"x-transition": ""}
 }
 
 // XTransitionDuration creates an x-transition with custom duration.
 // Duration should be in milliseconds.
-//
-// Example:
-//
-//	alpine.XTransitionDuration(300) // 300ms transition
-func XTransitionDuration(ms int) g.Node {
-	return g.Attr("x-transition.duration", "")
+func XTransitionDuration(ms int) templ.Attributes {
+	return templ.Attributes{"x-transition.duration": ""}
 }
 
 // XCollapse creates an x-collapse attribute for height transitions.
 // Requires the Collapse plugin to be loaded.
-//
-// Example:
-//
-//	html.Div(
-//	    alpine.XShow("expanded"),
-//	    alpine.XCollapse(),
-//	    g.Text("Collapsible content"),
-//	)
-func XCollapse() g.Node {
-	return g.Attr("x-collapse", "")
+func XCollapse() templ.Attributes {
+	return templ.Attributes{"x-collapse": ""}
 }
 
 // TransitionBuilder provides a fluent API for building transitions.

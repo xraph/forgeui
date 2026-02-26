@@ -49,6 +49,7 @@ func TestInitWorkflow(t *testing.T) {
 	// Check files exist
 	expectedFiles := []string{
 		"main.go",
+		"home.templ",
 		".forgeui.json",
 		".gitignore",
 		"README.md",
@@ -110,37 +111,51 @@ func TestGenerateComponentWorkflow(t *testing.T) {
 		t.Fatalf("Failed to generate component: %v", err)
 	}
 
-	// Check files exist
-	if !util.FileExists(filepath.Join(componentDir, "test_button.go")) {
-		t.Error("Component file not created")
+	// Check files exist — templ file for component, props file for Go types
+	if !util.FileExists(filepath.Join(componentDir, "test_button.templ")) {
+		t.Error("Component templ file not created")
+	}
+
+	if !util.FileExists(filepath.Join(componentDir, "test_button_props.go")) {
+		t.Error("Props file not created")
 	}
 
 	if !util.FileExists(filepath.Join(componentDir, "test_button_test.go")) {
 		t.Error("Test file not created")
 	}
 
-	// Read and verify component file
-	data, err := os.ReadFile(filepath.Join(componentDir, "test_button.go"))
+	// Read and verify templ file
+	data, err := os.ReadFile(filepath.Join(componentDir, "test_button.templ"))
 	if err != nil {
-		t.Fatalf("Failed to read component file: %v", err)
+		t.Fatalf("Failed to read component templ file: %v", err)
 	}
 
 	content := string(data)
 	if content == "" {
-		t.Error("Component file is empty")
+		t.Error("Component templ file is empty")
 	}
 
-	// Check for expected content
+	// Check for expected content in templ file
 	expectedStrings := []string{
 		"package test_button",
-		"func TestButton",
-		"TestButtonProps",
+		"templ TestButton",
 	}
 
 	for _, expected := range expectedStrings {
 		if !containsString(content, expected) {
-			t.Errorf("Component file missing expected string: %s", expected)
+			t.Errorf("Component templ file missing expected string: %s", expected)
 		}
+	}
+
+	// Check props file has expected content
+	propsData, err := os.ReadFile(filepath.Join(componentDir, "test_button_props.go"))
+	if err != nil {
+		t.Fatalf("Failed to read props file: %v", err)
+	}
+
+	propsContent := string(propsData)
+	if !containsString(propsContent, "TestButtonProps") {
+		t.Error("Props file missing TestButtonProps struct")
 	}
 }
 
@@ -179,33 +194,50 @@ func TestGeneratePageWorkflow(t *testing.T) {
 		t.Fatalf("Failed to generate page: %v", err)
 	}
 
-	// Check file exists
+	// Check handler Go file exists
 	if !util.FileExists(pageFile) {
-		t.Error("Page file not created")
+		t.Error("Page handler file not created")
 	}
 
-	// Read and verify page file
+	// Check templ file exists
+	templFile := filepath.Join(pagesDir, "about.templ")
+	if !util.FileExists(templFile) {
+		t.Error("Page templ file not created")
+	}
+
+	// Read and verify handler Go file
 	data, err := os.ReadFile(pageFile)
 	if err != nil {
-		t.Fatalf("Failed to read page file: %v", err)
+		t.Fatalf("Failed to read page handler file: %v", err)
 	}
 
 	content := string(data)
 	if content == "" {
-		t.Error("Page file is empty")
+		t.Error("Page handler file is empty")
 	}
 
-	// Check for expected content
+	// Check for expected content in handler file
 	expectedStrings := []string{
 		"package pages",
 		"func About",
-		"forgeui.PageContext",
+		"router.PageContext",
 	}
 
 	for _, expected := range expectedStrings {
 		if !containsString(content, expected) {
 			t.Errorf("Page file missing expected string: %s", expected)
 		}
+	}
+
+	// Read and verify templ file
+	templData, err := os.ReadFile(templFile)
+	if err != nil {
+		t.Fatalf("Failed to read page templ file: %v", err)
+	}
+
+	templContent := string(templData)
+	if !containsString(templContent, "templ AboutPage") {
+		t.Error("Page templ file missing templ component definition")
 	}
 }
 

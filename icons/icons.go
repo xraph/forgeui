@@ -5,8 +5,12 @@
 package icons
 
 import (
-	g "maragu.dev/gomponents"
-	"maragu.dev/gomponents/html"
+	"context"
+	"fmt"
+	stdhtml "html"
+	"io"
+
+	"github.com/a-h/templ"
 
 	"github.com/xraph/forgeui"
 )
@@ -17,7 +21,7 @@ type Props struct {
 	Color       string  // CSS color value
 	StrokeWidth float64 // SVG stroke width
 	Class       string  // Additional CSS classes
-	Attrs       []g.Node
+	Attrs       templ.Attributes
 }
 
 // Option is a functional option for configuring icons
@@ -44,8 +48,15 @@ func WithClass(class string) Option {
 }
 
 // WithAttrs adds custom attributes
-func WithAttrs(attrs ...g.Node) Option {
-	return func(p *Props) { p.Attrs = append(p.Attrs, attrs...) }
+func WithAttrs(attrs templ.Attributes) Option {
+	return func(p *Props) {
+		if p.Attrs == nil {
+			p.Attrs = templ.Attributes{}
+		}
+		for k, v := range attrs {
+			p.Attrs[k] = v
+		}
+	}
 }
 
 // defaultProps returns default icon properties
@@ -55,6 +66,35 @@ func defaultProps() *Props {
 		Color:       "currentColor",
 		StrokeWidth: 2,
 	}
+}
+
+// writeAttrs writes templ.Attributes as HTML attributes.
+func writeAttrs(w io.Writer, attrs templ.Attributes) error {
+	for k, v := range attrs {
+		switch val := v.(type) {
+		case string:
+			if val == "" {
+				if _, err := fmt.Fprintf(w, " %s", k); err != nil {
+					return err
+				}
+			} else {
+				if _, err := fmt.Fprintf(w, ` %s="%s"`, k, stdhtml.EscapeString(val)); err != nil {
+					return err
+				}
+			}
+		case bool:
+			if val {
+				if _, err := fmt.Fprintf(w, " %s", k); err != nil {
+					return err
+				}
+			}
+		default:
+			if _, err := fmt.Fprintf(w, ` %s="%s"`, k, stdhtml.EscapeString(fmt.Sprint(val))); err != nil {
+				return err
+			}
+		}
+	}
+	return nil
 }
 
 // Icon creates an icon wrapper around SVG content
@@ -67,7 +107,7 @@ func defaultProps() *Props {
 //	    icons.WithSize(20),
 //	    icons.WithColor("blue"),
 //	)
-func Icon(pathData string, opts ...Option) g.Node {
+func Icon(pathData string, opts ...Option) templ.Component {
 	props := defaultProps()
 	for _, opt := range opts {
 		opt(props)
@@ -78,29 +118,37 @@ func Icon(pathData string, opts ...Option) g.Node {
 		classes = forgeui.CN(classes, props.Class)
 	}
 
-	attrs := []g.Node{
-		html.Class(classes),
-		g.Attr("xmlns", "http://www.w3.org/2000/svg"),
-		g.Attr("width", forgeui.ToString(props.Size)),
-		g.Attr("height", forgeui.ToString(props.Size)),
-		g.Attr("viewBox", "0 0 24 24"),
-		g.Attr("fill", "none"),
-		g.Attr("stroke", props.Color),
-		g.Attr("stroke-width", forgeui.ToString(props.StrokeWidth)),
-		g.Attr("stroke-linecap", "round"),
-		g.Attr("stroke-linejoin", "round"),
-	}
+	return templ.ComponentFunc(func(_ context.Context, w io.Writer) error {
+		if _, err := fmt.Fprintf(w,
+			`<svg class="%s" xmlns="http://www.w3.org/2000/svg" width="%s" height="%s" viewBox="0 0 24 24" fill="none" stroke="%s" stroke-width="%s" stroke-linecap="round" stroke-linejoin="round"`,
+			stdhtml.EscapeString(classes),
+			stdhtml.EscapeString(forgeui.ToString(props.Size)),
+			stdhtml.EscapeString(forgeui.ToString(props.Size)),
+			stdhtml.EscapeString(props.Color),
+			stdhtml.EscapeString(forgeui.ToString(props.StrokeWidth)),
+		); err != nil {
+			return err
+		}
 
-	attrs = append(attrs, props.Attrs...)
+		if err := writeAttrs(w, props.Attrs); err != nil {
+			return err
+		}
 
-	return g.El("svg",
-		g.Group(attrs),
-		g.El("path", g.Attr("d", pathData)),
-	)
+		if _, err := io.WriteString(w, ">"); err != nil {
+			return err
+		}
+
+		if _, err := fmt.Fprintf(w, `<path d="%s"></path>`, stdhtml.EscapeString(pathData)); err != nil {
+			return err
+		}
+
+		_, err := io.WriteString(w, "</svg>")
+		return err
+	})
 }
 
 // MultiPathIcon creates an icon with multiple paths
-func MultiPathIcon(paths []string, opts ...Option) g.Node {
+func MultiPathIcon(paths []string, opts ...Option) templ.Component {
 	props := defaultProps()
 	for _, opt := range opts {
 		opt(props)
@@ -111,29 +159,33 @@ func MultiPathIcon(paths []string, opts ...Option) g.Node {
 		classes = forgeui.CN(classes, props.Class)
 	}
 
-	attrs := []g.Node{
-		html.Class(classes),
-		g.Attr("xmlns", "http://www.w3.org/2000/svg"),
-		g.Attr("width", forgeui.ToString(props.Size)),
-		g.Attr("height", forgeui.ToString(props.Size)),
-		g.Attr("viewBox", "0 0 24 24"),
-		g.Attr("fill", "none"),
-		g.Attr("stroke", props.Color),
-		g.Attr("stroke-width", forgeui.ToString(props.StrokeWidth)),
-		g.Attr("stroke-linecap", "round"),
-		g.Attr("stroke-linejoin", "round"),
-	}
+	return templ.ComponentFunc(func(_ context.Context, w io.Writer) error {
+		if _, err := fmt.Fprintf(w,
+			`<svg class="%s" xmlns="http://www.w3.org/2000/svg" width="%s" height="%s" viewBox="0 0 24 24" fill="none" stroke="%s" stroke-width="%s" stroke-linecap="round" stroke-linejoin="round"`,
+			stdhtml.EscapeString(classes),
+			stdhtml.EscapeString(forgeui.ToString(props.Size)),
+			stdhtml.EscapeString(forgeui.ToString(props.Size)),
+			stdhtml.EscapeString(props.Color),
+			stdhtml.EscapeString(forgeui.ToString(props.StrokeWidth)),
+		); err != nil {
+			return err
+		}
 
-	attrs = append(attrs, props.Attrs...)
+		if err := writeAttrs(w, props.Attrs); err != nil {
+			return err
+		}
 
-	// Create path elements
-	pathNodes := make([]g.Node, len(paths))
-	for i, pathData := range paths {
-		pathNodes[i] = g.El("path", g.Attr("d", pathData))
-	}
+		if _, err := io.WriteString(w, ">"); err != nil {
+			return err
+		}
 
-	return g.El("svg",
-		g.Group(attrs),
-		g.Group(pathNodes),
-	)
+		for _, pathData := range paths {
+			if _, err := fmt.Fprintf(w, `<path d="%s"></path>`, stdhtml.EscapeString(pathData)); err != nil {
+				return err
+			}
+		}
+
+		_, err := io.WriteString(w, "</svg>")
+		return err
+	})
 }

@@ -5,7 +5,7 @@ import (
 	"net/http"
 	"strings"
 
-	g "maragu.dev/gomponents"
+	"github.com/a-h/templ"
 
 	"github.com/xraph/forgeui/assets"
 	"github.com/xraph/forgeui/bridge"
@@ -141,11 +141,11 @@ func (a *App) HotReloadPath() string {
 	return "/_forgeui/reload"
 }
 
-// BridgeScripts returns properly configured bridge script tags
-// This respects the BasePath configuration
-func (a *App) BridgeScripts(includeAlpine bool, csrfToken ...string) g.Node {
+// BridgeScripts returns properly configured bridge script tags as a templ.Component.
+// This respects the BasePath configuration.
+func (a *App) BridgeScripts(includeAlpine bool, csrfToken ...string) templ.Component {
 	if !a.HasBridge() {
-		return g.Group(nil)
+		return templ.NopComponent
 	}
 
 	token := ""

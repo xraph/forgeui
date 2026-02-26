@@ -1,14 +1,14 @@
 package charts
 
 import (
-	g "maragu.dev/gomponents"
+	"github.com/a-h/templ"
 )
 
 // barChart creates a bar chart component.
-func (c *Charts) barChart(props any, children ...g.Node) g.Node {
+func (c *Charts) barChart(props any, children ...templ.Component) templ.Component {
 	data, ok := props.(BarChartData)
 	if !ok {
-		return g.Text("Invalid data for BarChart")
+		return textComponent("Invalid data for BarChart")
 	}
 
 	opts := DefaultOptions()
@@ -36,22 +36,7 @@ func (c *Charts) barChart(props any, children ...g.Node) g.Node {
 }
 
 // BarChart creates a bar chart with the given data.
-//
-// Example:
-//
-//	charts.BarChart(charts.BarChartData{
-//	    Labels: []string{"Q1", "Q2", "Q3", "Q4"},
-//	    Datasets: []charts.DatasetConfig{
-//	        {
-//	            Label: "Revenue",
-//	            Data: []float64{45000, 52000, 48000, 61000},
-//	            BackgroundColor: charts.DefaultColors[0],
-//	            BorderColor: charts.BorderColors[0],
-//	            BorderWidth: 1,
-//	        },
-//	    },
-//	})
-func BarChart(data BarChartData) g.Node {
+func BarChart(data BarChartData) templ.Component {
 	opts := DefaultOptions()
 
 	chartData := map[string]any{

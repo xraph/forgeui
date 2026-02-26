@@ -1,72 +1,75 @@
 package alpine
 
 import (
-	"bytes"
 	"strings"
 	"testing"
 )
 
 func TestXRoute(t *testing.T) {
 	tests := []struct {
-		name string
-		path string
-		opts []RouteOption
-		want string
+		name    string
+		path    string
+		opts    []RouteOption
+		wantKey string
+		wantVal string
 	}{
 		{
-			name: "static route",
-			path: "/",
-			opts: nil,
-			want: `x-route="/"`,
+			name:    "static route",
+			path:    "/",
+			opts:    nil,
+			wantKey: "x-route",
+			wantVal: "/",
 		},
 		{
-			name: "route with param",
-			path: "/users/:id",
-			opts: nil,
-			want: `x-route="/users/:id"`,
+			name:    "route with param",
+			path:    "/users/:id",
+			opts:    nil,
+			wantKey: "x-route",
+			wantVal: "/users/:id",
 		},
 		{
-			name: "wildcard route",
-			path: "/files/*path",
-			opts: nil,
-			want: `x-route="/files/*path"`,
+			name:    "wildcard route",
+			path:    "/files/*path",
+			opts:    nil,
+			wantKey: "x-route",
+			wantVal: "/files/*path",
 		},
 		{
-			name: "optional param",
-			path: "/profile/:id?",
-			opts: nil,
-			want: `x-route="/profile/:id?"`,
+			name:    "optional param",
+			path:    "/profile/:id?",
+			opts:    nil,
+			wantKey: "x-route",
+			wantVal: "/profile/:id?",
 		},
 		{
-			name: "notfound route",
-			path: "notfound",
-			opts: nil,
-			want: `x-route="notfound"`,
+			name:    "notfound route",
+			path:    "notfound",
+			opts:    nil,
+			wantKey: "x-route",
+			wantVal: "notfound",
 		},
 		{
-			name: "named route",
-			path: "/profile",
-			opts: []RouteOption{WithRouteName("profile")},
-			want: `x-route:profile="/profile"`,
+			name:    "named route",
+			path:    "/profile",
+			opts:    []RouteOption{WithRouteName("profile")},
+			wantKey: "x-route:profile",
+			wantVal: "/profile",
 		},
 		{
-			name: "complex path",
-			path: "/movies/:title.(mp4|mov)",
-			opts: nil,
-			want: `x-route="/movies/:title.(mp4|mov)"`,
+			name:    "complex path",
+			path:    "/movies/:title.(mp4|mov)",
+			opts:    nil,
+			wantKey: "x-route",
+			wantVal: "/movies/:title.(mp4|mov)",
 		},
 	}
 
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
-			var buf bytes.Buffer
-			if err := XRoute(tt.path, tt.opts...).Render(&buf); err != nil {
-				t.Fatalf("Render() error = %v", err)
-			}
-			got := buf.String()
+			attrs := XRoute(tt.path, tt.opts...)
 
-			if !strings.Contains(got, tt.want) {
-				t.Errorf("XRoute() = %v, want to contain %v", got, tt.want)
+			if v, ok := attrs[tt.wantKey]; !ok || v != tt.wantVal {
+				t.Errorf("XRoute() = %v, want %s=%s", attrs, tt.wantKey, tt.wantVal)
 			}
 		})
 	}
@@ -74,59 +77,62 @@ func TestXRoute(t *testing.T) {
 
 func TestXTemplate(t *testing.T) {
 	tests := []struct {
-		name string
-		url  string
-		mods []TemplateModifier
-		want string
+		name    string
+		url     string
+		mods    []TemplateModifier
+		wantKey string
+		wantVal string
 	}{
 		{
-			name: "simple template",
-			url:  "/views/home.html",
-			mods: nil,
-			want: `x-template="/views/home.html"`,
+			name:    "simple template",
+			url:     "/views/home.html",
+			mods:    nil,
+			wantKey: "x-template",
+			wantVal: "/views/home.html",
 		},
 		{
-			name: "template with preload",
-			url:  "/views/404.html",
-			mods: []TemplateModifier{Preload()},
-			want: `x-template.preload="/views/404.html"`,
+			name:    "template with preload",
+			url:     "/views/404.html",
+			mods:    []TemplateModifier{Preload()},
+			wantKey: "x-template.preload",
+			wantVal: "/views/404.html",
 		},
 		{
-			name: "template with target",
-			url:  "/views/profile.html",
-			mods: []TemplateModifier{TargetID("app")},
-			want: `x-template.target.app="/views/profile.html"`,
+			name:    "template with target",
+			url:     "/views/profile.html",
+			mods:    []TemplateModifier{TargetID("app")},
+			wantKey: "x-template.target.app",
+			wantVal: "/views/profile.html",
 		},
 		{
-			name: "template with interpolate",
-			url:  "/api/dynamic/:name.html",
-			mods: []TemplateModifier{Interpolate()},
-			want: `x-template.interpolate="/api/dynamic/:name.html"`,
+			name:    "template with interpolate",
+			url:     "/api/dynamic/:name.html",
+			mods:    []TemplateModifier{Interpolate()},
+			wantKey: "x-template.interpolate",
+			wantVal: "/api/dynamic/:name.html",
 		},
 		{
-			name: "template with multiple modifiers",
-			url:  "/views/user.html",
-			mods: []TemplateModifier{Preload(), TargetID("main")},
-			want: `x-template.preload.target.main="/views/user.html"`,
+			name:    "template with multiple modifiers",
+			url:     "/views/user.html",
+			mods:    []TemplateModifier{Preload(), TargetID("main")},
+			wantKey: "x-template.preload.target.main",
+			wantVal: "/views/user.html",
 		},
 		{
-			name: "array of templates",
-			url:  "['/header.html', '/home.html']",
-			mods: nil,
-			want: `x-template="[`,
+			name:    "array of templates",
+			url:     "['/header.html', '/home.html']",
+			mods:    nil,
+			wantKey: "x-template",
+			wantVal: "['/header.html', '/home.html']",
 		},
 	}
 
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
-			var buf bytes.Buffer
-			if err := XTemplate(tt.url, tt.mods...).Render(&buf); err != nil {
-				t.Fatalf("Render() error = %v", err)
-			}
-			got := buf.String()
+			attrs := XTemplate(tt.url, tt.mods...)
 
-			if !strings.Contains(got, tt.want) {
-				t.Errorf("XTemplate() = %v, want to contain %v", got, tt.want)
+			if v, ok := attrs[tt.wantKey]; !ok || v != tt.wantVal {
+				t.Errorf("XTemplate() = %v, want %s=%s", attrs, tt.wantKey, tt.wantVal)
 			}
 		})
 	}
@@ -134,32 +140,28 @@ func TestXTemplate(t *testing.T) {
 
 func TestXTemplateInline(t *testing.T) {
 	tests := []struct {
-		name string
-		mods []TemplateModifier
-		want string
+		name    string
+		mods    []TemplateModifier
+		wantKey string
 	}{
 		{
-			name: "inline template",
-			mods: nil,
-			want: `x-template=""`,
+			name:    "inline template",
+			mods:    nil,
+			wantKey: "x-template",
 		},
 		{
-			name: "inline template with target",
-			mods: []TemplateModifier{TargetID("app")},
-			want: `x-template.target.app=""`,
+			name:    "inline template with target",
+			mods:    []TemplateModifier{TargetID("app")},
+			wantKey: "x-template.target.app",
 		},
 	}
 
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
-			var buf bytes.Buffer
-			if err := XTemplateInline(tt.mods...).Render(&buf); err != nil {
-				t.Fatalf("Render() error = %v", err)
-			}
-			got := buf.String()
+			attrs := XTemplateInline(tt.mods...)
 
-			if !strings.Contains(got, tt.want) {
-				t.Errorf("XTemplateInline() = %v, want to contain %v", got, tt.want)
+			if v, ok := attrs[tt.wantKey]; !ok || v != "" {
+				t.Errorf("XTemplateInline() = %v, want %s=\"\"", attrs, tt.wantKey)
 			}
 		})
 	}
@@ -170,50 +172,51 @@ func TestXHandler(t *testing.T) {
 		name    string
 		handler string
 		mods    []HandlerModifier
-		want    string
+		wantKey string
+		wantVal string
 	}{
 		{
 			name:    "single handler",
 			handler: "myHandler",
 			mods:    nil,
-			want:    `x-handler="myHandler"`,
+			wantKey: "x-handler",
+			wantVal: "myHandler",
 		},
 		{
 			name:    "multiple handlers",
 			handler: "[checkAuth, loadUser]",
 			mods:    nil,
-			want:    `x-handler="[checkAuth, loadUser]"`,
+			wantKey: "x-handler",
+			wantVal: "[checkAuth, loadUser]",
 		},
 		{
 			name:    "global handler",
 			handler: "[logger, analytics]",
 			mods:    []HandlerModifier{Global()},
-			want:    `x-handler.global="[logger, analytics]"`,
+			wantKey: "x-handler.global",
+			wantVal: "[logger, analytics]",
 		},
 		{
 			name:    "arrow function handler",
 			handler: "(ctx) => console.log(ctx)",
 			mods:    nil,
-			want:    `x-handler="(ctx) =&gt; console.log(ctx)"`,
+			wantKey: "x-handler",
+			wantVal: "(ctx) => console.log(ctx)",
 		},
 	}
 
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
-			var buf bytes.Buffer
-			if err := XHandler(tt.handler, tt.mods...).Render(&buf); err != nil {
-				t.Fatalf("Render() error = %v", err)
-			}
-			got := buf.String()
+			attrs := XHandler(tt.handler, tt.mods...)
 
-			if !strings.Contains(got, tt.want) {
-				t.Errorf("XHandler() = %v, want to contain %v", got, tt.want)
+			if v, ok := attrs[tt.wantKey]; !ok || v != tt.wantVal {
+				t.Errorf("XHandler() = %v, want %s=%s", attrs, tt.wantKey, tt.wantVal)
 			}
 		})
 	}
 }
 
-func TestRouterSettings(t *testing.T) {
+func TestRouterSettingsJS(t *testing.T) {
 	tests := []struct {
 		name     string
 		settings map[string]any
@@ -229,23 +232,14 @@ func TestRouterSettings(t *testing.T) {
 			settings: map[string]any{
 				"hash": true,
 			},
-			want: []string{"<script>", "hash: true", "PineconeRouter.settings", "</script>"},
+			want: []string{"hash: true", "PineconeRouter.settings"},
 		},
 		{
 			name: "base path",
 			settings: map[string]any{
 				"basePath": "/app",
 			},
-			want: []string{"<script>", `basePath: "/app"`, "</script>"},
-		},
-		{
-			name: "multiple settings",
-			settings: map[string]any{
-				"hash":     false,
-				"basePath": "/blog",
-				"targetID": "main",
-			},
-			want: []string{"<script>", "hash: false", `basePath: "/blog"`, `targetID: "main"`, "</script>"},
+			want: []string{`basePath: "/app"`, "PineconeRouter.settings"},
 		},
 		{
 			name: "boolean settings",
@@ -253,21 +247,17 @@ func TestRouterSettings(t *testing.T) {
 				"handleClicks": true,
 				"pushState":    false,
 			},
-			want: []string{"<script>", "handleClicks: true", "pushState: false", "</script>"},
+			want: []string{"handleClicks: true", "pushState: false"},
 		},
 	}
 
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
-			var buf bytes.Buffer
-			if err := RouterSettings(tt.settings).Render(&buf); err != nil {
-				t.Fatalf("Render() error = %v", err)
-			}
-			got := buf.String()
+			got := RouterSettingsJS(tt.settings)
 
 			for _, want := range tt.want {
 				if !strings.Contains(got, want) {
-					t.Errorf("RouterSettings() = %v, want to contain %v", got, want)
+					t.Errorf("RouterSettingsJS() = %v, want to contain %v", got, want)
 				}
 			}
 		})

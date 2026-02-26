@@ -19,7 +19,7 @@ func (t *BlogTemplate) Description() string {
 }
 
 func (t *BlogTemplate) Generate(dir, projectName, modulePath string) error {
-	// Create main.go (simplified blog version)
+	// Create main.go
 	mainGo := fmt.Sprintf(`package main
 
 import (
@@ -51,13 +51,12 @@ func main() {
 		return err
 	}
 
-	// Create pages/blog.go
-	blogGo := `package pages
+	// Create pages/handlers.go
+	handlersGo := `package pages
 
 import (
-	"github.com/xraph/forgeui"
-	g "maragu.dev/gomponents"
-	"maragu.dev/gomponents/html"
+	"github.com/a-h/templ"
+	"github.com/xraph/forgeui/router"
 )
 
 type Post struct {
@@ -72,83 +71,103 @@ var samplePosts = []Post{
 	{Slug: "go-web-dev", Title: "Go Web Development", Content: "Building web apps with Go is awesome!", Tags: []string{"go", "web"}},
 }
 
-func BlogHome(ctx *forgeui.PageContext) g.Node {
-	return html.HTML(
-		html.Lang("en"),
-		html.Head(
-			html.Meta(html.Charset("utf-8")),
-			html.TitleEl(g.Text("My Blog")),
-			html.StyleEl(g.Raw(blogStyles)),
-		),
-		html.Body(
-			html.Header(html.H1(g.Text("My Blog"))),
-			html.Main(
-				html.Div(
-					html.Class("posts"),
-					g.Group(g.Map(samplePosts, func(p Post) g.Node {
-						return html.Article(
-							html.Class("post-preview"),
-							html.H2(html.A(html.Href("/post/"+p.Slug), g.Text(p.Title))),
-							html.P(g.Text(p.Content)),
-						)
-					})),
-				),
-			),
-		),
-	)
+func BlogHome(ctx *router.PageContext) (templ.Component, error) {
+	return BlogHomePage(samplePosts), nil
 }
 
-func BlogPost(ctx *forgeui.PageContext) g.Node {
+func BlogPost(ctx *router.PageContext) (templ.Component, error) {
 	slug := ctx.Params["slug"]
-	return html.HTML(
-		html.Lang("en"),
-		html.Head(
-			html.Meta(html.Charset("utf-8")),
-			html.TitleEl(g.Text("Post: "+slug)),
-			html.StyleEl(g.Raw(blogStyles)),
-		),
-		html.Body(
-			html.Header(html.H1(g.Text("Post: "+slug))),
-			html.Main(
-				html.P(g.Text("This is the blog post page.")),
-				html.A(html.Href("/"), g.Text("← Back to home")),
-			),
-		),
-	)
+	return BlogPostPage(slug), nil
 }
 
-func BlogTag(ctx *forgeui.PageContext) g.Node {
+func BlogTag(ctx *router.PageContext) (templ.Component, error) {
 	tag := ctx.Params["tag"]
-	return html.HTML(
-		html.Lang("en"),
-		html.Head(
-			html.Meta(html.Charset("utf-8")),
-			html.TitleEl(g.Text("Tag: "+tag)),
-			html.StyleEl(g.Raw(blogStyles)),
-		),
-		html.Body(
-			html.Header(html.H1(g.Text("Posts tagged: "+tag))),
-			html.Main(
-				html.P(g.Text("Posts with this tag will appear here.")),
-				html.A(html.Href("/"), g.Text("← Back to home")),
-			),
-		),
-	)
+	return BlogTagPage(tag), nil
 }
-
-const blogStyles = ` + "`" + `
-body { font-family: system-ui, -apple-system, sans-serif; max-width: 800px; margin: 0 auto; padding: 2rem; }
-header { margin-bottom: 2rem; }
-h1 { color: #2c3e50; }
-.posts { display: flex; flex-direction: column; gap: 2rem; }
-.post-preview { padding: 1rem; border-left: 3px solid #3498db; }
-.post-preview h2 { margin: 0 0 0.5rem; }
-.post-preview h2 a { color: #2c3e50; text-decoration: none; }
-.post-preview h2 a:hover { color: #3498db; }
-` + "`" + `
 `
 
-	if err := util.CreateFile(filepath.Join(dir, "pages", "blog.go"), blogGo); err != nil {
+	if err := util.CreateFile(filepath.Join(dir, "pages", "handlers.go"), handlersGo); err != nil {
+		return err
+	}
+
+	// Create pages/blog.templ
+	blogTempl := `package pages
+
+templ BlogHomePage(posts []Post) {
+	<!DOCTYPE html>
+	<html lang="en">
+		<head>
+			<meta charset="utf-8"/>
+			<title>My Blog</title>
+			@blogStyles()
+		</head>
+		<body>
+			<header><h1>My Blog</h1></header>
+			<main>
+				<div class="posts">
+					for _, p := range posts {
+						<article class="post-preview">
+							<h2><a href={ templ.SafeURL("/post/" + p.Slug) }>{ p.Title }</a></h2>
+							<p>{ p.Content }</p>
+						</article>
+					}
+				</div>
+			</main>
+		</body>
+	</html>
+}
+
+templ BlogPostPage(slug string) {
+	<!DOCTYPE html>
+	<html lang="en">
+		<head>
+			<meta charset="utf-8"/>
+			<title>Post: { slug }</title>
+			@blogStyles()
+		</head>
+		<body>
+			<header><h1>Post: { slug }</h1></header>
+			<main>
+				<p>This is the blog post page.</p>
+				<a href="/">&#8592; Back to home</a>
+			</main>
+		</body>
+	</html>
+}
+
+templ BlogTagPage(tag string) {
+	<!DOCTYPE html>
+	<html lang="en">
+		<head>
+			<meta charset="utf-8"/>
+			<title>Tag: { tag }</title>
+			@blogStyles()
+		</head>
+		<body>
+			<header><h1>Posts tagged: { tag }</h1></header>
+			<main>
+				<p>Posts with this tag will appear here.</p>
+				<a href="/">&#8592; Back to home</a>
+			</main>
+		</body>
+	</html>
+}
+
+templ blogStyles() {
+	<style>
+		body { font-family: system-ui, -apple-system, sans-serif; max-width: 800px; margin: 0 auto; padding: 2rem; }
+		header { margin-bottom: 2rem; }
+		h1 { color: #2c3e50; }
+		.posts { display: flex; flex-direction: column; gap: 2rem; }
+		.post-preview { padding: 1rem; border-left: 3px solid #3498db; }
+		.post-preview h2 { margin: 0 0 0.5rem; }
+		.post-preview h2 a { color: #2c3e50; text-decoration: none; }
+		.post-preview h2 a:hover { color: #3498db; }
+	</style>
+}
+`
+
+	if err := util.CreateFile(filepath.Join(dir, "pages", "blog.templ"), blogTempl); err != nil {
 		return err
 	}
 
@@ -169,6 +188,7 @@ dist/
 *.test
 *.out
 go.sum
+*_templ.go
 .vscode/
 .idea/
 *.swp
@@ -191,6 +211,12 @@ A blog template built with ForgeUI.
 
 `+"```"+`bash
 forgeui dev
+`+"```"+`
+
+Or run directly:
+
+`+"```"+`bash
+templ generate && go run .
 `+"```"+`
 
 Visit http://localhost:3000 to see your blog.

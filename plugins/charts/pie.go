@@ -1,14 +1,14 @@
 package charts
 
 import (
-	g "maragu.dev/gomponents"
+	"github.com/a-h/templ"
 )
 
 // pieChart creates a pie chart component.
-func (c *Charts) pieChart(props any, children ...g.Node) g.Node {
+func (c *Charts) pieChart(props any, children ...templ.Component) templ.Component {
 	data, ok := props.(PieChartData)
 	if !ok {
-		return g.Text("Invalid data for PieChart")
+		return textComponent("Invalid data for PieChart")
 	}
 
 	opts := DefaultOptions()
@@ -30,17 +30,7 @@ func (c *Charts) pieChart(props any, children ...g.Node) g.Node {
 }
 
 // PieChart creates a pie chart with the given data.
-//
-// Example:
-//
-//	charts.PieChart(charts.PieChartData{
-//	    Labels: []string{"Chrome", "Firefox", "Safari", "Edge"},
-//	    Data: []float64{55.2, 18.7, 15.3, 10.8},
-//	    BackgroundColor: charts.DefaultColors,
-//	    BorderColor: charts.BorderColors,
-//	    BorderWidth: 1,
-//	})
-func PieChart(data PieChartData) g.Node {
+func PieChart(data PieChartData) templ.Component {
 	opts := DefaultOptions()
 
 	chartData := map[string]any{

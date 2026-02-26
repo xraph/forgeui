@@ -1,19 +1,28 @@
 package router
 
 import (
+	"context"
+	"io"
 	"net/http/httptest"
 	"strings"
 	"testing"
 
-	g "maragu.dev/gomponents"
+	"github.com/a-h/templ"
 )
 
 func TestLayoutRegistration(t *testing.T) {
 	r := New()
 
 	// Register a layout
-	r.RegisterLayout("test", func(ctx *PageContext, content g.Node) g.Node {
-		return g.El("div", g.Text("Layout: "), content)
+	r.RegisterLayout("test", func(ctx *PageContext, content templ.Component) templ.Component {
+		return templ.ComponentFunc(func(tCtx context.Context, w io.Writer) error {
+			io.WriteString(w, "<div>Layout: ")
+			if err := content.Render(tCtx, w); err != nil {
+				return err
+			}
+			io.WriteString(w, "</div>")
+			return nil
+		})
 	})
 
 	// Verify layout was registered
@@ -31,13 +40,20 @@ func TestLayoutApplication(t *testing.T) {
 	r := New()
 
 	// Register a layout
-	r.RegisterLayout("wrapper", func(ctx *PageContext, content g.Node) g.Node {
-		return g.El("div", g.Text("["), content, g.Text("]"))
+	r.RegisterLayout("wrapper", func(ctx *PageContext, content templ.Component) templ.Component {
+		return templ.ComponentFunc(func(tCtx context.Context, w io.Writer) error {
+			io.WriteString(w, "<div>[")
+			if err := content.Render(tCtx, w); err != nil {
+				return err
+			}
+			io.WriteString(w, "]</div>")
+			return nil
+		})
 	})
 
 	// Create a route with layout
-	r.Get("/test", func(ctx *PageContext) (g.Node, error) {
-		return g.Text("content"), nil
+	r.Get("/test", func(ctx *PageContext) (templ.Component, error) {
+		return templ.Raw("content"), nil
 	}).SetLayout("wrapper")
 
 	// Test the route
@@ -54,14 +70,17 @@ func TestDefaultLayout(t *testing.T) {
 	r := New()
 
 	// Register and set default layout
-	r.RegisterLayout("default", func(ctx *PageContext, content g.Node) g.Node {
-		return g.El("div", g.Text("Default: "), content)
+	r.RegisterLayout("default", func(ctx *PageContext, content templ.Component) templ.Component {
+		return templ.ComponentFunc(func(tCtx context.Context, w io.Writer) error {
+			io.WriteString(w, "Default: ")
+			return content.Render(tCtx, w)
+		})
 	})
 	r.SetDefaultLayout("default")
 
 	// Create a route without explicit layout
-	r.Get("/test", func(ctx *PageContext) (g.Node, error) {
-		return g.Text("content"), nil
+	r.Get("/test", func(ctx *PageContext) (templ.Component, error) {
+		return templ.Raw("content"), nil
 	})
 
 	// Test the route
@@ -78,17 +97,23 @@ func TestLayoutOverride(t *testing.T) {
 	r := New()
 
 	// Register layouts
-	r.RegisterLayout("default", func(ctx *PageContext, content g.Node) g.Node {
-		return g.El("div", g.Text("Default: "), content)
+	r.RegisterLayout("default", func(ctx *PageContext, content templ.Component) templ.Component {
+		return templ.ComponentFunc(func(tCtx context.Context, w io.Writer) error {
+			io.WriteString(w, "Default: ")
+			return content.Render(tCtx, w)
+		})
 	})
-	r.RegisterLayout("custom", func(ctx *PageContext, content g.Node) g.Node {
-		return g.El("div", g.Text("Custom: "), content)
+	r.RegisterLayout("custom", func(ctx *PageContext, content templ.Component) templ.Component {
+		return templ.ComponentFunc(func(tCtx context.Context, w io.Writer) error {
+			io.WriteString(w, "Custom: ")
+			return content.Render(tCtx, w)
+		})
 	})
 	r.SetDefaultLayout("default")
 
 	// Create a route with custom layout
-	r.Get("/test", func(ctx *PageContext) (g.Node, error) {
-		return g.Text("content"), nil
+	r.Get("/test", func(ctx *PageContext) (templ.Component, error) {
+		return templ.Raw("content"), nil
 	}).SetLayout("custom")
 
 	// Test the route
@@ -105,14 +130,17 @@ func TestNoLayout(t *testing.T) {
 	r := New()
 
 	// Register and set default layout
-	r.RegisterLayout("default", func(ctx *PageContext, content g.Node) g.Node {
-		return g.El("div", g.Text("Default: "), content)
+	r.RegisterLayout("default", func(ctx *PageContext, content templ.Component) templ.Component {
+		return templ.ComponentFunc(func(tCtx context.Context, w io.Writer) error {
+			io.WriteString(w, "Default: ")
+			return content.Render(tCtx, w)
+		})
 	})
 	r.SetDefaultLayout("default")
 
 	// Create a route with no layout
-	r.Get("/test", func(ctx *PageContext) (g.Node, error) {
-		return g.Text("content"), nil
+	r.Get("/test", func(ctx *PageContext) (templ.Component, error) {
+		return templ.Raw("content"), nil
 	}).NoLayout()
 
 	// Test the route
@@ -127,22 +155,23 @@ func TestNoLayout(t *testing.T) {
 
 func TestDefaultLayoutFunction(t *testing.T) {
 	ctx := &PageContext{
+		Request: httptest.NewRequest(MethodGet, "/test", nil),
 		Meta: &RouteMeta{
 			Title: "Test Page",
 		},
 	}
 
-	content := g.Text("Page content")
+	content := templ.Raw("Page content")
 	result := DefaultLayout(ctx, content)
 
 	if result == nil {
-		t.Error("Expected layout to return a node")
+		t.Error("Expected layout to return a component")
 	}
 
 	// Render and check output
 	var buf strings.Builder
 
-	_ = result.Render(&buf)
+	_ = result.Render(context.Background(), &buf)
 	output := buf.String()
 
 	if !strings.Contains(output, "Test Page") {
@@ -155,18 +184,20 @@ func TestDefaultLayoutFunction(t *testing.T) {
 }
 
 func TestBlankLayoutFunction(t *testing.T) {
-	ctx := &PageContext{}
-	content := g.Text("Content")
+	ctx := &PageContext{
+		Request: httptest.NewRequest(MethodGet, "/test", nil),
+	}
+	content := templ.Raw("Content")
 	result := BlankLayout(ctx, content)
 
 	if result == nil {
-		t.Error("Expected layout to return a node")
+		t.Error("Expected layout to return a component")
 	}
 
 	// Render and check output
 	var buf strings.Builder
 
-	_ = result.Render(&buf)
+	_ = result.Render(context.Background(), &buf)
 	output := buf.String()
 
 	if !strings.Contains(output, "Content") {
@@ -176,22 +207,23 @@ func TestBlankLayoutFunction(t *testing.T) {
 
 func TestDashboardLayoutFunction(t *testing.T) {
 	ctx := &PageContext{
+		Request: httptest.NewRequest(MethodGet, "/test", nil),
 		Meta: &RouteMeta{
 			Title: "Dashboard",
 		},
 	}
 
-	content := g.Text("Dashboard content")
+	content := templ.Raw("Dashboard content")
 	result := DashboardLayout(ctx, content)
 
 	if result == nil {
-		t.Error("Expected layout to return a node")
+		t.Error("Expected layout to return a component")
 	}
 
 	// Render and check output
 	var buf strings.Builder
 
-	_ = result.Render(&buf)
+	_ = result.Render(context.Background(), &buf)
 	output := buf.String()
 
 	if !strings.Contains(output, "Dashboard") {

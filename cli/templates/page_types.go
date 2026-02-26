@@ -43,28 +43,40 @@ func GetPageTemplate(pageType string) (PageTemplate, error) {
 type SimplePageTemplate struct{}
 
 func (t *SimplePageTemplate) Generate(filePath string, opts PageOptions) error {
+	// Generate .templ file instead of .go
+	templFilePath := strings.TrimSuffix(filePath, ".go") + ".templ"
+
 	tmpl := `package {{.Package}}
 
+import "github.com/xraph/forgeui/router"
+
+templ {{.Name}}Page(ctx *router.PageContext) {
+	<!DOCTYPE html>
+	<html lang="en">
+		<head>
+			<meta charset="utf-8"/>
+			<meta name="viewport" content="width=device-width, initial-scale=1"/>
+			<title>{{.Name}}</title>
+		</head>
+		<body>
+			<h1>{{.Name}}</h1>
+			<p>This is the {{.Name}} page.</p>
+		</body>
+	</html>
+}
+`
+
+	// Also generate handler Go file
+	handlerTmpl := `package {{.Package}}
+
 import (
-	"github.com/xraph/forgeui"
-	g "maragu.dev/gomponents"
-	"maragu.dev/gomponents/html"
+	"github.com/a-h/templ"
+	"github.com/xraph/forgeui/router"
 )
 
-// {{.Name}} renders the {{.Name}} page
-func {{.Name}}(ctx *forgeui.PageContext) g.Node {
-	return html.HTML(
-		html.Lang("en"),
-		html.Head(
-			html.Meta(html.Charset("utf-8")),
-			html.Meta(html.Name("viewport"), html.Content("width=device-width, initial-scale=1")),
-			html.TitleEl(g.Text("{{.Name}}")),
-		),
-		html.Body(
-			html.H1(g.Text("{{.Name}}")),
-			html.P(g.Text("This is the {{.Name}} page.")),
-		),
-	)
+// {{.Name}} is the page handler for {{.Name}}
+func {{.Name}}(ctx *router.PageContext) (templ.Component, error) {
+	return {{.Name}}Page(ctx), nil
 }
 `
 
@@ -74,71 +86,143 @@ func {{.Name}}(ctx *forgeui.PageContext) g.Node {
 		"Path":    opts.Path,
 	}
 
-	code, err := executeTemplate(tmpl, data)
+	// Write templ file
+	templCode, err := executeTemplate(tmpl, data)
 	if err != nil {
 		return err
 	}
+	if err := util.CreateFile(templFilePath, templCode); err != nil {
+		return err
+	}
 
-	return util.CreateFile(filePath, code)
+	// Write handler Go file
+	handlerCode, err := executeTemplate(handlerTmpl, data)
+	if err != nil {
+		return err
+	}
+	return util.CreateFile(filePath, handlerCode)
 }
 
 // DynamicPageTemplate is a page with data loading
 type DynamicPageTemplate struct{}
 
 func (t *DynamicPageTemplate) Generate(filePath string, opts PageOptions) error {
-	tmpl := "package {{.Package}}\n\nimport (\n\t\"github.com/xraph/forgeui\"\n\tg \"maragu.dev/gomponents\"\n\t\"maragu.dev/gomponents/html\"\n)\n\n// {{.Name}}Data holds the page data\ntype {{.Name}}Data struct {\n\tTitle   string\n\tContent string\n}\n\n// {{.Name}} renders the {{.Name}} page\nfunc {{.Name}}(ctx *forgeui.PageContext) g.Node {\n\t// Load data\n\t:= load{{.Name}}Data(ctx)\n\t\n\treturn html.HTML(\n\t\thtml.Lang(\"en\"),\n\t\thtml.Head(\n\t\t\thtml.Meta(html.Charset(\"utf-8\")),\n\t\t\thtml.Meta(html.Name(\"viewport\"), html.Content(\"width=device-width, initial-scale=1\")),\n\t\t\thtml.TitleEl(g.Text(data.Title)),\n\t\t),\n\t\thtml.Body(\n\t\t\thtml.H1(g.Text(data.Title)),\n\t\t\thtml.Div(g.Text(data.Content)),\n\t\t),\n\t)\n}\n\nfunc load{{.Name}}Data(ctx *forgeui.PageContext) {{.Name}}Data {\n\t// TODO: Load data from database or API\n\treturn {{.Name}}Data{\n\t\tTitle:   \"{{.Name}}\",\n\t\tContent: \"Dynamic content goes here\",\n\t}"
+	templFilePath := strings.TrimSuffix(filePath, ".go") + ".templ"
+
+	tmpl := `package {{.Package}}
+
+import "github.com/xraph/forgeui/router"
+
+templ {{.Name}}Page(ctx *router.PageContext, data {{.Name}}Data) {
+	<!DOCTYPE html>
+	<html lang="en">
+		<head>
+			<meta charset="utf-8"/>
+			<meta name="viewport" content="width=device-width, initial-scale=1"/>
+			<title>{ data.Title }</title>
+		</head>
+		<body>
+			<h1>{ data.Title }</h1>
+			<div>{ data.Content }</div>
+		</body>
+	</html>
+}
+`
+
+	handlerTmpl := `package {{.Package}}
+
+import (
+	"github.com/a-h/templ"
+	"github.com/xraph/forgeui/router"
+)
+
+// {{.Name}}Data holds the page data
+type {{.Name}}Data struct {
+	Title   string
+	Content string
+}
+
+// {{.Name}} is the page handler for {{.Name}}
+func {{.Name}}(ctx *router.PageContext) (templ.Component, error) {
+	data := load{{.Name}}Data(ctx)
+	return {{.Name}}Page(ctx, data), nil
+}
+
+func load{{.Name}}Data(ctx *router.PageContext) {{.Name}}Data {
+	// TODO: Load data from database or API
+	return {{.Name}}Data{
+		Title:   "{{.Name}}",
+		Content: "Dynamic content goes here",
+	}
+}
+`
 
 	data := map[string]any{
 		"Package": opts.Package,
 		"Name":    util.ToPascalCase(opts.Name),
 	}
 
-	code, err := executeTemplate(tmpl, data)
+	templCode, err := executeTemplate(tmpl, data)
 	if err != nil {
 		return err
 	}
+	if err := util.CreateFile(templFilePath, templCode); err != nil {
+		return err
+	}
 
-	return util.CreateFile(filePath, code)
+	handlerCode, err := executeTemplate(handlerTmpl, data)
+	if err != nil {
+		return err
+	}
+	return util.CreateFile(filePath, handlerCode)
 }
 
 // FormPageTemplate is a page with a form
 type FormPageTemplate struct{}
 
 func (t *FormPageTemplate) Generate(filePath string, opts PageOptions) error {
+	templFilePath := strings.TrimSuffix(filePath, ".go") + ".templ"
+
 	tmpl := `package {{.Package}}
 
+import "github.com/xraph/forgeui/router"
+
+templ {{.Name}}Page(ctx *router.PageContext) {
+	<!DOCTYPE html>
+	<html lang="en">
+		<head>
+			<meta charset="utf-8"/>
+			<meta name="viewport" content="width=device-width, initial-scale=1"/>
+			<title>{{.Name}}</title>
+		</head>
+		<body>
+			<h1>{{.Name}}</h1>
+			<form method="POST" action="{{.Path}}">
+				<div>
+					<label for="name">Name</label>
+					<input type="text" id="name" name="name"/>
+				</div>
+				<div>
+					<label for="email">Email</label>
+					<input type="email" id="email" name="email"/>
+				</div>
+				<button type="submit">Submit</button>
+			</form>
+		</body>
+	</html>
+}
+`
+
+	handlerTmpl := `package {{.Package}}
+
 import (
-	"github.com/xraph/forgeui"
-	g "maragu.dev/gomponents"
-	"maragu.dev/gomponents/html"
+	"github.com/a-h/templ"
+	"github.com/xraph/forgeui/router"
 )
 
-// {{.Name}} renders the {{.Name}} form page
-func {{.Name}}(ctx *forgeui.PageContext) g.Node {
-	return html.HTML(
-		html.Lang("en"),
-		html.Head(
-			html.Meta(html.Charset("utf-8")),
-			html.Meta(html.Name("viewport"), html.Content("width=device-width, initial-scale=1")),
-			html.TitleEl(g.Text("{{.Name}}")),
-		),
-		html.Body(
-			html.H1(g.Text("{{.Name}}")),
-			html.Form(
-				html.Method("POST"),
-				html.Action("{{.Path}}"),
-				html.Div(
-					html.Label(html.For("name"), g.Text("Name")),
-					html.Input(html.Type("text"), html.ID("name"), html.Name("name")),
-				),
-				html.Div(
-					html.Label(html.For("email"), g.Text("Email")),
-					html.Input(html.Type("email"), html.ID("email"), html.Name("email")),
-				),
-				html.Button(html.Type("submit"), g.Text("Submit")),
-			),
-		),
-	)
+// {{.Name}} is the page handler for {{.Name}}
+func {{.Name}}(ctx *router.PageContext) (templ.Component, error) {
+	return {{.Name}}Page(ctx), nil
 }
 `
 
@@ -148,24 +232,58 @@ func {{.Name}}(ctx *forgeui.PageContext) g.Node {
 		"Path":    opts.Path,
 	}
 
-	code, err := executeTemplate(tmpl, data)
+	templCode, err := executeTemplate(tmpl, data)
 	if err != nil {
 		return err
 	}
+	if err := util.CreateFile(templFilePath, templCode); err != nil {
+		return err
+	}
 
-	return util.CreateFile(filePath, code)
+	handlerCode, err := executeTemplate(handlerTmpl, data)
+	if err != nil {
+		return err
+	}
+	return util.CreateFile(filePath, handlerCode)
 }
 
 // ListPageTemplate is a list page with items
 type ListPageTemplate struct{}
 
 func (t *ListPageTemplate) Generate(filePath string, opts PageOptions) error {
+	templFilePath := strings.TrimSuffix(filePath, ".go") + ".templ"
+
 	tmpl := `package {{.Package}}
 
+import "github.com/xraph/forgeui/router"
+
+templ {{.Name}}Page(ctx *router.PageContext, items []{{.Name}}Item) {
+	<!DOCTYPE html>
+	<html lang="en">
+		<head>
+			<meta charset="utf-8"/>
+			<meta name="viewport" content="width=device-width, initial-scale=1"/>
+			<title>{{.Name}}</title>
+		</head>
+		<body>
+			<h1>{{.Name}}</h1>
+			<ul>
+				for _, item := range items {
+					<li>
+						<a href={ templ.SafeURL("{{.Path}}/" + item.ID) }>{ item.Title }</a>
+					</li>
+				}
+			</ul>
+		</body>
+	</html>
+}
+`
+
+	handlerTmpl := `package {{.Package}}
+
 import (
-	"github.com/xraph/forgeui"
-	g "maragu.dev/gomponents"
-	"maragu.dev/gomponents/html"
+	"github.com/a-h/templ"
+	"github.com/xraph/forgeui/router"
 )
 
 // {{.Name}}Item represents a list item
@@ -174,34 +292,13 @@ type {{.Name}}Item struct {
 	Title string
 }
 
-// {{.Name}} renders the {{.Name}} list page
-func {{.Name}}(ctx *forgeui.PageContext) g.Node {
+// {{.Name}} is the page handler for {{.Name}}
+func {{.Name}}(ctx *router.PageContext) (templ.Component, error) {
 	items := load{{.Name}}Items(ctx)
-	
-	return html.HTML(
-		html.Lang("en"),
-		html.Head(
-			html.Meta(html.Charset("utf-8")),
-			html.Meta(html.Name("viewport"), html.Content("width=device-width, initial-scale=1")),
-			html.TitleEl(g.Text("{{.Name}}")),
-		),
-		html.Body(
-			html.H1(g.Text("{{.Name}}")),
-			html.Ul(
-				g.Group(g.Map(items, func(item {{.Name}}Item) g.Node {
-					return html.Li(
-						html.A(
-							html.Href("{{.Path}}/"+item.ID),
-							g.Text(item.Title),
-						),
-					)
-				})),
-			),
-		),
-	)
+	return {{.Name}}Page(ctx, items), nil
 }
 
-func load{{.Name}}Items(ctx *forgeui.PageContext) []{{.Name}}Item {
+func load{{.Name}}Items(ctx *router.PageContext) []{{.Name}}Item {
 	// TODO: Load items from database or API
 	return []{{.Name}}Item{
 		{ID: "1", Title: "Item 1"},
@@ -217,24 +314,53 @@ func load{{.Name}}Items(ctx *forgeui.PageContext) []{{.Name}}Item {
 		"Path":    opts.Path,
 	}
 
-	code, err := executeTemplate(tmpl, data)
+	templCode, err := executeTemplate(tmpl, data)
 	if err != nil {
 		return err
 	}
+	if err := util.CreateFile(templFilePath, templCode); err != nil {
+		return err
+	}
 
-	return util.CreateFile(filePath, code)
+	handlerCode, err := executeTemplate(handlerTmpl, data)
+	if err != nil {
+		return err
+	}
+	return util.CreateFile(filePath, handlerCode)
 }
 
 // DetailPageTemplate is a detail page with params
 type DetailPageTemplate struct{}
 
 func (t *DetailPageTemplate) Generate(filePath string, opts PageOptions) error {
+	templFilePath := strings.TrimSuffix(filePath, ".go") + ".templ"
+
 	tmpl := `package {{.Package}}
 
+import "github.com/xraph/forgeui/router"
+
+templ {{.Name}}Page(ctx *router.PageContext, detail {{.Name}}Detail) {
+	<!DOCTYPE html>
+	<html lang="en">
+		<head>
+			<meta charset="utf-8"/>
+			<meta name="viewport" content="width=device-width, initial-scale=1"/>
+			<title>{ detail.Title }</title>
+		</head>
+		<body>
+			<h1>{ detail.Title }</h1>
+			<p>{ detail.Description }</p>
+			<a href="{{.BackPath}}">&#8592; Back to list</a>
+		</body>
+	</html>
+}
+`
+
+	handlerTmpl := `package {{.Package}}
+
 import (
-	"github.com/xraph/forgeui"
-	g "maragu.dev/gomponents"
-	"maragu.dev/gomponents/html"
+	"github.com/a-h/templ"
+	"github.com/xraph/forgeui/router"
 )
 
 // {{.Name}}Detail holds the detail data
@@ -244,27 +370,14 @@ type {{.Name}}Detail struct {
 	Description string
 }
 
-// {{.Name}} renders the {{.Name}} detail page
-func {{.Name}}(ctx *forgeui.PageContext) g.Node {
+// {{.Name}} is the page handler for {{.Name}}
+func {{.Name}}(ctx *router.PageContext) (templ.Component, error) {
 	id := ctx.Params["id"]
 	detail := load{{.Name}}Detail(ctx, id)
-	
-	return html.HTML(
-		html.Lang("en"),
-		html.Head(
-			html.Meta(html.Charset("utf-8")),
-			html.Meta(html.Name("viewport"), html.Content("width=device-width, initial-scale=1")),
-			html.TitleEl(g.Text(detail.Title)),
-		),
-		html.Body(
-			html.H1(g.Text(detail.Title)),
-			html.P(g.Text(detail.Description)),
-			html.A(html.Href("{{.Path}}"), g.Text("← Back to list")),
-		),
-	)
+	return {{.Name}}Page(ctx, detail), nil
 }
 
-func load{{.Name}}Detail(ctx *forgeui.PageContext, id string) {{.Name}}Detail {
+func load{{.Name}}Detail(ctx *router.PageContext, id string) {{.Name}}Detail {
 	// TODO: Load detail from database or API
 	return {{.Name}}Detail{
 		ID:          id,
@@ -275,15 +388,23 @@ func load{{.Name}}Detail(ctx *forgeui.PageContext, id string) {{.Name}}Detail {
 `
 
 	data := map[string]any{
-		"Package": opts.Package,
-		"Name":    util.ToPascalCase(opts.Name),
-		"Path":    strings.TrimSuffix(opts.Path, "/:id"),
+		"Package":  opts.Package,
+		"Name":     util.ToPascalCase(opts.Name),
+		"Path":     opts.Path,
+		"BackPath": strings.TrimSuffix(opts.Path, "/:id"),
 	}
 
-	code, err := executeTemplate(tmpl, data)
+	templCode, err := executeTemplate(tmpl, data)
 	if err != nil {
 		return err
 	}
+	if err := util.CreateFile(templFilePath, templCode); err != nil {
+		return err
+	}
 
-	return util.CreateFile(filePath, code)
+	handlerCode, err := executeTemplate(handlerTmpl, data)
+	if err != nil {
+		return err
+	}
+	return util.CreateFile(filePath, handlerCode)
 }

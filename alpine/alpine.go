@@ -5,22 +5,12 @@
 //
 // # Basic Usage
 //
-// Use Alpine directive helpers to add interactivity to your components:
+// Use Alpine directive helpers to add interactivity to your templ components:
 //
-//	html.Div(
-//	    alpine.XData(map[string]any{
-//	        "count": 0,
-//	        "message": "Hello, Alpine!",
-//	    }),
-//	    html.Button(
-//	        alpine.XClick("count++"),
-//	        g.Text("Increment"),
-//	    ),
-//	    html.P(
-//	        html.Class("text-xl font-bold"),
-//	        alpine.XText("'Count: ' + count"),
-//	    ),
-//	)
+//	<div { alpine.XData(map[string]any{"count": 0, "message": "Hello, Alpine!"})... }>
+//	    <button { alpine.XClick("count++")... }>Increment</button>
+//	    <p class="text-xl font-bold" { alpine.XText("'Count: ' + count")... }></p>
+//	</div>
 //
 // # State Management
 //
@@ -50,26 +40,22 @@
 //
 // Use x-for to iterate over arrays:
 //
-//	html.Template(
-//	    g.Group(alpine.XForKeyed("item in items", "item.id")),
-//	    html.Li(alpine.XText("item.name")),
-//	)
+//	<template { alpine.XForKeyed("item in items", "item.id")... }>
+//	    <li { alpine.XText("item.name")... }></li>
+//	</template>
 //
 // # Two-Way Binding
 //
 // Use x-model for form inputs:
 //
-//	html.Input(
-//	    html.Type("text"),
-//	    alpine.XModel("name"),
-//	)
+//	<input type="text" { alpine.XModel("name")... }/>
 //
 // # Global Stores
 //
 // Create global reactive state with Alpine stores:
 //
-//	alpine.RegisterStores(
-//	    Store{
+//	@alpine.RegisterStores(
+//	    alpine.Store{
 //	        Name: "notifications",
 //	        State: map[string]any{"items": []any{}},
 //	        Methods: `
@@ -83,61 +69,29 @@
 //
 // Load Alpine plugins for additional functionality:
 //
-//	alpine.Scripts(
-//	    alpine.PluginFocus,    // Focus management
-//	    alpine.PluginCollapse, // Height transitions
-//	    alpine.PluginMask,     // Input masking
-//	)
+//	@alpine.Scripts(alpine.PluginFocus, alpine.PluginCollapse, alpine.PluginMask)
 //
 // # Transitions
 //
 // Add smooth transitions with x-transition:
 //
-//	html.Div(
-//	    alpine.XShow("open"),
-//	    g.Group(alpine.XTransition(animation.FadeIn())),
-//	    g.Text("Content"),
-//	)
+//	<div { alpine.XShow("open")... } { alpine.XTransition(myTransition)... }>
+//	    Content
+//	</div>
 //
 // # Routing
 //
 // Use Pinecone Router for client-side navigation (requires PluginRouter):
 //
-//	html.Div(
-//	    alpine.XData(map[string]any{}),
-//	    // Static route with inline template
-//	    html.Template(
-//	        alpine.XRoute("/"),
-//	        alpine.XTemplateInline(),
-//	        html.H1(g.Text("Home")),
-//	    ),
-//	    // Dynamic route with parameters
-//	    html.Template(
-//	        alpine.XRoute("/users/:id"),
-//	        alpine.XTemplate("/views/user.html", TargetID("app")),
-//	        alpine.XHandler("loadUser"),
-//	    ),
-//	    // 404 route
-//	    html.Template(
-//	        alpine.XRoute("notfound"),
-//	        alpine.XTemplate("/views/404.html", Preload()),
-//	    ),
-//	)
-//
-//	// Navigation buttons
-//	html.Button(
-//	    alpine.XClick(alpine.NavigateTo("/dashboard")),
-//	    g.Text("Dashboard"),
-//	)
-//	html.Button(
-//	    alpine.XClick(alpine.RouterBack()),
-//	    alpine.XBindDisabled("!"+alpine.RouterCanGoBack()),
-//	    g.Text("Back"),
-//	)
+//	<div { alpine.XData(map[string]any{})... }>
+//	    <template { alpine.XRoute("/")... } { alpine.XTemplateInline()... }>
+//	        <h1>Home</h1>
+//	    </template>
+//	</div>
 //
 // Load router plugin:
 //
-//	alpine.Scripts(alpine.PluginRouter)
+//	@alpine.Scripts(alpine.PluginRouter)
 //
 // Router provides magic helpers in Alpine expressions:
 //   - $router: Access to PineconeRouter object
@@ -158,10 +112,7 @@
 // CRITICAL: Alpine plugins must be loaded BEFORE Alpine core:
 //
 //	// Correct
-//	alpine.Scripts(alpine.PluginFocus) // Loads plugin, then Alpine
-//
-//	// Wrong - will not work
-//	// Load Alpine first, then try to add plugin
+//	@alpine.Scripts(alpine.PluginFocus)
 //
 // The Scripts() function handles this automatically.
 package alpine

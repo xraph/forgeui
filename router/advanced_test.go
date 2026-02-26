@@ -2,12 +2,13 @@ package router
 
 import (
 	"context"
+	"io"
 	"net/http"
 	"net/http/httptest"
 	"strings"
 	"testing"
 
-	g "maragu.dev/gomponents"
+	"github.com/a-h/templ"
 )
 
 // TestAdvancedIntegration tests the full integration of groups, layouts, loaders, and metadata
@@ -15,8 +16,15 @@ func TestAdvancedIntegration(t *testing.T) {
 	r := New()
 
 	// Register layouts
-	r.RegisterLayout("main", func(ctx *PageContext, content g.Node) g.Node {
-		return g.El("div", g.Text("<main>"), content, g.Text("</main>"))
+	r.RegisterLayout("main", func(ctx *PageContext, content templ.Component) templ.Component {
+		return templ.ComponentFunc(func(tCtx context.Context, w io.Writer) error {
+			io.WriteString(w, "<div><main>")
+			if err := content.Render(tCtx, w); err != nil {
+				return err
+			}
+			io.WriteString(w, "</main></div>")
+			return nil
+		})
 	})
 
 	// Create loader
@@ -26,7 +34,7 @@ func TestAdvancedIntegration(t *testing.T) {
 
 	// Create middleware
 	addHeader := func(next PageHandler) PageHandler {
-		return func(ctx *PageContext) (g.Node, error) {
+		return func(ctx *PageContext) (templ.Component, error) {
 			ctx.SetHeader("X-Test", "true")
 			return next(ctx)
 		}
@@ -34,11 +42,11 @@ func TestAdvancedIntegration(t *testing.T) {
 
 	// Create route group with all features
 	api := r.Group("/api", GroupLayout("main"), GroupMiddleware(addHeader))
-	api.Get("/users/:id", func(ctx *PageContext) (g.Node, error) {
+	api.Get("/users/:id", func(ctx *PageContext) (templ.Component, error) {
 		data := ctx.LoaderData().(string)
 		meta := ctx.GetMeta()
 
-		return g.Text(data + ":" + meta.Title), nil
+		return templ.Raw(data + ":" + meta.Title), nil
 	}).Loader(loader).Title("User Page")
 
 	// Test the route
@@ -79,13 +87,13 @@ func TestAdvancedNestedGroupsWithLoaders(t *testing.T) {
 
 	// Create nested groups
 	parent := r.Group("/parent")
-	parent.Get("/test", func(ctx *PageContext) (g.Node, error) {
-		return g.Text(ctx.LoaderData().(string)), nil
+	parent.Get("/test", func(ctx *PageContext) (templ.Component, error) {
+		return templ.Raw(ctx.LoaderData().(string)), nil
 	}).Loader(parentLoader)
 
 	child := parent.Group("/child")
-	child.Get("/test", func(ctx *PageContext) (g.Node, error) {
-		return g.Text(ctx.LoaderData().(string)), nil
+	child.Get("/test", func(ctx *PageContext) (templ.Component, error) {
+		return templ.Raw(ctx.LoaderData().(string)), nil
 	}).Loader(childLoader)
 
 	// Test parent route
@@ -112,9 +120,9 @@ func TestAdvancedErrorHandling(t *testing.T) {
 	r := New()
 
 	// Set custom error page
-	r.SetErrorPage(404, func(ctx *PageContext) (g.Node, error) {
+	r.SetErrorPage(404, func(ctx *PageContext) (templ.Component, error) {
 		ctx.ResponseWriter.WriteHeader(http.StatusNotFound)
-		return g.Text("Custom 404"), nil
+		return templ.Raw("Custom 404"), nil
 	})
 
 	// Create loader that returns 404
@@ -123,8 +131,8 @@ func TestAdvancedErrorHandling(t *testing.T) {
 	}
 
 	// Create route with loader
-	r.Get("/test", func(ctx *PageContext) (g.Node, error) {
-		return g.Text("should not reach"), nil
+	r.Get("/test", func(ctx *PageContext) (templ.Component, error) {
+		return templ.Raw("should not reach"), nil
 	}).Loader(loader)
 
 	// Test the route
@@ -146,20 +154,24 @@ func TestAdvancedLayoutWithMetadata(t *testing.T) {
 	r := New()
 
 	// Register layout that uses metadata
-	r.RegisterLayout("seo", func(ctx *PageContext, content g.Node) g.Node {
-		nodes := []g.Node{g.Text("<head>")}
-		if ctx.Meta != nil {
-			nodes = append(nodes, g.Group(ctx.Meta.MetaTags()))
-		}
-
-		nodes = append(nodes, g.Text("</head><body>"), content, g.Text("</body>"))
-
-		return g.El("div", nodes...)
+	r.RegisterLayout("seo", func(ctx *PageContext, content templ.Component) templ.Component {
+		return templ.ComponentFunc(func(tCtx context.Context, w io.Writer) error {
+			io.WriteString(w, "<div><head>")
+			if ctx.Meta != nil {
+				ctx.Meta.MetaTags().Render(tCtx, w)
+			}
+			io.WriteString(w, "</head><body>")
+			if err := content.Render(tCtx, w); err != nil {
+				return err
+			}
+			io.WriteString(w, "</body></div>")
+			return nil
+		})
 	})
 
 	// Create route with full metadata
-	r.Get("/page", func(ctx *PageContext) (g.Node, error) {
-		return g.Text("Content"), nil
+	r.Get("/page", func(ctx *PageContext) (templ.Component, error) {
+		return templ.Raw("Content"), nil
 	}).SetLayout("seo").Meta(RouteMeta{
 		Title:       "SEO Page",
 		Description: "A page with SEO",
@@ -198,21 +210,21 @@ func TestAdvancedMultipleMiddleware(t *testing.T) {
 
 	// Create multiple middleware
 	mw1 := func(next PageHandler) PageHandler {
-		return func(ctx *PageContext) (g.Node, error) {
+		return func(ctx *PageContext) (templ.Component, error) {
 			ctx.Set("mw1", true)
 			return next(ctx)
 		}
 	}
 
 	mw2 := func(next PageHandler) PageHandler {
-		return func(ctx *PageContext) (g.Node, error) {
+		return func(ctx *PageContext) (templ.Component, error) {
 			ctx.Set("mw2", true)
 			return next(ctx)
 		}
 	}
 
 	mw3 := func(next PageHandler) PageHandler {
-		return func(ctx *PageContext) (g.Node, error) {
+		return func(ctx *PageContext) (templ.Component, error) {
 			ctx.Set("mw3", true)
 			return next(ctx)
 		}
@@ -225,7 +237,7 @@ func TestAdvancedMultipleMiddleware(t *testing.T) {
 	group := r.Group("/group", GroupMiddleware(mw2))
 
 	// Route middleware
-	route := group.Get("/test", func(ctx *PageContext) (g.Node, error) {
+	route := group.Get("/test", func(ctx *PageContext) (templ.Component, error) {
 		if _, ok := ctx.Get("mw1"); !ok {
 			t.Error("Expected mw1 to be set")
 		}
@@ -238,7 +250,7 @@ func TestAdvancedMultipleMiddleware(t *testing.T) {
 			t.Error("Expected mw3 to be set")
 		}
 
-		return g.Text("ok"), nil
+		return templ.Raw("ok"), nil
 	})
 	route.WithMiddleware(mw3)
 
@@ -257,9 +269,16 @@ func TestAdvancedLoaderWithLayout(t *testing.T) {
 	r := New()
 
 	// Register layout that uses loaded data
-	r.RegisterLayout("data-layout", func(ctx *PageContext, content g.Node) g.Node {
-		data := ctx.LoaderData().(string)
-		return g.El("div", g.Text("["+data+"]"), content)
+	r.RegisterLayout("data-layout", func(ctx *PageContext, content templ.Component) templ.Component {
+		return templ.ComponentFunc(func(tCtx context.Context, w io.Writer) error {
+			data := ctx.LoaderData().(string)
+			io.WriteString(w, "<div>["+data+"]")
+			if err := content.Render(tCtx, w); err != nil {
+				return err
+			}
+			io.WriteString(w, "</div>")
+			return nil
+		})
 	})
 
 	// Create loader
@@ -268,8 +287,8 @@ func TestAdvancedLoaderWithLayout(t *testing.T) {
 	}
 
 	// Create route
-	r.Get("/test", func(ctx *PageContext) (g.Node, error) {
-		return g.Text("content"), nil
+	r.Get("/test", func(ctx *PageContext) (templ.Component, error) {
+		return templ.Raw("content"), nil
 	}).Loader(loader).SetLayout("data-layout")
 
 	// Test the route
@@ -288,24 +307,38 @@ func TestAdvancedGroupLayoutOverride(t *testing.T) {
 	r := New()
 
 	// Register layouts
-	r.RegisterLayout("group-layout", func(ctx *PageContext, content g.Node) g.Node {
-		return g.El("div", g.Text("GROUP:"), content)
+	r.RegisterLayout("group-layout", func(ctx *PageContext, content templ.Component) templ.Component {
+		return templ.ComponentFunc(func(tCtx context.Context, w io.Writer) error {
+			io.WriteString(w, "<div>GROUP:")
+			if err := content.Render(tCtx, w); err != nil {
+				return err
+			}
+			io.WriteString(w, "</div>")
+			return nil
+		})
 	})
-	r.RegisterLayout("route-layout", func(ctx *PageContext, content g.Node) g.Node {
-		return g.El("div", g.Text("ROUTE:"), content)
+	r.RegisterLayout("route-layout", func(ctx *PageContext, content templ.Component) templ.Component {
+		return templ.ComponentFunc(func(tCtx context.Context, w io.Writer) error {
+			io.WriteString(w, "<div>ROUTE:")
+			if err := content.Render(tCtx, w); err != nil {
+				return err
+			}
+			io.WriteString(w, "</div>")
+			return nil
+		})
 	})
 
 	// Create group with layout
 	group := r.Group("/group", GroupLayout("group-layout"))
 
 	// Route without override
-	group.Get("/default", func(ctx *PageContext) (g.Node, error) {
-		return g.Text("content"), nil
+	group.Get("/default", func(ctx *PageContext) (templ.Component, error) {
+		return templ.Raw("content"), nil
 	})
 
 	// Route with override
-	group.Get("/override", func(ctx *PageContext) (g.Node, error) {
-		return g.Text("content"), nil
+	group.Get("/override", func(ctx *PageContext) (templ.Component, error) {
+		return templ.Raw("content"), nil
 	}).SetLayout("route-layout")
 
 	// Test default

@@ -1,10 +1,12 @@
 package theme
 
 import (
+	"context"
 	"fmt"
+	stdhtml "html"
+	"io"
 
-	g "maragu.dev/gomponents"
-	"maragu.dev/gomponents/html"
+	"github.com/a-h/templ"
 
 	"github.com/xraph/forgeui/alpine"
 )
@@ -150,29 +152,32 @@ func defaultToggleProps() ToggleProps {
 	}
 }
 
+// writeAlpineAttrs writes templ.Attributes as HTML attributes on the current element.
+func writeAlpineAttrs(w io.Writer, attrs templ.Attributes) error {
+	for k, v := range attrs {
+		switch val := v.(type) {
+		case string:
+			if _, err := fmt.Fprintf(w, ` %s="%s"`, k, stdhtml.EscapeString(val)); err != nil {
+				return err
+			}
+		case bool:
+			if val {
+				if _, err := fmt.Fprintf(w, " %s", k); err != nil {
+					return err
+				}
+			}
+		}
+	}
+	return nil
+}
+
 // Toggle creates a theme switcher button that toggles between light and dark modes.
-// It uses Alpine.js for interactivity and persists the preference to browser storage.
-//
-// Features:
-//   - Persists theme preference to localStorage (default) or sessionStorage
-//   - Syncs theme changes across browser tabs
-//   - Respects system color scheme preference
-//   - Prevents flash of wrong theme on page load
-//
-// Usage:
-//
-//	Toggle()                                    // Icon-only toggle with localStorage
-//	Toggle(WithLabel(true))                     // With label
-//	Toggle(WithStorageKey("my-app-theme"))      // Custom storage key
-//	Toggle(WithStorageType(SessionStorage))     // Use sessionStorage
-//	Toggle(WithTabSync(false))                  // Disable cross-tab sync
-func Toggle(opts ...ToggleOption) g.Node {
+func Toggle(opts ...ToggleOption) templ.Component {
 	props := defaultToggleProps()
 	for _, opt := range opts {
 		opt(&props)
 	}
 
-	// Button size classes
 	sizeClasses := map[string]string{
 		"sm": "h-8 px-2 text-sm",
 		"md": "h-9 px-3 text-sm",
@@ -189,58 +194,77 @@ func Toggle(opts ...ToggleOption) g.Node {
 		classes += " " + props.CustomClass
 	}
 
-	// Build the Alpine.js init script with persistence
 	initScript := buildToggleInitScript(props)
 	clickScript := buildToggleClickScript(props)
 
-	nodes := []g.Node{
-		g.Attr("type", "button"),
-		html.Class(classes),
-		g.Attr("aria-label", "Toggle theme"),
-		g.Attr("data-theme-toggle", ""),
+	return templ.ComponentFunc(func(_ context.Context, w io.Writer) error {
+		if _, err := fmt.Fprintf(w, `<button type="button" class="%s" aria-label="Toggle theme" data-theme-toggle`, stdhtml.EscapeString(classes)); err != nil {
+			return err
+		}
 
-		// Alpine.js data for theme state with persistence
-		alpine.XData(map[string]any{
+		// Alpine.js data
+		if err := writeAlpineAttrs(w, alpine.XData(map[string]any{
 			"theme": props.DefaultTheme,
 			"init":  initScript,
-		}),
+		})); err != nil {
+			return err
+		}
 
-		// Click handler to toggle theme with persistence
-		alpine.XOn("click", clickScript),
+		// Click handler
+		if err := writeAlpineAttrs(w, alpine.XOn("click", clickScript)); err != nil {
+			return err
+		}
 
-		// Listen for theme changes from other sources (cross-tab sync, system changes)
-		alpine.XOn("theme-change.window", "theme = $event.detail.theme"),
+		// Theme change listener
+		if err := writeAlpineAttrs(w, alpine.XOn("theme-change.window", "theme = $event.detail.theme")); err != nil {
+			return err
+		}
+
+		// Tab sync
+		if props.SyncAcrossTabs && props.StorageType == LocalStorage {
+			if _, err := fmt.Fprintf(w, ` x-init="%s"`, stdhtml.EscapeString(buildTabSyncScript(props))); err != nil {
+				return err
+			}
+		}
+
+		if _, err := io.WriteString(w, ">"); err != nil {
+			return err
+		}
 
 		// Sun icon (visible in dark mode)
-		html.Span(
-			g.Attr("x-show", "theme === 'dark'"),
-			g.Attr("x-cloak", ""),
-			html.Class("inline-flex items-center"),
-			sunIcon(),
-		),
+		if _, err := io.WriteString(w, `<span x-show="theme === 'dark'" x-cloak class="inline-flex items-center">`); err != nil {
+			return err
+		}
+		if _, err := io.WriteString(w, sunIconSVG); err != nil {
+			return err
+		}
+		if _, err := io.WriteString(w, `</span>`); err != nil {
+			return err
+		}
 
 		// Moon icon (visible in light mode)
-		html.Span(
-			g.Attr("x-show", "theme === 'light'"),
-			g.Attr("x-cloak", ""),
-			html.Class("inline-flex items-center"),
-			moonIcon(),
-		),
-	}
+		if _, err := io.WriteString(w, `<span x-show="theme === 'light'" x-cloak class="inline-flex items-center">`); err != nil {
+			return err
+		}
+		if _, err := io.WriteString(w, moonIconSVG); err != nil {
+			return err
+		}
+		if _, err := io.WriteString(w, `</span>`); err != nil {
+			return err
+		}
 
-	// Optional label
-	if props.ShowLabel {
-		nodes = append(nodes, html.Span(
-			g.Attr("x-text", fmt.Sprintf("theme === 'dark' ? '%s' : '%s'", props.DarkLabel, props.LightLabel)),
-		))
-	}
+		// Optional label
+		if props.ShowLabel {
+			if _, err := fmt.Fprintf(w, `<span x-text="theme === 'dark' ? '%s' : '%s'"></span>`,
+				stdhtml.EscapeString(props.DarkLabel),
+				stdhtml.EscapeString(props.LightLabel)); err != nil {
+				return err
+			}
+		}
 
-	// Add cross-tab sync listener if enabled
-	if props.SyncAcrossTabs && props.StorageType == LocalStorage {
-		nodes = append(nodes, g.Attr("x-init", buildTabSyncScript(props)))
-	}
-
-	return html.Button(nodes...)
+		_, err := io.WriteString(w, `</button>`)
+		return err
+	})
 }
 
 // buildToggleInitScript creates the Alpine.js init script for theme initialization.
@@ -336,24 +360,21 @@ func getStorageSetScript(storageType StorageType, key, valueVar string) string {
 	}
 }
 
-// ToggleWithSystemOption creates a theme toggle with three options: light, dark, and system.
-// This provides more granular control over theme preferences with full persistence support.
-//
-// Features:
-//   - Three-way toggle: Light, Dark, System
-//   - System option respects OS color scheme preference
-//   - Persists preference to browser storage
-//   - Syncs across browser tabs
-//
-// Usage:
-//
-//	ToggleWithSystemOption()                        // Default three-way toggle
-//	ToggleWithSystemOption(WithStorageKey("pref")) // Custom storage key
-//	ToggleWithSystemOption(IconOnly())              // Icons only, no labels
-func ToggleWithSystemOption(opts ...ToggleOption) g.Node {
-	props := defaultToggleProps()
+// SVG icon constants
+const sunIconSVG = `<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="shrink-0"><circle cx="12" cy="12" r="4"></circle><path d="M12 2v2"></path><path d="M12 20v2"></path><path d="m4.93 4.93 1.41 1.41"></path><path d="m17.66 17.66 1.41 1.41"></path><path d="M2 12h2"></path><path d="M20 12h2"></path><path d="m6.34 17.66-1.41 1.41"></path><path d="m19.07 4.93-1.41 1.41"></path></svg>`
 
-	props.DefaultTheme = "system" // Default to system for three-way toggle
+const moonIconSVG = `<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="shrink-0"><path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"></path></svg>`
+
+const systemIconSVG = `<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="shrink-0"><rect x="2" y="3" width="20" height="14" rx="2"></rect><path d="M8 21h8"></path><path d="M12 17v4"></path></svg>`
+
+const checkIconSVG = `<svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"></polyline></svg>`
+
+const chevronDownSVG = `<svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="shrink-0 ml-1"><path d="m6 9 6 6 6-6"></path></svg>`
+
+// ToggleWithSystemOption creates a theme toggle with three options: light, dark, and system.
+func ToggleWithSystemOption(opts ...ToggleOption) templ.Component {
+	props := defaultToggleProps()
+	props.DefaultTheme = "system"
 	for _, opt := range opts {
 		opt(&props)
 	}
@@ -376,49 +397,58 @@ func ToggleWithSystemOption(opts ...ToggleOption) g.Node {
 		this.applyTheme(this.theme);
 	`, storageGet)
 
-	nodes := []g.Node{
-		html.Class("inline-flex items-center gap-1 p-1 rounded-lg bg-muted"),
-		g.Attr("data-theme-toggle", "system"),
+	return templ.ComponentFunc(func(_ context.Context, w io.Writer) error {
+		if _, err := io.WriteString(w, `<div class="inline-flex items-center gap-1 p-1 rounded-lg bg-muted" data-theme-toggle="system"`); err != nil {
+			return err
+		}
 
-		// Alpine.js data for theme state with persistence
-		alpine.XData(map[string]any{
+		if err := writeAlpineAttrs(w, alpine.XData(map[string]any{
 			"theme":      props.DefaultTheme,
 			"applyTheme": nil,
 			"init":       initScript,
-		}),
+		})); err != nil {
+			return err
+		}
 
-		// Light button
-		themeOptionButton("light", props.LightLabel, sunIcon(), props),
+		// Tab sync
+		if props.SyncAcrossTabs && props.StorageType == LocalStorage {
+			if _, err := fmt.Fprintf(w, ` x-init="%s"`, stdhtml.EscapeString(fmt.Sprintf(`
+				window.addEventListener('storage', (e) => {
+					if (e.key === '%s') {
+						theme = e.newValue || 'system';
+						applyTheme(theme);
+					}
+				});
+				window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', () => {
+					if (theme === 'system') { applyTheme('system'); }
+				});
+			`, props.StorageKey))); err != nil {
+				return err
+			}
+		}
 
-		// Dark button
-		themeOptionButton("dark", props.DarkLabel, moonIcon(), props),
+		if _, err := io.WriteString(w, ">"); err != nil {
+			return err
+		}
 
-		// System button
-		themeOptionButton("system", props.SystemLabel, systemIcon(), props),
-	}
+		// Light, Dark, System buttons
+		if err := writeThemeOptionButton(w, "light", props.LightLabel, sunIconSVG, props); err != nil {
+			return err
+		}
+		if err := writeThemeOptionButton(w, "dark", props.DarkLabel, moonIconSVG, props); err != nil {
+			return err
+		}
+		if err := writeThemeOptionButton(w, "system", props.SystemLabel, systemIconSVG, props); err != nil {
+			return err
+		}
 
-	// Add cross-tab sync and system preference listener
-	if props.SyncAcrossTabs && props.StorageType == LocalStorage {
-		nodes = append(nodes, g.Attr("x-init", fmt.Sprintf(`
-			window.addEventListener('storage', (e) => {
-				if (e.key === '%s') {
-					theme = e.newValue || 'system';
-					applyTheme(theme);
-				}
-			});
-			window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', () => {
-				if (theme === 'system') {
-					applyTheme('system');
-				}
-			});
-		`, props.StorageKey)))
-	}
-
-	return html.Div(nodes...)
+		_, err := io.WriteString(w, `</div>`)
+		return err
+	})
 }
 
-// themeOptionButton creates a single button for the three-option toggle.
-func themeOptionButton(value, label string, icon g.Node, props ToggleProps) g.Node {
+// writeThemeOptionButton writes a single option button for the three-way toggle.
+func writeThemeOptionButton(w io.Writer, value, label, iconSVG string, props ToggleProps) error {
 	storageSet := ""
 	storageRemove := ""
 
@@ -429,110 +459,50 @@ func themeOptionButton(value, label string, icon g.Node, props ToggleProps) g.No
 	case SessionStorage:
 		storageSet = fmt.Sprintf("sessionStorage.setItem('%s', theme);", props.StorageKey)
 		storageRemove = fmt.Sprintf("sessionStorage.removeItem('%s');", props.StorageKey)
-	case NoStorage:
-		storageSet = ""
-		storageRemove = ""
 	}
 
 	clickScript := fmt.Sprintf(`
 		theme = '%s';
-		if (theme === 'system') {
-			%s
-		} else {
-			%s
-		}
+		if (theme === 'system') { %s } else { %s }
 		applyTheme(theme);
 		window.dispatchEvent(new CustomEvent('theme-change', { detail: { theme } }));
 	`, value, storageRemove, storageSet)
 
-	return html.Button(
-		g.Attr("type", "button"),
-		html.Class("inline-flex items-center justify-center gap-2 px-3 py-1.5 text-sm font-medium rounded-md transition-colors"),
-		g.Attr(":class", "theme === '"+value+"' ? 'bg-background shadow-sm' : 'text-muted-foreground hover:text-foreground'"),
-		g.Attr("aria-label", label),
-		g.Attr("aria-pressed", ""),
-		g.Attr(":aria-pressed", "theme === '"+value+"'"),
+	if _, err := fmt.Fprintf(w,
+		`<button type="button" class="inline-flex items-center justify-center gap-2 px-3 py-1.5 text-sm font-medium rounded-md transition-colors" :class="theme === '%s' ? 'bg-background shadow-sm' : 'text-muted-foreground hover:text-foreground'" aria-label="%s" aria-pressed :aria-pressed="theme === '%s'"`,
+		value, stdhtml.EscapeString(label), value); err != nil {
+		return err
+	}
 
-		alpine.XOn("click", clickScript),
+	if err := writeAlpineAttrs(w, alpine.XOn("click", clickScript)); err != nil {
+		return err
+	}
 
-		icon,
+	if _, err := io.WriteString(w, ">"); err != nil {
+		return err
+	}
 
-		g.If(!props.IconOnly,
-			html.Span(g.Text(label)),
-		),
-	)
-}
+	if _, err := io.WriteString(w, iconSVG); err != nil {
+		return err
+	}
 
-// sunIcon returns a sun SVG icon for light mode.
-func sunIcon() g.Node {
-	return g.El("svg",
-		g.Attr("xmlns", "http://www.w3.org/2000/svg"),
-		g.Attr("width", "16"),
-		g.Attr("height", "16"),
-		g.Attr("viewBox", "0 0 24 24"),
-		g.Attr("fill", "none"),
-		g.Attr("stroke", "currentColor"),
-		g.Attr("stroke-width", "2"),
-		g.Attr("stroke-linecap", "round"),
-		g.Attr("stroke-linejoin", "round"),
-		html.Class("shrink-0"),
-		g.El("circle", g.Attr("cx", "12"), g.Attr("cy", "12"), g.Attr("r", "4")),
-		g.El("path", g.Attr("d", "M12 2v2")),
-		g.El("path", g.Attr("d", "M12 20v2")),
-		g.El("path", g.Attr("d", "m4.93 4.93 1.41 1.41")),
-		g.El("path", g.Attr("d", "m17.66 17.66 1.41 1.41")),
-		g.El("path", g.Attr("d", "M2 12h2")),
-		g.El("path", g.Attr("d", "M20 12h2")),
-		g.El("path", g.Attr("d", "m6.34 17.66-1.41 1.41")),
-		g.El("path", g.Attr("d", "m19.07 4.93-1.41 1.41")),
-	)
-}
+	if !props.IconOnly {
+		if _, err := fmt.Fprintf(w, `<span>%s</span>`, stdhtml.EscapeString(label)); err != nil {
+			return err
+		}
+	}
 
-// moonIcon returns a moon SVG icon for dark mode.
-func moonIcon() g.Node {
-	return g.El("svg",
-		g.Attr("xmlns", "http://www.w3.org/2000/svg"),
-		g.Attr("width", "16"),
-		g.Attr("height", "16"),
-		g.Attr("viewBox", "0 0 24 24"),
-		g.Attr("fill", "none"),
-		g.Attr("stroke", "currentColor"),
-		g.Attr("stroke-width", "2"),
-		g.Attr("stroke-linecap", "round"),
-		g.Attr("stroke-linejoin", "round"),
-		html.Class("shrink-0"),
-		g.El("path", g.Attr("d", "M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z")),
-	)
-}
-
-// systemIcon returns a monitor SVG icon for system theme.
-func systemIcon() g.Node {
-	return g.El("svg",
-		g.Attr("xmlns", "http://www.w3.org/2000/svg"),
-		g.Attr("width", "16"),
-		g.Attr("height", "16"),
-		g.Attr("viewBox", "0 0 24 24"),
-		g.Attr("fill", "none"),
-		g.Attr("stroke", "currentColor"),
-		g.Attr("stroke-width", "2"),
-		g.Attr("stroke-linecap", "round"),
-		g.Attr("stroke-linejoin", "round"),
-		html.Class("shrink-0"),
-		g.El("rect", g.Attr("x", "2"), g.Attr("y", "3"), g.Attr("width", "20"), g.Attr("height", "14"), g.Attr("rx", "2")),
-		g.El("path", g.Attr("d", "M8 21h8")),
-		g.El("path", g.Attr("d", "M12 17v4")),
-	)
+	_, err := io.WriteString(w, `</button>`)
+	return err
 }
 
 // SimpleToggle creates a minimal icon-only theme toggle with persistence.
-// This is a convenience function for the most common use case.
-func SimpleToggle() g.Node {
+func SimpleToggle() templ.Component {
 	return Toggle(IconOnly())
 }
 
 // PersistentToggle creates a theme toggle with full persistence support.
-// This is a convenience function that enables all persistence features.
-func PersistentToggle(storageKey string) g.Node {
+func PersistentToggle(storageKey string) templ.Component {
 	return Toggle(
 		IconOnly(),
 		WithToggleStorageKey(storageKey),
@@ -543,15 +513,8 @@ func PersistentToggle(storageKey string) g.Node {
 }
 
 // DropdownToggle creates a dropdown-style theme selector.
-// This provides a more compact interface with a popover menu.
-//
-// Usage:
-//
-//	DropdownToggle()
-//	DropdownToggle(WithStorageKey("my-theme"))
-func DropdownToggle(opts ...ToggleOption) g.Node {
+func DropdownToggle(opts ...ToggleOption) templ.Component {
 	props := defaultToggleProps()
-
 	props.DefaultTheme = "system"
 	for _, opt := range opts {
 		opt(&props)
@@ -589,113 +552,116 @@ func DropdownToggle(opts ...ToggleOption) g.Node {
 		getStorageRemoveScript(props.StorageType, props.StorageKey),
 		getStorageSetScript(props.StorageType, props.StorageKey, "t"))
 
-	return html.Div(
-		html.Class("relative inline-block text-left"),
-		g.Attr("data-theme-toggle", "dropdown"),
-		alpine.XData(map[string]any{
+	return templ.ComponentFunc(func(_ context.Context, w io.Writer) error {
+		if _, err := io.WriteString(w, `<div class="relative inline-block text-left" data-theme-toggle="dropdown"`); err != nil {
+			return err
+		}
+
+		if err := writeAlpineAttrs(w, alpine.XData(map[string]any{
 			"theme":             props.DefaultTheme,
 			"open":              false,
 			"getEffectiveTheme": nil,
 			"setTheme":          nil,
 			"init":              initScript,
-		}),
+		})); err != nil {
+			return err
+		}
+
+		if _, err := io.WriteString(w, ">"); err != nil {
+			return err
+		}
 
 		// Trigger button
-		html.Button(
-			g.Attr("type", "button"),
-			html.Class("inline-flex items-center justify-center gap-2 h-9 px-3 rounded-md text-sm font-medium transition-colors "+
-				"bg-transparent border border-input hover:bg-accent hover:text-accent-foreground "+
-				"focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"),
-			g.Attr("aria-label", "Select theme"),
-			g.Attr("aria-haspopup", "true"),
-			g.Attr(":aria-expanded", "open"),
-			alpine.XOn("click", "open = !open"),
+		if _, err := io.WriteString(w, `<button type="button" class="inline-flex items-center justify-center gap-2 h-9 px-3 rounded-md text-sm font-medium transition-colors bg-transparent border border-input hover:bg-accent hover:text-accent-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring" aria-label="Select theme" aria-haspopup="true" :aria-expanded="open"`); err != nil {
+			return err
+		}
+		if err := writeAlpineAttrs(w, alpine.XOn("click", "open = !open")); err != nil {
+			return err
+		}
+		if _, err := io.WriteString(w, ">"); err != nil {
+			return err
+		}
 
-			// Dynamic icon based on current theme
-			html.Span(
-				g.Attr("x-show", "getEffectiveTheme() === 'dark'"),
-				g.Attr("x-cloak", ""),
-				moonIcon(),
-			),
-			html.Span(
-				g.Attr("x-show", "getEffectiveTheme() === 'light'"),
-				g.Attr("x-cloak", ""),
-				sunIcon(),
-			),
+		// Dynamic icons
+		if _, err := fmt.Fprintf(w, `<span x-show="getEffectiveTheme() === 'dark'" x-cloak>%s</span>`, moonIconSVG); err != nil {
+			return err
+		}
+		if _, err := fmt.Fprintf(w, `<span x-show="getEffectiveTheme() === 'light'" x-cloak>%s</span>`, sunIconSVG); err != nil {
+			return err
+		}
+		if _, err := io.WriteString(w, chevronDownSVG); err != nil {
+			return err
+		}
 
-			// Chevron down icon
-			g.El("svg",
-				g.Attr("xmlns", "http://www.w3.org/2000/svg"),
-				g.Attr("width", "12"),
-				g.Attr("height", "12"),
-				g.Attr("viewBox", "0 0 24 24"),
-				g.Attr("fill", "none"),
-				g.Attr("stroke", "currentColor"),
-				g.Attr("stroke-width", "2"),
-				html.Class("shrink-0 ml-1"),
-				g.El("path", g.Attr("d", "m6 9 6 6 6-6")),
-			),
-		),
+		if _, err := io.WriteString(w, `</button>`); err != nil {
+			return err
+		}
 
 		// Dropdown menu
-		html.Div(
-			g.Attr("x-show", "open"),
-			g.Attr("x-cloak", ""),
-			g.Attr("x-transition:enter", "transition ease-out duration-100"),
-			g.Attr("x-transition:enter-start", "transform opacity-0 scale-95"),
-			g.Attr("x-transition:enter-end", "transform opacity-100 scale-100"),
-			g.Attr("x-transition:leave", "transition ease-in duration-75"),
-			g.Attr("x-transition:leave-start", "transform opacity-100 scale-100"),
-			g.Attr("x-transition:leave-end", "transform opacity-0 scale-95"),
-			alpine.XOn("click.outside", "open = false"),
-			html.Class("absolute right-0 z-50 mt-2 w-36 origin-top-right rounded-md bg-popover border border-border shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none"),
-			g.Attr("role", "menu"),
-			g.Attr("aria-orientation", "vertical"),
+		if _, err := io.WriteString(w, `<div x-show="open" x-cloak x-transition:enter="transition ease-out duration-100" x-transition:enter-start="transform opacity-0 scale-95" x-transition:enter-end="transform opacity-100 scale-100" x-transition:leave="transition ease-in duration-75" x-transition:leave-start="transform opacity-100 scale-100" x-transition:leave-end="transform opacity-0 scale-95"`); err != nil {
+			return err
+		}
+		if err := writeAlpineAttrs(w, alpine.XOn("click.outside", "open = false")); err != nil {
+			return err
+		}
+		if _, err := io.WriteString(w, ` class="absolute right-0 z-50 mt-2 w-36 origin-top-right rounded-md bg-popover border border-border shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none" role="menu" aria-orientation="vertical">`); err != nil {
+			return err
+		}
 
-			html.Div(
-				html.Class("py-1"),
-				g.Attr("role", "none"),
+		if _, err := io.WriteString(w, `<div class="py-1" role="none">`); err != nil {
+			return err
+		}
 
-				// Light option
-				dropdownMenuItem("light", props.LightLabel, sunIcon()),
+		// Menu items
+		if err := writeDropdownMenuItem(w, "light", props.LightLabel, sunIconSVG); err != nil {
+			return err
+		}
+		if err := writeDropdownMenuItem(w, "dark", props.DarkLabel, moonIconSVG); err != nil {
+			return err
+		}
+		if err := writeDropdownMenuItem(w, "system", props.SystemLabel, systemIconSVG); err != nil {
+			return err
+		}
 
-				// Dark option
-				dropdownMenuItem("dark", props.DarkLabel, moonIcon()),
+		if _, err := io.WriteString(w, `</div></div></div>`); err != nil {
+			return err
+		}
 
-				// System option
-				dropdownMenuItem("system", props.SystemLabel, systemIcon()),
-			),
-		),
-	)
+		return nil
+	})
 }
 
-// dropdownMenuItem creates a single menu item for the dropdown toggle.
-func dropdownMenuItem(value, label string, icon g.Node) g.Node {
-	return html.Button(
-		g.Attr("type", "button"),
-		html.Class("w-full flex items-center gap-2 px-3 py-2 text-sm transition-colors hover:bg-accent"),
-		g.Attr(":class", "theme === '"+value+"' ? 'bg-accent text-accent-foreground' : 'text-foreground'"),
-		g.Attr("role", "menuitem"),
-		alpine.XOn("click", "setTheme('"+value+"')"),
-		icon,
-		html.Span(g.Text(label)),
-		// Checkmark for selected
-		html.Span(
-			g.Attr("x-show", "theme === '"+value+"'"),
-			g.Attr("x-cloak", ""),
-			html.Class("ml-auto"),
-			g.El("svg",
-				g.Attr("xmlns", "http://www.w3.org/2000/svg"),
-				g.Attr("width", "14"),
-				g.Attr("height", "14"),
-				g.Attr("viewBox", "0 0 24 24"),
-				g.Attr("fill", "none"),
-				g.Attr("stroke", "currentColor"),
-				g.Attr("stroke-width", "2"),
-				g.El("polyline", g.Attr("points", "20 6 9 17 4 12")),
-			),
-		),
-	)
+// writeDropdownMenuItem writes a single menu item for the dropdown toggle.
+func writeDropdownMenuItem(w io.Writer, value, label, iconSVG string) error {
+	if _, err := fmt.Fprintf(w,
+		`<button type="button" class="w-full flex items-center gap-2 px-3 py-2 text-sm transition-colors hover:bg-accent" :class="theme === '%s' ? 'bg-accent text-accent-foreground' : 'text-foreground'" role="menuitem"`,
+		value); err != nil {
+		return err
+	}
+
+	if err := writeAlpineAttrs(w, alpine.XOn("click", "setTheme('"+value+"')")); err != nil {
+		return err
+	}
+
+	if _, err := io.WriteString(w, ">"); err != nil {
+		return err
+	}
+
+	if _, err := io.WriteString(w, iconSVG); err != nil {
+		return err
+	}
+
+	if _, err := fmt.Fprintf(w, `<span>%s</span>`, stdhtml.EscapeString(label)); err != nil {
+		return err
+	}
+
+	// Checkmark for selected
+	if _, err := fmt.Fprintf(w, `<span x-show="theme === '%s'" x-cloak class="ml-auto">%s</span>`, value, checkIconSVG); err != nil {
+		return err
+	}
+
+	_, err := io.WriteString(w, `</button>`)
+	return err
 }
 
 // getStorageRemoveScript returns the JavaScript to remove a value from storage.
@@ -713,17 +679,14 @@ func getStorageRemoveScript(storageType StorageType, key string) string {
 }
 
 // ThemeTransitionCSS returns CSS for smooth theme transitions.
-// Add this to your page to enable animated theme changes.
-func ThemeTransitionCSS() g.Node {
-	css := `
+func ThemeTransitionCSS() templ.Component {
+	return templ.ComponentFunc(func(_ context.Context, w io.Writer) error {
+		_, err := io.WriteString(w, `<style data-theme-transition>
 .theme-transitioning,
 .theme-transitioning * {
 	transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease !important;
 }
-`
-
-	return g.El("style",
-		g.Attr("data-theme-transition", ""),
-		g.Raw(css),
-	)
+</style>`)
+		return err
+	})
 }

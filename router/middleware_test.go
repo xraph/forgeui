@@ -5,12 +5,12 @@ import (
 	"net/http/httptest"
 	"testing"
 
-	g "maragu.dev/gomponents"
+	"github.com/a-h/templ"
 )
 
 func TestLogger(t *testing.T) {
-	handler := func(ctx *PageContext) (g.Node, error) {
-		return g.Text("OK"), nil
+	handler := func(ctx *PageContext) (templ.Component, error) {
+		return templ.Raw("OK"), nil
 	}
 
 	middleware := Logger()
@@ -30,7 +30,7 @@ func TestLogger(t *testing.T) {
 }
 
 func TestRecovery(t *testing.T) {
-	handler := func(ctx *PageContext) (g.Node, error) {
+	handler := func(ctx *PageContext) (templ.Component, error) {
 		panic("test panic")
 	}
 
@@ -44,13 +44,13 @@ func TestRecovery(t *testing.T) {
 		Request:        req,
 	}
 
-	node, err := wrapped(ctx)
+	comp, err := wrapped(ctx)
 	if err == nil {
 		t.Error("Expected error from panic recovery")
 	}
 
-	if node == nil {
-		t.Error("Expected error page node")
+	if comp == nil {
+		t.Error("Expected error page component")
 	}
 
 	if w.Code != http.StatusInternalServerError {
@@ -59,8 +59,8 @@ func TestRecovery(t *testing.T) {
 }
 
 func TestCORS(t *testing.T) {
-	handler := func(ctx *PageContext) (g.Node, error) {
-		return g.Text("OK"), nil
+	handler := func(ctx *PageContext) (templ.Component, error) {
+		return templ.Raw("OK"), nil
 	}
 
 	middleware := CORS("*")
@@ -84,8 +84,8 @@ func TestCORS(t *testing.T) {
 }
 
 func TestCORS_Preflight(t *testing.T) {
-	handler := func(ctx *PageContext) (g.Node, error) {
-		return g.Text("OK"), nil
+	handler := func(ctx *PageContext) (templ.Component, error) {
+		return templ.Raw("OK"), nil
 	}
 
 	middleware := CORS("*")
@@ -98,13 +98,13 @@ func TestCORS_Preflight(t *testing.T) {
 		Request:        req,
 	}
 
-	node, err := wrapped(ctx)
+	comp, err := wrapped(ctx)
 	if err != nil {
 		t.Errorf("Unexpected error: %v", err)
 	}
 
-	if node != nil {
-		t.Error("Expected nil node for OPTIONS request")
+	if comp != nil {
+		t.Error("Expected nil component for OPTIONS request")
 	}
 
 	if w.Code != http.StatusOK {
@@ -113,8 +113,8 @@ func TestCORS_Preflight(t *testing.T) {
 }
 
 func TestRequestID(t *testing.T) {
-	handler := func(ctx *PageContext) (g.Node, error) {
-		return g.Text("OK"), nil
+	handler := func(ctx *PageContext) (templ.Component, error) {
+		return templ.Raw("OK"), nil
 	}
 
 	middleware := RequestID()
@@ -143,8 +143,8 @@ func TestRequestID(t *testing.T) {
 }
 
 func TestBasicAuth_Success(t *testing.T) {
-	handler := func(ctx *PageContext) (g.Node, error) {
-		return g.Text("Authorized"), nil
+	handler := func(ctx *PageContext) (templ.Component, error) {
+		return templ.Raw("Authorized"), nil
 	}
 
 	middleware := BasicAuth("admin", "secret")
@@ -159,19 +159,19 @@ func TestBasicAuth_Success(t *testing.T) {
 		Request:        req,
 	}
 
-	node, err := wrapped(ctx)
+	comp, err := wrapped(ctx)
 	if err != nil {
 		t.Errorf("Unexpected error: %v", err)
 	}
 
-	if node == nil {
-		t.Error("Expected node to be returned")
+	if comp == nil {
+		t.Error("Expected component to be returned")
 	}
 }
 
 func TestBasicAuth_Failure(t *testing.T) {
-	handler := func(ctx *PageContext) (g.Node, error) {
-		return g.Text("Authorized"), nil
+	handler := func(ctx *PageContext) (templ.Component, error) {
+		return templ.Raw("Authorized"), nil
 	}
 
 	middleware := BasicAuth("admin", "secret")
@@ -197,8 +197,8 @@ func TestBasicAuth_Failure(t *testing.T) {
 }
 
 func TestRequireMethod(t *testing.T) {
-	handler := func(ctx *PageContext) (g.Node, error) {
-		return g.Text("OK"), nil
+	handler := func(ctx *PageContext) (templ.Component, error) {
+		return templ.Raw("OK"), nil
 	}
 
 	middleware := RequireMethod(MethodGet, MethodPost)
@@ -240,8 +240,8 @@ func TestRequireMethod(t *testing.T) {
 }
 
 func TestSetHeader(t *testing.T) {
-	handler := func(ctx *PageContext) (g.Node, error) {
-		return g.Text("OK"), nil
+	handler := func(ctx *PageContext) (templ.Component, error) {
+		return templ.Raw("OK"), nil
 	}
 
 	middleware := SetHeader("X-Custom", "test-value")
@@ -265,19 +265,19 @@ func TestSetHeader(t *testing.T) {
 }
 
 func TestChain(t *testing.T) {
-	handler := func(ctx *PageContext) (g.Node, error) {
-		return g.Text("OK"), nil
+	handler := func(ctx *PageContext) (templ.Component, error) {
+		return templ.Raw("OK"), nil
 	}
 
 	m1 := func(next PageHandler) PageHandler {
-		return func(ctx *PageContext) (g.Node, error) {
+		return func(ctx *PageContext) (templ.Component, error) {
 			ctx.SetHeader("X-M1", "1")
 			return next(ctx)
 		}
 	}
 
 	m2 := func(next PageHandler) PageHandler {
-		return func(ctx *PageContext) (g.Node, error) {
+		return func(ctx *PageContext) (templ.Component, error) {
 			ctx.SetHeader("X-M2", "2")
 			return next(ctx)
 		}

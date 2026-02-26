@@ -9,7 +9,7 @@ Production-ready HTTP routing system for ForgeUI applications.
 - **Middleware**: Global and route-specific middleware with chainable execution
 - **Named Routes**: URL generation from route names
 - **PageContext**: Rich request context with params, query, headers, cookies
-- **Type Safety**: Full Go type safety with gomponents integration
+- **Type Safety**: Full Go type safety with templ integration
 - **Priority Routing**: Automatic route prioritization (static > params > wildcards)
 
 ## Quick Start
@@ -18,10 +18,9 @@ Production-ready HTTP routing system for ForgeUI applications.
 package main
 
 import (
+    "github.com/a-h/templ"
     "github.com/xraph/forgeui"
     "github.com/xraph/forgeui/router"
-    g "maragu.dev/gomponents"
-    "maragu.dev/gomponents/html"
 )
 
 func main() {
@@ -33,22 +32,20 @@ func main() {
     app.Post("/users", CreateUser)
 
     // Start server
-    http.ListenAndServe(":8080", app.Router())
+    http.ListenAndServe(":8080", app.Handler())
 }
 
-func HomePage(ctx *router.PageContext) (g.Node, error) {
-    return html.H1(g.Text("Welcome to ForgeUI")), nil
+func HomePage(ctx *router.PageContext) (templ.Component, error) {
+    return HomePageView(), nil
 }
 
-func UserProfile(ctx *router.PageContext) (g.Node, error) {
+func UserProfile(ctx *router.PageContext) (templ.Component, error) {
     id := ctx.Param("id")
-    return html.Div(
-        html.H1(g.Textf("User #%s", id)),
-    ), nil
+    return UserProfileView(id), nil
 }
 
-func CreateUser(ctx *router.PageContext) (g.Node, error) {
-    return html.P(g.Text("User created")), nil
+func CreateUser(ctx *router.PageContext) (templ.Component, error) {
+    return UserCreatedView(), nil
 }
 ```
 
@@ -100,49 +97,49 @@ The `PageContext` provides access to request data and utilities:
 ### Path Parameters
 
 ```go
-func UserProfile(ctx *router.PageContext) (g.Node, error) {
+func UserProfile(ctx *router.PageContext) (templ.Component, error) {
     id := ctx.Param("id")                    // String
     userID, err := ctx.ParamInt("id")        // Integer
     userID64, err := ctx.ParamInt64("id")    // Int64
-    
-    // ...
+
+    return UserProfileView(id), nil
 }
 ```
 
 ### Query Parameters
 
 ```go
-func SearchUsers(ctx *router.PageContext) (g.Node, error) {
+func SearchUsers(ctx *router.PageContext) (templ.Component, error) {
     query := ctx.Query("q")                       // String
     page, err := ctx.QueryInt("page")             // Integer
     limit := ctx.QueryDefault("limit", "10")      // With default
     active := ctx.QueryBool("active")             // Boolean
-    
-    // ...
+
+    return SearchResultsView(query, page), nil
 }
 ```
 
 ### Headers & Cookies
 
 ```go
-func Protected(ctx *router.PageContext) (g.Node, error) {
+func Protected(ctx *router.PageContext) (templ.Component, error) {
     auth := ctx.Header("Authorization")
-    
+
     cookie, err := ctx.Cookie("session")
     if err != nil {
         // Handle missing cookie
     }
-    
+
     // Set response headers
     ctx.SetHeader("X-Custom", "value")
-    
+
     // Set cookies
     ctx.SetCookie(&http.Cookie{
         Name:  "session",
         Value: "abc123",
     })
-    
-    // ...
+
+    return ProtectedView(), nil
 }
 ```
 
@@ -153,7 +150,7 @@ Store and retrieve values for the request lifecycle:
 ```go
 // In middleware
 func AuthMiddleware(next router.PageHandler) router.PageHandler {
-    return func(ctx *router.PageContext) (g.Node, error) {
+    return func(ctx *router.PageContext) (templ.Component, error) {
         ctx.Set("user_id", 42)
         ctx.Set("username", "john")
         return next(ctx)
@@ -161,7 +158,7 @@ func AuthMiddleware(next router.PageHandler) router.PageHandler {
 }
 
 // In handler
-func Profile(ctx *router.PageContext) (g.Node, error) {
+func Profile(ctx *router.PageContext) (templ.Component, error) {
     userID := ctx.GetInt("user_id")
     username := ctx.GetString("username")
     
@@ -232,12 +229,12 @@ app.Use(router.Timeout(30 * time.Second))
 
 ```go
 func AuthMiddleware(next router.PageHandler) router.PageHandler {
-    return func(ctx *router.PageContext) (g.Node, error) {
+    return func(ctx *router.PageContext) (templ.Component, error) {
         // Check authentication
         token := ctx.Header("Authorization")
         if token == "" {
             ctx.ResponseWriter.WriteHeader(http.StatusUnauthorized)
-            return html.P(g.Text("Unauthorized")), nil
+            return UnauthorizedView(), nil
         }
         
         // Continue to next handler
@@ -271,11 +268,7 @@ app.Router().Name("user.post", route)
 url := app.Router().URL("user.post", 123, 456)
 // Returns: "/users/123/posts/456"
 
-// In templates
-link := html.A(
-    html.Href(app.Router().URL("user.post", userID, postID)),
-    g.Text("View Post"),
-)
+// In templ files, generate URLs in handlers and pass to templates
 ```
 
 ## Router Options
@@ -291,12 +284,9 @@ router := router.New(
 ### Custom 404 Handler
 
 ```go
-func Custom404(ctx *router.PageContext) (g.Node, error) {
+func Custom404(ctx *router.PageContext) (templ.Component, error) {
     ctx.ResponseWriter.WriteHeader(404)
-    return html.Div(
-        html.H1(g.Text("Page Not Found")),
-        html.P(g.Text("The page you're looking for doesn't exist.")),
-    ), nil
+    return NotFoundView(), nil
 }
 
 router := router.New(router.WithNotFound(Custom404))
@@ -305,12 +295,9 @@ router := router.New(router.WithNotFound(Custom404))
 ### Custom Error Handler
 
 ```go
-func CustomError(ctx *router.PageContext, err error) g.Node {
+func CustomError(ctx *router.PageContext, err error) templ.Component {
     ctx.ResponseWriter.WriteHeader(500)
-    return html.Div(
-        html.H1(g.Text("Something went wrong")),
-        html.P(g.Text(err.Error())),
-    )
+    return ErrorView(err)
 }
 
 router := router.New(router.WithErrorHandler(CustomError))

@@ -1,0 +1,108 @@
+package main
+
+import "github.com/xraph/forgeui/icons"
+
+templ ThemePageView() {
+	@PageLayout("Theme System") {
+		<div class="container mx-auto px-4 py-12">
+			<div class="mb-8 space-y-2">
+				<h1 class="text-4xl font-bold">Theme System</h1>
+				<p class="text-lg text-muted-foreground">
+					CSS custom properties with light/dark mode support
+				</p>
+			</div>
+
+			<!-- Color Palette -->
+			<section class="mb-12">
+				<h2 class="text-2xl font-bold mb-6">Color Tokens</h2>
+				<div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+					@colorSwatch("Background", "bg-background", "text-foreground")
+					@colorSwatch("Foreground", "bg-foreground", "text-background")
+					@colorSwatch("Card", "bg-card", "text-card-foreground")
+					@colorSwatch("Primary", "bg-primary", "text-primary-foreground")
+					@colorSwatch("Secondary", "bg-secondary", "text-secondary-foreground")
+					@colorSwatch("Muted", "bg-muted", "text-muted-foreground")
+					@colorSwatch("Accent", "bg-accent", "text-accent-foreground")
+					@colorSwatch("Destructive", "bg-destructive", "text-destructive-foreground")
+				</div>
+			</section>
+
+			<!-- Typography -->
+			<section class="mb-12">
+				<h2 class="text-2xl font-bold mb-6">Typography</h2>
+				<div class="space-y-4 bg-card rounded-lg border border-border p-6">
+					<h1 class="text-4xl font-bold tracking-tight">Heading 1</h1>
+					<h2 class="text-3xl font-semibold tracking-tight">Heading 2</h2>
+					<h3 class="text-2xl font-semibold tracking-tight">Heading 3</h3>
+					<h4 class="text-xl font-semibold tracking-tight">Heading 4</h4>
+					<p class="leading-7">
+						Regular paragraph text with <strong>bold</strong> and <em>italic</em> formatting.
+						The theme system uses CSS custom properties mapped to Tailwind utility classes.
+					</p>
+					<p class="text-sm text-muted-foreground">Small muted text for descriptions.</p>
+				</div>
+			</section>
+
+			<!-- Buttons -->
+			<section class="mb-12">
+				<h2 class="text-2xl font-bold mb-6">Button Styles</h2>
+				<div class="flex flex-wrap gap-3">
+					<button class="inline-flex items-center justify-center rounded-md bg-primary px-4 py-2 text-sm font-medium text-primary-foreground hover:bg-primary/90 transition-colors">
+						Primary
+					</button>
+					<button class="inline-flex items-center justify-center rounded-md bg-secondary px-4 py-2 text-sm font-medium text-secondary-foreground hover:bg-secondary/80 transition-colors">
+						Secondary
+					</button>
+					<button class="inline-flex items-center justify-center rounded-md bg-destructive px-4 py-2 text-sm font-medium text-destructive-foreground hover:bg-destructive/90 transition-colors">
+						Destructive
+					</button>
+					<button class="inline-flex items-center justify-center rounded-md border border-input bg-background px-4 py-2 text-sm font-medium hover:bg-accent hover:text-accent-foreground transition-colors">
+						Outline
+					</button>
+					<button class="inline-flex items-center justify-center rounded-md px-4 py-2 text-sm font-medium hover:bg-accent hover:text-accent-foreground transition-colors">
+						Ghost
+					</button>
+				</div>
+			</section>
+
+			<!-- Cards -->
+			<section class="mb-12">
+				<h2 class="text-2xl font-bold mb-6">Card Variants</h2>
+				<div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+					<div class="rounded-lg border border-border bg-card p-6">
+						<div class="flex items-center gap-2 mb-2">
+							@icons.Info(icons.WithSize(16))
+							<h3 class="font-semibold">Default Card</h3>
+						</div>
+						<p class="text-sm text-muted-foreground">Standard card with border and background.</p>
+					</div>
+					<div class="rounded-lg bg-primary/10 p-6">
+						<div class="flex items-center gap-2 mb-2">
+							@icons.Star(icons.WithSize(16))
+							<h3 class="font-semibold text-primary">Highlighted Card</h3>
+						</div>
+						<p class="text-sm text-muted-foreground">Uses primary color tinting.</p>
+					</div>
+					<div class="rounded-lg bg-destructive/10 border border-destructive/20 p-6">
+						<div class="flex items-center gap-2 mb-2">
+							@icons.AlertCircle(icons.WithSize(16), icons.WithClass("text-destructive"))
+							<h3 class="font-semibold text-destructive">Error Card</h3>
+						</div>
+						<p class="text-sm text-muted-foreground">Destructive variant for errors.</p>
+					</div>
+				</div>
+			</section>
+		</div>
+	}
+}
+
+templ colorSwatch(name, bgClass, textClass string) {
+	<div class={ "rounded-lg overflow-hidden border border-border" }>
+		<div class={ bgClass, textClass, "h-20 flex items-center justify-center font-medium text-sm" }>
+			{ name }
+		</div>
+		<div class="bg-card px-3 py-2">
+			<p class="text-xs text-muted-foreground">{ bgClass }</p>
+		</div>
+	</div>
+}

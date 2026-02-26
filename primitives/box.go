@@ -1,25 +1,27 @@
 package primitives
 
 import (
-	g "maragu.dev/gomponents"
-	"maragu.dev/gomponents/html"
+	"context"
+	"io"
+
+	"github.com/a-h/templ"
 
 	"github.com/xraph/forgeui"
 )
 
 // BoxProps defines properties for the Box component
 type BoxProps struct {
-	As       string // HTML tag (div, span, section, article, etc.)
-	Class    string
-	P        string // padding
-	M        string // margin
-	Bg       string // background
-	Rounded  string // border-radius
-	Shadow   string // box-shadow
-	W        string // width
-	H        string // height
-	Children []g.Node
-	Attrs    []g.Node
+	As         string           // HTML tag (div, span, section, article, etc.)
+	Class      string           // custom classes
+	P          string           // padding
+	M          string           // margin
+	Bg         string           // background
+	Rounded    string           // border-radius
+	Shadow     string           // box-shadow
+	W          string           // width
+	H          string           // height
+	Children   []templ.Component
+	Attributes templ.Attributes
 }
 
 // BoxOption is a functional option for configuring Box
@@ -36,8 +38,8 @@ func WithClass(class string) BoxOption {
 }
 
 // WithPadding sets padding classes
-func WithPadding(p string) BoxOption {
-	return func(props *BoxProps) { props.P = p }
+func WithPadding(padding string) BoxOption {
+	return func(props *BoxProps) { props.P = padding }
 }
 
 // WithMargin sets margin classes
@@ -70,19 +72,26 @@ func WithHeight(h string) BoxOption {
 	return func(p *BoxProps) { p.H = h }
 }
 
-// WithChildren adds child nodes
-func WithChildren(children ...g.Node) BoxOption {
+// WithChildren adds child components
+func WithChildren(children ...templ.Component) BoxOption {
 	return func(p *BoxProps) { p.Children = append(p.Children, children...) }
 }
 
 // WithAttrs adds custom attributes
-func WithAttrs(attrs ...g.Node) BoxOption {
-	return func(p *BoxProps) { p.Attrs = append(p.Attrs, attrs...) }
+func WithAttrs(attrs templ.Attributes) BoxOption {
+	return func(p *BoxProps) {
+		if p.Attributes == nil {
+			p.Attributes = templ.Attributes{}
+		}
+		for k, v := range attrs {
+			p.Attributes[k] = v
+		}
+	}
 }
 
-// Box creates a polymorphic container element
-// It's the most basic primitive for layout
-func Box(opts ...BoxOption) g.Node {
+// Box creates a polymorphic container element.
+// It's the most basic primitive for layout.
+func Box(opts ...BoxOption) templ.Component {
 	props := &BoxProps{
 		As: "div",
 	}
@@ -102,12 +111,13 @@ func Box(opts ...BoxOption) g.Node {
 		props.Class,
 	)
 
-	attrs := []g.Node{}
-	if classes != "" {
-		attrs = append(attrs, html.Class(classes))
-	}
-
-	attrs = append(attrs, props.Attrs...)
-
-	return g.El(props.As, g.Group(attrs), g.Group(props.Children))
+	return templ.ComponentFunc(func(ctx context.Context, w io.Writer) error {
+		if err := writeOpenTag(w, props.As, classes, props.Attributes); err != nil {
+			return err
+		}
+		if err := renderChildren(ctx, w, props.Children); err != nil {
+			return err
+		}
+		return writeCloseTag(w, props.As)
+	})
 }

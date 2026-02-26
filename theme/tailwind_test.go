@@ -2,6 +2,7 @@ package theme
 
 import (
 	"bytes"
+	"context"
 	"strings"
 	"testing"
 )
@@ -10,7 +11,7 @@ func TestTailwindConfigScript(t *testing.T) {
 	script := TailwindConfigScript()
 
 	var buf bytes.Buffer
-	if err := script.Render(&buf); err != nil {
+	if err := script.Render(context.Background(), &buf); err != nil {
 		t.Fatalf("failed to render script: %v", err)
 	}
 

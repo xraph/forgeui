@@ -1,13 +1,13 @@
 # ForgeUI
 
-ForgeUI is a comprehensive SSR-first UI framework for Go, built on gomponents with Tailwind CSS styling and shadcn-inspired design patterns. It provides everything you need to build modern, interactive web applications entirely in Go.
+ForgeUI is a comprehensive SSR-first UI framework for Go, built on [templ](https://templ.guide) with [templui](https://templui.io) components, Tailwind CSS styling, and shadcn-inspired design patterns. It provides everything you need to build modern, interactive web applications entirely in Go.
 
 ## Features
 
 ### Core Framework
 - ✅ **SSR-First**: Pure Go component rendering with zero client-side dependencies required
-- ✅ **Type-Safe**: Full Go type safety with functional options pattern
-- ✅ **CVA**: Class Variance Authority for flexible variant management
+- ✅ **Type-Safe**: Full Go type safety with templ templates
+- ✅ **templui Components**: shadcn-inspired component library via templui
 - ✅ **Tailwind CSS**: Utility-first CSS styling with built-in processing
 - ✅ **35+ Components**: Production-ready UI components
 
@@ -32,7 +32,7 @@ ForgeUI is a comprehensive SSR-first UI framework for Go, built on gomponents wi
 
 ## Why ForgeUI?
 
-- 🚀 **Go All The Way**: Write your entire frontend in Go - no JavaScript required
+- 🚀 **Go All The Way**: Write your entire frontend in Go with templ templates
 - 🎯 **Type Safety**: Catch errors at compile time, not runtime
 - ⚡ **SSR Performance**: Server-rendered HTML with optional progressive enhancement
 - 🎨 **Beautiful by Default**: shadcn-inspired design that looks great out of the box
@@ -51,20 +51,17 @@ go get github.com/xraph/forgeui
 
 ### 1. Create Your First Application
 
+**main.go:**
+
 ```go
 package main
 
 import (
     "log"
     "net/http"
-    
-    g "maragu.dev/gomponents"
-    "maragu.dev/gomponents/html"
-    
+
+    "github.com/a-h/templ"
     "github.com/xraph/forgeui"
-    "github.com/xraph/forgeui/components/button"
-    "github.com/xraph/forgeui/components/card"
-    "github.com/xraph/forgeui/primitives"
     "github.com/xraph/forgeui/router"
 )
 
@@ -74,48 +71,40 @@ func main() {
         forgeui.WithDebug(true),
         forgeui.WithThemeName("default"),
     )
-    
+
     // Register routes
     app.Get("/", HomePage)
-    
+
     // Start server
     log.Println("Server running on http://localhost:8080")
-    http.ListenAndServe(":8080", app.Router())
+    http.ListenAndServe(":8080", app.Handler())
 }
 
-func HomePage(ctx *router.PageContext) (g.Node, error) {
-    return html.Html(
-        html.Head(
-            html.Meta(html.Charset("UTF-8")),
-            html.Title(g.Text("ForgeUI App")),
-            html.Link(html.Rel("stylesheet"), html.Href("/static/styles.css")),
-        ),
-        html.Body(
-            primitives.Container(
-                primitives.VStack("8",
-                    card.Card(
-                        card.Header(
-                            card.Title("Welcome to ForgeUI"),
-                            card.Description("Build beautiful UIs with Go"),
-                        ),
-                        card.Content(
-                            primitives.VStack("4",
-                                primitives.Text(
-                                    primitives.TextChildren(
-                                        g.Text("ForgeUI provides type-safe, composable UI components."),
-                                    ),
-                                ),
-                                button.Primary(
-                                    g.Text("Get Started"),
-                                    button.WithSize(forgeui.SizeLG),
-                                ),
-                            ),
-                        ),
-                    ),
-                ),
-            ),
-        ),
-    ), nil
+func HomePage(ctx *router.PageContext) (templ.Component, error) {
+    return HomePageView(), nil
+}
+```
+
+**home.templ:**
+
+```templ
+package main
+
+templ HomePageView() {
+    <!DOCTYPE html>
+    <html lang="en">
+        <head>
+            <meta charset="UTF-8"/>
+            <title>ForgeUI App</title>
+        </head>
+        <body>
+            <div class="container mx-auto p-8">
+                <h1 class="text-4xl font-bold">Welcome to ForgeUI</h1>
+                <p>Build beautiful UIs with Go and templ.</p>
+                <a href="/about" class="btn btn-primary">Get Started</a>
+            </div>
+        </body>
+    </html>
 }
 ```
 
@@ -129,30 +118,27 @@ Visit `http://localhost:8080` to see your app!
 
 ### 3. Add Interactivity (Optional)
 
-Add Alpine.js for client-side interactivity:
+Add Alpine.js for client-side interactivity in your `.templ` files:
 
-```go
-import (
-    "github.com/xraph/forgeui/alpine"
-)
+```templ
+package main
 
-func HomePage(ctx *router.PageContext) (g.Node, error) {
-    return html.Html(
-        html.Head(
-            html.Title(g.Text("Interactive App")),
-            alpine.Scripts(), // Add Alpine.js
-        ),
-        html.Body(
-            html.Div(
-                alpine.XData(`{count: 0}`),
-                html.Button(
-                    alpine.XOn("click", "count++"),
-                    g.Text("Increment"),
-                ),
-                html.Span(alpine.XText("count")),
-            ),
-        ),
-    ), nil
+import "github.com/xraph/forgeui/alpine"
+
+templ InteractivePage() {
+    <!DOCTYPE html>
+    <html lang="en">
+        <head>
+            <title>Interactive App</title>
+            @alpine.Scripts()
+        </head>
+        <body>
+            <div x-data="{ count: 0 }">
+                <button @click="count++">Increment</button>
+                <span x-text="count"></span>
+            </div>
+        </body>
+    </html>
 }
 ```
 
@@ -225,102 +211,56 @@ func HomePage(ctx *router.PageContext) (g.Node, error) {
 
 ## Usage Examples
 
-### Button Variants
+### Button (templui)
 
-```go
+```templ
+import "github.com/xraph/forgeui/components/button"
+
 // Primary button
-button.Primary(g.Text("Save"))
+@button.Button(button.Props{Variant: button.VariantDefault}) {
+    Save
+}
 
 // Destructive button
-button.Destructive(
-    g.Text("Delete"),
-    button.WithSize(forgeui.SizeLG),
-)
-
-// Icon button
-button.IconButton(
-    g.Text("×"),
-    button.WithVariant(forgeui.VariantGhost),
-)
-
-// Button group
-button.Group(
-    []button.GroupOption{button.WithGap("2")},
-    button.Primary(g.Text("Save")),
-    button.Secondary(g.Text("Cancel")),
-)
+@button.Button(button.Props{Variant: button.VariantDestructive, Size: button.SizeLg}) {
+    Delete
+}
 ```
 
-### Card Component
+### Card (templui)
 
-```go
-card.Card(
-    card.Header(
-        card.Title("Settings"),
-        card.Description("Manage your account settings"),
-    ),
-    card.Content(
+```templ
+import "github.com/xraph/forgeui/components/card"
+
+@card.Card(card.Props{}) {
+    @card.Header() {
+        @card.Title() { Settings }
+        @card.Description() { Manage your account settings }
+    }
+    @card.Content() {
         // Your content here
-    ),
-    card.Footer(
-        button.Primary(g.Text("Save Changes")),
-    ),
-)
-```
-
-### Form Example
-
-```go
-form.Form(
-    []form.Option{
-        form.WithAction("/submit"),
-        form.WithMethod("POST"),
-    },
-    input.Field(
-        "Email",
-        []input.Option{
-            input.WithType("email"),
-            input.WithName("email"),
-            input.WithPlaceholder("Enter your email"),
-            input.Required(),
-        },
-        input.FormDescription("We'll never share your email."),
-    ),
-    checkbox.Checkbox(
-        checkbox.WithName("subscribe"),
-        checkbox.WithID("subscribe"),
-    ),
-    button.Primary(
-        g.Text("Submit"),
-        button.WithType("submit"),
-    ),
-)
+    }
+    @card.Footer() {
+        @button.Button(button.Props{}) { Save Changes }
+    }
+}
 ```
 
 ### Layout with Primitives
 
-```go
-primitives.Container(
-    primitives.VStack("8",
-        primitives.Text(
-            primitives.TextAs("h1"),
-            primitives.TextSize("text-4xl"),
-            primitives.TextWeight("font-bold"),
-            primitives.TextChildren(g.Text("Dashboard")),
-        ),
-        primitives.Grid(
-            primitives.GridCols(1),
-            primitives.GridColsMD(2),
-            primitives.GridColsLG(3),
-            primitives.GridGap("6"),
-            primitives.GridChildren(
-                card.Card(/* ... */),
-                card.Card(/* ... */),
-                card.Card(/* ... */),
-            ),
-        ),
-    ),
-)
+```templ
+import "github.com/xraph/forgeui/primitives"
+
+@primitives.Container(primitives.ContainerProps{}) {
+    @primitives.Stack(primitives.StackProps{Direction: "vertical", Gap: "8"}) {
+        @primitives.Text(primitives.TextProps{As: "h1", Size: "text-4xl", Weight: "font-bold"}) {
+            Dashboard
+        }
+        @primitives.Grid(primitives.GridProps{Cols: 1, ColsMD: 2, ColsLG: 3, Gap: "6"}) {
+            // Grid items here
+        }
+    }
+}
 ```
 
 ## Router
@@ -360,23 +300,23 @@ url := app.Router().URL("user.post", userID, postID)
 Access request data with rich context utilities:
 
 ```go
-func UserProfile(ctx *router.PageContext) (g.Node, error) {
+func UserProfile(ctx *router.PageContext) (templ.Component, error) {
     // Path parameters
     id := ctx.Param("id")
     userID, _ := ctx.ParamInt("id")
-    
+
     // Query parameters
     query := ctx.Query("q")
     page, _ := ctx.QueryInt("page")
-    
+
     // Headers and cookies
     auth := ctx.Header("Authorization")
     cookie, _ := ctx.Cookie("session")
-    
+
     // Context values (set by middleware)
-    userID := ctx.GetInt("user_id")
-    
-    return html.Div(/* ... */), nil
+    uid := ctx.GetInt("user_id")
+
+    return UserProfileView(id), nil
 }
 ```
 
@@ -420,21 +360,18 @@ bridge.EnableBridge(app.Router(), b)
 
 ### Client Side
 
-```go
-// Include bridge scripts
-html.Head(
-    bridge.BridgeScripts(bridge.ScriptConfig{
-        Endpoint: "/api/bridge",
-        CSRFToken: csrfToken,
-        IncludeAlpine: true,
-    }),
-)
+```templ
+// Include bridge scripts in your layout
+@bridge.BridgeScripts(bridge.ScriptConfig{
+    Endpoint: "/api/bridge",
+    CSRFToken: csrfToken,
+    IncludeAlpine: true,
+})
 
 // Alpine.js integration
-html.Button(
-    g.Attr("@click", "result = await $bridge.call('createUser', {name, email})"),
-    g.Text("Create User"),
-)
+<button @click="result = await $bridge.call('createUser', {name, email})">
+    Create User
+</button>
 ```
 
 **Features:**
@@ -451,39 +388,30 @@ See [bridge/README.md](bridge/README.md) for complete documentation.
 
 Complete HTMX support with type-safe attribute helpers:
 
-```go
-// Include HTMX
-html.Head(
-    htmx.Scripts(),
-    htmx.IndicatorCSS(),
-)
+```templ
+// In your layout templ file
+@htmx.Scripts()
 
-// HTMX attributes
-html.Button(
-    htmx.HxGet("/api/users"),
-    htmx.HxTarget("#user-list"),
-    htmx.HxSwap("innerHTML"),
-    g.Text("Load Users"),
-)
+// HTMX attributes on elements
+<button { htmx.HxGet("/api/users")... } { htmx.HxTarget("#user-list")... } { htmx.HxSwap("innerHTML")... }>
+    Load Users
+</button>
 
 // Advanced triggers
-html.Input(
-    htmx.HxTriggerDebounce("keyup", "500ms"),
-    htmx.HxGet("/search"),
-)
+<input { htmx.HxTriggerDebounce("keyup", "500ms")... } { htmx.HxGet("/search")... }/>
+```
 
-// Server-side detection
+Server-side detection and response headers work the same:
+
+```go
 func handler(w http.ResponseWriter, r *http.Request) {
     if htmx.IsHTMX(r) {
-        // Return partial HTML
         renderPartial(w)
     } else {
-        // Return full page
         renderFullPage(w)
     }
 }
 
-// Response headers
 htmx.TriggerEvent(w, "refresh")
 htmx.SetHTMXRedirect(w, "/login")
 ```
@@ -494,29 +422,30 @@ See [htmx/README.md](htmx/README.md) for complete documentation.
 
 Seamless Alpine.js integration with directives, stores, and plugins:
 
+```templ
+// Include Alpine.js in your layout
+@alpine.Scripts()
+
+// Alpine directives on elements
+<div x-data="{ count: 0 }">
+    <button @click="count++">Increment</button>
+    <span x-text="count"></span>
+</div>
+
+// Or use the helper functions for programmatic attributes
+<div { alpine.XShow("isVisible")... } { alpine.XTransitionSimple()... }>
+    Content
+</div>
+```
+
+Alpine stores and custom directives in Go:
+
 ```go
-// Include Alpine.js
-html.Head(
-    alpine.Scripts(),
-)
-
-// Alpine directives
-html.Div(
-    alpine.XData(`{count: 0}`),
-    html.Button(
-        alpine.XOn("click", "count++"),
-        g.Text("Increment"),
-    ),
-    html.Span(alpine.XText("count")),
-)
-
-// Alpine stores
 alpine.Store("app", map[string]any{
     "user": nil,
     "isLoggedIn": false,
 })
 
-// Custom directives
 alpine.Directive("click-outside", `(el, {expression}, {evaluate}) => {
     // directive implementation
 }`)
@@ -526,33 +455,23 @@ alpine.Directive("click-outside", `(el, {expression}, {evaluate}) => {
 
 1600+ Lucide icons with full customization:
 
-```go
-// Basic usage
-icons.Check()
-icons.Search()
-icons.User()
+```templ
+// Basic usage in templ files
+@icons.Check()
+@icons.Search()
+@icons.User()
 
 // Customization
-icons.Check(
-    icons.WithSize(24),
-    icons.WithColor("green"),
-    icons.WithStrokeWidth(2),
-    icons.WithClass("text-green-500"),
-)
+@icons.Check(icons.WithSize(24), icons.WithColor("green"), icons.WithClass("text-green-500"))
 
 // In buttons
-button.Primary(
-    g.Group([]g.Node{
-        icons.Plus(icons.WithSize(16)),
-        g.Text("Add Item"),
-    }),
-)
+@button.Button(button.Props{}) {
+    @icons.Plus(icons.WithSize(16))
+    Add Item
+}
 
 // Loading spinner
-icons.Loader(
-    icons.WithSize(20),
-    icons.WithClass("animate-spin"),
-)
+@icons.Loader(icons.WithSize(20), icons.WithClass("animate-spin"))
 ```
 
 See [icons/README.md](icons/README.md) for complete documentation.
@@ -717,7 +636,7 @@ ForgeUI follows a layered architecture designed for scalability and maintainabil
 ```
 
 ### Design Principles
-- **Composability**: All components are composable gomponents nodes
+- **Composability**: All components are composable templ components
 - **Type Safety**: Full Go type checking at compile time
 - **Minimal Dependencies**: Core components have zero client-side dependencies
 - **Progressive Enhancement**: Add interactivity with Alpine.js and HTMX
@@ -862,7 +781,7 @@ forgeui/
 ├── example/         # Example applications
 ├── htmx/           # HTMX integration
 ├── icons/          # Icon system (Lucide)
-├── layout/         # Layout helpers
+├── htmx/           # HTMX integration
 ├── plugin/         # Plugin system
 ├── primitives/     # Layout primitives
 ├── router/         # HTTP router
@@ -876,8 +795,8 @@ ForgeUI welcomes contributions! Follow these guidelines:
 
 ### Code Style
 1. **Follow Go conventions**: Use `gofmt`, `golangci-lint`
-2. **Use CVA for variants**: All component variants should use CVA
-3. **Functional options pattern**: Use for component configuration
+2. **Use templ templates**: Write UI in `.templ` files with Props structs
+3. **Use templui components**: Leverage templui as the base component library
 4. **Documentation**: Document all exported functions with examples
 5. **Type safety**: Leverage Go's type system
 
@@ -915,28 +834,24 @@ golangci-lint run
 
 ### Component Composition
 
-```go
-// ✅ Good: Compose components
-button.Primary(
-    g.Group([]g.Node{
-        icons.Plus(icons.WithSize(16)),
-        g.Text("Add Item"),
-    }),
-)
-
-// ❌ Bad: Don't nest unrelated components
+```templ
+// ✅ Good: Compose templ components
+@button.Button(button.Props{}) {
+    @icons.Plus(icons.WithSize(16))
+    Add Item
+}
 ```
 
 ### Error Handling
 
 ```go
 // ✅ Good: Return errors from handlers
-func UserProfile(ctx *router.PageContext) (g.Node, error) {
+func UserProfile(ctx *router.PageContext) (templ.Component, error) {
     user, err := getUser(ctx.Param("id"))
     if err != nil {
         return nil, err
     }
-    return renderUser(user), nil
+    return UserProfileView(user), nil
 }
 
 // ❌ Bad: Don't panic or ignore errors
@@ -946,23 +861,12 @@ func UserProfile(ctx *router.PageContext) (g.Node, error) {
 
 ```go
 // ✅ Good: Pass context through the stack
-func handler(ctx *router.PageContext) (g.Node, error) {
+func handler(ctx *router.PageContext) (templ.Component, error) {
     user := ctx.GetString("user_id")
-    // Use user...
+    return UserView(user), nil
 }
 
 // ❌ Bad: Don't use global variables
-```
-
-### Performance
-
-```go
-// ✅ Good: Reuse nodes when possible
-var headerNode = html.Header(/* ... */)
-
-// ✅ Good: Use streaming for large responses
-// ✅ Good: Enable asset fingerprinting in production
-// ✅ Good: Minify CSS and JS in production
 ```
 
 ## Performance
@@ -1060,7 +964,8 @@ MIT License - See [LICENSE](LICENSE) file for details
 
 ForgeUI stands on the shoulders of giants:
 
-- **[gomponents](https://maragu.dev/gomponents)** - The foundation for Go HTML components
+- **[templ](https://templ.guide)** - Type-safe HTML templating for Go
+- **[templui](https://templui.io)** - shadcn-inspired component library for templ
 - **[shadcn/ui](https://ui.shadcn.com/)** - Design inspiration and component patterns
 - **[Tailwind CSS](https://tailwindcss.com/)** - Utility-first CSS framework
 - **[Alpine.js](https://alpinejs.dev/)** - Lightweight JavaScript framework

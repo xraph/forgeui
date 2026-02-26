@@ -3,14 +3,14 @@
 
 package icons
 
-import g "maragu.dev/gomponents"
+import "github.com/a-h/templ"
 
 // This file contains 1666 auto-generated icon functions from Lucide Icons
 // See https://lucide.dev for the complete icon reference
 
 // AArrowDown creates a a-arrow-down icon
 // Tags: letter, font size, text, formatting, smaller
-func AArrowDown(opts ...Option) g.Node {
+func AArrowDown(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"m14 12 4 4 4-4",
 		"M18 16V7",
@@ -21,7 +21,7 @@ func AArrowDown(opts ...Option) g.Node {
 
 // AArrowUp creates a a-arrow-up icon
 // Tags: letter, font size, text, formatting, larger, bigger
-func AArrowUp(opts ...Option) g.Node {
+func AArrowUp(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"m14 11 4-4 4 4",
 		"M18 16V7",
@@ -32,7 +32,7 @@ func AArrowUp(opts ...Option) g.Node {
 
 // ALargeSmall creates a a-large-small icon
 // Tags: letter, font size, text, formatting
-func ALargeSmall(opts ...Option) g.Node {
+func ALargeSmall(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"m15 16 2.536-7.328a1.02 1.02 1 0 1 1.928 0L22 16",
 		"M15.697 14h5.606",
@@ -43,7 +43,7 @@ func ALargeSmall(opts ...Option) g.Node {
 
 // Accessibility creates a accessibility icon
 // Tags: disability, disabled, dda, wheelchair
-func Accessibility(opts ...Option) g.Node {
+func Accessibility(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M 15 4 a 1 1 0 1 0 2 0 a 1 1 0 1 0 -2 0",
 		"m18 19 1-7-6 1",
@@ -55,13 +55,13 @@ func Accessibility(opts ...Option) g.Node {
 
 // Activity creates a activity icon
 // Tags: pulse, action, motion, movement, exercise, fitness, healthcare, heart rate monitor, vital signs, vitals, emergency room, er, intensive care, hospital, defibrillator, earthquake, siesmic, magnitude, richter scale, aftershock, tremor, shockwave, audio, waveform, synthesizer, synthesiser, music
-func Activity(opts ...Option) g.Node {
+func Activity(opts ...Option) templ.Component {
 	return Icon("M22 12h-2.48a2 2 0 0 0-1.93 1.46l-2.35 8.36a.25.25 0 0 1-.48 0L9.24 2.18a.25.25 0 0 0-.48 0l-2.35 8.36A2 2 0 0 1 4.49 12H2", opts...)
 }
 
 // AirVent creates a air-vent icon
 // Tags: air conditioner, ac, central air, cooling, climate-control
-func AirVent(opts ...Option) g.Node {
+func AirVent(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M18 17.5a2.5 2.5 0 1 1-4 2.03V12",
 		"M6 12H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2",
@@ -72,7 +72,7 @@ func AirVent(opts ...Option) g.Node {
 
 // Airplay creates a airplay icon
 // Tags: stream, cast, mirroring, screen, monitor, macos, osx
-func Airplay(opts ...Option) g.Node {
+func Airplay(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M5 17H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2h-1",
 		"m12 15 5 6H7Z",
@@ -81,7 +81,7 @@ func Airplay(opts ...Option) g.Node {
 
 // AlarmClock creates a alarm-clock icon
 // Tags: morning
-func AlarmClock(opts ...Option) g.Node {
+func AlarmClock(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M 4 13 a 8 8 0 1 0 16 0 a 8 8 0 1 0 -16 0",
 		"M12 9v4l2 2",
@@ -94,7 +94,7 @@ func AlarmClock(opts ...Option) g.Node {
 
 // AlarmClockCheck creates a alarm-clock-check icon
 // Tags: done, todo, tick, complete, task
-func AlarmClockCheck(opts ...Option) g.Node {
+func AlarmClockCheck(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M 4 13 a 8 8 0 1 0 16 0 a 8 8 0 1 0 -16 0",
 		"M5 3 2 6",
@@ -107,7 +107,7 @@ func AlarmClockCheck(opts ...Option) g.Node {
 
 // AlarmClockMinus creates a alarm-clock-minus icon
 // Tags: remove
-func AlarmClockMinus(opts ...Option) g.Node {
+func AlarmClockMinus(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M 4 13 a 8 8 0 1 0 16 0 a 8 8 0 1 0 -16 0",
 		"M5 3 2 6",
@@ -120,7 +120,7 @@ func AlarmClockMinus(opts ...Option) g.Node {
 
 // AlarmClockOff creates a alarm-clock-off icon
 // Tags: morning, turn-off
-func AlarmClockOff(opts ...Option) g.Node {
+func AlarmClockOff(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M6.87 6.87a8 8 0 1 0 11.26 11.26",
 		"M19.9 14.25a8 8 0 0 0-9.15-9.15",
@@ -133,7 +133,7 @@ func AlarmClockOff(opts ...Option) g.Node {
 
 // AlarmClockPlus creates a alarm-clock-plus icon
 // Tags: add
-func AlarmClockPlus(opts ...Option) g.Node {
+func AlarmClockPlus(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M 4 13 a 8 8 0 1 0 16 0 a 8 8 0 1 0 -16 0",
 		"M5 3 2 6",
@@ -147,7 +147,7 @@ func AlarmClockPlus(opts ...Option) g.Node {
 
 // AlarmSmoke creates a alarm-smoke icon
 // Tags: fire, alert, warning, detector, carbon monoxide, safety, equipment, amenities
-func AlarmSmoke(opts ...Option) g.Node {
+func AlarmSmoke(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M11 21c0-2.5 2-2.5 2-5",
 		"M16 21c0-2.5 2-2.5 2-5",
@@ -159,7 +159,7 @@ func AlarmSmoke(opts ...Option) g.Node {
 
 // Album creates a album icon
 // Tags: photo, book
-func Album(opts ...Option) g.Node {
+func Album(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M 5 3 h 14 a 2 2 0 0 1 2 2 v 14 a 2 2 0 0 1 -2 2 h -14 a 2 2 0 0 1 -2 -2 v -14 a 2 2 0 0 1 2 -2 Z",
 		"M 11 3 L 11 11 L 14 8 L 17 11 L 17 3",
@@ -168,7 +168,7 @@ func Album(opts ...Option) g.Node {
 
 // AlignCenterHorizontal creates a align-center-horizontal icon
 // Tags: items, flex, justify
-func AlignCenterHorizontal(opts ...Option) g.Node {
+func AlignCenterHorizontal(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M2 12h20",
 		"M10 16v4a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2v-4",
@@ -180,7 +180,7 @@ func AlignCenterHorizontal(opts ...Option) g.Node {
 
 // AlignCenterVertical creates a align-center-vertical icon
 // Tags: items, flex, justify
-func AlignCenterVertical(opts ...Option) g.Node {
+func AlignCenterVertical(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M12 2v20",
 		"M8 10H4a2 2 0 0 1-2-2V6c0-1.1.9-2 2-2h4",
@@ -192,7 +192,7 @@ func AlignCenterVertical(opts ...Option) g.Node {
 
 // AlignEndHorizontal creates a align-end-horizontal icon
 // Tags: items, bottom, flex, justify
-func AlignEndHorizontal(opts ...Option) g.Node {
+func AlignEndHorizontal(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M 6 2 h 2 a 2 2 0 0 1 2 2 v 12 a 2 2 0 0 1 -2 2 h -2 a 2 2 0 0 1 -2 -2 v -12 a 2 2 0 0 1 2 -2 Z",
 		"M 16 9 h 2 a 2 2 0 0 1 2 2 v 5 a 2 2 0 0 1 -2 2 h -2 a 2 2 0 0 1 -2 -2 v -5 a 2 2 0 0 1 2 -2 Z",
@@ -202,7 +202,7 @@ func AlignEndHorizontal(opts ...Option) g.Node {
 
 // AlignEndVertical creates a align-end-vertical icon
 // Tags: items, right, flex, justify
-func AlignEndVertical(opts ...Option) g.Node {
+func AlignEndVertical(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M 4 4 h 12 a 2 2 0 0 1 2 2 v 2 a 2 2 0 0 1 -2 2 h -12 a 2 2 0 0 1 -2 -2 v -2 a 2 2 0 0 1 2 -2 Z",
 		"M 11 14 h 5 a 2 2 0 0 1 2 2 v 2 a 2 2 0 0 1 -2 2 h -5 a 2 2 0 0 1 -2 -2 v -2 a 2 2 0 0 1 2 -2 Z",
@@ -212,7 +212,7 @@ func AlignEndVertical(opts ...Option) g.Node {
 
 // AlignHorizontalDistributeCenter creates a align-horizontal-distribute-center icon
 // Tags: items, flex, justify, space, evenly, around
-func AlignHorizontalDistributeCenter(opts ...Option) g.Node {
+func AlignHorizontalDistributeCenter(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M 6 5 h 2 a 2 2 0 0 1 2 2 v 10 a 2 2 0 0 1 -2 2 h -2 a 2 2 0 0 1 -2 -2 v -10 a 2 2 0 0 1 2 -2 Z",
 		"M 16 7 h 2 a 2 2 0 0 1 2 2 v 6 a 2 2 0 0 1 -2 2 h -2 a 2 2 0 0 1 -2 -2 v -6 a 2 2 0 0 1 2 -2 Z",
@@ -225,7 +225,7 @@ func AlignHorizontalDistributeCenter(opts ...Option) g.Node {
 
 // AlignHorizontalDistributeEnd creates a align-horizontal-distribute-end icon
 // Tags: right, items, flex, justify
-func AlignHorizontalDistributeEnd(opts ...Option) g.Node {
+func AlignHorizontalDistributeEnd(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M 6 5 h 2 a 2 2 0 0 1 2 2 v 10 a 2 2 0 0 1 -2 2 h -2 a 2 2 0 0 1 -2 -2 v -10 a 2 2 0 0 1 2 -2 Z",
 		"M 16 7 h 2 a 2 2 0 0 1 2 2 v 6 a 2 2 0 0 1 -2 2 h -2 a 2 2 0 0 1 -2 -2 v -6 a 2 2 0 0 1 2 -2 Z",
@@ -236,7 +236,7 @@ func AlignHorizontalDistributeEnd(opts ...Option) g.Node {
 
 // AlignHorizontalDistributeStart creates a align-horizontal-distribute-start icon
 // Tags: left, items, flex, justify
-func AlignHorizontalDistributeStart(opts ...Option) g.Node {
+func AlignHorizontalDistributeStart(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M 6 5 h 2 a 2 2 0 0 1 2 2 v 10 a 2 2 0 0 1 -2 2 h -2 a 2 2 0 0 1 -2 -2 v -10 a 2 2 0 0 1 2 -2 Z",
 		"M 16 7 h 2 a 2 2 0 0 1 2 2 v 6 a 2 2 0 0 1 -2 2 h -2 a 2 2 0 0 1 -2 -2 v -6 a 2 2 0 0 1 2 -2 Z",
@@ -247,7 +247,7 @@ func AlignHorizontalDistributeStart(opts ...Option) g.Node {
 
 // AlignHorizontalJustifyCenter creates a align-horizontal-justify-center icon
 // Tags: center, items, flex, justify
-func AlignHorizontalJustifyCenter(opts ...Option) g.Node {
+func AlignHorizontalJustifyCenter(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M 4 5 h 2 a 2 2 0 0 1 2 2 v 10 a 2 2 0 0 1 -2 2 h -2 a 2 2 0 0 1 -2 -2 v -10 a 2 2 0 0 1 2 -2 Z",
 		"M 18 7 h 2 a 2 2 0 0 1 2 2 v 6 a 2 2 0 0 1 -2 2 h -2 a 2 2 0 0 1 -2 -2 v -6 a 2 2 0 0 1 2 -2 Z",
@@ -257,7 +257,7 @@ func AlignHorizontalJustifyCenter(opts ...Option) g.Node {
 
 // AlignHorizontalJustifyEnd creates a align-horizontal-justify-end icon
 // Tags: right, items, flex, justify
-func AlignHorizontalJustifyEnd(opts ...Option) g.Node {
+func AlignHorizontalJustifyEnd(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M 4 5 h 2 a 2 2 0 0 1 2 2 v 10 a 2 2 0 0 1 -2 2 h -2 a 2 2 0 0 1 -2 -2 v -10 a 2 2 0 0 1 2 -2 Z",
 		"M 14 7 h 2 a 2 2 0 0 1 2 2 v 6 a 2 2 0 0 1 -2 2 h -2 a 2 2 0 0 1 -2 -2 v -6 a 2 2 0 0 1 2 -2 Z",
@@ -267,7 +267,7 @@ func AlignHorizontalJustifyEnd(opts ...Option) g.Node {
 
 // AlignHorizontalJustifyStart creates a align-horizontal-justify-start icon
 // Tags: left, items, flex, justify
-func AlignHorizontalJustifyStart(opts ...Option) g.Node {
+func AlignHorizontalJustifyStart(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M 8 5 h 2 a 2 2 0 0 1 2 2 v 10 a 2 2 0 0 1 -2 2 h -2 a 2 2 0 0 1 -2 -2 v -10 a 2 2 0 0 1 2 -2 Z",
 		"M 18 7 h 2 a 2 2 0 0 1 2 2 v 6 a 2 2 0 0 1 -2 2 h -2 a 2 2 0 0 1 -2 -2 v -6 a 2 2 0 0 1 2 -2 Z",
@@ -277,7 +277,7 @@ func AlignHorizontalJustifyStart(opts ...Option) g.Node {
 
 // AlignHorizontalSpaceAround creates a align-horizontal-space-around icon
 // Tags: center, items, flex, justify, distribute, between
-func AlignHorizontalSpaceAround(opts ...Option) g.Node {
+func AlignHorizontalSpaceAround(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M 11 7 h 2 a 2 2 0 0 1 2 2 v 6 a 2 2 0 0 1 -2 2 h -2 a 2 2 0 0 1 -2 -2 v -6 a 2 2 0 0 1 2 -2 Z",
 		"M4 22V2",
@@ -287,7 +287,7 @@ func AlignHorizontalSpaceAround(opts ...Option) g.Node {
 
 // AlignHorizontalSpaceBetween creates a align-horizontal-space-between icon
 // Tags: around, items, bottom, flex, justify
-func AlignHorizontalSpaceBetween(opts ...Option) g.Node {
+func AlignHorizontalSpaceBetween(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M 5 5 h 2 a 2 2 0 0 1 2 2 v 10 a 2 2 0 0 1 -2 2 h -2 a 2 2 0 0 1 -2 -2 v -10 a 2 2 0 0 1 2 -2 Z",
 		"M 17 7 h 2 a 2 2 0 0 1 2 2 v 6 a 2 2 0 0 1 -2 2 h -2 a 2 2 0 0 1 -2 -2 v -6 a 2 2 0 0 1 2 -2 Z",
@@ -298,7 +298,7 @@ func AlignHorizontalSpaceBetween(opts ...Option) g.Node {
 
 // AlignStartHorizontal creates a align-start-horizontal icon
 // Tags: top, items, flex, justify
-func AlignStartHorizontal(opts ...Option) g.Node {
+func AlignStartHorizontal(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M 6 6 h 2 a 2 2 0 0 1 2 2 v 12 a 2 2 0 0 1 -2 2 h -2 a 2 2 0 0 1 -2 -2 v -12 a 2 2 0 0 1 2 -2 Z",
 		"M 16 6 h 2 a 2 2 0 0 1 2 2 v 5 a 2 2 0 0 1 -2 2 h -2 a 2 2 0 0 1 -2 -2 v -5 a 2 2 0 0 1 2 -2 Z",
@@ -308,7 +308,7 @@ func AlignStartHorizontal(opts ...Option) g.Node {
 
 // AlignStartVertical creates a align-start-vertical icon
 // Tags: left, items, flex, justify
-func AlignStartVertical(opts ...Option) g.Node {
+func AlignStartVertical(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M 8 14 h 5 a 2 2 0 0 1 2 2 v 2 a 2 2 0 0 1 -2 2 h -5 a 2 2 0 0 1 -2 -2 v -2 a 2 2 0 0 1 2 -2 Z",
 		"M 8 4 h 12 a 2 2 0 0 1 2 2 v 2 a 2 2 0 0 1 -2 2 h -12 a 2 2 0 0 1 -2 -2 v -2 a 2 2 0 0 1 2 -2 Z",
@@ -318,7 +318,7 @@ func AlignStartVertical(opts ...Option) g.Node {
 
 // AlignVerticalDistributeCenter creates a align-vertical-distribute-center icon
 // Tags: items, flex, justify, space, evenly, around
-func AlignVerticalDistributeCenter(opts ...Option) g.Node {
+func AlignVerticalDistributeCenter(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M22 17h-3",
 		"M22 7h-5",
@@ -331,7 +331,7 @@ func AlignVerticalDistributeCenter(opts ...Option) g.Node {
 
 // AlignVerticalDistributeEnd creates a align-vertical-distribute-end icon
 // Tags: bottom, items, flex, justify
-func AlignVerticalDistributeEnd(opts ...Option) g.Node {
+func AlignVerticalDistributeEnd(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M 7 14 h 10 a 2 2 0 0 1 2 2 v 2 a 2 2 0 0 1 -2 2 h -10 a 2 2 0 0 1 -2 -2 v -2 a 2 2 0 0 1 2 -2 Z",
 		"M 9 4 h 6 a 2 2 0 0 1 2 2 v 2 a 2 2 0 0 1 -2 2 h -6 a 2 2 0 0 1 -2 -2 v -2 a 2 2 0 0 1 2 -2 Z",
@@ -342,7 +342,7 @@ func AlignVerticalDistributeEnd(opts ...Option) g.Node {
 
 // AlignVerticalDistributeStart creates a align-vertical-distribute-start icon
 // Tags: top, items, flex, justify
-func AlignVerticalDistributeStart(opts ...Option) g.Node {
+func AlignVerticalDistributeStart(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M 7 14 h 10 a 2 2 0 0 1 2 2 v 2 a 2 2 0 0 1 -2 2 h -10 a 2 2 0 0 1 -2 -2 v -2 a 2 2 0 0 1 2 -2 Z",
 		"M 9 4 h 6 a 2 2 0 0 1 2 2 v 2 a 2 2 0 0 1 -2 2 h -6 a 2 2 0 0 1 -2 -2 v -2 a 2 2 0 0 1 2 -2 Z",
@@ -353,7 +353,7 @@ func AlignVerticalDistributeStart(opts ...Option) g.Node {
 
 // AlignVerticalJustifyCenter creates a align-vertical-justify-center icon
 // Tags: center, items, flex, justify, distribute, between
-func AlignVerticalJustifyCenter(opts ...Option) g.Node {
+func AlignVerticalJustifyCenter(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M 7 16 h 10 a 2 2 0 0 1 2 2 v 2 a 2 2 0 0 1 -2 2 h -10 a 2 2 0 0 1 -2 -2 v -2 a 2 2 0 0 1 2 -2 Z",
 		"M 9 2 h 6 a 2 2 0 0 1 2 2 v 2 a 2 2 0 0 1 -2 2 h -6 a 2 2 0 0 1 -2 -2 v -2 a 2 2 0 0 1 2 -2 Z",
@@ -363,7 +363,7 @@ func AlignVerticalJustifyCenter(opts ...Option) g.Node {
 
 // AlignVerticalJustifyEnd creates a align-vertical-justify-end icon
 // Tags: bottom, items, flex, justify, distribute, between
-func AlignVerticalJustifyEnd(opts ...Option) g.Node {
+func AlignVerticalJustifyEnd(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M 7 12 h 10 a 2 2 0 0 1 2 2 v 2 a 2 2 0 0 1 -2 2 h -10 a 2 2 0 0 1 -2 -2 v -2 a 2 2 0 0 1 2 -2 Z",
 		"M 9 2 h 6 a 2 2 0 0 1 2 2 v 2 a 2 2 0 0 1 -2 2 h -6 a 2 2 0 0 1 -2 -2 v -2 a 2 2 0 0 1 2 -2 Z",
@@ -373,7 +373,7 @@ func AlignVerticalJustifyEnd(opts ...Option) g.Node {
 
 // AlignVerticalJustifyStart creates a align-vertical-justify-start icon
 // Tags: top, items, flex, justify, distribute, between
-func AlignVerticalJustifyStart(opts ...Option) g.Node {
+func AlignVerticalJustifyStart(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M 7 16 h 10 a 2 2 0 0 1 2 2 v 2 a 2 2 0 0 1 -2 2 h -10 a 2 2 0 0 1 -2 -2 v -2 a 2 2 0 0 1 2 -2 Z",
 		"M 9 6 h 6 a 2 2 0 0 1 2 2 v 2 a 2 2 0 0 1 -2 2 h -6 a 2 2 0 0 1 -2 -2 v -2 a 2 2 0 0 1 2 -2 Z",
@@ -383,7 +383,7 @@ func AlignVerticalJustifyStart(opts ...Option) g.Node {
 
 // AlignVerticalSpaceAround creates a align-vertical-space-around icon
 // Tags: center, items, flex, justify, distribute, between
-func AlignVerticalSpaceAround(opts ...Option) g.Node {
+func AlignVerticalSpaceAround(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M 9 9 h 6 a 2 2 0 0 1 2 2 v 2 a 2 2 0 0 1 -2 2 h -6 a 2 2 0 0 1 -2 -2 v -2 a 2 2 0 0 1 2 -2 Z",
 		"M22 20H2",
@@ -393,7 +393,7 @@ func AlignVerticalSpaceAround(opts ...Option) g.Node {
 
 // AlignVerticalSpaceBetween creates a align-vertical-space-between icon
 // Tags: center, items, flex, justify, distribute, between
-func AlignVerticalSpaceBetween(opts ...Option) g.Node {
+func AlignVerticalSpaceBetween(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M 7 15 h 10 a 2 2 0 0 1 2 2 v 2 a 2 2 0 0 1 -2 2 h -10 a 2 2 0 0 1 -2 -2 v -2 a 2 2 0 0 1 2 -2 Z",
 		"M 9 3 h 6 a 2 2 0 0 1 2 2 v 2 a 2 2 0 0 1 -2 2 h -6 a 2 2 0 0 1 -2 -2 v -2 a 2 2 0 0 1 2 -2 Z",
@@ -404,7 +404,7 @@ func AlignVerticalSpaceBetween(opts ...Option) g.Node {
 
 // Ambulance creates a ambulance icon
 // Tags: ambulance, emergency, medical, vehicle, siren, healthcare, transportation, rescue, urgent, first aid
-func Ambulance(opts ...Option) g.Node {
+func Ambulance(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M10 10H6",
 		"M14 18V6a2 2 0 0 0-2-2H4a2 2 0 0 0-2 2v11a1 1 0 0 0 1 1h2",
@@ -418,7 +418,7 @@ func Ambulance(opts ...Option) g.Node {
 
 // Ampersand creates a ampersand icon
 // Tags: and, typography, operator, join, concatenate, code, &
-func Ampersand(opts ...Option) g.Node {
+func Ampersand(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M16 12h3",
 		"M17.5 12a8 8 0 0 1-8 8A4.5 4.5 0 0 1 5 15.5c0-6 8-4 8-8.5a3 3 0 1 0-6 0c0 3 2.5 8.5 12 13",
@@ -427,7 +427,7 @@ func Ampersand(opts ...Option) g.Node {
 
 // Ampersands creates a ampersands icon
 // Tags: and, operator, then, code, &&
-func Ampersands(opts ...Option) g.Node {
+func Ampersands(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M10 17c-5-3-7-7-7-9a2 2 0 0 1 4 0c0 2.5-5 2.5-5 6 0 1.7 1.3 3 3 3 2.8 0 5-2.2 5-5",
 		"M22 17c-5-3-7-7-7-9a2 2 0 0 1 4 0c0 2.5-5 2.5-5 6 0 1.7 1.3 3 3 3 2.8 0 5-2.2 5-5",
@@ -436,7 +436,7 @@ func Ampersands(opts ...Option) g.Node {
 
 // Amphora creates a amphora icon
 // Tags: pottery, artifact, artefact, vase, ceramics, clay, archaeology, museum, wine, oil
-func Amphora(opts ...Option) g.Node {
+func Amphora(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M10 2v5.632c0 .424-.272.795-.653.982A6 6 0 0 0 6 14c.006 4 3 7 5 8",
 		"M10 5H8a2 2 0 0 0 0 4h.68",
@@ -449,7 +449,7 @@ func Amphora(opts ...Option) g.Node {
 
 // Anchor creates a anchor icon
 // Tags: ship
-func Anchor(opts ...Option) g.Node {
+func Anchor(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M12 6v16",
 		"m19 13 2-1a9 9 0 0 1-18 0l2 1",
@@ -460,7 +460,7 @@ func Anchor(opts ...Option) g.Node {
 
 // Angry creates a angry icon
 // Tags: emoji, anger, face, emotion
-func Angry(opts ...Option) g.Node {
+func Angry(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M 2 12 a 10 10 0 1 0 20 0 a 10 10 0 1 0 -20 0",
 		"M16 16s-1.5-2-4-2-4 2-4 2",
@@ -473,7 +473,7 @@ func Angry(opts ...Option) g.Node {
 
 // Annoyed creates a annoyed icon
 // Tags: emoji, nuisance, face, emotion
-func Annoyed(opts ...Option) g.Node {
+func Annoyed(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M 2 12 a 10 10 0 1 0 20 0 a 10 10 0 1 0 -20 0",
 		"M8 15h8",
@@ -484,7 +484,7 @@ func Annoyed(opts ...Option) g.Node {
 
 // Antenna creates a antenna icon
 // Tags: signal, connection, connectivity, tv, television, broadcast, live, frequency, tune, scan, channels, aerial, receiver, transmission, transducer, terrestrial, satellite, cable
-func Antenna(opts ...Option) g.Node {
+func Antenna(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M2 12 7 2",
 		"m7 12 5-10",
@@ -497,7 +497,7 @@ func Antenna(opts ...Option) g.Node {
 
 // Anvil creates a anvil icon
 // Tags: metal, iron, alloy, materials, heavy, weight, blacksmith, forge, acme
-func Anvil(opts ...Option) g.Node {
+func Anvil(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M7 10H6a4 4 0 0 1-4-4 1 1 0 0 1 1-1h4",
 		"M7 5a1 1 0 0 1 1-1h13a1 1 0 0 1 1 1 7 7 0 0 1-7 7H8a1 1 0 0 1-1-1z",
@@ -509,7 +509,7 @@ func Anvil(opts ...Option) g.Node {
 
 // Aperture creates a aperture icon
 // Tags: camera, photo, pictures, shutter, exposure
-func Aperture(opts ...Option) g.Node {
+func Aperture(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M 2 12 a 10 10 0 1 0 20 0 a 10 10 0 1 0 -20 0",
 		"m14.31 8 5.74 9.94",
@@ -523,7 +523,7 @@ func Aperture(opts ...Option) g.Node {
 
 // AppWindow creates a app-window icon
 // Tags: application, menu bar, pane, executable
-func AppWindow(opts ...Option) g.Node {
+func AppWindow(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M 4 4 h 16 a 2 2 0 0 1 2 2 v 12 a 2 2 0 0 1 -2 2 h -16 a 2 2 0 0 1 -2 -2 v -12 a 2 2 0 0 1 2 -2 Z",
 		"M10 4v4",
@@ -534,7 +534,7 @@ func AppWindow(opts ...Option) g.Node {
 
 // AppWindowMac creates a app-window-mac icon
 // Tags: application, menu bar, pane, preferences, macos, osx, executable
-func AppWindowMac(opts ...Option) g.Node {
+func AppWindowMac(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M 4 4 h 16 a 2 2 0 0 1 2 2 v 12 a 2 2 0 0 1 -2 2 h -16 a 2 2 0 0 1 -2 -2 v -12 a 2 2 0 0 1 2 -2 Z",
 		"M6 8h.01",
@@ -545,7 +545,7 @@ func AppWindowMac(opts ...Option) g.Node {
 
 // Apple creates a apple icon
 // Tags: fruit, food, healthy, snack, nutrition, fresh, produce, grocery, organic, harvest, vitamin, red, green, juicy, sweet, tart, bite, orchard, plant, core, raw, diet
-func Apple(opts ...Option) g.Node {
+func Apple(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M12 6.528V3a1 1 0 0 1 1-1h0",
 		"M18.237 21A15 15 0 0 0 22 11a6 6 0 0 0-10-4.472A6 6 0 0 0 2 11a15.1 15.1 0 0 0 3.763 10 3 3 0 0 0 3.648.648 5.5 5.5 0 0 1 5.178 0A3 3 0 0 0 18.237 21",
@@ -554,7 +554,7 @@ func Apple(opts ...Option) g.Node {
 
 // Archive creates a archive icon
 // Tags: index, backup, box, storage, records
-func Archive(opts ...Option) g.Node {
+func Archive(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M 3 3 h 18 a 1 1 0 0 1 1 1 v 3 a 1 1 0 0 1 -1 1 h -18 a 1 1 0 0 1 -1 -1 v -3 a 1 1 0 0 1 1 -1 Z",
 		"M4 8v11a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8",
@@ -564,7 +564,7 @@ func Archive(opts ...Option) g.Node {
 
 // ArchiveRestore creates a archive-restore icon
 // Tags: unarchive, index, backup, box, storage, records
-func ArchiveRestore(opts ...Option) g.Node {
+func ArchiveRestore(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M 3 3 h 18 a 1 1 0 0 1 1 1 v 3 a 1 1 0 0 1 -1 1 h -18 a 1 1 0 0 1 -1 -1 v -3 a 1 1 0 0 1 1 -1 Z",
 		"M4 8v11a2 2 0 0 0 2 2h2",
@@ -576,7 +576,7 @@ func ArchiveRestore(opts ...Option) g.Node {
 
 // ArchiveX creates a archive-x icon
 // Tags: index, backup, box, storage, records, junk
-func ArchiveX(opts ...Option) g.Node {
+func ArchiveX(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M 3 3 h 18 a 1 1 0 0 1 1 1 v 3 a 1 1 0 0 1 -1 1 h -18 a 1 1 0 0 1 -1 -1 v -3 a 1 1 0 0 1 1 -1 Z",
 		"M4 8v11a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8",
@@ -587,7 +587,7 @@ func ArchiveX(opts ...Option) g.Node {
 
 // Armchair creates a armchair icon
 // Tags: sofa, furniture, leisure, lounge, loveseat, couch
-func Armchair(opts ...Option) g.Node {
+func Armchair(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M19 9V6a2 2 0 0 0-2-2H7a2 2 0 0 0-2 2v3",
 		"M3 16a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-5a2 2 0 0 0-4 0v1.5a.5.5 0 0 1-.5.5h-9a.5.5 0 0 1-.5-.5V11a2 2 0 0 0-4 0z",
@@ -598,13 +598,13 @@ func Armchair(opts ...Option) g.Node {
 
 // ArrowBigDown creates a arrow-big-down icon
 // Tags: backwards, reverse, direction, south
-func ArrowBigDown(opts ...Option) g.Node {
+func ArrowBigDown(opts ...Option) templ.Component {
 	return Icon("M15 11a1 1 0 0 0 1 1h2.939a1 1 0 0 1 .75 1.811l-6.835 6.836a1.207 1.207 0 0 1-1.707 0L4.31 13.81a1 1 0 0 1 .75-1.811H8a1 1 0 0 0 1-1V5a1 1 0 0 1 1-1h4a1 1 0 0 1 1 1z", opts...)
 }
 
 // ArrowBigDownDash creates a arrow-big-down-dash icon
 // Tags: backwards, reverse, slow, direction, south, download
-func ArrowBigDownDash(opts ...Option) g.Node {
+func ArrowBigDownDash(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M15 11a1 1 0 0 0 1 1h2.939a1 1 0 0 1 .75 1.811l-6.835 6.836a1.207 1.207 0 0 1-1.707 0L4.31 13.81a1 1 0 0 1 .75-1.811H8a1 1 0 0 0 1-1V9a1 1 0 0 1 1-1h4a1 1 0 0 1 1 1z",
 		"M9 4h6",
@@ -613,13 +613,13 @@ func ArrowBigDownDash(opts ...Option) g.Node {
 
 // ArrowBigLeft creates a arrow-big-left icon
 // Tags: previous, back, direction, west, indicate turn
-func ArrowBigLeft(opts ...Option) g.Node {
+func ArrowBigLeft(opts ...Option) templ.Component {
 	return Icon("M13 9a1 1 0 0 1-1-1V5.061a1 1 0 0 0-1.811-.75l-6.835 6.836a1.207 1.207 0 0 0 0 1.707l6.835 6.835a1 1 0 0 0 1.811-.75V16a1 1 0 0 1 1-1h6a1 1 0 0 0 1-1v-4a1 1 0 0 0-1-1z", opts...)
 }
 
 // ArrowBigLeftDash creates a arrow-big-left-dash icon
 // Tags: previous, back, direction, west, turn, corner
-func ArrowBigLeftDash(opts ...Option) g.Node {
+func ArrowBigLeftDash(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M13 9a1 1 0 0 1-1-1V5.061a1 1 0 0 0-1.811-.75l-6.835 6.836a1.207 1.207 0 0 0 0 1.707l6.835 6.835a1 1 0 0 0 1.811-.75V16a1 1 0 0 1 1-1h2a1 1 0 0 0 1-1v-4a1 1 0 0 0-1-1z",
 		"M20 9v6",
@@ -628,13 +628,13 @@ func ArrowBigLeftDash(opts ...Option) g.Node {
 
 // ArrowBigRight creates a arrow-big-right icon
 // Tags: next, forward, direction, east, indicate turn
-func ArrowBigRight(opts ...Option) g.Node {
+func ArrowBigRight(opts ...Option) templ.Component {
 	return Icon("M11 9a1 1 0 0 0 1-1V5.061a1 1 0 0 1 1.811-.75l6.836 6.836a1.207 1.207 0 0 1 0 1.707l-6.836 6.835a1 1 0 0 1-1.811-.75V16a1 1 0 0 0-1-1H5a1 1 0 0 1-1-1v-4a1 1 0 0 1 1-1z", opts...)
 }
 
 // ArrowBigRightDash creates a arrow-big-right-dash icon
 // Tags: next, forward, direction, east, turn, corner
-func ArrowBigRightDash(opts ...Option) g.Node {
+func ArrowBigRightDash(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M11 9a1 1 0 0 0 1-1V5.061a1 1 0 0 1 1.811-.75l6.836 6.836a1.207 1.207 0 0 1 0 1.707l-6.836 6.835a1 1 0 0 1-1.811-.75V16a1 1 0 0 0-1-1H9a1 1 0 0 1-1-1v-4a1 1 0 0 1 1-1z",
 		"M4 9v6",
@@ -643,13 +643,13 @@ func ArrowBigRightDash(opts ...Option) g.Node {
 
 // ArrowBigUp creates a arrow-big-up icon
 // Tags: shift, keyboard, button, mac, capitalize, capitalise, forward, direction, north
-func ArrowBigUp(opts ...Option) g.Node {
+func ArrowBigUp(opts ...Option) templ.Component {
 	return Icon("M9 13a1 1 0 0 0-1-1H5.061a1 1 0 0 1-.75-1.811l6.836-6.835a1.207 1.207 0 0 1 1.707 0l6.835 6.835a1 1 0 0 1-.75 1.811H16a1 1 0 0 0-1 1v6a1 1 0 0 1-1 1h-4a1 1 0 0 1-1-1z", opts...)
 }
 
 // ArrowBigUpDash creates a arrow-big-up-dash icon
 // Tags: caps lock, capitals, keyboard, button, mac, forward, direction, north, faster, speed, boost
-func ArrowBigUpDash(opts ...Option) g.Node {
+func ArrowBigUpDash(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M9 13a1 1 0 0 0-1-1H5.061a1 1 0 0 1-.75-1.811l6.836-6.835a1.207 1.207 0 0 1 1.707 0l6.835 6.835a1 1 0 0 1-.75 1.811H16a1 1 0 0 0-1 1v2a1 1 0 0 1-1 1h-4a1 1 0 0 1-1-1z",
 		"M9 20h6",
@@ -658,7 +658,7 @@ func ArrowBigUpDash(opts ...Option) g.Node {
 
 // ArrowDown creates a arrow-down icon
 // Tags: backwards, reverse, direction, south
-func ArrowDown(opts ...Option) g.Node {
+func ArrowDown(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M12 5v14",
 		"m19 12-7 7-7-7",
@@ -667,7 +667,7 @@ func ArrowDown(opts ...Option) g.Node {
 
 // ArrowDown01 creates a arrow-down-0-1 icon
 // Tags: filter, sort, ascending, descending, increasing, decreasing, rising, falling, numerical
-func ArrowDown01(opts ...Option) g.Node {
+func ArrowDown01(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"m3 16 4 4 4-4",
 		"M7 20V4",
@@ -679,7 +679,7 @@ func ArrowDown01(opts ...Option) g.Node {
 
 // ArrowDown10 creates a arrow-down-1-0 icon
 // Tags: filter, sort, ascending, descending, increasing, decreasing, rising, falling, numerical
-func ArrowDown10(opts ...Option) g.Node {
+func ArrowDown10(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"m3 16 4 4 4-4",
 		"M7 20V4",
@@ -691,7 +691,7 @@ func ArrowDown10(opts ...Option) g.Node {
 
 // ArrowDownAZ creates a arrow-down-a-z icon
 // Tags: filter, sort, ascending, descending, increasing, decreasing, rising, falling, alphabetical
-func ArrowDownAZ(opts ...Option) g.Node {
+func ArrowDownAZ(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"m3 16 4 4 4-4",
 		"M7 20V4",
@@ -703,7 +703,7 @@ func ArrowDownAZ(opts ...Option) g.Node {
 
 // ArrowDownFromLine creates a arrow-down-from-line icon
 // Tags: backwards, reverse, direction, south, download, expand, fold, vertical
-func ArrowDownFromLine(opts ...Option) g.Node {
+func ArrowDownFromLine(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M19 3H5",
 		"M12 21V7",
@@ -713,7 +713,7 @@ func ArrowDownFromLine(opts ...Option) g.Node {
 
 // ArrowDownLeft creates a arrow-down-left icon
 // Tags: direction, south-west, diagonal
-func ArrowDownLeft(opts ...Option) g.Node {
+func ArrowDownLeft(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M17 7 7 17",
 		"M17 17H7V7",
@@ -722,7 +722,7 @@ func ArrowDownLeft(opts ...Option) g.Node {
 
 // ArrowDownNarrowWide creates a arrow-down-narrow-wide icon
 // Tags: filter, sort, ascending, descending, increasing, decreasing, rising, falling
-func ArrowDownNarrowWide(opts ...Option) g.Node {
+func ArrowDownNarrowWide(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"m3 16 4 4 4-4",
 		"M7 20V4",
@@ -734,7 +734,7 @@ func ArrowDownNarrowWide(opts ...Option) g.Node {
 
 // ArrowDownRight creates a arrow-down-right icon
 // Tags: direction, south-east, diagonal
-func ArrowDownRight(opts ...Option) g.Node {
+func ArrowDownRight(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"m7 7 10 10",
 		"M17 7v10H7",
@@ -743,7 +743,7 @@ func ArrowDownRight(opts ...Option) g.Node {
 
 // ArrowDownToDot creates a arrow-down-to-dot icon
 // Tags: direction, south, waypoint, location, step, into
-func ArrowDownToDot(opts ...Option) g.Node {
+func ArrowDownToDot(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M12 2v14",
 		"m19 9-7 7-7-7",
@@ -753,7 +753,7 @@ func ArrowDownToDot(opts ...Option) g.Node {
 
 // ArrowDownToLine creates a arrow-down-to-line icon
 // Tags: behind, direction, south, download, save, git, version control, pull, collapse, fold, vertical
-func ArrowDownToLine(opts ...Option) g.Node {
+func ArrowDownToLine(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M12 17V3",
 		"m6 11 6 6 6-6",
@@ -763,7 +763,7 @@ func ArrowDownToLine(opts ...Option) g.Node {
 
 // ArrowDownUp creates a arrow-down-up icon
 // Tags: bidirectional, two-way, 2-way, swap, switch, network, traffic, flow, mobile data, internet, sort, reorder, move
-func ArrowDownUp(opts ...Option) g.Node {
+func ArrowDownUp(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"m3 16 4 4 4-4",
 		"M7 20V4",
@@ -774,7 +774,7 @@ func ArrowDownUp(opts ...Option) g.Node {
 
 // ArrowDownWideNarrow creates a arrow-down-wide-narrow icon
 // Tags: filter, sort, ascending, descending, increasing, decreasing, rising, falling
-func ArrowDownWideNarrow(opts ...Option) g.Node {
+func ArrowDownWideNarrow(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"m3 16 4 4 4-4",
 		"M7 20V4",
@@ -786,7 +786,7 @@ func ArrowDownWideNarrow(opts ...Option) g.Node {
 
 // ArrowDownZA creates a arrow-down-z-a icon
 // Tags: filter, sort, ascending, descending, increasing, decreasing, rising, falling, alphabetical, reverse
-func ArrowDownZA(opts ...Option) g.Node {
+func ArrowDownZA(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"m3 16 4 4 4-4",
 		"M7 4v16",
@@ -798,7 +798,7 @@ func ArrowDownZA(opts ...Option) g.Node {
 
 // ArrowLeft creates a arrow-left icon
 // Tags: previous, back, direction, west, <-
-func ArrowLeft(opts ...Option) g.Node {
+func ArrowLeft(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"m12 19-7-7 7-7",
 		"M19 12H5",
@@ -807,7 +807,7 @@ func ArrowLeft(opts ...Option) g.Node {
 
 // ArrowLeftFromLine creates a arrow-left-from-line icon
 // Tags: previous, back, direction, west, expand, fold, horizontal, <-|
-func ArrowLeftFromLine(opts ...Option) g.Node {
+func ArrowLeftFromLine(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"m9 6-6 6 6 6",
 		"M3 12h14",
@@ -817,7 +817,7 @@ func ArrowLeftFromLine(opts ...Option) g.Node {
 
 // ArrowLeftRight creates a arrow-left-right icon
 // Tags: bidirectional, two-way, 2-way, swap, switch, transaction, reorder, move, <-, ->
-func ArrowLeftRight(opts ...Option) g.Node {
+func ArrowLeftRight(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M8 3 4 7l4 4",
 		"M4 7h16",
@@ -828,7 +828,7 @@ func ArrowLeftRight(opts ...Option) g.Node {
 
 // ArrowLeftToLine creates a arrow-left-to-line icon
 // Tags: previous, back, direction, west, collapse, fold, horizontal, |<-
-func ArrowLeftToLine(opts ...Option) g.Node {
+func ArrowLeftToLine(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M3 19V5",
 		"m13 6-6 6 6 6",
@@ -838,7 +838,7 @@ func ArrowLeftToLine(opts ...Option) g.Node {
 
 // ArrowRight creates a arrow-right icon
 // Tags: forward, next, direction, east, ->
-func ArrowRight(opts ...Option) g.Node {
+func ArrowRight(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M5 12h14",
 		"m12 5 7 7-7 7",
@@ -847,7 +847,7 @@ func ArrowRight(opts ...Option) g.Node {
 
 // ArrowRightFromLine creates a arrow-right-from-line icon
 // Tags: next, forward, direction, east, export, expand, fold, horizontal, |->
-func ArrowRightFromLine(opts ...Option) g.Node {
+func ArrowRightFromLine(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M3 5v14",
 		"M21 12H7",
@@ -857,7 +857,7 @@ func ArrowRightFromLine(opts ...Option) g.Node {
 
 // ArrowRightLeft creates a arrow-right-left icon
 // Tags: bidirectional, two-way, 2-way, swap, switch, transaction, reorder, move, <-, ->
-func ArrowRightLeft(opts ...Option) g.Node {
+func ArrowRightLeft(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"m16 3 4 4-4 4",
 		"M20 7H4",
@@ -868,7 +868,7 @@ func ArrowRightLeft(opts ...Option) g.Node {
 
 // ArrowRightToLine creates a arrow-right-to-line icon
 // Tags: next, forward, direction, east, tab, keyboard, mac, indent, collapse, fold, horizontal, ->|
-func ArrowRightToLine(opts ...Option) g.Node {
+func ArrowRightToLine(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M17 12H3",
 		"m11 18 6-6-6-6",
@@ -878,7 +878,7 @@ func ArrowRightToLine(opts ...Option) g.Node {
 
 // ArrowUp creates a arrow-up icon
 // Tags: forward, direction, north
-func ArrowUp(opts ...Option) g.Node {
+func ArrowUp(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"m5 12 7-7 7 7",
 		"M12 19V5",
@@ -887,7 +887,7 @@ func ArrowUp(opts ...Option) g.Node {
 
 // ArrowUp01 creates a arrow-up-0-1 icon
 // Tags: filter, sort, ascending, descending, increasing, decreasing, rising, falling, numerical
-func ArrowUp01(opts ...Option) g.Node {
+func ArrowUp01(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"m3 8 4-4 4 4",
 		"M7 4v16",
@@ -899,7 +899,7 @@ func ArrowUp01(opts ...Option) g.Node {
 
 // ArrowUp10 creates a arrow-up-1-0 icon
 // Tags: filter, sort, ascending, descending, increasing, decreasing, rising, falling, numerical
-func ArrowUp10(opts ...Option) g.Node {
+func ArrowUp10(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"m3 8 4-4 4 4",
 		"M7 4v16",
@@ -911,7 +911,7 @@ func ArrowUp10(opts ...Option) g.Node {
 
 // ArrowUpAZ creates a arrow-up-a-z icon
 // Tags: filter, sort, ascending, descending, increasing, decreasing, rising, falling, alphabetical
-func ArrowUpAZ(opts ...Option) g.Node {
+func ArrowUpAZ(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"m3 8 4-4 4 4",
 		"M7 4v16",
@@ -923,7 +923,7 @@ func ArrowUpAZ(opts ...Option) g.Node {
 
 // ArrowUpDown creates a arrow-up-down icon
 // Tags: bidirectional, two-way, 2-way, swap, switch, network, mobile data, internet, sort, reorder, move
-func ArrowUpDown(opts ...Option) g.Node {
+func ArrowUpDown(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"m21 16-4 4-4-4",
 		"M17 20V4",
@@ -934,7 +934,7 @@ func ArrowUpDown(opts ...Option) g.Node {
 
 // ArrowUpFromDot creates a arrow-up-from-dot icon
 // Tags: direction, north, step, out
-func ArrowUpFromDot(opts ...Option) g.Node {
+func ArrowUpFromDot(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"m5 9 7-7 7 7",
 		"M12 16V2",
@@ -944,7 +944,7 @@ func ArrowUpFromDot(opts ...Option) g.Node {
 
 // ArrowUpFromLine creates a arrow-up-from-line icon
 // Tags: forward, direction, north, upload, git, version control, push, expand, fold, vertical
-func ArrowUpFromLine(opts ...Option) g.Node {
+func ArrowUpFromLine(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"m18 9-6-6-6 6",
 		"M12 3v14",
@@ -954,7 +954,7 @@ func ArrowUpFromLine(opts ...Option) g.Node {
 
 // ArrowUpLeft creates a arrow-up-left icon
 // Tags: direction, north-west, diagonal
-func ArrowUpLeft(opts ...Option) g.Node {
+func ArrowUpLeft(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M7 17V7h10",
 		"M17 17 7 7",
@@ -963,7 +963,7 @@ func ArrowUpLeft(opts ...Option) g.Node {
 
 // ArrowUpNarrowWide creates a arrow-up-narrow-wide icon
 // Tags: filter, sort, ascending, descending, increasing, decreasing, rising, falling
-func ArrowUpNarrowWide(opts ...Option) g.Node {
+func ArrowUpNarrowWide(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"m3 8 4-4 4 4",
 		"M7 4v16",
@@ -975,7 +975,7 @@ func ArrowUpNarrowWide(opts ...Option) g.Node {
 
 // ArrowUpRight creates a arrow-up-right icon
 // Tags: direction, north-east, diagonal
-func ArrowUpRight(opts ...Option) g.Node {
+func ArrowUpRight(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M7 7h10v10",
 		"M7 17 17 7",
@@ -984,7 +984,7 @@ func ArrowUpRight(opts ...Option) g.Node {
 
 // ArrowUpToLine creates a arrow-up-to-line icon
 // Tags: forward, direction, north, upload, collapse, fold, vertical
-func ArrowUpToLine(opts ...Option) g.Node {
+func ArrowUpToLine(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M5 3h14",
 		"m18 13-6-6-6 6",
@@ -994,7 +994,7 @@ func ArrowUpToLine(opts ...Option) g.Node {
 
 // ArrowUpWideNarrow creates a arrow-up-wide-narrow icon
 // Tags: filter, sort, ascending, descending, increasing, decreasing, rising, falling
-func ArrowUpWideNarrow(opts ...Option) g.Node {
+func ArrowUpWideNarrow(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"m3 8 4-4 4 4",
 		"M7 4v16",
@@ -1006,7 +1006,7 @@ func ArrowUpWideNarrow(opts ...Option) g.Node {
 
 // ArrowUpZA creates a arrow-up-z-a icon
 // Tags: filter, sort, ascending, descending, increasing, decreasing, rising, falling, alphabetical, reverse
-func ArrowUpZA(opts ...Option) g.Node {
+func ArrowUpZA(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"m3 8 4-4 4 4",
 		"M7 4v16",
@@ -1018,7 +1018,7 @@ func ArrowUpZA(opts ...Option) g.Node {
 
 // ArrowsUpFromLine creates a arrows-up-from-line icon
 // Tags: direction, orientation, this way up, vertical, package, box, fragile, postage, shipping
-func ArrowsUpFromLine(opts ...Option) g.Node {
+func ArrowsUpFromLine(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"m4 6 3-3 3 3",
 		"M7 17V3",
@@ -1030,7 +1030,7 @@ func ArrowsUpFromLine(opts ...Option) g.Node {
 
 // Asterisk creates a asterisk icon
 // Tags: reference, times, multiply, multiplication, operator, code, glob pattern, wildcard, *
-func Asterisk(opts ...Option) g.Node {
+func Asterisk(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M12 6v12",
 		"M17.196 9 6.804 15",
@@ -1040,7 +1040,7 @@ func Asterisk(opts ...Option) g.Node {
 
 // AtSign creates a at-sign icon
 // Tags: mention, at, email, message, @
-func AtSign(opts ...Option) g.Node {
+func AtSign(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M 8 12 a 4 4 0 1 0 8 0 a 4 4 0 1 0 -8 0",
 		"M16 8v5a3 3 0 0 0 6 0v-1a10 10 0 1 0-4 8",
@@ -1049,7 +1049,7 @@ func AtSign(opts ...Option) g.Node {
 
 // Atom creates a atom icon
 // Tags: atomic, nuclear, physics, particle, element, molecule, electricity, energy, chemistry
-func Atom(opts ...Option) g.Node {
+func Atom(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M 11 12 a 1 1 0 1 0 2 0 a 1 1 0 1 0 -2 0",
 		"M20.2 20.2c2.04-2.03.02-7.36-4.5-11.9-4.54-4.52-9.87-6.54-11.9-4.5-2.04 2.03-.02 7.36 4.5 11.9 4.54 4.52 9.87 6.54 11.9 4.5Z",
@@ -1059,7 +1059,7 @@ func Atom(opts ...Option) g.Node {
 
 // AudioLines creates a audio-lines icon
 // Tags: graphic equaliser, sound, noise, listen, hearing, hertz, frequency, wavelength, vibrate, sine, synthesizer, synthesiser, levels, track, music, playback, radio, broadcast, airwaves, voice, vocals, singer, song
-func AudioLines(opts ...Option) g.Node {
+func AudioLines(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M2 10v3",
 		"M6 6v11",
@@ -1072,13 +1072,13 @@ func AudioLines(opts ...Option) g.Node {
 
 // AudioWaveform creates a audio-waveform icon
 // Tags: sound, noise, listen, hearing, hertz, frequency, wavelength, vibrate, sine, synthesizer, synthesiser, levels, track, music, playback, radio, broadcast, airwaves, voice, vocals, singer, song
-func AudioWaveform(opts ...Option) g.Node {
+func AudioWaveform(opts ...Option) templ.Component {
 	return Icon("M2 13a2 2 0 0 0 2-2V7a2 2 0 0 1 4 0v13a2 2 0 0 0 4 0V4a2 2 0 0 1 4 0v13a2 2 0 0 0 4 0v-4a2 2 0 0 1 2-2", opts...)
 }
 
 // Award creates a award icon
 // Tags: achievement, badge, rosette, prize, winner
-func Award(opts ...Option) g.Node {
+func Award(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"m15.477 12.89 1.515 8.526a.5.5 0 0 1-.81.47l-3.58-2.687a1 1 0 0 0-1.197 0l-3.586 2.686a.5.5 0 0 1-.81-.469l1.514-8.526",
 		"M 6 8 a 6 6 0 1 0 12 0 a 6 6 0 1 0 -12 0",
@@ -1087,7 +1087,7 @@ func Award(opts ...Option) g.Node {
 
 // Axe creates a axe icon
 // Tags: hatchet, weapon, chop, sharp, equipment, fireman, firefighter, brigade, lumberjack, woodcutter, logger, forestry
-func Axe(opts ...Option) g.Node {
+func Axe(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"m14 12-8.381 8.38a1 1 0 0 1-3.001-3L11 9",
 		"M15 15.5a.5.5 0 0 0 .5.5A6.5 6.5 0 0 0 22 9.5a.5.5 0 0 0-.5-.5h-1.672a2 2 0 0 1-1.414-.586l-5.062-5.062a1.205 1.205 0 0 0-1.704 0L9.352 5.648a1.205 1.205 0 0 0 0 1.704l5.062 5.062A2 2 0 0 1 15 13.828z",
@@ -1096,7 +1096,7 @@ func Axe(opts ...Option) g.Node {
 
 // Axis3d creates a axis-3d icon
 // Tags: gizmo, coordinates
-func Axis3d(opts ...Option) g.Node {
+func Axis3d(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M13.5 10.5 15 9",
 		"M4 4v15a1 1 0 0 0 1 1h15",
@@ -1107,7 +1107,7 @@ func Axis3d(opts ...Option) g.Node {
 
 // Baby creates a baby icon
 // Tags: child, childproof, children
-func Baby(opts ...Option) g.Node {
+func Baby(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M10 16c.5.3 1.2.5 2 .5s1.5-.2 2-.5",
 		"M15 12h.01",
@@ -1118,7 +1118,7 @@ func Baby(opts ...Option) g.Node {
 
 // Backpack creates a backpack icon
 // Tags: bag, hiking, travel, camping, school, childhood
-func Backpack(opts ...Option) g.Node {
+func Backpack(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M4 10a4 4 0 0 1 4-4h8a4 4 0 0 1 4 4v10a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2z",
 		"M8 10h8",
@@ -1130,13 +1130,13 @@ func Backpack(opts ...Option) g.Node {
 
 // Badge creates a badge icon
 // Tags: check, verified, unverified
-func Badge(opts ...Option) g.Node {
+func Badge(opts ...Option) templ.Component {
 	return Icon("M3.85 8.62a4 4 0 0 1 4.78-4.77 4 4 0 0 1 6.74 0 4 4 0 0 1 4.78 4.78 4 4 0 0 1 0 6.74 4 4 0 0 1-4.77 4.78 4 4 0 0 1-6.75 0 4 4 0 0 1-4.78-4.77 4 4 0 0 1 0-6.76Z", opts...)
 }
 
 // BadgeAlert creates a badge-alert icon
 // Tags: check, verified, unverified, security, safety, issue
-func BadgeAlert(opts ...Option) g.Node {
+func BadgeAlert(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M3.85 8.62a4 4 0 0 1 4.78-4.77 4 4 0 0 1 6.74 0 4 4 0 0 1 4.78 4.78 4 4 0 0 1 0 6.74 4 4 0 0 1-4.77 4.78 4 4 0 0 1-6.75 0 4 4 0 0 1-4.78-4.77 4 4 0 0 1 0-6.76Z",
 		"M 12 8 L 12 12",
@@ -1146,7 +1146,7 @@ func BadgeAlert(opts ...Option) g.Node {
 
 // BadgeCent creates a badge-cent icon
 // Tags: discount, offer, sale, voucher, tag, monetization, marketing, finance, financial, exchange, transaction, payment, cents, dollar, usd, $, ¢
-func BadgeCent(opts ...Option) g.Node {
+func BadgeCent(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M3.85 8.62a4 4 0 0 1 4.78-4.77 4 4 0 0 1 6.74 0 4 4 0 0 1 4.78 4.78 4 4 0 0 1 0 6.74 4 4 0 0 1-4.77 4.78 4 4 0 0 1-6.75 0 4 4 0 0 1-4.78-4.77 4 4 0 0 1 0-6.76Z",
 		"M12 7v10",
@@ -1156,7 +1156,7 @@ func BadgeCent(opts ...Option) g.Node {
 
 // BadgeCheck creates a badge-check icon
 // Tags: verified, check
-func BadgeCheck(opts ...Option) g.Node {
+func BadgeCheck(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M3.85 8.62a4 4 0 0 1 4.78-4.77 4 4 0 0 1 6.74 0 4 4 0 0 1 4.78 4.78 4 4 0 0 1 0 6.74 4 4 0 0 1-4.77 4.78 4 4 0 0 1-6.75 0 4 4 0 0 1-4.78-4.77 4 4 0 0 1 0-6.76Z",
 		"m9 12 2 2 4-4",
@@ -1165,7 +1165,7 @@ func BadgeCheck(opts ...Option) g.Node {
 
 // BadgeDollarSign creates a badge-dollar-sign icon
 // Tags: discount, offer, sale, voucher, tag, monetization, marketing, finance, financial, exchange, transaction, payment, usd, $
-func BadgeDollarSign(opts ...Option) g.Node {
+func BadgeDollarSign(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M3.85 8.62a4 4 0 0 1 4.78-4.77 4 4 0 0 1 6.74 0 4 4 0 0 1 4.78 4.78 4 4 0 0 1 0 6.74 4 4 0 0 1-4.77 4.78 4 4 0 0 1-6.75 0 4 4 0 0 1-4.78-4.77 4 4 0 0 1 0-6.76Z",
 		"M16 8h-6a2 2 0 1 0 0 4h4a2 2 0 1 1 0 4H8",
@@ -1175,7 +1175,7 @@ func BadgeDollarSign(opts ...Option) g.Node {
 
 // BadgeEuro creates a badge-euro icon
 // Tags: discount, offer, sale, voucher, tag, monetization, marketing, finance, financial, exchange, transaction, payment, €
-func BadgeEuro(opts ...Option) g.Node {
+func BadgeEuro(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M3.85 8.62a4 4 0 0 1 4.78-4.77 4 4 0 0 1 6.74 0 4 4 0 0 1 4.78 4.78 4 4 0 0 1 0 6.74 4 4 0 0 1-4.77 4.78 4 4 0 0 1-6.75 0 4 4 0 0 1-4.78-4.77 4 4 0 0 1 0-6.76Z",
 		"M7 12h5",
@@ -1185,7 +1185,7 @@ func BadgeEuro(opts ...Option) g.Node {
 
 // BadgeIndianRupee creates a badge-indian-rupee icon
 // Tags: discount, offer, sale, voucher, tag, monetization, marketing, finance, financial, exchange, transaction, payment, inr, ₹
-func BadgeIndianRupee(opts ...Option) g.Node {
+func BadgeIndianRupee(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M3.85 8.62a4 4 0 0 1 4.78-4.77 4 4 0 0 1 6.74 0 4 4 0 0 1 4.78 4.78 4 4 0 0 1 0 6.74 4 4 0 0 1-4.77 4.78 4 4 0 0 1-6.75 0 4 4 0 0 1-4.78-4.77 4 4 0 0 1 0-6.76Z",
 		"M8 8h8",
@@ -1196,7 +1196,7 @@ func BadgeIndianRupee(opts ...Option) g.Node {
 
 // BadgeInfo creates a badge-info icon
 // Tags: verified, unverified, help
-func BadgeInfo(opts ...Option) g.Node {
+func BadgeInfo(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M3.85 8.62a4 4 0 0 1 4.78-4.77 4 4 0 0 1 6.74 0 4 4 0 0 1 4.78 4.78 4 4 0 0 1 0 6.74 4 4 0 0 1-4.77 4.78 4 4 0 0 1-6.75 0 4 4 0 0 1-4.78-4.77 4 4 0 0 1 0-6.76Z",
 		"M 12 16 L 12 12",
@@ -1206,7 +1206,7 @@ func BadgeInfo(opts ...Option) g.Node {
 
 // BadgeJapaneseYen creates a badge-japanese-yen icon
 // Tags: discount, offer, sale, voucher, tag, monetization, marketing, finance, financial, exchange, transaction, payment, jpy, ¥
-func BadgeJapaneseYen(opts ...Option) g.Node {
+func BadgeJapaneseYen(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M3.85 8.62a4 4 0 0 1 4.78-4.77 4 4 0 0 1 6.74 0 4 4 0 0 1 4.78 4.78 4 4 0 0 1 0 6.74 4 4 0 0 1-4.77 4.78 4 4 0 0 1-6.75 0 4 4 0 0 1-4.78-4.77 4 4 0 0 1 0-6.76Z",
 		"m9 8 3 3v7",
@@ -1218,7 +1218,7 @@ func BadgeJapaneseYen(opts ...Option) g.Node {
 
 // BadgeMinus creates a badge-minus icon
 // Tags: verified, unverified, delete, remove, erase
-func BadgeMinus(opts ...Option) g.Node {
+func BadgeMinus(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M3.85 8.62a4 4 0 0 1 4.78-4.77 4 4 0 0 1 6.74 0 4 4 0 0 1 4.78 4.78 4 4 0 0 1 0 6.74 4 4 0 0 1-4.77 4.78 4 4 0 0 1-6.75 0 4 4 0 0 1-4.78-4.77 4 4 0 0 1 0-6.76Z",
 		"M 8 12 L 16 12",
@@ -1227,7 +1227,7 @@ func BadgeMinus(opts ...Option) g.Node {
 
 // BadgePercent creates a badge-percent icon
 // Tags: verified, unverified, sale, discount, offer, marketing, sticker, price tag
-func BadgePercent(opts ...Option) g.Node {
+func BadgePercent(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M3.85 8.62a4 4 0 0 1 4.78-4.77 4 4 0 0 1 6.74 0 4 4 0 0 1 4.78 4.78 4 4 0 0 1 0 6.74 4 4 0 0 1-4.77 4.78 4 4 0 0 1-6.75 0 4 4 0 0 1-4.78-4.77 4 4 0 0 1 0-6.76Z",
 		"m15 9-6 6",
@@ -1238,7 +1238,7 @@ func BadgePercent(opts ...Option) g.Node {
 
 // BadgePlus creates a badge-plus icon
 // Tags: verified, unverified, add, create, new
-func BadgePlus(opts ...Option) g.Node {
+func BadgePlus(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M3.85 8.62a4 4 0 0 1 4.78-4.77 4 4 0 0 1 6.74 0 4 4 0 0 1 4.78 4.78 4 4 0 0 1 0 6.74 4 4 0 0 1-4.77 4.78 4 4 0 0 1-6.75 0 4 4 0 0 1-4.78-4.77 4 4 0 0 1 0-6.76Z",
 		"M 12 8 L 12 16",
@@ -1248,7 +1248,7 @@ func BadgePlus(opts ...Option) g.Node {
 
 // BadgePoundSterling creates a badge-pound-sterling icon
 // Tags: discount, offer, sale, voucher, tag, monetization, marketing, finance, financial, exchange, transaction, payment, british, gbp, £
-func BadgePoundSterling(opts ...Option) g.Node {
+func BadgePoundSterling(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M3.85 8.62a4 4 0 0 1 4.78-4.77 4 4 0 0 1 6.74 0 4 4 0 0 1 4.78 4.78 4 4 0 0 1 0 6.74 4 4 0 0 1-4.77 4.78 4 4 0 0 1-6.75 0 4 4 0 0 1-4.78-4.77 4 4 0 0 1 0-6.76Z",
 		"M8 12h4",
@@ -1259,7 +1259,7 @@ func BadgePoundSterling(opts ...Option) g.Node {
 
 // BadgeQuestionMark creates a badge-question-mark icon
 // Tags: verified, unverified, help
-func BadgeQuestionMark(opts ...Option) g.Node {
+func BadgeQuestionMark(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M3.85 8.62a4 4 0 0 1 4.78-4.77 4 4 0 0 1 6.74 0 4 4 0 0 1 4.78 4.78 4 4 0 0 1 0 6.74 4 4 0 0 1-4.77 4.78 4 4 0 0 1-6.75 0 4 4 0 0 1-4.78-4.77 4 4 0 0 1 0-6.76Z",
 		"M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3",
@@ -1269,7 +1269,7 @@ func BadgeQuestionMark(opts ...Option) g.Node {
 
 // BadgeRussianRuble creates a badge-russian-ruble icon
 // Tags: discount, offer, sale, voucher, tag, monetization, marketing, finance, financial, exchange, transaction, payment, rub, ₽
-func BadgeRussianRuble(opts ...Option) g.Node {
+func BadgeRussianRuble(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M3.85 8.62a4 4 0 0 1 4.78-4.77 4 4 0 0 1 6.74 0 4 4 0 0 1 4.78 4.78 4 4 0 0 1 0 6.74 4 4 0 0 1-4.77 4.78 4 4 0 0 1-6.75 0 4 4 0 0 1-4.78-4.77 4 4 0 0 1 0-6.76Z",
 		"M9 16h5",
@@ -1279,7 +1279,7 @@ func BadgeRussianRuble(opts ...Option) g.Node {
 
 // BadgeSwissFranc creates a badge-swiss-franc icon
 // Tags: discount, offer, sale, voucher, tag, monetization, marketing, finance, financial, exchange, transaction, payment, chf, ₣
-func BadgeSwissFranc(opts ...Option) g.Node {
+func BadgeSwissFranc(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M3.85 8.62a4 4 0 0 1 4.78-4.77 4 4 0 0 1 6.74 0 4 4 0 0 1 4.78 4.78 4 4 0 0 1 0 6.74 4 4 0 0 1-4.77 4.78 4 4 0 0 1-6.75 0 4 4 0 0 1-4.78-4.77 4 4 0 0 1 0-6.76Z",
 		"M11 17V8h4",
@@ -1290,7 +1290,7 @@ func BadgeSwissFranc(opts ...Option) g.Node {
 
 // BadgeTurkishLira creates a badge-turkish-lira icon
 // Tags: discount, offer, sale, voucher, tag, monetization, marketing, finance, financial, exchange, transaction, payment, try, ₺
-func BadgeTurkishLira(opts ...Option) g.Node {
+func BadgeTurkishLira(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M11 7v10a5 5 0 0 0 5-5",
 		"m15 8-6 3",
@@ -1300,7 +1300,7 @@ func BadgeTurkishLira(opts ...Option) g.Node {
 
 // BadgeX creates a badge-x icon
 // Tags: verified, unverified, lost, delete, remove
-func BadgeX(opts ...Option) g.Node {
+func BadgeX(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M3.85 8.62a4 4 0 0 1 4.78-4.77 4 4 0 0 1 6.74 0 4 4 0 0 1 4.78 4.78 4 4 0 0 1 0 6.74 4 4 0 0 1-4.77 4.78 4 4 0 0 1-6.75 0 4 4 0 0 1-4.78-4.77 4 4 0 0 1 0-6.76Z",
 		"M 15 9 L 9 15",
@@ -1310,7 +1310,7 @@ func BadgeX(opts ...Option) g.Node {
 
 // BaggageClaim creates a baggage-claim icon
 // Tags: baggage, luggage, travel, cart, trolley, suitcase
-func BaggageClaim(opts ...Option) g.Node {
+func BaggageClaim(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M22 18H6a2 2 0 0 1-2-2V7a2 2 0 0 0-2-2",
 		"M17 14V4a2 2 0 0 0-2-2h-1a2 2 0 0 0-2 2v10",
@@ -1322,7 +1322,7 @@ func BaggageClaim(opts ...Option) g.Node {
 
 // Balloon creates a balloon icon
 // Tags: party, festival, congratulations, celebration, decoration, colorful, floating, fun, birthday, event, entertainment
-func Balloon(opts ...Option) g.Node {
+func Balloon(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M12 16v1a2 2 0 0 0 2 2h1a2 2 0 0 1 2 2v1",
 		"M12 6a2 2 0 0 1 2 2",
@@ -1332,7 +1332,7 @@ func Balloon(opts ...Option) g.Node {
 
 // Ban creates a ban icon
 // Tags: cancel, no, stop, forbidden, prohibited, error, incorrect, mistake, wrong, failure, circle, slash, null, void
-func Ban(opts ...Option) g.Node {
+func Ban(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M4.929 4.929 19.07 19.071",
 		"M 2 12 a 10 10 0 1 0 20 0 a 10 10 0 1 0 -20 0",
@@ -1341,7 +1341,7 @@ func Ban(opts ...Option) g.Node {
 
 // Banana creates a banana icon
 // Tags: fruit, food
-func Banana(opts ...Option) g.Node {
+func Banana(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M4 13c3.5-2 8-2 10 2a5.5 5.5 0 0 1 8 5",
 		"M5.15 17.89c5.52-1.52 8.65-6.89 7-12C11.55 4 11.5 2 13 2c3.22 0 5 5.5 5 8 0 6.5-4.2 12-10.49 12C5.11 22 2 22 2 20c0-1.5 1.14-1.55 3.15-2.11Z",
@@ -1350,7 +1350,7 @@ func Banana(opts ...Option) g.Node {
 
 // Bandage creates a bandage icon
 // Tags: plaster, band-aid, first aid, medical, health, wound, injury, care, treatment, healing, protection, emergency, aid, safety, patch
-func Bandage(opts ...Option) g.Node {
+func Bandage(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M10 10.01h.01",
 		"M10 14.01h.01",
@@ -1364,7 +1364,7 @@ func Bandage(opts ...Option) g.Node {
 
 // Banknote creates a banknote icon
 // Tags: currency, money, payment
-func Banknote(opts ...Option) g.Node {
+func Banknote(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M 4 6 h 16 a 2 2 0 0 1 2 2 v 8 a 2 2 0 0 1 -2 2 h -16 a 2 2 0 0 1 -2 -2 v -8 a 2 2 0 0 1 2 -2 Z",
 		"M 10 12 a 2 2 0 1 0 4 0 a 2 2 0 1 0 -4 0",
@@ -1374,7 +1374,7 @@ func Banknote(opts ...Option) g.Node {
 
 // BanknoteArrowDown creates a banknote-arrow-down icon
 // Tags: bill, currency, money, payment, funds, transaction, cash, finance, withdraw, expense, out, payout, refund, debit, spending, decrease
-func BanknoteArrowDown(opts ...Option) g.Node {
+func BanknoteArrowDown(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M12 18H4a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5",
 		"m16 19 3 3 3-3",
@@ -1387,7 +1387,7 @@ func BanknoteArrowDown(opts ...Option) g.Node {
 
 // BanknoteArrowUp creates a banknote-arrow-up icon
 // Tags: bill, currency, money, payment, funds, transaction, cash, finance, deposit, earnings, income, in, credit, prepaid, growth, increase
-func BanknoteArrowUp(opts ...Option) g.Node {
+func BanknoteArrowUp(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M12 18H4a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5",
 		"M18 12h.01",
@@ -1400,7 +1400,7 @@ func BanknoteArrowUp(opts ...Option) g.Node {
 
 // BanknoteX creates a banknote-x icon
 // Tags: bill, currency, money, payment, funds, transaction, cash, finance, error, failed, rejected, canceled, declined, lost, delete, remove
-func BanknoteX(opts ...Option) g.Node {
+func BanknoteX(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M13 18H4a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5",
 		"m17 17 5 5",
@@ -1413,7 +1413,7 @@ func BanknoteX(opts ...Option) g.Node {
 
 // Barcode creates a barcode icon
 // Tags: scan, checkout, till, cart, transaction, purchase, buy, product, packaging, retail, consumer
-func Barcode(opts ...Option) g.Node {
+func Barcode(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M3 5v14",
 		"M8 5v14",
@@ -1425,7 +1425,7 @@ func Barcode(opts ...Option) g.Node {
 
 // Barrel creates a barrel icon
 // Tags: keg, drum, tank, wine, beer, oak, wood, firkin, hogshead, kilderkin, barrique, solera, aging, whiskey, brewery, distillery, winery, vineyard
-func Barrel(opts ...Option) g.Node {
+func Barrel(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M10 3a41 41 0 0 0 0 18",
 		"M14 3a41 41 0 0 1 0 18",
@@ -1437,7 +1437,7 @@ func Barrel(opts ...Option) g.Node {
 
 // Baseline creates a baseline icon
 // Tags: text, format, color
-func Baseline(opts ...Option) g.Node {
+func Baseline(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M4 20h16",
 		"m6 16 6-12 6 12",
@@ -1447,7 +1447,7 @@ func Baseline(opts ...Option) g.Node {
 
 // Bath creates a bath icon
 // Tags: amenities, services, bathroom, shower
-func Bath(opts ...Option) g.Node {
+func Bath(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M10 4 8 6",
 		"M17 19v2",
@@ -1459,7 +1459,7 @@ func Bath(opts ...Option) g.Node {
 
 // Battery creates a battery icon
 // Tags: power, electricity, energy, accumulator, charge
-func Battery(opts ...Option) g.Node {
+func Battery(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M 22 14 L 22 10",
 		"M 4 6 h 12 a 2 2 0 0 1 2 2 v 8 a 2 2 0 0 1 -2 2 h -12 a 2 2 0 0 1 -2 -2 v -8 a 2 2 0 0 1 2 -2 Z",
@@ -1468,7 +1468,7 @@ func Battery(opts ...Option) g.Node {
 
 // BatteryCharging creates a battery-charging icon
 // Tags: power, electricity, energy, accumulator, charge
-func BatteryCharging(opts ...Option) g.Node {
+func BatteryCharging(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"m11 7-3 5h4l-3 5",
 		"M14.856 6H16a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2h-2.935",
@@ -1479,7 +1479,7 @@ func BatteryCharging(opts ...Option) g.Node {
 
 // BatteryFull creates a battery-full icon
 // Tags: power, electricity, energy, accumulator, charge
-func BatteryFull(opts ...Option) g.Node {
+func BatteryFull(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M10 10v4",
 		"M14 10v4",
@@ -1491,7 +1491,7 @@ func BatteryFull(opts ...Option) g.Node {
 
 // BatteryLow creates a battery-low icon
 // Tags: power, electricity, energy, accumulator, charge
-func BatteryLow(opts ...Option) g.Node {
+func BatteryLow(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M22 14v-4",
 		"M6 14v-4",
@@ -1501,7 +1501,7 @@ func BatteryLow(opts ...Option) g.Node {
 
 // BatteryMedium creates a battery-medium icon
 // Tags: power, electricity, energy, accumulator, charge
-func BatteryMedium(opts ...Option) g.Node {
+func BatteryMedium(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M10 14v-4",
 		"M22 14v-4",
@@ -1512,7 +1512,7 @@ func BatteryMedium(opts ...Option) g.Node {
 
 // BatteryPlus creates a battery-plus icon
 // Tags: power, electricity, energy, accumulator, charge, plus, economy, health, add, new, maximum, upgrade, extra, +
-func BatteryPlus(opts ...Option) g.Node {
+func BatteryPlus(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M10 9v6",
 		"M12.543 6H16a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2h-3.605",
@@ -1524,7 +1524,7 @@ func BatteryPlus(opts ...Option) g.Node {
 
 // BatteryWarning creates a battery-warning icon
 // Tags: power, electricity, energy, accumulator, charge, exclamation mark
-func BatteryWarning(opts ...Option) g.Node {
+func BatteryWarning(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M10 17h.01",
 		"M10 7v6",
@@ -1536,7 +1536,7 @@ func BatteryWarning(opts ...Option) g.Node {
 
 // Beaker creates a beaker icon
 // Tags: cup, lab, chemistry, experiment, test
-func Beaker(opts ...Option) g.Node {
+func Beaker(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M4.5 3h15",
 		"M6 3v16a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2V3",
@@ -1546,7 +1546,7 @@ func Beaker(opts ...Option) g.Node {
 
 // Bean creates a bean icon
 // Tags: legume, soy, food, seed
-func Bean(opts ...Option) g.Node {
+func Bean(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M10.165 6.598C9.954 7.478 9.64 8.36 9 9c-.64.64-1.521.954-2.402 1.165A6 6 0 0 0 8 22c7.732 0 14-6.268 14-14a6 6 0 0 0-11.835-1.402Z",
 		"M5.341 10.62a4 4 0 1 0 5.279-5.28",
@@ -1555,7 +1555,7 @@ func Bean(opts ...Option) g.Node {
 
 // BeanOff creates a bean-off icon
 // Tags: soy free, legume, soy, food, seed, allergy, intolerance, diet
-func BeanOff(opts ...Option) g.Node {
+func BeanOff(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M9 9c-.64.64-1.521.954-2.402 1.165A6 6 0 0 0 8 22a13.96 13.96 0 0 0 9.9-4.1",
 		"M10.75 5.093A6 6 0 0 1 22 8c0 2.411-.61 4.68-1.683 6.66",
@@ -1566,7 +1566,7 @@ func BeanOff(opts ...Option) g.Node {
 
 // Bed creates a bed icon
 // Tags: sleep, hotel, furniture
-func Bed(opts ...Option) g.Node {
+func Bed(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M2 4v16",
 		"M2 8h18a2 2 0 0 1 2 2v10",
@@ -1577,7 +1577,7 @@ func Bed(opts ...Option) g.Node {
 
 // BedDouble creates a bed-double icon
 // Tags: sleep, hotel, furniture
-func BedDouble(opts ...Option) g.Node {
+func BedDouble(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M2 20v-8a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v8",
 		"M4 10V6a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v4",
@@ -1588,7 +1588,7 @@ func BedDouble(opts ...Option) g.Node {
 
 // BedSingle creates a bed-single icon
 // Tags: sleep, hotel, furniture
-func BedSingle(opts ...Option) g.Node {
+func BedSingle(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M3 20v-8a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2v8",
 		"M5 10V6a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2v4",
@@ -1598,7 +1598,7 @@ func BedSingle(opts ...Option) g.Node {
 
 // Beef creates a beef icon
 // Tags: food, dish, restaurant, course, meal, meat, bbq, steak
-func Beef(opts ...Option) g.Node {
+func Beef(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M16.4 13.7A6.5 6.5 0 1 0 6.28 6.6c-1.1 3.13-.78 3.9-3.18 6.08A3 3 0 0 0 5 18c4 0 8.4-1.8 11.4-4.3",
 		"m18.5 6 2.19 4.5a6.48 6.48 0 0 1-2.29 7.2C15.4 20.2 11 22 7 22a3 3 0 0 1-2.68-1.66L2.4 16.5",
@@ -1608,7 +1608,7 @@ func Beef(opts ...Option) g.Node {
 
 // Beer creates a beer icon
 // Tags: alcohol, bar, beverage, brewery, drink
-func Beer(opts ...Option) g.Node {
+func Beer(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M17 11h1a3 3 0 0 1 0 6h-1",
 		"M9 12v6",
@@ -1620,7 +1620,7 @@ func Beer(opts ...Option) g.Node {
 
 // BeerOff creates a beer-off icon
 // Tags: alcohol, bar, beverage, brewery, drink
-func BeerOff(opts ...Option) g.Node {
+func BeerOff(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M13 13v5",
 		"M17 11.47V8",
@@ -1635,7 +1635,7 @@ func BeerOff(opts ...Option) g.Node {
 
 // Bell creates a bell icon
 // Tags: alarm, notification, sound, reminder
-func Bell(opts ...Option) g.Node {
+func Bell(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M10.268 21a2 2 0 0 0 3.464 0",
 		"M3.262 15.326A1 1 0 0 0 4 17h16a1 1 0 0 0 .74-1.673C19.41 13.956 18 12.499 18 8A6 6 0 0 0 6 8c0 4.499-1.411 5.956-2.738 7.326",
@@ -1644,7 +1644,7 @@ func Bell(opts ...Option) g.Node {
 
 // BellDot creates a bell-dot icon
 // Tags: alarm, notification, sound, reminder, unread
-func BellDot(opts ...Option) g.Node {
+func BellDot(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M10.268 21a2 2 0 0 0 3.464 0",
 		"M13.916 2.314A6 6 0 0 0 6 8c0 4.499-1.411 5.956-2.74 7.327A1 1 0 0 0 4 17h16a1 1 0 0 0 .74-1.673 9 9 0 0 1-.585-.665",
@@ -1654,7 +1654,7 @@ func BellDot(opts ...Option) g.Node {
 
 // BellElectric creates a bell-electric icon
 // Tags: fire alarm, flames, smoke, firefighter, fireman, department, brigade, station, emergency, alert, safety, school bell, period break, recess, doorbell, entrance, entry, ring, reception
-func BellElectric(opts ...Option) g.Node {
+func BellElectric(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M18.518 17.347A7 7 0 0 1 14 19",
 		"M18.8 4A11 11 0 0 1 20 9",
@@ -1667,7 +1667,7 @@ func BellElectric(opts ...Option) g.Node {
 
 // BellMinus creates a bell-minus icon
 // Tags: alarm, notification, silent, reminder, delete, remove, erase
-func BellMinus(opts ...Option) g.Node {
+func BellMinus(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M10.268 21a2 2 0 0 0 3.464 0",
 		"M15 8h6",
@@ -1677,7 +1677,7 @@ func BellMinus(opts ...Option) g.Node {
 
 // BellOff creates a bell-off icon
 // Tags: alarm, notification, silent, reminder
-func BellOff(opts ...Option) g.Node {
+func BellOff(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M10.268 21a2 2 0 0 0 3.464 0",
 		"M17 17H4a1 1 0 0 1-.74-1.673C4.59 13.956 6 12.499 6 8a6 6 0 0 1 .258-1.742",
@@ -1688,7 +1688,7 @@ func BellOff(opts ...Option) g.Node {
 
 // BellPlus creates a bell-plus icon
 // Tags: notification, silent, reminder, add, create, new
-func BellPlus(opts ...Option) g.Node {
+func BellPlus(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M10.268 21a2 2 0 0 0 3.464 0",
 		"M15 8h6",
@@ -1699,7 +1699,7 @@ func BellPlus(opts ...Option) g.Node {
 
 // BellRing creates a bell-ring icon
 // Tags: alarm, notification, sound, reminder
-func BellRing(opts ...Option) g.Node {
+func BellRing(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M10.268 21a2 2 0 0 0 3.464 0",
 		"M22 8c0-2.3-.8-4.3-2-6",
@@ -1710,7 +1710,7 @@ func BellRing(opts ...Option) g.Node {
 
 // BetweenHorizontalEnd creates a between-horizontal-end icon
 // Tags: insert, add, left, slot, squeeze, space, vertical, grid, table, rows, cells, excel, spreadsheet, accountancy, data, enter, entry, entries, blocks, rectangles, chevron
-func BetweenHorizontalEnd(opts ...Option) g.Node {
+func BetweenHorizontalEnd(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M 4 3 h 11 a 1 1 0 0 1 1 1 v 5 a 1 1 0 0 1 -1 1 h -11 a 1 1 0 0 1 -1 -1 v -5 a 1 1 0 0 1 1 -1 Z",
 		"m22 15-3-3 3-3",
@@ -1720,7 +1720,7 @@ func BetweenHorizontalEnd(opts ...Option) g.Node {
 
 // BetweenHorizontalStart creates a between-horizontal-start icon
 // Tags: insert, add, right, slot, squeeze, space, vertical, grid, table, rows, cells, excel, spreadsheet, accountancy, data, enter, entry, entries, blocks, rectangles, chevron
-func BetweenHorizontalStart(opts ...Option) g.Node {
+func BetweenHorizontalStart(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M 9 3 h 11 a 1 1 0 0 1 1 1 v 5 a 1 1 0 0 1 -1 1 h -11 a 1 1 0 0 1 -1 -1 v -5 a 1 1 0 0 1 1 -1 Z",
 		"m2 9 3 3-3 3",
@@ -1730,7 +1730,7 @@ func BetweenHorizontalStart(opts ...Option) g.Node {
 
 // BetweenVerticalEnd creates a between-vertical-end icon
 // Tags: insert, add, top, slot, squeeze, space, vertical, grid, table, columns, cells, data, enter, entry, entries, blocks, rectangles, chevron
-func BetweenVerticalEnd(opts ...Option) g.Node {
+func BetweenVerticalEnd(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M 4 3 h 5 a 1 1 0 0 1 1 1 v 11 a 1 1 0 0 1 -1 1 h -5 a 1 1 0 0 1 -1 -1 v -11 a 1 1 0 0 1 1 -1 Z",
 		"m9 22 3-3 3 3",
@@ -1740,7 +1740,7 @@ func BetweenVerticalEnd(opts ...Option) g.Node {
 
 // BetweenVerticalStart creates a between-vertical-start icon
 // Tags: insert, add, bottom, slot, squeeze, space, vertical, grid, table, columns, cells, data, enter, entry, entries, blocks, rectangles, chevron
-func BetweenVerticalStart(opts ...Option) g.Node {
+func BetweenVerticalStart(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M 4 8 h 5 a 1 1 0 0 1 1 1 v 11 a 1 1 0 0 1 -1 1 h -5 a 1 1 0 0 1 -1 -1 v -11 a 1 1 0 0 1 1 -1 Z",
 		"m15 2-3 3-3-3",
@@ -1750,7 +1750,7 @@ func BetweenVerticalStart(opts ...Option) g.Node {
 
 // BicepsFlexed creates a biceps-flexed icon
 // Tags: arm, muscle, strong, working out, athletic, toned, muscular, forelimb, curled
-func BicepsFlexed(opts ...Option) g.Node {
+func BicepsFlexed(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M12.409 13.017A5 5 0 0 1 22 15c0 3.866-4 7-9 7-4.077 0-8.153-.82-10.371-2.462-.426-.316-.631-.832-.62-1.362C2.118 12.723 2.627 2 10 2a3 3 0 0 1 3 3 2 2 0 0 1-2 2c-1.105 0-1.64-.444-2-1",
 		"M15 14a5 5 0 0 0-7.584 2",
@@ -1760,7 +1760,7 @@ func BicepsFlexed(opts ...Option) g.Node {
 
 // Bike creates a bike icon
 // Tags: bicycle, transport, trip
-func Bike(opts ...Option) g.Node {
+func Bike(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M 15 17.5 a 3.5 3.5 0 1 0 7 0 a 3.5 3.5 0 1 0 -7 0",
 		"M 2 17.5 a 3.5 3.5 0 1 0 7 0 a 3.5 3.5 0 1 0 -7 0",
@@ -1771,7 +1771,7 @@ func Bike(opts ...Option) g.Node {
 
 // Binary creates a binary icon
 // Tags: code, digits, computer, zero, one, boolean
-func Binary(opts ...Option) g.Node {
+func Binary(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M 16 14 h 0 a 2 2 0 0 1 2 2 v 2 a 2 2 0 0 1 -2 2 h -0 a 2 2 0 0 1 -2 -2 v -2 a 2 2 0 0 1 2 -2 Z",
 		"M 8 4 h 0 a 2 2 0 0 1 2 2 v 2 a 2 2 0 0 1 -2 2 h -0 a 2 2 0 0 1 -2 -2 v -2 a 2 2 0 0 1 2 -2 Z",
@@ -1784,7 +1784,7 @@ func Binary(opts ...Option) g.Node {
 
 // Binoculars creates a binoculars icon
 // Tags: field glasses, lorgnette, pince-nez, observation, sightseeing, nature, wildlife, birdwatching, scouting, surveillance, search, discovery, monitoring, lookout, viewpoint, travel, tourism, research
-func Binoculars(opts ...Option) g.Node {
+func Binoculars(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M10 10h4",
 		"M19 7V4a1 1 0 0 0-1-1h-2a1 1 0 0 0-1 1v3",
@@ -1797,7 +1797,7 @@ func Binoculars(opts ...Option) g.Node {
 
 // Biohazard creates a biohazard icon
 // Tags: fallout, waste, biology, chemistry, chemical, element
-func Biohazard(opts ...Option) g.Node {
+func Biohazard(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M 10 11.9 a 2 2 0 1 0 4 0 a 2 2 0 1 0 -4 0",
 		"M6.7 3.4c-.9 2.5 0 5.2 2.2 6.7C6.5 9 3.7 9.6 2 11.6",
@@ -1814,7 +1814,7 @@ func Biohazard(opts ...Option) g.Node {
 
 // Bird creates a bird icon
 // Tags: peace, freedom, wing, avian, tweet
-func Bird(opts ...Option) g.Node {
+func Bird(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M16 7h.01",
 		"M3.4 18H12a8 8 0 0 0 8-8V7a4 4 0 0 0-7.28-2.3L2 20",
@@ -1827,7 +1827,7 @@ func Bird(opts ...Option) g.Node {
 
 // Birdhouse creates a birdhouse icon
 // Tags: birdhouse, bird, garden, home, house, woodwork
-func Birdhouse(opts ...Option) g.Node {
+func Birdhouse(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M12 18v4",
 		"m17 18 1.956-11.468",
@@ -1840,13 +1840,13 @@ func Birdhouse(opts ...Option) g.Node {
 
 // Bitcoin creates a bitcoin icon
 // Tags: currency, money, payment
-func Bitcoin(opts ...Option) g.Node {
+func Bitcoin(opts ...Option) templ.Component {
 	return Icon("M11.767 19.089c4.924.868 6.14-6.025 1.216-6.894m-1.216 6.894L5.86 18.047m5.908 1.042-.347 1.97m1.563-8.864c4.924.869 6.14-6.025 1.215-6.893m-1.215 6.893-3.94-.694m5.155-6.2L8.29 4.26m5.908 1.042.348-1.97M7.48 20.364l3.126-17.727", opts...)
 }
 
 // Blend creates a blend icon
 // Tags: mode, overlay, multiply, screen, opacity, transparency, alpha, filters, lenses, mixed, shades, tints, hues, saturation, brightness, overlap, colors, colours
-func Blend(opts ...Option) g.Node {
+func Blend(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M 2 9 a 7 7 0 1 0 14 0 a 7 7 0 1 0 -14 0",
 		"M 8 15 a 7 7 0 1 0 14 0 a 7 7 0 1 0 -14 0",
@@ -1855,7 +1855,7 @@ func Blend(opts ...Option) g.Node {
 
 // Blinds creates a blinds icon
 // Tags: shades, screen, curtain, shutter, roller blind, window, lighting, household, home
-func Blinds(opts ...Option) g.Node {
+func Blinds(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M3 3h18",
 		"M20 7H8",
@@ -1869,7 +1869,7 @@ func Blinds(opts ...Option) g.Node {
 
 // Blocks creates a blocks icon
 // Tags: addon, plugin, integration, extension, package, build, stack, toys, kids, children, learning, squares, corner
-func Blocks(opts ...Option) g.Node {
+func Blocks(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M10 22V7a1 1 0 0 0-1-1H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-5a1 1 0 0 0-1-1H2",
 		"M 15 2 h 6 a 1 1 0 0 1 1 1 v 6 a 1 1 0 0 1 -1 1 h -6 a 1 1 0 0 1 -1 -1 v -6 a 1 1 0 0 1 1 -1 Z",
@@ -1878,13 +1878,13 @@ func Blocks(opts ...Option) g.Node {
 
 // Bluetooth creates a bluetooth icon
 // Tags: wireless
-func Bluetooth(opts ...Option) g.Node {
+func Bluetooth(opts ...Option) templ.Component {
 	return Icon("m7 7 10 10-5 5V2l5 5L7 17", opts...)
 }
 
 // BluetoothConnected creates a bluetooth-connected icon
 // Tags: paired
-func BluetoothConnected(opts ...Option) g.Node {
+func BluetoothConnected(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"m7 7 10 10-5 5V2l5 5L7 17",
 		"M 18 12 L 21 12",
@@ -1894,7 +1894,7 @@ func BluetoothConnected(opts ...Option) g.Node {
 
 // BluetoothOff creates a bluetooth-off icon
 // Tags: lost
-func BluetoothOff(opts ...Option) g.Node {
+func BluetoothOff(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"m17 17-5 5V12l-5 5",
 		"m2 2 20 20",
@@ -1904,7 +1904,7 @@ func BluetoothOff(opts ...Option) g.Node {
 
 // BluetoothSearching creates a bluetooth-searching icon
 // Tags: pairing
-func BluetoothSearching(opts ...Option) g.Node {
+func BluetoothSearching(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"m7 7 10 10-5 5V2l5 5L7 17",
 		"M20.83 14.83a4 4 0 0 0 0-5.66",
@@ -1914,13 +1914,13 @@ func BluetoothSearching(opts ...Option) g.Node {
 
 // Bold creates a bold icon
 // Tags: text, strong, format
-func Bold(opts ...Option) g.Node {
+func Bold(opts ...Option) templ.Component {
 	return Icon("M6 12h9a4 4 0 0 1 0 8H7a1 1 0 0 1-1-1V5a1 1 0 0 1 1-1h7a4 4 0 0 1 0 8", opts...)
 }
 
 // Bolt creates a bolt icon
 // Tags: nut, screw, settings, preferences, configuration, controls, edit, diy, fixed, build, construction, parts
-func Bolt(opts ...Option) g.Node {
+func Bolt(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z",
 		"M 8 12 a 4 4 0 1 0 8 0 a 4 4 0 1 0 -8 0",
@@ -1929,7 +1929,7 @@ func Bolt(opts ...Option) g.Node {
 
 // Bomb creates a bomb icon
 // Tags: fatal, error, crash, blockbuster, mine, explosion, explode, explosive
-func Bomb(opts ...Option) g.Node {
+func Bomb(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M 2 13 a 9 9 0 1 0 18 0 a 9 9 0 1 0 -18 0",
 		"M14.35 4.65 16.3 2.7a2.41 2.41 0 0 1 3.4 0l1.6 1.6a2.4 2.4 0 0 1 0 3.4l-1.95 1.95",
@@ -1939,19 +1939,19 @@ func Bomb(opts ...Option) g.Node {
 
 // Bone creates a bone icon
 // Tags: health, skeleton, skull, death, pets, dog
-func Bone(opts ...Option) g.Node {
+func Bone(opts ...Option) templ.Component {
 	return Icon("M17 10c.7-.7 1.69 0 2.5 0a2.5 2.5 0 1 0 0-5 .5.5 0 0 1-.5-.5 2.5 2.5 0 1 0-5 0c0 .81.7 1.8 0 2.5l-7 7c-.7.7-1.69 0-2.5 0a2.5 2.5 0 0 0 0 5c.28 0 .5.22.5.5a2.5 2.5 0 1 0 5 0c0-.81-.7-1.8 0-2.5Z", opts...)
 }
 
 // Book creates a book icon
 // Tags: reading, paperback, booklet, magazine, leaflet, pamphlet, tome, library, writing, written, writer, author, story, script, fiction, novel, information, knowledge, education, high school, university, college, academy, student, study, learning, homework, research, documentation
-func Book(opts ...Option) g.Node {
+func Book(opts ...Option) templ.Component {
 	return Icon("M4 19.5v-15A2.5 2.5 0 0 1 6.5 2H19a1 1 0 0 1 1 1v18a1 1 0 0 1-1 1H6.5a1 1 0 0 1 0-5H20", opts...)
 }
 
 // BookA creates a book-a icon
 // Tags: dictionary, define, definition, thesaurus, encyclopedia, encyclopaedia, reading, booklet, magazine, leaflet, pamphlet, tome, library, writing, written, writer, author, story, script, fiction, novel, information, knowledge, education, high school, university, college, academy, student, study, learning, homework, research, language, translate, alphabetical, a-z, ordered
-func BookA(opts ...Option) g.Node {
+func BookA(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M4 19.5v-15A2.5 2.5 0 0 1 6.5 2H19a1 1 0 0 1 1 1v18a1 1 0 0 1-1 1H6.5a1 1 0 0 1 0-5H20",
 		"m8 13 4-7 4 7",
@@ -1961,7 +1961,7 @@ func BookA(opts ...Option) g.Node {
 
 // BookAlert creates a book-alert icon
 // Tags: reading, paperback, booklet, magazine, leaflet, pamphlet, tome, library, writing, written, writer, author, story, script, fiction, novel, information, knowledge, education, high school, university, college, academy, student, study, learning, homework, research, documentation, warning, alert, danger, exclamation mark
-func BookAlert(opts ...Option) g.Node {
+func BookAlert(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M12 13h.01",
 		"M12 6v3",
@@ -1971,7 +1971,7 @@ func BookAlert(opts ...Option) g.Node {
 
 // BookAudio creates a book-audio icon
 // Tags: audiobook, reading, listening, sound, story, fiction, novel, information, knowledge, education, student, study, learning, research
-func BookAudio(opts ...Option) g.Node {
+func BookAudio(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M12 6v7",
 		"M16 8v3",
@@ -1982,7 +1982,7 @@ func BookAudio(opts ...Option) g.Node {
 
 // BookCheck creates a book-check icon
 // Tags: read, booklet, magazine, leaflet, pamphlet, library, written, authored, published, informed, knowledgeable, educated, schooled, homework, examined, tested, marked, passed, graduated, studied, learned, lesson, researched, documented, revealed, blank, plain language, true, truth, verified, corrected, task, todo, done, completed, finished, ticked
-func BookCheck(opts ...Option) g.Node {
+func BookCheck(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M4 19.5v-15A2.5 2.5 0 0 1 6.5 2H19a1 1 0 0 1 1 1v18a1 1 0 0 1-1 1H6.5a1 1 0 0 1 0-5H20",
 		"m9 9.5 2 2 4-4",
@@ -1991,7 +1991,7 @@ func BookCheck(opts ...Option) g.Node {
 
 // BookCopy creates a book-copy icon
 // Tags: code, coding, version control, git, repository, clone, fork, duplicate, multiple, books, library, copies, copied, plagiarism, plagiarised, plagiarized, reading list, information, informed, knowledge, knowledgeable, knowledgable, education, high school, university, college, academy, student, study, learning, research, smart, intelligent, intellectual
-func BookCopy(opts ...Option) g.Node {
+func BookCopy(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M5 7a2 2 0 0 0-2 2v11",
 		"M5.803 18H5a2 2 0 0 0 0 4h9.5a.5.5 0 0 0 .5-.5V21",
@@ -2001,7 +2001,7 @@ func BookCopy(opts ...Option) g.Node {
 
 // BookDashed creates a book-dashed icon
 // Tags: code, coding, version control, git, repository, template, draft, script, screenplay, writing, writer, author, unwritten, unpublished, untold
-func BookDashed(opts ...Option) g.Node {
+func BookDashed(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M12 17h1.5",
 		"M12 22h1.5",
@@ -2019,7 +2019,7 @@ func BookDashed(opts ...Option) g.Node {
 
 // BookDown creates a book-down icon
 // Tags: code, coding, version control, git, repository, pull
-func BookDown(opts ...Option) g.Node {
+func BookDown(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M12 13V7",
 		"M4 19.5v-15A2.5 2.5 0 0 1 6.5 2H19a1 1 0 0 1 1 1v18a1 1 0 0 1-1 1H6.5a1 1 0 0 1 0-5H20",
@@ -2029,7 +2029,7 @@ func BookDown(opts ...Option) g.Node {
 
 // BookHeadphones creates a book-headphones icon
 // Tags: audiobook, reading, listening, sound, story, fiction, novel, information, knowledge, education, student, study, learning, research
-func BookHeadphones(opts ...Option) g.Node {
+func BookHeadphones(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M4 19.5v-15A2.5 2.5 0 0 1 6.5 2H19a1 1 0 0 1 1 1v18a1 1 0 0 1-1 1H6.5a1 1 0 0 1 0-5H20",
 		"M8 12v-2a4 4 0 0 1 8 0v2",
@@ -2040,7 +2040,7 @@ func BookHeadphones(opts ...Option) g.Node {
 
 // BookHeart creates a book-heart icon
 // Tags: diary, romance, novel, journal, entry, entries, personal, private, secret, crush, like, love, emotion, feminine, girls, teens, teenager, therapy, theraputic, therapist, planner, organizer, organiser, notes, notepad, stationery, sketchbook, writing, written, reading, favorite, favourite, high school
-func BookHeart(opts ...Option) g.Node {
+func BookHeart(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M4 19.5v-15A2.5 2.5 0 0 1 6.5 2H19a1 1 0 0 1 1 1v18a1 1 0 0 1-1 1H6.5a1 1 0 0 1 0-5H20",
 		"M8.62 9.8A2.25 2.25 0 1 1 12 6.836a2.25 2.25 0 1 1 3.38 2.966l-2.626 2.856a.998.998 0 0 1-1.507 0z",
@@ -2049,7 +2049,7 @@ func BookHeart(opts ...Option) g.Node {
 
 // BookImage creates a book-image icon
 // Tags: images, pictures, photos, album, collection, event, magazine, catalog, catalogue, brochure, browse, gallery
-func BookImage(opts ...Option) g.Node {
+func BookImage(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"m20 13.7-2.1-2.1a2 2 0 0 0-2.8 0L9.7 17",
 		"M4 19.5v-15A2.5 2.5 0 0 1 6.5 2H19a1 1 0 0 1 1 1v18a1 1 0 0 1-1 1H6.5a1 1 0 0 1 0-5H20",
@@ -2059,7 +2059,7 @@ func BookImage(opts ...Option) g.Node {
 
 // BookKey creates a book-key icon
 // Tags: code, coding, version control, git, repository, private, public, secret, unlocked, hidden, revealed, knowledge, learning
-func BookKey(opts ...Option) g.Node {
+func BookKey(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"m19 3 1 1",
 		"m20 2-4.5 4.5",
@@ -2071,7 +2071,7 @@ func BookKey(opts ...Option) g.Node {
 
 // BookLock creates a book-lock icon
 // Tags: code, coding, version control, git, repository, private, secret, hidden, knowledge
-func BookLock(opts ...Option) g.Node {
+func BookLock(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M18 6V4a2 2 0 1 0-4 0v2",
 		"M20 15v6a1 1 0 0 1-1 1H6.5a1 1 0 0 1 0-5H20",
@@ -2082,7 +2082,7 @@ func BookLock(opts ...Option) g.Node {
 
 // BookMarked creates a book-marked icon
 // Tags: dictionary, reading, booklet, magazine, leaflet, pamphlet, tome, library, writing, written, writer, author, story, script, fiction, novel, information, knowledge, education, high school, university, college, academy, student, study, learning, homework, research, documentation, saved, later, future, reference, index, code, coding, version control, git, repository
-func BookMarked(opts ...Option) g.Node {
+func BookMarked(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M10 2v8l3-3 3 3V2",
 		"M4 19.5v-15A2.5 2.5 0 0 1 6.5 2H19a1 1 0 0 1 1 1v18a1 1 0 0 1-1 1H6.5a1 1 0 0 1 0-5H20",
@@ -2091,7 +2091,7 @@ func BookMarked(opts ...Option) g.Node {
 
 // BookMinus creates a book-minus icon
 // Tags: code, coding, version control, git, repository, remove, delete, censor, cancel, forbid, prohibit, ban, uneducated, re-educate, unlearn, downgrade
-func BookMinus(opts ...Option) g.Node {
+func BookMinus(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M4 19.5v-15A2.5 2.5 0 0 1 6.5 2H19a1 1 0 0 1 1 1v18a1 1 0 0 1-1 1H6.5a1 1 0 0 1 0-5H20",
 		"M9 10h6",
@@ -2100,7 +2100,7 @@ func BookMinus(opts ...Option) g.Node {
 
 // BookOpen creates a book-open icon
 // Tags: reading, pages, booklet, magazine, leaflet, pamphlet, library, writing, written, writer, author, story, script, screenplay, fiction, novel, information, knowledge, education, high school, university, college, academy, student, study, learning, homework, research, documentation, revealed, blank, plain
-func BookOpen(opts ...Option) g.Node {
+func BookOpen(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M12 7v14",
 		"M3 18a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1h5a4 4 0 0 1 4 4 4 4 0 0 1 4-4h5a1 1 0 0 1 1 1v13a1 1 0 0 1-1 1h-6a3 3 0 0 0-3 3 3 3 0 0 0-3-3z",
@@ -2109,7 +2109,7 @@ func BookOpen(opts ...Option) g.Node {
 
 // BookOpenCheck creates a book-open-check icon
 // Tags: read, pages, booklet, magazine, leaflet, pamphlet, library, written, authored, published, informed, knowledgeable, educated, schooled, homework, examined, tested, marked, passed, graduated, studied, learned, lesson, researched, documented, revealed, blank, plain language, true, truth, verified, corrected, task, todo, done, completed, finished, ticked
-func BookOpenCheck(opts ...Option) g.Node {
+func BookOpenCheck(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M12 21V7",
 		"m16 12 2 2 4-4",
@@ -2119,7 +2119,7 @@ func BookOpenCheck(opts ...Option) g.Node {
 
 // BookOpenText creates a book-open-text icon
 // Tags: reading, pages, booklet, magazine, leaflet, pamphlet, library, writing, written, writer, author, story, script, fiction, novel, information, knowledge, education, high school, university, college, academy, student, study, learning, homework, research, documentation, revealed
-func BookOpenText(opts ...Option) g.Node {
+func BookOpenText(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M12 7v14",
 		"M16 12h2",
@@ -2132,7 +2132,7 @@ func BookOpenText(opts ...Option) g.Node {
 
 // BookPlus creates a book-plus icon
 // Tags: code, coding, version control, git, repository, remove, delete, read, write, author, publish, inform, graduate, re-educate, study, learn, research, knowledge, improve, upgrade, level up
-func BookPlus(opts ...Option) g.Node {
+func BookPlus(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M12 7v6",
 		"M4 19.5v-15A2.5 2.5 0 0 1 6.5 2H19a1 1 0 0 1 1 1v18a1 1 0 0 1-1 1H6.5a1 1 0 0 1 0-5H20",
@@ -2142,7 +2142,7 @@ func BookPlus(opts ...Option) g.Node {
 
 // BookSearch creates a book-search icon
 // Tags: reading, library, study, education, research, knowledge, discover, browsing, lookup, finding, scanning
-func BookSearch(opts ...Option) g.Node {
+func BookSearch(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M11 22H5.5a1 1 0 0 1 0-5h4.501",
 		"m21 22-1.879-1.878",
@@ -2153,7 +2153,7 @@ func BookSearch(opts ...Option) g.Node {
 
 // BookText creates a book-text icon
 // Tags: reading, booklet, magazine, leaflet, pamphlet, tome, library, writing, written, writer, author, story, script, fiction, novel, information, knowledge, education, high school, university, college, academy, student, study, learning, homework, research, documentation
-func BookText(opts ...Option) g.Node {
+func BookText(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M4 19.5v-15A2.5 2.5 0 0 1 6.5 2H19a1 1 0 0 1 1 1v18a1 1 0 0 1-1 1H6.5a1 1 0 0 1 0-5H20",
 		"M8 11h8",
@@ -2163,7 +2163,7 @@ func BookText(opts ...Option) g.Node {
 
 // BookType creates a book-type icon
 // Tags: thesaurus, synonym, reading, booklet, magazine, leaflet, pamphlet, tome, library, writing, written, writer, author, story, script, fiction, novel, information, knowledge, education, high school, university, college, academy, student, study, learning, homework, research, language, translate, typography, fonts, collection
-func BookType(opts ...Option) g.Node {
+func BookType(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M10 13h4",
 		"M12 6v7",
@@ -2174,7 +2174,7 @@ func BookType(opts ...Option) g.Node {
 
 // BookUp creates a book-up icon
 // Tags: code, coding, version control, git, repository, push
-func BookUp(opts ...Option) g.Node {
+func BookUp(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M12 13V7",
 		"M4 19.5v-15A2.5 2.5 0 0 1 6.5 2H19a1 1 0 0 1 1 1v18a1 1 0 0 1-1 1H6.5a1 1 0 0 1 0-5H20",
@@ -2184,7 +2184,7 @@ func BookUp(opts ...Option) g.Node {
 
 // BookUp2 creates a book-up-2 icon
 // Tags: code, coding, version control, git, repository, push, force
-func BookUp2(opts ...Option) g.Node {
+func BookUp2(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M12 13V7",
 		"M18 2h1a1 1 0 0 1 1 1v18a1 1 0 0 1-1 1H6.5a1 1 0 0 1 0-5H20",
@@ -2196,7 +2196,7 @@ func BookUp2(opts ...Option) g.Node {
 
 // BookUser creates a book-user icon
 // Tags: person, people, family, friends, acquaintances, contacts, details, addresses, phone numbers, directory, listing, networking
-func BookUser(opts ...Option) g.Node {
+func BookUser(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M15 13a3 3 0 1 0-6 0",
 		"M4 19.5v-15A2.5 2.5 0 0 1 6.5 2H19a1 1 0 0 1 1 1v18a1 1 0 0 1-1 1H6.5a1 1 0 0 1 0-5H20",
@@ -2206,7 +2206,7 @@ func BookUser(opts ...Option) g.Node {
 
 // BookX creates a book-x icon
 // Tags: code, coding, version control, git, repository, remove, delete, reading, misinformation, disinformation, misinformed, charlatan, sophistry, false, lies, untruth, propaganda, censored, cancelled, forbidden, prohibited, banned, uneducated, re-education, unlearn
-func BookX(opts ...Option) g.Node {
+func BookX(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"m14.5 7-5 5",
 		"M4 19.5v-15A2.5 2.5 0 0 1 6.5 2H19a1 1 0 0 1 1 1v18a1 1 0 0 1-1 1H6.5a1 1 0 0 1 0-5H20",
@@ -2216,13 +2216,13 @@ func BookX(opts ...Option) g.Node {
 
 // Bookmark creates a bookmark icon
 // Tags: read, clip, marker, tag
-func Bookmark(opts ...Option) g.Node {
+func Bookmark(opts ...Option) templ.Component {
 	return Icon("m19 21-7-4-7 4V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2v16z", opts...)
 }
 
 // BookmarkCheck creates a bookmark-check icon
 // Tags: read, finished, complete, clip, marker, tag, task, todo
-func BookmarkCheck(opts ...Option) g.Node {
+func BookmarkCheck(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"m19 21-7-4-7 4V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2Z",
 		"m9 10 2 2 4-4",
@@ -2231,7 +2231,7 @@ func BookmarkCheck(opts ...Option) g.Node {
 
 // BookmarkMinus creates a bookmark-minus icon
 // Tags: delete, remove
-func BookmarkMinus(opts ...Option) g.Node {
+func BookmarkMinus(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"m19 21-7-4-7 4V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2v16z",
 		"M 15 10 L 9 10",
@@ -2240,7 +2240,7 @@ func BookmarkMinus(opts ...Option) g.Node {
 
 // BookmarkPlus creates a bookmark-plus icon
 // Tags: add
-func BookmarkPlus(opts ...Option) g.Node {
+func BookmarkPlus(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"m19 21-7-4-7 4V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2v16z",
 		"M 12 7 L 12 13",
@@ -2250,7 +2250,7 @@ func BookmarkPlus(opts ...Option) g.Node {
 
 // BookmarkX creates a bookmark-x icon
 // Tags: read, clip, marker, tag, cancel, close, delete, remove, clear
-func BookmarkX(opts ...Option) g.Node {
+func BookmarkX(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"m19 21-7-4-7 4V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2Z",
 		"m14.5 7.5-5 5",
@@ -2260,7 +2260,7 @@ func BookmarkX(opts ...Option) g.Node {
 
 // BoomBox creates a boom-box icon
 // Tags: radio, speakers, audio, music, sound, broadcast, live, frequency
-func BoomBox(opts ...Option) g.Node {
+func BoomBox(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M4 9V5a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v4",
 		"M8 8v1",
@@ -2274,7 +2274,7 @@ func BoomBox(opts ...Option) g.Node {
 
 // Bot creates a bot icon
 // Tags: robot, ai, chat, assistant
-func Bot(opts ...Option) g.Node {
+func Bot(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M12 8V4H8",
 		"M 6 8 h 12 a 2 2 0 0 1 2 2 v 8 a 2 2 0 0 1 -2 2 h -12 a 2 2 0 0 1 -2 -2 v -8 a 2 2 0 0 1 2 -2 Z",
@@ -2287,7 +2287,7 @@ func Bot(opts ...Option) g.Node {
 
 // BotMessageSquare creates a bot-message-square icon
 // Tags: robot, ai, chat, assistant
-func BotMessageSquare(opts ...Option) g.Node {
+func BotMessageSquare(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M12 6V2H8",
 		"M15 11v2",
@@ -2300,7 +2300,7 @@ func BotMessageSquare(opts ...Option) g.Node {
 
 // BotOff creates a bot-off icon
 // Tags: robot, ai, chat, assistant
-func BotOff(opts ...Option) g.Node {
+func BotOff(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M13.67 8H18a2 2 0 0 1 2 2v4.33",
 		"M2 14h2",
@@ -2314,7 +2314,7 @@ func BotOff(opts ...Option) g.Node {
 
 // BottleWine creates a bottle-wine icon
 // Tags: alcohol, drink, glass, goblet, chalice, vineyard, winery, red, white, rose, dry, sparkling, bar, party, nightclub, nightlife, sommelier, restaurant, dinner, meal
-func BottleWine(opts ...Option) g.Node {
+func BottleWine(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M10 3a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v2a6 6 0 0 0 1.2 3.6l.6.8A6 6 0 0 1 17 13v8a1 1 0 0 1-1 1H8a1 1 0 0 1-1-1v-8a6 6 0 0 1 1.2-3.6l.6-.8A6 6 0 0 0 10 5z",
 		"M17 13h-4a1 1 0 0 0-1 1v3a1 1 0 0 0 1 1h4",
@@ -2323,7 +2323,7 @@ func BottleWine(opts ...Option) g.Node {
 
 // BowArrow creates a bow-arrow icon
 // Tags: archer, archery, game, war, weapon
-func BowArrow(opts ...Option) g.Node {
+func BowArrow(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M17 3h4v4",
 		"M18.575 11.082a13 13 0 0 1 1.048 9.027 1.17 1.17 0 0 1-1.914.597L14 17",
@@ -2335,7 +2335,7 @@ func BowArrow(opts ...Option) g.Node {
 
 // Box creates a box icon
 // Tags: cube, package, container, storage, geometry, 3d, isometric
-func Box(opts ...Option) g.Node {
+func Box(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M21 8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16Z",
 		"m3.3 7 8.7 5 8.7-5",
@@ -2345,7 +2345,7 @@ func Box(opts ...Option) g.Node {
 
 // Boxes creates a boxes icon
 // Tags: cubes, packages, parts, group, units, collection, cluster, geometry
-func Boxes(opts ...Option) g.Node {
+func Boxes(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M2.97 12.92A2 2 0 0 0 2 14.63v3.24a2 2 0 0 0 .97 1.71l3 1.8a2 2 0 0 0 2.06 0L12 19v-5.5l-5-3-4.03 2.42Z",
 		"m7 16.5-4.74-2.85",
@@ -2364,7 +2364,7 @@ func Boxes(opts ...Option) g.Node {
 
 // Braces creates a braces icon
 // Tags: json, code, token, curly brackets, data, {, }
-func Braces(opts ...Option) g.Node {
+func Braces(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M8 3H7a2 2 0 0 0-2 2v5a2 2 0 0 1-2 2 2 2 0 0 1 2 2v5c0 1.1.9 2 2 2h1",
 		"M16 21h1a2 2 0 0 0 2-2v-5c0-1.1.9-2 2-2a2 2 0 0 1-2-2V5a2 2 0 0 0-2-2h-1",
@@ -2373,7 +2373,7 @@ func Braces(opts ...Option) g.Node {
 
 // Brackets creates a brackets icon
 // Tags: code, token, array, list, square, [, ]
-func Brackets(opts ...Option) g.Node {
+func Brackets(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M16 3h3a1 1 0 0 1 1 1v16a1 1 0 0 1-1 1h-3",
 		"M8 21H5a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1h3",
@@ -2382,7 +2382,7 @@ func Brackets(opts ...Option) g.Node {
 
 // Brain creates a brain icon
 // Tags: medical, mind, mental, intellect, cerebral, consciousness, genius, artificial intelligence, ai, think, thought, insight, intelligent, smart
-func Brain(opts ...Option) g.Node {
+func Brain(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M12 18V5",
 		"M15 13a4.17 4.17 0 0 1-3-4 4.17 4.17 0 0 1-3 4",
@@ -2397,7 +2397,7 @@ func Brain(opts ...Option) g.Node {
 
 // BrainCircuit creates a brain-circuit icon
 // Tags: mind, intellect, artificial intelligence, ai, deep learning, machine learning, computing
-func BrainCircuit(opts ...Option) g.Node {
+func BrainCircuit(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M12 5a3 3 0 1 0-5.997.125 4 4 0 0 0-2.526 5.77 4 4 0 0 0 .556 6.588A4 4 0 1 0 12 18Z",
 		"M9 13a4.5 4.5 0 0 0 3-4",
@@ -2417,7 +2417,7 @@ func BrainCircuit(opts ...Option) g.Node {
 
 // BrainCog creates a brain-cog icon
 // Tags: mind, intellect, artificial intelligence, ai, deep learning, machine learning, computing
-func BrainCog(opts ...Option) g.Node {
+func BrainCog(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"m10.852 14.772-.383.923",
 		"m10.852 9.228-.383-.923",
@@ -2439,7 +2439,7 @@ func BrainCog(opts ...Option) g.Node {
 
 // BrickWall creates a brick-wall icon
 // Tags: bricks, mortar, cement, materials, construction, builder, labourer, quantity surveyor, blocks, stone
-func BrickWall(opts ...Option) g.Node {
+func BrickWall(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M 5 3 h 14 a 2 2 0 0 1 2 2 v 14 a 2 2 0 0 1 -2 2 h -14 a 2 2 0 0 1 -2 -2 v -14 a 2 2 0 0 1 2 -2 Z",
 		"M12 9v6",
@@ -2454,7 +2454,7 @@ func BrickWall(opts ...Option) g.Node {
 
 // BrickWallFire creates a brick-wall-fire icon
 // Tags: firewall, security, bricks, mortar, cement, materials, construction, builder, labourer, quantity surveyor, blocks, stone, campfire, camping, wilderness, outdoors, lit, warmth, wood, twigs, sticks
-func BrickWallFire(opts ...Option) g.Node {
+func BrickWallFire(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M16 3v2.107",
 		"M17 9c1 3 2.5 3.5 3.5 4.5A5 5 0 0 1 22 17a5 5 0 0 1-10 0c0-.3 0-.6.1-.9a2 2 0 1 0 3.3-2C13 11.5 16 9 17 9",
@@ -2468,7 +2468,7 @@ func BrickWallFire(opts ...Option) g.Node {
 
 // BrickWallShield creates a brick-wall-shield icon
 // Tags: firewall, security, bricks, mortar, cement, materials, construction, builder, labourer, quantity surveyor, blocks, stone, cybersecurity, secure, safety, protection, guardian, armored, armoured, defense, defence, defender, block, threat, prevention, antivirus, vigilance, vigilant, detection, scan, find, strength, strong, tough, invincible, invincibility, invulnerable, undamaged, audit, admin, verification, crest, bravery, knight, foot soldier, infantry, trooper, pawn, battle, war, military, army, cadet, scout
-func BrickWallShield(opts ...Option) g.Node {
+func BrickWallShield(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M12 9v1.258",
 		"M16 3v5.46",
@@ -2483,7 +2483,7 @@ func BrickWallShield(opts ...Option) g.Node {
 
 // Briefcase creates a briefcase icon
 // Tags: work, bag, baggage, folder
-func Briefcase(opts ...Option) g.Node {
+func Briefcase(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M16 20V4a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16",
 		"M 4 6 h 16 a 2 2 0 0 1 2 2 v 10 a 2 2 0 0 1 -2 2 h -16 a 2 2 0 0 1 -2 -2 v -10 a 2 2 0 0 1 2 -2 Z",
@@ -2492,7 +2492,7 @@ func Briefcase(opts ...Option) g.Node {
 
 // BriefcaseBusiness creates a briefcase-business icon
 // Tags: work, bag, baggage, folder, portfolio
-func BriefcaseBusiness(opts ...Option) g.Node {
+func BriefcaseBusiness(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M12 12h.01",
 		"M16 6V4a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v2",
@@ -2503,7 +2503,7 @@ func BriefcaseBusiness(opts ...Option) g.Node {
 
 // BriefcaseConveyorBelt creates a briefcase-conveyor-belt icon
 // Tags: baggage, luggage, travel, suitcase, conveyor, carousel
-func BriefcaseConveyorBelt(opts ...Option) g.Node {
+func BriefcaseConveyorBelt(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M10 20v2",
 		"M14 20v2",
@@ -2517,7 +2517,7 @@ func BriefcaseConveyorBelt(opts ...Option) g.Node {
 
 // BriefcaseMedical creates a briefcase-medical icon
 // Tags: doctor, medicine, first aid
-func BriefcaseMedical(opts ...Option) g.Node {
+func BriefcaseMedical(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M12 11v4",
 		"M14 13h-4",
@@ -2530,7 +2530,7 @@ func BriefcaseMedical(opts ...Option) g.Node {
 
 // BringToFront creates a bring-to-front icon
 // Tags: bring, send, move, over, forward, front, overlap, layer, order
-func BringToFront(opts ...Option) g.Node {
+func BringToFront(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M 10 8 h 4 a 2 2 0 0 1 2 2 v 4 a 2 2 0 0 1 -2 2 h -4 a 2 2 0 0 1 -2 -2 v -4 a 2 2 0 0 1 2 -2 Z",
 		"M4 10a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2",
@@ -2540,7 +2540,7 @@ func BringToFront(opts ...Option) g.Node {
 
 // Brush creates a brush icon
 // Tags: clean, sweep, refactor, remove, draw, paint, color, artist
-func Brush(opts ...Option) g.Node {
+func Brush(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"m11 10 3 3",
 		"M6.5 21A3.5 3.5 0 1 0 3 17.5a2.62 2.62 0 0 1-.708 1.792A1 1 0 0 0 3 21z",
@@ -2550,7 +2550,7 @@ func Brush(opts ...Option) g.Node {
 
 // BrushCleaning creates a brush-cleaning icon
 // Tags: cleaning, utensil, housekeeping, tool, sweeping, scrubbing, hygiene, maintenance, household, cleaner, chores, equipment, sanitation, bristles, handle, home care, sanitize, purify, wash, disinfect, sterilize, scrub, polish, decontaminate, wipe, spotless, remove, empty, erase, purge, eliminate
-func BrushCleaning(opts ...Option) g.Node {
+func BrushCleaning(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"m16 22-1-4",
 		"M19 14a1 1 0 0 0 1-1v-1a2 2 0 0 0-2-2h-3a1 1 0 0 1-1-1V4a2 2 0 0 0-4 0v5a1 1 0 0 1-1 1H6a2 2 0 0 0-2 2v1a1 1 0 0 0 1 1",
@@ -2561,7 +2561,7 @@ func BrushCleaning(opts ...Option) g.Node {
 
 // Bubbles creates a bubbles icon
 // Tags: water, cleaning, soap, bath, hygiene, freshness, wash, foam, cleanliness, shampoo, purity, splash, lightness, airy, relaxation, spa, bubbly, fluid, floating, drop
-func Bubbles(opts ...Option) g.Node {
+func Bubbles(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M7.001 15.085A1.5 1.5 0 0 1 9 16.5",
 		"M 15 8.5 a 3.5 3.5 0 1 0 7 0 a 3.5 3.5 0 1 0 -7 0",
@@ -2572,7 +2572,7 @@ func Bubbles(opts ...Option) g.Node {
 
 // Bug creates a bug icon
 // Tags: issue, error, defect, testing, troubleshoot, problem, report, debug, code, insect, beetle
-func Bug(opts ...Option) g.Node {
+func Bug(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M12 20v-9",
 		"M14 7a4 4 0 0 1 4 4v3a6 6 0 0 1-12 0v-3a4 4 0 0 1 4-4z",
@@ -2590,7 +2590,7 @@ func Bug(opts ...Option) g.Node {
 
 // BugOff creates a bug-off icon
 // Tags: issue, fixed, resolved, testing, debug, code, insect, kill, exterminate, pest control
-func BugOff(opts ...Option) g.Node {
+func BugOff(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M12 20v-8",
 		"M14.12 3.88 16 2",
@@ -2607,7 +2607,7 @@ func BugOff(opts ...Option) g.Node {
 
 // BugPlay creates a bug-play icon
 // Tags: issue, testing, debug, reproduce, code, insect
-func BugPlay(opts ...Option) g.Node {
+func BugPlay(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M10 19.655A6 6 0 0 1 6 14v-3a4 4 0 0 1 4-4h4a4 4 0 0 1 4 3.97",
 		"M14 15.003a1 1 0 0 1 1.517-.859l4.997 2.997a1 1 0 0 1 0 1.718l-4.997 2.997a1 1 0 0 1-1.517-.86z",
@@ -2623,7 +2623,7 @@ func BugPlay(opts ...Option) g.Node {
 
 // Building creates a building icon
 // Tags: organisation, organization
-func Building(opts ...Option) g.Node {
+func Building(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M12 10h.01",
 		"M12 14h.01",
@@ -2641,7 +2641,7 @@ func Building(opts ...Option) g.Node {
 
 // Building2 creates a building-2 icon
 // Tags: business, company, enterprise, skyscraper, organisation, organization, city
-func Building2(opts ...Option) g.Node {
+func Building2(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M10 12h4",
 		"M10 8h4",
@@ -2653,7 +2653,7 @@ func Building2(opts ...Option) g.Node {
 
 // Bus creates a bus icon
 // Tags: bus, vehicle, transport, trip
-func Bus(opts ...Option) g.Node {
+func Bus(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M8 6v6",
 		"M15 6v6",
@@ -2667,7 +2667,7 @@ func Bus(opts ...Option) g.Node {
 
 // BusFront creates a bus-front icon
 // Tags: coach, vehicle, trip, road
-func BusFront(opts ...Option) g.Node {
+func BusFront(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M4 6 2 7",
 		"M10 6h4",
@@ -2683,7 +2683,7 @@ func BusFront(opts ...Option) g.Node {
 
 // Cable creates a cable icon
 // Tags: cord, wire, connector, connection, link, signal, console, computer, equipment, electricity, energy, electronics, recharging, charger, power, supply, disconnected, unplugged, plugs, interface, input, output, audio video, av, rca, scart, tv, television, optical
-func Cable(opts ...Option) g.Node {
+func Cable(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M17 19a1 1 0 0 1-1-1v-2a2 2 0 0 1 2-2h2a2 2 0 0 1 2 2v2a1 1 0 0 1-1 1z",
 		"M17 21v-2",
@@ -2697,7 +2697,7 @@ func Cable(opts ...Option) g.Node {
 
 // CableCar creates a cable-car icon
 // Tags: ski lift, winter holiday, alpine, resort, mountains
-func CableCar(opts ...Option) g.Node {
+func CableCar(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M10 3h.01",
 		"M14 2h.01",
@@ -2712,7 +2712,7 @@ func CableCar(opts ...Option) g.Node {
 
 // Cake creates a cake icon
 // Tags: birthday, birthdate, celebration, party, surprise, gateaux, dessert, fondant, icing sugar, sweet, baking
-func Cake(opts ...Option) g.Node {
+func Cake(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M20 21v-8a2 2 0 0 0-2-2H6a2 2 0 0 0-2 2v8",
 		"M4 16s.5-1 2-1 2.5 2 4 2 2.5-2 4-2 2.5 2 4 2 2-1 2-1",
@@ -2728,7 +2728,7 @@ func Cake(opts ...Option) g.Node {
 
 // CakeSlice creates a cake-slice icon
 // Tags: birthday, birthdate, celebration, party, surprise, gateaux, dessert, candles, wish, fondant, icing sugar, sweet, baking
-func CakeSlice(opts ...Option) g.Node {
+func CakeSlice(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M16 13H3",
 		"M16 17H3",
@@ -2739,7 +2739,7 @@ func CakeSlice(opts ...Option) g.Node {
 
 // Calculator creates a calculator icon
 // Tags: count, calculating machine
-func Calculator(opts ...Option) g.Node {
+func Calculator(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M 6 2 h 12 a 2 2 0 0 1 2 2 v 16 a 2 2 0 0 1 -2 2 h -12 a 2 2 0 0 1 -2 -2 v -16 a 2 2 0 0 1 2 -2 Z",
 		"M 8 6 L 16 6",
@@ -2756,7 +2756,7 @@ func Calculator(opts ...Option) g.Node {
 
 // Calendar creates a calendar icon
 // Tags: date, month, year, event, birthday, birthdate
-func Calendar(opts ...Option) g.Node {
+func Calendar(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M8 2v4",
 		"M16 2v4",
@@ -2767,7 +2767,7 @@ func Calendar(opts ...Option) g.Node {
 
 // Calendar1 creates a calendar-1 icon
 // Tags: date, month, year, event, single, singular, once, 1, first
-func Calendar1(opts ...Option) g.Node {
+func Calendar1(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M11 14h1v4",
 		"M16 2v4",
@@ -2779,7 +2779,7 @@ func Calendar1(opts ...Option) g.Node {
 
 // CalendarArrowDown creates a calendar-arrow-down icon
 // Tags: date, month, year, event, sort, order, ascending, descending, increasing, decreasing, rising, falling
-func CalendarArrowDown(opts ...Option) g.Node {
+func CalendarArrowDown(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"m14 18 4 4 4-4",
 		"M16 2v4",
@@ -2792,7 +2792,7 @@ func CalendarArrowDown(opts ...Option) g.Node {
 
 // CalendarArrowUp creates a calendar-arrow-up icon
 // Tags: date, month, year, event, sort, order, ascending, descending, increasing, decreasing, rising, falling
-func CalendarArrowUp(opts ...Option) g.Node {
+func CalendarArrowUp(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"m14 18 4-4 4 4",
 		"M16 2v4",
@@ -2805,7 +2805,7 @@ func CalendarArrowUp(opts ...Option) g.Node {
 
 // CalendarCheck creates a calendar-check icon
 // Tags: date, day, month, year, event, confirm, subscribe, schedule, done, todo, tick, complete, task
-func CalendarCheck(opts ...Option) g.Node {
+func CalendarCheck(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M8 2v4",
 		"M16 2v4",
@@ -2817,7 +2817,7 @@ func CalendarCheck(opts ...Option) g.Node {
 
 // CalendarCheck2 creates a calendar-check-2 icon
 // Tags: date, day, month, year, event, confirm, subscribe, schedule, done, todo, tick, complete, task
-func CalendarCheck2(opts ...Option) g.Node {
+func CalendarCheck2(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M8 2v4",
 		"M16 2v4",
@@ -2829,7 +2829,7 @@ func CalendarCheck2(opts ...Option) g.Node {
 
 // CalendarClock creates a calendar-clock icon
 // Tags: date, day, month, year, event, clock, hour
-func CalendarClock(opts ...Option) g.Node {
+func CalendarClock(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M16 14v2.2l1.6 1",
 		"M16 2v4",
@@ -2842,7 +2842,7 @@ func CalendarClock(opts ...Option) g.Node {
 
 // CalendarCog creates a calendar-cog icon
 // Tags: date, day, month, year, events, settings, gear, cog
-func CalendarCog(opts ...Option) g.Node {
+func CalendarCog(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"m15.228 16.852-.923-.383",
 		"m15.228 19.148-.923.383",
@@ -2862,7 +2862,7 @@ func CalendarCog(opts ...Option) g.Node {
 
 // CalendarDays creates a calendar-days icon
 // Tags: date, month, year, event
-func CalendarDays(opts ...Option) g.Node {
+func CalendarDays(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M8 2v4",
 		"M16 2v4",
@@ -2879,7 +2879,7 @@ func CalendarDays(opts ...Option) g.Node {
 
 // CalendarFold creates a calendar-fold icon
 // Tags: date, month, year, event, birthday, birthdate, ics
-func CalendarFold(opts ...Option) g.Node {
+func CalendarFold(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M3 20a2 2 0 0 0 2 2h10a2.4 2.4 0 0 0 1.706-.706l3.588-3.588A2.4 2.4 0 0 0 21 16V6a2 2 0 0 0-2-2H5a2 2 0 0 0-2 2z",
 		"M15 22v-5a1 1 0 0 1 1-1h5",
@@ -2891,7 +2891,7 @@ func CalendarFold(opts ...Option) g.Node {
 
 // CalendarHeart creates a calendar-heart icon
 // Tags: date, month, year, event, heart, favourite, subscribe, valentines day
-func CalendarHeart(opts ...Option) g.Node {
+func CalendarHeart(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M12.127 22H5a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2v5.125",
 		"M14.62 18.8A2.25 2.25 0 1 1 18 15.836a2.25 2.25 0 1 1 3.38 2.966l-2.626 2.856a.998.998 0 0 1-1.507 0z",
@@ -2903,7 +2903,7 @@ func CalendarHeart(opts ...Option) g.Node {
 
 // CalendarMinus creates a calendar-minus icon
 // Tags: date, day, month, year, event, delete, remove
-func CalendarMinus(opts ...Option) g.Node {
+func CalendarMinus(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M16 19h6",
 		"M16 2v4",
@@ -2915,7 +2915,7 @@ func CalendarMinus(opts ...Option) g.Node {
 
 // CalendarMinus2 creates a calendar-minus-2 icon
 // Tags: date, day, month, year, event, delete, remove
-func CalendarMinus2(opts ...Option) g.Node {
+func CalendarMinus2(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M8 2v4",
 		"M16 2v4",
@@ -2927,7 +2927,7 @@ func CalendarMinus2(opts ...Option) g.Node {
 
 // CalendarOff creates a calendar-off icon
 // Tags: date, day, month, year, event, delete, remove
-func CalendarOff(opts ...Option) g.Node {
+func CalendarOff(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M4.2 4.2A2 2 0 0 0 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 1.82-1.18",
 		"M21 15.5V6a2 2 0 0 0-2-2H9.5",
@@ -2940,7 +2940,7 @@ func CalendarOff(opts ...Option) g.Node {
 
 // CalendarPlus creates a calendar-plus icon
 // Tags: date, day, month, year, event, add, subscribe, create, new
-func CalendarPlus(opts ...Option) g.Node {
+func CalendarPlus(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M16 19h6",
 		"M16 2v4",
@@ -2953,7 +2953,7 @@ func CalendarPlus(opts ...Option) g.Node {
 
 // CalendarPlus2 creates a calendar-plus-2 icon
 // Tags: date, day, month, year, event, add, subscribe, create, new
-func CalendarPlus2(opts ...Option) g.Node {
+func CalendarPlus2(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M8 2v4",
 		"M16 2v4",
@@ -2966,7 +2966,7 @@ func CalendarPlus2(opts ...Option) g.Node {
 
 // CalendarRange creates a calendar-range icon
 // Tags: date, day, month, year, event, range, period
-func CalendarRange(opts ...Option) g.Node {
+func CalendarRange(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M 5 4 h 14 a 2 2 0 0 1 2 2 v 14 a 2 2 0 0 1 -2 2 h -14 a 2 2 0 0 1 -2 -2 v -14 a 2 2 0 0 1 2 -2 Z",
 		"M16 2v4",
@@ -2981,7 +2981,7 @@ func CalendarRange(opts ...Option) g.Node {
 
 // CalendarSearch creates a calendar-search icon
 // Tags: date, day, month, year, events, search, lens
-func CalendarSearch(opts ...Option) g.Node {
+func CalendarSearch(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M16 2v4",
 		"M21 11.75V6a2 2 0 0 0-2-2H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h7.25",
@@ -2994,7 +2994,7 @@ func CalendarSearch(opts ...Option) g.Node {
 
 // CalendarSync creates a calendar-sync icon
 // Tags: repeat, refresh, reconnect, transfer, backup, date, month, year, event, subscribe, recurring, schedule, reminder, automatic, auto
-func CalendarSync(opts ...Option) g.Node {
+func CalendarSync(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M11 10v4h4",
 		"m11 14 1.535-1.605a5 5 0 0 1 8 1.5",
@@ -3009,7 +3009,7 @@ func CalendarSync(opts ...Option) g.Node {
 
 // CalendarX creates a calendar-x icon
 // Tags: date, day, month, year, event, remove, busy
-func CalendarX(opts ...Option) g.Node {
+func CalendarX(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M8 2v4",
 		"M16 2v4",
@@ -3022,7 +3022,7 @@ func CalendarX(opts ...Option) g.Node {
 
 // CalendarX2 creates a calendar-x-2 icon
 // Tags: date, day, month, year, event, remove
-func CalendarX2(opts ...Option) g.Node {
+func CalendarX2(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M8 2v4",
 		"M16 2v4",
@@ -3035,7 +3035,7 @@ func CalendarX2(opts ...Option) g.Node {
 
 // Calendars creates a calendars icon
 // Tags: date, month, year, event, dates, months, years, events
-func Calendars(opts ...Option) g.Node {
+func Calendars(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M12 2v2",
 		"M15.726 21.01A2 2 0 0 1 14 22H4a2 2 0 0 1-2-2V10a2 2 0 0 1 2-2",
@@ -3048,7 +3048,7 @@ func Calendars(opts ...Option) g.Node {
 
 // Camera creates a camera icon
 // Tags: photography, lens, focus, capture, shot, visual, image, device, equipment, photo, webcam, video
-func Camera(opts ...Option) g.Node {
+func Camera(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M13.997 4a2 2 0 0 1 1.76 1.05l.486.9A2 2 0 0 0 18.003 7H20a2 2 0 0 1 2 2v9a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V9a2 2 0 0 1 2-2h1.997a2 2 0 0 0 1.759-1.048l.489-.904A2 2 0 0 1 10.004 4z",
 		"M 9 13 a 3 3 0 1 0 6 0 a 3 3 0 1 0 -6 0",
@@ -3057,7 +3057,7 @@ func Camera(opts ...Option) g.Node {
 
 // CameraOff creates a camera-off icon
 // Tags: photo, webcam, video
-func CameraOff(opts ...Option) g.Node {
+func CameraOff(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M14.564 14.558a3 3 0 1 1-4.122-4.121",
 		"m2 2 20 20",
@@ -3068,7 +3068,7 @@ func CameraOff(opts ...Option) g.Node {
 
 // Candy creates a candy icon
 // Tags: sugar, food, sweet
-func Candy(opts ...Option) g.Node {
+func Candy(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M10 7v10.9",
 		"M14 6.1V17",
@@ -3080,7 +3080,7 @@ func Candy(opts ...Option) g.Node {
 
 // CandyCane creates a candy-cane icon
 // Tags: sugar, food, sweet, christmas, xmas
-func CandyCane(opts ...Option) g.Node {
+func CandyCane(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M5.7 21a2 2 0 0 1-3.5-2l8.6-14a6 6 0 0 1 10.4 6 2 2 0 1 1-3.464-2 2 2 0 1 0-3.464-2Z",
 		"M17.75 7 15 2.1",
@@ -3092,7 +3092,7 @@ func CandyCane(opts ...Option) g.Node {
 
 // CandyOff creates a candy-off icon
 // Tags: sugar free, food, sweet, allergy, intolerance, diet
-func CandyOff(opts ...Option) g.Node {
+func CandyOff(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M10 10v7.9",
 		"M11.802 6.145a5 5 0 0 1 6.053 6.053",
@@ -3106,7 +3106,7 @@ func CandyOff(opts ...Option) g.Node {
 
 // Cannabis creates a cannabis icon
 // Tags: cannabis, weed, leaf
-func Cannabis(opts ...Option) g.Node {
+func Cannabis(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M12 22v-4",
 		"M7 12c-1.5 0-4.5 1.5-5 3 3.5 1.5 6 1 6 1-1.5 1.5-2 3.5-2 5 2.5 0 4.5-1.5 6-3 1.5 1.5 3.5 3 6 3 0-1.5-.5-3.5-2-5 0 0 2.5.5 6-1-.5-1.5-3.5-3-5-3 1.5-1 4-4 4-6-2.5 0-5.5 1.5-7 3 0-2.5-.5-5-2-7-1.5 2-2 4.5-2 7-1.5-1.5-4.5-3-7-3 0 2 2.5 5 4 6",
@@ -3115,7 +3115,7 @@ func Cannabis(opts ...Option) g.Node {
 
 // CannabisOff creates a cannabis-off icon
 // Tags: cannabis, weed, leaf
-func CannabisOff(opts ...Option) g.Node {
+func CannabisOff(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M12 22v-4c1.5 1.5 3.5 3 6 3 0-1.5-.5-3.5-2-5",
 		"M13.988 8.327C13.902 6.054 13.365 3.82 12 2a9.3 9.3 0 0 0-1.445 2.9",
@@ -3128,7 +3128,7 @@ func CannabisOff(opts ...Option) g.Node {
 
 // Captions creates a captions icon
 // Tags: closed captions, subtitles, subhead, transcription, transcribe, dialogue, accessibility
-func Captions(opts ...Option) g.Node {
+func Captions(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M 5 5 h 14 a 2 2 0 0 1 2 2 v 10 a 2 2 0 0 1 -2 2 h -14 a 2 2 0 0 1 -2 -2 v -10 a 2 2 0 0 1 2 -2 Z",
 		"M7 15h4M15 15h2M7 11h2M13 11h4",
@@ -3137,7 +3137,7 @@ func Captions(opts ...Option) g.Node {
 
 // CaptionsOff creates a captions-off icon
 // Tags: closed captions, subtitles, subhead, transcription, transcribe, dialogue, accessibility
-func CaptionsOff(opts ...Option) g.Node {
+func CaptionsOff(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M10.5 5H19a2 2 0 0 1 2 2v8.5",
 		"M17 11h-.5",
@@ -3150,7 +3150,7 @@ func CaptionsOff(opts ...Option) g.Node {
 
 // Car creates a car icon
 // Tags: vehicle, drive, trip, journey
-func Car(opts ...Option) g.Node {
+func Car(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M19 17h2c.6 0 1-.4 1-1v-3c0-.9-.7-1.7-1.5-1.9C18.7 10.6 16 10 16 10s-1.3-1.4-2.2-2.3c-.5-.4-1.1-.7-1.8-.7H5c-.6 0-1.1.4-1.4.9l-1.4 2.9A3.7 3.7 0 0 0 2 12v4c0 .6.4 1 1 1h2",
 		"M 5 17 a 2 2 0 1 0 4 0 a 2 2 0 1 0 -4 0",
@@ -3161,7 +3161,7 @@ func Car(opts ...Option) g.Node {
 
 // CarFront creates a car-front icon
 // Tags: vehicle, drive, trip, journey
-func CarFront(opts ...Option) g.Node {
+func CarFront(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"m21 8-2 2-1.5-3.7A2 2 0 0 0 15.646 5H8.4a2 2 0 0 0-1.903 1.257L5 10 3 8",
 		"M7 14h.01",
@@ -3174,7 +3174,7 @@ func CarFront(opts ...Option) g.Node {
 
 // CarTaxiFront creates a car-taxi-front icon
 // Tags: cab, vehicle, drive, trip, journey
-func CarTaxiFront(opts ...Option) g.Node {
+func CarTaxiFront(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M10 2h4",
 		"m21 8-2 2-1.5-3.7A2 2 0 0 0 15.646 5H8.4a2 2 0 0 0-1.903 1.257L5 10 3 8",
@@ -3188,7 +3188,7 @@ func CarTaxiFront(opts ...Option) g.Node {
 
 // Caravan creates a caravan icon
 // Tags: trailer, tow, camping, campsite, mobile home, holiday, nomadic, wilderness, outdoors
-func Caravan(opts ...Option) g.Node {
+func Caravan(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M18 19V9a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v8a2 2 0 0 0 2 2h2",
 		"M2 9h3a1 1 0 0 1 1 1v2a1 1 0 0 1-1 1H2",
@@ -3199,7 +3199,7 @@ func Caravan(opts ...Option) g.Node {
 
 // CardSim creates a card-sim icon
 // Tags: cellphone, smartphone, mobile, network, cellular, service, provider, signal, coverage, disk, data, format, storage, flash, digital, contacts, phone book, contractual, circuit board, chip
-func CardSim(opts ...Option) g.Node {
+func CardSim(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M12 14v4",
 		"M14.172 2a2 2 0 0 1 1.414.586l3.828 3.828A2 2 0 0 1 20 7.828V20a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2z",
@@ -3210,7 +3210,7 @@ func CardSim(opts ...Option) g.Node {
 
 // Carrot creates a carrot icon
 // Tags: vegetable, food, eat
-func Carrot(opts ...Option) g.Node {
+func Carrot(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M2.27 21.7s9.87-3.5 12.73-6.36a4.5 4.5 0 0 0-6.36-6.37C5.77 11.84 2.27 21.7 2.27 21.7zM8.64 14l-2.05-2.04M15.34 15l-2.46-2.46",
 		"M22 9s-1.33-2-3.5-2C16.86 7 15 9 15 9s1.33 2 3.5 2S22 9 22 9z",
@@ -3220,7 +3220,7 @@ func Carrot(opts ...Option) g.Node {
 
 // CaseLower creates a case-lower icon
 // Tags: text, letters, characters, font, typography
-func CaseLower(opts ...Option) g.Node {
+func CaseLower(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M10 9v7",
 		"M14 6v10",
@@ -3231,7 +3231,7 @@ func CaseLower(opts ...Option) g.Node {
 
 // CaseSensitive creates a case-sensitive icon
 // Tags: text, letters, characters, font, typography
-func CaseSensitive(opts ...Option) g.Node {
+func CaseSensitive(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"m2 16 4.039-9.69a.5.5 0 0 1 .923 0L11 16",
 		"M22 9v7",
@@ -3242,7 +3242,7 @@ func CaseSensitive(opts ...Option) g.Node {
 
 // CaseUpper creates a case-upper icon
 // Tags: text, letters, characters, font, typography
-func CaseUpper(opts ...Option) g.Node {
+func CaseUpper(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M15 11h4.5a1 1 0 0 1 0 5h-4a.5.5 0 0 1-.5-.5v-9a.5.5 0 0 1 .5-.5h3a1 1 0 0 1 0 5",
 		"m2 16 4.039-9.69a.5.5 0 0 1 .923 0L11 16",
@@ -3252,7 +3252,7 @@ func CaseUpper(opts ...Option) g.Node {
 
 // CassetteTape creates a cassette-tape icon
 // Tags: audio, music, recording, play
-func CassetteTape(opts ...Option) g.Node {
+func CassetteTape(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M 4 4 h 16 a 2 2 0 0 1 2 2 v 12 a 2 2 0 0 1 -2 2 h -16 a 2 2 0 0 1 -2 -2 v -12 a 2 2 0 0 1 2 -2 Z",
 		"M 6 10 a 2 2 0 1 0 4 0 a 2 2 0 1 0 -4 0",
@@ -3264,7 +3264,7 @@ func CassetteTape(opts ...Option) g.Node {
 
 // Cast creates a cast icon
 // Tags: chromecast, airplay, screen
-func Cast(opts ...Option) g.Node {
+func Cast(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M2 8V6a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2h-6",
 		"M2 12a9 9 0 0 1 8 8",
@@ -3275,7 +3275,7 @@ func Cast(opts ...Option) g.Node {
 
 // Castle creates a castle icon
 // Tags: fortress, stronghold, palace, chateau, building
-func Castle(opts ...Option) g.Node {
+func Castle(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M10 5V3",
 		"M14 5V3",
@@ -3290,7 +3290,7 @@ func Castle(opts ...Option) g.Node {
 
 // Cat creates a cat icon
 // Tags: animal, pet, kitten, feline
-func Cat(opts ...Option) g.Node {
+func Cat(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M12 5c.67 0 1.35.09 2 .26 1.78-2 5.03-2.84 6.42-2.26 1.4.58-.42 7-.42 7 .57 1.07 1 2.24 1 3.44C21 17.9 16.97 21 12 21s-9-3-9-7.56c0-1.25.5-2.4 1-3.44 0 0-1.89-6.42-.5-7 1.39-.58 4.72.23 6.5 2.23A9.04 9.04 0 0 1 12 5Z",
 		"M8 14v.5",
@@ -3301,7 +3301,7 @@ func Cat(opts ...Option) g.Node {
 
 // Cctv creates a cctv icon
 // Tags: camera, surveillance, recording, film, videotape, crime, watching
-func Cctv(opts ...Option) g.Node {
+func Cctv(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M16.75 12h3.632a1 1 0 0 1 .894 1.447l-2.034 4.069a1 1 0 0 1-1.708.134l-2.124-2.97",
 		"M17.106 9.053a1 1 0 0 1 .447 1.341l-3.106 6.211a1 1 0 0 1-1.342.447L3.61 12.3a2.92 2.92 0 0 1-1.3-3.91L3.69 5.6a2.92 2.92 0 0 1 3.92-1.3z",
@@ -3313,7 +3313,7 @@ func Cctv(opts ...Option) g.Node {
 
 // ChartArea creates a chart-area icon
 // Tags: statistics, analytics, diagram, graph, area
-func ChartArea(opts ...Option) g.Node {
+func ChartArea(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M3 3v16a2 2 0 0 0 2 2h16",
 		"M7 11.207a.5.5 0 0 1 .146-.353l2-2a.5.5 0 0 1 .708 0l3.292 3.292a.5.5 0 0 0 .708 0l4.292-4.292a.5.5 0 0 1 .854.353V16a1 1 0 0 1-1 1H8a1 1 0 0 1-1-1z",
@@ -3322,7 +3322,7 @@ func ChartArea(opts ...Option) g.Node {
 
 // ChartBar creates a chart-bar icon
 // Tags: statistics, analytics, diagram, graph
-func ChartBar(opts ...Option) g.Node {
+func ChartBar(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M3 3v16a2 2 0 0 0 2 2h16",
 		"M7 16h8",
@@ -3333,7 +3333,7 @@ func ChartBar(opts ...Option) g.Node {
 
 // ChartBarBig creates a chart-bar-big icon
 // Tags: statistics, analytics, diagram, graph
-func ChartBarBig(opts ...Option) g.Node {
+func ChartBarBig(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M3 3v16a2 2 0 0 0 2 2h16",
 		"M 8 13 h 7 a 1 1 0 0 1 1 1 v 2 a 1 1 0 0 1 -1 1 h -7 a 1 1 0 0 1 -1 -1 v -2 a 1 1 0 0 1 1 -1 Z",
@@ -3343,7 +3343,7 @@ func ChartBarBig(opts ...Option) g.Node {
 
 // ChartBarDecreasing creates a chart-bar-decreasing icon
 // Tags: statistics, analytics, diagram, graph, trending down
-func ChartBarDecreasing(opts ...Option) g.Node {
+func ChartBarDecreasing(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M3 3v16a2 2 0 0 0 2 2h16",
 		"M7 11h8",
@@ -3354,7 +3354,7 @@ func ChartBarDecreasing(opts ...Option) g.Node {
 
 // ChartBarIncreasing creates a chart-bar-increasing icon
 // Tags: statistics, analytics, diagram, graph, trending up
-func ChartBarIncreasing(opts ...Option) g.Node {
+func ChartBarIncreasing(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M3 3v16a2 2 0 0 0 2 2h16",
 		"M7 11h8",
@@ -3365,7 +3365,7 @@ func ChartBarIncreasing(opts ...Option) g.Node {
 
 // ChartBarStacked creates a chart-bar-stacked icon
 // Tags: statistics, analytics, diagram, graph, multivariate, categorical, comparison
-func ChartBarStacked(opts ...Option) g.Node {
+func ChartBarStacked(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M11 13v4",
 		"M15 5v4",
@@ -3377,7 +3377,7 @@ func ChartBarStacked(opts ...Option) g.Node {
 
 // ChartCandlestick creates a chart-candlestick icon
 // Tags: trading, trader, financial, markets, portfolio, assets, prices, value, valuation, commodities, currencies, currency, stocks, exchange, hedge fund, statistics, analytics, diagram, graph
-func ChartCandlestick(opts ...Option) g.Node {
+func ChartCandlestick(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M9 5v4",
 		"M 8 9 h 2 a 1 1 0 0 1 1 1 v 4 a 1 1 0 0 1 -1 1 h -2 a 1 1 0 0 1 -1 -1 v -4 a 1 1 0 0 1 1 -1 Z",
@@ -3391,7 +3391,7 @@ func ChartCandlestick(opts ...Option) g.Node {
 
 // ChartColumn creates a chart-column icon
 // Tags: statistics, analytics, diagram, graph
-func ChartColumn(opts ...Option) g.Node {
+func ChartColumn(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M3 3v16a2 2 0 0 0 2 2h16",
 		"M18 17V9",
@@ -3402,7 +3402,7 @@ func ChartColumn(opts ...Option) g.Node {
 
 // ChartColumnBig creates a chart-column-big icon
 // Tags: statistics, analytics, diagram, graph
-func ChartColumnBig(opts ...Option) g.Node {
+func ChartColumnBig(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M3 3v16a2 2 0 0 0 2 2h16",
 		"M 16 5 h 2 a 1 1 0 0 1 1 1 v 10 a 1 1 0 0 1 -1 1 h -2 a 1 1 0 0 1 -1 -1 v -10 a 1 1 0 0 1 1 -1 Z",
@@ -3412,7 +3412,7 @@ func ChartColumnBig(opts ...Option) g.Node {
 
 // ChartColumnDecreasing creates a chart-column-decreasing icon
 // Tags: statistics, analytics, diagram, graph, trending down
-func ChartColumnDecreasing(opts ...Option) g.Node {
+func ChartColumnDecreasing(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M13 17V9",
 		"M18 17v-3",
@@ -3423,7 +3423,7 @@ func ChartColumnDecreasing(opts ...Option) g.Node {
 
 // ChartColumnIncreasing creates a chart-column-increasing icon
 // Tags: statistics, analytics, diagram, graph, trending up
-func ChartColumnIncreasing(opts ...Option) g.Node {
+func ChartColumnIncreasing(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M13 17V9",
 		"M18 17V5",
@@ -3434,7 +3434,7 @@ func ChartColumnIncreasing(opts ...Option) g.Node {
 
 // ChartColumnStacked creates a chart-column-stacked icon
 // Tags: statistics, analytics, diagram, graph, multivariate, categorical, comparison
-func ChartColumnStacked(opts ...Option) g.Node {
+func ChartColumnStacked(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M11 13H7",
 		"M19 9h-4",
@@ -3446,7 +3446,7 @@ func ChartColumnStacked(opts ...Option) g.Node {
 
 // ChartGantt creates a chart-gantt icon
 // Tags: diagram, graph, timeline, planning
-func ChartGantt(opts ...Option) g.Node {
+func ChartGantt(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M10 6h8",
 		"M12 16h6",
@@ -3457,7 +3457,7 @@ func ChartGantt(opts ...Option) g.Node {
 
 // ChartLine creates a chart-line icon
 // Tags: statistics, analytics, diagram, graph
-func ChartLine(opts ...Option) g.Node {
+func ChartLine(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M3 3v16a2 2 0 0 0 2 2h16",
 		"m19 9-5 5-4-4-3 3",
@@ -3466,7 +3466,7 @@ func ChartLine(opts ...Option) g.Node {
 
 // ChartNetwork creates a chart-network icon
 // Tags: statistics, analytics, diagram, graph, topology, cluster, web, nodes, connections, edges
-func ChartNetwork(opts ...Option) g.Node {
+func ChartNetwork(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"m13.11 7.664 1.78 2.672",
 		"m14.162 12.788-3.324 1.424",
@@ -3480,7 +3480,7 @@ func ChartNetwork(opts ...Option) g.Node {
 
 // ChartNoAxesColumn creates a chart-no-axes-column icon
 // Tags: statistics, analytics, diagram, graph
-func ChartNoAxesColumn(opts ...Option) g.Node {
+func ChartNoAxesColumn(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M5 21v-6",
 		"M12 21V3",
@@ -3490,7 +3490,7 @@ func ChartNoAxesColumn(opts ...Option) g.Node {
 
 // ChartNoAxesColumnDecreasing creates a chart-no-axes-column-decreasing icon
 // Tags: statistics, analytics, diagram, graph, trending down
-func ChartNoAxesColumnDecreasing(opts ...Option) g.Node {
+func ChartNoAxesColumnDecreasing(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M5 21V3",
 		"M12 21V9",
@@ -3500,7 +3500,7 @@ func ChartNoAxesColumnDecreasing(opts ...Option) g.Node {
 
 // ChartNoAxesColumnIncreasing creates a chart-no-axes-column-increasing icon
 // Tags: statistics, analytics, diagram, graph, trending up
-func ChartNoAxesColumnIncreasing(opts ...Option) g.Node {
+func ChartNoAxesColumnIncreasing(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M5 21v-6",
 		"M12 21V9",
@@ -3510,7 +3510,7 @@ func ChartNoAxesColumnIncreasing(opts ...Option) g.Node {
 
 // ChartNoAxesCombined creates a chart-no-axes-combined icon
 // Tags: statistics, analytics, diagram, graph, trending up
-func ChartNoAxesCombined(opts ...Option) g.Node {
+func ChartNoAxesCombined(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M12 16v5",
 		"M16 14v7",
@@ -3523,7 +3523,7 @@ func ChartNoAxesCombined(opts ...Option) g.Node {
 
 // ChartNoAxesGantt creates a chart-no-axes-gantt icon
 // Tags: projects, manage, overview, roadmap, plan, intentions, timeline, deadline, date, event, range, period, productivity, work, agile, code, coding
-func ChartNoAxesGantt(opts ...Option) g.Node {
+func ChartNoAxesGantt(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M6 5h12",
 		"M4 12h10",
@@ -3533,7 +3533,7 @@ func ChartNoAxesGantt(opts ...Option) g.Node {
 
 // ChartPie creates a chart-pie icon
 // Tags: statistics, analytics, diagram, presentation
-func ChartPie(opts ...Option) g.Node {
+func ChartPie(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M21 12c.552 0 1.005-.449.95-.998a10 10 0 0 0-8.953-8.951c-.55-.055-.998.398-.998.95v8a1 1 0 0 0 1 1z",
 		"M21.21 15.89A10 10 0 1 1 8 2.83",
@@ -3542,7 +3542,7 @@ func ChartPie(opts ...Option) g.Node {
 
 // ChartScatter creates a chart-scatter icon
 // Tags: statistics, analytics, diagram, graph
-func ChartScatter(opts ...Option) g.Node {
+func ChartScatter(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M 7 7.5 a 0.5 0.5 0 1 0 1 0 a 0.5 0.5 0 1 0 -1 0",
 		"M 18 5.5 a 0.5 0.5 0 1 0 1 0 a 0.5 0.5 0 1 0 -1 0",
@@ -3555,7 +3555,7 @@ func ChartScatter(opts ...Option) g.Node {
 
 // ChartSpline creates a chart-spline icon
 // Tags: statistics, analytics, diagram, graph, curve, continuous, smooth, polynomial, quadratic, function, interpolation
-func ChartSpline(opts ...Option) g.Node {
+func ChartSpline(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M3 3v16a2 2 0 0 0 2 2h16",
 		"M7 16c.5-2 1.5-7 4-7 2 0 2 3 4 3 2.5 0 4.5-5 5-7",
@@ -3564,13 +3564,13 @@ func ChartSpline(opts ...Option) g.Node {
 
 // Check creates a check icon
 // Tags: done, todo, tick, complete, task
-func Check(opts ...Option) g.Node {
+func Check(opts ...Option) templ.Component {
 	return Icon("M20 6 9 17l-5-5", opts...)
 }
 
 // CheckCheck creates a check-check icon
 // Tags: done, received, double, todo, tick, complete, task
-func CheckCheck(opts ...Option) g.Node {
+func CheckCheck(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M18 6 7 17l-5-5",
 		"m22 10-7.5 7.5L13 16",
@@ -3579,7 +3579,7 @@ func CheckCheck(opts ...Option) g.Node {
 
 // CheckLine creates a check-line icon
 // Tags: done, todo, tick, complete, task
-func CheckLine(opts ...Option) g.Node {
+func CheckLine(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M20 4L9 15",
 		"M21 19L3 19",
@@ -3589,7 +3589,7 @@ func CheckLine(opts ...Option) g.Node {
 
 // ChefHat creates a chef-hat icon
 // Tags: cooking, food, kitchen, restaurant
-func ChefHat(opts ...Option) g.Node {
+func ChefHat(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M17 21a1 1 0 0 0 1-1v-5.35c0-.457.316-.844.727-1.041a4 4 0 0 0-2.134-7.589 5 5 0 0 0-9.186 0 4 4 0 0 0-2.134 7.588c.411.198.727.585.727 1.041V20a1 1 0 0 0 1 1Z",
 		"M6 17h12",
@@ -3598,7 +3598,7 @@ func ChefHat(opts ...Option) g.Node {
 
 // Cherry creates a cherry icon
 // Tags: fruit, food
-func Cherry(opts ...Option) g.Node {
+func Cherry(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M2 17a5 5 0 0 0 10 0c0-2.76-2.5-5-5-3-2.5-2-5 .24-5 3Z",
 		"M12 17a5 5 0 0 0 10 0c0-2.76-2.5-5-5-3-2.5-2-5 .24-5 3Z",
@@ -3609,7 +3609,7 @@ func Cherry(opts ...Option) g.Node {
 
 // ChessBishop creates a chess-bishop icon
 // Tags: mitre, miter, piece, board game, religion
-func ChessBishop(opts ...Option) g.Node {
+func ChessBishop(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M5 20a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2v1a1 1 0 0 1-1 1H6a1 1 0 0 1-1-1z",
 		"M15 18c1.5-.615 3-2.461 3-4.923C18 8.769 14.5 4.462 12 2 9.5 4.462 6 8.77 6 13.077 6 15.539 7.5 17.385 9 18",
@@ -3620,7 +3620,7 @@ func ChessBishop(opts ...Option) g.Node {
 
 // ChessKing creates a chess-king icon
 // Tags: ruler, crown, piece, board game, stalemate
-func ChessKing(opts ...Option) g.Node {
+func ChessKing(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M4 20a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v1a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1z",
 		"m6.7 18-1-1C4.35 15.682 3 14.09 3 12a5 5 0 0 1 4.95-5c1.584 0 2.7.455 4.05 1.818C13.35 7.455 14.466 7 16.05 7A5 5 0 0 1 21 12c0 2.082-1.359 3.673-2.7 5l-1 1",
@@ -3631,7 +3631,7 @@ func ChessKing(opts ...Option) g.Node {
 
 // ChessKnight creates a chess-knight icon
 // Tags: piece, horse, board game
-func ChessKnight(opts ...Option) g.Node {
+func ChessKnight(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M5 20a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2v1a1 1 0 0 1-1 1H6a1 1 0 0 1-1-1z",
 		"M16.5 18c1-2 2.5-5 2.5-9a7 7 0 0 0-7-7H6.635a1 1 0 0 0-.768 1.64L7 5l-2.32 5.802a2 2 0 0 0 .95 2.526l2.87 1.456",
@@ -3643,7 +3643,7 @@ func ChessKnight(opts ...Option) g.Node {
 
 // ChessPawn creates a chess-pawn icon
 // Tags: piece, board game
-func ChessPawn(opts ...Option) g.Node {
+func ChessPawn(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M5 20a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2v1a1 1 0 0 1-1 1H6a1 1 0 0 1-1-1z",
 		"m14.5 10 1.5 8",
@@ -3655,7 +3655,7 @@ func ChessPawn(opts ...Option) g.Node {
 
 // ChessQueen creates a chess-queen icon
 // Tags: ruler, crown, piece, board game, stalemate
-func ChessQueen(opts ...Option) g.Node {
+func ChessQueen(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M4 20a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v1a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1z",
 		"m12.474 5.943 1.567 5.34a1 1 0 0 0 1.75.328l2.616-3.402",
@@ -3670,7 +3670,7 @@ func ChessQueen(opts ...Option) g.Node {
 
 // ChessRook creates a chess-rook icon
 // Tags: castle, piece, board game
-func ChessRook(opts ...Option) g.Node {
+func ChessRook(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M5 20a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2v1a1 1 0 0 1-1 1H6a1 1 0 0 1-1-1z",
 		"M10 2v2",
@@ -3684,13 +3684,13 @@ func ChessRook(opts ...Option) g.Node {
 
 // ChevronDown creates a chevron-down icon
 // Tags: backwards, reverse, slow, dropdown
-func ChevronDown(opts ...Option) g.Node {
+func ChevronDown(opts ...Option) templ.Component {
 	return Icon("m6 9 6 6 6-6", opts...)
 }
 
 // ChevronFirst creates a chevron-first icon
 // Tags: previous, music
-func ChevronFirst(opts ...Option) g.Node {
+func ChevronFirst(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"m17 18-6-6 6-6",
 		"M7 6v12",
@@ -3699,7 +3699,7 @@ func ChevronFirst(opts ...Option) g.Node {
 
 // ChevronLast creates a chevron-last icon
 // Tags: skip, next, music
-func ChevronLast(opts ...Option) g.Node {
+func ChevronLast(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"m7 18 6-6-6-6",
 		"M17 6v12",
@@ -3708,25 +3708,25 @@ func ChevronLast(opts ...Option) g.Node {
 
 // ChevronLeft creates a chevron-left icon
 // Tags: back, previous, less than, fewer, menu, <
-func ChevronLeft(opts ...Option) g.Node {
+func ChevronLeft(opts ...Option) templ.Component {
 	return Icon("m15 18-6-6 6-6", opts...)
 }
 
 // ChevronRight creates a chevron-right icon
 // Tags: forward, next, more than, greater, menu, code, coding, command line, terminal, prompt, shell, >
-func ChevronRight(opts ...Option) g.Node {
+func ChevronRight(opts ...Option) templ.Component {
 	return Icon("m9 18 6-6-6-6", opts...)
 }
 
 // ChevronUp creates a chevron-up icon
 // Tags: caret, keyboard, mac, control, ctrl, superscript, exponential, power, ahead, fast, ^, dropdown
-func ChevronUp(opts ...Option) g.Node {
+func ChevronUp(opts ...Option) templ.Component {
 	return Icon("m18 15-6-6-6 6", opts...)
 }
 
 // ChevronsDown creates a chevrons-down icon
 // Tags: backwards, reverse, slower
-func ChevronsDown(opts ...Option) g.Node {
+func ChevronsDown(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"m7 6 5 5 5-5",
 		"m7 13 5 5 5-5",
@@ -3735,7 +3735,7 @@ func ChevronsDown(opts ...Option) g.Node {
 
 // ChevronsDownUp creates a chevrons-down-up icon
 // Tags: collapse, fold, vertical
-func ChevronsDownUp(opts ...Option) g.Node {
+func ChevronsDownUp(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"m7 20 5-5 5 5",
 		"m7 4 5 5 5-5",
@@ -3744,7 +3744,7 @@ func ChevronsDownUp(opts ...Option) g.Node {
 
 // ChevronsLeft creates a chevrons-left icon
 // Tags: turn, corner
-func ChevronsLeft(opts ...Option) g.Node {
+func ChevronsLeft(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"m11 17-5-5 5-5",
 		"m18 17-5-5 5-5",
@@ -3753,7 +3753,7 @@ func ChevronsLeft(opts ...Option) g.Node {
 
 // ChevronsLeftRight creates a chevrons-left-right icon
 // Tags: expand, horizontal, unfold
-func ChevronsLeftRight(opts ...Option) g.Node {
+func ChevronsLeftRight(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"m9 7-5 5 5 5",
 		"m15 7 5 5-5 5",
@@ -3762,7 +3762,7 @@ func ChevronsLeftRight(opts ...Option) g.Node {
 
 // ChevronsLeftRightEllipsis creates a chevrons-left-right-ellipsis icon
 // Tags: internet, network, connection, cable, lan, port, router, switch, hub, modem, web, online, networking, communication, socket, plug, slot, controller, connector, interface, console, signal, data, input, output
-func ChevronsLeftRightEllipsis(opts ...Option) g.Node {
+func ChevronsLeftRightEllipsis(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M12 12h.01",
 		"M16 12h.01",
@@ -3774,7 +3774,7 @@ func ChevronsLeftRightEllipsis(opts ...Option) g.Node {
 
 // ChevronsRight creates a chevrons-right icon
 // Tags: turn, corner
-func ChevronsRight(opts ...Option) g.Node {
+func ChevronsRight(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"m6 17 5-5-5-5",
 		"m13 17 5-5-5-5",
@@ -3783,7 +3783,7 @@ func ChevronsRight(opts ...Option) g.Node {
 
 // ChevronsRightLeft creates a chevrons-right-left icon
 // Tags: collapse, fold, horizontal
-func ChevronsRightLeft(opts ...Option) g.Node {
+func ChevronsRightLeft(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"m20 17-5-5 5-5",
 		"m4 17 5-5-5-5",
@@ -3792,7 +3792,7 @@ func ChevronsRightLeft(opts ...Option) g.Node {
 
 // ChevronsUp creates a chevrons-up icon
 // Tags: forward, ahead, faster, speed, boost
-func ChevronsUp(opts ...Option) g.Node {
+func ChevronsUp(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"m17 11-5-5-5 5",
 		"m17 18-5-5-5 5",
@@ -3801,7 +3801,7 @@ func ChevronsUp(opts ...Option) g.Node {
 
 // ChevronsUpDown creates a chevrons-up-down icon
 // Tags: expand, unfold, vertical
-func ChevronsUpDown(opts ...Option) g.Node {
+func ChevronsUpDown(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"m7 15 5 5 5-5",
 		"m7 9 5-5 5 5",
@@ -3810,7 +3810,7 @@ func ChevronsUpDown(opts ...Option) g.Node {
 
 // Chromium creates a chromium icon
 // Tags: browser, logo
-func Chromium(opts ...Option) g.Node {
+func Chromium(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M10.88 21.94 15.46 14",
 		"M21.17 8H12",
@@ -3822,7 +3822,7 @@ func Chromium(opts ...Option) g.Node {
 
 // Church creates a church icon
 // Tags: temple, building
-func Church(opts ...Option) g.Node {
+func Church(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M10 9h4",
 		"M12 7v5",
@@ -3834,7 +3834,7 @@ func Church(opts ...Option) g.Node {
 
 // Cigarette creates a cigarette icon
 // Tags: smoking
-func Cigarette(opts ...Option) g.Node {
+func Cigarette(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M17 12H3a1 1 0 0 0-1 1v2a1 1 0 0 0 1 1h14",
 		"M18 8c0-2.5-2-2.5-2-5",
@@ -3846,7 +3846,7 @@ func Cigarette(opts ...Option) g.Node {
 
 // CigaretteOff creates a cigarette-off icon
 // Tags: smoking, no-smoking
-func CigaretteOff(opts ...Option) g.Node {
+func CigaretteOff(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M12 12H3a1 1 0 0 0-1 1v2a1 1 0 0 0 1 1h13",
 		"M18 8c0-2.5-2-2.5-2-5",
@@ -3859,13 +3859,13 @@ func CigaretteOff(opts ...Option) g.Node {
 
 // Circle creates a circle icon
 // Tags: off, zero, record, shape
-func Circle(opts ...Option) g.Node {
+func Circle(opts ...Option) templ.Component {
 	return Icon("M 2 12 a 10 10 0 1 0 20 0 a 10 10 0 1 0 -20 0", opts...)
 }
 
 // CircleAlert creates a circle-alert icon
 // Tags: warning, alert, danger, exclamation mark
-func CircleAlert(opts ...Option) g.Node {
+func CircleAlert(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M 2 12 a 10 10 0 1 0 20 0 a 10 10 0 1 0 -20 0",
 		"M 12 8 L 12 12",
@@ -3875,7 +3875,7 @@ func CircleAlert(opts ...Option) g.Node {
 
 // CircleArrowDown creates a circle-arrow-down icon
 // Tags: backwards, reverse, direction, south, sign, button
-func CircleArrowDown(opts ...Option) g.Node {
+func CircleArrowDown(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M 2 12 a 10 10 0 1 0 20 0 a 10 10 0 1 0 -20 0",
 		"M12 8v8",
@@ -3885,7 +3885,7 @@ func CircleArrowDown(opts ...Option) g.Node {
 
 // CircleArrowLeft creates a circle-arrow-left icon
 // Tags: previous, back, direction, west, sign, turn, button, <-
-func CircleArrowLeft(opts ...Option) g.Node {
+func CircleArrowLeft(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M 2 12 a 10 10 0 1 0 20 0 a 10 10 0 1 0 -20 0",
 		"m12 8-4 4 4 4",
@@ -3895,7 +3895,7 @@ func CircleArrowLeft(opts ...Option) g.Node {
 
 // CircleArrowOutDownLeft creates a circle-arrow-out-down-left icon
 // Tags: outwards, direction, south-west, diagonal
-func CircleArrowOutDownLeft(opts ...Option) g.Node {
+func CircleArrowOutDownLeft(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M2 12a10 10 0 1 1 10 10",
 		"m2 22 10-10",
@@ -3905,7 +3905,7 @@ func CircleArrowOutDownLeft(opts ...Option) g.Node {
 
 // CircleArrowOutDownRight creates a circle-arrow-out-down-right icon
 // Tags: outwards, direction, south-east, diagonal
-func CircleArrowOutDownRight(opts ...Option) g.Node {
+func CircleArrowOutDownRight(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M12 22a10 10 0 1 1 10-10",
 		"M22 22 12 12",
@@ -3915,7 +3915,7 @@ func CircleArrowOutDownRight(opts ...Option) g.Node {
 
 // CircleArrowOutUpLeft creates a circle-arrow-out-up-left icon
 // Tags: outwards, direction, north-west, diagonal, keyboard, button, escape
-func CircleArrowOutUpLeft(opts ...Option) g.Node {
+func CircleArrowOutUpLeft(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M2 8V2h6",
 		"m2 2 10 10",
@@ -3925,7 +3925,7 @@ func CircleArrowOutUpLeft(opts ...Option) g.Node {
 
 // CircleArrowOutUpRight creates a circle-arrow-out-up-right icon
 // Tags: outwards, direction, north-east, diagonal
-func CircleArrowOutUpRight(opts ...Option) g.Node {
+func CircleArrowOutUpRight(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M22 12A10 10 0 1 1 12 2",
 		"M22 2 12 12",
@@ -3935,7 +3935,7 @@ func CircleArrowOutUpRight(opts ...Option) g.Node {
 
 // CircleArrowRight creates a circle-arrow-right icon
 // Tags: next, forward, direction, east, sign, turn, button, ->
-func CircleArrowRight(opts ...Option) g.Node {
+func CircleArrowRight(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M 2 12 a 10 10 0 1 0 20 0 a 10 10 0 1 0 -20 0",
 		"m12 16 4-4-4-4",
@@ -3945,7 +3945,7 @@ func CircleArrowRight(opts ...Option) g.Node {
 
 // CircleArrowUp creates a circle-arrow-up icon
 // Tags: forward, direction, north, sign, button
-func CircleArrowUp(opts ...Option) g.Node {
+func CircleArrowUp(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M 2 12 a 10 10 0 1 0 20 0 a 10 10 0 1 0 -20 0",
 		"m16 12-4-4-4 4",
@@ -3955,7 +3955,7 @@ func CircleArrowUp(opts ...Option) g.Node {
 
 // CircleCheck creates a circle-check icon
 // Tags: done, todo, tick, complete, task
-func CircleCheck(opts ...Option) g.Node {
+func CircleCheck(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M 2 12 a 10 10 0 1 0 20 0 a 10 10 0 1 0 -20 0",
 		"m9 12 2 2 4-4",
@@ -3964,7 +3964,7 @@ func CircleCheck(opts ...Option) g.Node {
 
 // CircleCheckBig creates a circle-check-big icon
 // Tags: done, todo, tick, complete, task
-func CircleCheckBig(opts ...Option) g.Node {
+func CircleCheckBig(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M21.801 10A10 10 0 1 1 17 3.335",
 		"m9 11 3 3L22 4",
@@ -3973,7 +3973,7 @@ func CircleCheckBig(opts ...Option) g.Node {
 
 // CircleChevronDown creates a circle-chevron-down icon
 // Tags: back, menu
-func CircleChevronDown(opts ...Option) g.Node {
+func CircleChevronDown(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M 2 12 a 10 10 0 1 0 20 0 a 10 10 0 1 0 -20 0",
 		"m16 10-4 4-4-4",
@@ -3982,7 +3982,7 @@ func CircleChevronDown(opts ...Option) g.Node {
 
 // CircleChevronLeft creates a circle-chevron-left icon
 // Tags: back, previous, less than, fewer, menu, <
-func CircleChevronLeft(opts ...Option) g.Node {
+func CircleChevronLeft(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M 2 12 a 10 10 0 1 0 20 0 a 10 10 0 1 0 -20 0",
 		"m14 16-4-4 4-4",
@@ -3991,7 +3991,7 @@ func CircleChevronLeft(opts ...Option) g.Node {
 
 // CircleChevronRight creates a circle-chevron-right icon
 // Tags: back, more than, greater, menu, >
-func CircleChevronRight(opts ...Option) g.Node {
+func CircleChevronRight(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M 2 12 a 10 10 0 1 0 20 0 a 10 10 0 1 0 -20 0",
 		"m10 8 4 4-4 4",
@@ -4000,7 +4000,7 @@ func CircleChevronRight(opts ...Option) g.Node {
 
 // CircleChevronUp creates a circle-chevron-up icon
 // Tags: caret, ahead, menu, ^
-func CircleChevronUp(opts ...Option) g.Node {
+func CircleChevronUp(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M 2 12 a 10 10 0 1 0 20 0 a 10 10 0 1 0 -20 0",
 		"m8 14 4-4 4 4",
@@ -4009,7 +4009,7 @@ func CircleChevronUp(opts ...Option) g.Node {
 
 // CircleDashed creates a circle-dashed icon
 // Tags: pending, dot, progress, issue, draft, code, coding, version control
-func CircleDashed(opts ...Option) g.Node {
+func CircleDashed(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M10.1 2.182a10 10 0 0 1 3.8 0",
 		"M13.9 21.818a10 10 0 0 1-3.8 0",
@@ -4024,7 +4024,7 @@ func CircleDashed(opts ...Option) g.Node {
 
 // CircleDivide creates a circle-divide icon
 // Tags: calculate, math, ÷, /
-func CircleDivide(opts ...Option) g.Node {
+func CircleDivide(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M 8 12 L 16 12",
 		"M 12 16 L 12 16",
@@ -4035,7 +4035,7 @@ func CircleDivide(opts ...Option) g.Node {
 
 // CircleDollarSign creates a circle-dollar-sign icon
 // Tags: monetization, marketing, currency, money, payment
-func CircleDollarSign(opts ...Option) g.Node {
+func CircleDollarSign(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M 2 12 a 10 10 0 1 0 20 0 a 10 10 0 1 0 -20 0",
 		"M16 8h-6a2 2 0 1 0 0 4h4a2 2 0 1 1 0 4H8",
@@ -4045,7 +4045,7 @@ func CircleDollarSign(opts ...Option) g.Node {
 
 // CircleDot creates a circle-dot icon
 // Tags: pending, dot, progress, issue, code, coding, version control, choices, multiple choice, choose
-func CircleDot(opts ...Option) g.Node {
+func CircleDot(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M 2 12 a 10 10 0 1 0 20 0 a 10 10 0 1 0 -20 0",
 		"M 11 12 a 1 1 0 1 0 2 0 a 1 1 0 1 0 -2 0",
@@ -4054,7 +4054,7 @@ func CircleDot(opts ...Option) g.Node {
 
 // CircleDotDashed creates a circle-dot-dashed icon
 // Tags: pending, dot, progress, issue, draft, code, coding, version control
-func CircleDotDashed(opts ...Option) g.Node {
+func CircleDotDashed(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M10.1 2.18a9.93 9.93 0 0 1 3.8 0",
 		"M17.6 3.71a9.95 9.95 0 0 1 2.69 2.7",
@@ -4070,7 +4070,7 @@ func CircleDotDashed(opts ...Option) g.Node {
 
 // CircleEllipsis creates a circle-ellipsis icon
 // Tags: ellipsis, et cetera, etc, loader, loading, progress, pending, throbber, menu, options, operator, code, spread, rest, more, further, extra, overflow, dots, …, ...
-func CircleEllipsis(opts ...Option) g.Node {
+func CircleEllipsis(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M 2 12 a 10 10 0 1 0 20 0 a 10 10 0 1 0 -20 0",
 		"M17 12h.01",
@@ -4081,7 +4081,7 @@ func CircleEllipsis(opts ...Option) g.Node {
 
 // CircleEqual creates a circle-equal icon
 // Tags: calculate, shape, =
-func CircleEqual(opts ...Option) g.Node {
+func CircleEqual(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M7 10h10",
 		"M7 14h10",
@@ -4091,7 +4091,7 @@ func CircleEqual(opts ...Option) g.Node {
 
 // CircleFadingArrowUp creates a circle-fading-arrow-up icon
 // Tags: north, up, upgrade, improve, circle, button
-func CircleFadingArrowUp(opts ...Option) g.Node {
+func CircleFadingArrowUp(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M12 2a10 10 0 0 1 7.38 16.75",
 		"m16 12-4-4-4 4",
@@ -4105,7 +4105,7 @@ func CircleFadingArrowUp(opts ...Option) g.Node {
 
 // CircleFadingPlus creates a circle-fading-plus icon
 // Tags: stories, social media, instagram, facebook, meta, snapchat, sharing, content
-func CircleFadingPlus(opts ...Option) g.Node {
+func CircleFadingPlus(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M12 2a10 10 0 0 1 7.38 16.75",
 		"M12 8v8",
@@ -4119,7 +4119,7 @@ func CircleFadingPlus(opts ...Option) g.Node {
 
 // CircleGauge creates a circle-gauge icon
 // Tags: dashboard, dial, meter, speed, pressure, measure, level
-func CircleGauge(opts ...Option) g.Node {
+func CircleGauge(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M15.6 2.7a10 10 0 1 0 5.7 5.7",
 		"M 10 12 a 2 2 0 1 0 4 0 a 2 2 0 1 0 -4 0",
@@ -4129,7 +4129,7 @@ func CircleGauge(opts ...Option) g.Node {
 
 // CircleMinus creates a circle-minus icon
 // Tags: subtract, remove, decrease, reduce, calculate, line, operator, code, coding, minimum, downgrade, -
-func CircleMinus(opts ...Option) g.Node {
+func CircleMinus(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M 2 12 a 10 10 0 1 0 20 0 a 10 10 0 1 0 -20 0",
 		"M8 12h8",
@@ -4138,7 +4138,7 @@ func CircleMinus(opts ...Option) g.Node {
 
 // CircleOff creates a circle-off icon
 // Tags: diameter, zero, Ø, nothing, null, void, cancel, ban, no, stop, forbidden, prohibited, error, incorrect, mistake, wrong, failure
-func CircleOff(opts ...Option) g.Node {
+func CircleOff(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"m2 2 20 20",
 		"M8.35 2.69A10 10 0 0 1 21.3 15.65",
@@ -4148,7 +4148,7 @@ func CircleOff(opts ...Option) g.Node {
 
 // CircleParking creates a circle-parking icon
 // Tags: parking lot, car park
-func CircleParking(opts ...Option) g.Node {
+func CircleParking(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M 2 12 a 10 10 0 1 0 20 0 a 10 10 0 1 0 -20 0",
 		"M9 17V7h4a3 3 0 0 1 0 6H9",
@@ -4157,7 +4157,7 @@ func CircleParking(opts ...Option) g.Node {
 
 // CircleParkingOff creates a circle-parking-off icon
 // Tags: parking lot, car park, no parking
-func CircleParkingOff(opts ...Option) g.Node {
+func CircleParkingOff(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M12.656 7H13a3 3 0 0 1 2.984 3.307",
 		"M13 13H9",
@@ -4170,7 +4170,7 @@ func CircleParkingOff(opts ...Option) g.Node {
 
 // CirclePause creates a circle-pause icon
 // Tags: music, audio, stop
-func CirclePause(opts ...Option) g.Node {
+func CirclePause(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M 2 12 a 10 10 0 1 0 20 0 a 10 10 0 1 0 -20 0",
 		"M 10 15 L 10 9",
@@ -4180,7 +4180,7 @@ func CirclePause(opts ...Option) g.Node {
 
 // CirclePercent creates a circle-percent icon
 // Tags: verified, unverified, sale, discount, offer, marketing, sticker, price tag
-func CirclePercent(opts ...Option) g.Node {
+func CirclePercent(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M 2 12 a 10 10 0 1 0 20 0 a 10 10 0 1 0 -20 0",
 		"m15 9-6 6",
@@ -4191,7 +4191,7 @@ func CirclePercent(opts ...Option) g.Node {
 
 // CirclePile creates a circle-pile icon
 // Tags: off, zero, record, shape, circle-pile, circle, pile, stack, layer, structure, form, group, collection, stock, inventory, materials, warehouse
-func CirclePile(opts ...Option) g.Node {
+func CirclePile(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M 10 19 a 2 2 0 1 0 4 0 a 2 2 0 1 0 -4 0",
 		"M 10 5 a 2 2 0 1 0 4 0 a 2 2 0 1 0 -4 0",
@@ -4204,7 +4204,7 @@ func CirclePile(opts ...Option) g.Node {
 
 // CirclePlay creates a circle-play icon
 // Tags: music, start, run
-func CirclePlay(opts ...Option) g.Node {
+func CirclePlay(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M9 9.003a1 1 0 0 1 1.517-.859l4.997 2.997a1 1 0 0 1 0 1.718l-4.997 2.997A1 1 0 0 1 9 14.996z",
 		"M 2 12 a 10 10 0 1 0 20 0 a 10 10 0 1 0 -20 0",
@@ -4213,7 +4213,7 @@ func CirclePlay(opts ...Option) g.Node {
 
 // CirclePlus creates a circle-plus icon
 // Tags: add, new, increase, increment, positive, calculate, crosshair, aim, target, scope, sight, reticule, maximum, upgrade, extra, operator, join, concatenate, code, coding, +
-func CirclePlus(opts ...Option) g.Node {
+func CirclePlus(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M 2 12 a 10 10 0 1 0 20 0 a 10 10 0 1 0 -20 0",
 		"M8 12h8",
@@ -4223,7 +4223,7 @@ func CirclePlus(opts ...Option) g.Node {
 
 // CirclePoundSterling creates a circle-pound-sterling icon
 // Tags: monetization, coin, penny, marketing, currency, money, payment, british, gbp, £
-func CirclePoundSterling(opts ...Option) g.Node {
+func CirclePoundSterling(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M10 16V9.5a1 1 0 0 1 5 0",
 		"M8 12h4",
@@ -4234,7 +4234,7 @@ func CirclePoundSterling(opts ...Option) g.Node {
 
 // CirclePower creates a circle-power icon
 // Tags: on, off, device, switch, toggle, binary, boolean, reboot, restart, button, keyboard, troubleshoot
-func CirclePower(opts ...Option) g.Node {
+func CirclePower(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M12 7v4",
 		"M7.998 9.003a5 5 0 1 0 8-.005",
@@ -4244,7 +4244,7 @@ func CirclePower(opts ...Option) g.Node {
 
 // CircleQuestionMark creates a circle-question-mark icon
 // Tags: question mark
-func CircleQuestionMark(opts ...Option) g.Node {
+func CircleQuestionMark(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M 2 12 a 10 10 0 1 0 20 0 a 10 10 0 1 0 -20 0",
 		"M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3",
@@ -4254,7 +4254,7 @@ func CircleQuestionMark(opts ...Option) g.Node {
 
 // CircleSlash creates a circle-slash icon
 // Tags: diameter, zero, Ø, nothing, null, void, cancel, ban, no, stop, forbidden, prohibited, error, incorrect, mistake, wrong, failure, divide, division, or, /
-func CircleSlash(opts ...Option) g.Node {
+func CircleSlash(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M 2 12 a 10 10 0 1 0 20 0 a 10 10 0 1 0 -20 0",
 		"M 9 15 L 15 9",
@@ -4263,7 +4263,7 @@ func CircleSlash(opts ...Option) g.Node {
 
 // CircleSlash2 creates a circle-slash-2 icon
 // Tags: diameter, zero, ø, nothing, null, void, ban, math, divide, division, half, split, /, average, avg, mean, median, normal
-func CircleSlash2(opts ...Option) g.Node {
+func CircleSlash2(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M22 2 2 22",
 		"M 2 12 a 10 10 0 1 0 20 0 a 10 10 0 1 0 -20 0",
@@ -4272,13 +4272,13 @@ func CircleSlash2(opts ...Option) g.Node {
 
 // CircleSmall creates a circle-small icon
 // Tags: shape, bullet, gender, genderless
-func CircleSmall(opts ...Option) g.Node {
+func CircleSmall(opts ...Option) templ.Component {
 	return Icon("M 6 12 a 6 6 0 1 0 12 0 a 6 6 0 1 0 -12 0", opts...)
 }
 
 // CircleStar creates a circle-star icon
 // Tags: badge, medal, honour, decoration, order, pin, laurel, trophy, medallion, insignia, bronze, silver, gold
-func CircleStar(opts ...Option) g.Node {
+func CircleStar(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M11.051 7.616a1 1 0 0 1 1.909.024l.737 1.452a1 1 0 0 0 .737.535l1.634.256a1 1 0 0 1 .588 1.806l-1.172 1.168a1 1 0 0 0-.282.866l.259 1.613a1 1 0 0 1-1.541 1.134l-1.465-.75a1 1 0 0 0-.912 0l-1.465.75a1 1 0 0 1-1.539-1.133l.258-1.613a1 1 0 0 0-.282-.867l-1.156-1.152a1 1 0 0 1 .572-1.822l1.633-.256a1 1 0 0 0 .737-.535z",
 		"M 2 12 a 10 10 0 1 0 20 0 a 10 10 0 1 0 -20 0",
@@ -4287,7 +4287,7 @@ func CircleStar(opts ...Option) g.Node {
 
 // CircleStop creates a circle-stop icon
 // Tags: media, music
-func CircleStop(opts ...Option) g.Node {
+func CircleStop(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M 2 12 a 10 10 0 1 0 20 0 a 10 10 0 1 0 -20 0",
 		"M 10 9 h 4 a 1 1 0 0 1 1 1 v 4 a 1 1 0 0 1 -1 1 h -4 a 1 1 0 0 1 -1 -1 v -4 a 1 1 0 0 1 1 -1 Z",
@@ -4296,7 +4296,7 @@ func CircleStop(opts ...Option) g.Node {
 
 // CircleUser creates a circle-user icon
 // Tags: person, account, contact
-func CircleUser(opts ...Option) g.Node {
+func CircleUser(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M 2 12 a 10 10 0 1 0 20 0 a 10 10 0 1 0 -20 0",
 		"M 9 10 a 3 3 0 1 0 6 0 a 3 3 0 1 0 -6 0",
@@ -4306,7 +4306,7 @@ func CircleUser(opts ...Option) g.Node {
 
 // CircleUserRound creates a circle-user-round icon
 // Tags: person, account, contact
-func CircleUserRound(opts ...Option) g.Node {
+func CircleUserRound(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M18 20a6 6 0 0 0-12 0",
 		"M 8 10 a 4 4 0 1 0 8 0 a 4 4 0 1 0 -8 0",
@@ -4316,7 +4316,7 @@ func CircleUserRound(opts ...Option) g.Node {
 
 // CircleX creates a circle-x icon
 // Tags: cancel, close, delete, remove, times, clear, error, incorrect, wrong, mistake, failure, linter, multiply, multiplication
-func CircleX(opts ...Option) g.Node {
+func CircleX(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M 2 12 a 10 10 0 1 0 20 0 a 10 10 0 1 0 -20 0",
 		"m15 9-6 6",
@@ -4326,7 +4326,7 @@ func CircleX(opts ...Option) g.Node {
 
 // CircuitBoard creates a circuit-board icon
 // Tags: computing, electricity, electronics
-func CircuitBoard(opts ...Option) g.Node {
+func CircuitBoard(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M 5 3 h 14 a 2 2 0 0 1 2 2 v 14 a 2 2 0 0 1 -2 2 h -14 a 2 2 0 0 1 -2 -2 v -14 a 2 2 0 0 1 2 -2 Z",
 		"M11 9h4a2 2 0 0 0 2-2V3",
@@ -4338,7 +4338,7 @@ func CircuitBoard(opts ...Option) g.Node {
 
 // Citrus creates a citrus icon
 // Tags: lemon, orange, grapefruit, fruit
-func Citrus(opts ...Option) g.Node {
+func Citrus(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M21.66 17.67a1.08 1.08 0 0 1-.04 1.6A12 12 0 0 1 4.73 2.38a1.1 1.1 0 0 1 1.61-.04z",
 		"M19.65 15.66A8 8 0 0 1 8.35 4.34",
@@ -4349,7 +4349,7 @@ func Citrus(opts ...Option) g.Node {
 
 // Clapperboard creates a clapperboard icon
 // Tags: movie, film, video, camera, cinema, cut, action, television, tv, show, entertainment
-func Clapperboard(opts ...Option) g.Node {
+func Clapperboard(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M20.2 6 3 11l-.9-2.4c-.3-1.1.3-2.2 1.3-2.5l13.5-4c1.1-.3 2.2.3 2.5 1.3Z",
 		"m6.2 5.3 3.1 3.9",
@@ -4360,7 +4360,7 @@ func Clapperboard(opts ...Option) g.Node {
 
 // Clipboard creates a clipboard icon
 // Tags: copy, paste
-func Clipboard(opts ...Option) g.Node {
+func Clipboard(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M 9 2 h 6 a 1 1 0 0 1 1 1 v 2 a 1 1 0 0 1 -1 1 h -6 a 1 1 0 0 1 -1 -1 v -2 a 1 1 0 0 1 1 -1 Z",
 		"M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2",
@@ -4369,7 +4369,7 @@ func Clipboard(opts ...Option) g.Node {
 
 // ClipboardCheck creates a clipboard-check icon
 // Tags: copied, pasted, done, todo, tick, complete, task
-func ClipboardCheck(opts ...Option) g.Node {
+func ClipboardCheck(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M 9 2 h 6 a 1 1 0 0 1 1 1 v 2 a 1 1 0 0 1 -1 1 h -6 a 1 1 0 0 1 -1 -1 v -2 a 1 1 0 0 1 1 -1 Z",
 		"M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2",
@@ -4379,7 +4379,7 @@ func ClipboardCheck(opts ...Option) g.Node {
 
 // ClipboardClock creates a clipboard-clock icon
 // Tags: copy, paste, history, log, clock, time, watch, alarm, hour, minute, reminder, scheduled, deadline, pending, time tracking, timesheets, appointment, logbook
-func ClipboardClock(opts ...Option) g.Node {
+func ClipboardClock(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M16 14v2.2l1.6 1",
 		"M16 4h2a2 2 0 0 1 2 2v.832",
@@ -4391,7 +4391,7 @@ func ClipboardClock(opts ...Option) g.Node {
 
 // ClipboardCopy creates a clipboard-copy icon
 // Tags: copy, paste
-func ClipboardCopy(opts ...Option) g.Node {
+func ClipboardCopy(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M 9 2 h 6 a 1 1 0 0 1 1 1 v 2 a 1 1 0 0 1 -1 1 h -6 a 1 1 0 0 1 -1 -1 v -2 a 1 1 0 0 1 1 -1 Z",
 		"M8 4H6a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-2",
@@ -4403,7 +4403,7 @@ func ClipboardCopy(opts ...Option) g.Node {
 
 // ClipboardList creates a clipboard-list icon
 // Tags: copy, paste, tasks
-func ClipboardList(opts ...Option) g.Node {
+func ClipboardList(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M 9 2 h 6 a 1 1 0 0 1 1 1 v 2 a 1 1 0 0 1 -1 1 h -6 a 1 1 0 0 1 -1 -1 v -2 a 1 1 0 0 1 1 -1 Z",
 		"M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2",
@@ -4416,7 +4416,7 @@ func ClipboardList(opts ...Option) g.Node {
 
 // ClipboardMinus creates a clipboard-minus icon
 // Tags: copy, delete, remove, erase, document, medical, report, doctor
-func ClipboardMinus(opts ...Option) g.Node {
+func ClipboardMinus(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M 9 2 h 6 a 1 1 0 0 1 1 1 v 2 a 1 1 0 0 1 -1 1 h -6 a 1 1 0 0 1 -1 -1 v -2 a 1 1 0 0 1 1 -1 Z",
 		"M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2",
@@ -4426,7 +4426,7 @@ func ClipboardMinus(opts ...Option) g.Node {
 
 // ClipboardPaste creates a clipboard-paste icon
 // Tags: copy, paste
-func ClipboardPaste(opts ...Option) g.Node {
+func ClipboardPaste(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M11 14h10",
 		"M16 4h2a2 2 0 0 1 2 2v1.344",
@@ -4438,7 +4438,7 @@ func ClipboardPaste(opts ...Option) g.Node {
 
 // ClipboardPen creates a clipboard-pen icon
 // Tags: paste, signature
-func ClipboardPen(opts ...Option) g.Node {
+func ClipboardPen(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M 9 2 h 6 a 1 1 0 0 1 1 1 v 2 a 1 1 0 0 1 -1 1 h -6 a 1 1 0 0 1 -1 -1 v -2 a 1 1 0 0 1 1 -1 Z",
 		"M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-5.5",
@@ -4449,7 +4449,7 @@ func ClipboardPen(opts ...Option) g.Node {
 
 // ClipboardPenLine creates a clipboard-pen-line icon
 // Tags: paste
-func ClipboardPenLine(opts ...Option) g.Node {
+func ClipboardPenLine(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M 9 2 h 6 a 1 1 0 0 1 1 1 v 2 a 1 1 0 0 1 -1 1 h -6 a 1 1 0 0 1 -1 -1 v -2 a 1 1 0 0 1 1 -1 Z",
 		"M8 4H6a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-.5",
@@ -4461,7 +4461,7 @@ func ClipboardPenLine(opts ...Option) g.Node {
 
 // ClipboardPlus creates a clipboard-plus icon
 // Tags: copy, paste, add, create, new, document, medical, report, doctor
-func ClipboardPlus(opts ...Option) g.Node {
+func ClipboardPlus(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M 9 2 h 6 a 1 1 0 0 1 1 1 v 2 a 1 1 0 0 1 -1 1 h -6 a 1 1 0 0 1 -1 -1 v -2 a 1 1 0 0 1 1 -1 Z",
 		"M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2",
@@ -4472,7 +4472,7 @@ func ClipboardPlus(opts ...Option) g.Node {
 
 // ClipboardType creates a clipboard-type icon
 // Tags: paste, format, text
-func ClipboardType(opts ...Option) g.Node {
+func ClipboardType(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M 9 2 h 6 a 1 1 0 0 1 1 1 v 2 a 1 1 0 0 1 -1 1 h -6 a 1 1 0 0 1 -1 -1 v -2 a 1 1 0 0 1 1 -1 Z",
 		"M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2",
@@ -4484,7 +4484,7 @@ func ClipboardType(opts ...Option) g.Node {
 
 // ClipboardX creates a clipboard-x icon
 // Tags: copy, paste, discard, remove
-func ClipboardX(opts ...Option) g.Node {
+func ClipboardX(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M 9 2 h 6 a 1 1 0 0 1 1 1 v 2 a 1 1 0 0 1 -1 1 h -6 a 1 1 0 0 1 -1 -1 v -2 a 1 1 0 0 1 1 -1 Z",
 		"M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2",
@@ -4495,7 +4495,7 @@ func ClipboardX(opts ...Option) g.Node {
 
 // Clock creates a clock icon
 // Tags: time, watch, alarm
-func Clock(opts ...Option) g.Node {
+func Clock(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M12 6v6l4 2",
 		"M 2 12 a 10 10 0 1 0 20 0 a 10 10 0 1 0 -20 0",
@@ -4504,7 +4504,7 @@ func Clock(opts ...Option) g.Node {
 
 // Clock1 creates a clock-1 icon
 // Tags: time, watch, alarm
-func Clock1(opts ...Option) g.Node {
+func Clock1(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M12 6v6l2-4",
 		"M 2 12 a 10 10 0 1 0 20 0 a 10 10 0 1 0 -20 0",
@@ -4513,7 +4513,7 @@ func Clock1(opts ...Option) g.Node {
 
 // Clock10 creates a clock-10 icon
 // Tags: time, watch, alarm
-func Clock10(opts ...Option) g.Node {
+func Clock10(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M12 6v6l-4-2",
 		"M 2 12 a 10 10 0 1 0 20 0 a 10 10 0 1 0 -20 0",
@@ -4522,7 +4522,7 @@ func Clock10(opts ...Option) g.Node {
 
 // Clock11 creates a clock-11 icon
 // Tags: time, watch, alarm
-func Clock11(opts ...Option) g.Node {
+func Clock11(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M12 6v6l-2-4",
 		"M 2 12 a 10 10 0 1 0 20 0 a 10 10 0 1 0 -20 0",
@@ -4531,7 +4531,7 @@ func Clock11(opts ...Option) g.Node {
 
 // Clock12 creates a clock-12 icon
 // Tags: time, watch, alarm, noon, midnight
-func Clock12(opts ...Option) g.Node {
+func Clock12(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M12 6v6",
 		"M 2 12 a 10 10 0 1 0 20 0 a 10 10 0 1 0 -20 0",
@@ -4540,7 +4540,7 @@ func Clock12(opts ...Option) g.Node {
 
 // Clock2 creates a clock-2 icon
 // Tags: time, watch, alarm
-func Clock2(opts ...Option) g.Node {
+func Clock2(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M12 6v6l4-2",
 		"M 2 12 a 10 10 0 1 0 20 0 a 10 10 0 1 0 -20 0",
@@ -4549,7 +4549,7 @@ func Clock2(opts ...Option) g.Node {
 
 // Clock3 creates a clock-3 icon
 // Tags: time, watch, alarm
-func Clock3(opts ...Option) g.Node {
+func Clock3(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M12 6v6h4",
 		"M 2 12 a 10 10 0 1 0 20 0 a 10 10 0 1 0 -20 0",
@@ -4558,7 +4558,7 @@ func Clock3(opts ...Option) g.Node {
 
 // Clock4 creates a clock-4 icon
 // Tags: time, watch, alarm
-func Clock4(opts ...Option) g.Node {
+func Clock4(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M12 6v6l4 2",
 		"M 2 12 a 10 10 0 1 0 20 0 a 10 10 0 1 0 -20 0",
@@ -4567,7 +4567,7 @@ func Clock4(opts ...Option) g.Node {
 
 // Clock5 creates a clock-5 icon
 // Tags: time, watch, alarm
-func Clock5(opts ...Option) g.Node {
+func Clock5(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M12 6v6l2 4",
 		"M 2 12 a 10 10 0 1 0 20 0 a 10 10 0 1 0 -20 0",
@@ -4576,7 +4576,7 @@ func Clock5(opts ...Option) g.Node {
 
 // Clock6 creates a clock-6 icon
 // Tags: time, watch, alarm
-func Clock6(opts ...Option) g.Node {
+func Clock6(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M12 6v10",
 		"M 2 12 a 10 10 0 1 0 20 0 a 10 10 0 1 0 -20 0",
@@ -4585,7 +4585,7 @@ func Clock6(opts ...Option) g.Node {
 
 // Clock7 creates a clock-7 icon
 // Tags: time, watch, alarm
-func Clock7(opts ...Option) g.Node {
+func Clock7(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M12 6v6l-2 4",
 		"M 2 12 a 10 10 0 1 0 20 0 a 10 10 0 1 0 -20 0",
@@ -4594,7 +4594,7 @@ func Clock7(opts ...Option) g.Node {
 
 // Clock8 creates a clock-8 icon
 // Tags: time, watch, alarm
-func Clock8(opts ...Option) g.Node {
+func Clock8(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M12 6v6l-4 2",
 		"M 2 12 a 10 10 0 1 0 20 0 a 10 10 0 1 0 -20 0",
@@ -4603,7 +4603,7 @@ func Clock8(opts ...Option) g.Node {
 
 // Clock9 creates a clock-9 icon
 // Tags: time, watch, alarm
-func Clock9(opts ...Option) g.Node {
+func Clock9(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M12 6v6H8",
 		"M 2 12 a 10 10 0 1 0 20 0 a 10 10 0 1 0 -20 0",
@@ -4612,7 +4612,7 @@ func Clock9(opts ...Option) g.Node {
 
 // ClockAlert creates a clock-alert icon
 // Tags: time, watch, alarm, warning, wrong
-func ClockAlert(opts ...Option) g.Node {
+func ClockAlert(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M12 6v6l4 2",
 		"M20 12v5",
@@ -4623,7 +4623,7 @@ func ClockAlert(opts ...Option) g.Node {
 
 // ClockArrowDown creates a clock-arrow-down icon
 // Tags: time, watch, alarm, sort, order, ascending, descending, increasing, decreasing, rising, falling
-func ClockArrowDown(opts ...Option) g.Node {
+func ClockArrowDown(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M12 6v6l2 1",
 		"M12.337 21.994a10 10 0 1 1 9.588-8.767",
@@ -4634,7 +4634,7 @@ func ClockArrowDown(opts ...Option) g.Node {
 
 // ClockArrowUp creates a clock-arrow-up icon
 // Tags: time, watch, alarm, sort, order, ascending, descending, increasing, decreasing, rising, falling
-func ClockArrowUp(opts ...Option) g.Node {
+func ClockArrowUp(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M12 6v6l1.56.78",
 		"M13.227 21.925a10 10 0 1 1 8.767-9.588",
@@ -4645,7 +4645,7 @@ func ClockArrowUp(opts ...Option) g.Node {
 
 // ClockCheck creates a clock-check icon
 // Tags: time, watch, alarm
-func ClockCheck(opts ...Option) g.Node {
+func ClockCheck(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M12 6v6l4 2",
 		"M22 12a10 10 0 1 0-11 9.95",
@@ -4655,7 +4655,7 @@ func ClockCheck(opts ...Option) g.Node {
 
 // ClockFading creates a clock-fading icon
 // Tags: time, watch, alarm
-func ClockFading(opts ...Option) g.Node {
+func ClockFading(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M12 2a10 10 0 0 1 7.38 16.75",
 		"M12 6v6l4 2",
@@ -4668,7 +4668,7 @@ func ClockFading(opts ...Option) g.Node {
 
 // ClockPlus creates a clock-plus icon
 // Tags: time, watch, alarm, add, create, new
-func ClockPlus(opts ...Option) g.Node {
+func ClockPlus(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M12 6v6l3.644 1.822",
 		"M16 19h6",
@@ -4679,7 +4679,7 @@ func ClockPlus(opts ...Option) g.Node {
 
 // ClosedCaption creates a closed-caption icon
 // Tags: tv, movie, video, closed captions, subtitles, subhead, transcription, transcribe, dialogue, accessibility
-func ClosedCaption(opts ...Option) g.Node {
+func ClosedCaption(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M10 9.17a3 3 0 1 0 0 5.66",
 		"M17 9.17a3 3 0 1 0 0 5.66",
@@ -4689,13 +4689,13 @@ func ClosedCaption(opts ...Option) g.Node {
 
 // Cloud creates a cloud icon
 // Tags: weather
-func Cloud(opts ...Option) g.Node {
+func Cloud(opts ...Option) templ.Component {
 	return Icon("M17.5 19H9a7 7 0 1 1 6.71-9h1.79a4.5 4.5 0 1 1 0 9Z", opts...)
 }
 
 // CloudAlert creates a cloud-alert icon
 // Tags: weather, danger, warning, alert, error, sync, network, exclamation
-func CloudAlert(opts ...Option) g.Node {
+func CloudAlert(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M12 12v4",
 		"M12 20h.01",
@@ -4705,7 +4705,7 @@ func CloudAlert(opts ...Option) g.Node {
 
 // CloudBackup creates a cloud-backup icon
 // Tags: storage, memory, bytes, servers, backup, timemachine, rotate, synchronize, synchronise, refresh, reconnect, transfer, data, security, upload, save, remote, safety
-func CloudBackup(opts ...Option) g.Node {
+func CloudBackup(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M21 15.251A4.5 4.5 0 0 0 17.5 8h-1.79A7 7 0 1 0 3 13.607",
 		"M7 11v4h4",
@@ -4715,7 +4715,7 @@ func CloudBackup(opts ...Option) g.Node {
 
 // CloudCheck creates a cloud-check icon
 // Tags: sync, network, success, done, completed, saved, persisted
-func CloudCheck(opts ...Option) g.Node {
+func CloudCheck(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"m17 15-5.5 5.5L9 18",
 		"M5 17.743A7 7 0 1 1 15.71 10h1.79a4.5 4.5 0 0 1 1.5 8.742",
@@ -4724,7 +4724,7 @@ func CloudCheck(opts ...Option) g.Node {
 
 // CloudCog creates a cloud-cog icon
 // Tags: computing, ai, cluster, network
-func CloudCog(opts ...Option) g.Node {
+func CloudCog(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"m10.852 19.772-.383.924",
 		"m13.148 14.228.383-.923",
@@ -4740,7 +4740,7 @@ func CloudCog(opts ...Option) g.Node {
 
 // CloudDownload creates a cloud-download icon
 // Tags: import
-func CloudDownload(opts ...Option) g.Node {
+func CloudDownload(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M12 13v8l-4-4",
 		"m12 21 4-4",
@@ -4750,7 +4750,7 @@ func CloudDownload(opts ...Option) g.Node {
 
 // CloudDrizzle creates a cloud-drizzle icon
 // Tags: weather, shower
-func CloudDrizzle(opts ...Option) g.Node {
+func CloudDrizzle(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M4 14.899A7 7 0 1 1 15.71 8h1.79a4.5 4.5 0 0 1 2.5 8.242",
 		"M8 19v1",
@@ -4764,7 +4764,7 @@ func CloudDrizzle(opts ...Option) g.Node {
 
 // CloudFog creates a cloud-fog icon
 // Tags: weather, mist
-func CloudFog(opts ...Option) g.Node {
+func CloudFog(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M4 14.899A7 7 0 1 1 15.71 8h1.79a4.5 4.5 0 0 1 2.5 8.242",
 		"M16 17H7",
@@ -4774,7 +4774,7 @@ func CloudFog(opts ...Option) g.Node {
 
 // CloudHail creates a cloud-hail icon
 // Tags: weather, rainfall
-func CloudHail(opts ...Option) g.Node {
+func CloudHail(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M4 14.899A7 7 0 1 1 15.71 8h1.79a4.5 4.5 0 0 1 2.5 8.242",
 		"M16 14v2",
@@ -4788,7 +4788,7 @@ func CloudHail(opts ...Option) g.Node {
 
 // CloudLightning creates a cloud-lightning icon
 // Tags: weather, bolt
-func CloudLightning(opts ...Option) g.Node {
+func CloudLightning(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M6 16.326A7 7 0 1 1 15.71 8h1.79a4.5 4.5 0 0 1 .5 8.973",
 		"m13 12-3 5h4l-3 5",
@@ -4797,7 +4797,7 @@ func CloudLightning(opts ...Option) g.Node {
 
 // CloudMoon creates a cloud-moon icon
 // Tags: weather, night
-func CloudMoon(opts ...Option) g.Node {
+func CloudMoon(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M13 16a3 3 0 0 1 0 6H7a5 5 0 1 1 4.9-6z",
 		"M18.376 14.512a6 6 0 0 0 3.461-4.127c.148-.625-.659-.97-1.248-.714a4 4 0 0 1-5.259-5.26c.255-.589-.09-1.395-.716-1.248a6 6 0 0 0-4.594 5.36",
@@ -4806,7 +4806,7 @@ func CloudMoon(opts ...Option) g.Node {
 
 // CloudMoonRain creates a cloud-moon-rain icon
 // Tags: weather, partly, night, rainfall
-func CloudMoonRain(opts ...Option) g.Node {
+func CloudMoonRain(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M11 20v2",
 		"M18.376 14.512a6 6 0 0 0 3.461-4.127c.148-.625-.659-.97-1.248-.714a4 4 0 0 1-5.259-5.26c.255-.589-.09-1.395-.716-1.248a6 6 0 0 0-4.594 5.36",
@@ -4817,7 +4817,7 @@ func CloudMoonRain(opts ...Option) g.Node {
 
 // CloudOff creates a cloud-off icon
 // Tags: disconnect
-func CloudOff(opts ...Option) g.Node {
+func CloudOff(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"m2 2 20 20",
 		"M5.782 5.782A7 7 0 0 0 9 19h8.5a4.5 4.5 0 0 0 1.307-.193",
@@ -4827,7 +4827,7 @@ func CloudOff(opts ...Option) g.Node {
 
 // CloudRain creates a cloud-rain icon
 // Tags: weather, rainfall
-func CloudRain(opts ...Option) g.Node {
+func CloudRain(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M4 14.899A7 7 0 1 1 15.71 8h1.79a4.5 4.5 0 0 1 2.5 8.242",
 		"M16 14v6",
@@ -4838,7 +4838,7 @@ func CloudRain(opts ...Option) g.Node {
 
 // CloudRainWind creates a cloud-rain-wind icon
 // Tags: weather, rainfall
-func CloudRainWind(opts ...Option) g.Node {
+func CloudRainWind(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M4 14.899A7 7 0 1 1 15.71 8h1.79a4.5 4.5 0 0 1 2.5 8.242",
 		"m9.2 22 3-7",
@@ -4849,7 +4849,7 @@ func CloudRainWind(opts ...Option) g.Node {
 
 // CloudSnow creates a cloud-snow icon
 // Tags: weather, blizzard
-func CloudSnow(opts ...Option) g.Node {
+func CloudSnow(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M4 14.899A7 7 0 1 1 15.71 8h1.79a4.5 4.5 0 0 1 2.5 8.242",
 		"M8 15h.01",
@@ -4863,7 +4863,7 @@ func CloudSnow(opts ...Option) g.Node {
 
 // CloudSun creates a cloud-sun icon
 // Tags: weather, partly
-func CloudSun(opts ...Option) g.Node {
+func CloudSun(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M12 2v2",
 		"m4.93 4.93 1.41 1.41",
@@ -4876,7 +4876,7 @@ func CloudSun(opts ...Option) g.Node {
 
 // CloudSunRain creates a cloud-sun-rain icon
 // Tags: weather, partly, rainfall
-func CloudSunRain(opts ...Option) g.Node {
+func CloudSunRain(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M12 2v2",
 		"m4.93 4.93 1.41 1.41",
@@ -4891,7 +4891,7 @@ func CloudSunRain(opts ...Option) g.Node {
 
 // CloudSync creates a cloud-sync icon
 // Tags: synchronize, synchronise, refresh, reconnect, transfer, backup, storage, upload, download, connection, network, data
-func CloudSync(opts ...Option) g.Node {
+func CloudSync(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"m17 18-1.535 1.605a5 5 0 0 1-8-1.5",
 		"M17 22v-4h-4",
@@ -4903,7 +4903,7 @@ func CloudSync(opts ...Option) g.Node {
 
 // CloudUpload creates a cloud-upload icon
 // Tags: file
-func CloudUpload(opts ...Option) g.Node {
+func CloudUpload(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M12 13v8",
 		"M4 14.899A7 7 0 1 1 15.71 8h1.79a4.5 4.5 0 0 1 2.5 8.242",
@@ -4913,7 +4913,7 @@ func CloudUpload(opts ...Option) g.Node {
 
 // Cloudy creates a cloudy icon
 // Tags: weather, clouds
-func Cloudy(opts ...Option) g.Node {
+func Cloudy(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M17.5 21H9a7 7 0 1 1 6.71-9h1.79a4.5 4.5 0 1 1 0 9Z",
 		"M22 10a3 3 0 0 0-3-3h-2.207a5.502 5.502 0 0 0-10.702.5",
@@ -4922,7 +4922,7 @@ func Cloudy(opts ...Option) g.Node {
 
 // Clover creates a clover icon
 // Tags: leaf, luck, plant
-func Clover(opts ...Option) g.Node {
+func Clover(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M16.17 7.83 2 22",
 		"M4.02 12a2.827 2.827 0 1 1 3.81-4.17A2.827 2.827 0 1 1 12 4.02a2.827 2.827 0 1 1 4.17 3.81A2.827 2.827 0 1 1 19.98 12a2.827 2.827 0 1 1-3.81 4.17A2.827 2.827 0 1 1 12 19.98a2.827 2.827 0 1 1-4.17-3.81A1 1 0 1 1 4 12",
@@ -4932,7 +4932,7 @@ func Clover(opts ...Option) g.Node {
 
 // Club creates a club icon
 // Tags: shape, suit, playing, cards
-func Club(opts ...Option) g.Node {
+func Club(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M17.28 9.05a5.5 5.5 0 1 0-10.56 0A5.5 5.5 0 1 0 12 17.66a5.5 5.5 0 1 0 5.28-8.6Z",
 		"M12 17.66L12 22",
@@ -4941,7 +4941,7 @@ func Club(opts ...Option) g.Node {
 
 // Code creates a code icon
 // Tags: source, programming, html, xml
-func Code(opts ...Option) g.Node {
+func Code(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"m16 18 6-6-6-6",
 		"m8 6-6 6 6 6",
@@ -4950,7 +4950,7 @@ func Code(opts ...Option) g.Node {
 
 // CodeXml creates a code-xml icon
 // Tags: source, programming, html, xml
-func CodeXml(opts ...Option) g.Node {
+func CodeXml(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"m18 16 4-4-4-4",
 		"m6 8-4 4 4 4",
@@ -4960,7 +4960,7 @@ func CodeXml(opts ...Option) g.Node {
 
 // Codepen creates a codepen icon
 // Tags: logo
-func Codepen(opts ...Option) g.Node {
+func Codepen(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M 12 2 L 22 8.5 L 22 15.5 L 12 22 L 2 15.5 L 2 8.5 L 12 2 Z",
 		"M 12 22 L 12 15.5",
@@ -4972,7 +4972,7 @@ func Codepen(opts ...Option) g.Node {
 
 // Codesandbox creates a codesandbox icon
 // Tags: logo
-func Codesandbox(opts ...Option) g.Node {
+func Codesandbox(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z",
 		"M 7.5 4.21 L 12 6.81 L 16.5 4.21",
@@ -4985,7 +4985,7 @@ func Codesandbox(opts ...Option) g.Node {
 
 // Coffee creates a coffee icon
 // Tags: drink, cup, mug, tea, cafe, hot, beverage
-func Coffee(opts ...Option) g.Node {
+func Coffee(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M10 2v2",
 		"M14 2v2",
@@ -4996,7 +4996,7 @@ func Coffee(opts ...Option) g.Node {
 
 // Cog creates a cog icon
 // Tags: computing, settings, cog, edit, gear, preferences, controls, configuration, fixed, build, construction, parts
-func Cog(opts ...Option) g.Node {
+func Cog(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M11 10.27 7 3.34",
 		"m11 13.73-4 6.93",
@@ -5017,7 +5017,7 @@ func Cog(opts ...Option) g.Node {
 
 // Coins creates a coins icon
 // Tags: money, cash, finance, gamble
-func Coins(opts ...Option) g.Node {
+func Coins(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M 2 8 a 6 6 0 1 0 12 0 a 6 6 0 1 0 -12 0",
 		"M18.09 10.37A6 6 0 1 1 10.34 18",
@@ -5028,7 +5028,7 @@ func Coins(opts ...Option) g.Node {
 
 // Columns2 creates a columns-2 icon
 // Tags: lines, list, queue, preview, panel, parallel, series, split, vertical, horizontal, half, center, middle, even, sidebar, drawer, gutter, fold, reflow, typography, pagination, pages
-func Columns2(opts ...Option) g.Node {
+func Columns2(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M 5 3 h 14 a 2 2 0 0 1 2 2 v 14 a 2 2 0 0 1 -2 2 h -14 a 2 2 0 0 1 -2 -2 v -14 a 2 2 0 0 1 2 -2 Z",
 		"M12 3v18",
@@ -5037,7 +5037,7 @@ func Columns2(opts ...Option) g.Node {
 
 // Columns3 creates a columns-3 icon
 // Tags: lines, list, queue, preview, parallel, series, split, vertical, horizontal, thirds, triple, center, middle, alignment, even, sidebars, drawers, gutters, fold, reflow, typography, pagination, pages
-func Columns3(opts ...Option) g.Node {
+func Columns3(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M 5 3 h 14 a 2 2 0 0 1 2 2 v 14 a 2 2 0 0 1 -2 2 h -14 a 2 2 0 0 1 -2 -2 v -14 a 2 2 0 0 1 2 -2 Z",
 		"M9 3v18",
@@ -5047,7 +5047,7 @@ func Columns3(opts ...Option) g.Node {
 
 // Columns3Cog creates a columns-3-cog icon
 // Tags: columns, settings, customize, table, grid, adjust, configuration, panel, layout
-func Columns3Cog(opts ...Option) g.Node {
+func Columns3Cog(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M10.5 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2v5.5",
 		"m14.3 19.6 1-.4",
@@ -5066,7 +5066,7 @@ func Columns3Cog(opts ...Option) g.Node {
 
 // Columns4 creates a columns-4 icon
 // Tags: lines, list, queue, preview, parallel, series, split, vertical, horizontal, thirds, triple, center, middle, alignment, even, sidebars, drawers, gutters, fold, reflow, typography, pagination, pages, prison, jail, bars, sentence, police, cops, cell, crime, criminal, justice, law, enforcement, grill
-func Columns4(opts ...Option) g.Node {
+func Columns4(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M 5 3 h 14 a 2 2 0 0 1 2 2 v 14 a 2 2 0 0 1 -2 2 h -14 a 2 2 0 0 1 -2 -2 v -14 a 2 2 0 0 1 2 -2 Z",
 		"M7.5 3v18",
@@ -5077,7 +5077,7 @@ func Columns4(opts ...Option) g.Node {
 
 // Combine creates a combine icon
 // Tags: cubes, packages, parts, units, collection, cluster, combine, gather, merge
-func Combine(opts ...Option) g.Node {
+func Combine(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M14 3a1 1 0 0 1 1 1v5a1 1 0 0 1-1 1",
 		"M19 3a1 1 0 0 1 1 1v5a1 1 0 0 1-1 1",
@@ -5090,13 +5090,13 @@ func Combine(opts ...Option) g.Node {
 
 // Command creates a command icon
 // Tags: keyboard, key, mac, cmd, button
-func Command(opts ...Option) g.Node {
+func Command(opts ...Option) templ.Component {
 	return Icon("M15 6v12a3 3 0 1 0 3-3H6a3 3 0 1 0 3 3V6a3 3 0 1 0-3 3h12a3 3 0 1 0-3-3", opts...)
 }
 
 // Compass creates a compass icon
 // Tags: direction, north, east, south, west, safari, browser
-func Compass(opts ...Option) g.Node {
+func Compass(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"m16.24 7.76-1.804 5.411a2 2 0 0 1-1.265 1.265L7.76 16.24l1.804-5.411a2 2 0 0 1 1.265-1.265z",
 		"M 2 12 a 10 10 0 1 0 20 0 a 10 10 0 1 0 -20 0",
@@ -5105,7 +5105,7 @@ func Compass(opts ...Option) g.Node {
 
 // Component creates a component icon
 // Tags: design, element, group, module, part, symbol
-func Component(opts ...Option) g.Node {
+func Component(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M15.536 11.293a1 1 0 0 0 0 1.414l2.376 2.377a1 1 0 0 0 1.414 0l2.377-2.377a1 1 0 0 0 0-1.414l-2.377-2.377a1 1 0 0 0-1.414 0z",
 		"M2.297 11.293a1 1 0 0 0 0 1.414l2.377 2.377a1 1 0 0 0 1.414 0l2.377-2.377a1 1 0 0 0 0-1.414L6.088 8.916a1 1 0 0 0-1.414 0z",
@@ -5116,7 +5116,7 @@ func Component(opts ...Option) g.Node {
 
 // Computer creates a computer icon
 // Tags: pc, chassis, codespaces, github
-func Computer(opts ...Option) g.Node {
+func Computer(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M 7 2 h 10 a 2 2 0 0 1 2 2 v 4 a 2 2 0 0 1 -2 2 h -10 a 2 2 0 0 1 -2 -2 v -4 a 2 2 0 0 1 2 -2 Z",
 		"M 4 14 h 16 a 2 2 0 0 1 2 2 v 4 a 2 2 0 0 1 -2 2 h -16 a 2 2 0 0 1 -2 -2 v -4 a 2 2 0 0 1 2 -2 Z",
@@ -5127,7 +5127,7 @@ func Computer(opts ...Option) g.Node {
 
 // ConciergeBell creates a concierge-bell icon
 // Tags: reception, bell, porter
-func ConciergeBell(opts ...Option) g.Node {
+func ConciergeBell(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M3 20a1 1 0 0 1-1-1v-1a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v1a1 1 0 0 1-1 1Z",
 		"M20 16a8 8 0 1 0-16 0",
@@ -5138,7 +5138,7 @@ func ConciergeBell(opts ...Option) g.Node {
 
 // Cone creates a cone icon
 // Tags: conical, triangle, triangular, geometry, filter, funnel, hopper, spotlight, searchlight
-func Cone(opts ...Option) g.Node {
+func Cone(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"m20.9 18.55-8-15.98a1 1 0 0 0-1.8 0l-8 15.98",
 		"M 3 19 a 9 3 0 1 0 18 0 a 9 3 0 1 0 -18 0",
@@ -5147,7 +5147,7 @@ func Cone(opts ...Option) g.Node {
 
 // Construction creates a construction icon
 // Tags: roadwork, maintenance, blockade, barricade
-func Construction(opts ...Option) g.Node {
+func Construction(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M 3 6 h 18 a 1 1 0 0 1 1 1 v 6 a 1 1 0 0 1 -1 1 h -18 a 1 1 0 0 1 -1 -1 v -6 a 1 1 0 0 1 1 -1 Z",
 		"M17 14v7",
@@ -5162,7 +5162,7 @@ func Construction(opts ...Option) g.Node {
 
 // Contact creates a contact icon
 // Tags: user, person, family, friend, acquaintance, listing, networking
-func Contact(opts ...Option) g.Node {
+func Contact(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M16 2v2",
 		"M7 22v-2a2 2 0 0 1 2-2h6a2 2 0 0 1 2 2v2",
@@ -5174,7 +5174,7 @@ func Contact(opts ...Option) g.Node {
 
 // ContactRound creates a contact-round icon
 // Tags: user, person, family, friend, acquaintance, listing, networking
-func ContactRound(opts ...Option) g.Node {
+func ContactRound(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M16 2v2",
 		"M17.915 22a6 6 0 0 0-12 0",
@@ -5186,7 +5186,7 @@ func ContactRound(opts ...Option) g.Node {
 
 // Container creates a container icon
 // Tags: storage, shipping, freight, supply chain, docker, environment, devops, code, coding
-func Container(opts ...Option) g.Node {
+func Container(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M22 7.7c0-.6-.4-1.2-.8-1.5l-6.3-3.9a1.72 1.72 0 0 0-1.7 0l-10.3 6c-.5.2-.9.8-.9 1.4v6.6c0 .5.4 1.2.8 1.5l6.3 3.9a1.72 1.72 0 0 0 1.7 0l10.3-6c.5-.3.9-1 .9-1.5Z",
 		"M10 21.9V14L2.1 9.1",
@@ -5198,7 +5198,7 @@ func Container(opts ...Option) g.Node {
 
 // Contrast creates a contrast icon
 // Tags: display, accessibility
-func Contrast(opts ...Option) g.Node {
+func Contrast(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M 2 12 a 10 10 0 1 0 20 0 a 10 10 0 1 0 -20 0",
 		"M12 18a6 6 0 0 0 0-12v12z",
@@ -5207,7 +5207,7 @@ func Contrast(opts ...Option) g.Node {
 
 // Cookie creates a cookie icon
 // Tags: biscuit, privacy, legal, food
-func Cookie(opts ...Option) g.Node {
+func Cookie(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M12 2a10 10 0 1 0 10 10 4 4 0 0 1-5-5 4 4 0 0 1-5-5",
 		"M8.5 8.5v.01",
@@ -5220,7 +5220,7 @@ func Cookie(opts ...Option) g.Node {
 
 // CookingPot creates a cooking-pot icon
 // Tags: pod, cooking, recipe, food, kitchen, chef, restaurant, dinner, lunch, breakfast, meal, eat
-func CookingPot(opts ...Option) g.Node {
+func CookingPot(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M2 12h20",
 		"M20 12v8a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2v-8",
@@ -5231,7 +5231,7 @@ func CookingPot(opts ...Option) g.Node {
 
 // Copy creates a copy icon
 // Tags: clone, duplicate, multiple
-func Copy(opts ...Option) g.Node {
+func Copy(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M 10 8 h 10 a 2 2 0 0 1 2 2 v 10 a 2 2 0 0 1 -2 2 h -10 a 2 2 0 0 1 -2 -2 v -10 a 2 2 0 0 1 2 -2 Z",
 		"M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2",
@@ -5240,7 +5240,7 @@ func Copy(opts ...Option) g.Node {
 
 // CopyCheck creates a copy-check icon
 // Tags: clone, duplicate, done, multiple
-func CopyCheck(opts ...Option) g.Node {
+func CopyCheck(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"m12 15 2 2 4-4",
 		"M 10 8 h 10 a 2 2 0 0 1 2 2 v 10 a 2 2 0 0 1 -2 2 h -10 a 2 2 0 0 1 -2 -2 v -10 a 2 2 0 0 1 2 -2 Z",
@@ -5250,7 +5250,7 @@ func CopyCheck(opts ...Option) g.Node {
 
 // CopyMinus creates a copy-minus icon
 // Tags: clone, duplicate, remove, delete, collapse, subtract, multiple, -
-func CopyMinus(opts ...Option) g.Node {
+func CopyMinus(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M 12 15 L 18 15",
 		"M 10 8 h 10 a 2 2 0 0 1 2 2 v 10 a 2 2 0 0 1 -2 2 h -10 a 2 2 0 0 1 -2 -2 v -10 a 2 2 0 0 1 2 -2 Z",
@@ -5260,7 +5260,7 @@ func CopyMinus(opts ...Option) g.Node {
 
 // CopyPlus creates a copy-plus icon
 // Tags: clone, duplicate, add, multiple, expand, +
-func CopyPlus(opts ...Option) g.Node {
+func CopyPlus(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M 15 12 L 15 18",
 		"M 12 15 L 18 15",
@@ -5271,7 +5271,7 @@ func CopyPlus(opts ...Option) g.Node {
 
 // CopySlash creates a copy-slash icon
 // Tags: clone, duplicate, cancel, ban, no, stop, forbidden, prohibited, error, multiple, divide, division, split, or, /
-func CopySlash(opts ...Option) g.Node {
+func CopySlash(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M 12 18 L 18 12",
 		"M 10 8 h 10 a 2 2 0 0 1 2 2 v 10 a 2 2 0 0 1 -2 2 h -10 a 2 2 0 0 1 -2 -2 v -10 a 2 2 0 0 1 2 -2 Z",
@@ -5281,7 +5281,7 @@ func CopySlash(opts ...Option) g.Node {
 
 // CopyX creates a copy-x icon
 // Tags: cancel, close, delete, remove, clear, multiple, multiply, multiplication, times
-func CopyX(opts ...Option) g.Node {
+func CopyX(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M 12 12 L 18 18",
 		"M 12 18 L 18 12",
@@ -5292,7 +5292,7 @@ func CopyX(opts ...Option) g.Node {
 
 // Copyleft creates a copyleft icon
 // Tags: licence
-func Copyleft(opts ...Option) g.Node {
+func Copyleft(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M 2 12 a 10 10 0 1 0 20 0 a 10 10 0 1 0 -20 0",
 		"M9.17 14.83a4 4 0 1 0 0-5.66",
@@ -5301,7 +5301,7 @@ func Copyleft(opts ...Option) g.Node {
 
 // Copyright creates a copyright icon
 // Tags: licence, license
-func Copyright(opts ...Option) g.Node {
+func Copyright(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M 2 12 a 10 10 0 1 0 20 0 a 10 10 0 1 0 -20 0",
 		"M14.83 14.83a4 4 0 1 1 0-5.66",
@@ -5310,7 +5310,7 @@ func Copyright(opts ...Option) g.Node {
 
 // CornerDownLeft creates a corner-down-left icon
 // Tags: arrow, return
-func CornerDownLeft(opts ...Option) g.Node {
+func CornerDownLeft(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M20 4v7a4 4 0 0 1-4 4H4",
 		"m9 10-5 5 5 5",
@@ -5319,7 +5319,7 @@ func CornerDownLeft(opts ...Option) g.Node {
 
 // CornerDownRight creates a corner-down-right icon
 // Tags: arrow, indent, tab
-func CornerDownRight(opts ...Option) g.Node {
+func CornerDownRight(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"m15 10 5 5-5 5",
 		"M4 4v7a4 4 0 0 0 4 4h12",
@@ -5328,7 +5328,7 @@ func CornerDownRight(opts ...Option) g.Node {
 
 // CornerLeftDown creates a corner-left-down icon
 // Tags: arrow
-func CornerLeftDown(opts ...Option) g.Node {
+func CornerLeftDown(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"m14 15-5 5-5-5",
 		"M20 4h-7a4 4 0 0 0-4 4v12",
@@ -5337,7 +5337,7 @@ func CornerLeftDown(opts ...Option) g.Node {
 
 // CornerLeftUp creates a corner-left-up icon
 // Tags: arrow
-func CornerLeftUp(opts ...Option) g.Node {
+func CornerLeftUp(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M14 9 9 4 4 9",
 		"M20 20h-7a4 4 0 0 1-4-4V4",
@@ -5346,7 +5346,7 @@ func CornerLeftUp(opts ...Option) g.Node {
 
 // CornerRightDown creates a corner-right-down icon
 // Tags: arrow
-func CornerRightDown(opts ...Option) g.Node {
+func CornerRightDown(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"m10 15 5 5 5-5",
 		"M4 4h7a4 4 0 0 1 4 4v12",
@@ -5355,7 +5355,7 @@ func CornerRightDown(opts ...Option) g.Node {
 
 // CornerRightUp creates a corner-right-up icon
 // Tags: arrow
-func CornerRightUp(opts ...Option) g.Node {
+func CornerRightUp(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"m10 9 5-5 5 5",
 		"M4 20h7a4 4 0 0 0 4-4V4",
@@ -5364,7 +5364,7 @@ func CornerRightUp(opts ...Option) g.Node {
 
 // CornerUpLeft creates a corner-up-left icon
 // Tags: arrow
-func CornerUpLeft(opts ...Option) g.Node {
+func CornerUpLeft(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M20 20v-7a4 4 0 0 0-4-4H4",
 		"M9 14 4 9l5-5",
@@ -5373,7 +5373,7 @@ func CornerUpLeft(opts ...Option) g.Node {
 
 // CornerUpRight creates a corner-up-right icon
 // Tags: arrow
-func CornerUpRight(opts ...Option) g.Node {
+func CornerUpRight(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"m15 14 5-5-5-5",
 		"M4 20v-7a4 4 0 0 1 4-4h12",
@@ -5382,7 +5382,7 @@ func CornerUpRight(opts ...Option) g.Node {
 
 // Cpu creates a cpu icon
 // Tags: processor, cores, technology, computer, chip, circuit, memory, ram, specs, gigahertz, ghz
-func Cpu(opts ...Option) g.Node {
+func Cpu(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M12 20v2",
 		"M12 2v2",
@@ -5403,7 +5403,7 @@ func Cpu(opts ...Option) g.Node {
 
 // CreativeCommons creates a creative-commons icon
 // Tags: licence, license
-func CreativeCommons(opts ...Option) g.Node {
+func CreativeCommons(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M 2 12 a 10 10 0 1 0 20 0 a 10 10 0 1 0 -20 0",
 		"M10 9.3a2.8 2.8 0 0 0-3.5 1 3.1 3.1 0 0 0 0 3.4 2.7 2.7 0 0 0 3.5 1",
@@ -5413,7 +5413,7 @@ func CreativeCommons(opts ...Option) g.Node {
 
 // CreditCard creates a credit-card icon
 // Tags: bank, purchase, payment, cc
-func CreditCard(opts ...Option) g.Node {
+func CreditCard(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M 4 5 h 16 a 2 2 0 0 1 2 2 v 10 a 2 2 0 0 1 -2 2 h -16 a 2 2 0 0 1 -2 -2 v -10 a 2 2 0 0 1 2 -2 Z",
 		"M 2 10 L 22 10",
@@ -5422,7 +5422,7 @@ func CreditCard(opts ...Option) g.Node {
 
 // Croissant creates a croissant icon
 // Tags: bakery, cooking, food, pastry
-func Croissant(opts ...Option) g.Node {
+func Croissant(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M10.2 18H4.774a1.5 1.5 0 0 1-1.352-.97 11 11 0 0 1 .132-6.487",
 		"M18 10.2V4.774a1.5 1.5 0 0 0-.97-1.352 11 11 0 0 0-6.486.132",
@@ -5434,7 +5434,7 @@ func Croissant(opts ...Option) g.Node {
 
 // Crop creates a crop icon
 // Tags: photo, image
-func Crop(opts ...Option) g.Node {
+func Crop(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M6 2v14a2 2 0 0 0 2 2h14",
 		"M18 22V8a2 2 0 0 0-2-2H2",
@@ -5443,13 +5443,13 @@ func Crop(opts ...Option) g.Node {
 
 // Cross creates a cross icon
 // Tags: healthcare, first aid
-func Cross(opts ...Option) g.Node {
+func Cross(opts ...Option) templ.Component {
 	return Icon("M4 9a2 2 0 0 0-2 2v2a2 2 0 0 0 2 2h4a1 1 0 0 1 1 1v4a2 2 0 0 0 2 2h2a2 2 0 0 0 2-2v-4a1 1 0 0 1 1-1h4a2 2 0 0 0 2-2v-2a2 2 0 0 0-2-2h-4a1 1 0 0 1-1-1V4a2 2 0 0 0-2-2h-2a2 2 0 0 0-2 2v4a1 1 0 0 1-1 1z", opts...)
 }
 
 // Crosshair creates a crosshair icon
 // Tags: aim, target
-func Crosshair(opts ...Option) g.Node {
+func Crosshair(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M 2 12 a 10 10 0 1 0 20 0 a 10 10 0 1 0 -20 0",
 		"M 22 12 L 18 12",
@@ -5461,7 +5461,7 @@ func Crosshair(opts ...Option) g.Node {
 
 // Crown creates a crown icon
 // Tags: diadem, tiara, circlet, corona, king, ruler, winner, favourite
-func Crown(opts ...Option) g.Node {
+func Crown(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M11.562 3.266a.5.5 0 0 1 .876 0L15.39 8.87a1 1 0 0 0 1.516.294L21.183 5.5a.5.5 0 0 1 .798.519l-2.834 10.246a1 1 0 0 1-.956.734H5.81a1 1 0 0 1-.957-.734L2.02 6.02a.5.5 0 0 1 .798-.519l4.276 3.664a1 1 0 0 0 1.516-.294z",
 		"M5 21h14",
@@ -5470,7 +5470,7 @@ func Crown(opts ...Option) g.Node {
 
 // Cuboid creates a cuboid icon
 // Tags: brick, block, container, storage, geometry, rectangular, hexahedron
-func Cuboid(opts ...Option) g.Node {
+func Cuboid(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"m21.12 6.4-6.05-4.06a2 2 0 0 0-2.17-.05L2.95 8.41a2 2 0 0 0-.95 1.7v5.82a2 2 0 0 0 .88 1.66l6.05 4.07a2 2 0 0 0 2.17.05l9.95-6.12a2 2 0 0 0 .95-1.7V8.06a2 2 0 0 0-.88-1.66Z",
 		"M10 22v-8L2.25 9.15",
@@ -5480,7 +5480,7 @@ func Cuboid(opts ...Option) g.Node {
 
 // CupSoda creates a cup-soda icon
 // Tags: beverage, cup, drink, soda, straw, water
-func CupSoda(opts ...Option) g.Node {
+func CupSoda(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"m6 8 1.75 12.28a2 2 0 0 0 2 1.72h4.54a2 2 0 0 0 2-1.72L18 8",
 		"M5 8h14",
@@ -5491,7 +5491,7 @@ func CupSoda(opts ...Option) g.Node {
 
 // Currency creates a currency icon
 // Tags: finance, money
-func Currency(opts ...Option) g.Node {
+func Currency(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M 4 12 a 8 8 0 1 0 16 0 a 8 8 0 1 0 -16 0",
 		"M 3 3 L 6 6",
@@ -5503,7 +5503,7 @@ func Currency(opts ...Option) g.Node {
 
 // Cylinder creates a cylinder icon
 // Tags: shape, elliptical, geometry, container, storage, tin, pot
-func Cylinder(opts ...Option) g.Node {
+func Cylinder(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M 3 5 a 9 3 0 1 0 18 0 a 9 3 0 1 0 -18 0",
 		"M3 5v14a9 3 0 0 0 18 0V5",
@@ -5512,7 +5512,7 @@ func Cylinder(opts ...Option) g.Node {
 
 // Dam creates a dam icon
 // Tags: electricity, energy, water
-func Dam(opts ...Option) g.Node {
+func Dam(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M11 11.31c1.17.56 1.54 1.69 3.5 1.69 2.5 0 2.5-2 5-2 1.3 0 1.9.5 2.5 1",
 		"M11.75 18c.35.5 1.45 1 2.75 1 2.5 0 2.5-2 5-2 1.3 0 1.9.5 2.5 1",
@@ -5526,7 +5526,7 @@ func Dam(opts ...Option) g.Node {
 
 // Database creates a database icon
 // Tags: storage, memory, container, tin, pot, bytes, servers
-func Database(opts ...Option) g.Node {
+func Database(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M 3 5 a 9 3 0 1 0 18 0 a 9 3 0 1 0 -18 0",
 		"M3 5V19A9 3 0 0 0 21 19V5",
@@ -5536,7 +5536,7 @@ func Database(opts ...Option) g.Node {
 
 // DatabaseBackup creates a database-backup icon
 // Tags: storage, memory, bytes, servers, backup, timemachine, rotate, arrow, left
-func DatabaseBackup(opts ...Option) g.Node {
+func DatabaseBackup(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M 3 5 a 9 3 0 1 0 18 0 a 9 3 0 1 0 -18 0",
 		"M3 12a9 3 0 0 0 5 2.69",
@@ -5549,7 +5549,7 @@ func DatabaseBackup(opts ...Option) g.Node {
 
 // DatabaseZap creates a database-zap icon
 // Tags: cache busting, storage, memory, bytes, servers, power, crash
-func DatabaseZap(opts ...Option) g.Node {
+func DatabaseZap(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M 3 5 a 9 3 0 1 0 18 0 a 9 3 0 1 0 -18 0",
 		"M3 5V19A9 3 0 0 0 15 21.84",
@@ -5561,7 +5561,7 @@ func DatabaseZap(opts ...Option) g.Node {
 
 // DecimalsArrowLeft creates a decimals-arrow-left icon
 // Tags: numerical, decimal, decrease, less, fewer, precision, rounding, digits, fraction, float, number
-func DecimalsArrowLeft(opts ...Option) g.Node {
+func DecimalsArrowLeft(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"m13 21-3-3 3-3",
 		"M20 18H10",
@@ -5572,7 +5572,7 @@ func DecimalsArrowLeft(opts ...Option) g.Node {
 
 // DecimalsArrowRight creates a decimals-arrow-right icon
 // Tags: numerical, decimal, increase, more, precision, rounding, digits, fraction, float, number
-func DecimalsArrowRight(opts ...Option) g.Node {
+func DecimalsArrowRight(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M10 18h10",
 		"m17 21 3-3-3-3",
@@ -5584,7 +5584,7 @@ func DecimalsArrowRight(opts ...Option) g.Node {
 
 // Delete creates a delete icon
 // Tags: backspace, remove
-func Delete(opts ...Option) g.Node {
+func Delete(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M10 5a2 2 0 0 0-1.344.519l-6.328 5.74a1 1 0 0 0 0 1.481l6.328 5.741A2 2 0 0 0 10 19h10a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2z",
 		"m12 9 6 6",
@@ -5594,7 +5594,7 @@ func Delete(opts ...Option) g.Node {
 
 // Dessert creates a dessert icon
 // Tags: pudding, christmas, xmas, custard, iced bun, icing, fondant, cake, ice cream, gelato, sundae, scoop, dollop, sugar, food, sweet
-func Dessert(opts ...Option) g.Node {
+func Dessert(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M10.162 3.167A10 10 0 0 0 2 13a2 2 0 0 0 4 0v-1a2 2 0 0 1 4 0v4a2 2 0 0 0 4 0v-4a2 2 0 0 1 4 0v1a2 2 0 0 0 4-.006 10 10 0 0 0-8.161-9.826",
 		"M20.804 14.869a9 9 0 0 1-17.608 0",
@@ -5604,7 +5604,7 @@ func Dessert(opts ...Option) g.Node {
 
 // Diameter creates a diameter icon
 // Tags: shape, circle, geometry, trigonometry, width, height, size, calculate, measure
-func Diameter(opts ...Option) g.Node {
+func Diameter(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M 17 19 a 2 2 0 1 0 4 0 a 2 2 0 1 0 -4 0",
 		"M 3 5 a 2 2 0 1 0 4 0 a 2 2 0 1 0 -4 0",
@@ -5616,13 +5616,13 @@ func Diameter(opts ...Option) g.Node {
 
 // Diamond creates a diamond icon
 // Tags: square, rectangle, oblique, rhombus, shape, suit, playing, cards
-func Diamond(opts ...Option) g.Node {
+func Diamond(opts ...Option) templ.Component {
 	return Icon("M2.7 10.3a2.41 2.41 0 0 0 0 3.41l7.59 7.59a2.41 2.41 0 0 0 3.41 0l7.59-7.59a2.41 2.41 0 0 0 0-3.41l-7.59-7.59a2.41 2.41 0 0 0-3.41 0Z", opts...)
 }
 
 // DiamondMinus creates a diamond-minus icon
 // Tags: keyframe, subtract, remove, decrease, reduce, calculator, button, keyboard, line, divider, separator, horizontal rule, hr, html, markup, markdown, ---, toolbar, operator, code, coding, minimum, downgrade
-func DiamondMinus(opts ...Option) g.Node {
+func DiamondMinus(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M2.7 10.3a2.41 2.41 0 0 0 0 3.41l7.59 7.59a2.41 2.41 0 0 0 3.41 0l7.59-7.59a2.41 2.41 0 0 0 0-3.41L13.7 2.71a2.41 2.41 0 0 0-3.41 0z",
 		"M8 12h8",
@@ -5631,7 +5631,7 @@ func DiamondMinus(opts ...Option) g.Node {
 
 // DiamondPercent creates a diamond-percent icon
 // Tags: verified, unverified, sale, discount, offer, marketing, sticker, price tag
-func DiamondPercent(opts ...Option) g.Node {
+func DiamondPercent(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M2.7 10.3a2.41 2.41 0 0 0 0 3.41l7.59 7.59a2.41 2.41 0 0 0 3.41 0l7.59-7.59a2.41 2.41 0 0 0 0-3.41L13.7 2.71a2.41 2.41 0 0 0-3.41 0Z",
 		"M9.2 9.2h.01",
@@ -5642,7 +5642,7 @@ func DiamondPercent(opts ...Option) g.Node {
 
 // DiamondPlus creates a diamond-plus icon
 // Tags: keyframe, add, new, increase, increment, positive, calculate, toolbar, crosshair, aim, target, scope, sight, reticule, maximum, upgrade, extra, +
-func DiamondPlus(opts ...Option) g.Node {
+func DiamondPlus(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M12 8v8",
 		"M2.7 10.3a2.41 2.41 0 0 0 0 3.41l7.59 7.59a2.41 2.41 0 0 0 3.41 0l7.59-7.59a2.41 2.41 0 0 0 0-3.41L13.7 2.71a2.41 2.41 0 0 0-3.41 0z",
@@ -5652,7 +5652,7 @@ func DiamondPlus(opts ...Option) g.Node {
 
 // Dice1 creates a dice-1 icon
 // Tags: dice, random, tabletop, 1, board, game
-func Dice1(opts ...Option) g.Node {
+func Dice1(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M 5 3 h 14 a 2 2 0 0 1 2 2 v 14 a 2 2 0 0 1 -2 2 h -14 a 2 2 0 0 1 -2 -2 v -14 a 2 2 0 0 1 2 -2 Z",
 		"M12 12h.01",
@@ -5661,7 +5661,7 @@ func Dice1(opts ...Option) g.Node {
 
 // Dice2 creates a dice-2 icon
 // Tags: dice, random, tabletop, 2, board, game
-func Dice2(opts ...Option) g.Node {
+func Dice2(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M 5 3 h 14 a 2 2 0 0 1 2 2 v 14 a 2 2 0 0 1 -2 2 h -14 a 2 2 0 0 1 -2 -2 v -14 a 2 2 0 0 1 2 -2 Z",
 		"M15 9h.01",
@@ -5671,7 +5671,7 @@ func Dice2(opts ...Option) g.Node {
 
 // Dice3 creates a dice-3 icon
 // Tags: dice, random, tabletop, 3, board, game
-func Dice3(opts ...Option) g.Node {
+func Dice3(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M 5 3 h 14 a 2 2 0 0 1 2 2 v 14 a 2 2 0 0 1 -2 2 h -14 a 2 2 0 0 1 -2 -2 v -14 a 2 2 0 0 1 2 -2 Z",
 		"M16 8h.01",
@@ -5682,7 +5682,7 @@ func Dice3(opts ...Option) g.Node {
 
 // Dice4 creates a dice-4 icon
 // Tags: dice, random, tabletop, 4, board, game
-func Dice4(opts ...Option) g.Node {
+func Dice4(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M 5 3 h 14 a 2 2 0 0 1 2 2 v 14 a 2 2 0 0 1 -2 2 h -14 a 2 2 0 0 1 -2 -2 v -14 a 2 2 0 0 1 2 -2 Z",
 		"M16 8h.01",
@@ -5694,7 +5694,7 @@ func Dice4(opts ...Option) g.Node {
 
 // Dice5 creates a dice-5 icon
 // Tags: dice, random, tabletop, 5, board, game
-func Dice5(opts ...Option) g.Node {
+func Dice5(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M 5 3 h 14 a 2 2 0 0 1 2 2 v 14 a 2 2 0 0 1 -2 2 h -14 a 2 2 0 0 1 -2 -2 v -14 a 2 2 0 0 1 2 -2 Z",
 		"M16 8h.01",
@@ -5707,7 +5707,7 @@ func Dice5(opts ...Option) g.Node {
 
 // Dice6 creates a dice-6 icon
 // Tags: dice, random, tabletop, 6, board, game
-func Dice6(opts ...Option) g.Node {
+func Dice6(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M 5 3 h 14 a 2 2 0 0 1 2 2 v 14 a 2 2 0 0 1 -2 2 h -14 a 2 2 0 0 1 -2 -2 v -14 a 2 2 0 0 1 2 -2 Z",
 		"M16 8h.01",
@@ -5721,7 +5721,7 @@ func Dice6(opts ...Option) g.Node {
 
 // Dices creates a dices icon
 // Tags: dice, random, tabletop, board, game
-func Dices(opts ...Option) g.Node {
+func Dices(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M 4 10 h 8 a 2 2 0 0 1 2 2 v 8 a 2 2 0 0 1 -2 2 h -8 a 2 2 0 0 1 -2 -2 v -8 a 2 2 0 0 1 2 -2 Z",
 		"m17.92 14 3.5-3.5a2.24 2.24 0 0 0 0-3l-5-4.92a2.24 2.24 0 0 0-3 0L10 6",
@@ -5734,7 +5734,7 @@ func Dices(opts ...Option) g.Node {
 
 // Diff creates a diff icon
 // Tags: patch, difference, compare, plus, minus, plus-minus, math
-func Diff(opts ...Option) g.Node {
+func Diff(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M12 3v14",
 		"M5 10h14",
@@ -5744,7 +5744,7 @@ func Diff(opts ...Option) g.Node {
 
 // Disc creates a disc icon
 // Tags: album, music, songs, format, cd, dvd, vinyl, sleeve, cover, platinum, compilation, ep, recording, playback, spin, rotate, rpm, dj
-func Disc(opts ...Option) g.Node {
+func Disc(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M 2 12 a 10 10 0 1 0 20 0 a 10 10 0 1 0 -20 0",
 		"M 10 12 a 2 2 0 1 0 4 0 a 2 2 0 1 0 -4 0",
@@ -5753,7 +5753,7 @@ func Disc(opts ...Option) g.Node {
 
 // Disc2 creates a disc-2 icon
 // Tags: album, music, vinyl, record, cd, dvd, format, dj, spin, rotate, rpm
-func Disc2(opts ...Option) g.Node {
+func Disc2(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M 2 12 a 10 10 0 1 0 20 0 a 10 10 0 1 0 -20 0",
 		"M 8 12 a 4 4 0 1 0 8 0 a 4 4 0 1 0 -8 0",
@@ -5763,7 +5763,7 @@ func Disc2(opts ...Option) g.Node {
 
 // Disc3 creates a disc-3 icon
 // Tags: album, music, vinyl, record, cd, dvd, format, dj, spin, rotate, rpm
-func Disc3(opts ...Option) g.Node {
+func Disc3(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M 2 12 a 10 10 0 1 0 20 0 a 10 10 0 1 0 -20 0",
 		"M6 12c0-1.7.7-3.2 1.8-4.2",
@@ -5774,7 +5774,7 @@ func Disc3(opts ...Option) g.Node {
 
 // DiscAlbum creates a disc-album icon
 // Tags: album, music, songs, format, cd, dvd, vinyl, sleeve, cover, platinum, compilation, ep, recording, playback, spin, rotate, rpm, dj
-func DiscAlbum(opts ...Option) g.Node {
+func DiscAlbum(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M 5 3 h 14 a 2 2 0 0 1 2 2 v 14 a 2 2 0 0 1 -2 2 h -14 a 2 2 0 0 1 -2 -2 v -14 a 2 2 0 0 1 2 -2 Z",
 		"M 7 12 a 5 5 0 1 0 10 0 a 5 5 0 1 0 -10 0",
@@ -5784,7 +5784,7 @@ func DiscAlbum(opts ...Option) g.Node {
 
 // Divide creates a divide icon
 // Tags: calculate, math, division, operator, code, ÷, /
-func Divide(opts ...Option) g.Node {
+func Divide(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M 11 6 a 1 1 0 1 0 2 0 a 1 1 0 1 0 -2 0",
 		"M 5 12 L 19 12",
@@ -5794,7 +5794,7 @@ func Divide(opts ...Option) g.Node {
 
 // Dna creates a dna icon
 // Tags: gene, gmo, helix, heredity, chromosome, nucleic acid
-func Dna(opts ...Option) g.Node {
+func Dna(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"m10 16 1.5 1.5",
 		"m14 8-1.5-1.5",
@@ -5812,7 +5812,7 @@ func Dna(opts ...Option) g.Node {
 
 // DnaOff creates a dna-off icon
 // Tags: gene, gmo free, helix, heredity, chromosome, nucleic acid
-func DnaOff(opts ...Option) g.Node {
+func DnaOff(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M15 2c-1.35 1.5-2.092 3-2.5 4.5L14 8",
 		"m17 6-2.891-2.891",
@@ -5829,7 +5829,7 @@ func DnaOff(opts ...Option) g.Node {
 
 // Dock creates a dock icon
 // Tags: desktop, applications, launch, home, menu bar, bottom, line, macos, osx
-func Dock(opts ...Option) g.Node {
+func Dock(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M2 8h20",
 		"M 4 4 h 16 a 2 2 0 0 1 2 2 v 12 a 2 2 0 0 1 -2 2 h -16 a 2 2 0 0 1 -2 -2 v -12 a 2 2 0 0 1 2 -2 Z",
@@ -5839,7 +5839,7 @@ func Dock(opts ...Option) g.Node {
 
 // Dog creates a dog icon
 // Tags: animal, pet, puppy, hound, canine
-func Dog(opts ...Option) g.Node {
+func Dog(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M11.25 16.25h1.5L12 17z",
 		"M16 14v.5",
@@ -5851,7 +5851,7 @@ func Dog(opts ...Option) g.Node {
 
 // DollarSign creates a dollar-sign icon
 // Tags: currency, money, payment
-func DollarSign(opts ...Option) g.Node {
+func DollarSign(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M 12 2 L 12 22",
 		"M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6",
@@ -5860,7 +5860,7 @@ func DollarSign(opts ...Option) g.Node {
 
 // Donut creates a donut icon
 // Tags: doughnut, sprinkles, topping, fast food, junk food, snack, treat, sweet, sugar, dessert, hollow, ring
-func Donut(opts ...Option) g.Node {
+func Donut(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M20.5 10a2.5 2.5 0 0 1-2.4-3H18a2.95 2.95 0 0 1-2.6-4.4 10 10 0 1 0 6.3 7.1c-.3.2-.8.3-1.2.3",
 		"M 9 12 a 3 3 0 1 0 6 0 a 3 3 0 1 0 -6 0",
@@ -5869,7 +5869,7 @@ func Donut(opts ...Option) g.Node {
 
 // DoorClosed creates a door-closed icon
 // Tags: entrance, entry, exit, ingress, egress, gate, gateway, emergency exit
-func DoorClosed(opts ...Option) g.Node {
+func DoorClosed(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M10 12h.01",
 		"M18 20V6a2 2 0 0 0-2-2H8a2 2 0 0 0-2 2v14",
@@ -5879,7 +5879,7 @@ func DoorClosed(opts ...Option) g.Node {
 
 // DoorClosedLocked creates a door-closed-locked icon
 // Tags: entrance, entry, exit, ingress, egress, gate, gateway, emergency exit, lock
-func DoorClosedLocked(opts ...Option) g.Node {
+func DoorClosedLocked(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M10 12h.01",
 		"M18 9V6a2 2 0 0 0-2-2H8a2 2 0 0 0-2 2v14",
@@ -5891,7 +5891,7 @@ func DoorClosedLocked(opts ...Option) g.Node {
 
 // DoorOpen creates a door-open icon
 // Tags: entrance, entry, exit, ingress, egress, gate, gateway, emergency exit
-func DoorOpen(opts ...Option) g.Node {
+func DoorOpen(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M11 20H2",
 		"M11 4.562v16.157a1 1 0 0 0 1.242.97L19 20V5.562a2 2 0 0 0-1.515-1.94l-4-1A2 2 0 0 0 11 4.561z",
@@ -5903,13 +5903,13 @@ func DoorOpen(opts ...Option) g.Node {
 
 // Dot creates a dot icon
 // Tags: interpunct, interpoint, middot, step, punctuation, period, full stop, end, finish, final, characters, font, typography, type, center, .
-func Dot(opts ...Option) g.Node {
+func Dot(opts ...Option) templ.Component {
 	return Icon("M 11.1 12.1 a 1 1 0 1 0 2 0 a 1 1 0 1 0 -2 0", opts...)
 }
 
 // Download creates a download icon
 // Tags: import, export, save
-func Download(opts ...Option) g.Node {
+func Download(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M12 15V3",
 		"M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4",
@@ -5919,7 +5919,7 @@ func Download(opts ...Option) g.Node {
 
 // DraftingCompass creates a drafting-compass icon
 // Tags: geometry, trigonometry, radius, diameter, circumference, calculate, measure, arc, curve, draw, sketch
-func DraftingCompass(opts ...Option) g.Node {
+func DraftingCompass(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"m12.99 6.74 1.93 3.44",
 		"M19.136 12a10 10 0 0 1-14.271 0",
@@ -5931,7 +5931,7 @@ func DraftingCompass(opts ...Option) g.Node {
 
 // Drama creates a drama icon
 // Tags: drama, masks, theater, theatre, entertainment, show
-func Drama(opts ...Option) g.Node {
+func Drama(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M10 11h.01",
 		"M14 6h.01",
@@ -5946,7 +5946,7 @@ func Drama(opts ...Option) g.Node {
 
 // Dribbble creates a dribbble icon
 // Tags: design, social
-func Dribbble(opts ...Option) g.Node {
+func Dribbble(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M 2 12 a 10 10 0 1 0 20 0 a 10 10 0 1 0 -20 0",
 		"M19.13 5.09C15.22 9.14 10 10.44 2.25 10.94",
@@ -5957,7 +5957,7 @@ func Dribbble(opts ...Option) g.Node {
 
 // Drill creates a drill icon
 // Tags: power, bit, head, hole, diy, toolbox, build, construction
-func Drill(opts ...Option) g.Node {
+func Drill(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M10 18a1 1 0 0 1 1 1v2a1 1 0 0 1-1 1H5a3 3 0 0 1-3-3 1 1 0 0 1 1-1z",
 		"M13 10H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a1 1 0 0 1 1 1v6a1 1 0 0 1-1 1l-.81 3.242a1 1 0 0 1-.97.758H8",
@@ -5970,7 +5970,7 @@ func Drill(opts ...Option) g.Node {
 
 // Drone creates a drone icon
 // Tags: quadcopter, uav, aerial, flight, flying, technology, airborne, robotics
-func Drone(opts ...Option) g.Node {
+func Drone(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M10 10 7 7",
 		"m10 14-3 3",
@@ -5986,13 +5986,13 @@ func Drone(opts ...Option) g.Node {
 
 // Droplet creates a droplet icon
 // Tags: water, weather, liquid, fluid, wet, moisture, damp, bead, globule
-func Droplet(opts ...Option) g.Node {
+func Droplet(opts ...Option) templ.Component {
 	return Icon("M12 22a7 7 0 0 0 7-7c0-2-1-3.9-3-5.5s-3.5-4-4-6.5c-.5 2.5-2 4.9-4 6.5C6 11.1 5 13 5 15a7 7 0 0 0 7 7z", opts...)
 }
 
 // DropletOff creates a droplet-off icon
 // Tags: water, weather, liquid, fluid, wet, moisture, damp, bead, globule
-func DropletOff(opts ...Option) g.Node {
+func DropletOff(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M18.715 13.186C18.29 11.858 17.384 10.607 16 9.5c-2-1.6-3.5-4-4-6.5a10.7 10.7 0 0 1-.884 2.586",
 		"m2 2 20 20",
@@ -6002,7 +6002,7 @@ func DropletOff(opts ...Option) g.Node {
 
 // Droplets creates a droplets icon
 // Tags: water, weather, liquid, fluid, wet, moisture, damp, bead, globule
-func Droplets(opts ...Option) g.Node {
+func Droplets(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M7 16.3c2.2 0 4-1.83 4-4.05 0-1.16-.57-2.26-1.71-3.19S7.29 6.75 7 5.3c-.29 1.45-1.14 2.84-2.29 3.76S3 11.1 3 12.25c0 2.22 1.8 4.05 4 4.05z",
 		"M12.56 6.6A10.97 10.97 0 0 0 14 3.02c.5 2.5 2 4.9 4 6.5s3 3.5 3 5.5a6.98 6.98 0 0 1-11.91 4.97",
@@ -6011,7 +6011,7 @@ func Droplets(opts ...Option) g.Node {
 
 // Drum creates a drum icon
 // Tags: drummer, kit, sticks, instrument, beat, bang, bass, backing track, band, play, performance, concert, march, music, audio, sound, noise, loud
-func Drum(opts ...Option) g.Node {
+func Drum(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"m2 2 8 8",
 		"m22 2-8 8",
@@ -6025,7 +6025,7 @@ func Drum(opts ...Option) g.Node {
 
 // Drumstick creates a drumstick icon
 // Tags: food, chicken, meat
-func Drumstick(opts ...Option) g.Node {
+func Drumstick(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M15.4 15.63a7.875 6 135 1 1 6.23-6.23 4.5 3.43 135 0 0-6.23 6.23",
 		"m8.29 12.71-2.6 2.6a2.5 2.5 0 1 0-1.65 4.65A2.5 2.5 0 1 0 8.7 18.3l2.59-2.59",
@@ -6034,7 +6034,7 @@ func Drumstick(opts ...Option) g.Node {
 
 // Dumbbell creates a dumbbell icon
 // Tags: barbell, weight, workout, gym
-func Dumbbell(opts ...Option) g.Node {
+func Dumbbell(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M17.596 12.768a2 2 0 1 0 2.829-2.829l-1.768-1.767a2 2 0 0 0 2.828-2.829l-2.828-2.828a2 2 0 0 0-2.829 2.828l-1.767-1.768a2 2 0 1 0-2.829 2.829z",
 		"m2.5 21.5 1.4-1.4",
@@ -6046,7 +6046,7 @@ func Dumbbell(opts ...Option) g.Node {
 
 // Ear creates a ear icon
 // Tags: hearing, noise, audio, accessibility
-func Ear(opts ...Option) g.Node {
+func Ear(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M6 8.5a6.5 6.5 0 1 1 13 0c0 6-6 6-6 10a3.5 3.5 0 1 1-7 0",
 		"M15 8.5a2.5 2.5 0 0 0-5 0v1a2 2 0 1 1 0 4",
@@ -6055,7 +6055,7 @@ func Ear(opts ...Option) g.Node {
 
 // EarOff creates a ear-off icon
 // Tags: hearing, hard of hearing, hearing loss, deafness, noise, silence, audio, accessibility
-func EarOff(opts ...Option) g.Node {
+func EarOff(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M6 18.5a3.5 3.5 0 1 0 7 0c0-1.57.92-2.52 2.04-3.46",
 		"M6 8.5c0-.75.13-1.47.36-2.14",
@@ -6067,7 +6067,7 @@ func EarOff(opts ...Option) g.Node {
 
 // Earth creates a earth icon
 // Tags: world, browser, language, translate, globe
-func Earth(opts ...Option) g.Node {
+func Earth(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M21.54 15H17a2 2 0 0 0-2 2v4.54",
 		"M7 3.34V5a3 3 0 0 0 3 3a2 2 0 0 1 2 2c0 1.1.9 2 2 2a2 2 0 0 0 2-2c0-1.1.9-2 2-2h3.17",
@@ -6078,7 +6078,7 @@ func Earth(opts ...Option) g.Node {
 
 // EarthLock creates a earth-lock icon
 // Tags: vpn, private, privacy, network, world, browser, security, encryption, protection, connection
-func EarthLock(opts ...Option) g.Node {
+func EarthLock(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M7 3.34V5a3 3 0 0 0 3 3",
 		"M11 21.95V18a2 2 0 0 0-2-2 2 2 0 0 1-2-2v-1a2 2 0 0 0-2-2H2.05",
@@ -6091,7 +6091,7 @@ func EarthLock(opts ...Option) g.Node {
 
 // Eclipse creates a eclipse icon
 // Tags: lunar, solar, crescent moon, sun, earth, day, night, planet, space, mode, dark, light, toggle, switch, color, css, styles, display, accessibility, contrast, brightness, blend, shade
-func Eclipse(opts ...Option) g.Node {
+func Eclipse(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M 2 12 a 10 10 0 1 0 20 0 a 10 10 0 1 0 -20 0",
 		"M12 2a7 7 0 1 0 10 10",
@@ -6100,13 +6100,13 @@ func Eclipse(opts ...Option) g.Node {
 
 // Egg creates a egg icon
 // Tags: bird, chicken, nest, hatch, shell, incubate, soft boiled, hard, breakfast, brunch, morning, easter
-func Egg(opts ...Option) g.Node {
+func Egg(opts ...Option) templ.Component {
 	return Icon("M12 2C8 2 4 8 4 14a8 8 0 0 0 16 0c0-6-4-12-8-12", opts...)
 }
 
 // EggFried creates a egg-fried icon
 // Tags: food, breakfast
-func EggFried(opts ...Option) g.Node {
+func EggFried(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M 8 12.5 a 3.5 3.5 0 1 0 7 0 a 3.5 3.5 0 1 0 -7 0",
 		"M3 8c0-3.5 2.5-6 6.5-6 5 0 4.83 3 7.5 5s5 2 5 6c0 4.5-2.5 6.5-7 6.5-2.5 0-2.5 2.5-6 2.5s-7-2-7-5.5c0-3 1.5-3 1.5-5C3.5 10 3 9 3 8Z",
@@ -6115,7 +6115,7 @@ func EggFried(opts ...Option) g.Node {
 
 // EggOff creates a egg-off icon
 // Tags: egg free, vegan, hatched, bad egg
-func EggOff(opts ...Option) g.Node {
+func EggOff(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"m2 2 20 20",
 		"M20 14.347V14c0-6-4-12-8-12-1.078 0-2.157.436-3.157 1.19",
@@ -6125,7 +6125,7 @@ func EggOff(opts ...Option) g.Node {
 
 // Ellipsis creates a ellipsis icon
 // Tags: et cetera, etc, loader, loading, progress, pending, throbber, menu, options, operator, code, coding, spread, rest, more, further, extra, overflow, dots, …, ...
-func Ellipsis(opts ...Option) g.Node {
+func Ellipsis(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M 11 12 a 1 1 0 1 0 2 0 a 1 1 0 1 0 -2 0",
 		"M 18 12 a 1 1 0 1 0 2 0 a 1 1 0 1 0 -2 0",
@@ -6135,7 +6135,7 @@ func Ellipsis(opts ...Option) g.Node {
 
 // EllipsisVertical creates a ellipsis-vertical icon
 // Tags: menu, options, spread, more, further, extra, overflow, dots, …, ...
-func EllipsisVertical(opts ...Option) g.Node {
+func EllipsisVertical(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M 11 12 a 1 1 0 1 0 2 0 a 1 1 0 1 0 -2 0",
 		"M 11 5 a 1 1 0 1 0 2 0 a 1 1 0 1 0 -2 0",
@@ -6145,7 +6145,7 @@ func EllipsisVertical(opts ...Option) g.Node {
 
 // Equal creates a equal icon
 // Tags: calculate, math, operator, assignment, code, =
-func Equal(opts ...Option) g.Node {
+func Equal(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M 5 9 L 19 9",
 		"M 5 15 L 19 15",
@@ -6154,7 +6154,7 @@ func Equal(opts ...Option) g.Node {
 
 // EqualApproximately creates a equal-approximately icon
 // Tags: about, calculate, math, operater
-func EqualApproximately(opts ...Option) g.Node {
+func EqualApproximately(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M5 15a6.5 6.5 0 0 1 7 0 6.5 6.5 0 0 0 7 0",
 		"M5 9a6.5 6.5 0 0 1 7 0 6.5 6.5 0 0 0 7 0",
@@ -6163,7 +6163,7 @@ func EqualApproximately(opts ...Option) g.Node {
 
 // EqualNot creates a equal-not icon
 // Tags: calculate, off, math, operator, code, ≠
-func EqualNot(opts ...Option) g.Node {
+func EqualNot(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M 5 9 L 19 9",
 		"M 5 15 L 19 15",
@@ -6173,7 +6173,7 @@ func EqualNot(opts ...Option) g.Node {
 
 // Eraser creates a eraser icon
 // Tags: pencil, drawing, undo, delete, clear, trash, remove
-func Eraser(opts ...Option) g.Node {
+func Eraser(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M21 21H8a2 2 0 0 1-1.42-.587l-3.994-3.999a2 2 0 0 1 0-2.828l10-10a2 2 0 0 1 2.829 0l5.999 6a2 2 0 0 1 0 2.828L12.834 21",
 		"m5.082 11.09 8.828 8.828",
@@ -6182,7 +6182,7 @@ func Eraser(opts ...Option) g.Node {
 
 // EthernetPort creates a ethernet-port icon
 // Tags: internet, network, connection, cable, lan, port, router, switch, hub, modem, web, online, networking, communication, socket, plug, slot, controller, connector, interface, console, signal, data, input, output
-func EthernetPort(opts ...Option) g.Node {
+func EthernetPort(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"m15 20 3-3h2a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2H4a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h2l3 3z",
 		"M6 8v1",
@@ -6194,7 +6194,7 @@ func EthernetPort(opts ...Option) g.Node {
 
 // Euro creates a euro icon
 // Tags: currency, money, payment
-func Euro(opts ...Option) g.Node {
+func Euro(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M4 10h12",
 		"M4 14h9",
@@ -6204,7 +6204,7 @@ func Euro(opts ...Option) g.Node {
 
 // EvCharger creates a ev-charger icon
 // Tags: electric, charger, station, vehicle, fast, plug, ev, power, electricity, energy, accumulator, charge
-func EvCharger(opts ...Option) g.Node {
+func EvCharger(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M14 13h2a2 2 0 0 1 2 2v2a2 2 0 0 0 4 0v-6.998a2 2 0 0 0-.59-1.42L18 5",
 		"M14 21V5a2 2 0 0 0-2-2H5a2 2 0 0 0-2 2v16",
@@ -6216,7 +6216,7 @@ func EvCharger(opts ...Option) g.Node {
 
 // Expand creates a expand icon
 // Tags: scale, fullscreen, maximize, minimize, contract
-func Expand(opts ...Option) g.Node {
+func Expand(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"m15 15 6 6",
 		"m15 9 6-6",
@@ -6231,7 +6231,7 @@ func Expand(opts ...Option) g.Node {
 
 // ExternalLink creates a external-link icon
 // Tags: outbound, open, share
-func ExternalLink(opts ...Option) g.Node {
+func ExternalLink(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M15 3h6v6",
 		"M10 14 21 3",
@@ -6241,7 +6241,7 @@ func ExternalLink(opts ...Option) g.Node {
 
 // Eye creates a eye icon
 // Tags: view, watch, see, show, expose, reveal, display, visible, visibility, vision, preview, read
-func Eye(opts ...Option) g.Node {
+func Eye(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M2.062 12.348a1 1 0 0 1 0-.696 10.75 10.75 0 0 1 19.876 0 1 1 0 0 1 0 .696 10.75 10.75 0 0 1-19.876 0",
 		"M 9 12 a 3 3 0 1 0 6 0 a 3 3 0 1 0 -6 0",
@@ -6250,7 +6250,7 @@ func Eye(opts ...Option) g.Node {
 
 // EyeClosed creates a eye-closed icon
 // Tags: view, watch, see, hide, conceal, mask, hidden, visibility, vision
-func EyeClosed(opts ...Option) g.Node {
+func EyeClosed(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"m15 18-.722-3.25",
 		"M2 8a10.645 10.645 0 0 0 20 0",
@@ -6262,7 +6262,7 @@ func EyeClosed(opts ...Option) g.Node {
 
 // EyeOff creates a eye-off icon
 // Tags: view, watch, see, hide, conceal, mask, hidden, visibility, vision
-func EyeOff(opts ...Option) g.Node {
+func EyeOff(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M10.733 5.076a10.744 10.744 0 0 1 11.205 6.575 1 1 0 0 1 0 .696 10.747 10.747 0 0 1-1.444 2.49",
 		"M14.084 14.158a3 3 0 0 1-4.242-4.242",
@@ -6273,13 +6273,13 @@ func EyeOff(opts ...Option) g.Node {
 
 // Facebook creates a facebook icon
 // Tags: logo, social
-func Facebook(opts ...Option) g.Node {
+func Facebook(opts ...Option) templ.Component {
 	return Icon("M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z", opts...)
 }
 
 // Factory creates a factory icon
 // Tags: building, business, energy, industry, manufacture, sector
-func Factory(opts ...Option) g.Node {
+func Factory(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M12 16h.01",
 		"M16 16h.01",
@@ -6290,7 +6290,7 @@ func Factory(opts ...Option) g.Node {
 
 // Fan creates a fan icon
 // Tags: air, cooler, ventilation, ventilator, blower
-func Fan(opts ...Option) g.Node {
+func Fan(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M10.827 16.379a6.082 6.082 0 0 1-8.618-7.002l5.412 1.45a6.082 6.082 0 0 1 7.002-8.618l-1.45 5.412a6.082 6.082 0 0 1 8.618 7.002l-5.412-1.45a6.082 6.082 0 0 1-7.002 8.618l1.45-5.412Z",
 		"M12 12v.01",
@@ -6299,7 +6299,7 @@ func Fan(opts ...Option) g.Node {
 
 // FastForward creates a fast-forward icon
 // Tags: music
-func FastForward(opts ...Option) g.Node {
+func FastForward(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M12 6a2 2 0 0 1 3.414-1.414l6 6a2 2 0 0 1 0 2.828l-6 6A2 2 0 0 1 12 18z",
 		"M2 6a2 2 0 0 1 3.414-1.414l6 6a2 2 0 0 1 0 2.828l-6 6A2 2 0 0 1 2 18z",
@@ -6308,7 +6308,7 @@ func FastForward(opts ...Option) g.Node {
 
 // Feather creates a feather icon
 // Tags: logo
-func Feather(opts ...Option) g.Node {
+func Feather(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M12.67 19a2 2 0 0 0 1.416-.588l6.154-6.172a6 6 0 0 0-8.49-8.49L5.586 9.914A2 2 0 0 0 5 11.328V18a1 1 0 0 0 1 1z",
 		"M16 8 2 22",
@@ -6318,7 +6318,7 @@ func Feather(opts ...Option) g.Node {
 
 // Fence creates a fence icon
 // Tags: picket, panels, woodwork, diy, materials, suburban, garden, property, territory
-func Fence(opts ...Option) g.Node {
+func Fence(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M4 3 2 5v15c0 .6.4 1 1 1h2c.6 0 1-.4 1-1V5Z",
 		"M6 8h4",
@@ -6332,7 +6332,7 @@ func Fence(opts ...Option) g.Node {
 
 // FerrisWheel creates a ferris-wheel icon
 // Tags: big wheel, daisy wheel, observation, attraction, entertainment, amusement park, theme park, funfair
-func FerrisWheel(opts ...Option) g.Node {
+func FerrisWheel(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M 10 12 a 2 2 0 1 0 4 0 a 2 2 0 1 0 -4 0",
 		"M12 2v4",
@@ -6348,7 +6348,7 @@ func FerrisWheel(opts ...Option) g.Node {
 
 // Figma creates a figma icon
 // Tags: logo, design, tool
-func Figma(opts ...Option) g.Node {
+func Figma(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M5 5.5A3.5 3.5 0 0 1 8.5 2H12v7H8.5A3.5 3.5 0 0 1 5 5.5z",
 		"M12 2h3.5a3.5 3.5 0 1 1 0 7H12V2z",
@@ -6360,7 +6360,7 @@ func Figma(opts ...Option) g.Node {
 
 // File creates a file icon
 // Tags: document
-func File(opts ...Option) g.Node {
+func File(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M6 22a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h8a2.4 2.4 0 0 1 1.704.706l3.588 3.588A2.4 2.4 0 0 1 20 8v12a2 2 0 0 1-2 2z",
 		"M14 2v5a1 1 0 0 0 1 1h5",
@@ -6369,7 +6369,7 @@ func File(opts ...Option) g.Node {
 
 // FileArchive creates a file-archive icon
 // Tags: zip, package, archive
-func FileArchive(opts ...Option) g.Node {
+func FileArchive(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M13.659 22H18a2 2 0 0 0 2-2V8a2.4 2.4 0 0 0-.706-1.706l-3.588-3.588A2.4 2.4 0 0 0 14 2H6a2 2 0 0 0-2 2v11.5",
 		"M14 2v5a1 1 0 0 0 1 1h5",
@@ -6382,7 +6382,7 @@ func FileArchive(opts ...Option) g.Node {
 
 // FileAxis3d creates a file-axis-3d icon
 // Tags: model, 3d, axis, coordinates
-func FileAxis3d(opts ...Option) g.Node {
+func FileAxis3d(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M6 22a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h8a2.4 2.4 0 0 1 1.704.706l3.588 3.588A2.4 2.4 0 0 1 20 8v12a2 2 0 0 1-2 2z",
 		"M14 2v5a1 1 0 0 0 1 1h5",
@@ -6393,7 +6393,7 @@ func FileAxis3d(opts ...Option) g.Node {
 
 // FileBadge creates a file-badge icon
 // Tags: award, achievement, badge, rosette, prize, winner
-func FileBadge(opts ...Option) g.Node {
+func FileBadge(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M13 22h5a2 2 0 0 0 2-2V8a2.4 2.4 0 0 0-.706-1.706l-3.588-3.588A2.4 2.4 0 0 0 14 2H6a2 2 0 0 0-2 2v3.3",
 		"M14 2v5a1 1 0 0 0 1 1h5",
@@ -6404,7 +6404,7 @@ func FileBadge(opts ...Option) g.Node {
 
 // FileBox creates a file-box icon
 // Tags: box, package, model
-func FileBox(opts ...Option) g.Node {
+func FileBox(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M14.5 22H18a2 2 0 0 0 2-2V8a2.4 2.4 0 0 0-.706-1.706l-3.588-3.588A2.4 2.4 0 0 0 14 2H6a2 2 0 0 0-2 2v3.8",
 		"M14 2v5a1 1 0 0 0 1 1h5",
@@ -6416,7 +6416,7 @@ func FileBox(opts ...Option) g.Node {
 
 // FileBraces creates a file-braces icon
 // Tags: code, json, curly braces, curly brackets
-func FileBraces(opts ...Option) g.Node {
+func FileBraces(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M6 22a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h8a2.4 2.4 0 0 1 1.704.706l3.588 3.588A2.4 2.4 0 0 1 20 8v12a2 2 0 0 1-2 2z",
 		"M14 2v5a1 1 0 0 0 1 1h5",
@@ -6427,7 +6427,7 @@ func FileBraces(opts ...Option) g.Node {
 
 // FileBracesCorner creates a file-braces-corner icon
 // Tags: code, json, curly braces, curly brackets
-func FileBracesCorner(opts ...Option) g.Node {
+func FileBracesCorner(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M14 22h4a2 2 0 0 0 2-2V8a2.4 2.4 0 0 0-.706-1.706l-3.588-3.588A2.4 2.4 0 0 0 14 2H6a2 2 0 0 0-2 2v6",
 		"M14 2v5a1 1 0 0 0 1 1h5",
@@ -6438,7 +6438,7 @@ func FileBracesCorner(opts ...Option) g.Node {
 
 // FileChartColumn creates a file-chart-column icon
 // Tags: statistics, analytics, diagram, graph, presentation
-func FileChartColumn(opts ...Option) g.Node {
+func FileChartColumn(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M6 22a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h8a2.4 2.4 0 0 1 1.704.706l3.588 3.588A2.4 2.4 0 0 1 20 8v12a2 2 0 0 1-2 2z",
 		"M14 2v5a1 1 0 0 0 1 1h5",
@@ -6450,7 +6450,7 @@ func FileChartColumn(opts ...Option) g.Node {
 
 // FileChartColumnIncreasing creates a file-chart-column-increasing icon
 // Tags: statistics, analytics, diagram, graph, presentation, trending up
-func FileChartColumnIncreasing(opts ...Option) g.Node {
+func FileChartColumnIncreasing(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M6 22a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h8a2.4 2.4 0 0 1 1.704.706l3.588 3.588A2.4 2.4 0 0 1 20 8v12a2 2 0 0 1-2 2z",
 		"M14 2v5a1 1 0 0 0 1 1h5",
@@ -6462,7 +6462,7 @@ func FileChartColumnIncreasing(opts ...Option) g.Node {
 
 // FileChartLine creates a file-chart-line icon
 // Tags: statistics, analytics, diagram, graph, presentation
-func FileChartLine(opts ...Option) g.Node {
+func FileChartLine(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M6 22a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h8a2.4 2.4 0 0 1 1.704.706l3.588 3.588A2.4 2.4 0 0 1 20 8v12a2 2 0 0 1-2 2z",
 		"M14 2v5a1 1 0 0 0 1 1h5",
@@ -6472,7 +6472,7 @@ func FileChartLine(opts ...Option) g.Node {
 
 // FileChartPie creates a file-chart-pie icon
 // Tags: statistics, analytics, diagram, graph, presentation
-func FileChartPie(opts ...Option) g.Node {
+func FileChartPie(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M15.941 22H18a2 2 0 0 0 2-2V8a2.4 2.4 0 0 0-.706-1.704l-3.588-3.588A2.4 2.4 0 0 0 14 2H6a2 2 0 0 0-2 2v3.512",
 		"M14 2v5a1 1 0 0 0 1 1h5",
@@ -6483,7 +6483,7 @@ func FileChartPie(opts ...Option) g.Node {
 
 // FileCheck creates a file-check icon
 // Tags: done, document, todo, tick, complete, task
-func FileCheck(opts ...Option) g.Node {
+func FileCheck(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M6 22a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h8a2.4 2.4 0 0 1 1.704.706l3.588 3.588A2.4 2.4 0 0 1 20 8v12a2 2 0 0 1-2 2z",
 		"M14 2v5a1 1 0 0 0 1 1h5",
@@ -6493,7 +6493,7 @@ func FileCheck(opts ...Option) g.Node {
 
 // FileCheckCorner creates a file-check-corner icon
 // Tags: done, document, todo, tick, complete, task
-func FileCheckCorner(opts ...Option) g.Node {
+func FileCheckCorner(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M10.5 22H6a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h8a2.4 2.4 0 0 1 1.706.706l3.588 3.588A2.4 2.4 0 0 1 20 8v6",
 		"M14 2v5a1 1 0 0 0 1 1h5",
@@ -6503,7 +6503,7 @@ func FileCheckCorner(opts ...Option) g.Node {
 
 // FileClock creates a file-clock icon
 // Tags: history, log, clock
-func FileClock(opts ...Option) g.Node {
+func FileClock(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M16 22h2a2 2 0 0 0 2-2V8a2.4 2.4 0 0 0-.706-1.706l-3.588-3.588A2.4 2.4 0 0 0 14 2H6a2 2 0 0 0-2 2v2.85",
 		"M14 2v5a1 1 0 0 0 1 1h5",
@@ -6514,7 +6514,7 @@ func FileClock(opts ...Option) g.Node {
 
 // FileCode creates a file-code icon
 // Tags: script, document, gist, html, xml, property list, plist
-func FileCode(opts ...Option) g.Node {
+func FileCode(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M6 22a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h8a2.4 2.4 0 0 1 1.704.706l3.588 3.588A2.4 2.4 0 0 1 20 8v12a2 2 0 0 1-2 2z",
 		"M14 2v5a1 1 0 0 0 1 1h5",
@@ -6525,7 +6525,7 @@ func FileCode(opts ...Option) g.Node {
 
 // FileCodeCorner creates a file-code-corner icon
 // Tags: script, document, html, xml, property list, plist
-func FileCodeCorner(opts ...Option) g.Node {
+func FileCodeCorner(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M4 12.15V4a2 2 0 0 1 2-2h8a2.4 2.4 0 0 1 1.706.706l3.588 3.588A2.4 2.4 0 0 1 20 8v12a2 2 0 0 1-2 2h-3.35",
 		"M14 2v5a1 1 0 0 0 1 1h5",
@@ -6536,7 +6536,7 @@ func FileCodeCorner(opts ...Option) g.Node {
 
 // FileCog creates a file-cog icon
 // Tags: executable, settings, cog, edit, gear
-func FileCog(opts ...Option) g.Node {
+func FileCog(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M13.85 22H18a2 2 0 0 0 2-2V8a2 2 0 0 0-.586-1.414l-4-4A2 2 0 0 0 14 2H6a2 2 0 0 0-2 2v6.6",
 		"M14 2v5a1 1 0 0 0 1 1h5",
@@ -6554,7 +6554,7 @@ func FileCog(opts ...Option) g.Node {
 
 // FileDiff creates a file-diff icon
 // Tags: diff, patch
-func FileDiff(opts ...Option) g.Node {
+func FileDiff(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M6 22a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h8a2.4 2.4 0 0 1 1.704.706l3.588 3.588A2.4 2.4 0 0 1 20 8v12a2 2 0 0 1-2 2z",
 		"M9 10h6",
@@ -6565,7 +6565,7 @@ func FileDiff(opts ...Option) g.Node {
 
 // FileDigit creates a file-digit icon
 // Tags: number, document
-func FileDigit(opts ...Option) g.Node {
+func FileDigit(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M4 12V4a2 2 0 0 1 2-2h8a2.4 2.4 0 0 1 1.706.706l3.588 3.588A2.4 2.4 0 0 1 20 8v12a2 2 0 0 1-2 2",
 		"M14 2v5a1 1 0 0 0 1 1h5",
@@ -6577,7 +6577,7 @@ func FileDigit(opts ...Option) g.Node {
 
 // FileDown creates a file-down icon
 // Tags: download, import, export
-func FileDown(opts ...Option) g.Node {
+func FileDown(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M6 22a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h8a2.4 2.4 0 0 1 1.704.706l3.588 3.588A2.4 2.4 0 0 1 20 8v12a2 2 0 0 1-2 2z",
 		"M14 2v5a1 1 0 0 0 1 1h5",
@@ -6588,7 +6588,7 @@ func FileDown(opts ...Option) g.Node {
 
 // FileExclamationPoint creates a file-exclamation-point icon
 // Tags: hidden, warning, alert, danger, protected, exclamation mark
-func FileExclamationPoint(opts ...Option) g.Node {
+func FileExclamationPoint(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M6 22a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h8a2.4 2.4 0 0 1 1.704.706l3.588 3.588A2.4 2.4 0 0 1 20 8v12a2 2 0 0 1-2 2z",
 		"M12 9v4",
@@ -6598,7 +6598,7 @@ func FileExclamationPoint(opts ...Option) g.Node {
 
 // FileHeadphone creates a file-headphone icon
 // Tags: music, audio, sound, headphones
-func FileHeadphone(opts ...Option) g.Node {
+func FileHeadphone(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M4 6.835V4a2 2 0 0 1 2-2h8a2.4 2.4 0 0 1 1.706.706l3.588 3.588A2.4 2.4 0 0 1 20 8v12a2 2 0 0 1-2 2h-.343",
 		"M14 2v5a1 1 0 0 0 1 1h5",
@@ -6608,7 +6608,7 @@ func FileHeadphone(opts ...Option) g.Node {
 
 // FileHeart creates a file-heart icon
 // Tags: heart, favourite, bookmark, quick link
-func FileHeart(opts ...Option) g.Node {
+func FileHeart(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M13 22h5a2 2 0 0 0 2-2V8a2.4 2.4 0 0 0-.706-1.706l-3.588-3.588A2.4 2.4 0 0 0 14 2H6a2 2 0 0 0-2 2v7",
 		"M14 2v5a1 1 0 0 0 1 1h5",
@@ -6618,7 +6618,7 @@ func FileHeart(opts ...Option) g.Node {
 
 // FileImage creates a file-image icon
 // Tags: image, graphics, photo, picture
-func FileImage(opts ...Option) g.Node {
+func FileImage(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M6 22a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h8a2.4 2.4 0 0 1 1.704.706l3.588 3.588A2.4 2.4 0 0 1 20 8v12a2 2 0 0 1-2 2z",
 		"M14 2v5a1 1 0 0 0 1 1h5",
@@ -6629,7 +6629,7 @@ func FileImage(opts ...Option) g.Node {
 
 // FileInput creates a file-input icon
 // Tags: document
-func FileInput(opts ...Option) g.Node {
+func FileInput(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M4 11V4a2 2 0 0 1 2-2h8a2.4 2.4 0 0 1 1.706.706l3.588 3.588A2.4 2.4 0 0 1 20 8v12a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2v-1",
 		"M14 2v5a1 1 0 0 0 1 1h5",
@@ -6640,7 +6640,7 @@ func FileInput(opts ...Option) g.Node {
 
 // FileKey creates a file-key icon
 // Tags: key, private, public, security
-func FileKey(opts ...Option) g.Node {
+func FileKey(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M10.65 22H18a2 2 0 0 0 2-2V8a2.4 2.4 0 0 0-.706-1.706l-3.588-3.588A2.4 2.4 0 0 0 14 2H6a2 2 0 0 0-2 2v10.1",
 		"M14 2v5a1 1 0 0 0 1 1h5",
@@ -6652,7 +6652,7 @@ func FileKey(opts ...Option) g.Node {
 
 // FileLock creates a file-lock icon
 // Tags: lock, password, security
-func FileLock(opts ...Option) g.Node {
+func FileLock(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M4 9.8V4a2 2 0 0 1 2-2h8a2.4 2.4 0 0 1 1.706.706l3.588 3.588A2.4 2.4 0 0 1 20 8v12a2 2 0 0 1-2 2h-3",
 		"M14 2v5a1 1 0 0 0 1 1h5",
@@ -6663,7 +6663,7 @@ func FileLock(opts ...Option) g.Node {
 
 // FileMinus creates a file-minus icon
 // Tags: delete, remove, erase, document
-func FileMinus(opts ...Option) g.Node {
+func FileMinus(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M6 22a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h8a2.4 2.4 0 0 1 1.704.706l3.588 3.588A2.4 2.4 0 0 1 20 8v12a2 2 0 0 1-2 2z",
 		"M14 2v5a1 1 0 0 0 1 1h5",
@@ -6673,7 +6673,7 @@ func FileMinus(opts ...Option) g.Node {
 
 // FileMinusCorner creates a file-minus-corner icon
 // Tags: document
-func FileMinusCorner(opts ...Option) g.Node {
+func FileMinusCorner(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M20 14V8a2.4 2.4 0 0 0-.706-1.706l-3.588-3.588A2.4 2.4 0 0 0 14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12",
 		"M14 2v5a1 1 0 0 0 1 1h5",
@@ -6683,7 +6683,7 @@ func FileMinusCorner(opts ...Option) g.Node {
 
 // FileMusic creates a file-music icon
 // Tags: audio, sound, noise, track, digital, recording, playback, piano, keyboard, keys, notes, chord, midi, octave
-func FileMusic(opts ...Option) g.Node {
+func FileMusic(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M11.65 22H18a2 2 0 0 0 2-2V8a2.4 2.4 0 0 0-.706-1.706l-3.588-3.588A2.4 2.4 0 0 0 14 2H6a2 2 0 0 0-2 2v10.35",
 		"M14 2v5a1 1 0 0 0 1 1h5",
@@ -6694,7 +6694,7 @@ func FileMusic(opts ...Option) g.Node {
 
 // FileOutput creates a file-output icon
 // Tags: document
-func FileOutput(opts ...Option) g.Node {
+func FileOutput(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M4.226 20.925A2 2 0 0 0 6 22h12a2 2 0 0 0 2-2V8a2.4 2.4 0 0 0-.706-1.706l-3.588-3.588A2.4 2.4 0 0 0 14 2H6a2 2 0 0 0-2 2v3.127",
 		"M14 2v5a1 1 0 0 0 1 1h5",
@@ -6705,7 +6705,7 @@ func FileOutput(opts ...Option) g.Node {
 
 // FilePen creates a file-pen icon
 // Tags: signature
-func FilePen(opts ...Option) g.Node {
+func FilePen(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M12.659 22H18a2 2 0 0 0 2-2V8a2.4 2.4 0 0 0-.706-1.706l-3.588-3.588A2.4 2.4 0 0 0 14 2H6a2 2 0 0 0-2 2v9.34",
 		"M14 2v5a1 1 0 0 0 1 1h5",
@@ -6715,7 +6715,7 @@ func FilePen(opts ...Option) g.Node {
 
 // FilePenLine creates a file-pen-line icon
 // Tags: edit
-func FilePenLine(opts ...Option) g.Node {
+func FilePenLine(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"m18.226 5.226-2.52-2.52A2.4 2.4 0 0 0 14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-.351",
 		"M21.378 12.626a1 1 0 0 0-3.004-3.004l-4.01 4.012a2 2 0 0 0-.506.854l-.837 2.87a.5.5 0 0 0 .62.62l2.87-.837a2 2 0 0 0 .854-.506z",
@@ -6725,7 +6725,7 @@ func FilePenLine(opts ...Option) g.Node {
 
 // FilePlay creates a file-play icon
 // Tags: movie, video, film
-func FilePlay(opts ...Option) g.Node {
+func FilePlay(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M6 22a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h8a2.4 2.4 0 0 1 1.704.706l3.588 3.588A2.4 2.4 0 0 1 20 8v12a2 2 0 0 1-2 2z",
 		"M14 2v5a1 1 0 0 0 1 1h5",
@@ -6735,7 +6735,7 @@ func FilePlay(opts ...Option) g.Node {
 
 // FilePlus creates a file-plus icon
 // Tags: add, create, new, document
-func FilePlus(opts ...Option) g.Node {
+func FilePlus(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M6 22a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h8a2.4 2.4 0 0 1 1.704.706l3.588 3.588A2.4 2.4 0 0 1 20 8v12a2 2 0 0 1-2 2z",
 		"M14 2v5a1 1 0 0 0 1 1h5",
@@ -6746,7 +6746,7 @@ func FilePlus(opts ...Option) g.Node {
 
 // FilePlusCorner creates a file-plus-corner icon
 // Tags: add, create, new, document
-func FilePlusCorner(opts ...Option) g.Node {
+func FilePlusCorner(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M11.35 22H6a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h8a2.4 2.4 0 0 1 1.706.706l3.588 3.588A2.4 2.4 0 0 1 20 8v5.35",
 		"M14 2v5a1 1 0 0 0 1 1h5",
@@ -6757,7 +6757,7 @@ func FilePlusCorner(opts ...Option) g.Node {
 
 // FileQuestionMark creates a file-question-mark icon
 // Tags: readme, help, question
-func FileQuestionMark(opts ...Option) g.Node {
+func FileQuestionMark(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M6 22a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h8a2.4 2.4 0 0 1 1.704.706l3.588 3.588A2.4 2.4 0 0 1 20 8v12a2 2 0 0 1-2 2z",
 		"M12 17h.01",
@@ -6767,7 +6767,7 @@ func FileQuestionMark(opts ...Option) g.Node {
 
 // FileScan creates a file-scan icon
 // Tags: scan, code, qr-code
-func FileScan(opts ...Option) g.Node {
+func FileScan(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M20 10V8a2.4 2.4 0 0 0-.706-1.704l-3.588-3.588A2.4 2.4 0 0 0 14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h4.35",
 		"M14 2v5a1 1 0 0 0 1 1h5",
@@ -6780,7 +6780,7 @@ func FileScan(opts ...Option) g.Node {
 
 // FileSearch creates a file-search icon
 // Tags: lost, document, find, browser, lens
-func FileSearch(opts ...Option) g.Node {
+func FileSearch(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M6 22a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h8a2.4 2.4 0 0 1 1.704.706l3.588 3.588A2.4 2.4 0 0 1 20 8v12a2 2 0 0 1-2 2z",
 		"M14 2v5a1 1 0 0 0 1 1h5",
@@ -6791,7 +6791,7 @@ func FileSearch(opts ...Option) g.Node {
 
 // FileSearchCorner creates a file-search-corner icon
 // Tags: lost, document, find, browser, lens
-func FileSearchCorner(opts ...Option) g.Node {
+func FileSearchCorner(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M11.1 22H6a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h8a2.4 2.4 0 0 1 1.706.706l3.589 3.588A2.4 2.4 0 0 1 20 8v3.25",
 		"M14 2v5a1 1 0 0 0 1 1h5",
@@ -6802,7 +6802,7 @@ func FileSearchCorner(opts ...Option) g.Node {
 
 // FileSignal creates a file-signal icon
 // Tags: audio, music, volume
-func FileSignal(opts ...Option) g.Node {
+func FileSignal(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M6 22a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h8a2.4 2.4 0 0 1 1.704.706l3.588 3.588A2.4 2.4 0 0 1 20 8v12a2 2 0 0 1-2 2z",
 		"M14 2v5a1 1 0 0 0 1 1h5",
@@ -6814,7 +6814,7 @@ func FileSignal(opts ...Option) g.Node {
 
 // FileSliders creates a file-sliders icon
 // Tags: cogged, gear, mechanical, machinery, configuration, controls, preferences, settings, system, admin, edit, executable
-func FileSliders(opts ...Option) g.Node {
+func FileSliders(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M6 22a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h8a2.4 2.4 0 0 1 1.704.706l3.588 3.588A2.4 2.4 0 0 1 20 8v12a2 2 0 0 1-2 2z",
 		"M14 2v5a1 1 0 0 0 1 1h5",
@@ -6827,7 +6827,7 @@ func FileSliders(opts ...Option) g.Node {
 
 // FileSpreadsheet creates a file-spreadsheet icon
 // Tags: spreadsheet, sheet, table
-func FileSpreadsheet(opts ...Option) g.Node {
+func FileSpreadsheet(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M6 22a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h8a2.4 2.4 0 0 1 1.704.706l3.588 3.588A2.4 2.4 0 0 1 20 8v12a2 2 0 0 1-2 2z",
 		"M14 2v5a1 1 0 0 0 1 1h5",
@@ -6840,7 +6840,7 @@ func FileSpreadsheet(opts ...Option) g.Node {
 
 // FileStack creates a file-stack icon
 // Tags: versions, multiple, copy, documents, revisions, version control, history
-func FileStack(opts ...Option) g.Node {
+func FileStack(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M11 21a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1v-8a1 1 0 0 1 1-1",
 		"M16 16a1 1 0 0 1-1 1H9a1 1 0 0 1-1-1V8a1 1 0 0 1 1-1",
@@ -6850,7 +6850,7 @@ func FileStack(opts ...Option) g.Node {
 
 // FileSymlink creates a file-symlink icon
 // Tags: symlink, symbolic, link
-func FileSymlink(opts ...Option) g.Node {
+func FileSymlink(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M4 11V4a2 2 0 0 1 2-2h8a2.4 2.4 0 0 1 1.706.706l3.588 3.588A2.4 2.4 0 0 1 20 8v12a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2v-3a2 2 0 0 1 2-2h7",
 		"M14 2v5a1 1 0 0 0 1 1h5",
@@ -6860,7 +6860,7 @@ func FileSymlink(opts ...Option) g.Node {
 
 // FileTerminal creates a file-terminal icon
 // Tags: terminal, bash, script, executable
-func FileTerminal(opts ...Option) g.Node {
+func FileTerminal(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M6 22a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h8a2.4 2.4 0 0 1 1.704.706l3.588 3.588A2.4 2.4 0 0 1 20 8v12a2 2 0 0 1-2 2z",
 		"M14 2v5a1 1 0 0 0 1 1h5",
@@ -6871,7 +6871,7 @@ func FileTerminal(opts ...Option) g.Node {
 
 // FileText creates a file-text icon
 // Tags: data, txt, pdf, document
-func FileText(opts ...Option) g.Node {
+func FileText(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M6 22a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h8a2.4 2.4 0 0 1 1.704.706l3.588 3.588A2.4 2.4 0 0 1 20 8v12a2 2 0 0 1-2 2z",
 		"M14 2v5a1 1 0 0 0 1 1h5",
@@ -6883,7 +6883,7 @@ func FileText(opts ...Option) g.Node {
 
 // FileType creates a file-type icon
 // Tags: font, text, typography, type
-func FileType(opts ...Option) g.Node {
+func FileType(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M6 22a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h8a2.4 2.4 0 0 1 1.704.706l3.588 3.588A2.4 2.4 0 0 1 20 8v12a2 2 0 0 1-2 2z",
 		"M14 2v5a1 1 0 0 0 1 1h5",
@@ -6895,7 +6895,7 @@ func FileType(opts ...Option) g.Node {
 
 // FileTypeCorner creates a file-type-corner icon
 // Tags: font, text, typography, type
-func FileTypeCorner(opts ...Option) g.Node {
+func FileTypeCorner(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M12 22h6a2 2 0 0 0 2-2V8a2.4 2.4 0 0 0-.706-1.706l-3.588-3.588A2.4 2.4 0 0 0 14 2H6a2 2 0 0 0-2 2v6",
 		"M14 2v5a1 1 0 0 0 1 1h5",
@@ -6907,7 +6907,7 @@ func FileTypeCorner(opts ...Option) g.Node {
 
 // FileUp creates a file-up icon
 // Tags: upload, import, export
-func FileUp(opts ...Option) g.Node {
+func FileUp(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M6 22a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h8a2.4 2.4 0 0 1 1.704.706l3.588 3.588A2.4 2.4 0 0 1 20 8v12a2 2 0 0 1-2 2z",
 		"M14 2v5a1 1 0 0 0 1 1h5",
@@ -6918,7 +6918,7 @@ func FileUp(opts ...Option) g.Node {
 
 // FileUser creates a file-user icon
 // Tags: person, personal information, people, listing, networking, document, contact, cover letter, resume, cv, curriculum vitae, application form
-func FileUser(opts ...Option) g.Node {
+func FileUser(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M6 22a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h8a2.4 2.4 0 0 1 1.704.706l3.588 3.588A2.4 2.4 0 0 1 20 8v12a2 2 0 0 1-2 2z",
 		"M14 2v5a1 1 0 0 0 1 1h5",
@@ -6929,7 +6929,7 @@ func FileUser(opts ...Option) g.Node {
 
 // FileVideoCamera creates a file-video-camera icon
 // Tags: movie, video, film
-func FileVideoCamera(opts ...Option) g.Node {
+func FileVideoCamera(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M4 12V4a2 2 0 0 1 2-2h8a2.4 2.4 0 0 1 1.706.706l3.588 3.588A2.4 2.4 0 0 1 20 8v12a2 2 0 0 1-2 2",
 		"M14 2v5a1 1 0 0 0 1 1h5",
@@ -6940,7 +6940,7 @@ func FileVideoCamera(opts ...Option) g.Node {
 
 // FileVolume creates a file-volume icon
 // Tags: audio, music, volume
-func FileVolume(opts ...Option) g.Node {
+func FileVolume(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M4 11.55V4a2 2 0 0 1 2-2h8a2.4 2.4 0 0 1 1.706.706l3.588 3.588A2.4 2.4 0 0 1 20 8v12a2 2 0 0 1-2 2h-1.95",
 		"M14 2v5a1 1 0 0 0 1 1h5",
@@ -6951,7 +6951,7 @@ func FileVolume(opts ...Option) g.Node {
 
 // FileX creates a file-x icon
 // Tags: lost, delete, remove, document
-func FileX(opts ...Option) g.Node {
+func FileX(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M6 22a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h8a2.4 2.4 0 0 1 1.704.706l3.588 3.588A2.4 2.4 0 0 1 20 8v12a2 2 0 0 1-2 2z",
 		"M14 2v5a1 1 0 0 0 1 1h5",
@@ -6962,7 +6962,7 @@ func FileX(opts ...Option) g.Node {
 
 // FileXCorner creates a file-x-corner icon
 // Tags: lost, delete, remove, document
-func FileXCorner(opts ...Option) g.Node {
+func FileXCorner(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M11 22H6a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h8a2.4 2.4 0 0 1 1.706.706l3.588 3.588A2.4 2.4 0 0 1 20 8v5",
 		"M14 2v5a1 1 0 0 0 1 1h5",
@@ -6973,7 +6973,7 @@ func FileXCorner(opts ...Option) g.Node {
 
 // Files creates a files icon
 // Tags: multiple, copy, documents
-func Files(opts ...Option) g.Node {
+func Files(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M15 2h-4a2 2 0 0 0-2 2v11a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2V8",
 		"M16.706 2.706A2.4 2.4 0 0 0 15 2v5a1 1 0 0 0 1 1h5a2.4 2.4 0 0 0-.706-1.706z",
@@ -6983,7 +6983,7 @@ func Files(opts ...Option) g.Node {
 
 // Film creates a film icon
 // Tags: movie, video, reel, camera, cinema, entertainment
-func Film(opts ...Option) g.Node {
+func Film(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M 5 3 h 14 a 2 2 0 0 1 2 2 v 14 a 2 2 0 0 1 -2 2 h -14 a 2 2 0 0 1 -2 -2 v -14 a 2 2 0 0 1 2 -2 Z",
 		"M7 3v18",
@@ -6998,7 +6998,7 @@ func Film(opts ...Option) g.Node {
 
 // FingerprintPattern creates a fingerprint-pattern icon
 // Tags: 2fa, authentication, biometric, identity, security
-func FingerprintPattern(opts ...Option) g.Node {
+func FingerprintPattern(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M12 10a2 2 0 0 0-2 2c0 1.02-.1 2.51-.26 4",
 		"M14 13.12c0 2.38 0 6.38-1 8.88",
@@ -7014,7 +7014,7 @@ func FingerprintPattern(opts ...Option) g.Node {
 
 // FireExtinguisher creates a fire-extinguisher icon
 // Tags: flames, smoke, foam, water, spray, hose, firefighter, fireman, department, brigade, station, emergency, suppress, compressed, tank, cylinder, safety, equipment, amenities
-func FireExtinguisher(opts ...Option) g.Node {
+func FireExtinguisher(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M15 6.5V3a1 1 0 0 0-1-1h-2a1 1 0 0 0-1 1v3.5",
 		"M9 18h8",
@@ -7027,7 +7027,7 @@ func FireExtinguisher(opts ...Option) g.Node {
 
 // Fish creates a fish icon
 // Tags: dish, restaurant, course, meal, seafood, pet, sea, marine
-func Fish(opts ...Option) g.Node {
+func Fish(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M6.5 12c.94-3.46 4.94-6 8.5-6 3.56 0 6.06 2.54 7 6-.94 3.47-3.44 6-7 6s-7.56-2.53-8.5-6Z",
 		"M18 12v.5",
@@ -7040,7 +7040,7 @@ func Fish(opts ...Option) g.Node {
 
 // FishOff creates a fish-off icon
 // Tags: food, dish, restaurant, course, meal, seafood, animal, pet, sea, marine, allergy, intolerance, diet
-func FishOff(opts ...Option) g.Node {
+func FishOff(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M18 12.47v.03m0-.5v.47m-.475 5.056A6.744 6.744 0 0 1 15 18c-3.56 0-7.56-2.53-8.5-6 .348-1.28 1.114-2.433 2.121-3.38m3.444-2.088A8.802 8.802 0 0 1 15 6c3.56 0 6.06 2.54 7 6-.309 1.14-.786 2.177-1.413 3.058",
 		"M7 10.67C7 8 5.58 5.97 2.73 5.5c-1 1.5-1 5 .23 6.5-1.24 1.5-1.24 5-.23 6.5C5.58 18.03 7 16 7 13.33m7.48-4.372A9.77 9.77 0 0 1 16 6.07m0 11.86a9.77 9.77 0 0 1-1.728-3.618",
@@ -7050,13 +7050,13 @@ func FishOff(opts ...Option) g.Node {
 
 // FishSymbol creates a fish-symbol icon
 // Tags: dish, restaurant, course, meal, seafood, pet, sea, marine
-func FishSymbol(opts ...Option) g.Node {
+func FishSymbol(opts ...Option) templ.Component {
 	return Icon("M2 16s9-15 20-4C11 23 2 8 2 8", opts...)
 }
 
 // FishingHook creates a fishing-hook icon
 // Tags: sea, boating, angler, bait, reel, tackle, marine, outdoors, fish, fishing, hook, sports, travel
-func FishingHook(opts ...Option) g.Node {
+func FishingHook(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"m17.586 11.414-5.93 5.93a1 1 0 0 1-8-8l3.137-3.137a.707.707 0 0 1 1.207.5V10",
 		"M20.414 8.586 22 7",
@@ -7066,13 +7066,13 @@ func FishingHook(opts ...Option) g.Node {
 
 // Flag creates a flag icon
 // Tags: report, marker, notification, warning, milestone, goal, notice, signal, attention, banner
-func Flag(opts ...Option) g.Node {
+func Flag(opts ...Option) templ.Component {
 	return Icon("M4 22V4a1 1 0 0 1 .4-.8A6 6 0 0 1 8 2c3 0 5 2 7.333 2q2 0 3.067-.8A1 1 0 0 1 20 4v10a1 1 0 0 1-.4.8A6 6 0 0 1 16 16c-3 0-5-2-8-2a6 6 0 0 0-4 1.528", opts...)
 }
 
 // FlagOff creates a flag-off icon
 // Tags: unflag, unmark, report, marker, notification, warning, milestone, goal, notice, signal, attention, banner
-func FlagOff(opts ...Option) g.Node {
+func FlagOff(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M16 16c-3 0-5-2-8-2a6 6 0 0 0-4 1.528",
 		"m2 2 20 20",
@@ -7083,25 +7083,25 @@ func FlagOff(opts ...Option) g.Node {
 
 // FlagTriangleLeft creates a flag-triangle-left icon
 // Tags: report, timeline, marker, pin
-func FlagTriangleLeft(opts ...Option) g.Node {
+func FlagTriangleLeft(opts ...Option) templ.Component {
 	return Icon("M18 22V2.8a.8.8 0 0 0-1.17-.71L5.45 7.78a.8.8 0 0 0 0 1.44L18 15.5", opts...)
 }
 
 // FlagTriangleRight creates a flag-triangle-right icon
 // Tags: report, timeline, marker, pin
-func FlagTriangleRight(opts ...Option) g.Node {
+func FlagTriangleRight(opts ...Option) templ.Component {
 	return Icon("M6 22V2.8a.8.8 0 0 1 1.17-.71l11.38 5.69a.8.8 0 0 1 0 1.44L6 15.5", opts...)
 }
 
 // Flame creates a flame icon
 // Tags: heat, burn, light, glow, ignite, passion, ember, fire, lit, burning, spark, embers, smoke, firefighter, fireman, department, brigade, station, emergency
-func Flame(opts ...Option) g.Node {
+func Flame(opts ...Option) templ.Component {
 	return Icon("M12 3q1 4 4 6.5t3 5.5a1 1 0 0 1-14 0 5 5 0 0 1 1-3 1 1 0 0 0 5 0c0-2-1.5-3-1.5-5q0-2 2.5-4", opts...)
 }
 
 // FlameKindling creates a flame-kindling icon
 // Tags: campfire, camping, wilderness, outdoors, lit, warmth, wood, twigs, sticks
-func FlameKindling(opts ...Option) g.Node {
+func FlameKindling(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M12 2c1 3 2.5 3.5 3.5 4.5A5 5 0 0 1 17 10a5 5 0 1 1-10 0c0-.3 0-.6.1-.9a2 2 0 1 0 3.3-2C8 4.5 11 2 12 2Z",
 		"m5 22 14-4",
@@ -7111,7 +7111,7 @@ func FlameKindling(opts ...Option) g.Node {
 
 // Flashlight creates a flashlight icon
 // Tags: torch, light, beam, emergency, safety, tool, bright
-func Flashlight(opts ...Option) g.Node {
+func Flashlight(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M12 13v1",
 		"M17 2a1 1 0 0 1 1 1v4a3 3 0 0 1-.6 1.8l-.6.8A4 4 0 0 0 16 12v8a2 2 0 0 1-2 2H10a2 2 0 0 1-2-2v-8a4 4 0 0 0-.8-2.4l-.6-.8A3 3 0 0 1 6 7V3a1 1 0 0 1 1-1z",
@@ -7121,7 +7121,7 @@ func Flashlight(opts ...Option) g.Node {
 
 // FlashlightOff creates a flashlight-off icon
 // Tags: torch, light, beam, emergency, safety, tool, bright
-func FlashlightOff(opts ...Option) g.Node {
+func FlashlightOff(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M11.652 6H18",
 		"M12 13v1",
@@ -7133,7 +7133,7 @@ func FlashlightOff(opts ...Option) g.Node {
 
 // FlaskConical creates a flask-conical icon
 // Tags: beaker, erlenmeyer, lab, chemistry, experiment, test
-func FlaskConical(opts ...Option) g.Node {
+func FlaskConical(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M14 2v6a2 2 0 0 0 .245.96l5.51 10.08A2 2 0 0 1 18 22H6a2 2 0 0 1-1.755-2.96l5.51-10.08A2 2 0 0 0 10 8V2",
 		"M6.453 15h11.094",
@@ -7143,7 +7143,7 @@ func FlaskConical(opts ...Option) g.Node {
 
 // FlaskConicalOff creates a flask-conical-off icon
 // Tags: beaker, erlenmeyer, non toxic, lab, chemistry, experiment, test
-func FlaskConicalOff(opts ...Option) g.Node {
+func FlaskConicalOff(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M10 2v2.343",
 		"M14 2v6.343",
@@ -7156,7 +7156,7 @@ func FlaskConicalOff(opts ...Option) g.Node {
 
 // FlaskRound creates a flask-round icon
 // Tags: beaker, lab, chemistry, experiment, test
-func FlaskRound(opts ...Option) g.Node {
+func FlaskRound(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M10 2v6.292a7 7 0 1 0 4 0V2",
 		"M5 15h14",
@@ -7166,7 +7166,7 @@ func FlaskRound(opts ...Option) g.Node {
 
 // FlipHorizontal creates a flip-horizontal icon
 // Tags: reflect, mirror, alignment, dashed
-func FlipHorizontal(opts ...Option) g.Node {
+func FlipHorizontal(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M8 3H5a2 2 0 0 0-2 2v14c0 1.1.9 2 2 2h3",
 		"M16 3h3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-3",
@@ -7179,7 +7179,7 @@ func FlipHorizontal(opts ...Option) g.Node {
 
 // FlipHorizontal2 creates a flip-horizontal-2 icon
 // Tags: reflect, mirror, alignment, dashed
-func FlipHorizontal2(opts ...Option) g.Node {
+func FlipHorizontal2(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"m3 7 5 5-5 5V7",
 		"m21 7-5 5 5 5V7",
@@ -7192,7 +7192,7 @@ func FlipHorizontal2(opts ...Option) g.Node {
 
 // FlipVertical creates a flip-vertical icon
 // Tags: reflect, mirror, alignment, dashed
-func FlipVertical(opts ...Option) g.Node {
+func FlipVertical(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M21 8V5a2 2 0 0 0-2-2H5a2 2 0 0 0-2 2v3",
 		"M21 16v3a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-3",
@@ -7205,7 +7205,7 @@ func FlipVertical(opts ...Option) g.Node {
 
 // FlipVertical2 creates a flip-vertical-2 icon
 // Tags: reflect, mirror, alignment, dashed
-func FlipVertical2(opts ...Option) g.Node {
+func FlipVertical2(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"m17 3-5 5-5-5h10",
 		"m17 21-5-5-5 5h10",
@@ -7218,7 +7218,7 @@ func FlipVertical2(opts ...Option) g.Node {
 
 // Flower creates a flower icon
 // Tags: sustainability, nature, plant, spring
-func Flower(opts ...Option) g.Node {
+func Flower(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M 9 12 a 3 3 0 1 0 6 0 a 3 3 0 1 0 -6 0",
 		"M12 16.5A4.5 4.5 0 1 1 7.5 12 4.5 4.5 0 1 1 12 7.5a4.5 4.5 0 1 1 4.5 4.5 4.5 4.5 0 1 1-4.5 4.5",
@@ -7235,7 +7235,7 @@ func Flower(opts ...Option) g.Node {
 
 // Flower2 creates a flower-2 icon
 // Tags: sustainability, nature, plant
-func Flower2(opts ...Option) g.Node {
+func Flower2(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M12 5a3 3 0 1 1 3 3m-3-3a3 3 0 1 0-3 3m3-3v1M9 8a3 3 0 1 0 3 3M9 8h1m5 0a3 3 0 1 1-3 3m3-3h-1m-2 3v-1",
 		"M 10 8 a 2 2 0 1 0 4 0 a 2 2 0 1 0 -4 0",
@@ -7247,7 +7247,7 @@ func Flower2(opts ...Option) g.Node {
 
 // Focus creates a focus icon
 // Tags: camera, lens, photo, dashed
-func Focus(opts ...Option) g.Node {
+func Focus(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M 9 12 a 3 3 0 1 0 6 0 a 3 3 0 1 0 -6 0",
 		"M3 7V5a2 2 0 0 1 2-2h2",
@@ -7259,7 +7259,7 @@ func Focus(opts ...Option) g.Node {
 
 // FoldHorizontal creates a fold-horizontal icon
 // Tags: arrow, collapse, fold, vertical, dashed
-func FoldHorizontal(opts ...Option) g.Node {
+func FoldHorizontal(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M2 12h6",
 		"M22 12h-6",
@@ -7274,7 +7274,7 @@ func FoldHorizontal(opts ...Option) g.Node {
 
 // FoldVertical creates a fold-vertical icon
 // Tags: arrow, collapse, fold, vertical, dashed
-func FoldVertical(opts ...Option) g.Node {
+func FoldVertical(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M12 22v-6",
 		"M12 8V2",
@@ -7289,13 +7289,13 @@ func FoldVertical(opts ...Option) g.Node {
 
 // Folder creates a folder icon
 // Tags: directory
-func Folder(opts ...Option) g.Node {
+func Folder(opts ...Option) templ.Component {
 	return Icon("M20 20a2 2 0 0 0 2-2V8a2 2 0 0 0-2-2h-7.9a2 2 0 0 1-1.69-.9L9.6 3.9A2 2 0 0 0 7.93 3H4a2 2 0 0 0-2 2v13a2 2 0 0 0 2 2Z", opts...)
 }
 
 // FolderArchive creates a folder-archive icon
 // Tags: archive, zip, package
-func FolderArchive(opts ...Option) g.Node {
+func FolderArchive(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M 13 19 a 2 2 0 1 0 4 0 a 2 2 0 1 0 -4 0",
 		"M20.9 19.8A2 2 0 0 0 22 18V8a2 2 0 0 0-2-2h-7.9a2 2 0 0 1-1.69-.9L9.6 3.9A2 2 0 0 0 7.93 3H4a2 2 0 0 0-2 2v13a2 2 0 0 0 2 2h5.1",
@@ -7306,7 +7306,7 @@ func FolderArchive(opts ...Option) g.Node {
 
 // FolderCheck creates a folder-check icon
 // Tags: done, directory, todo, tick, complete, task
-func FolderCheck(opts ...Option) g.Node {
+func FolderCheck(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M20 20a2 2 0 0 0 2-2V8a2 2 0 0 0-2-2h-7.9a2 2 0 0 1-1.69-.9L9.6 3.9A2 2 0 0 0 7.93 3H4a2 2 0 0 0-2 2v13a2 2 0 0 0 2 2Z",
 		"m9 13 2 2 4-4",
@@ -7315,7 +7315,7 @@ func FolderCheck(opts ...Option) g.Node {
 
 // FolderClock creates a folder-clock icon
 // Tags: history, directory, clock
-func FolderClock(opts ...Option) g.Node {
+func FolderClock(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M16 14v2.2l1.6 1",
 		"M7 20H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h3.9a2 2 0 0 1 1.69.9l.81 1.2a2 2 0 0 0 1.67.9H20a2 2 0 0 1 2 2",
@@ -7325,7 +7325,7 @@ func FolderClock(opts ...Option) g.Node {
 
 // FolderClosed creates a folder-closed icon
 // Tags: directory, closed
-func FolderClosed(opts ...Option) g.Node {
+func FolderClosed(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M20 20a2 2 0 0 0 2-2V8a2 2 0 0 0-2-2h-7.9a2 2 0 0 1-1.69-.9L9.6 3.9A2 2 0 0 0 7.93 3H4a2 2 0 0 0-2 2v13a2 2 0 0 0 2 2Z",
 		"M2 10h20",
@@ -7334,7 +7334,7 @@ func FolderClosed(opts ...Option) g.Node {
 
 // FolderCode creates a folder-code icon
 // Tags: directory, coding, develop, software
-func FolderCode(opts ...Option) g.Node {
+func FolderCode(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M10 10.5 8 13l2 2.5",
 		"m14 10.5 2 2.5-2 2.5",
@@ -7344,7 +7344,7 @@ func FolderCode(opts ...Option) g.Node {
 
 // FolderCog creates a folder-cog icon
 // Tags: directory, settings, control, preferences, cog, edit, gear
-func FolderCog(opts ...Option) g.Node {
+func FolderCog(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M10.3 20H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h3.98a2 2 0 0 1 1.69.9l.66 1.2A2 2 0 0 0 12 6h8a2 2 0 0 1 2 2v3.3",
 		"m14.305 19.53.923-.382",
@@ -7361,7 +7361,7 @@ func FolderCog(opts ...Option) g.Node {
 
 // FolderDot creates a folder-dot icon
 // Tags: directory, root, project, pinned, active, current, cogged, gear, mechanical, machinery, configuration, controls, preferences, settings, system, admin, edit
-func FolderDot(opts ...Option) g.Node {
+func FolderDot(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M4 20h16a2 2 0 0 0 2-2V8a2 2 0 0 0-2-2h-7.93a2 2 0 0 1-1.66-.9l-.82-1.2A2 2 0 0 0 7.93 3H4a2 2 0 0 0-2 2v13c0 1.1.9 2 2 2Z",
 		"M 11 13 a 1 1 0 1 0 2 0 a 1 1 0 1 0 -2 0",
@@ -7370,7 +7370,7 @@ func FolderDot(opts ...Option) g.Node {
 
 // FolderDown creates a folder-down icon
 // Tags: directory, download, import, export
-func FolderDown(opts ...Option) g.Node {
+func FolderDown(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M20 20a2 2 0 0 0 2-2V8a2 2 0 0 0-2-2h-7.9a2 2 0 0 1-1.69-.9L9.6 3.9A2 2 0 0 0 7.93 3H4a2 2 0 0 0-2 2v13a2 2 0 0 0 2 2Z",
 		"M12 10v6",
@@ -7380,7 +7380,7 @@ func FolderDown(opts ...Option) g.Node {
 
 // FolderGit creates a folder-git icon
 // Tags: directory, root, project, git, repo
-func FolderGit(opts ...Option) g.Node {
+func FolderGit(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M 10 13 a 2 2 0 1 0 4 0 a 2 2 0 1 0 -4 0",
 		"M20 20a2 2 0 0 0 2-2V8a2 2 0 0 0-2-2h-7.9a2 2 0 0 1-1.69-.9L9.6 3.9A2 2 0 0 0 7.93 3H4a2 2 0 0 0-2 2v13a2 2 0 0 0 2 2Z",
@@ -7391,7 +7391,7 @@ func FolderGit(opts ...Option) g.Node {
 
 // FolderGit2 creates a folder-git-2 icon
 // Tags: directory, root, project, git, repo
-func FolderGit2(opts ...Option) g.Node {
+func FolderGit2(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M18 19a5 5 0 0 1-5-5v8",
 		"M9 20H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h3.9a2 2 0 0 1 1.69.9l.81 1.2a2 2 0 0 0 1.67.9H20a2 2 0 0 1 2 2v5",
@@ -7402,7 +7402,7 @@ func FolderGit2(opts ...Option) g.Node {
 
 // FolderHeart creates a folder-heart icon
 // Tags: directory, heart, favourite, bookmark, quick link
-func FolderHeart(opts ...Option) g.Node {
+func FolderHeart(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M10.638 20H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h3.9a2 2 0 0 1 1.69.9l.81 1.2a2 2 0 0 0 1.67.9H20a2 2 0 0 1 2 2v3.417",
 		"M14.62 18.8A2.25 2.25 0 1 1 18 15.836a2.25 2.25 0 1 1 3.38 2.966l-2.626 2.856a.998.998 0 0 1-1.507 0z",
@@ -7411,7 +7411,7 @@ func FolderHeart(opts ...Option) g.Node {
 
 // FolderInput creates a folder-input icon
 // Tags: directory, import, export
-func FolderInput(opts ...Option) g.Node {
+func FolderInput(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M2 9V5a2 2 0 0 1 2-2h3.9a2 2 0 0 1 1.69.9l.81 1.2a2 2 0 0 0 1.67.9H20a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2v-1",
 		"M2 13h10",
@@ -7421,7 +7421,7 @@ func FolderInput(opts ...Option) g.Node {
 
 // FolderKanban creates a folder-kanban icon
 // Tags: projects, manage, overview, board, tickets, issues, roadmap, plan, intentions, productivity, work, agile, code, coding, directory, project, root
-func FolderKanban(opts ...Option) g.Node {
+func FolderKanban(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M4 20h16a2 2 0 0 0 2-2V8a2 2 0 0 0-2-2h-7.93a2 2 0 0 1-1.66-.9l-.82-1.2A2 2 0 0 0 7.93 3H4a2 2 0 0 0-2 2v13c0 1.1.9 2 2 2Z",
 		"M8 10v4",
@@ -7432,7 +7432,7 @@ func FolderKanban(opts ...Option) g.Node {
 
 // FolderKey creates a folder-key icon
 // Tags: directory, key, private, security, protected
-func FolderKey(opts ...Option) g.Node {
+func FolderKey(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M 14 20 a 2 2 0 1 0 4 0 a 2 2 0 1 0 -4 0",
 		"M10 20H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h3.9a2 2 0 0 1 1.69.9l.81 1.2a2 2 0 0 0 1.67.9H20a2 2 0 0 1 2 2v2",
@@ -7443,7 +7443,7 @@ func FolderKey(opts ...Option) g.Node {
 
 // FolderLock creates a folder-lock icon
 // Tags: directory, lock, private, security, protected
-func FolderLock(opts ...Option) g.Node {
+func FolderLock(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M 15 17 h 6 a 1 1 0 0 1 1 1 v 3 a 1 1 0 0 1 -1 1 h -6 a 1 1 0 0 1 -1 -1 v -3 a 1 1 0 0 1 1 -1 Z",
 		"M10 20H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h3.9a2 2 0 0 1 1.69.9l.81 1.2a2 2 0 0 0 1.67.9H20a2 2 0 0 1 2 2v2.5",
@@ -7453,7 +7453,7 @@ func FolderLock(opts ...Option) g.Node {
 
 // FolderMinus creates a folder-minus icon
 // Tags: directory, remove, delete
-func FolderMinus(opts ...Option) g.Node {
+func FolderMinus(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M9 13h6",
 		"M20 20a2 2 0 0 0 2-2V8a2 2 0 0 0-2-2h-7.9a2 2 0 0 1-1.69-.9L9.6 3.9A2 2 0 0 0 7.93 3H4a2 2 0 0 0-2 2v13a2 2 0 0 0 2 2Z",
@@ -7462,13 +7462,13 @@ func FolderMinus(opts ...Option) g.Node {
 
 // FolderOpen creates a folder-open icon
 // Tags: directory
-func FolderOpen(opts ...Option) g.Node {
+func FolderOpen(opts ...Option) templ.Component {
 	return Icon("m6 14 1.5-2.9A2 2 0 0 1 9.24 10H20a2 2 0 0 1 1.94 2.5l-1.54 6a2 2 0 0 1-1.95 1.5H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h3.9a2 2 0 0 1 1.69.9l.81 1.2a2 2 0 0 0 1.67.9H18a2 2 0 0 1 2 2v2", opts...)
 }
 
 // FolderOpenDot creates a folder-open-dot icon
 // Tags: directory, root, project, active, current, pinned
-func FolderOpenDot(opts ...Option) g.Node {
+func FolderOpenDot(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"m6 14 1.45-2.9A2 2 0 0 1 9.24 10H20a2 2 0 0 1 1.94 2.5l-1.55 6a2 2 0 0 1-1.94 1.5H4a2 2 0 0 1-2-2V5c0-1.1.9-2 2-2h3.93a2 2 0 0 1 1.66.9l.82 1.2a2 2 0 0 0 1.66.9H18a2 2 0 0 1 2 2v2",
 		"M 13 15 a 1 1 0 1 0 2 0 a 1 1 0 1 0 -2 0",
@@ -7477,7 +7477,7 @@ func FolderOpenDot(opts ...Option) g.Node {
 
 // FolderOutput creates a folder-output icon
 // Tags: directory, import, export
-func FolderOutput(opts ...Option) g.Node {
+func FolderOutput(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M2 7.5V5a2 2 0 0 1 2-2h3.9a2 2 0 0 1 1.69.9l.81 1.2a2 2 0 0 0 1.67.9H20a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2H4a2 2 0 0 1-2-1.5",
 		"M2 13h10",
@@ -7487,7 +7487,7 @@ func FolderOutput(opts ...Option) g.Node {
 
 // FolderPen creates a folder-pen icon
 // Tags: directory, rename
-func FolderPen(opts ...Option) g.Node {
+func FolderPen(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M2 11.5V5a2 2 0 0 1 2-2h3.9c.7 0 1.3.3 1.7.9l.8 1.2c.4.6 1 .9 1.7.9H20a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2h-9.5",
 		"M11.378 13.626a1 1 0 1 0-3.004-3.004l-5.01 5.012a2 2 0 0 0-.506.854l-.837 2.87a.5.5 0 0 0 .62.62l2.87-.837a2 2 0 0 0 .854-.506z",
@@ -7496,7 +7496,7 @@ func FolderPen(opts ...Option) g.Node {
 
 // FolderPlus creates a folder-plus icon
 // Tags: directory, add, create, new
-func FolderPlus(opts ...Option) g.Node {
+func FolderPlus(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M12 10v6",
 		"M9 13h6",
@@ -7506,7 +7506,7 @@ func FolderPlus(opts ...Option) g.Node {
 
 // FolderRoot creates a folder-root icon
 // Tags: directory, root, project, git, repo
-func FolderRoot(opts ...Option) g.Node {
+func FolderRoot(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M4 20h16a2 2 0 0 0 2-2V8a2 2 0 0 0-2-2h-7.93a2 2 0 0 1-1.66-.9l-.82-1.2A2 2 0 0 0 7.93 3H4a2 2 0 0 0-2 2v13c0 1.1.9 2 2 2Z",
 		"M 10 13 a 2 2 0 1 0 4 0 a 2 2 0 1 0 -4 0",
@@ -7516,7 +7516,7 @@ func FolderRoot(opts ...Option) g.Node {
 
 // FolderSearch creates a folder-search icon
 // Tags: directory, search, find, lost, browser, lens
-func FolderSearch(opts ...Option) g.Node {
+func FolderSearch(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M10.7 20H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h3.9a2 2 0 0 1 1.69.9l.81 1.2a2 2 0 0 0 1.67.9H20a2 2 0 0 1 2 2v4.1",
 		"m21 21-1.9-1.9",
@@ -7526,7 +7526,7 @@ func FolderSearch(opts ...Option) g.Node {
 
 // FolderSearch2 creates a folder-search-2 icon
 // Tags: directory, search, find, lost, browser, lens
-func FolderSearch2(opts ...Option) g.Node {
+func FolderSearch2(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M 9 12.5 a 2.5 2.5 0 1 0 5 0 a 2.5 2.5 0 1 0 -5 0",
 		"M20 20a2 2 0 0 0 2-2V8a2 2 0 0 0-2-2h-7.9a2 2 0 0 1-1.69-.9L9.6 3.9A2 2 0 0 0 7.93 3H4a2 2 0 0 0-2 2v13a2 2 0 0 0 2 2Z",
@@ -7536,7 +7536,7 @@ func FolderSearch2(opts ...Option) g.Node {
 
 // FolderSymlink creates a folder-symlink icon
 // Tags: directory, symlink, symbolic, link
-func FolderSymlink(opts ...Option) g.Node {
+func FolderSymlink(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M2 9.35V5a2 2 0 0 1 2-2h3.9a2 2 0 0 1 1.69.9l.81 1.2a2 2 0 0 0 1.67.9H20a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2v-3a2 2 0 0 1 2-2h7",
 		"m8 16 3-3-3-3",
@@ -7545,7 +7545,7 @@ func FolderSymlink(opts ...Option) g.Node {
 
 // FolderSync creates a folder-sync icon
 // Tags: directory, synchronize, synchronise, refresh, reconnect, transfer, backup
-func FolderSync(opts ...Option) g.Node {
+func FolderSync(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M9 20H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h3.9a2 2 0 0 1 1.69.9l.81 1.2a2 2 0 0 0 1.67.9H20a2 2 0 0 1 2 2v.5",
 		"M12 10v4h4",
@@ -7557,7 +7557,7 @@ func FolderSync(opts ...Option) g.Node {
 
 // FolderTree creates a folder-tree icon
 // Tags: directory, tree, browser
-func FolderTree(opts ...Option) g.Node {
+func FolderTree(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M20 10a1 1 0 0 0 1-1V6a1 1 0 0 0-1-1h-2.5a1 1 0 0 1-.8-.4l-.9-1.2A1 1 0 0 0 15 3h-2a1 1 0 0 0-1 1v5a1 1 0 0 0 1 1Z",
 		"M20 21a1 1 0 0 0 1-1v-3a1 1 0 0 0-1-1h-2.9a1 1 0 0 1-.88-.55l-.42-.85a1 1 0 0 0-.92-.6H13a1 1 0 0 0-1 1v5a1 1 0 0 0 1 1Z",
@@ -7568,7 +7568,7 @@ func FolderTree(opts ...Option) g.Node {
 
 // FolderUp creates a folder-up icon
 // Tags: directory, upload, import, export
-func FolderUp(opts ...Option) g.Node {
+func FolderUp(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M20 20a2 2 0 0 0 2-2V8a2 2 0 0 0-2-2h-7.9a2 2 0 0 1-1.69-.9L9.6 3.9A2 2 0 0 0 7.93 3H4a2 2 0 0 0-2 2v13a2 2 0 0 0 2 2Z",
 		"M12 10v6",
@@ -7578,7 +7578,7 @@ func FolderUp(opts ...Option) g.Node {
 
 // FolderX creates a folder-x icon
 // Tags: directory, remove, delete
-func FolderX(opts ...Option) g.Node {
+func FolderX(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M20 20a2 2 0 0 0 2-2V8a2 2 0 0 0-2-2h-7.9a2 2 0 0 1-1.69-.9L9.6 3.9A2 2 0 0 0 7.93 3H4a2 2 0 0 0-2 2v13a2 2 0 0 0 2 2Z",
 		"m9.5 10.5 5 5",
@@ -7588,7 +7588,7 @@ func FolderX(opts ...Option) g.Node {
 
 // Folders creates a folders icon
 // Tags: multiple, copy, directories
-func Folders(opts ...Option) g.Node {
+func Folders(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M20 5a2 2 0 0 1 2 2v7a2 2 0 0 1-2 2H9a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h2.5a1.5 1.5 0 0 1 1.2.6l.6.8a1.5 1.5 0 0 0 1.2.6z",
 		"M3 8.268a2 2 0 0 0-1 1.738V19a2 2 0 0 0 2 2h11a2 2 0 0 0 1.732-1",
@@ -7597,7 +7597,7 @@ func Folders(opts ...Option) g.Node {
 
 // Footprints creates a footprints icon
 // Tags: steps, walking, foot, feet, trail, shoe
-func Footprints(opts ...Option) g.Node {
+func Footprints(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M4 16v-2.38C4 11.5 2.97 10.5 3 8c.03-2.72 1.49-6 4.5-6C9.37 2 10 3.8 10 5.5c0 3.11-2 5.66-2 8.68V16a2 2 0 1 1-4 0Z",
 		"M20 20v-2.38c0-2.12 1.03-3.12 1-5.62-.03-2.72-1.49-6-4.5-6C14.63 6 14 7.8 14 9.5c0 3.11 2 5.66 2 8.68V20a2 2 0 1 0 4 0Z",
@@ -7608,7 +7608,7 @@ func Footprints(opts ...Option) g.Node {
 
 // Forklift creates a forklift icon
 // Tags: vehicle, transport, logistics
-func Forklift(opts ...Option) g.Node {
+func Forklift(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M12 12H5a2 2 0 0 0-2 2v5",
 		"M 11 19 a 2 2 0 1 0 4 0 a 2 2 0 1 0 -4 0",
@@ -7619,7 +7619,7 @@ func Forklift(opts ...Option) g.Node {
 
 // Form creates a form icon
 // Tags: document, page, file, layout, paper, stub, formality, structure, template, inputs, design, components
-func Form(opts ...Option) g.Node {
+func Form(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M4 14h6",
 		"M4 2h10",
@@ -7630,7 +7630,7 @@ func Form(opts ...Option) g.Node {
 
 // Forward creates a forward icon
 // Tags: send, share, email
-func Forward(opts ...Option) g.Node {
+func Forward(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"m15 17 5-5-5-5",
 		"M4 18v-2a4 4 0 0 1 4-4h12",
@@ -7639,7 +7639,7 @@ func Forward(opts ...Option) g.Node {
 
 // Frame creates a frame icon
 // Tags: logo, design, tool
-func Frame(opts ...Option) g.Node {
+func Frame(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M 22 6 L 2 6",
 		"M 22 18 L 2 18",
@@ -7650,13 +7650,13 @@ func Frame(opts ...Option) g.Node {
 
 // Framer creates a framer icon
 // Tags: logo, design, tool
-func Framer(opts ...Option) g.Node {
+func Framer(opts ...Option) templ.Component {
 	return Icon("M5 16V9h14V2H5l14 14h-7m-7 0 7 7v-7m-7 0h7", opts...)
 }
 
 // Frown creates a frown icon
 // Tags: emoji, face, bad, sad, emotion
-func Frown(opts ...Option) g.Node {
+func Frown(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M 2 12 a 10 10 0 1 0 20 0 a 10 10 0 1 0 -20 0",
 		"M16 16s-1.5-2-4-2-4 2-4 2",
@@ -7667,7 +7667,7 @@ func Frown(opts ...Option) g.Node {
 
 // Fuel creates a fuel icon
 // Tags: filling-station, gas, petrol, tank
-func Fuel(opts ...Option) g.Node {
+func Fuel(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M14 13h2a2 2 0 0 1 2 2v2a2 2 0 0 0 4 0v-6.998a2 2 0 0 0-.59-1.42L18 5",
 		"M14 21V5a2 2 0 0 0-2-2H5a2 2 0 0 0-2 2v16",
@@ -7678,7 +7678,7 @@ func Fuel(opts ...Option) g.Node {
 
 // Fullscreen creates a fullscreen icon
 // Tags: expand, zoom, preview, focus, camera, lens, image
-func Fullscreen(opts ...Option) g.Node {
+func Fullscreen(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M3 7V5a2 2 0 0 1 2-2h2",
 		"M17 3h2a2 2 0 0 1 2 2v2",
@@ -7690,13 +7690,13 @@ func Fullscreen(opts ...Option) g.Node {
 
 // Funnel creates a funnel icon
 // Tags: filter, hopper
-func Funnel(opts ...Option) g.Node {
+func Funnel(opts ...Option) templ.Component {
 	return Icon("M10 20a1 1 0 0 0 .553.895l2 1A1 1 0 0 0 14 21v-7a2 2 0 0 1 .517-1.341L21.74 4.67A1 1 0 0 0 21 3H3a1 1 0 0 0-.742 1.67l7.225 7.989A2 2 0 0 1 10 14z", opts...)
 }
 
 // FunnelPlus creates a funnel-plus icon
 // Tags: filter, hopper, add, create, new
-func FunnelPlus(opts ...Option) g.Node {
+func FunnelPlus(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M13.354 3H3a1 1 0 0 0-.742 1.67l7.225 7.989A2 2 0 0 1 10 14v6a1 1 0 0 0 .553.895l2 1A1 1 0 0 0 14 21v-7a2 2 0 0 1 .517-1.341l1.218-1.348",
 		"M16 6h6",
@@ -7706,7 +7706,7 @@ func FunnelPlus(opts ...Option) g.Node {
 
 // FunnelX creates a funnel-x icon
 // Tags: filter, hopper, remove, delete
-func FunnelX(opts ...Option) g.Node {
+func FunnelX(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M12.531 3H3a1 1 0 0 0-.742 1.67l7.225 7.989A2 2 0 0 1 10 14v6a1 1 0 0 0 .553.895l2 1A1 1 0 0 0 14 21v-7a2 2 0 0 1 .517-1.341l.427-.473",
 		"m16.5 3.5 5 5",
@@ -7716,7 +7716,7 @@ func FunnelX(opts ...Option) g.Node {
 
 // GalleryHorizontal creates a gallery-horizontal icon
 // Tags: carousel, pictures, images, scroll, swipe, album, portfolio
-func GalleryHorizontal(opts ...Option) g.Node {
+func GalleryHorizontal(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M2 3v18",
 		"M 8 3 h 8 a 2 2 0 0 1 2 2 v 14 a 2 2 0 0 1 -2 2 h -8 a 2 2 0 0 1 -2 -2 v -14 a 2 2 0 0 1 2 -2 Z",
@@ -7726,7 +7726,7 @@ func GalleryHorizontal(opts ...Option) g.Node {
 
 // GalleryHorizontalEnd creates a gallery-horizontal-end icon
 // Tags: carousel, pictures, images, scroll, swipe, album, portfolio, history, versions, backup, time machine
-func GalleryHorizontalEnd(opts ...Option) g.Node {
+func GalleryHorizontalEnd(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M2 7v10",
 		"M6 5v14",
@@ -7736,7 +7736,7 @@ func GalleryHorizontalEnd(opts ...Option) g.Node {
 
 // GalleryThumbnails creates a gallery-thumbnails icon
 // Tags: carousel, pictures, images, album, portfolio, preview
-func GalleryThumbnails(opts ...Option) g.Node {
+func GalleryThumbnails(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M 5 3 h 14 a 2 2 0 0 1 2 2 v 10 a 2 2 0 0 1 -2 2 h -14 a 2 2 0 0 1 -2 -2 v -10 a 2 2 0 0 1 2 -2 Z",
 		"M4 21h1",
@@ -7748,7 +7748,7 @@ func GalleryThumbnails(opts ...Option) g.Node {
 
 // GalleryVertical creates a gallery-vertical icon
 // Tags: carousel, pictures, images, scroll, swipe, album, portfolio
-func GalleryVertical(opts ...Option) g.Node {
+func GalleryVertical(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M3 2h18",
 		"M 5 6 h 14 a 2 2 0 0 1 2 2 v 8 a 2 2 0 0 1 -2 2 h -14 a 2 2 0 0 1 -2 -2 v -8 a 2 2 0 0 1 2 -2 Z",
@@ -7758,7 +7758,7 @@ func GalleryVertical(opts ...Option) g.Node {
 
 // GalleryVerticalEnd creates a gallery-vertical-end icon
 // Tags: carousel, pictures, images, scroll, swipe, album, portfolio, history, versions, backup, time machine
-func GalleryVerticalEnd(opts ...Option) g.Node {
+func GalleryVerticalEnd(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M7 2h10",
 		"M5 6h14",
@@ -7768,7 +7768,7 @@ func GalleryVerticalEnd(opts ...Option) g.Node {
 
 // Gamepad creates a gamepad icon
 // Tags: console
-func Gamepad(opts ...Option) g.Node {
+func Gamepad(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M 6 12 L 10 12",
 		"M 8 10 L 8 14",
@@ -7780,7 +7780,7 @@ func Gamepad(opts ...Option) g.Node {
 
 // Gamepad2 creates a gamepad-2 icon
 // Tags: console
-func Gamepad2(opts ...Option) g.Node {
+func Gamepad2(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M 6 11 L 10 11",
 		"M 8 9 L 8 13",
@@ -7792,7 +7792,7 @@ func Gamepad2(opts ...Option) g.Node {
 
 // GamepadDirectional creates a gamepad-directional icon
 // Tags: direction, arrow, controller, navigation, button, move, pointer, arrowhead, console, game, gaming
-func GamepadDirectional(opts ...Option) g.Node {
+func GamepadDirectional(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M11.146 15.854a1.207 1.207 0 0 1 1.708 0l1.56 1.56A2 2 0 0 1 15 18.828V21a1 1 0 0 1-1 1h-4a1 1 0 0 1-1-1v-2.172a2 2 0 0 1 .586-1.414z",
 		"M18.828 15a2 2 0 0 1-1.414-.586l-1.56-1.56a1.207 1.207 0 0 1 0-1.708l1.56-1.56A2 2 0 0 1 18.828 9H21a1 1 0 0 1 1 1v4a1 1 0 0 1-1 1z",
@@ -7803,7 +7803,7 @@ func GamepadDirectional(opts ...Option) g.Node {
 
 // Gauge creates a gauge icon
 // Tags: dashboard, dial, meter, speed, pressure, measure, level
-func Gauge(opts ...Option) g.Node {
+func Gauge(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"m12 14 4-4",
 		"M3.34 19a10 10 0 1 1 17.32 0",
@@ -7812,7 +7812,7 @@ func Gauge(opts ...Option) g.Node {
 
 // Gavel creates a gavel icon
 // Tags: justice, law, court, judgment, legal, hands, penalty, decision, authority, hammer, mallet
-func Gavel(opts ...Option) g.Node {
+func Gavel(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"m14 13-8.381 8.38a1 1 0 0 1-3.001-3l8.384-8.381",
 		"m16 16 6-6",
@@ -7824,7 +7824,7 @@ func Gavel(opts ...Option) g.Node {
 
 // Gem creates a gem icon
 // Tags: diamond, crystal, ruby, jewellery, price, special, present, gift, ring, wedding, proposal, marriage, rubygems
-func Gem(opts ...Option) g.Node {
+func Gem(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M10.5 3 8 9l4 13 4-13-2.5-6",
 		"M17 3a2 2 0 0 1 1.6.8l3 4a2 2 0 0 1 .013 2.382l-7.99 10.986a2 2 0 0 1-3.247 0l-7.99-10.986A2 2 0 0 1 2.4 7.8l2.998-3.997A2 2 0 0 1 7 3z",
@@ -7834,7 +7834,7 @@ func Gem(opts ...Option) g.Node {
 
 // GeorgianLari creates a georgian-lari icon
 // Tags: currency, money, payment
-func GeorgianLari(opts ...Option) g.Node {
+func GeorgianLari(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M11.5 21a7.5 7.5 0 1 1 7.35-9",
 		"M13 12V3",
@@ -7845,7 +7845,7 @@ func GeorgianLari(opts ...Option) g.Node {
 
 // Ghost creates a ghost icon
 // Tags: pac-man, spooky
-func Ghost(opts ...Option) g.Node {
+func Ghost(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M9 10h.01",
 		"M15 10h.01",
@@ -7855,7 +7855,7 @@ func Ghost(opts ...Option) g.Node {
 
 // Gift creates a gift icon
 // Tags: present, box, birthday, party
-func Gift(opts ...Option) g.Node {
+func Gift(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M 4 8 h 16 a 1 1 0 0 1 1 1 v 2 a 1 1 0 0 1 -1 1 h -16 a 1 1 0 0 1 -1 -1 v -2 a 1 1 0 0 1 1 -1 Z",
 		"M12 8v13",
@@ -7866,7 +7866,7 @@ func Gift(opts ...Option) g.Node {
 
 // GitBranch creates a git-branch icon
 // Tags: code, version control, vcs, repository
-func GitBranch(opts ...Option) g.Node {
+func GitBranch(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M 6 3 L 6 15",
 		"M 15 6 a 3 3 0 1 0 6 0 a 3 3 0 1 0 -6 0",
@@ -7877,7 +7877,7 @@ func GitBranch(opts ...Option) g.Node {
 
 // GitBranchMinus creates a git-branch-minus icon
 // Tags: code, version control, vcs, repository, delete, remove, -
-func GitBranchMinus(opts ...Option) g.Node {
+func GitBranchMinus(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M15 6a9 9 0 0 0-9 9V3",
 		"M21 18h-6",
@@ -7888,7 +7888,7 @@ func GitBranchMinus(opts ...Option) g.Node {
 
 // GitBranchPlus creates a git-branch-plus icon
 // Tags: code, version control, vcs, repository, add, create, +
-func GitBranchPlus(opts ...Option) g.Node {
+func GitBranchPlus(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M6 3v12",
 		"M18 9a3 3 0 1 0 0-6 3 3 0 0 0 0 6z",
@@ -7901,7 +7901,7 @@ func GitBranchPlus(opts ...Option) g.Node {
 
 // GitCommitHorizontal creates a git-commit-horizontal icon
 // Tags: code, version control, waypoint, stop, station
-func GitCommitHorizontal(opts ...Option) g.Node {
+func GitCommitHorizontal(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M 9 12 a 3 3 0 1 0 6 0 a 3 3 0 1 0 -6 0",
 		"M 3 12 L 9 12",
@@ -7911,7 +7911,7 @@ func GitCommitHorizontal(opts ...Option) g.Node {
 
 // GitCommitVertical creates a git-commit-vertical icon
 // Tags: code, version control, waypoint, stop, station
-func GitCommitVertical(opts ...Option) g.Node {
+func GitCommitVertical(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M12 3v6",
 		"M 9 12 a 3 3 0 1 0 6 0 a 3 3 0 1 0 -6 0",
@@ -7921,7 +7921,7 @@ func GitCommitVertical(opts ...Option) g.Node {
 
 // GitCompare creates a git-compare icon
 // Tags: code, version control, diff
-func GitCompare(opts ...Option) g.Node {
+func GitCompare(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M 15 18 a 3 3 0 1 0 6 0 a 3 3 0 1 0 -6 0",
 		"M 3 6 a 3 3 0 1 0 6 0 a 3 3 0 1 0 -6 0",
@@ -7932,7 +7932,7 @@ func GitCompare(opts ...Option) g.Node {
 
 // GitCompareArrows creates a git-compare-arrows icon
 // Tags: code, version control, diff
-func GitCompareArrows(opts ...Option) g.Node {
+func GitCompareArrows(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M 2 6 a 3 3 0 1 0 6 0 a 3 3 0 1 0 -6 0",
 		"M12 6h5a2 2 0 0 1 2 2v7",
@@ -7945,7 +7945,7 @@ func GitCompareArrows(opts ...Option) g.Node {
 
 // GitFork creates a git-fork icon
 // Tags: code, version control
-func GitFork(opts ...Option) g.Node {
+func GitFork(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M 9 18 a 3 3 0 1 0 6 0 a 3 3 0 1 0 -6 0",
 		"M 3 6 a 3 3 0 1 0 6 0 a 3 3 0 1 0 -6 0",
@@ -7957,7 +7957,7 @@ func GitFork(opts ...Option) g.Node {
 
 // GitGraph creates a git-graph icon
 // Tags: code, version control, commit graph, commits, gitlens
-func GitGraph(opts ...Option) g.Node {
+func GitGraph(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M 2 6 a 3 3 0 1 0 6 0 a 3 3 0 1 0 -6 0",
 		"M5 9v6",
@@ -7970,7 +7970,7 @@ func GitGraph(opts ...Option) g.Node {
 
 // GitMerge creates a git-merge icon
 // Tags: code, version control
-func GitMerge(opts ...Option) g.Node {
+func GitMerge(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M 15 18 a 3 3 0 1 0 6 0 a 3 3 0 1 0 -6 0",
 		"M 3 6 a 3 3 0 1 0 6 0 a 3 3 0 1 0 -6 0",
@@ -7980,7 +7980,7 @@ func GitMerge(opts ...Option) g.Node {
 
 // GitPullRequest creates a git-pull-request icon
 // Tags: code, version control, open
-func GitPullRequest(opts ...Option) g.Node {
+func GitPullRequest(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M 15 18 a 3 3 0 1 0 6 0 a 3 3 0 1 0 -6 0",
 		"M 3 6 a 3 3 0 1 0 6 0 a 3 3 0 1 0 -6 0",
@@ -7991,7 +7991,7 @@ func GitPullRequest(opts ...Option) g.Node {
 
 // GitPullRequestArrow creates a git-pull-request-arrow icon
 // Tags: code, version control, open
-func GitPullRequestArrow(opts ...Option) g.Node {
+func GitPullRequestArrow(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M 2 6 a 3 3 0 1 0 6 0 a 3 3 0 1 0 -6 0",
 		"M5 9v12",
@@ -8003,7 +8003,7 @@ func GitPullRequestArrow(opts ...Option) g.Node {
 
 // GitPullRequestClosed creates a git-pull-request-closed icon
 // Tags: code, version control, rejected, closed, cancelled, x
-func GitPullRequestClosed(opts ...Option) g.Node {
+func GitPullRequestClosed(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M 3 6 a 3 3 0 1 0 6 0 a 3 3 0 1 0 -6 0",
 		"M6 9v12",
@@ -8016,7 +8016,7 @@ func GitPullRequestClosed(opts ...Option) g.Node {
 
 // GitPullRequestCreate creates a git-pull-request-create icon
 // Tags: code, version control, open, plus, add, +
-func GitPullRequestCreate(opts ...Option) g.Node {
+func GitPullRequestCreate(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M 3 6 a 3 3 0 1 0 6 0 a 3 3 0 1 0 -6 0",
 		"M6 9v12",
@@ -8028,7 +8028,7 @@ func GitPullRequestCreate(opts ...Option) g.Node {
 
 // GitPullRequestCreateArrow creates a git-pull-request-create-arrow icon
 // Tags: code, version control, open, plus, add, +
-func GitPullRequestCreateArrow(opts ...Option) g.Node {
+func GitPullRequestCreateArrow(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M 2 6 a 3 3 0 1 0 6 0 a 3 3 0 1 0 -6 0",
 		"M5 9v12",
@@ -8041,7 +8041,7 @@ func GitPullRequestCreateArrow(opts ...Option) g.Node {
 
 // GitPullRequestDraft creates a git-pull-request-draft icon
 // Tags: code, version control, open, draft, dashed
-func GitPullRequestDraft(opts ...Option) g.Node {
+func GitPullRequestDraft(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M 15 18 a 3 3 0 1 0 6 0 a 3 3 0 1 0 -6 0",
 		"M 3 6 a 3 3 0 1 0 6 0 a 3 3 0 1 0 -6 0",
@@ -8053,7 +8053,7 @@ func GitPullRequestDraft(opts ...Option) g.Node {
 
 // Github creates a github icon
 // Tags: logo, version control
-func Github(opts ...Option) g.Node {
+func Github(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4",
 		"M9 18c-4.51 2-5-2-7-2",
@@ -8062,13 +8062,13 @@ func Github(opts ...Option) g.Node {
 
 // Gitlab creates a gitlab icon
 // Tags: logo, version control
-func Gitlab(opts ...Option) g.Node {
+func Gitlab(opts ...Option) templ.Component {
 	return Icon("m22 13.29-3.33-10a.42.42 0 0 0-.14-.18.38.38 0 0 0-.22-.11.39.39 0 0 0-.23.07.42.42 0 0 0-.14.18l-2.26 6.67H8.32L6.1 3.26a.42.42 0 0 0-.1-.18.38.38 0 0 0-.26-.08.39.39 0 0 0-.23.07.42.42 0 0 0-.14.18L2 13.29a.74.74 0 0 0 .27.83L12 21l9.69-6.88a.71.71 0 0 0 .31-.83Z", opts...)
 }
 
 // GlassWater creates a glass-water icon
 // Tags: beverage, drink, glass, water
-func GlassWater(opts ...Option) g.Node {
+func GlassWater(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M5.116 4.104A1 1 0 0 1 6.11 3h11.78a1 1 0 0 1 .994 1.105L17.19 20.21A2 2 0 0 1 15.2 22H8.8a2 2 0 0 1-2-1.79z",
 		"M6 12a5 5 0 0 1 6 0 5 5 0 0 0 6 0",
@@ -8077,7 +8077,7 @@ func GlassWater(opts ...Option) g.Node {
 
 // Glasses creates a glasses icon
 // Tags: glasses, spectacles
-func Glasses(opts ...Option) g.Node {
+func Glasses(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M 2 15 a 4 4 0 1 0 8 0 a 4 4 0 1 0 -8 0",
 		"M 14 15 a 4 4 0 1 0 8 0 a 4 4 0 1 0 -8 0",
@@ -8089,7 +8089,7 @@ func Glasses(opts ...Option) g.Node {
 
 // Globe creates a globe icon
 // Tags: world, browser, language, translate
-func Globe(opts ...Option) g.Node {
+func Globe(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M 2 12 a 10 10 0 1 0 20 0 a 10 10 0 1 0 -20 0",
 		"M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20",
@@ -8099,7 +8099,7 @@ func Globe(opts ...Option) g.Node {
 
 // GlobeLock creates a globe-lock icon
 // Tags: vpn, private, privacy, network, world, browser, security, encryption, protection, connection
-func GlobeLock(opts ...Option) g.Node {
+func GlobeLock(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M15.686 15A14.5 14.5 0 0 1 12 22a14.5 14.5 0 0 1 0-20 10 10 0 1 0 9.542 13",
 		"M2 12h8.5",
@@ -8110,7 +8110,7 @@ func GlobeLock(opts ...Option) g.Node {
 
 // Goal creates a goal icon
 // Tags: flag, bullseye
-func Goal(opts ...Option) g.Node {
+func Goal(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M12 13V2l8 4-8 4",
 		"M20.561 10.222a9 9 0 1 1-12.55-5.29",
@@ -8120,7 +8120,7 @@ func Goal(opts ...Option) g.Node {
 
 // Gpu creates a gpu icon
 // Tags: processor, cores, technology, computer, chip, circuit, specs, graphics processing unit, video card, display adapter, gddr, rendering, digital image processing, crypto mining
-func Gpu(opts ...Option) g.Node {
+func Gpu(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M2 21V3",
 		"M2 5h18a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H2.26",
@@ -8132,7 +8132,7 @@ func Gpu(opts ...Option) g.Node {
 
 // GraduationCap creates a graduation-cap icon
 // Tags: school, university, learn, study, mortarboard, education, ceremony, academic, hat, diploma, bachlor's, master's, doctorate
-func GraduationCap(opts ...Option) g.Node {
+func GraduationCap(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M21.42 10.922a1 1 0 0 0-.019-1.838L12.83 5.18a2 2 0 0 0-1.66 0L2.6 9.08a1 1 0 0 0 0 1.832l8.57 3.908a2 2 0 0 0 1.66 0z",
 		"M22 10v6",
@@ -8142,7 +8142,7 @@ func GraduationCap(opts ...Option) g.Node {
 
 // Grape creates a grape icon
 // Tags: fruit, wine, food
-func Grape(opts ...Option) g.Node {
+func Grape(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M22 5V2l-5.89 5.89",
 		"M 13.600000000000001 15.89 a 3 3 0 1 0 6 0 a 3 3 0 1 0 -6 0",
@@ -8158,7 +8158,7 @@ func Grape(opts ...Option) g.Node {
 
 // Grid2x2 creates a grid-2x2 icon
 // Tags: table, rows, columns, blocks, plot, land, geometry, measure, size, width, height, distance, surface area, square meter, acre, window, skylight
-func Grid2x2(opts ...Option) g.Node {
+func Grid2x2(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M12 3v18",
 		"M3 12h18",
@@ -8168,7 +8168,7 @@ func Grid2x2(opts ...Option) g.Node {
 
 // Grid2x2Check creates a grid-2x2-check icon
 // Tags: table, rows, columns, blocks, plot, land, geometry, measure, data, size, width, height, distance, surface area, square meter, acre
-func Grid2x2Check(opts ...Option) g.Node {
+func Grid2x2Check(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M12 3v17a1 1 0 0 1-1 1H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2v6a1 1 0 0 1-1 1H3",
 		"m16 19 2 2 4-4",
@@ -8177,7 +8177,7 @@ func Grid2x2Check(opts ...Option) g.Node {
 
 // Grid2x2Plus creates a grid-2x2-plus icon
 // Tags: table, rows, columns, blocks, plot, land, geometry, measure, data, size, width, height, distance, surface area, square meter, acre
-func Grid2x2Plus(opts ...Option) g.Node {
+func Grid2x2Plus(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M12 3v17a1 1 0 0 1-1 1H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2v6a1 1 0 0 1-1 1H3",
 		"M16 19h6",
@@ -8187,7 +8187,7 @@ func Grid2x2Plus(opts ...Option) g.Node {
 
 // Grid2x2X creates a grid-2x2-x icon
 // Tags: table, rows, columns, data, blocks, plot, land, geometry, measure, size, width, height, distance, surface area, square meter, acre
-func Grid2x2X(opts ...Option) g.Node {
+func Grid2x2X(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M12 3v17a1 1 0 0 1-1 1H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2v6a1 1 0 0 1-1 1H3",
 		"m16 16 5 5",
@@ -8197,7 +8197,7 @@ func Grid2x2X(opts ...Option) g.Node {
 
 // Grid3x2 creates a grid-3x2 icon
 // Tags: table, rows, columns, blocks, plot, land, geometry, measure, size, width, height, distance, surface area, square meter, acre, window
-func Grid3x2(opts ...Option) g.Node {
+func Grid3x2(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M15 3v18",
 		"M3 12h18",
@@ -8208,7 +8208,7 @@ func Grid3x2(opts ...Option) g.Node {
 
 // Grid3x3 creates a grid-3x3 icon
 // Tags: table, rows, columns
-func Grid3x3(opts ...Option) g.Node {
+func Grid3x3(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M 5 3 h 14 a 2 2 0 0 1 2 2 v 14 a 2 2 0 0 1 -2 2 h -14 a 2 2 0 0 1 -2 -2 v -14 a 2 2 0 0 1 2 -2 Z",
 		"M3 9h18",
@@ -8220,7 +8220,7 @@ func Grid3x3(opts ...Option) g.Node {
 
 // Grip creates a grip icon
 // Tags: grab, dots, handle, move, drag
-func Grip(opts ...Option) g.Node {
+func Grip(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M 11 5 a 1 1 0 1 0 2 0 a 1 1 0 1 0 -2 0",
 		"M 18 5 a 1 1 0 1 0 2 0 a 1 1 0 1 0 -2 0",
@@ -8236,7 +8236,7 @@ func Grip(opts ...Option) g.Node {
 
 // GripHorizontal creates a grip-horizontal icon
 // Tags: grab, dots, handle, move, drag
-func GripHorizontal(opts ...Option) g.Node {
+func GripHorizontal(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M 11 9 a 1 1 0 1 0 2 0 a 1 1 0 1 0 -2 0",
 		"M 18 9 a 1 1 0 1 0 2 0 a 1 1 0 1 0 -2 0",
@@ -8249,7 +8249,7 @@ func GripHorizontal(opts ...Option) g.Node {
 
 // GripVertical creates a grip-vertical icon
 // Tags: grab, dots, handle, move, drag
-func GripVertical(opts ...Option) g.Node {
+func GripVertical(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M 8 12 a 1 1 0 1 0 2 0 a 1 1 0 1 0 -2 0",
 		"M 8 5 a 1 1 0 1 0 2 0 a 1 1 0 1 0 -2 0",
@@ -8262,7 +8262,7 @@ func GripVertical(opts ...Option) g.Node {
 
 // Group creates a group icon
 // Tags: cubes, packages, parts, units, collection, cluster, gather, dashed
-func Group(opts ...Option) g.Node {
+func Group(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M3 7V5c0-1.1.9-2 2-2h2",
 		"M17 3h2c1.1 0 2 .9 2 2v2",
@@ -8275,7 +8275,7 @@ func Group(opts ...Option) g.Node {
 
 // Guitar creates a guitar icon
 // Tags: acoustic, instrument, strings, riff, rock, band, country, concert, performance, play, lead, loud, music, audio, sound, noise
-func Guitar(opts ...Option) g.Node {
+func Guitar(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"m11.9 12.1 4.514-4.514",
 		"M20.1 2.3a1 1 0 0 0-1.4 0l-1.114 1.114A2 2 0 0 0 17 4.828v1.344a2 2 0 0 1-.586 1.414A2 2 0 0 1 17.828 7h1.344a2 2 0 0 0 1.414-.586L21.7 5.3a1 1 0 0 0 0-1.4z",
@@ -8286,7 +8286,7 @@ func Guitar(opts ...Option) g.Node {
 
 // Ham creates a ham icon
 // Tags: food, pork, pig, meat, bone, hock, knuckle, gammon, cured
-func Ham(opts ...Option) g.Node {
+func Ham(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M13.144 21.144A7.274 10.445 45 1 0 2.856 10.856",
 		"M13.144 21.144A7.274 4.365 45 0 0 2.856 10.856a7.274 4.365 45 0 0 10.288 10.288",
@@ -8297,7 +8297,7 @@ func Ham(opts ...Option) g.Node {
 
 // Hamburger creates a hamburger icon
 // Tags: burger, cheeseburger, meat, beef, patty, bun, fast food, junk food, takeaway, takeout, snack, dish, restaurant, lunch, meal, savory, savoury, cookery, cooking, grilled, barbecue, barbeque, bbq, lettuce, tomato, relish, pickles, onions, ketchup, mustard, mayonnaise
-func Hamburger(opts ...Option) g.Node {
+func Hamburger(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M12 16H4a2 2 0 1 1 0-4h16a2 2 0 1 1 0 4h-4.25",
 		"M5 12a2 2 0 0 1-2-2 9 7 0 0 1 18 0 2 2 0 0 1-2 2",
@@ -8308,7 +8308,7 @@ func Hamburger(opts ...Option) g.Node {
 
 // Hammer creates a hammer icon
 // Tags: mallet, nails, diy, toolbox, build, construction
-func Hammer(opts ...Option) g.Node {
+func Hammer(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"m15 12-9.373 9.373a1 1 0 0 1-3.001-3L12 9",
 		"m18 15 4-4",
@@ -8318,7 +8318,7 @@ func Hammer(opts ...Option) g.Node {
 
 // Hand creates a hand icon
 // Tags: wave, move, mouse, grab
-func Hand(opts ...Option) g.Node {
+func Hand(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M18 11V6a2 2 0 0 0-2-2a2 2 0 0 0-2 2",
 		"M14 10V4a2 2 0 0 0-2-2a2 2 0 0 0-2 2v2",
@@ -8329,7 +8329,7 @@ func Hand(opts ...Option) g.Node {
 
 // HandCoins creates a hand-coins icon
 // Tags: savings, banking, money, finance, offers, mortgage, payment, received, wage, payroll, allowance, pocket money, handout, pennies
-func HandCoins(opts ...Option) g.Node {
+func HandCoins(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M11 15h2a2 2 0 1 0 0-4h-3c-.6 0-1.1.2-1.4.6L3 17",
 		"m7 21 1.6-1.4c.3-.4.8-.6 1.4-.6h4c1.1 0 2.1-.4 2.8-1.2l4.6-4.4a2 2 0 0 0-2.75-2.91l-4.2 3.9",
@@ -8341,7 +8341,7 @@ func HandCoins(opts ...Option) g.Node {
 
 // HandFist creates a hand-fist icon
 // Tags: clench, strength, power, unity, solidarity, rebellion, victory, triumph, support, fight, combat, brawl
-func HandFist(opts ...Option) g.Node {
+func HandFist(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M12.035 17.012a3 3 0 0 0-3-3l-.311-.002a.72.72 0 0 1-.505-1.229l1.195-1.195A2 2 0 0 1 10.828 11H12a2 2 0 0 0 0-4H9.243a3 3 0 0 0-2.122.879l-2.707 2.707A4.83 4.83 0 0 0 3 14a8 8 0 0 0 8 8h2a8 8 0 0 0 8-8V7a2 2 0 1 0-4 0v2a2 2 0 1 0 4 0",
 		"M13.888 9.662A2 2 0 0 0 17 8V5A2 2 0 1 0 13 5",
@@ -8352,7 +8352,7 @@ func HandFist(opts ...Option) g.Node {
 
 // HandGrab creates a hand-grab icon
 // Tags: hand
-func HandGrab(opts ...Option) g.Node {
+func HandGrab(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M18 11.5V9a2 2 0 0 0-2-2a2 2 0 0 0-2 2v1.4",
 		"M14 10V8a2 2 0 0 0-2-2a2 2 0 0 0-2 2v2",
@@ -8364,7 +8364,7 @@ func HandGrab(opts ...Option) g.Node {
 
 // HandHeart creates a hand-heart icon
 // Tags: love, like, emotion
-func HandHeart(opts ...Option) g.Node {
+func HandHeart(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M11 14h2a2 2 0 0 0 0-4h-3c-.6 0-1.1.2-1.4.6L3 16",
 		"m14.45 13.39 5.05-4.694C20.196 8 21 6.85 21 5.75a2.75 2.75 0 0 0-4.797-1.837.276.276 0 0 1-.406 0A2.75 2.75 0 0 0 11 5.75c0 1.2.802 2.248 1.5 2.946L16 11.95",
@@ -8375,7 +8375,7 @@ func HandHeart(opts ...Option) g.Node {
 
 // HandHelping creates a hand-helping icon
 // Tags: agreement, help, proposal, charity, begging, terms
-func HandHelping(opts ...Option) g.Node {
+func HandHelping(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M11 12h2a2 2 0 1 0 0-4h-3c-.6 0-1.1.2-1.4.6L3 14",
 		"m7 18 1.6-1.4c.3-.4.8-.6 1.4-.6h4c1.1 0 2.1-.4 2.8-1.2l4.6-4.4a2 2 0 0 0-2.75-2.91l-4.2 3.9",
@@ -8385,7 +8385,7 @@ func HandHelping(opts ...Option) g.Node {
 
 // HandMetal creates a hand-metal icon
 // Tags: rock
-func HandMetal(opts ...Option) g.Node {
+func HandMetal(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M18 12.5V10a2 2 0 0 0-2-2a2 2 0 0 0-2 2v1.4",
 		"M14 11V9a2 2 0 1 0-4 0v2",
@@ -8396,7 +8396,7 @@ func HandMetal(opts ...Option) g.Node {
 
 // HandPlatter creates a hand-platter icon
 // Tags: waiter, waitress, restaurant, table service, served, dinner, dining, meal, course, luxury
-func HandPlatter(opts ...Option) g.Node {
+func HandPlatter(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M12 3V2",
 		"m15.4 17.4 3.2-2.8a2 2 0 1 1 2.8 2.9l-3.6 3.3c-.7.8-1.7 1.2-2.8 1.2h-4c-1.1 0-2.1-.4-2.8-1.2l-1.302-1.464A1 1 0 0 0 6.151 19H5",
@@ -8409,7 +8409,7 @@ func HandPlatter(opts ...Option) g.Node {
 
 // Handbag creates a handbag icon
 // Tags: bag, baggage, carry, clutch, fashion, luggage, purse, tote, travel
-func Handbag(opts ...Option) g.Node {
+func Handbag(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M2.048 18.566A2 2 0 0 0 4 21h16a2 2 0 0 0 1.952-2.434l-2-9A2 2 0 0 0 18 8H6a2 2 0 0 0-1.952 1.566z",
 		"M8 11V6a4 4 0 0 1 8 0v5",
@@ -8418,7 +8418,7 @@ func Handbag(opts ...Option) g.Node {
 
 // Handshake creates a handshake icon
 // Tags: agreement, partnership, deal, business, assistance, cooperation, friendship, union, terms
-func Handshake(opts ...Option) g.Node {
+func Handshake(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"m11 17 2 2a1 1 0 1 0 3-3",
 		"m14 14 2.5 2.5a1 1 0 1 0 3-3l-3.88-3.88a3 3 0 0 0-4.24 0l-.88.88a1 1 0 1 1-3-3l2.81-2.81a5.79 5.79 0 0 1 7.06-.87l.47.28a2 2 0 0 0 1.42.25L21 4",
@@ -8430,7 +8430,7 @@ func Handshake(opts ...Option) g.Node {
 
 // HardDrive creates a hard-drive icon
 // Tags: computer, server, memory, data, ssd, disk, hard disk
-func HardDrive(opts ...Option) g.Node {
+func HardDrive(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M 22 12 L 2 12",
 		"M5.45 5.11 2 12v6a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2v-6l-3.45-6.89A2 2 0 0 0 16.76 4H7.24a2 2 0 0 0-1.79 1.11z",
@@ -8441,7 +8441,7 @@ func HardDrive(opts ...Option) g.Node {
 
 // HardDriveDownload creates a hard-drive-download icon
 // Tags: computer, server, memory, data, ssd, disk, hard disk, save
-func HardDriveDownload(opts ...Option) g.Node {
+func HardDriveDownload(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M12 2v8",
 		"m16 6-4 4-4-4",
@@ -8453,7 +8453,7 @@ func HardDriveDownload(opts ...Option) g.Node {
 
 // HardDriveUpload creates a hard-drive-upload icon
 // Tags: computer, server, memory, data, ssd, disk, hard disk, save
-func HardDriveUpload(opts ...Option) g.Node {
+func HardDriveUpload(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"m16 6-4-4-4 4",
 		"M12 2v8",
@@ -8465,7 +8465,7 @@ func HardDriveUpload(opts ...Option) g.Node {
 
 // HardHat creates a hard-hat icon
 // Tags: helmet, construction, safety, savety
-func HardHat(opts ...Option) g.Node {
+func HardHat(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M10 10V5a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v5",
 		"M14 6a6 6 0 0 1 6 6v3",
@@ -8476,7 +8476,7 @@ func HardHat(opts ...Option) g.Node {
 
 // Hash creates a hash icon
 // Tags: hashtag, number, pound
-func Hash(opts ...Option) g.Node {
+func Hash(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M 4 9 L 20 9",
 		"M 4 15 L 20 15",
@@ -8487,7 +8487,7 @@ func Hash(opts ...Option) g.Node {
 
 // HatGlasses creates a hat-glasses icon
 // Tags: incognito, disguise, costume, masked, anonymous, anonymity, privacy, private browsing, stealth, hidden, undercover, cloak, invisible, ghost, spy, agent, detective, identity, cap, fedora, spectacles, shades, sunglasses, eyewear
-func HatGlasses(opts ...Option) g.Node {
+func HatGlasses(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M14 18a2 2 0 0 0-4 0",
 		"m19 11-2.11-6.657a2 2 0 0 0-2.752-1.148l-1.276.61A2 2 0 0 1 12 4H8.5a2 2 0 0 0-1.925 1.456L5 11",
@@ -8499,7 +8499,7 @@ func HatGlasses(opts ...Option) g.Node {
 
 // Haze creates a haze icon
 // Tags: mist, fog
-func Haze(opts ...Option) g.Node {
+func Haze(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"m5.2 6.2 1.4 1.4",
 		"M2 13h2",
@@ -8514,7 +8514,7 @@ func Haze(opts ...Option) g.Node {
 
 // Hd creates a hd icon
 // Tags: tv, resolution, video, high definition, 720p, 1080p
-func Hd(opts ...Option) g.Node {
+func Hd(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M10 12H6",
 		"M10 15V9",
@@ -8526,7 +8526,7 @@ func Hd(opts ...Option) g.Node {
 
 // HdmiPort creates a hdmi-port icon
 // Tags: socket, plug, slot, controller, connector, interface, console, signal, audio, video, visual, av, data, input, output
-func HdmiPort(opts ...Option) g.Node {
+func HdmiPort(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M22 9a1 1 0 0 0-1-1H3a1 1 0 0 0-1 1v4a1 1 0 0 0 1 1h1l2 2h12l2-2h1a1 1 0 0 0 1-1Z",
 		"M7.5 12h9",
@@ -8535,7 +8535,7 @@ func HdmiPort(opts ...Option) g.Node {
 
 // Heading creates a heading icon
 // Tags: h1, html, markup, markdown
-func Heading(opts ...Option) g.Node {
+func Heading(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M6 12h12",
 		"M6 20V4",
@@ -8545,7 +8545,7 @@ func Heading(opts ...Option) g.Node {
 
 // Heading1 creates a heading-1 icon
 // Tags: h1, html, markup, markdown
-func Heading1(opts ...Option) g.Node {
+func Heading1(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M4 12h8",
 		"M4 18V6",
@@ -8556,7 +8556,7 @@ func Heading1(opts ...Option) g.Node {
 
 // Heading2 creates a heading-2 icon
 // Tags: h2, html, markup, markdown
-func Heading2(opts ...Option) g.Node {
+func Heading2(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M4 12h8",
 		"M4 18V6",
@@ -8567,7 +8567,7 @@ func Heading2(opts ...Option) g.Node {
 
 // Heading3 creates a heading-3 icon
 // Tags: h3, html, markup, markdown
-func Heading3(opts ...Option) g.Node {
+func Heading3(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M4 12h8",
 		"M4 18V6",
@@ -8579,7 +8579,7 @@ func Heading3(opts ...Option) g.Node {
 
 // Heading4 creates a heading-4 icon
 // Tags: h4, html, markup, markdown
-func Heading4(opts ...Option) g.Node {
+func Heading4(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M12 18V6",
 		"M17 10v3a1 1 0 0 0 1 1h3",
@@ -8591,7 +8591,7 @@ func Heading4(opts ...Option) g.Node {
 
 // Heading5 creates a heading-5 icon
 // Tags: h5, html, markup, markdown
-func Heading5(opts ...Option) g.Node {
+func Heading5(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M4 12h8",
 		"M4 18V6",
@@ -8603,7 +8603,7 @@ func Heading5(opts ...Option) g.Node {
 
 // Heading6 creates a heading-6 icon
 // Tags: h6, html, markup, markdown
-func Heading6(opts ...Option) g.Node {
+func Heading6(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M4 12h8",
 		"M4 18V6",
@@ -8615,7 +8615,7 @@ func Heading6(opts ...Option) g.Node {
 
 // HeadphoneOff creates a headphone-off icon
 // Tags: music, audio, sound, mute, off
-func HeadphoneOff(opts ...Option) g.Node {
+func HeadphoneOff(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M21 14h-1.343",
 		"M9.128 3.47A9 9 0 0 1 21 12v3.343",
@@ -8627,13 +8627,13 @@ func HeadphoneOff(opts ...Option) g.Node {
 
 // Headphones creates a headphones icon
 // Tags: music, audio, sound
-func Headphones(opts ...Option) g.Node {
+func Headphones(opts ...Option) templ.Component {
 	return Icon("M3 14h3a2 2 0 0 1 2 2v3a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-7a9 9 0 0 1 18 0v7a2 2 0 0 1-2 2h-1a2 2 0 0 1-2-2v-3a2 2 0 0 1 2-2h3", opts...)
 }
 
 // Headset creates a headset icon
 // Tags: music, audio, sound, gaming, headphones, headset, call, center, phone, telephone, voip, video
-func Headset(opts ...Option) g.Node {
+func Headset(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M3 11h3a2 2 0 0 1 2 2v3a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-5Zm0 0a9 9 0 1 1 18 0m0 0v5a2 2 0 0 1-2 2h-1a2 2 0 0 1-2-2v-3a2 2 0 0 1 2-2h3Z",
 		"M21 16v2a4 4 0 0 1-4 4h-5",
@@ -8642,13 +8642,13 @@ func Headset(opts ...Option) g.Node {
 
 // Heart creates a heart icon
 // Tags: like, love, emotion, suit, playing, cards
-func Heart(opts ...Option) g.Node {
+func Heart(opts ...Option) templ.Component {
 	return Icon("M2 9.5a5.5 5.5 0 0 1 9.591-3.676.56.56 0 0 0 .818 0A5.49 5.49 0 0 1 22 9.5c0 2.29-1.5 4-3 5.5l-5.492 5.313a2 2 0 0 1-3 .019L5 15c-1.5-1.5-3-3.2-3-5.5", opts...)
 }
 
 // HeartCrack creates a heart-crack icon
 // Tags: heartbreak, sadness, emotion
-func HeartCrack(opts ...Option) g.Node {
+func HeartCrack(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M12.409 5.824c-.702.792-1.15 1.496-1.415 2.166l2.153 2.156a.5.5 0 0 1 0 .707l-2.293 2.293a.5.5 0 0 0 0 .707L12 15",
 		"M13.508 20.313a2 2 0 0 1-3 .019L5 15c-1.5-1.5-3-3.2-3-5.5a5.5 5.5 0 0 1 9.591-3.677.6.6 0 0 0 .818.001A5.5 5.5 0 0 1 22 9.5c0 2.29-1.5 4-3 5.5z",
@@ -8657,13 +8657,13 @@ func HeartCrack(opts ...Option) g.Node {
 
 // HeartHandshake creates a heart-handshake icon
 // Tags: agreement, charity, help, deal, terms, emotion, together, handshake
-func HeartHandshake(opts ...Option) g.Node {
+func HeartHandshake(opts ...Option) templ.Component {
 	return Icon("M19.414 14.414C21 12.828 22 11.5 22 9.5a5.5 5.5 0 0 0-9.591-3.676.6.6 0 0 1-.818.001A5.5 5.5 0 0 0 2 9.5c0 2.3 1.5 4 3 5.5l5.535 5.362a2 2 0 0 0 2.879.052 2.12 2.12 0 0 0-.004-3 2.124 2.124 0 1 0 3-3 2.124 2.124 0 0 0 3.004 0 2 2 0 0 0 0-2.828l-1.881-1.882a2.41 2.41 0 0 0-3.409 0l-1.71 1.71a2 2 0 0 1-2.828 0 2 2 0 0 1 0-2.828l2.823-2.762", opts...)
 }
 
 // HeartMinus creates a heart-minus icon
 // Tags: unlike, unfavorite, remove, damage, ui & ux
-func HeartMinus(opts ...Option) g.Node {
+func HeartMinus(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"m14.876 18.99-1.368 1.323a2 2 0 0 1-3 .019L5 15c-1.5-1.5-3-3.2-3-5.5a5.5 5.5 0 0 1 9.591-3.676.56.56 0 0 0 .818 0A5.49 5.49 0 0 1 22 9.5a5.2 5.2 0 0 1-.244 1.572",
 		"M15 15h6",
@@ -8672,7 +8672,7 @@ func HeartMinus(opts ...Option) g.Node {
 
 // HeartOff creates a heart-off icon
 // Tags: unlike, dislike, hate, emotion
-func HeartOff(opts ...Option) g.Node {
+func HeartOff(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M10.5 4.893a5.5 5.5 0 0 1 1.091.931.56.56 0 0 0 .818 0A5.49 5.49 0 0 1 22 9.5c0 1.872-1.002 3.356-2.187 4.655",
 		"m16.967 16.967-3.459 3.346a2 2 0 0 1-3 .019L5 15c-1.5-1.5-3-3.2-3-5.5a5.5 5.5 0 0 1 2.747-4.761",
@@ -8682,7 +8682,7 @@ func HeartOff(opts ...Option) g.Node {
 
 // HeartPlus creates a heart-plus icon
 // Tags: plus, like, favorite, add, health, support
-func HeartPlus(opts ...Option) g.Node {
+func HeartPlus(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"m14.479 19.374-.971.939a2 2 0 0 1-3 .019L5 15c-1.5-1.5-3-3.2-3-5.5a5.5 5.5 0 0 1 9.591-3.676.56.56 0 0 0 .818 0A5.49 5.49 0 0 1 22 9.5a5.2 5.2 0 0 1-.219 1.49",
 		"M15 15h6",
@@ -8692,7 +8692,7 @@ func HeartPlus(opts ...Option) g.Node {
 
 // HeartPulse creates a heart-pulse icon
 // Tags: heartbeat, pulse, health, medical, blood pressure, cardiac, systole, diastole
-func HeartPulse(opts ...Option) g.Node {
+func HeartPulse(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M2 9.5a5.5 5.5 0 0 1 9.591-3.676.56.56 0 0 0 .818 0A5.49 5.49 0 0 1 22 9.5c0 2.29-1.5 4-3 5.5l-5.492 5.313a2 2 0 0 1-3 .019L5 15c-1.5-1.5-3-3.2-3-5.5",
 		"M3.22 13H9.5l.5-1 2 4.5 2-7 1.5 3.5h5.27",
@@ -8701,7 +8701,7 @@ func HeartPulse(opts ...Option) g.Node {
 
 // Heater creates a heater icon
 // Tags: heating, warmth, comfort, fire, stove, electric, electronics, amenities
-func Heater(opts ...Option) g.Node {
+func Heater(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M11 8c2-3-2-3 0-6",
 		"M15.5 8c2-3-2-3 0-6",
@@ -8718,7 +8718,7 @@ func Heater(opts ...Option) g.Node {
 
 // Helicopter creates a helicopter icon
 // Tags: transport, flying, rotor, aviation, helipad, gear, flyer, technology, helicopter, aircraft, vehicle
-func Helicopter(opts ...Option) g.Node {
+func Helicopter(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M11 17v4",
 		"M14 3v8a2 2 0 0 0 2 2h5.865",
@@ -8733,13 +8733,13 @@ func Helicopter(opts ...Option) g.Node {
 
 // Hexagon creates a hexagon icon
 // Tags: shape, node.js, logo
-func Hexagon(opts ...Option) g.Node {
+func Hexagon(opts ...Option) templ.Component {
 	return Icon("M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z", opts...)
 }
 
 // Highlighter creates a highlighter icon
 // Tags: mark, text
-func Highlighter(opts ...Option) g.Node {
+func Highlighter(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"m9 11-6 6v3h9l3-3",
 		"m22 12-4.6 4.6a2 2 0 0 1-2.8 0l-5.2-5.2a2 2 0 0 1 0-2.8L14 4",
@@ -8748,7 +8748,7 @@ func Highlighter(opts ...Option) g.Node {
 
 // History creates a history icon
 // Tags: time, redo, undo, rewind, timeline, version, time machine, backup, rotate, ccw
-func History(opts ...Option) g.Node {
+func History(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8",
 		"M3 3v5h5",
@@ -8758,7 +8758,7 @@ func History(opts ...Option) g.Node {
 
 // Hop creates a hop icon
 // Tags: beer, brewery, drink
-func Hop(opts ...Option) g.Node {
+func Hop(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M10.82 16.12c1.69.6 3.91.79 5.18.85.55.03 1-.42.97-.97-.06-1.27-.26-3.5-.85-5.18",
 		"M11.5 6.5c1.64 0 5-.38 6.71-1.07.52-.2.55-.82.12-1.17A10 10 0 0 0 4.26 18.33c.35.43.96.4 1.17-.12.69-1.71 1.07-5.07 1.07-6.71 1.34.45 3.1.9 4.88.62a.88.88 0 0 0 .73-.74c.3-2.14-.15-3.5-.61-4.88",
@@ -8773,7 +8773,7 @@ func Hop(opts ...Option) g.Node {
 
 // HopOff creates a hop-off icon
 // Tags: beer, brewery, drink, hop free, allergy, intolerance, diet
-func HopOff(opts ...Option) g.Node {
+func HopOff(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M10.82 16.12c1.69.6 3.91.79 5.18.85.28.01.53-.09.7-.27",
 		"M11.14 20.57c.52.24 2.44 1.12 4.08 1.37.46.06.86-.25.9-.71.12-1.52-.3-3.43-.5-4.28",
@@ -8789,7 +8789,7 @@ func HopOff(opts ...Option) g.Node {
 
 // Hospital creates a hospital icon
 // Tags: infirmary, sanatorium, healthcare, doctor, hospice, clinic, emergency room, ward, building, medical, vet
-func Hospital(opts ...Option) g.Node {
+func Hospital(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M12 7v4",
 		"M14 21v-3a2 2 0 0 0-4 0v3",
@@ -8801,7 +8801,7 @@ func Hospital(opts ...Option) g.Node {
 
 // Hotel creates a hotel icon
 // Tags: building, hostel, motel, inn
-func Hotel(opts ...Option) g.Node {
+func Hotel(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M10 22v-6.57",
 		"M12 11h.01",
@@ -8818,7 +8818,7 @@ func Hotel(opts ...Option) g.Node {
 
 // Hourglass creates a hourglass icon
 // Tags: timer, time, sandglass
-func Hourglass(opts ...Option) g.Node {
+func Hourglass(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M5 22h14",
 		"M5 2h14",
@@ -8829,7 +8829,7 @@ func Hourglass(opts ...Option) g.Node {
 
 // House creates a house icon
 // Tags: home, living, building, residence, architecture
-func House(opts ...Option) g.Node {
+func House(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M15 21v-8a1 1 0 0 0-1-1h-4a1 1 0 0 0-1 1v8",
 		"M3 10a2 2 0 0 1 .709-1.528l7-6a2 2 0 0 1 2.582 0l7 6A2 2 0 0 1 21 10v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z",
@@ -8838,7 +8838,7 @@ func House(opts ...Option) g.Node {
 
 // HouseHeart creates a house-heart icon
 // Tags: home sweet home, abode, building, residence, healthy living, lifestyle
-func HouseHeart(opts ...Option) g.Node {
+func HouseHeart(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M8.62 13.8A2.25 2.25 0 1 1 12 10.836a2.25 2.25 0 1 1 3.38 2.966l-2.626 2.856a.998.998 0 0 1-1.507 0z",
 		"M3 10a2 2 0 0 1 .709-1.528l7-6a2 2 0 0 1 2.582 0l7 6A2 2 0 0 1 21 10v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z",
@@ -8847,7 +8847,7 @@ func HouseHeart(opts ...Option) g.Node {
 
 // HousePlug creates a house-plug icon
 // Tags: home, living, building, residence, architecture, autarky, energy
-func HousePlug(opts ...Option) g.Node {
+func HousePlug(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M10 12V8.964",
 		"M14 12V8.964",
@@ -8858,7 +8858,7 @@ func HousePlug(opts ...Option) g.Node {
 
 // HousePlus creates a house-plus icon
 // Tags: home, living, medical, new, addition, building, residence, architecture
-func HousePlus(opts ...Option) g.Node {
+func HousePlus(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M12.35 21H5a2 2 0 0 1-2-2v-9a2 2 0 0 1 .71-1.53l7-6a2 2 0 0 1 2.58 0l7 6A2 2 0 0 1 21 10v2.35",
 		"M14.8 12.4A1 1 0 0 0 14 12h-4a1 1 0 0 0-1 1v8",
@@ -8869,7 +8869,7 @@ func HousePlus(opts ...Option) g.Node {
 
 // HouseWifi creates a house-wifi icon
 // Tags: home, living, building, wifi, connectivity
-func HouseWifi(opts ...Option) g.Node {
+func HouseWifi(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M9.5 13.866a4 4 0 0 1 5 .01",
 		"M12 17h.01",
@@ -8880,7 +8880,7 @@ func HouseWifi(opts ...Option) g.Node {
 
 // IceCreamBowl creates a ice-cream-bowl icon
 // Tags: gelato, food, dessert, dish, restaurant, course, meal
-func IceCreamBowl(opts ...Option) g.Node {
+func IceCreamBowl(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M12 17c5 0 8-2.69 8-6H4c0 3.31 3 6 8 6m-4 4h8m-4-3v3M5.14 11a3.5 3.5 0 1 1 6.71 0",
 		"M12.14 11a3.5 3.5 0 1 1 6.71 0",
@@ -8890,7 +8890,7 @@ func IceCreamBowl(opts ...Option) g.Node {
 
 // IceCreamCone creates a ice-cream-cone icon
 // Tags: gelato, food
-func IceCreamCone(opts ...Option) g.Node {
+func IceCreamCone(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"m7 11 4.08 10.35a1 1 0 0 0 1.84 0L17 11",
 		"M17 7A5 5 0 0 0 7 7",
@@ -8900,7 +8900,7 @@ func IceCreamCone(opts ...Option) g.Node {
 
 // IdCard creates a id-card icon
 // Tags: card, badge, identity, authentication, secure
-func IdCard(opts ...Option) g.Node {
+func IdCard(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M16 10h2",
 		"M16 14h2",
@@ -8912,7 +8912,7 @@ func IdCard(opts ...Option) g.Node {
 
 // IdCardLanyard creates a id-card-lanyard icon
 // Tags: id-card, id-card-lanyard, identity, employee, gate-pass, badge
-func IdCardLanyard(opts ...Option) g.Node {
+func IdCardLanyard(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M13.5 8h-3",
 		"m15 2-1 2h3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h3",
@@ -8924,7 +8924,7 @@ func IdCardLanyard(opts ...Option) g.Node {
 
 // Image creates a image icon
 // Tags: picture, photo
-func Image(opts ...Option) g.Node {
+func Image(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M 5 3 h 14 a 2 2 0 0 1 2 2 v 14 a 2 2 0 0 1 -2 2 h -14 a 2 2 0 0 1 -2 -2 v -14 a 2 2 0 0 1 2 -2 Z",
 		"M 7 9 a 2 2 0 1 0 4 0 a 2 2 0 1 0 -4 0",
@@ -8934,7 +8934,7 @@ func Image(opts ...Option) g.Node {
 
 // ImageDown creates a image-down icon
 // Tags: picture, photo, download, save, export
-func ImageDown(opts ...Option) g.Node {
+func ImageDown(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M10.3 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2v10l-3.1-3.1a2 2 0 0 0-2.814.014L6 21",
 		"m14 19 3 3v-5.5",
@@ -8945,7 +8945,7 @@ func ImageDown(opts ...Option) g.Node {
 
 // ImageMinus creates a image-minus icon
 // Tags: remove, delete
-func ImageMinus(opts ...Option) g.Node {
+func ImageMinus(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M21 9v10a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h7",
 		"M 16 5 L 22 5",
@@ -8956,7 +8956,7 @@ func ImageMinus(opts ...Option) g.Node {
 
 // ImageOff creates a image-off icon
 // Tags: picture, photo
-func ImageOff(opts ...Option) g.Node {
+func ImageOff(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M 2 2 L 22 22",
 		"M10.41 10.41a2 2 0 1 1-2.83-2.83",
@@ -8969,7 +8969,7 @@ func ImageOff(opts ...Option) g.Node {
 
 // ImagePlay creates a image-play icon
 // Tags: picture, gif, photo
-func ImagePlay(opts ...Option) g.Node {
+func ImagePlay(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M15 15.003a1 1 0 0 1 1.517-.859l4.997 2.997a1 1 0 0 1 0 1.718l-4.997 2.997a1 1 0 0 1-1.517-.86z",
 		"M21 12.17V5a2 2 0 0 0-2-2H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h6",
@@ -8980,7 +8980,7 @@ func ImagePlay(opts ...Option) g.Node {
 
 // ImagePlus creates a image-plus icon
 // Tags: add, create, picture
-func ImagePlus(opts ...Option) g.Node {
+func ImagePlus(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M16 5h6",
 		"M19 2v6",
@@ -8992,7 +8992,7 @@ func ImagePlus(opts ...Option) g.Node {
 
 // ImageUp creates a image-up icon
 // Tags: picture, photo, upload, import
-func ImageUp(opts ...Option) g.Node {
+func ImageUp(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M10.3 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2v10l-3.1-3.1a2 2 0 0 0-2.814.014L6 21",
 		"m14 19.5 3-3 3 3",
@@ -9003,7 +9003,7 @@ func ImageUp(opts ...Option) g.Node {
 
 // ImageUpscale creates a image-upscale icon
 // Tags: resize, picture, sharpen, increase
-func ImageUpscale(opts ...Option) g.Node {
+func ImageUpscale(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M16 3h5v5",
 		"M17 21h2a2 2 0 0 0 2-2",
@@ -9018,7 +9018,7 @@ func ImageUpscale(opts ...Option) g.Node {
 
 // Images creates a images icon
 // Tags: picture, photo, multiple, copy, gallery, album, collection, slideshow, showcase
-func Images(opts ...Option) g.Node {
+func Images(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"m22 11-1.296-1.296a2.4 2.4 0 0 0-3.408 0L11 16",
 		"M4 8a2 2 0 0 0-2 2v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2",
@@ -9029,7 +9029,7 @@ func Images(opts ...Option) g.Node {
 
 // ImportIcon creates a import icon
 // Tags: save
-func ImportIcon(opts ...Option) g.Node {
+func ImportIcon(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M12 3v12",
 		"m8 11 4 4 4-4",
@@ -9039,7 +9039,7 @@ func ImportIcon(opts ...Option) g.Node {
 
 // Inbox creates a inbox icon
 // Tags: email
-func Inbox(opts ...Option) g.Node {
+func Inbox(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M 22 12 L 16 12 L 14 15 L 10 15 L 8 12 L 2 12",
 		"M5.45 5.11 2 12v6a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2v-6l-3.45-6.89A2 2 0 0 0 16.76 4H7.24a2 2 0 0 0-1.79 1.11z",
@@ -9048,7 +9048,7 @@ func Inbox(opts ...Option) g.Node {
 
 // IndianRupee creates a indian-rupee icon
 // Tags: currency, money, payment
-func IndianRupee(opts ...Option) g.Node {
+func IndianRupee(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M6 3h12",
 		"M6 8h12",
@@ -9060,13 +9060,13 @@ func IndianRupee(opts ...Option) g.Node {
 
 // Infinity creates a infinity icon
 // Tags: unlimited, forever, loop, math
-func Infinity(opts ...Option) g.Node {
+func Infinity(opts ...Option) templ.Component {
 	return Icon("M6 16c5 0 7-8 12-8a4 4 0 0 1 0 8c-5 0-7-8-12-8a4 4 0 1 0 0 8", opts...)
 }
 
 // Info creates a info icon
 // Tags: help
-func Info(opts ...Option) g.Node {
+func Info(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M 2 12 a 10 10 0 1 0 20 0 a 10 10 0 1 0 -20 0",
 		"M12 16v-4",
@@ -9076,7 +9076,7 @@ func Info(opts ...Option) g.Node {
 
 // InspectionPanel creates a inspection-panel icon
 // Tags: access, cover, tile, metal, materials, screws
-func InspectionPanel(opts ...Option) g.Node {
+func InspectionPanel(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M 5 3 h 14 a 2 2 0 0 1 2 2 v 14 a 2 2 0 0 1 -2 2 h -14 a 2 2 0 0 1 -2 -2 v -14 a 2 2 0 0 1 2 -2 Z",
 		"M7 7h.01",
@@ -9088,7 +9088,7 @@ func InspectionPanel(opts ...Option) g.Node {
 
 // Instagram creates a instagram icon
 // Tags: logo, camera, social
-func Instagram(opts ...Option) g.Node {
+func Instagram(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M 7 2 h 10 a 5 5 0 0 1 5 5 v 10 a 5 5 0 0 1 -5 5 h -10 a 5 5 0 0 1 -5 -5 v -10 a 5 5 0 0 1 5 -5 Z",
 		"M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z",
@@ -9098,7 +9098,7 @@ func Instagram(opts ...Option) g.Node {
 
 // Italic creates a italic icon
 // Tags: oblique, text, format
-func Italic(opts ...Option) g.Node {
+func Italic(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M 19 4 L 10 4",
 		"M 14 20 L 5 20",
@@ -9108,7 +9108,7 @@ func Italic(opts ...Option) g.Node {
 
 // IterationCcw creates a iteration-ccw icon
 // Tags: arrow, right
-func IterationCcw(opts ...Option) g.Node {
+func IterationCcw(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"m16 14 4 4-4 4",
 		"M20 10a8 8 0 1 0-8 8h8",
@@ -9117,7 +9117,7 @@ func IterationCcw(opts ...Option) g.Node {
 
 // IterationCw creates a iteration-cw icon
 // Tags: arrow, left
-func IterationCw(opts ...Option) g.Node {
+func IterationCw(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M4 10a8 8 0 1 1 8 8H4",
 		"m8 22-4-4 4-4",
@@ -9126,7 +9126,7 @@ func IterationCw(opts ...Option) g.Node {
 
 // JapaneseYen creates a japanese-yen icon
 // Tags: currency, money, payment
-func JapaneseYen(opts ...Option) g.Node {
+func JapaneseYen(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M12 9.5V21m0-11.5L6 3m6 6.5L18 3",
 		"M6 15h12",
@@ -9136,7 +9136,7 @@ func JapaneseYen(opts ...Option) g.Node {
 
 // Joystick creates a joystick icon
 // Tags: game, console, control stick
-func Joystick(opts ...Option) g.Node {
+func Joystick(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M21 17a2 2 0 0 0-2-2H5a2 2 0 0 0-2 2v2a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-2Z",
 		"M6 15v-2",
@@ -9147,7 +9147,7 @@ func Joystick(opts ...Option) g.Node {
 
 // Kanban creates a kanban icon
 // Tags: projects, manage, overview, board, tickets, issues, roadmap, plan, intentions, productivity, work, agile, code, coding
-func Kanban(opts ...Option) g.Node {
+func Kanban(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M5 3v14",
 		"M12 3v8",
@@ -9157,7 +9157,7 @@ func Kanban(opts ...Option) g.Node {
 
 // Kayak creates a kayak icon
 // Tags: kayak, boat, paddle, water, sport, recreation, adventure, outdoors, equipment, lake, ocean
-func Kayak(opts ...Option) g.Node {
+func Kayak(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M18 17a1 1 0 0 0-1 1v1a2 2 0 1 0 2-2z",
 		"M20.97 3.61a.45.45 0 0 0-.58-.58C10.2 6.6 6.6 10.2 3.03 20.39a.45.45 0 0 0 .58.58C13.8 17.4 17.4 13.8 20.97 3.61",
@@ -9168,7 +9168,7 @@ func Kayak(opts ...Option) g.Node {
 
 // Key creates a key icon
 // Tags: password, login, authentication, secure, unlock, keychain, key ring, fob
-func Key(opts ...Option) g.Node {
+func Key(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"m15.5 7.5 2.3 2.3a1 1 0 0 0 1.4 0l2.1-2.1a1 1 0 0 0 0-1.4L19 4",
 		"m21 2-9.6 9.6",
@@ -9178,7 +9178,7 @@ func Key(opts ...Option) g.Node {
 
 // KeyRound creates a key-round icon
 // Tags: password, login, authentication, secure, unlock
-func KeyRound(opts ...Option) g.Node {
+func KeyRound(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M2.586 17.414A2 2 0 0 0 2 18.828V21a1 1 0 0 0 1 1h3a1 1 0 0 0 1-1v-1a1 1 0 0 1 1-1h1a1 1 0 0 0 1-1v-1a1 1 0 0 1 1-1h.172a2 2 0 0 0 1.414-.586l.814-.814a6.5 6.5 0 1 0-4-4z",
 		"M 16 7.5 a 0.5 0.5 0 1 0 1 0 a 0.5 0.5 0 1 0 -1 0",
@@ -9187,7 +9187,7 @@ func KeyRound(opts ...Option) g.Node {
 
 // KeySquare creates a key-square icon
 // Tags: password, login, authentication, secure, unlock, car key
-func KeySquare(opts ...Option) g.Node {
+func KeySquare(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M12.4 2.7a2.5 2.5 0 0 1 3.4 0l5.5 5.5a2.5 2.5 0 0 1 0 3.4l-3.7 3.7a2.5 2.5 0 0 1-3.4 0L8.7 9.8a2.5 2.5 0 0 1 0-3.4z",
 		"m14 7 3 3",
@@ -9197,7 +9197,7 @@ func KeySquare(opts ...Option) g.Node {
 
 // Keyboard creates a keyboard icon
 // Tags: layout, spell, settings, mouse
-func Keyboard(opts ...Option) g.Node {
+func Keyboard(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M10 8h.01",
 		"M12 12h.01",
@@ -9213,7 +9213,7 @@ func Keyboard(opts ...Option) g.Node {
 
 // KeyboardMusic creates a keyboard-music icon
 // Tags: music, audio, sound, noise, notes, keys, chord, octave, midi, controller, instrument, electric, signal, digital, studio, production, producer, pianist, piano, play, performance, concert
-func KeyboardMusic(opts ...Option) g.Node {
+func KeyboardMusic(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M 4 4 h 16 a 2 2 0 0 1 2 2 v 12 a 2 2 0 0 1 -2 2 h -16 a 2 2 0 0 1 -2 -2 v -12 a 2 2 0 0 1 2 -2 Z",
 		"M6 8h4",
@@ -9229,7 +9229,7 @@ func KeyboardMusic(opts ...Option) g.Node {
 
 // KeyboardOff creates a keyboard-off icon
 // Tags: unkeys, layout, spell, settings, mouse
-func KeyboardOff(opts ...Option) g.Node {
+func KeyboardOff(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M 20 4 A2 2 0 0 1 22 6",
 		"M 22 6 L 22 16.41",
@@ -9246,7 +9246,7 @@ func KeyboardOff(opts ...Option) g.Node {
 
 // Lamp creates a lamp icon
 // Tags: lighting, household, home, furniture
-func Lamp(opts ...Option) g.Node {
+func Lamp(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M12 12v6",
 		"M4.077 10.615A1 1 0 0 0 5 12h14a1 1 0 0 0 .923-1.385l-3.077-7.384A2 2 0 0 0 15 2H9a2 2 0 0 0-1.846 1.23Z",
@@ -9256,7 +9256,7 @@ func Lamp(opts ...Option) g.Node {
 
 // LampCeiling creates a lamp-ceiling icon
 // Tags: lighting, household, home, furniture
-func LampCeiling(opts ...Option) g.Node {
+func LampCeiling(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M12 2v5",
 		"M14.829 15.998a3 3 0 1 1-5.658 0",
@@ -9266,7 +9266,7 @@ func LampCeiling(opts ...Option) g.Node {
 
 // LampDesk creates a lamp-desk icon
 // Tags: lighting, household, office, desk, home, furniture
-func LampDesk(opts ...Option) g.Node {
+func LampDesk(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M10.293 2.293a1 1 0 0 1 1.414 0l2.5 2.5 5.994 1.227a1 1 0 0 1 .506 1.687l-7 7a1 1 0 0 1-1.687-.506l-1.227-5.994-2.5-2.5a1 1 0 0 1 0-1.414z",
 		"m14.207 4.793-3.414 3.414",
@@ -9277,7 +9277,7 @@ func LampDesk(opts ...Option) g.Node {
 
 // LampFloor creates a lamp-floor icon
 // Tags: lighting, household, floor, home, furniture
-func LampFloor(opts ...Option) g.Node {
+func LampFloor(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M12 10v12",
 		"M17.929 7.629A1 1 0 0 1 17 9H7a1 1 0 0 1-.928-1.371l2-5A1 1 0 0 1 9 2h6a1 1 0 0 1 .928.629z",
@@ -9287,7 +9287,7 @@ func LampFloor(opts ...Option) g.Node {
 
 // LampWallDown creates a lamp-wall-down icon
 // Tags: lighting, household, wall, home, furniture
-func LampWallDown(opts ...Option) g.Node {
+func LampWallDown(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M19.929 18.629A1 1 0 0 1 19 20H9a1 1 0 0 1-.928-1.371l2-5A1 1 0 0 1 11 13h6a1 1 0 0 1 .928.629z",
 		"M6 3a2 2 0 0 1 2 2v2a2 2 0 0 1-2 2H5a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1z",
@@ -9297,7 +9297,7 @@ func LampWallDown(opts ...Option) g.Node {
 
 // LampWallUp creates a lamp-wall-up icon
 // Tags: lighting, household, wall, home, furniture
-func LampWallUp(opts ...Option) g.Node {
+func LampWallUp(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M19.929 9.629A1 1 0 0 1 19 11H9a1 1 0 0 1-.928-1.371l2-5A1 1 0 0 1 11 4h6a1 1 0 0 1 .928.629z",
 		"M6 15a2 2 0 0 1 2 2v2a2 2 0 0 1-2 2H5a1 1 0 0 1-1-1v-4a1 1 0 0 1 1-1z",
@@ -9307,7 +9307,7 @@ func LampWallUp(opts ...Option) g.Node {
 
 // LandPlot creates a land-plot icon
 // Tags: area, surface, square metres, allotment, parcel, property, plane, acres, measure, distance, isometric, flag, golf course, hole
-func LandPlot(opts ...Option) g.Node {
+func LandPlot(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"m12 8 6-3-6-3v10",
 		"m8 11.99-5.5 3.14a1 1 0 0 0 0 1.74l8.5 4.86a2 2 0 0 0 2 0l8.5-4.86a1 1 0 0 0 0-1.74L16 12",
@@ -9318,7 +9318,7 @@ func LandPlot(opts ...Option) g.Node {
 
 // Landmark creates a landmark icon
 // Tags: bank, building, capitol, finance, money, museum, art gallery, hall, institute, pediment, portico, columns, pillars, classical, architecture, government, institution
-func Landmark(opts ...Option) g.Node {
+func Landmark(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M10 18v-7",
 		"M11.12 2.198a2 2 0 0 1 1.76.006l7.866 3.847c.476.233.31.949-.22.949H3.474c-.53 0-.695-.716-.22-.949z",
@@ -9331,7 +9331,7 @@ func Landmark(opts ...Option) g.Node {
 
 // Languages creates a languages icon
 // Tags: translate
-func Languages(opts ...Option) g.Node {
+func Languages(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"m5 8 6 6",
 		"m4 14 6-6 2-3",
@@ -9344,7 +9344,7 @@ func Languages(opts ...Option) g.Node {
 
 // Laptop creates a laptop icon
 // Tags: computer, screen, remote
-func Laptop(opts ...Option) g.Node {
+func Laptop(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M18 5a2 2 0 0 1 2 2v8.526a2 2 0 0 0 .212.897l1.068 2.127a1 1 0 0 1-.9 1.45H3.62a1 1 0 0 1-.9-1.45l1.068-2.127A2 2 0 0 0 4 15.526V7a2 2 0 0 1 2-2z",
 		"M20.054 15.987H3.946",
@@ -9353,7 +9353,7 @@ func Laptop(opts ...Option) g.Node {
 
 // LaptopMinimal creates a laptop-minimal icon
 // Tags: computer, screen, remote
-func LaptopMinimal(opts ...Option) g.Node {
+func LaptopMinimal(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M 5 4 h 14 a 2 2 0 0 1 2 2 v 8 a 2 2 0 0 1 -2 2 h -14 a 2 2 0 0 1 -2 -2 v -8 a 2 2 0 0 1 2 -2 Z",
 		"M 2 20 L 22 20",
@@ -9362,7 +9362,7 @@ func LaptopMinimal(opts ...Option) g.Node {
 
 // LaptopMinimalCheck creates a laptop-minimal-check icon
 // Tags: computer, screen, remote, success, done, todo, tick, complete, task
-func LaptopMinimalCheck(opts ...Option) g.Node {
+func LaptopMinimalCheck(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M2 20h20",
 		"m9 10 2 2 4-4",
@@ -9372,7 +9372,7 @@ func LaptopMinimalCheck(opts ...Option) g.Node {
 
 // Lasso creates a lasso icon
 // Tags: select, cursor
-func Lasso(opts ...Option) g.Node {
+func Lasso(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M3.704 14.467A10 8 0 0 1 2 10a10 8 0 0 1 20 0 10 8 0 0 1-10 8 10 8 0 0 1-5.181-1.158",
 		"M7 22a5 5 0 0 1-2-3.994",
@@ -9382,7 +9382,7 @@ func Lasso(opts ...Option) g.Node {
 
 // LassoSelect creates a lasso-select icon
 // Tags: select, cursor
-func LassoSelect(opts ...Option) g.Node {
+func LassoSelect(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M7 22a5 5 0 0 1-2-4",
 		"M7 16.93c.96.43 1.96.74 2.99.91",
@@ -9394,7 +9394,7 @@ func LassoSelect(opts ...Option) g.Node {
 
 // Laugh creates a laugh icon
 // Tags: emoji, face, happy, good, emotion
-func Laugh(opts ...Option) g.Node {
+func Laugh(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M 2 12 a 10 10 0 1 0 20 0 a 10 10 0 1 0 -20 0",
 		"M18 13a6 6 0 0 1-6 5 6 6 0 0 1-6-5h12Z",
@@ -9405,7 +9405,7 @@ func Laugh(opts ...Option) g.Node {
 
 // Layers creates a layers icon
 // Tags: stack, pile, pages, sheets, paperwork, copies, copy
-func Layers(opts ...Option) g.Node {
+func Layers(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M12.83 2.18a2 2 0 0 0-1.66 0L2.6 6.08a1 1 0 0 0 0 1.83l8.58 3.91a2 2 0 0 0 1.66 0l8.58-3.9a1 1 0 0 0 0-1.83z",
 		"M2 12a1 1 0 0 0 .58.91l8.6 3.91a2 2 0 0 0 1.65 0l8.58-3.9A1 1 0 0 0 22 12",
@@ -9415,7 +9415,7 @@ func Layers(opts ...Option) g.Node {
 
 // Layers2 creates a layers-2 icon
 // Tags: stack, pile, pages, sheets, paperwork, copies, copy, duplicate, double, shortcuts
-func Layers2(opts ...Option) g.Node {
+func Layers2(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M13 13.74a2 2 0 0 1-2 0L2.5 8.87a1 1 0 0 1 0-1.74L11 2.26a2 2 0 0 1 2 0l8.5 4.87a1 1 0 0 1 0 1.74z",
 		"m20 14.285 1.5.845a1 1 0 0 1 0 1.74L13 21.74a2 2 0 0 1-2 0l-8.5-4.87a1 1 0 0 1 0-1.74l1.5-.845",
@@ -9424,7 +9424,7 @@ func Layers2(opts ...Option) g.Node {
 
 // LayersPlus creates a layers-plus icon
 // Tags: stack, layers, add, new, increase, create, positive, copy, upgrade
-func LayersPlus(opts ...Option) g.Node {
+func LayersPlus(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M12.83 2.18a2 2 0 0 0-1.66 0L2.6 6.08a1 1 0 0 0 0 1.83l8.58 3.91a2 2 0 0 0 .83.18 2 2 0 0 0 .83-.18l8.58-3.9a1 1 0 0 0 0-1.831z",
 		"M16 17h6",
@@ -9436,7 +9436,7 @@ func LayersPlus(opts ...Option) g.Node {
 
 // LayoutDashboard creates a layout-dashboard icon
 // Tags: masonry, brick
-func LayoutDashboard(opts ...Option) g.Node {
+func LayoutDashboard(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M 4 3 h 5 a 1 1 0 0 1 1 1 v 7 a 1 1 0 0 1 -1 1 h -5 a 1 1 0 0 1 -1 -1 v -7 a 1 1 0 0 1 1 -1 Z",
 		"M 15 3 h 5 a 1 1 0 0 1 1 1 v 3 a 1 1 0 0 1 -1 1 h -5 a 1 1 0 0 1 -1 -1 v -3 a 1 1 0 0 1 1 -1 Z",
@@ -9447,7 +9447,7 @@ func LayoutDashboard(opts ...Option) g.Node {
 
 // LayoutGrid creates a layout-grid icon
 // Tags: app, home, start
-func LayoutGrid(opts ...Option) g.Node {
+func LayoutGrid(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M 4 3 h 5 a 1 1 0 0 1 1 1 v 5 a 1 1 0 0 1 -1 1 h -5 a 1 1 0 0 1 -1 -1 v -5 a 1 1 0 0 1 1 -1 Z",
 		"M 15 3 h 5 a 1 1 0 0 1 1 1 v 5 a 1 1 0 0 1 -1 1 h -5 a 1 1 0 0 1 -1 -1 v -5 a 1 1 0 0 1 1 -1 Z",
@@ -9458,7 +9458,7 @@ func LayoutGrid(opts ...Option) g.Node {
 
 // LayoutList creates a layout-list icon
 // Tags: todo, tasks, items, pending, image, photo
-func LayoutList(opts ...Option) g.Node {
+func LayoutList(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M 4 3 h 5 a 1 1 0 0 1 1 1 v 5 a 1 1 0 0 1 -1 1 h -5 a 1 1 0 0 1 -1 -1 v -5 a 1 1 0 0 1 1 -1 Z",
 		"M 4 14 h 5 a 1 1 0 0 1 1 1 v 5 a 1 1 0 0 1 -1 1 h -5 a 1 1 0 0 1 -1 -1 v -5 a 1 1 0 0 1 1 -1 Z",
@@ -9471,7 +9471,7 @@ func LayoutList(opts ...Option) g.Node {
 
 // LayoutPanelLeft creates a layout-panel-left icon
 // Tags: app, home, start, grid
-func LayoutPanelLeft(opts ...Option) g.Node {
+func LayoutPanelLeft(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M 4 3 h 5 a 1 1 0 0 1 1 1 v 16 a 1 1 0 0 1 -1 1 h -5 a 1 1 0 0 1 -1 -1 v -16 a 1 1 0 0 1 1 -1 Z",
 		"M 15 3 h 5 a 1 1 0 0 1 1 1 v 5 a 1 1 0 0 1 -1 1 h -5 a 1 1 0 0 1 -1 -1 v -5 a 1 1 0 0 1 1 -1 Z",
@@ -9481,7 +9481,7 @@ func LayoutPanelLeft(opts ...Option) g.Node {
 
 // LayoutPanelTop creates a layout-panel-top icon
 // Tags: window, webpage, block, section, grid, template, structure
-func LayoutPanelTop(opts ...Option) g.Node {
+func LayoutPanelTop(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M 4 3 h 16 a 1 1 0 0 1 1 1 v 5 a 1 1 0 0 1 -1 1 h -16 a 1 1 0 0 1 -1 -1 v -5 a 1 1 0 0 1 1 -1 Z",
 		"M 4 14 h 5 a 1 1 0 0 1 1 1 v 5 a 1 1 0 0 1 -1 1 h -5 a 1 1 0 0 1 -1 -1 v -5 a 1 1 0 0 1 1 -1 Z",
@@ -9491,7 +9491,7 @@ func LayoutPanelTop(opts ...Option) g.Node {
 
 // LayoutTemplate creates a layout-template icon
 // Tags: window, webpage, block, section
-func LayoutTemplate(opts ...Option) g.Node {
+func LayoutTemplate(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M 4 3 h 16 a 1 1 0 0 1 1 1 v 5 a 1 1 0 0 1 -1 1 h -16 a 1 1 0 0 1 -1 -1 v -5 a 1 1 0 0 1 1 -1 Z",
 		"M 4 14 h 7 a 1 1 0 0 1 1 1 v 5 a 1 1 0 0 1 -1 1 h -7 a 1 1 0 0 1 -1 -1 v -5 a 1 1 0 0 1 1 -1 Z",
@@ -9501,7 +9501,7 @@ func LayoutTemplate(opts ...Option) g.Node {
 
 // Leaf creates a leaf icon
 // Tags: sustainability, nature, energy, plant, autumn
-func Leaf(opts ...Option) g.Node {
+func Leaf(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M11 20A7 7 0 0 1 9.8 6.1C15.5 5 17 4.48 19 2c1 2 2 4.18 2 8 0 5.5-4.78 10-10 10Z",
 		"M2 21c0-3 1.85-5.36 5.08-6C9.5 14.52 12 13 13 12",
@@ -9510,7 +9510,7 @@ func Leaf(opts ...Option) g.Node {
 
 // LeafyGreen creates a leafy-green icon
 // Tags: salad, lettuce, vegetable, chard, cabbage, bok choy
-func LeafyGreen(opts ...Option) g.Node {
+func LeafyGreen(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M2 22c1.25-.987 2.27-1.975 3.9-2.2a5.56 5.56 0 0 1 3.8 1.5 4 4 0 0 0 6.187-2.353 3.5 3.5 0 0 0 3.69-5.116A3.5 3.5 0 0 0 20.95 8 3.5 3.5 0 1 0 16 3.05a3.5 3.5 0 0 0-5.831 1.373 3.5 3.5 0 0 0-5.116 3.69 4 4 0 0 0-2.348 6.155C3.499 15.42 4.409 16.712 4.2 18.1 3.926 19.743 3.014 20.732 2 22",
 		"M2 22 17 7",
@@ -9519,7 +9519,7 @@ func LeafyGreen(opts ...Option) g.Node {
 
 // Lectern creates a lectern icon
 // Tags: pulpit, podium, stand
-func Lectern(opts ...Option) g.Node {
+func Lectern(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M16 12h3a2 2 0 0 0 1.902-1.38l1.056-3.333A1 1 0 0 0 21 6H3a1 1 0 0 0-.958 1.287l1.056 3.334A2 2 0 0 0 5 12h3",
 		"M18 6V3a1 1 0 0 0-1-1h-3",
@@ -9529,7 +9529,7 @@ func Lectern(opts ...Option) g.Node {
 
 // Library creates a library icon
 // Tags: books, reading, written, authors, stories, fiction, novels, information, knowledge, education, high school, university, college, academy, learning, study, research, collection, vinyl, records, albums, music, package
-func Library(opts ...Option) g.Node {
+func Library(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"m16 6 4 14",
 		"M12 6v14",
@@ -9540,7 +9540,7 @@ func Library(opts ...Option) g.Node {
 
 // LibraryBig creates a library-big icon
 // Tags: books, reading, written, authors, stories, fiction, novels, information, knowledge, education, high school, university, college, academy, learning, study, research, collection, vinyl, records, albums, music, package
-func LibraryBig(opts ...Option) g.Node {
+func LibraryBig(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M 4 3 h 6 a 1 1 0 0 1 1 1 v 16 a 1 1 0 0 1 -1 1 h -6 a 1 1 0 0 1 -1 -1 v -16 a 1 1 0 0 1 1 -1 Z",
 		"M7 3v18",
@@ -9550,7 +9550,7 @@ func LibraryBig(opts ...Option) g.Node {
 
 // LifeBuoy creates a life-buoy icon
 // Tags: preserver, life belt, lifesaver, help, rescue, ship, ring, raft, inflatable, wheel, donut
-func LifeBuoy(opts ...Option) g.Node {
+func LifeBuoy(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M 2 12 a 10 10 0 1 0 20 0 a 10 10 0 1 0 -20 0",
 		"m4.93 4.93 4.24 4.24",
@@ -9563,7 +9563,7 @@ func LifeBuoy(opts ...Option) g.Node {
 
 // Ligature creates a ligature icon
 // Tags: text, font, typography, alternates, alternatives
-func Ligature(opts ...Option) g.Node {
+func Ligature(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M14 12h2v8",
 		"M14 20h4",
@@ -9575,7 +9575,7 @@ func Ligature(opts ...Option) g.Node {
 
 // Lightbulb creates a lightbulb icon
 // Tags: idea, bright, lights
-func Lightbulb(opts ...Option) g.Node {
+func Lightbulb(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M15 14c.2-1 .7-1.7 1.5-2.5 1-.9 1.5-2.2 1.5-3.5A6 6 0 0 0 6 8c0 1 .2 2.2 1.5 3.5.7.7 1.3 1.5 1.5 2.5",
 		"M9 18h6",
@@ -9585,7 +9585,7 @@ func Lightbulb(opts ...Option) g.Node {
 
 // LightbulbOff creates a lightbulb-off icon
 // Tags: lights
-func LightbulbOff(opts ...Option) g.Node {
+func LightbulbOff(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M16.8 11.2c.8-.9 1.2-2 1.2-3.2a6 6 0 0 0-9.3-5",
 		"m2 2 20 20",
@@ -9597,13 +9597,13 @@ func LightbulbOff(opts ...Option) g.Node {
 
 // LineSquiggle creates a line-squiggle icon
 // Tags: line, snakes, annotate, curve, doodle, stroke, pen, tool, gesture, draw, wave, art, road
-func LineSquiggle(opts ...Option) g.Node {
+func LineSquiggle(opts ...Option) templ.Component {
 	return Icon("M7 3.5c5-2 7 2.5 3 4C1.5 10 2 15 5 16c5 2 9-10 14-7s.5 13.5-4 12c-5-2.5.5-11 6-2", opts...)
 }
 
 // Link creates a link icon
 // Tags: chain, url
-func Link(opts ...Option) g.Node {
+func Link(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71",
 		"M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71",
@@ -9612,7 +9612,7 @@ func Link(opts ...Option) g.Node {
 
 // Link2 creates a link-2 icon
 // Tags: chain, url
-func Link2(opts ...Option) g.Node {
+func Link2(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M9 17H7A5 5 0 0 1 7 7h2",
 		"M15 7h2a5 5 0 1 1 0 10h-2",
@@ -9622,7 +9622,7 @@ func Link2(opts ...Option) g.Node {
 
 // Link2Off creates a link-2-off icon
 // Tags: unchain, chain
-func Link2Off(opts ...Option) g.Node {
+func Link2Off(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M9 17H7A5 5 0 0 1 7 7",
 		"M15 7h2a5 5 0 0 1 4 8",
@@ -9633,7 +9633,7 @@ func Link2Off(opts ...Option) g.Node {
 
 // Linkedin creates a linkedin icon
 // Tags: logo, social media, social
-func Linkedin(opts ...Option) g.Node {
+func Linkedin(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z",
 		"M 2 9 h 4 v 12 h -4 Z",
@@ -9643,7 +9643,7 @@ func Linkedin(opts ...Option) g.Node {
 
 // List creates a list icon
 // Tags: options
-func List(opts ...Option) g.Node {
+func List(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M3 5h.01",
 		"M3 12h.01",
@@ -9656,7 +9656,7 @@ func List(opts ...Option) g.Node {
 
 // ListCheck creates a list-check icon
 // Tags: done, check, tick, complete, list, to-do, bom
-func ListCheck(opts ...Option) g.Node {
+func ListCheck(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M16 5H3",
 		"M16 12H3",
@@ -9667,7 +9667,7 @@ func ListCheck(opts ...Option) g.Node {
 
 // ListChecks creates a list-checks icon
 // Tags: todo, done, check, tick, complete, tasks, items, pending
-func ListChecks(opts ...Option) g.Node {
+func ListChecks(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M13 5h8",
 		"M13 12h8",
@@ -9679,7 +9679,7 @@ func ListChecks(opts ...Option) g.Node {
 
 // ListChevronsDownUp creates a list-chevrons-down-up icon
 // Tags: options, items, collapse, expand, details, disclosure, show, hide, toggle, accordion, more, less, fold, unfold, vertical
-func ListChevronsDownUp(opts ...Option) g.Node {
+func ListChevronsDownUp(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M3 5h8",
 		"M3 12h8",
@@ -9691,7 +9691,7 @@ func ListChevronsDownUp(opts ...Option) g.Node {
 
 // ListChevronsUpDown creates a list-chevrons-up-down icon
 // Tags: options, items, collapse, expand, details, disclosure, show, hide, toggle, accordion, more, less, fold, unfold, vertical
-func ListChevronsUpDown(opts ...Option) g.Node {
+func ListChevronsUpDown(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M3 5h8",
 		"M3 12h8",
@@ -9703,7 +9703,7 @@ func ListChevronsUpDown(opts ...Option) g.Node {
 
 // ListCollapse creates a list-collapse icon
 // Tags: items, collapse, expand, details, disclosure, show, hide, toggle, accordion, more, less, fold, unfold
-func ListCollapse(opts ...Option) g.Node {
+func ListCollapse(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M10 5h11",
 		"M10 12h11",
@@ -9715,7 +9715,7 @@ func ListCollapse(opts ...Option) g.Node {
 
 // ListEnd creates a list-end icon
 // Tags: queue, bottom, end, playlist
-func ListEnd(opts ...Option) g.Node {
+func ListEnd(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M16 5H3",
 		"M16 12H3",
@@ -9727,7 +9727,7 @@ func ListEnd(opts ...Option) g.Node {
 
 // ListFilter creates a list-filter icon
 // Tags: options
-func ListFilter(opts ...Option) g.Node {
+func ListFilter(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M2 5h20",
 		"M6 12h12",
@@ -9737,7 +9737,7 @@ func ListFilter(opts ...Option) g.Node {
 
 // ListFilterPlus creates a list-filter-plus icon
 // Tags: filter, plus, options, add
-func ListFilterPlus(opts ...Option) g.Node {
+func ListFilterPlus(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M12 5H2",
 		"M6 12h12",
@@ -9749,7 +9749,7 @@ func ListFilterPlus(opts ...Option) g.Node {
 
 // ListIndentDecrease creates a list-indent-decrease icon
 // Tags: text, tab
-func ListIndentDecrease(opts ...Option) g.Node {
+func ListIndentDecrease(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M21 5H11",
 		"M21 12H11",
@@ -9760,7 +9760,7 @@ func ListIndentDecrease(opts ...Option) g.Node {
 
 // ListIndentIncrease creates a list-indent-increase icon
 // Tags: text, tab
-func ListIndentIncrease(opts ...Option) g.Node {
+func ListIndentIncrease(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M21 5H11",
 		"M21 12H11",
@@ -9771,7 +9771,7 @@ func ListIndentIncrease(opts ...Option) g.Node {
 
 // ListMinus creates a list-minus icon
 // Tags: playlist, remove, song, subtract, delete, unqueue
-func ListMinus(opts ...Option) g.Node {
+func ListMinus(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M16 5H3",
 		"M11 12H3",
@@ -9782,7 +9782,7 @@ func ListMinus(opts ...Option) g.Node {
 
 // ListMusic creates a list-music icon
 // Tags: playlist, queue, music, audio, playback
-func ListMusic(opts ...Option) g.Node {
+func ListMusic(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M16 5H3",
 		"M11 12H3",
@@ -9794,7 +9794,7 @@ func ListMusic(opts ...Option) g.Node {
 
 // ListOrdered creates a list-ordered icon
 // Tags: number, order, queue
-func ListOrdered(opts ...Option) g.Node {
+func ListOrdered(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M11 5h10",
 		"M11 12h10",
@@ -9807,7 +9807,7 @@ func ListOrdered(opts ...Option) g.Node {
 
 // ListPlus creates a list-plus icon
 // Tags: playlist, add, song, track, new
-func ListPlus(opts ...Option) g.Node {
+func ListPlus(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M16 5H3",
 		"M11 12H3",
@@ -9819,7 +9819,7 @@ func ListPlus(opts ...Option) g.Node {
 
 // ListRestart creates a list-restart icon
 // Tags: reset, refresh, reload, playlist, replay
-func ListRestart(opts ...Option) g.Node {
+func ListRestart(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M21 5H3",
 		"M7 12H3",
@@ -9831,7 +9831,7 @@ func ListRestart(opts ...Option) g.Node {
 
 // ListStart creates a list-start icon
 // Tags: queue, top, start, next, playlist
-func ListStart(opts ...Option) g.Node {
+func ListStart(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M3 5h6",
 		"M3 12h13",
@@ -9843,7 +9843,7 @@ func ListStart(opts ...Option) g.Node {
 
 // ListTodo creates a list-todo icon
 // Tags: todo, done, check, tick, complete, tasks, items, pending
-func ListTodo(opts ...Option) g.Node {
+func ListTodo(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M13 5h8",
 		"M13 12h8",
@@ -9855,7 +9855,7 @@ func ListTodo(opts ...Option) g.Node {
 
 // ListTree creates a list-tree icon
 // Tags: tree, browser
-func ListTree(opts ...Option) g.Node {
+func ListTree(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M8 5h13",
 		"M13 12h8",
@@ -9867,7 +9867,7 @@ func ListTree(opts ...Option) g.Node {
 
 // ListVideo creates a list-video icon
 // Tags: playlist, video, playback
-func ListVideo(opts ...Option) g.Node {
+func ListVideo(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M21 5H3",
 		"M10 12H3",
@@ -9878,7 +9878,7 @@ func ListVideo(opts ...Option) g.Node {
 
 // ListX creates a list-x icon
 // Tags: playlist, subtract, remove, delete, unqueue
-func ListX(opts ...Option) g.Node {
+func ListX(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M16 5H3",
 		"M11 12H3",
@@ -9890,7 +9890,7 @@ func ListX(opts ...Option) g.Node {
 
 // Loader creates a loader icon
 // Tags: loading, wait, busy, progress, spinner, spinning, throbber
-func Loader(opts ...Option) g.Node {
+func Loader(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M12 2v4",
 		"m16.2 7.8 2.9-2.9",
@@ -9905,13 +9905,13 @@ func Loader(opts ...Option) g.Node {
 
 // LoaderCircle creates a loader-circle icon
 // Tags: loading, wait, busy, progress, spinner, spinning, throbber, circle
-func LoaderCircle(opts ...Option) g.Node {
+func LoaderCircle(opts ...Option) templ.Component {
 	return Icon("M21 12a9 9 0 1 1-6.219-8.56", opts...)
 }
 
 // LoaderPinwheel creates a loader-pinwheel icon
 // Tags: loading, wait, busy, progress, throbber, spinner, spinning, beach ball, frozen, freeze
-func LoaderPinwheel(opts ...Option) g.Node {
+func LoaderPinwheel(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M22 12a1 1 0 0 1-10 0 1 1 0 0 0-10 0",
 		"M7 20.7a1 1 0 1 1 5-8.7 1 1 0 1 0 5-8.6",
@@ -9922,7 +9922,7 @@ func LoaderPinwheel(opts ...Option) g.Node {
 
 // Locate creates a locate icon
 // Tags: map, gps, location, cross
-func Locate(opts ...Option) g.Node {
+func Locate(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M 2 12 L 5 12",
 		"M 19 12 L 22 12",
@@ -9934,7 +9934,7 @@ func Locate(opts ...Option) g.Node {
 
 // LocateFixed creates a locate-fixed icon
 // Tags: map, gps, location, cross
-func LocateFixed(opts ...Option) g.Node {
+func LocateFixed(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M 2 12 L 5 12",
 		"M 19 12 L 22 12",
@@ -9947,7 +9947,7 @@ func LocateFixed(opts ...Option) g.Node {
 
 // LocateOff creates a locate-off icon
 // Tags: map, gps, location, cross
-func LocateOff(opts ...Option) g.Node {
+func LocateOff(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M12 19v3",
 		"M12 2v3",
@@ -9961,7 +9961,7 @@ func LocateOff(opts ...Option) g.Node {
 
 // Lock creates a lock icon
 // Tags: security, password, secure, admin
-func Lock(opts ...Option) g.Node {
+func Lock(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M 5 11 h 14 a 2 2 0 0 1 2 2 v 7 a 2 2 0 0 1 -2 2 h -14 a 2 2 0 0 1 -2 -2 v -7 a 2 2 0 0 1 2 -2 Z",
 		"M7 11V7a5 5 0 0 1 10 0v4",
@@ -9970,7 +9970,7 @@ func Lock(opts ...Option) g.Node {
 
 // LockKeyhole creates a lock-keyhole icon
 // Tags: security, password, secure, admin
-func LockKeyhole(opts ...Option) g.Node {
+func LockKeyhole(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M 11 16 a 1 1 0 1 0 2 0 a 1 1 0 1 0 -2 0",
 		"M 5 10 h 14 a 2 2 0 0 1 2 2 v 8 a 2 2 0 0 1 -2 2 h -14 a 2 2 0 0 1 -2 -2 v -8 a 2 2 0 0 1 2 -2 Z",
@@ -9980,7 +9980,7 @@ func LockKeyhole(opts ...Option) g.Node {
 
 // LockKeyholeOpen creates a lock-keyhole-open icon
 // Tags: security
-func LockKeyholeOpen(opts ...Option) g.Node {
+func LockKeyholeOpen(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M 11 16 a 1 1 0 1 0 2 0 a 1 1 0 1 0 -2 0",
 		"M 5 10 h 14 a 2 2 0 0 1 2 2 v 8 a 2 2 0 0 1 -2 2 h -14 a 2 2 0 0 1 -2 -2 v -8 a 2 2 0 0 1 2 -2 Z",
@@ -9990,7 +9990,7 @@ func LockKeyholeOpen(opts ...Option) g.Node {
 
 // LockOpen creates a lock-open icon
 // Tags: security
-func LockOpen(opts ...Option) g.Node {
+func LockOpen(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M 5 11 h 14 a 2 2 0 0 1 2 2 v 7 a 2 2 0 0 1 -2 2 h -14 a 2 2 0 0 1 -2 -2 v -7 a 2 2 0 0 1 2 -2 Z",
 		"M7 11V7a5 5 0 0 1 9.9-1",
@@ -9999,7 +9999,7 @@ func LockOpen(opts ...Option) g.Node {
 
 // LogIn creates a log-in icon
 // Tags: sign in, arrow, enter, auth
-func LogIn(opts ...Option) g.Node {
+func LogIn(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"m10 17 5-5-5-5",
 		"M15 12H3",
@@ -10009,7 +10009,7 @@ func LogIn(opts ...Option) g.Node {
 
 // LogOut creates a log-out icon
 // Tags: sign out, arrow, exit, auth
-func LogOut(opts ...Option) g.Node {
+func LogOut(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"m16 17 5-5-5-5",
 		"M21 12H9",
@@ -10019,7 +10019,7 @@ func LogOut(opts ...Option) g.Node {
 
 // Logs creates a logs icon
 // Tags: options, list, menu, order, queue, tasks, logs
-func Logs(opts ...Option) g.Node {
+func Logs(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M3 5h1",
 		"M3 12h1",
@@ -10035,7 +10035,7 @@ func Logs(opts ...Option) g.Node {
 
 // Lollipop creates a lollipop icon
 // Tags: lolly, candy, sugar, food, sweet, dessert, spiral
-func Lollipop(opts ...Option) g.Node {
+func Lollipop(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M 3 11 a 8 8 0 1 0 16 0 a 8 8 0 1 0 -16 0",
 		"m21 21-4.3-4.3",
@@ -10045,7 +10045,7 @@ func Lollipop(opts ...Option) g.Node {
 
 // Luggage creates a luggage icon
 // Tags: baggage, luggage, travel, suitcase
-func Luggage(opts ...Option) g.Node {
+func Luggage(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M6 20a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2",
 		"M8 18V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v14",
@@ -10057,7 +10057,7 @@ func Luggage(opts ...Option) g.Node {
 
 // Magnet creates a magnet icon
 // Tags: horseshoe, lock, science, snap
-func Magnet(opts ...Option) g.Node {
+func Magnet(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"m12 15 4 4",
 		"M2.352 10.648a1.205 1.205 0 0 0 0 1.704l2.296 2.296a1.205 1.205 0 0 0 1.704 0l6.029-6.029a1 1 0 1 1 3 3l-6.029 6.029a1.205 1.205 0 0 0 0 1.704l2.296 2.296a1.205 1.205 0 0 0 1.704 0l6.365-6.367A1 1 0 0 0 8.716 4.282z",
@@ -10067,7 +10067,7 @@ func Magnet(opts ...Option) g.Node {
 
 // Mail creates a mail icon
 // Tags: email, message, letter, unread
-func Mail(opts ...Option) g.Node {
+func Mail(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"m22 7-8.991 5.727a2 2 0 0 1-2.009 0L2 7",
 		"M 4 4 h 16 a 2 2 0 0 1 2 2 v 12 a 2 2 0 0 1 -2 2 h -16 a 2 2 0 0 1 -2 -2 v -12 a 2 2 0 0 1 2 -2 Z",
@@ -10076,7 +10076,7 @@ func Mail(opts ...Option) g.Node {
 
 // MailCheck creates a mail-check icon
 // Tags: email, message, letter, subscribe, delivered, success, read, done, todo, tick, complete, task
-func MailCheck(opts ...Option) g.Node {
+func MailCheck(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M22 13V6a2 2 0 0 0-2-2H4a2 2 0 0 0-2 2v12c0 1.1.9 2 2 2h8",
 		"m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7",
@@ -10086,7 +10086,7 @@ func MailCheck(opts ...Option) g.Node {
 
 // MailMinus creates a mail-minus icon
 // Tags: email, message, letter, remove, delete
-func MailMinus(opts ...Option) g.Node {
+func MailMinus(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M22 15V6a2 2 0 0 0-2-2H4a2 2 0 0 0-2 2v12c0 1.1.9 2 2 2h8",
 		"m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7",
@@ -10096,7 +10096,7 @@ func MailMinus(opts ...Option) g.Node {
 
 // MailOpen creates a mail-open icon
 // Tags: email, message, letter, read
-func MailOpen(opts ...Option) g.Node {
+func MailOpen(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M21.2 8.4c.5.38.8.97.8 1.6v10a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V10a2 2 0 0 1 .8-1.6l8-6a2 2 0 0 1 2.4 0l8 6Z",
 		"m22 10-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 10",
@@ -10105,7 +10105,7 @@ func MailOpen(opts ...Option) g.Node {
 
 // MailPlus creates a mail-plus icon
 // Tags: email, message, letter, add, create, new, compose
-func MailPlus(opts ...Option) g.Node {
+func MailPlus(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M22 13V6a2 2 0 0 0-2-2H4a2 2 0 0 0-2 2v12c0 1.1.9 2 2 2h8",
 		"m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7",
@@ -10116,7 +10116,7 @@ func MailPlus(opts ...Option) g.Node {
 
 // MailQuestionMark creates a mail-question-mark icon
 // Tags: email, message, letter, delivery, undelivered
-func MailQuestionMark(opts ...Option) g.Node {
+func MailQuestionMark(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M22 10.5V6a2 2 0 0 0-2-2H4a2 2 0 0 0-2 2v12c0 1.1.9 2 2 2h12.5",
 		"m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7",
@@ -10127,7 +10127,7 @@ func MailQuestionMark(opts ...Option) g.Node {
 
 // MailSearch creates a mail-search icon
 // Tags: email, message, letter, search, lens
-func MailSearch(opts ...Option) g.Node {
+func MailSearch(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M22 12.5V6a2 2 0 0 0-2-2H4a2 2 0 0 0-2 2v12c0 1.1.9 2 2 2h7.5",
 		"m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7",
@@ -10139,7 +10139,7 @@ func MailSearch(opts ...Option) g.Node {
 
 // MailWarning creates a mail-warning icon
 // Tags: email, message, letter, delivery error, exclamation mark
-func MailWarning(opts ...Option) g.Node {
+func MailWarning(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M22 10.5V6a2 2 0 0 0-2-2H4a2 2 0 0 0-2 2v12c0 1.1.9 2 2 2h12.5",
 		"m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7",
@@ -10150,7 +10150,7 @@ func MailWarning(opts ...Option) g.Node {
 
 // MailX creates a mail-x icon
 // Tags: email, message, letter, remove, delete
-func MailX(opts ...Option) g.Node {
+func MailX(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M22 13V6a2 2 0 0 0-2-2H4a2 2 0 0 0-2 2v12c0 1.1.9 2 2 2h9",
 		"m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7",
@@ -10161,7 +10161,7 @@ func MailX(opts ...Option) g.Node {
 
 // Mailbox creates a mailbox icon
 // Tags: emails, messages, letters, mailing list, newsletter
-func Mailbox(opts ...Option) g.Node {
+func Mailbox(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M22 17a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V9.5C2 7 4 5 6.5 5H18c2.2 0 4 1.8 4 4v8Z",
 		"M 15 9 L 18 9 L 18 11",
@@ -10172,7 +10172,7 @@ func Mailbox(opts ...Option) g.Node {
 
 // Mails creates a mails icon
 // Tags: emails, messages, letters, multiple, mailing list, newsletter, copy
-func Mails(opts ...Option) g.Node {
+func Mails(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M17 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2v-8a2 2 0 0 1 1-1.732",
 		"m22 5.5-6.419 4.179a2 2 0 0 1-2.162 0L7 5.5",
@@ -10182,7 +10182,7 @@ func Mails(opts ...Option) g.Node {
 
 // MapIcon creates a map icon
 // Tags: location, navigation, travel
-func MapIcon(opts ...Option) g.Node {
+func MapIcon(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M14.106 5.553a2 2 0 0 0 1.788 0l3.659-1.83A1 1 0 0 1 21 4.619v12.764a1 1 0 0 1-.553.894l-4.553 2.277a2 2 0 0 1-1.788 0l-4.212-2.106a2 2 0 0 0-1.788 0l-3.659 1.83A1 1 0 0 1 3 19.381V6.618a1 1 0 0 1 .553-.894l4.553-2.277a2 2 0 0 1 1.788 0z",
 		"M15 5.764v15",
@@ -10192,7 +10192,7 @@ func MapIcon(opts ...Option) g.Node {
 
 // MapMinus creates a map-minus icon
 // Tags: location, navigation, travel, drop, delete, remove, erase
-func MapMinus(opts ...Option) g.Node {
+func MapMinus(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"m11 19-1.106-.552a2 2 0 0 0-1.788 0l-3.659 1.83A1 1 0 0 1 3 19.381V6.618a1 1 0 0 1 .553-.894l4.553-2.277a2 2 0 0 1 1.788 0l4.212 2.106a2 2 0 0 0 1.788 0l3.659-1.83A1 1 0 0 1 21 4.619V14",
 		"M15 5.764V14",
@@ -10203,7 +10203,7 @@ func MapMinus(opts ...Option) g.Node {
 
 // MapPin creates a map-pin icon
 // Tags: location, waypoint, marker, drop
-func MapPin(opts ...Option) g.Node {
+func MapPin(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M20 10c0 4.993-5.539 10.193-7.399 11.799a1 1 0 0 1-1.202 0C9.539 20.193 4 14.993 4 10a8 8 0 0 1 16 0",
 		"M 9 10 a 3 3 0 1 0 6 0 a 3 3 0 1 0 -6 0",
@@ -10212,7 +10212,7 @@ func MapPin(opts ...Option) g.Node {
 
 // MapPinCheck creates a map-pin-check icon
 // Tags: location, waypoint, marker, drop, done, tick, complete, task, added
-func MapPinCheck(opts ...Option) g.Node {
+func MapPinCheck(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M19.43 12.935c.357-.967.57-1.955.57-2.935a8 8 0 0 0-16 0c0 4.993 5.539 10.193 7.399 11.799a1 1 0 0 0 1.202 0 32.197 32.197 0 0 0 .813-.728",
 		"M 9 10 a 3 3 0 1 0 6 0 a 3 3 0 1 0 -6 0",
@@ -10222,7 +10222,7 @@ func MapPinCheck(opts ...Option) g.Node {
 
 // MapPinCheckInside creates a map-pin-check-inside icon
 // Tags: location, waypoint, marker, drop, done, tick, complete, task, added
-func MapPinCheckInside(opts ...Option) g.Node {
+func MapPinCheckInside(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M20 10c0 4.993-5.539 10.193-7.399 11.799a1 1 0 0 1-1.202 0C9.539 20.193 4 14.993 4 10a8 8 0 0 1 16 0",
 		"m9 10 2 2 4-4",
@@ -10231,7 +10231,7 @@ func MapPinCheckInside(opts ...Option) g.Node {
 
 // MapPinHouse creates a map-pin-house icon
 // Tags: location, waypoint, marker, drop, home, living, building, residence, architecture, address, poi, real estate, property, navigation, destination, geolocation, place, landmark
-func MapPinHouse(opts ...Option) g.Node {
+func MapPinHouse(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M15 22a1 1 0 0 1-1-1v-4a1 1 0 0 1 .445-.832l3-2a1 1 0 0 1 1.11 0l3 2A1 1 0 0 1 22 17v4a1 1 0 0 1-1 1z",
 		"M18 10a8 8 0 0 0-16 0c0 4.993 5.539 10.193 7.399 11.799a1 1 0 0 0 .601.2",
@@ -10242,7 +10242,7 @@ func MapPinHouse(opts ...Option) g.Node {
 
 // MapPinMinus creates a map-pin-minus icon
 // Tags: location, waypoint, marker, drop, delete, remove, erase
-func MapPinMinus(opts ...Option) g.Node {
+func MapPinMinus(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M18.977 14C19.6 12.701 20 11.343 20 10a8 8 0 0 0-16 0c0 4.993 5.539 10.193 7.399 11.799a1 1 0 0 0 1.202 0 32 32 0 0 0 .824-.738",
 		"M 9 10 a 3 3 0 1 0 6 0 a 3 3 0 1 0 -6 0",
@@ -10252,7 +10252,7 @@ func MapPinMinus(opts ...Option) g.Node {
 
 // MapPinMinusInside creates a map-pin-minus-inside icon
 // Tags: location, waypoint, marker, drop, delete, remove, erase
-func MapPinMinusInside(opts ...Option) g.Node {
+func MapPinMinusInside(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M20 10c0 4.993-5.539 10.193-7.399 11.799a1 1 0 0 1-1.202 0C9.539 20.193 4 14.993 4 10a8 8 0 0 1 16 0",
 		"M9 10h6",
@@ -10261,7 +10261,7 @@ func MapPinMinusInside(opts ...Option) g.Node {
 
 // MapPinOff creates a map-pin-off icon
 // Tags: location, waypoint, marker, remove
-func MapPinOff(opts ...Option) g.Node {
+func MapPinOff(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M12.75 7.09a3 3 0 0 1 2.16 2.16",
 		"M17.072 17.072c-1.634 2.17-3.527 3.912-4.471 4.727a1 1 0 0 1-1.202 0C9.539 20.193 4 14.993 4 10a8 8 0 0 1 1.432-4.568",
@@ -10273,7 +10273,7 @@ func MapPinOff(opts ...Option) g.Node {
 
 // MapPinPen creates a map-pin-pen icon
 // Tags: location, waypoint, marker, drop, edit
-func MapPinPen(opts ...Option) g.Node {
+func MapPinPen(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M17.97 9.304A8 8 0 0 0 2 10c0 4.69 4.887 9.562 7.022 11.468",
 		"M21.378 16.626a1 1 0 0 0-3.004-3.004l-4.01 4.012a2 2 0 0 0-.506.854l-.837 2.87a.5.5 0 0 0 .62.62l2.87-.837a2 2 0 0 0 .854-.506z",
@@ -10283,7 +10283,7 @@ func MapPinPen(opts ...Option) g.Node {
 
 // MapPinPlus creates a map-pin-plus icon
 // Tags: location, waypoint, marker, drop, add, create, new
-func MapPinPlus(opts ...Option) g.Node {
+func MapPinPlus(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M19.914 11.105A7.298 7.298 0 0 0 20 10a8 8 0 0 0-16 0c0 4.993 5.539 10.193 7.399 11.799a1 1 0 0 0 1.202 0 32 32 0 0 0 .824-.738",
 		"M 9 10 a 3 3 0 1 0 6 0 a 3 3 0 1 0 -6 0",
@@ -10294,7 +10294,7 @@ func MapPinPlus(opts ...Option) g.Node {
 
 // MapPinPlusInside creates a map-pin-plus-inside icon
 // Tags: location, waypoint, marker, drop, add, create, new
-func MapPinPlusInside(opts ...Option) g.Node {
+func MapPinPlusInside(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M20 10c0 4.993-5.539 10.193-7.399 11.799a1 1 0 0 1-1.202 0C9.539 20.193 4 14.993 4 10a8 8 0 0 1 16 0",
 		"M12 7v6",
@@ -10304,7 +10304,7 @@ func MapPinPlusInside(opts ...Option) g.Node {
 
 // MapPinX creates a map-pin-x icon
 // Tags: location, waypoint, marker, drop, delete, remove, erase
-func MapPinX(opts ...Option) g.Node {
+func MapPinX(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M19.752 11.901A7.78 7.78 0 0 0 20 10a8 8 0 0 0-16 0c0 4.993 5.539 10.193 7.399 11.799a1 1 0 0 0 1.202 0 19 19 0 0 0 .09-.077",
 		"M 9 10 a 3 3 0 1 0 6 0 a 3 3 0 1 0 -6 0",
@@ -10315,7 +10315,7 @@ func MapPinX(opts ...Option) g.Node {
 
 // MapPinXInside creates a map-pin-x-inside icon
 // Tags: location, waypoint, marker, drop, delete, remove, erase
-func MapPinXInside(opts ...Option) g.Node {
+func MapPinXInside(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M20 10c0 4.993-5.539 10.193-7.399 11.799a1 1 0 0 1-1.202 0C9.539 20.193 4 14.993 4 10a8 8 0 0 1 16 0",
 		"m14.5 7.5-5 5",
@@ -10325,7 +10325,7 @@ func MapPinXInside(opts ...Option) g.Node {
 
 // MapPinned creates a map-pinned icon
 // Tags: location, waypoint, marker, drop
-func MapPinned(opts ...Option) g.Node {
+func MapPinned(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M18 8c0 3.613-3.869 7.429-5.393 8.795a1 1 0 0 1-1.214 0C9.87 15.429 6 11.613 6 8a6 6 0 0 1 12 0",
 		"M 10 8 a 2 2 0 1 0 4 0 a 2 2 0 1 0 -4 0",
@@ -10335,7 +10335,7 @@ func MapPinned(opts ...Option) g.Node {
 
 // MapPlus creates a map-plus icon
 // Tags: location, navigation, travel, new, add, create
-func MapPlus(opts ...Option) g.Node {
+func MapPlus(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"m11 19-1.106-.552a2 2 0 0 0-1.788 0l-3.659 1.83A1 1 0 0 1 3 19.381V6.618a1 1 0 0 1 .553-.894l4.553-2.277a2 2 0 0 1 1.788 0l4.212 2.106a2 2 0 0 0 1.788 0l3.659-1.83A1 1 0 0 1 21 4.619V12",
 		"M15 5.764V12",
@@ -10347,7 +10347,7 @@ func MapPlus(opts ...Option) g.Node {
 
 // Mars creates a mars icon
 // Tags: gender, sex, male, masculine, man, boy
-func Mars(opts ...Option) g.Node {
+func Mars(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M16 3h5v5",
 		"m21 3-6.75 6.75",
@@ -10357,7 +10357,7 @@ func Mars(opts ...Option) g.Node {
 
 // MarsStroke creates a mars-stroke icon
 // Tags: gender, androgyne, transgender
-func MarsStroke(opts ...Option) g.Node {
+func MarsStroke(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"m14 6 4 4",
 		"M17 3h4v4",
@@ -10368,7 +10368,7 @@ func MarsStroke(opts ...Option) g.Node {
 
 // Martini creates a martini icon
 // Tags: cocktail, alcohol, beverage, bar, drink, glass
-func Martini(opts ...Option) g.Node {
+func Martini(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M8 22h8",
 		"M12 11v11",
@@ -10378,7 +10378,7 @@ func Martini(opts ...Option) g.Node {
 
 // Maximize creates a maximize icon
 // Tags: fullscreen, expand, dashed
-func Maximize(opts ...Option) g.Node {
+func Maximize(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M8 3H5a2 2 0 0 0-2 2v3",
 		"M21 8V5a2 2 0 0 0-2-2h-3",
@@ -10389,7 +10389,7 @@ func Maximize(opts ...Option) g.Node {
 
 // Maximize2 creates a maximize-2 icon
 // Tags: fullscreen, arrows, expand
-func Maximize2(opts ...Option) g.Node {
+func Maximize2(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M15 3h6v6",
 		"m21 3-7 7",
@@ -10400,7 +10400,7 @@ func Maximize2(opts ...Option) g.Node {
 
 // Medal creates a medal icon
 // Tags: prize, sports, winner, trophy, award, achievement
-func Medal(opts ...Option) g.Node {
+func Medal(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M7.21 15 2.66 7.14a2 2 0 0 1 .13-2.2L4.4 2.8A2 2 0 0 1 6 2h12a2 2 0 0 1 1.6.8l1.6 2.14a2 2 0 0 1 .14 2.2L16.79 15",
 		"M11 12 5.12 2.2",
@@ -10413,7 +10413,7 @@ func Medal(opts ...Option) g.Node {
 
 // Megaphone creates a megaphone icon
 // Tags: advertisement, announcement, attention, alert, loudspeaker, megaphone, notification
-func Megaphone(opts ...Option) g.Node {
+func Megaphone(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M11 6a13 13 0 0 0 8.4-2.8A1 1 0 0 1 21 4v12a1 1 0 0 1-1.6.8A13 13 0 0 0 11 14H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2z",
 		"M6 14a12 12 0 0 0 2.4 7.2 2 2 0 0 0 3.2-2.4A8 8 0 0 1 10 14",
@@ -10423,7 +10423,7 @@ func Megaphone(opts ...Option) g.Node {
 
 // MegaphoneOff creates a megaphone-off icon
 // Tags: advertisement, announcement, attention, alert, loudspeaker, megaphone, notification, disable, silent
-func MegaphoneOff(opts ...Option) g.Node {
+func MegaphoneOff(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M11.636 6A13 13 0 0 0 19.4 3.2 1 1 0 0 1 21 4v11.344",
 		"M14.378 14.357A13 13 0 0 0 11 14H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h1",
@@ -10435,7 +10435,7 @@ func MegaphoneOff(opts ...Option) g.Node {
 
 // Meh creates a meh icon
 // Tags: emoji, face, neutral, emotion
-func Meh(opts ...Option) g.Node {
+func Meh(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M 2 12 a 10 10 0 1 0 20 0 a 10 10 0 1 0 -20 0",
 		"M 8 15 L 16 15",
@@ -10446,7 +10446,7 @@ func Meh(opts ...Option) g.Node {
 
 // MemoryStick creates a memory-stick icon
 // Tags: ram, random access, technology, computer, chip, circuit, specs, capacity, gigabytes, gb
-func MemoryStick(opts ...Option) g.Node {
+func MemoryStick(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M12 12v-2",
 		"M12 18v-2",
@@ -10464,7 +10464,7 @@ func MemoryStick(opts ...Option) g.Node {
 
 // Menu creates a menu icon
 // Tags: bars, navigation, hamburger, options
-func Menu(opts ...Option) g.Node {
+func Menu(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M4 5h16",
 		"M4 12h16",
@@ -10474,7 +10474,7 @@ func Menu(opts ...Option) g.Node {
 
 // Merge creates a merge icon
 // Tags: combine, join, unite
-func Merge(opts ...Option) g.Node {
+func Merge(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"m8 6 4-4 4 4",
 		"M12 2v10.3a4 4 0 0 1-1.172 2.872L4 22",
@@ -10484,13 +10484,13 @@ func Merge(opts ...Option) g.Node {
 
 // MessageCircle creates a message-circle icon
 // Tags: comment, chat, conversation, dialog, feedback, speech bubble
-func MessageCircle(opts ...Option) g.Node {
+func MessageCircle(opts ...Option) templ.Component {
 	return Icon("M2.992 16.342a2 2 0 0 1 .094 1.167l-1.065 3.29a1 1 0 0 0 1.236 1.168l3.413-.998a2 2 0 0 1 1.099.092 10 10 0 1 0-4.777-4.719", opts...)
 }
 
 // MessageCircleCode creates a message-circle-code icon
 // Tags: comment, chat, conversation, dialog, feedback, speech bubble, code review, coding
-func MessageCircleCode(opts ...Option) g.Node {
+func MessageCircleCode(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"m10 9-3 3 3 3",
 		"m14 15 3-3-3-3",
@@ -10500,7 +10500,7 @@ func MessageCircleCode(opts ...Option) g.Node {
 
 // MessageCircleDashed creates a message-circle-dashed icon
 // Tags: comment, chat, conversation, dialog, feedback, speech bubble, draft
-func MessageCircleDashed(opts ...Option) g.Node {
+func MessageCircleDashed(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M10.1 2.182a10 10 0 0 1 3.8 0",
 		"M13.9 21.818a10 10 0 0 1-3.8 0",
@@ -10515,7 +10515,7 @@ func MessageCircleDashed(opts ...Option) g.Node {
 
 // MessageCircleHeart creates a message-circle-heart icon
 // Tags: comment, chat, conversation, dialog, feedback, positive, like, love, interest, valentine, dating, date, speech bubble
-func MessageCircleHeart(opts ...Option) g.Node {
+func MessageCircleHeart(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M2.992 16.342a2 2 0 0 1 .094 1.167l-1.065 3.29a1 1 0 0 0 1.236 1.168l3.413-.998a2 2 0 0 1 1.099.092 10 10 0 1 0-4.777-4.719",
 		"M7.828 13.07A3 3 0 0 1 12 8.764a3 3 0 0 1 5.004 2.224 3 3 0 0 1-.832 2.083l-3.447 3.62a1 1 0 0 1-1.45-.001z",
@@ -10524,7 +10524,7 @@ func MessageCircleHeart(opts ...Option) g.Node {
 
 // MessageCircleMore creates a message-circle-more icon
 // Tags: comment, chat, conversation, dialog, feedback, speech bubble, typing, writing, responding, ellipsis, etc, et cetera, ..., …
-func MessageCircleMore(opts ...Option) g.Node {
+func MessageCircleMore(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M2.992 16.342a2 2 0 0 1 .094 1.167l-1.065 3.29a1 1 0 0 0 1.236 1.168l3.413-.998a2 2 0 0 1 1.099.092 10 10 0 1 0-4.777-4.719",
 		"M8 12h.01",
@@ -10535,7 +10535,7 @@ func MessageCircleMore(opts ...Option) g.Node {
 
 // MessageCircleOff creates a message-circle-off icon
 // Tags: comment, chat, conversation, dialog, feedback, speech bubble, clear, close, delete, remove, cancel, silence, mute, moderate
-func MessageCircleOff(opts ...Option) g.Node {
+func MessageCircleOff(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"m2 2 20 20",
 		"M4.93 4.929a10 10 0 0 0-1.938 11.412 2 2 0 0 1 .094 1.167l-1.065 3.29a1 1 0 0 0 1.236 1.168l3.413-.998a2 2 0 0 1 1.099.092 10 10 0 0 0 11.302-1.989",
@@ -10545,7 +10545,7 @@ func MessageCircleOff(opts ...Option) g.Node {
 
 // MessageCirclePlus creates a message-circle-plus icon
 // Tags: comment, chat, conversation, dialog, feedback, speech bubble, add
-func MessageCirclePlus(opts ...Option) g.Node {
+func MessageCirclePlus(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M2.992 16.342a2 2 0 0 1 .094 1.167l-1.065 3.29a1 1 0 0 0 1.236 1.168l3.413-.998a2 2 0 0 1 1.099.092 10 10 0 1 0-4.777-4.719",
 		"M8 12h8",
@@ -10555,7 +10555,7 @@ func MessageCirclePlus(opts ...Option) g.Node {
 
 // MessageCircleQuestionMark creates a message-circle-question-mark icon
 // Tags: comment, chat, conversation, dialog, feedback, speech bubble, help
-func MessageCircleQuestionMark(opts ...Option) g.Node {
+func MessageCircleQuestionMark(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M2.992 16.342a2 2 0 0 1 .094 1.167l-1.065 3.29a1 1 0 0 0 1.236 1.168l3.413-.998a2 2 0 0 1 1.099.092 10 10 0 1 0-4.777-4.719",
 		"M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3",
@@ -10565,7 +10565,7 @@ func MessageCircleQuestionMark(opts ...Option) g.Node {
 
 // MessageCircleReply creates a message-circle-reply icon
 // Tags: comment, chat, conversation, dialog, feedback, speech bubble, reply, response
-func MessageCircleReply(opts ...Option) g.Node {
+func MessageCircleReply(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M2.992 16.342a2 2 0 0 1 .094 1.167l-1.065 3.29a1 1 0 0 0 1.236 1.168l3.413-.998a2 2 0 0 1 1.099.092 10 10 0 1 0-4.777-4.719",
 		"m10 15-3-3 3-3",
@@ -10575,7 +10575,7 @@ func MessageCircleReply(opts ...Option) g.Node {
 
 // MessageCircleWarning creates a message-circle-warning icon
 // Tags: comment, chat, conversation, dialog, feedback, speech bubble, report, abuse, offense, alert, danger, caution, protected, exclamation mark
-func MessageCircleWarning(opts ...Option) g.Node {
+func MessageCircleWarning(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M2.992 16.342a2 2 0 0 1 .094 1.167l-1.065 3.29a1 1 0 0 0 1.236 1.168l3.413-.998a2 2 0 0 1 1.099.092 10 10 0 1 0-4.777-4.719",
 		"M12 8v4",
@@ -10585,7 +10585,7 @@ func MessageCircleWarning(opts ...Option) g.Node {
 
 // MessageCircleX creates a message-circle-x icon
 // Tags: comment, chat, conversation, dialog, feedback, speech bubble, clear, close, delete, remove, cancel, silence, mute, moderate
-func MessageCircleX(opts ...Option) g.Node {
+func MessageCircleX(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M2.992 16.342a2 2 0 0 1 .094 1.167l-1.065 3.29a1 1 0 0 0 1.236 1.168l3.413-.998a2 2 0 0 1 1.099.092 10 10 0 1 0-4.777-4.719",
 		"m15 9-6 6",
@@ -10595,13 +10595,13 @@ func MessageCircleX(opts ...Option) g.Node {
 
 // MessageSquare creates a message-square icon
 // Tags: comment, chat, conversation, dialog, feedback, speech bubble
-func MessageSquare(opts ...Option) g.Node {
+func MessageSquare(opts ...Option) templ.Component {
 	return Icon("M22 17a2 2 0 0 1-2 2H6.828a2 2 0 0 0-1.414.586l-2.202 2.202A.71.71 0 0 1 2 21.286V5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2z", opts...)
 }
 
 // MessageSquareCode creates a message-square-code icon
 // Tags: comment, chat, conversation, dialog, feedback, speech bubble, code review, coding
-func MessageSquareCode(opts ...Option) g.Node {
+func MessageSquareCode(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M22 17a2 2 0 0 1-2 2H6.828a2 2 0 0 0-1.414.586l-2.202 2.202A.71.71 0 0 1 2 21.286V5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2z",
 		"m10 8-3 3 3 3",
@@ -10611,7 +10611,7 @@ func MessageSquareCode(opts ...Option) g.Node {
 
 // MessageSquareDashed creates a message-square-dashed icon
 // Tags: comment, chat, conversation, dialog, feedback, speech bubble, draft
-func MessageSquareDashed(opts ...Option) g.Node {
+func MessageSquareDashed(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M12 19h.01",
 		"M12 3h.01",
@@ -10631,7 +10631,7 @@ func MessageSquareDashed(opts ...Option) g.Node {
 
 // MessageSquareDiff creates a message-square-diff icon
 // Tags: comment, chat, conversation, dialog, feedback, speech bubble, add, patch, difference, plus, minus, plus-minus, math, code review, coding, version control, git
-func MessageSquareDiff(opts ...Option) g.Node {
+func MessageSquareDiff(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M22 17a2 2 0 0 1-2 2H6.828a2 2 0 0 0-1.414.586l-2.202 2.202A.71.71 0 0 1 2 21.286V5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2z",
 		"M10 15h4",
@@ -10642,7 +10642,7 @@ func MessageSquareDiff(opts ...Option) g.Node {
 
 // MessageSquareDot creates a message-square-dot icon
 // Tags: unread, unresolved, comment, chat, conversation, dialog, feedback, speech bubble
-func MessageSquareDot(opts ...Option) g.Node {
+func MessageSquareDot(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M12.7 3H4a2 2 0 0 0-2 2v16.286a.71.71 0 0 0 1.212.502l2.202-2.202A2 2 0 0 1 6.828 19H20a2 2 0 0 0 2-2v-4.7",
 		"M 16 6 a 3 3 0 1 0 6 0 a 3 3 0 1 0 -6 0",
@@ -10651,7 +10651,7 @@ func MessageSquareDot(opts ...Option) g.Node {
 
 // MessageSquareHeart creates a message-square-heart icon
 // Tags: comment, chat, conversation, dialog, feedback, positive, like, love, interest, valentine, dating, date, speech bubble
-func MessageSquareHeart(opts ...Option) g.Node {
+func MessageSquareHeart(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M22 17a2 2 0 0 1-2 2H6.828a2 2 0 0 0-1.414.586l-2.202 2.202A.71.71 0 0 1 2 21.286V5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2z",
 		"M7.5 9.5c0 .687.265 1.383.697 1.844l3.009 3.264a1.14 1.14 0 0 0 .407.314 1 1 0 0 0 .783-.004 1.14 1.14 0 0 0 .398-.31l3.008-3.264A2.77 2.77 0 0 0 16.5 9.5 2.5 2.5 0 0 0 12 8a2.5 2.5 0 0 0-4.5 1.5",
@@ -10660,7 +10660,7 @@ func MessageSquareHeart(opts ...Option) g.Node {
 
 // MessageSquareLock creates a message-square-lock icon
 // Tags: comment, chat, conversation, dialog, feedback, speech bubble, secure, encrypted
-func MessageSquareLock(opts ...Option) g.Node {
+func MessageSquareLock(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M22 8.5V5a2 2 0 0 0-2-2H4a2 2 0 0 0-2 2v16.286a.71.71 0 0 0 1.212.502l2.202-2.202A2 2 0 0 1 6.828 19H10",
 		"M20 15v-2a2 2 0 0 0-4 0v2",
@@ -10670,7 +10670,7 @@ func MessageSquareLock(opts ...Option) g.Node {
 
 // MessageSquareMore creates a message-square-more icon
 // Tags: comment, chat, conversation, dialog, feedback, speech bubble, typing, writing, responding, ellipsis, etc, et cetera, ..., …
-func MessageSquareMore(opts ...Option) g.Node {
+func MessageSquareMore(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M22 17a2 2 0 0 1-2 2H6.828a2 2 0 0 0-1.414.586l-2.202 2.202A.71.71 0 0 1 2 21.286V5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2z",
 		"M12 11h.01",
@@ -10681,7 +10681,7 @@ func MessageSquareMore(opts ...Option) g.Node {
 
 // MessageSquareOff creates a message-square-off icon
 // Tags: comment, chat, conversation, dialog, feedback, speech bubble, clear, close, delete, remove, cancel, silence, mute, moderate
-func MessageSquareOff(opts ...Option) g.Node {
+func MessageSquareOff(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M19 19H6.828a2 2 0 0 0-1.414.586l-2.202 2.202A.7.7 0 0 1 2 21.286V5a2 2 0 0 1 1.184-1.826",
 		"m2 2 20 20",
@@ -10691,7 +10691,7 @@ func MessageSquareOff(opts ...Option) g.Node {
 
 // MessageSquarePlus creates a message-square-plus icon
 // Tags: comment, chat, conversation, dialog, feedback, speech bubble, add
-func MessageSquarePlus(opts ...Option) g.Node {
+func MessageSquarePlus(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M22 17a2 2 0 0 1-2 2H6.828a2 2 0 0 0-1.414.586l-2.202 2.202A.71.71 0 0 1 2 21.286V5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2z",
 		"M12 8v6",
@@ -10701,7 +10701,7 @@ func MessageSquarePlus(opts ...Option) g.Node {
 
 // MessageSquareQuote creates a message-square-quote icon
 // Tags: comment, chat, conversation, dialog, feedback, speech bubble, blockquote, quotation, indent, reply, response
-func MessageSquareQuote(opts ...Option) g.Node {
+func MessageSquareQuote(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M14 14a2 2 0 0 0 2-2V8h-2",
 		"M22 17a2 2 0 0 1-2 2H6.828a2 2 0 0 0-1.414.586l-2.202 2.202A.71.71 0 0 1 2 21.286V5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2z",
@@ -10711,7 +10711,7 @@ func MessageSquareQuote(opts ...Option) g.Node {
 
 // MessageSquareReply creates a message-square-reply icon
 // Tags: comment, chat, conversation, dialog, feedback, speech bubble, reply, response
-func MessageSquareReply(opts ...Option) g.Node {
+func MessageSquareReply(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M22 17a2 2 0 0 1-2 2H6.828a2 2 0 0 0-1.414.586l-2.202 2.202A.71.71 0 0 1 2 21.286V5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2z",
 		"m10 8-3 3 3 3",
@@ -10721,7 +10721,7 @@ func MessageSquareReply(opts ...Option) g.Node {
 
 // MessageSquareShare creates a message-square-share icon
 // Tags: comment, chat, conversation, dialog, feedback, speech bubble, network, forward
-func MessageSquareShare(opts ...Option) g.Node {
+func MessageSquareShare(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M12 3H4a2 2 0 0 0-2 2v16.286a.71.71 0 0 0 1.212.502l2.202-2.202A2 2 0 0 1 6.828 19H20a2 2 0 0 0 2-2v-4",
 		"M16 3h6v6",
@@ -10731,7 +10731,7 @@ func MessageSquareShare(opts ...Option) g.Node {
 
 // MessageSquareText creates a message-square-text icon
 // Tags: comment, chat, conversation, dialog, feedback, speech bubble
-func MessageSquareText(opts ...Option) g.Node {
+func MessageSquareText(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M22 17a2 2 0 0 1-2 2H6.828a2 2 0 0 0-1.414.586l-2.202 2.202A.71.71 0 0 1 2 21.286V5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2z",
 		"M7 11h10",
@@ -10742,7 +10742,7 @@ func MessageSquareText(opts ...Option) g.Node {
 
 // MessageSquareWarning creates a message-square-warning icon
 // Tags: comment, chat, conversation, dialog, feedback, speech bubble, report, abuse, offense, alert, danger, caution, protected, exclamation mark
-func MessageSquareWarning(opts ...Option) g.Node {
+func MessageSquareWarning(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M22 17a2 2 0 0 1-2 2H6.828a2 2 0 0 0-1.414.586l-2.202 2.202A.71.71 0 0 1 2 21.286V5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2z",
 		"M12 15h.01",
@@ -10752,7 +10752,7 @@ func MessageSquareWarning(opts ...Option) g.Node {
 
 // MessageSquareX creates a message-square-x icon
 // Tags: comment, chat, conversation, dialog, feedback, speech bubble, clear, close, delete, remove, cancel, silence, mute, moderate
-func MessageSquareX(opts ...Option) g.Node {
+func MessageSquareX(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M22 17a2 2 0 0 1-2 2H6.828a2 2 0 0 0-1.414.586l-2.202 2.202A.71.71 0 0 1 2 21.286V5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2z",
 		"m14.5 8.5-5 5",
@@ -10762,7 +10762,7 @@ func MessageSquareX(opts ...Option) g.Node {
 
 // MessagesSquare creates a messages-square icon
 // Tags: comment, chat, conversation, dialog, feedback, speech bubbles, copy, multiple, discussion, interview, debate
-func MessagesSquare(opts ...Option) g.Node {
+func MessagesSquare(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M16 10a2 2 0 0 1-2 2H6.828a2 2 0 0 0-1.414.586l-2.202 2.202A.71.71 0 0 1 2 14.286V4a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z",
 		"M20 9a2 2 0 0 1 2 2v10.286a.71.71 0 0 1-1.212.502l-2.202-2.202A2 2 0 0 0 17.172 19H10a2 2 0 0 1-2-2v-1",
@@ -10771,7 +10771,7 @@ func MessagesSquare(opts ...Option) g.Node {
 
 // Mic creates a mic icon
 // Tags: record, sound, listen, radio, podcast, microphone
-func Mic(opts ...Option) g.Node {
+func Mic(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M12 19v3",
 		"M19 10v2a7 7 0 0 1-14 0v-2",
@@ -10781,7 +10781,7 @@ func Mic(opts ...Option) g.Node {
 
 // MicOff creates a mic-off icon
 // Tags: record, sound, mute, microphone
-func MicOff(opts ...Option) g.Node {
+func MicOff(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M12 19v3",
 		"M15 9.34V5a3 3 0 0 0-5.68-1.33",
@@ -10794,7 +10794,7 @@ func MicOff(opts ...Option) g.Node {
 
 // MicVocal creates a mic-vocal icon
 // Tags: lyrics, voice, listen, sound, music, radio, podcast, karaoke, singing, microphone
-func MicVocal(opts ...Option) g.Node {
+func MicVocal(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"m11 7.601-5.994 8.19a1 1 0 0 0 .1 1.298l.817.818a1 1 0 0 0 1.314.087L15.09 12",
 		"M16.5 21.174C15.5 20.5 14.372 20 13 20c-2.058 0-3.928 2.356-6 2-2.072-.356-2.775-3.369-1.5-4.5",
@@ -10804,7 +10804,7 @@ func MicVocal(opts ...Option) g.Node {
 
 // Microchip creates a microchip icon
 // Tags: processor, cores, technology, computer, chip, integrated circuit, memory, ram, specs, gpu, gigahertz, ghz
-func Microchip(opts ...Option) g.Node {
+func Microchip(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M10 12h4",
 		"M10 17h4",
@@ -10821,7 +10821,7 @@ func Microchip(opts ...Option) g.Node {
 
 // Microscope creates a microscope icon
 // Tags: medical, education, science, imaging, research
-func Microscope(opts ...Option) g.Node {
+func Microscope(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M6 18h8",
 		"M3 22h18",
@@ -10834,7 +10834,7 @@ func Microscope(opts ...Option) g.Node {
 
 // Microwave creates a microwave icon
 // Tags: oven, cooker, toaster oven, bake
-func Microwave(opts ...Option) g.Node {
+func Microwave(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M 4 4 h 16 a 2 2 0 0 1 2 2 v 11 a 2 2 0 0 1 -2 2 h -16 a 2 2 0 0 1 -2 -2 v -11 a 2 2 0 0 1 2 -2 Z",
 		"M 7 8 h 6 a 1 1 0 0 1 1 1 v 5 a 1 1 0 0 1 -1 1 h -6 a 1 1 0 0 1 -1 -1 v -5 a 1 1 0 0 1 1 -1 Z",
@@ -10846,7 +10846,7 @@ func Microwave(opts ...Option) g.Node {
 
 // Milestone creates a milestone icon
 // Tags: signpost, direction, right, east, forward, version control, waypoint
-func Milestone(opts ...Option) g.Node {
+func Milestone(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M12 13v8",
 		"M12 3v3",
@@ -10856,7 +10856,7 @@ func Milestone(opts ...Option) g.Node {
 
 // Milk creates a milk icon
 // Tags: lactose, bottle, beverage, drink, water, diet
-func Milk(opts ...Option) g.Node {
+func Milk(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M8 2h8",
 		"M9 2v2.789a4 4 0 0 1-.672 2.219l-.656.984A4 4 0 0 0 7 10.212V20a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2v-9.789a4 4 0 0 0-.672-2.219l-.656-.984A4 4 0 0 1 15 4.788V2",
@@ -10866,7 +10866,7 @@ func Milk(opts ...Option) g.Node {
 
 // MilkOff creates a milk-off icon
 // Tags: lactose free, bottle, beverage, drink, water, allergy, intolerance, diet
-func MilkOff(opts ...Option) g.Node {
+func MilkOff(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M8 2h8",
 		"M9 2v1.343M15 2v2.789a4 4 0 0 0 .672 2.219l.656.984a4 4 0 0 1 .672 2.22v1.131M7.8 7.8l-.128.192A4 4 0 0 0 7 10.212V20a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2v-3",
@@ -10877,7 +10877,7 @@ func MilkOff(opts ...Option) g.Node {
 
 // Minimize creates a minimize icon
 // Tags: exit fullscreen, close, shrink
-func Minimize(opts ...Option) g.Node {
+func Minimize(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M8 3v3a2 2 0 0 1-2 2H3",
 		"M21 8h-3a2 2 0 0 1-2-2V3",
@@ -10888,7 +10888,7 @@ func Minimize(opts ...Option) g.Node {
 
 // Minimize2 creates a minimize-2 icon
 // Tags: exit fullscreen, arrows, close, shrink
-func Minimize2(opts ...Option) g.Node {
+func Minimize2(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"m14 10 7-7",
 		"M20 10h-6V4",
@@ -10899,13 +10899,13 @@ func Minimize2(opts ...Option) g.Node {
 
 // Minus creates a minus icon
 // Tags: subtract, remove, decrease, decrement, reduce, negative, calculate, line, divider, separator, horizontal rule, hr, html, markup, markdown, ---, toolbar, operator, code, coding, minimum, downgrade
-func Minus(opts ...Option) g.Node {
+func Minus(opts ...Option) templ.Component {
 	return Icon("M5 12h14", opts...)
 }
 
 // Monitor creates a monitor icon
 // Tags: tv, screen, display, virtual machine, vm
-func Monitor(opts ...Option) g.Node {
+func Monitor(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M 4 3 h 16 a 2 2 0 0 1 2 2 v 10 a 2 2 0 0 1 -2 2 h -16 a 2 2 0 0 1 -2 -2 v -10 a 2 2 0 0 1 2 -2 Z",
 		"M 8 21 L 16 21",
@@ -10915,7 +10915,7 @@ func Monitor(opts ...Option) g.Node {
 
 // MonitorCheck creates a monitor-check icon
 // Tags: tv, screen, display, desktop, running, active, virtual machine, vm
-func MonitorCheck(opts ...Option) g.Node {
+func MonitorCheck(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"m9 10 2 2 4-4",
 		"M 4 3 h 16 a 2 2 0 0 1 2 2 v 10 a 2 2 0 0 1 -2 2 h -16 a 2 2 0 0 1 -2 -2 v -10 a 2 2 0 0 1 2 -2 Z",
@@ -10926,7 +10926,7 @@ func MonitorCheck(opts ...Option) g.Node {
 
 // MonitorCloud creates a monitor-cloud icon
 // Tags: virtual machine, virtual desktop, vm, vdi, computing, remote work, monitoring, infrastructure, software as a service, saas, workstation, environment, tv, screen, display
-func MonitorCloud(opts ...Option) g.Node {
+func MonitorCloud(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M11 13a3 3 0 1 1 2.83-4H14a2 2 0 0 1 0 4z",
 		"M12 17v4",
@@ -10937,7 +10937,7 @@ func MonitorCloud(opts ...Option) g.Node {
 
 // MonitorCog creates a monitor-cog icon
 // Tags: tv, screen, display, virtual machine, vm, executable, settings, cog, edit, gear, configuration, preferences, system, control panel, network, computing
-func MonitorCog(opts ...Option) g.Node {
+func MonitorCog(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M12 17v4",
 		"m14.305 7.53.923-.382",
@@ -10956,7 +10956,7 @@ func MonitorCog(opts ...Option) g.Node {
 
 // MonitorDot creates a monitor-dot icon
 // Tags: tv, screen, display, desktop, running, active, virtual machine, vm
-func MonitorDot(opts ...Option) g.Node {
+func MonitorDot(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M12 17v4",
 		"M22 12.307V15a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h8.693",
@@ -10967,7 +10967,7 @@ func MonitorDot(opts ...Option) g.Node {
 
 // MonitorDown creates a monitor-down icon
 // Tags: tv, screen, display, desktop, download
-func MonitorDown(opts ...Option) g.Node {
+func MonitorDown(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M12 13V7",
 		"m15 10-3 3-3-3",
@@ -10979,7 +10979,7 @@ func MonitorDown(opts ...Option) g.Node {
 
 // MonitorOff creates a monitor-off icon
 // Tags: share
-func MonitorOff(opts ...Option) g.Node {
+func MonitorOff(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M17 17H4a2 2 0 0 1-2-2V5c0-1.5 1-2 1-2",
 		"M22 15V5a2 2 0 0 0-2-2H9",
@@ -10991,7 +10991,7 @@ func MonitorOff(opts ...Option) g.Node {
 
 // MonitorPause creates a monitor-pause icon
 // Tags: tv, screen, display, desktop, video, movie, film, suspend, hibernate, boot, virtual machine, vm
-func MonitorPause(opts ...Option) g.Node {
+func MonitorPause(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M10 13V7",
 		"M14 13V7",
@@ -11003,7 +11003,7 @@ func MonitorPause(opts ...Option) g.Node {
 
 // MonitorPlay creates a monitor-play icon
 // Tags: tv, screen, display, desktop, video, movie, film, running, start, boot, virtual machine, vm
-func MonitorPlay(opts ...Option) g.Node {
+func MonitorPlay(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M15.033 9.44a.647.647 0 0 1 0 1.12l-4.065 2.352a.645.645 0 0 1-.968-.56V7.648a.645.645 0 0 1 .967-.56z",
 		"M12 17v4",
@@ -11014,7 +11014,7 @@ func MonitorPlay(opts ...Option) g.Node {
 
 // MonitorSmartphone creates a monitor-smartphone icon
 // Tags: smartphone, phone, cellphone, device, mobile, desktop, monitor, responsive, screens
-func MonitorSmartphone(opts ...Option) g.Node {
+func MonitorSmartphone(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M18 8V6a2 2 0 0 0-2-2H4a2 2 0 0 0-2 2v7a2 2 0 0 0 2 2h8",
 		"M10 19v-3.96 3.15",
@@ -11025,7 +11025,7 @@ func MonitorSmartphone(opts ...Option) g.Node {
 
 // MonitorSpeaker creates a monitor-speaker icon
 // Tags: devices, connect, cast
-func MonitorSpeaker(opts ...Option) g.Node {
+func MonitorSpeaker(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M5.5 20H8",
 		"M17 9h.01",
@@ -11037,7 +11037,7 @@ func MonitorSpeaker(opts ...Option) g.Node {
 
 // MonitorStop creates a monitor-stop icon
 // Tags: tv, screen, display, desktop, video, movie, film, stop, shutdown, virtual machine, vm
-func MonitorStop(opts ...Option) g.Node {
+func MonitorStop(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M12 17v4",
 		"M8 21h8",
@@ -11048,7 +11048,7 @@ func MonitorStop(opts ...Option) g.Node {
 
 // MonitorUp creates a monitor-up icon
 // Tags: tv, screen, display, upload, connect, remote, screen share
-func MonitorUp(opts ...Option) g.Node {
+func MonitorUp(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"m9 10 3-3 3 3",
 		"M12 13V7",
@@ -11060,7 +11060,7 @@ func MonitorUp(opts ...Option) g.Node {
 
 // MonitorX creates a monitor-x icon
 // Tags: tv, screen, display, desktop, virtual machine, vm, close, stop, suspend, remove, delete
-func MonitorX(opts ...Option) g.Node {
+func MonitorX(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"m14.5 12.5-5-5",
 		"m9.5 12.5 5-5",
@@ -11072,13 +11072,13 @@ func MonitorX(opts ...Option) g.Node {
 
 // Moon creates a moon icon
 // Tags: dark, night
-func Moon(opts ...Option) g.Node {
+func Moon(opts ...Option) templ.Component {
 	return Icon("M20.985 12.486a9 9 0 1 1-9.473-9.472c.405-.022.617.46.402.803a6 6 0 0 0 8.268 8.268c.344-.215.825-.004.803.401", opts...)
 }
 
 // MoonStar creates a moon-star icon
 // Tags: dark, night, star
-func MoonStar(opts ...Option) g.Node {
+func MoonStar(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M18 5h4",
 		"M20 3v4",
@@ -11088,7 +11088,7 @@ func MoonStar(opts ...Option) g.Node {
 
 // Motorbike creates a motorbike icon
 // Tags: moto, motorcycle, transport, vehicle, drive, ride, trip, race, racing, journey, delivery
-func Motorbike(opts ...Option) g.Node {
+func Motorbike(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"m18 14-1-3",
 		"m3 9 6 2a2 2 0 0 1 2-2h2a2 2 0 0 1 1.99 1.81",
@@ -11100,13 +11100,13 @@ func Motorbike(opts ...Option) g.Node {
 
 // Mountain creates a mountain icon
 // Tags: climb, hike, rock
-func Mountain(opts ...Option) g.Node {
+func Mountain(opts ...Option) templ.Component {
 	return Icon("m8 3 4 8 5-5 5 15H2L8 3z", opts...)
 }
 
 // MountainSnow creates a mountain-snow icon
 // Tags: alpine, climb, snow
-func MountainSnow(opts ...Option) g.Node {
+func MountainSnow(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"m8 3 4 8 5-5 5 15H2L8 3z",
 		"M4.14 15.08c2.62-1.57 5.24-1.43 7.86.42 2.74 1.94 5.49 2 8.23.19",
@@ -11115,7 +11115,7 @@ func MountainSnow(opts ...Option) g.Node {
 
 // Mouse creates a mouse icon
 // Tags: device, scroll, click
-func Mouse(opts ...Option) g.Node {
+func Mouse(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M 12 2 h 0 a 7 7 0 0 1 7 7 v 6 a 7 7 0 0 1 -7 7 h -0 a 7 7 0 0 1 -7 -7 v -6 a 7 7 0 0 1 7 -7 Z",
 		"M12 6v4",
@@ -11124,7 +11124,7 @@ func Mouse(opts ...Option) g.Node {
 
 // MouseOff creates a mouse-off icon
 // Tags: device, scroll, click, disabled
-func MouseOff(opts ...Option) g.Node {
+func MouseOff(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M12 6v.343",
 		"M18.218 18.218A7 7 0 0 1 5 15V9a7 7 0 0 1 .782-3.218",
@@ -11135,7 +11135,7 @@ func MouseOff(opts ...Option) g.Node {
 
 // MousePointer creates a mouse-pointer icon
 // Tags: click, select
-func MousePointer(opts ...Option) g.Node {
+func MousePointer(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M12.586 12.586 19 19",
 		"M3.688 3.037a.497.497 0 0 0-.651.651l6.5 15.999a.501.501 0 0 0 .947-.062l1.569-6.083a2 2 0 0 1 1.448-1.479l6.124-1.579a.5.5 0 0 0 .063-.947z",
@@ -11144,13 +11144,13 @@ func MousePointer(opts ...Option) g.Node {
 
 // MousePointer2 creates a mouse-pointer-2 icon
 // Tags: click, select
-func MousePointer2(opts ...Option) g.Node {
+func MousePointer2(opts ...Option) templ.Component {
 	return Icon("M4.037 4.688a.495.495 0 0 1 .651-.651l16 6.5a.5.5 0 0 1-.063.947l-6.124 1.58a2 2 0 0 0-1.438 1.435l-1.579 6.126a.5.5 0 0 1-.947.063z", opts...)
 }
 
 // MousePointer2Off creates a mouse-pointer-2-off icon
 // Tags: pointer, mouse, cursor, off, disable, arrow, navigation, selection, select, click, no-click, interaction
-func MousePointer2Off(opts ...Option) g.Node {
+func MousePointer2Off(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"m15.55 8.45 5.138 2.087a.5.5 0 0 1-.063.947l-6.124 1.58a2 2 0 0 0-1.438 1.435l-1.579 6.126a.5.5 0 0 1-.947.063L8.45 15.551",
 		"M22 2 2 22",
@@ -11160,7 +11160,7 @@ func MousePointer2Off(opts ...Option) g.Node {
 
 // MousePointerBan creates a mouse-pointer-ban icon
 // Tags: wait, busy, loading, blocked, frozen, freeze
-func MousePointerBan(opts ...Option) g.Node {
+func MousePointerBan(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M2.034 2.681a.498.498 0 0 1 .647-.647l9 3.5a.5.5 0 0 1-.033.944L8.204 7.545a1 1 0 0 0-.66.66l-1.066 3.443a.5.5 0 0 1-.944.033z",
 		"M 10 16 a 6 6 0 1 0 12 0 a 6 6 0 1 0 -12 0",
@@ -11170,7 +11170,7 @@ func MousePointerBan(opts ...Option) g.Node {
 
 // MousePointerClick creates a mouse-pointer-click icon
 // Tags: click, select
-func MousePointerClick(opts ...Option) g.Node {
+func MousePointerClick(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M14 4.1 12 6",
 		"m5.1 8-2.9-.8",
@@ -11182,7 +11182,7 @@ func MousePointerClick(opts ...Option) g.Node {
 
 // Move creates a move icon
 // Tags: arrows
-func Move(opts ...Option) g.Node {
+func Move(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M12 2v20",
 		"m15 19-3 3-3-3",
@@ -11195,7 +11195,7 @@ func Move(opts ...Option) g.Node {
 
 // Move3d creates a move-3d icon
 // Tags: arrows, axis, gizmo, coordinates, transform, translate
-func Move3d(opts ...Option) g.Node {
+func Move3d(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M5 3v16h16",
 		"m5 19 6-6",
@@ -11206,7 +11206,7 @@ func Move3d(opts ...Option) g.Node {
 
 // MoveDiagonal creates a move-diagonal icon
 // Tags: double, arrow
-func MoveDiagonal(opts ...Option) g.Node {
+func MoveDiagonal(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M11 19H5v-6",
 		"M13 5h6v6",
@@ -11216,7 +11216,7 @@ func MoveDiagonal(opts ...Option) g.Node {
 
 // MoveDiagonal2 creates a move-diagonal-2 icon
 // Tags: double, arrow
-func MoveDiagonal2(opts ...Option) g.Node {
+func MoveDiagonal2(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M19 13v6h-6",
 		"M5 11V5h6",
@@ -11226,7 +11226,7 @@ func MoveDiagonal2(opts ...Option) g.Node {
 
 // MoveDown creates a move-down icon
 // Tags: arrow, direction, downwards, south
-func MoveDown(opts ...Option) g.Node {
+func MoveDown(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M8 18L12 22L16 18",
 		"M12 2V22",
@@ -11235,7 +11235,7 @@ func MoveDown(opts ...Option) g.Node {
 
 // MoveDownLeft creates a move-down-left icon
 // Tags: arrow, direction
-func MoveDownLeft(opts ...Option) g.Node {
+func MoveDownLeft(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M11 19H5V13",
 		"M19 5L5 19",
@@ -11244,7 +11244,7 @@ func MoveDownLeft(opts ...Option) g.Node {
 
 // MoveDownRight creates a move-down-right icon
 // Tags: arrow, direction
-func MoveDownRight(opts ...Option) g.Node {
+func MoveDownRight(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M19 13V19H13",
 		"M5 5L19 19",
@@ -11253,7 +11253,7 @@ func MoveDownRight(opts ...Option) g.Node {
 
 // MoveHorizontal creates a move-horizontal icon
 // Tags: double, arrow
-func MoveHorizontal(opts ...Option) g.Node {
+func MoveHorizontal(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"m18 8 4 4-4 4",
 		"M2 12h20",
@@ -11263,7 +11263,7 @@ func MoveHorizontal(opts ...Option) g.Node {
 
 // MoveLeft creates a move-left icon
 // Tags: arrow, direction, back, west
-func MoveLeft(opts ...Option) g.Node {
+func MoveLeft(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M6 8L2 12L6 16",
 		"M2 12H22",
@@ -11272,7 +11272,7 @@ func MoveLeft(opts ...Option) g.Node {
 
 // MoveRight creates a move-right icon
 // Tags: arrow, direction, trend flat, east
-func MoveRight(opts ...Option) g.Node {
+func MoveRight(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M18 8L22 12L18 16",
 		"M2 12H22",
@@ -11281,7 +11281,7 @@ func MoveRight(opts ...Option) g.Node {
 
 // MoveUp creates a move-up icon
 // Tags: arrow, direction, upwards, north
-func MoveUp(opts ...Option) g.Node {
+func MoveUp(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M8 6L12 2L16 6",
 		"M12 2V22",
@@ -11290,7 +11290,7 @@ func MoveUp(opts ...Option) g.Node {
 
 // MoveUpLeft creates a move-up-left icon
 // Tags: arrow, direction
-func MoveUpLeft(opts ...Option) g.Node {
+func MoveUpLeft(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M5 11V5H11",
 		"M5 5L19 19",
@@ -11299,7 +11299,7 @@ func MoveUpLeft(opts ...Option) g.Node {
 
 // MoveUpRight creates a move-up-right icon
 // Tags: arrow, direction
-func MoveUpRight(opts ...Option) g.Node {
+func MoveUpRight(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M13 5H19V11",
 		"M19 5L5 19",
@@ -11308,7 +11308,7 @@ func MoveUpRight(opts ...Option) g.Node {
 
 // MoveVertical creates a move-vertical icon
 // Tags: double, arrow
-func MoveVertical(opts ...Option) g.Node {
+func MoveVertical(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M12 2v20",
 		"m8 18 4 4 4-4",
@@ -11318,7 +11318,7 @@ func MoveVertical(opts ...Option) g.Node {
 
 // Music creates a music icon
 // Tags: note, quaver, eighth note
-func Music(opts ...Option) g.Node {
+func Music(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M9 18V5l12-2v13",
 		"M 3 18 a 3 3 0 1 0 6 0 a 3 3 0 1 0 -6 0",
@@ -11328,7 +11328,7 @@ func Music(opts ...Option) g.Node {
 
 // Music2 creates a music-2 icon
 // Tags: quaver, eighth note, note
-func Music2(opts ...Option) g.Node {
+func Music2(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M 4 18 a 4 4 0 1 0 8 0 a 4 4 0 1 0 -8 0",
 		"M12 18V2l7 4",
@@ -11337,7 +11337,7 @@ func Music2(opts ...Option) g.Node {
 
 // Music3 creates a music-3 icon
 // Tags: crotchet, minim, quarter note, half note, note
-func Music3(opts ...Option) g.Node {
+func Music3(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M 8 18 a 4 4 0 1 0 8 0 a 4 4 0 1 0 -8 0",
 		"M16 18V2",
@@ -11346,7 +11346,7 @@ func Music3(opts ...Option) g.Node {
 
 // Music4 creates a music-4 icon
 // Tags: semiquaver, sixteenth note, note
-func Music4(opts ...Option) g.Node {
+func Music4(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M9 18V5l12-2v13",
 		"m9 9 12-2",
@@ -11357,19 +11357,19 @@ func Music4(opts ...Option) g.Node {
 
 // Navigation creates a navigation icon
 // Tags: location, travel
-func Navigation(opts ...Option) g.Node {
+func Navigation(opts ...Option) templ.Component {
 	return Icon("M 3 11 L 22 2 L 13 21 L 11 13 L 3 11 Z", opts...)
 }
 
 // Navigation2 creates a navigation-2 icon
 // Tags: location, travel
-func Navigation2(opts ...Option) g.Node {
+func Navigation2(opts ...Option) templ.Component {
 	return Icon("M 12 2 L 19 21 L 12 17 L 5 21 L 12 2 Z", opts...)
 }
 
 // Navigation2Off creates a navigation-2-off icon
 // Tags: location, travel
-func Navigation2Off(opts ...Option) g.Node {
+func Navigation2Off(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M9.31 9.31 5 21l7-4 7 4-1.17-3.17",
 		"M14.53 8.88 12 2l-1.17 3.17",
@@ -11379,7 +11379,7 @@ func Navigation2Off(opts ...Option) g.Node {
 
 // NavigationOff creates a navigation-off icon
 // Tags: location, travel
-func NavigationOff(opts ...Option) g.Node {
+func NavigationOff(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M8.43 8.43 3 11l8 2 2 8 2.57-5.43",
 		"M17.39 11.73 22 2l-9.73 4.61",
@@ -11389,7 +11389,7 @@ func NavigationOff(opts ...Option) g.Node {
 
 // Network creates a network icon
 // Tags: tree
-func Network(opts ...Option) g.Node {
+func Network(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M 17 16 h 4 a 1 1 0 0 1 1 1 v 4 a 1 1 0 0 1 -1 1 h -4 a 1 1 0 0 1 -1 -1 v -4 a 1 1 0 0 1 1 -1 Z",
 		"M 3 16 h 4 a 1 1 0 0 1 1 1 v 4 a 1 1 0 0 1 -1 1 h -4 a 1 1 0 0 1 -1 -1 v -4 a 1 1 0 0 1 1 -1 Z",
@@ -11401,7 +11401,7 @@ func Network(opts ...Option) g.Node {
 
 // Newspaper creates a newspaper icon
 // Tags: news, feed, home, magazine, article, headline
-func Newspaper(opts ...Option) g.Node {
+func Newspaper(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M15 18h-5",
 		"M18 14h-8",
@@ -11412,7 +11412,7 @@ func Newspaper(opts ...Option) g.Node {
 
 // Nfc creates a nfc icon
 // Tags: contactless, payment, near-field communication
-func Nfc(opts ...Option) g.Node {
+func Nfc(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M6 8.32a7.43 7.43 0 0 1 0 7.36",
 		"M9.46 6.21a11.76 11.76 0 0 1 0 11.58",
@@ -11423,7 +11423,7 @@ func Nfc(opts ...Option) g.Node {
 
 // NonBinary creates a non-binary icon
 // Tags: gender, nonbinary, enby
-func NonBinary(opts ...Option) g.Node {
+func NonBinary(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M12 2v10",
 		"m8.5 4 7 4",
@@ -11434,7 +11434,7 @@ func NonBinary(opts ...Option) g.Node {
 
 // Notebook creates a notebook icon
 // Tags: notepad, notes, stationery, sketchbook, moleskine, closure, strap, band, elastic, organizer, organiser, planner, diary, journal, writing, written, writer, reading, high school, university, college, academy, student, study, homework, research
-func Notebook(opts ...Option) g.Node {
+func Notebook(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M2 6h4",
 		"M2 10h4",
@@ -11447,7 +11447,7 @@ func Notebook(opts ...Option) g.Node {
 
 // NotebookPen creates a notebook-pen icon
 // Tags: pencil, notepad, notes, noted, stationery, sketchbook, organizer, organiser, planner, diary, journal, writing, write, written, reading, high school, university, college, academy, student, study, research, homework, eraser, rubber
-func NotebookPen(opts ...Option) g.Node {
+func NotebookPen(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M13.4 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-7.4",
 		"M2 6h4",
@@ -11460,7 +11460,7 @@ func NotebookPen(opts ...Option) g.Node {
 
 // NotebookTabs creates a notebook-tabs icon
 // Tags: notepad, notes, people, family, friends, acquaintances, contacts, details, addresses, phone numbers, directory, listing, networking, alphabetical, a-z, organizer, organiser, planner, diary, stationery
-func NotebookTabs(opts ...Option) g.Node {
+func NotebookTabs(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M2 6h4",
 		"M2 10h4",
@@ -11476,7 +11476,7 @@ func NotebookTabs(opts ...Option) g.Node {
 
 // NotebookText creates a notebook-text icon
 // Tags: notepad, notes, pages, paper, stationery, sketchbook, organizer, organiser, planner, diary, journal, writing, write, written, reading, high school, university, college, academy, student, study, research, homework, lines, opened
-func NotebookText(opts ...Option) g.Node {
+func NotebookText(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M2 6h4",
 		"M2 10h4",
@@ -11491,7 +11491,7 @@ func NotebookText(opts ...Option) g.Node {
 
 // NotepadText creates a notepad-text icon
 // Tags: notebook, notes, pages, paper, stationery, sketchbook, organizer, organiser, planner, diary, journal, writing, write, written, reading, high school, university, college, academy, student, study, homework, research, lines, opened
-func NotepadText(opts ...Option) g.Node {
+func NotepadText(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M8 2v4",
 		"M12 2v4",
@@ -11505,7 +11505,7 @@ func NotepadText(opts ...Option) g.Node {
 
 // NotepadTextDashed creates a notepad-text-dashed icon
 // Tags: notebook, notes, pages, paper, stationery, diary, journal, writing, write, written, draft, template, lines
-func NotepadTextDashed(opts ...Option) g.Node {
+func NotepadTextDashed(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M8 2v4",
 		"M12 2v4",
@@ -11525,7 +11525,7 @@ func NotepadTextDashed(opts ...Option) g.Node {
 
 // Nut creates a nut icon
 // Tags: hazelnut, acorn, food, diet
-func Nut(opts ...Option) g.Node {
+func Nut(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M12 4V2",
 		"M5 10v4a7.004 7.004 0 0 0 5.277 6.787c.412.104.802.292 1.102.592L12 22l.621-.621c.3-.3.69-.488 1.102-.592A7.003 7.003 0 0 0 19 14v-4",
@@ -11535,7 +11535,7 @@ func Nut(opts ...Option) g.Node {
 
 // NutOff creates a nut-off icon
 // Tags: hazelnut, acorn, food, allergy, intolerance, diet
-func NutOff(opts ...Option) g.Node {
+func NutOff(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M12 4V2",
 		"M5 10v4a7.004 7.004 0 0 0 5.277 6.787c.412.104.802.292 1.102.592L12 22l.621-.621c.3-.3.69-.488 1.102-.592a7.01 7.01 0 0 0 4.125-2.939",
@@ -11547,13 +11547,13 @@ func NutOff(opts ...Option) g.Node {
 
 // Octagon creates a octagon icon
 // Tags: stop, shape
-func Octagon(opts ...Option) g.Node {
+func Octagon(opts ...Option) templ.Component {
 	return Icon("M2.586 16.726A2 2 0 0 1 2 15.312V8.688a2 2 0 0 1 .586-1.414l4.688-4.688A2 2 0 0 1 8.688 2h6.624a2 2 0 0 1 1.414.586l4.688 4.688A2 2 0 0 1 22 8.688v6.624a2 2 0 0 1-.586 1.414l-4.688 4.688a2 2 0 0 1-1.414.586H8.688a2 2 0 0 1-1.414-.586z", opts...)
 }
 
 // OctagonAlert creates a octagon-alert icon
 // Tags: warning, alert, danger, exclamation mark
-func OctagonAlert(opts ...Option) g.Node {
+func OctagonAlert(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M12 16h.01",
 		"M12 8v4",
@@ -11563,7 +11563,7 @@ func OctagonAlert(opts ...Option) g.Node {
 
 // OctagonMinus creates a octagon-minus icon
 // Tags: stop, forbidden, subtract, remove, decrease, reduce, -, traffic, halt, restricted
-func OctagonMinus(opts ...Option) g.Node {
+func OctagonMinus(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M2.586 16.726A2 2 0 0 1 2 15.312V8.688a2 2 0 0 1 .586-1.414l4.688-4.688A2 2 0 0 1 8.688 2h6.624a2 2 0 0 1 1.414.586l4.688 4.688A2 2 0 0 1 22 8.688v6.624a2 2 0 0 1-.586 1.414l-4.688 4.688a2 2 0 0 1-1.414.586H8.688a2 2 0 0 1-1.414-.586z",
 		"M8 12h8",
@@ -11572,7 +11572,7 @@ func OctagonMinus(opts ...Option) g.Node {
 
 // OctagonPause creates a octagon-pause icon
 // Tags: music, audio, stop
-func OctagonPause(opts ...Option) g.Node {
+func OctagonPause(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M10 15V9",
 		"M14 15V9",
@@ -11582,7 +11582,7 @@ func OctagonPause(opts ...Option) g.Node {
 
 // OctagonX creates a octagon-x icon
 // Tags: delete, stop, alert, warning, times, clear, math
-func OctagonX(opts ...Option) g.Node {
+func OctagonX(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"m15 9-6 6",
 		"M2.586 16.726A2 2 0 0 1 2 15.312V8.688a2 2 0 0 1 .586-1.414l4.688-4.688A2 2 0 0 1 8.688 2h6.624a2 2 0 0 1 1.414.586l4.688 4.688A2 2 0 0 1 22 8.688v6.624a2 2 0 0 1-.586 1.414l-4.688 4.688a2 2 0 0 1-1.414.586H8.688a2 2 0 0 1-1.414-.586z",
@@ -11592,13 +11592,13 @@ func OctagonX(opts ...Option) g.Node {
 
 // Omega creates a omega icon
 // Tags: greek, symbol, mathematics, education, physics, engineering, ohms, electrical resistance, angular frequency, dynamical systems, astronomy, constellations, philosophy
-func Omega(opts ...Option) g.Node {
+func Omega(opts ...Option) templ.Component {
 	return Icon("M3 20h4.5a.5.5 0 0 0 .5-.5v-.282a.52.52 0 0 0-.247-.437 8 8 0 1 1 8.494-.001.52.52 0 0 0-.247.438v.282a.5.5 0 0 0 .5.5H21", opts...)
 }
 
 // OptionIcon creates a option icon
 // Tags: keyboard, key, mac, alt, button
-func OptionIcon(opts ...Option) g.Node {
+func OptionIcon(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M3 3h6l6 18h6",
 		"M14 3h7",
@@ -11607,7 +11607,7 @@ func OptionIcon(opts ...Option) g.Node {
 
 // Orbit creates a orbit icon
 // Tags: planet, space, physics, satellites, moons
-func Orbit(opts ...Option) g.Node {
+func Orbit(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M20.341 6.484A10 10 0 0 1 10.266 21.85",
 		"M3.659 17.516A10 10 0 0 1 13.74 2.152",
@@ -11619,7 +11619,7 @@ func Orbit(opts ...Option) g.Node {
 
 // Origami creates a origami icon
 // Tags: paper, bird
-func Origami(opts ...Option) g.Node {
+func Origami(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M12 12V4a1 1 0 0 1 1-1h6.297a1 1 0 0 1 .651 1.759l-4.696 4.025",
 		"m12 21-7.414-7.414A2 2 0 0 1 4 12.172V6.415a1.002 1.002 0 0 1 1.707-.707L20 20.009",
@@ -11629,7 +11629,7 @@ func Origami(opts ...Option) g.Node {
 
 // Package2 creates a package-2 icon
 // Tags: box, container, storage, sealed, packed, unopened, undelivered, archive, zip
-func Package2(opts ...Option) g.Node {
+func Package2(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M12 3v6",
 		"M16.76 3a2 2 0 0 1 1.8 1.1l2.23 4.479a2 2 0 0 1 .21.891V19a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V9.472a2 2 0 0 1 .211-.894L5.45 4.1A2 2 0 0 1 7.24 3z",
@@ -11639,7 +11639,7 @@ func Package2(opts ...Option) g.Node {
 
 // PackageCheck creates a package-check icon
 // Tags: confirm, verified, done, todo, tick, complete, task, delivered
-func PackageCheck(opts ...Option) g.Node {
+func PackageCheck(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"m16 16 2 2 4-4",
 		"M21 10V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l2-1.14",
@@ -11651,7 +11651,7 @@ func PackageCheck(opts ...Option) g.Node {
 
 // PackageIcon creates a package icon
 // Tags: box, container, storage, sealed, delivery, undelivered, unopened, packed, archive, zip, module
-func PackageIcon(opts ...Option) g.Node {
+func PackageIcon(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M11 21.73a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73z",
 		"M12 22V12",
@@ -11662,7 +11662,7 @@ func PackageIcon(opts ...Option) g.Node {
 
 // PackageMinus creates a package-minus icon
 // Tags: delete, remove
-func PackageMinus(opts ...Option) g.Node {
+func PackageMinus(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M16 16h6",
 		"M21 10V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l2-1.14",
@@ -11674,7 +11674,7 @@ func PackageMinus(opts ...Option) g.Node {
 
 // PackageOpen creates a package-open icon
 // Tags: box, container, storage, unpack, unarchive, unzip, opened, delivered
-func PackageOpen(opts ...Option) g.Node {
+func PackageOpen(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M12 22v-9",
 		"M15.17 2.21a1.67 1.67 0 0 1 1.63 0L21 4.57a1.93 1.93 0 0 1 0 3.36L8.82 14.79a1.655 1.655 0 0 1-1.64 0L3 12.43a1.93 1.93 0 0 1 0-3.36z",
@@ -11685,7 +11685,7 @@ func PackageOpen(opts ...Option) g.Node {
 
 // PackagePlus creates a package-plus icon
 // Tags: new, add, create
-func PackagePlus(opts ...Option) g.Node {
+func PackagePlus(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M16 16h6",
 		"M19 13v6",
@@ -11698,7 +11698,7 @@ func PackagePlus(opts ...Option) g.Node {
 
 // PackageSearch creates a package-search icon
 // Tags: find, product process, lens
-func PackageSearch(opts ...Option) g.Node {
+func PackageSearch(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M21 10V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l2-1.14",
 		"m7.5 4.27 9 5.15",
@@ -11711,7 +11711,7 @@ func PackageSearch(opts ...Option) g.Node {
 
 // PackageX creates a package-x icon
 // Tags: delete, remove
-func PackageX(opts ...Option) g.Node {
+func PackageX(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M21 10V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l2-1.14",
 		"m7.5 4.27 9 5.15",
@@ -11723,7 +11723,7 @@ func PackageX(opts ...Option) g.Node {
 
 // PaintBucket creates a paint-bucket icon
 // Tags: fill, paint, bucket, color, colour
-func PaintBucket(opts ...Option) g.Node {
+func PaintBucket(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M11 7 6 2",
 		"M18.992 12H2.041",
@@ -11734,7 +11734,7 @@ func PaintBucket(opts ...Option) g.Node {
 
 // PaintRoller creates a paint-roller icon
 // Tags: brush, color, colour, decoration, diy
-func PaintRoller(opts ...Option) g.Node {
+func PaintRoller(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M 4 2 h 12 a 2 2 0 0 1 2 2 v 2 a 2 2 0 0 1 -2 2 h -12 a 2 2 0 0 1 -2 -2 v -2 a 2 2 0 0 1 2 -2 Z",
 		"M10 16v-2a2 2 0 0 1 2-2h8a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2h-2",
@@ -11744,7 +11744,7 @@ func PaintRoller(opts ...Option) g.Node {
 
 // Paintbrush creates a paintbrush icon
 // Tags: brush, paintbrush, design, color, colour, decoration, diy
-func Paintbrush(opts ...Option) g.Node {
+func Paintbrush(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"m14.622 17.897-10.68-2.913",
 		"M18.376 2.622a1 1 0 1 1 3.002 3.002L17.36 9.643a.5.5 0 0 0 0 .707l.944.944a2.41 2.41 0 0 1 0 3.408l-.944.944a.5.5 0 0 1-.707 0L8.354 7.348a.5.5 0 0 1 0-.707l.944-.944a2.41 2.41 0 0 1 3.408 0l.944.944a.5.5 0 0 0 .707 0z",
@@ -11754,7 +11754,7 @@ func Paintbrush(opts ...Option) g.Node {
 
 // PaintbrushVertical creates a paintbrush-vertical icon
 // Tags: brush, paintbrush, design, color, colour, decoration, diy
-func PaintbrushVertical(opts ...Option) g.Node {
+func PaintbrushVertical(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M10 2v2",
 		"M14 2v4",
@@ -11765,7 +11765,7 @@ func PaintbrushVertical(opts ...Option) g.Node {
 
 // Palette creates a palette icon
 // Tags: colors, colours, theme, scheme, paint, watercolor, watercolour, artist
-func Palette(opts ...Option) g.Node {
+func Palette(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M12 22a1 1 0 0 1 0-20 10 9 0 0 1 10 9 5 5 0 0 1-5 5h-2.25a1.75 1.75 0 0 0-1.4 2.8l.3.4a1.75 1.75 0 0 1-1.4 2.8z",
 		"M 13 6.5 a 0.5 0.5 0 1 0 1 0 a 0.5 0.5 0 1 0 -1 0",
@@ -11777,7 +11777,7 @@ func Palette(opts ...Option) g.Node {
 
 // Panda creates a panda icon
 // Tags: animal, wildlife, bear, zoo, bamboo
-func Panda(opts ...Option) g.Node {
+func Panda(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M11.25 17.25h1.5L12 18z",
 		"m15 12 2 2",
@@ -11790,7 +11790,7 @@ func Panda(opts ...Option) g.Node {
 
 // PanelBottom creates a panel-bottom icon
 // Tags: drawer, dock
-func PanelBottom(opts ...Option) g.Node {
+func PanelBottom(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M 5 3 h 14 a 2 2 0 0 1 2 2 v 14 a 2 2 0 0 1 -2 2 h -14 a 2 2 0 0 1 -2 -2 v -14 a 2 2 0 0 1 2 -2 Z",
 		"M3 15h18",
@@ -11799,7 +11799,7 @@ func PanelBottom(opts ...Option) g.Node {
 
 // PanelBottomClose creates a panel-bottom-close icon
 // Tags: drawer, dock, hide, chevron, down
-func PanelBottomClose(opts ...Option) g.Node {
+func PanelBottomClose(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M 5 3 h 14 a 2 2 0 0 1 2 2 v 14 a 2 2 0 0 1 -2 2 h -14 a 2 2 0 0 1 -2 -2 v -14 a 2 2 0 0 1 2 -2 Z",
 		"M3 15h18",
@@ -11809,7 +11809,7 @@ func PanelBottomClose(opts ...Option) g.Node {
 
 // PanelBottomDashed creates a panel-bottom-dashed icon
 // Tags: drawer, dock, show, reveal, padding, margin, guide, layout, bleed
-func PanelBottomDashed(opts ...Option) g.Node {
+func PanelBottomDashed(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M 5 3 h 14 a 2 2 0 0 1 2 2 v 14 a 2 2 0 0 1 -2 2 h -14 a 2 2 0 0 1 -2 -2 v -14 a 2 2 0 0 1 2 -2 Z",
 		"M14 15h1",
@@ -11821,7 +11821,7 @@ func PanelBottomDashed(opts ...Option) g.Node {
 
 // PanelBottomOpen creates a panel-bottom-open icon
 // Tags: drawer, dock, show, reveal, chevron, up
-func PanelBottomOpen(opts ...Option) g.Node {
+func PanelBottomOpen(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M 5 3 h 14 a 2 2 0 0 1 2 2 v 14 a 2 2 0 0 1 -2 2 h -14 a 2 2 0 0 1 -2 -2 v -14 a 2 2 0 0 1 2 -2 Z",
 		"M3 15h18",
@@ -11831,7 +11831,7 @@ func PanelBottomOpen(opts ...Option) g.Node {
 
 // PanelLeft creates a panel-left icon
 // Tags: primary, drawer
-func PanelLeft(opts ...Option) g.Node {
+func PanelLeft(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M 5 3 h 14 a 2 2 0 0 1 2 2 v 14 a 2 2 0 0 1 -2 2 h -14 a 2 2 0 0 1 -2 -2 v -14 a 2 2 0 0 1 2 -2 Z",
 		"M9 3v18",
@@ -11840,7 +11840,7 @@ func PanelLeft(opts ...Option) g.Node {
 
 // PanelLeftClose creates a panel-left-close icon
 // Tags: primary, drawer, hide, chevron, <
-func PanelLeftClose(opts ...Option) g.Node {
+func PanelLeftClose(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M 5 3 h 14 a 2 2 0 0 1 2 2 v 14 a 2 2 0 0 1 -2 2 h -14 a 2 2 0 0 1 -2 -2 v -14 a 2 2 0 0 1 2 -2 Z",
 		"M9 3v18",
@@ -11850,7 +11850,7 @@ func PanelLeftClose(opts ...Option) g.Node {
 
 // PanelLeftDashed creates a panel-left-dashed icon
 // Tags: sidebar, primary, drawer, show, reveal, padding, margin, guide, layout, bleed
-func PanelLeftDashed(opts ...Option) g.Node {
+func PanelLeftDashed(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M 5 3 h 14 a 2 2 0 0 1 2 2 v 14 a 2 2 0 0 1 -2 2 h -14 a 2 2 0 0 1 -2 -2 v -14 a 2 2 0 0 1 2 -2 Z",
 		"M9 14v1",
@@ -11862,7 +11862,7 @@ func PanelLeftDashed(opts ...Option) g.Node {
 
 // PanelLeftOpen creates a panel-left-open icon
 // Tags: primary, drawer, show, reveal, chevron, right, >
-func PanelLeftOpen(opts ...Option) g.Node {
+func PanelLeftOpen(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M 5 3 h 14 a 2 2 0 0 1 2 2 v 14 a 2 2 0 0 1 -2 2 h -14 a 2 2 0 0 1 -2 -2 v -14 a 2 2 0 0 1 2 -2 Z",
 		"M9 3v18",
@@ -11872,7 +11872,7 @@ func PanelLeftOpen(opts ...Option) g.Node {
 
 // PanelLeftRightDashed creates a panel-left-right-dashed icon
 // Tags: sidebar, primary, drawer, show, reveal, padding, margin, guide, layout, vertical, bleed
-func PanelLeftRightDashed(opts ...Option) g.Node {
+func PanelLeftRightDashed(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M15 10V9",
 		"M15 15v-1",
@@ -11888,7 +11888,7 @@ func PanelLeftRightDashed(opts ...Option) g.Node {
 
 // PanelRight creates a panel-right icon
 // Tags: sidebar, secondary, drawer
-func PanelRight(opts ...Option) g.Node {
+func PanelRight(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M 5 3 h 14 a 2 2 0 0 1 2 2 v 14 a 2 2 0 0 1 -2 2 h -14 a 2 2 0 0 1 -2 -2 v -14 a 2 2 0 0 1 2 -2 Z",
 		"M15 3v18",
@@ -11897,7 +11897,7 @@ func PanelRight(opts ...Option) g.Node {
 
 // PanelRightClose creates a panel-right-close icon
 // Tags: sidebar, secondary, drawer, hide, chevron, >
-func PanelRightClose(opts ...Option) g.Node {
+func PanelRightClose(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M 5 3 h 14 a 2 2 0 0 1 2 2 v 14 a 2 2 0 0 1 -2 2 h -14 a 2 2 0 0 1 -2 -2 v -14 a 2 2 0 0 1 2 -2 Z",
 		"M15 3v18",
@@ -11907,7 +11907,7 @@ func PanelRightClose(opts ...Option) g.Node {
 
 // PanelRightDashed creates a panel-right-dashed icon
 // Tags: sidebar, secondary, drawer, show, reveal, padding, margin, guide, layout, bleed
-func PanelRightDashed(opts ...Option) g.Node {
+func PanelRightDashed(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M 5 3 h 14 a 2 2 0 0 1 2 2 v 14 a 2 2 0 0 1 -2 2 h -14 a 2 2 0 0 1 -2 -2 v -14 a 2 2 0 0 1 2 -2 Z",
 		"M15 14v1",
@@ -11919,7 +11919,7 @@ func PanelRightDashed(opts ...Option) g.Node {
 
 // PanelRightOpen creates a panel-right-open icon
 // Tags: sidebar, secondary, drawer, show, reveal, chevron, left, <
-func PanelRightOpen(opts ...Option) g.Node {
+func PanelRightOpen(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M 5 3 h 14 a 2 2 0 0 1 2 2 v 14 a 2 2 0 0 1 -2 2 h -14 a 2 2 0 0 1 -2 -2 v -14 a 2 2 0 0 1 2 -2 Z",
 		"M15 3v18",
@@ -11929,7 +11929,7 @@ func PanelRightOpen(opts ...Option) g.Node {
 
 // PanelTop creates a panel-top icon
 // Tags: drawer, browser, webpage
-func PanelTop(opts ...Option) g.Node {
+func PanelTop(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M 5 3 h 14 a 2 2 0 0 1 2 2 v 14 a 2 2 0 0 1 -2 2 h -14 a 2 2 0 0 1 -2 -2 v -14 a 2 2 0 0 1 2 -2 Z",
 		"M3 9h18",
@@ -11938,7 +11938,7 @@ func PanelTop(opts ...Option) g.Node {
 
 // PanelTopBottomDashed creates a panel-top-bottom-dashed icon
 // Tags: sidebar, primary, drawer, show, reveal, padding, margin, guide, layout, horizontal, bleed
-func PanelTopBottomDashed(opts ...Option) g.Node {
+func PanelTopBottomDashed(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M14 15h1",
 		"M14 9h1",
@@ -11954,7 +11954,7 @@ func PanelTopBottomDashed(opts ...Option) g.Node {
 
 // PanelTopClose creates a panel-top-close icon
 // Tags: menu bar, drawer, hide, chevron, up
-func PanelTopClose(opts ...Option) g.Node {
+func PanelTopClose(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M 5 3 h 14 a 2 2 0 0 1 2 2 v 14 a 2 2 0 0 1 -2 2 h -14 a 2 2 0 0 1 -2 -2 v -14 a 2 2 0 0 1 2 -2 Z",
 		"M3 9h18",
@@ -11964,7 +11964,7 @@ func PanelTopClose(opts ...Option) g.Node {
 
 // PanelTopDashed creates a panel-top-dashed icon
 // Tags: menu bar, drawer, show, reveal, padding, margin, guide, layout, bleed
-func PanelTopDashed(opts ...Option) g.Node {
+func PanelTopDashed(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M 5 3 h 14 a 2 2 0 0 1 2 2 v 14 a 2 2 0 0 1 -2 2 h -14 a 2 2 0 0 1 -2 -2 v -14 a 2 2 0 0 1 2 -2 Z",
 		"M14 9h1",
@@ -11976,7 +11976,7 @@ func PanelTopDashed(opts ...Option) g.Node {
 
 // PanelTopOpen creates a panel-top-open icon
 // Tags: menu bar, drawer, show, reveal, chevron, down
-func PanelTopOpen(opts ...Option) g.Node {
+func PanelTopOpen(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M 5 3 h 14 a 2 2 0 0 1 2 2 v 14 a 2 2 0 0 1 -2 2 h -14 a 2 2 0 0 1 -2 -2 v -14 a 2 2 0 0 1 2 -2 Z",
 		"M3 9h18",
@@ -11986,7 +11986,7 @@ func PanelTopOpen(opts ...Option) g.Node {
 
 // PanelsLeftBottom creates a panels-left-bottom icon
 // Tags: drawers, sidebar, primary
-func PanelsLeftBottom(opts ...Option) g.Node {
+func PanelsLeftBottom(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M 5 3 h 14 a 2 2 0 0 1 2 2 v 14 a 2 2 0 0 1 -2 2 h -14 a 2 2 0 0 1 -2 -2 v -14 a 2 2 0 0 1 2 -2 Z",
 		"M9 3v18",
@@ -11996,7 +11996,7 @@ func PanelsLeftBottom(opts ...Option) g.Node {
 
 // PanelsRightBottom creates a panels-right-bottom icon
 // Tags: drawers, sidebar, secondary
-func PanelsRightBottom(opts ...Option) g.Node {
+func PanelsRightBottom(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M 5 3 h 14 a 2 2 0 0 1 2 2 v 14 a 2 2 0 0 1 -2 2 h -14 a 2 2 0 0 1 -2 -2 v -14 a 2 2 0 0 1 2 -2 Z",
 		"M3 15h12",
@@ -12006,7 +12006,7 @@ func PanelsRightBottom(opts ...Option) g.Node {
 
 // PanelsTopLeft creates a panels-top-left icon
 // Tags: menu bar, sidebar, primary, drawers, window, webpage, projects, overview
-func PanelsTopLeft(opts ...Option) g.Node {
+func PanelsTopLeft(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M 5 3 h 14 a 2 2 0 0 1 2 2 v 14 a 2 2 0 0 1 -2 2 h -14 a 2 2 0 0 1 -2 -2 v -14 a 2 2 0 0 1 2 -2 Z",
 		"M3 9h18",
@@ -12016,13 +12016,13 @@ func PanelsTopLeft(opts ...Option) g.Node {
 
 // Paperclip creates a paperclip icon
 // Tags: attachment, file
-func Paperclip(opts ...Option) g.Node {
+func Paperclip(opts ...Option) templ.Component {
 	return Icon("m16 6-8.414 8.586a2 2 0 0 0 2.829 2.829l8.414-8.586a4 4 0 1 0-5.657-5.657l-8.379 8.551a6 6 0 1 0 8.485 8.485l8.379-8.551", opts...)
 }
 
 // Parentheses creates a parentheses icon
 // Tags: code, token, parenthesis, parens, brackets, parameters, arguments, args, input, call, math, formula, function, (, )
-func Parentheses(opts ...Option) g.Node {
+func Parentheses(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M8 21s-4-3-4-9 4-9 4-9",
 		"M16 3s4 3 4 9-4 9-4 9",
@@ -12031,7 +12031,7 @@ func Parentheses(opts ...Option) g.Node {
 
 // ParkingMeter creates a parking-meter icon
 // Tags: driving, car park, pay, sidewalk, pavement
-func ParkingMeter(opts ...Option) g.Node {
+func ParkingMeter(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M11 15h2",
 		"M12 12v3",
@@ -12043,7 +12043,7 @@ func ParkingMeter(opts ...Option) g.Node {
 
 // PartyPopper creates a party-popper icon
 // Tags: emoji, congratulations, celebration, party, tada, 🎉, 🎊, excitement, exciting, excites, confetti
-func PartyPopper(opts ...Option) g.Node {
+func PartyPopper(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M5.8 11.3 2 22l10.7-3.79",
 		"M4 3h.01",
@@ -12059,7 +12059,7 @@ func PartyPopper(opts ...Option) g.Node {
 
 // Pause creates a pause icon
 // Tags: music, stop
-func Pause(opts ...Option) g.Node {
+func Pause(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M 15 3 h 3 a 1 1 0 0 1 1 1 v 16 a 1 1 0 0 1 -1 1 h -3 a 1 1 0 0 1 -1 -1 v -16 a 1 1 0 0 1 1 -1 Z",
 		"M 6 3 h 3 a 1 1 0 0 1 1 1 v 16 a 1 1 0 0 1 -1 1 h -3 a 1 1 0 0 1 -1 -1 v -16 a 1 1 0 0 1 1 -1 Z",
@@ -12068,7 +12068,7 @@ func Pause(opts ...Option) g.Node {
 
 // PawPrint creates a paw-print icon
 // Tags: pets, vets, veterinarian, domesticated, cat, dog, bear
-func PawPrint(opts ...Option) g.Node {
+func PawPrint(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M 9 4 a 2 2 0 1 0 4 0 a 2 2 0 1 0 -4 0",
 		"M 16 8 a 2 2 0 1 0 4 0 a 2 2 0 1 0 -4 0",
@@ -12079,7 +12079,7 @@ func PawPrint(opts ...Option) g.Node {
 
 // PcCase creates a pc-case icon
 // Tags: computer, chassis
-func PcCase(opts ...Option) g.Node {
+func PcCase(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M 7 2 h 10 a 2 2 0 0 1 2 2 v 16 a 2 2 0 0 1 -2 2 h -10 a 2 2 0 0 1 -2 -2 v -16 a 2 2 0 0 1 2 -2 Z",
 		"M15 14h.01",
@@ -12090,13 +12090,13 @@ func PcCase(opts ...Option) g.Node {
 
 // Pen creates a pen icon
 // Tags: pencil, change, create, draw, writer, writing, biro, ink, marker, felt tip, stationery, artist
-func Pen(opts ...Option) g.Node {
+func Pen(opts ...Option) templ.Component {
 	return Icon("M21.174 6.812a1 1 0 0 0-3.986-3.987L3.842 16.174a2 2 0 0 0-.5.83l-1.321 4.352a.5.5 0 0 0 .623.622l4.353-1.32a2 2 0 0 0 .83-.497z", opts...)
 }
 
 // PenLine creates a pen-line icon
 // Tags: pencil, change, create, draw, writer, writing, biro, ink, marker, felt tip, stationery, artist
-func PenLine(opts ...Option) g.Node {
+func PenLine(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M13 21h8",
 		"M21.174 6.812a1 1 0 0 0-3.986-3.987L3.842 16.174a2 2 0 0 0-.5.83l-1.321 4.352a.5.5 0 0 0 .623.622l4.353-1.32a2 2 0 0 0 .83-.497z",
@@ -12105,7 +12105,7 @@ func PenLine(opts ...Option) g.Node {
 
 // PenOff creates a pen-off icon
 // Tags: disabled, inactive, non-editable, locked, read-only, unmodifiable, frozen, restricted, pencil, change, create, draw, writer, writing, biro, ink, marker, felt tip, stationery, artist
-func PenOff(opts ...Option) g.Node {
+func PenOff(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"m10 10-6.157 6.162a2 2 0 0 0-.5.833l-1.322 4.36a.5.5 0 0 0 .622.624l4.358-1.323a2 2 0 0 0 .83-.5L14 13.982",
 		"m12.829 7.172 4.359-4.346a1 1 0 1 1 3.986 3.986l-4.353 4.353",
@@ -12115,7 +12115,7 @@ func PenOff(opts ...Option) g.Node {
 
 // PenTool creates a pen-tool icon
 // Tags: vector, drawing, path
-func PenTool(opts ...Option) g.Node {
+func PenTool(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M15.707 21.293a1 1 0 0 1-1.414 0l-1.586-1.586a1 1 0 0 1 0-1.414l5.586-5.586a1 1 0 0 1 1.414 0l1.586 1.586a1 1 0 0 1 0 1.414z",
 		"m18 13-1.375-6.874a1 1 0 0 0-.746-.776L3.235 2.028a1 1 0 0 0-1.207 1.207L5.35 15.879a1 1 0 0 0 .776.746L13 18",
@@ -12126,7 +12126,7 @@ func PenTool(opts ...Option) g.Node {
 
 // Pencil creates a pencil icon
 // Tags: rubber, edit, create, draw, sketch, draft, writer, writing, stationery, artist
-func Pencil(opts ...Option) g.Node {
+func Pencil(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M21.174 6.812a1 1 0 0 0-3.986-3.987L3.842 16.174a2 2 0 0 0-.5.83l-1.321 4.352a.5.5 0 0 0 .623.622l4.353-1.32a2 2 0 0 0 .83-.497z",
 		"m15 5 4 4",
@@ -12135,7 +12135,7 @@ func Pencil(opts ...Option) g.Node {
 
 // PencilLine creates a pencil-line icon
 // Tags: pencil, change, create, draw, sketch, draft, writer, writing, biro, ink, marker, felt tip, stationery, artist
-func PencilLine(opts ...Option) g.Node {
+func PencilLine(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M13 21h8",
 		"m15 5 4 4",
@@ -12145,7 +12145,7 @@ func PencilLine(opts ...Option) g.Node {
 
 // PencilOff creates a pencil-off icon
 // Tags: disabled, inactive, non-editable, locked, read-only, unmodifiable, frozen, restricted, rubber, edit, create, draw, sketch, draft, writer, writing, stationery, artist
-func PencilOff(opts ...Option) g.Node {
+func PencilOff(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"m10 10-6.157 6.162a2 2 0 0 0-.5.833l-1.322 4.36a.5.5 0 0 0 .622.624l4.358-1.323a2 2 0 0 0 .83-.5L14 13.982",
 		"m12.829 7.172 4.359-4.346a1 1 0 1 1 3.986 3.986l-4.353 4.353",
@@ -12156,7 +12156,7 @@ func PencilOff(opts ...Option) g.Node {
 
 // PencilRuler creates a pencil-ruler icon
 // Tags: edit, create, draw, sketch, draft, writer, writing, stationery, artist, measurements, centimeters, cm, millimeters, mm, metre, foot, feet, inches, units, size, length, width, height, dimensions, depth, breadth, extent
-func PencilRuler(opts ...Option) g.Node {
+func PencilRuler(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M13 7 8.7 2.7a2.41 2.41 0 0 0-3.4 0L2.7 5.3a2.41 2.41 0 0 0 0 3.4L7 13",
 		"m8 6 2-2",
@@ -12169,13 +12169,13 @@ func PencilRuler(opts ...Option) g.Node {
 
 // Pentagon creates a pentagon icon
 // Tags: shape
-func Pentagon(opts ...Option) g.Node {
+func Pentagon(opts ...Option) templ.Component {
 	return Icon("M10.83 2.38a2 2 0 0 1 2.34 0l8 5.74a2 2 0 0 1 .73 2.25l-3.04 9.26a2 2 0 0 1-1.9 1.37H7.04a2 2 0 0 1-1.9-1.37L2.1 10.37a2 2 0 0 1 .73-2.25z", opts...)
 }
 
 // Percent creates a percent icon
 // Tags: percentage, modulo, modulus, remainder, %, sale, discount, offer, marketing
-func Percent(opts ...Option) g.Node {
+func Percent(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M 19 5 L 5 19",
 		"M 4 6.5 a 2.5 2.5 0 1 0 5 0 a 2.5 2.5 0 1 0 -5 0",
@@ -12185,7 +12185,7 @@ func Percent(opts ...Option) g.Node {
 
 // PersonStanding creates a person-standing icon
 // Tags: people, human, accessibility, stick figure
-func PersonStanding(opts ...Option) g.Node {
+func PersonStanding(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M 11 5 a 1 1 0 1 0 2 0 a 1 1 0 1 0 -2 0",
 		"m9 20 3-6 3 6",
@@ -12196,7 +12196,7 @@ func PersonStanding(opts ...Option) g.Node {
 
 // PhilippinePeso creates a philippine-peso icon
 // Tags: currency, peso, money, php
-func PhilippinePeso(opts ...Option) g.Node {
+func PhilippinePeso(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M20 11H4",
 		"M20 7H4",
@@ -12206,13 +12206,13 @@ func PhilippinePeso(opts ...Option) g.Node {
 
 // Phone creates a phone icon
 // Tags: call
-func Phone(opts ...Option) g.Node {
+func Phone(opts ...Option) templ.Component {
 	return Icon("M13.832 16.568a1 1 0 0 0 1.213-.303l.355-.465A2 2 0 0 1 17 15h3a2 2 0 0 1 2 2v3a2 2 0 0 1-2 2A18 18 0 0 1 2 4a2 2 0 0 1 2-2h3a2 2 0 0 1 2 2v3a2 2 0 0 1-.8 1.6l-.468.351a1 1 0 0 0-.292 1.233 14 14 0 0 0 6.392 6.384", opts...)
 }
 
 // PhoneCall creates a phone-call icon
 // Tags: ring
-func PhoneCall(opts ...Option) g.Node {
+func PhoneCall(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M13 2a9 9 0 0 1 9 9",
 		"M13 6a5 5 0 0 1 5 5",
@@ -12222,7 +12222,7 @@ func PhoneCall(opts ...Option) g.Node {
 
 // PhoneForwarded creates a phone-forwarded icon
 // Tags: call
-func PhoneForwarded(opts ...Option) g.Node {
+func PhoneForwarded(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M14 6h8",
 		"m18 2 4 4-4 4",
@@ -12232,7 +12232,7 @@ func PhoneForwarded(opts ...Option) g.Node {
 
 // PhoneIncoming creates a phone-incoming icon
 // Tags: call
-func PhoneIncoming(opts ...Option) g.Node {
+func PhoneIncoming(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M16 2v6h6",
 		"m22 2-6 6",
@@ -12242,7 +12242,7 @@ func PhoneIncoming(opts ...Option) g.Node {
 
 // PhoneMissed creates a phone-missed icon
 // Tags: call
-func PhoneMissed(opts ...Option) g.Node {
+func PhoneMissed(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"m16 2 6 6",
 		"m22 2-6 6",
@@ -12252,7 +12252,7 @@ func PhoneMissed(opts ...Option) g.Node {
 
 // PhoneOff creates a phone-off icon
 // Tags: call, mute
-func PhoneOff(opts ...Option) g.Node {
+func PhoneOff(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M10.1 13.9a14 14 0 0 0 3.732 2.668 1 1 0 0 0 1.213-.303l.355-.465A2 2 0 0 1 17 15h3a2 2 0 0 1 2 2v3a2 2 0 0 1-2 2 18 18 0 0 1-12.728-5.272",
 		"M22 2 2 22",
@@ -12262,7 +12262,7 @@ func PhoneOff(opts ...Option) g.Node {
 
 // PhoneOutgoing creates a phone-outgoing icon
 // Tags: call
-func PhoneOutgoing(opts ...Option) g.Node {
+func PhoneOutgoing(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"m16 8 6-6",
 		"M22 8V2h-6",
@@ -12272,7 +12272,7 @@ func PhoneOutgoing(opts ...Option) g.Node {
 
 // Pi creates a pi icon
 // Tags: constant, code, coding, programming, symbol, trigonometry, geometry, formula
-func Pi(opts ...Option) g.Node {
+func Pi(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M 9 4 L 9 20",
 		"M4 7c0-1.7 1.3-3 3-3h13",
@@ -12282,7 +12282,7 @@ func Pi(opts ...Option) g.Node {
 
 // Piano creates a piano icon
 // Tags: music, audio, sound, noise, notes, chord, keys, octave, acoustic, instrument, play, pianist, performance, concert
-func Piano(opts ...Option) g.Node {
+func Piano(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M18.5 8c-1.4 0-2.6-.8-3.2-2A6.87 6.87 0 0 0 2 9v11a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2v-8.5C22 9.6 20.4 8 18.5 8",
 		"M2 14h20",
@@ -12295,7 +12295,7 @@ func Piano(opts ...Option) g.Node {
 
 // Pickaxe creates a pickaxe icon
 // Tags: mining, mine, land worker, extraction, labor, construction, progress, advancement, crafting, building, creation
-func Pickaxe(opts ...Option) g.Node {
+func Pickaxe(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"m14 13-8.381 8.38a1 1 0 0 1-3.001-3L11 9.999",
 		"M15.973 4.027A13 13 0 0 0 5.902 2.373c-1.398.342-1.092 2.158.277 2.601a19.9 19.9 0 0 1 5.822 3.024",
@@ -12306,7 +12306,7 @@ func Pickaxe(opts ...Option) g.Node {
 
 // PictureInPicture creates a picture-in-picture icon
 // Tags: display, play, video, pop out, always on top, window, inset, multitask
-func PictureInPicture(opts ...Option) g.Node {
+func PictureInPicture(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M2 10h6V4",
 		"m2 4 6 6",
@@ -12318,7 +12318,7 @@ func PictureInPicture(opts ...Option) g.Node {
 
 // PictureInPicture2 creates a picture-in-picture-2 icon
 // Tags: display, play, video, pop out, always on top, window, inset, multitask
-func PictureInPicture2(opts ...Option) g.Node {
+func PictureInPicture2(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M21 9V6a2 2 0 0 0-2-2H4a2 2 0 0 0-2 2v10c0 1.1.9 2 2 2h4",
 		"M 14 13 h 6 a 2 2 0 0 1 2 2 v 3 a 2 2 0 0 1 -2 2 h -6 a 2 2 0 0 1 -2 -2 v -3 a 2 2 0 0 1 2 -2 Z",
@@ -12327,7 +12327,7 @@ func PictureInPicture2(opts ...Option) g.Node {
 
 // PiggyBank creates a piggy-bank icon
 // Tags: money, savings
-func PiggyBank(opts ...Option) g.Node {
+func PiggyBank(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M11 17h3v2a1 1 0 0 0 1 1h2a1 1 0 0 0 1-1v-3a3.16 3.16 0 0 0 2-2h1a1 1 0 0 0 1-1v-2a1 1 0 0 0-1-1h-1a5 5 0 0 0-2-4V3a4 4 0 0 0-3.2 1.6l-.3.4H11a6 6 0 0 0-6 6v1a5 5 0 0 0 2 4v3a1 1 0 0 0 1 1h2a1 1 0 0 0 1-1z",
 		"M16 10h.01",
@@ -12337,7 +12337,7 @@ func PiggyBank(opts ...Option) g.Node {
 
 // Pilcrow creates a pilcrow icon
 // Tags: paragraph, mark, paraph, blind, typography, type, text, prose, symbol
-func Pilcrow(opts ...Option) g.Node {
+func Pilcrow(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M13 4v16",
 		"M17 4v16",
@@ -12347,7 +12347,7 @@ func Pilcrow(opts ...Option) g.Node {
 
 // PilcrowLeft creates a pilcrow-left icon
 // Tags: direction, paragraph, mark, paraph, blind, typography, type, text, prose, symbol
-func PilcrowLeft(opts ...Option) g.Node {
+func PilcrowLeft(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M14 3v11",
 		"M14 9h-3a3 3 0 0 1 0-6h9",
@@ -12359,7 +12359,7 @@ func PilcrowLeft(opts ...Option) g.Node {
 
 // PilcrowRight creates a pilcrow-right icon
 // Tags: direction, paragraph, mark, paraph, blind, typography, type, text, prose, symbol
-func PilcrowRight(opts ...Option) g.Node {
+func PilcrowRight(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M10 3v11",
 		"M10 9H7a1 1 0 0 1 0-6h8",
@@ -12371,7 +12371,7 @@ func PilcrowRight(opts ...Option) g.Node {
 
 // Pill creates a pill icon
 // Tags: medicine, medication, drug, prescription, tablet, pharmacy
-func Pill(opts ...Option) g.Node {
+func Pill(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"m10.5 20.5 10-10a4.95 4.95 0 1 0-7-7l-10 10a4.95 4.95 0 1 0 7 7Z",
 		"m8.5 8.5 7 7",
@@ -12380,7 +12380,7 @@ func Pill(opts ...Option) g.Node {
 
 // PillBottle creates a pill-bottle icon
 // Tags: medicine, medication, prescription, drug, supplement, vitamin, capsule, jar, container, healthcare, pharmaceutical, tablet
-func PillBottle(opts ...Option) g.Node {
+func PillBottle(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M18 11h-4a1 1 0 0 0-1 1v5a1 1 0 0 0 1 1h4",
 		"M6 7v13a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2V7",
@@ -12390,7 +12390,7 @@ func PillBottle(opts ...Option) g.Node {
 
 // Pin creates a pin icon
 // Tags: save, map, lock, fix
-func Pin(opts ...Option) g.Node {
+func Pin(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M12 17v5",
 		"M9 10.76a2 2 0 0 1-1.11 1.79l-1.78.9A2 2 0 0 0 5 15.24V16a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-.76a2 2 0 0 0-1.11-1.79l-1.78-.9A2 2 0 0 1 15 10.76V7a1 1 0 0 1 1-1 2 2 0 0 0 0-4H8a2 2 0 0 0 0 4 1 1 0 0 1 1 1z",
@@ -12399,7 +12399,7 @@ func Pin(opts ...Option) g.Node {
 
 // PinOff creates a pin-off icon
 // Tags: unpin, map, unlock, unfix, unsave, remove
-func PinOff(opts ...Option) g.Node {
+func PinOff(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M12 17v5",
 		"M15 9.34V7a1 1 0 0 1 1-1 2 2 0 0 0 0-4H7.89",
@@ -12410,7 +12410,7 @@ func PinOff(opts ...Option) g.Node {
 
 // Pipette creates a pipette icon
 // Tags: eye dropper, color picker, lab, chemistry
-func Pipette(opts ...Option) g.Node {
+func Pipette(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"m12 9-8.414 8.414A2 2 0 0 0 3 18.828v1.344a2 2 0 0 1-.586 1.414A2 2 0 0 1 3.828 21h1.344a2 2 0 0 0 1.414-.586L15 12",
 		"m18 9 .4.4a1 1 0 1 1-3 3l-3.8-3.8a1 1 0 1 1 3-3l.4.4 3.4-3.4a1 1 0 1 1 3 3z",
@@ -12420,7 +12420,7 @@ func Pipette(opts ...Option) g.Node {
 
 // Pizza creates a pizza icon
 // Tags: pie, quiche, food
-func Pizza(opts ...Option) g.Node {
+func Pizza(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"m12 14-1 1",
 		"m13.75 18.25-1.25 1.42",
@@ -12432,13 +12432,13 @@ func Pizza(opts ...Option) g.Node {
 
 // Plane creates a plane icon
 // Tags: plane, trip, airplane
-func Plane(opts ...Option) g.Node {
+func Plane(opts ...Option) templ.Component {
 	return Icon("M17.8 19.2 16 11l3.5-3.5C21 6 21.5 4 21 3c-1-.5-3 0-4.5 1.5L13 8 4.8 6.2c-.5-.1-.9.1-1.1.5l-.3.5c-.2.5-.1 1 .3 1.3L9 12l-2 3H4l-1 1 3 2 2 3 1-1v-3l3-2 3.5 5.3c.3.4.8.5 1.3.3l.5-.2c.4-.3.6-.7.5-1.2z", opts...)
 }
 
 // PlaneLanding creates a plane-landing icon
 // Tags: arrival, plane, trip, airplane, landing
-func PlaneLanding(opts ...Option) g.Node {
+func PlaneLanding(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M2 22h20",
 		"M3.77 10.77 2 9l2-4.5 1.1.55c.55.28.9.84.9 1.45s.35 1.17.9 1.45L8 8.5l3-6 1.05.53a2 2 0 0 1 1.09 1.52l.72 5.4a2 2 0 0 0 1.09 1.52l4.4 2.2c.42.22.78.55 1.01.96l.6 1.03c.49.88-.06 1.98-1.06 2.1l-1.18.15c-.47.06-.95-.02-1.37-.24L4.29 11.15a2 2 0 0 1-.52-.38Z",
@@ -12447,7 +12447,7 @@ func PlaneLanding(opts ...Option) g.Node {
 
 // PlaneTakeoff creates a plane-takeoff icon
 // Tags: departure, plane, trip, airplane, takeoff
-func PlaneTakeoff(opts ...Option) g.Node {
+func PlaneTakeoff(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M2 22h20",
 		"M6.36 17.4 4 17l-2-4 1.1-.55a2 2 0 0 1 1.8 0l.17.1a2 2 0 0 0 1.8 0L8 12 5 6l.9-.45a2 2 0 0 1 2.09.2l4.02 3a2 2 0 0 0 2.1.2l4.19-2.06a2.41 2.41 0 0 1 1.73-.17L21 7a1.4 1.4 0 0 1 .87 1.99l-.38.76c-.23.46-.6.84-1.07 1.08L7.58 17.2a2 2 0 0 1-1.22.18Z",
@@ -12456,13 +12456,13 @@ func PlaneTakeoff(opts ...Option) g.Node {
 
 // Play creates a play icon
 // Tags: music, audio, video, start, run
-func Play(opts ...Option) g.Node {
+func Play(opts ...Option) templ.Component {
 	return Icon("M5 5a2 2 0 0 1 3.008-1.728l11.997 6.998a2 2 0 0 1 .003 3.458l-12 7A2 2 0 0 1 5 19z", opts...)
 }
 
 // Plug creates a plug icon
 // Tags: electricity, energy, electronics, socket, outlet, power, voltage, current, charger
-func Plug(opts ...Option) g.Node {
+func Plug(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M12 22v-5",
 		"M15 8V2",
@@ -12473,7 +12473,7 @@ func Plug(opts ...Option) g.Node {
 
 // Plug2 creates a plug-2 icon
 // Tags: electricity, energy, socket, outlet
-func Plug2(opts ...Option) g.Node {
+func Plug2(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M9 2v6",
 		"M15 2v6",
@@ -12485,7 +12485,7 @@ func Plug2(opts ...Option) g.Node {
 
 // PlugZap creates a plug-zap icon
 // Tags: electricity, energy, electronics, charge, charging, battery, connect
-func PlugZap(opts ...Option) g.Node {
+func PlugZap(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M6.3 20.3a2.4 2.4 0 0 0 3.4 0L12 18l-6-6-2.3 2.3a2.4 2.4 0 0 0 0 3.4Z",
 		"m2 22 3-3",
@@ -12497,7 +12497,7 @@ func PlugZap(opts ...Option) g.Node {
 
 // Plus creates a plus icon
 // Tags: add, new, increase, increment, positive, calculate, toolbar, crosshair, aim, target, scope, sight, reticule, maximum, upgrade, extra, +
-func Plus(opts ...Option) g.Node {
+func Plus(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M5 12h14",
 		"M12 5v14",
@@ -12506,7 +12506,7 @@ func Plus(opts ...Option) g.Node {
 
 // Pocket creates a pocket icon
 // Tags: logo, save
-func Pocket(opts ...Option) g.Node {
+func Pocket(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M20 3a2 2 0 0 1 2 2v6a1 1 0 0 1-20 0V5a2 2 0 0 1 2-2z",
 		"m8 10 4 4 4-4",
@@ -12515,7 +12515,7 @@ func Pocket(opts ...Option) g.Node {
 
 // PocketKnife creates a pocket-knife icon
 // Tags: swiss army knife, penknife, multi-tool, multitask, blade, cutter, gadget, corkscrew
-func PocketKnife(opts ...Option) g.Node {
+func PocketKnife(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M3 2v1c0 1 2 1 2 2S3 6 3 7s2 1 2 2-2 1-2 2 2 1 2 2",
 		"M18 6h.01",
@@ -12527,7 +12527,7 @@ func PocketKnife(opts ...Option) g.Node {
 
 // Podcast creates a podcast icon
 // Tags: audio, music, mic, talk, voice, subscribe, subscription, stream
-func Podcast(opts ...Option) g.Node {
+func Podcast(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M13 17a1 1 0 1 0-2 0l.5 4.5a0.5 0.5 0 0 0 1 0z",
 		"M16.85 18.58a9 9 0 1 0-9.7 0",
@@ -12538,7 +12538,7 @@ func Podcast(opts ...Option) g.Node {
 
 // Pointer creates a pointer icon
 // Tags: mouse
-func Pointer(opts ...Option) g.Node {
+func Pointer(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M22 14a8 8 0 0 1-8 8",
 		"M18 11v-1a2 2 0 0 0-2-2a2 2 0 0 0-2 2",
@@ -12550,7 +12550,7 @@ func Pointer(opts ...Option) g.Node {
 
 // PointerOff creates a pointer-off icon
 // Tags: mouse
-func PointerOff(opts ...Option) g.Node {
+func PointerOff(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M10 4.5V4a2 2 0 0 0-2.41-1.957",
 		"M13.9 8.4a2 2 0 0 0-1.26-1.295",
@@ -12563,7 +12563,7 @@ func PointerOff(opts ...Option) g.Node {
 
 // Popcorn creates a popcorn icon
 // Tags: cinema, movies, films, salted, sweet, sugar, candy, snack
-func Popcorn(opts ...Option) g.Node {
+func Popcorn(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M18 8a2 2 0 0 0 0-4 2 2 0 0 0-4 0 2 2 0 0 0-4 0 2 2 0 0 0-4 0 2 2 0 0 0 0 4",
 		"M10 22 9 8",
@@ -12574,7 +12574,7 @@ func Popcorn(opts ...Option) g.Node {
 
 // Popsicle creates a popsicle icon
 // Tags: ice lolly, ice cream, sweet, food
-func Popsicle(opts ...Option) g.Node {
+func Popsicle(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M18.6 14.4c.8-.8.8-2 0-2.8l-8.1-8.1a4.95 4.95 0 1 0-7.1 7.1l8.1 8.1c.9.7 2.1.7 2.9-.1Z",
 		"m22 22-5.5-5.5",
@@ -12583,7 +12583,7 @@ func Popsicle(opts ...Option) g.Node {
 
 // PoundSterling creates a pound-sterling icon
 // Tags: currency, money, payment
-func PoundSterling(opts ...Option) g.Node {
+func PoundSterling(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M18 7c0-5.333-8-5.333-8 0",
 		"M10 7v14",
@@ -12594,7 +12594,7 @@ func PoundSterling(opts ...Option) g.Node {
 
 // Power creates a power icon
 // Tags: on, off, device, switch, toggle, binary, boolean, reboot, restart, button, keyboard, troubleshoot
-func Power(opts ...Option) g.Node {
+func Power(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M12 2v10",
 		"M18.4 6.6a9 9 0 1 1-12.77.04",
@@ -12603,7 +12603,7 @@ func Power(opts ...Option) g.Node {
 
 // PowerOff creates a power-off icon
 // Tags: on, off, device, switch
-func PowerOff(opts ...Option) g.Node {
+func PowerOff(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M18.36 6.64A9 9 0 0 1 20.77 15",
 		"M6.16 6.16a9 9 0 1 0 12.68 12.68",
@@ -12614,7 +12614,7 @@ func PowerOff(opts ...Option) g.Node {
 
 // Presentation creates a presentation icon
 // Tags: screen, whiteboard, marker pens, markers, blackboard, chalk, easel, school, learning, lesson, office, meeting, project, planning
-func Presentation(opts ...Option) g.Node {
+func Presentation(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M2 3h20",
 		"M21 3v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V3",
@@ -12624,7 +12624,7 @@ func Presentation(opts ...Option) g.Node {
 
 // Printer creates a printer icon
 // Tags: fax, office, device
-func Printer(opts ...Option) g.Node {
+func Printer(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2",
 		"M6 9V3a1 1 0 0 1 1-1h10a1 1 0 0 1 1 1v6",
@@ -12634,7 +12634,7 @@ func Printer(opts ...Option) g.Node {
 
 // PrinterCheck creates a printer-check icon
 // Tags: fax, office, device, success, printed
-func PrinterCheck(opts ...Option) g.Node {
+func PrinterCheck(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M13.5 22H7a1 1 0 0 1-1-1v-6a1 1 0 0 1 1-1h10a1 1 0 0 1 1 1v.5",
 		"m16 19 2 2 4-4",
@@ -12645,7 +12645,7 @@ func PrinterCheck(opts ...Option) g.Node {
 
 // Projector creates a projector icon
 // Tags: cinema, film, movie, home video, presentation, slideshow, office, meeting, project, planning
-func Projector(opts ...Option) g.Node {
+func Projector(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M5 7 3 5",
 		"M9 6V3",
@@ -12658,7 +12658,7 @@ func Projector(opts ...Option) g.Node {
 
 // Proportions creates a proportions icon
 // Tags: screens, sizes, rotate, rotation, adjust, aspect ratio, 16:9, widescreen, 4:3, resolution, responsive, mobile, desktop, dimensions, monitor, orientation, portrait, landscape
-func Proportions(opts ...Option) g.Node {
+func Proportions(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M 4 4 h 16 a 2 2 0 0 1 2 2 v 12 a 2 2 0 0 1 -2 2 h -16 a 2 2 0 0 1 -2 -2 v -12 a 2 2 0 0 1 2 -2 Z",
 		"M12 9v11",
@@ -12668,13 +12668,13 @@ func Proportions(opts ...Option) g.Node {
 
 // Puzzle creates a puzzle icon
 // Tags: component, module, part, piece
-func Puzzle(opts ...Option) g.Node {
+func Puzzle(opts ...Option) templ.Component {
 	return Icon("M15.39 4.39a1 1 0 0 0 1.68-.474 2.5 2.5 0 1 1 3.014 3.015 1 1 0 0 0-.474 1.68l1.683 1.682a2.414 2.414 0 0 1 0 3.414L19.61 15.39a1 1 0 0 1-1.68-.474 2.5 2.5 0 1 0-3.014 3.015 1 1 0 0 1 .474 1.68l-1.683 1.682a2.414 2.414 0 0 1-3.414 0L8.61 19.61a1 1 0 0 0-1.68.474 2.5 2.5 0 1 1-3.014-3.015 1 1 0 0 0 .474-1.68l-1.683-1.682a2.414 2.414 0 0 1 0-3.414L4.39 8.61a1 1 0 0 1 1.68.474 2.5 2.5 0 1 0 3.014-3.015 1 1 0 0 1-.474-1.68l1.683-1.682a2.414 2.414 0 0 1 3.414 0z", opts...)
 }
 
 // Pyramid creates a pyramid icon
 // Tags: prism, triangle, triangular, hierarchy, structure, geometry, ancient, egyptian, landmark, tourism
-func Pyramid(opts ...Option) g.Node {
+func Pyramid(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M2.5 16.88a1 1 0 0 1-.32-1.43l9-13.02a1 1 0 0 1 1.64 0l9 13.01a1 1 0 0 1-.32 1.44l-8.51 4.86a2 2 0 0 1-1.98 0Z",
 		"M12 2v20",
@@ -12683,7 +12683,7 @@ func Pyramid(opts ...Option) g.Node {
 
 // QrCode creates a qr-code icon
 // Tags: barcode, scan, link, url, information, digital
-func QrCode(opts ...Option) g.Node {
+func QrCode(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M 4 3 h 3 a 1 1 0 0 1 1 1 v 3 a 1 1 0 0 1 -1 1 h -3 a 1 1 0 0 1 -1 -1 v -3 a 1 1 0 0 1 1 -1 Z",
 		"M 17 3 h 3 a 1 1 0 0 1 1 1 v 3 a 1 1 0 0 1 -1 1 h -3 a 1 1 0 0 1 -1 -1 v -3 a 1 1 0 0 1 1 -1 Z",
@@ -12702,7 +12702,7 @@ func QrCode(opts ...Option) g.Node {
 
 // Quote creates a quote icon
 // Tags: quotation
-func Quote(opts ...Option) g.Node {
+func Quote(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M16 3a2 2 0 0 0-2 2v6a2 2 0 0 0 2 2 1 1 0 0 1 1 1v1a2 2 0 0 1-2 2 1 1 0 0 0-1 1v2a1 1 0 0 0 1 1 6 6 0 0 0 6-6V5a2 2 0 0 0-2-2z",
 		"M5 3a2 2 0 0 0-2 2v6a2 2 0 0 0 2 2 1 1 0 0 1 1 1v1a2 2 0 0 1-2 2 1 1 0 0 0-1 1v2a1 1 0 0 0 1 1 6 6 0 0 0 6-6V5a2 2 0 0 0-2-2z",
@@ -12711,7 +12711,7 @@ func Quote(opts ...Option) g.Node {
 
 // Rabbit creates a rabbit icon
 // Tags: animal, rodent, pet, pest, bunny, hare, fast, speed, hop
-func Rabbit(opts ...Option) g.Node {
+func Rabbit(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M13 16a3 3 0 0 1 2.24 5",
 		"M18 12h.01",
@@ -12723,7 +12723,7 @@ func Rabbit(opts ...Option) g.Node {
 
 // Radar creates a radar icon
 // Tags: scan, sonar, detect, find, locate
-func Radar(opts ...Option) g.Node {
+func Radar(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M19.07 4.93A10 10 0 0 0 6.99 3.34",
 		"M4 6h.01",
@@ -12738,7 +12738,7 @@ func Radar(opts ...Option) g.Node {
 
 // Radiation creates a radiation icon
 // Tags: radioactive, nuclear, fallout, waste, atomic, physics, particle, element, molecule
-func Radiation(opts ...Option) g.Node {
+func Radiation(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M12 12h.01",
 		"M14 15.4641a4 4 0 0 1-4 0L7.52786 19.74597 A 1 1 0 0 0 7.99303 21.16211 10 10 0 0 0 16.00697 21.16211 1 1 0 0 0 16.47214 19.74597z",
@@ -12749,13 +12749,13 @@ func Radiation(opts ...Option) g.Node {
 
 // Radical creates a radical icon
 // Tags: calculate, formula, math, operator, root, square, symbol
-func Radical(opts ...Option) g.Node {
+func Radical(opts ...Option) templ.Component {
 	return Icon("M3 12h3.28a1 1 0 0 1 .948.684l2.298 7.934a.5.5 0 0 0 .96-.044L13.82 4.771A1 1 0 0 1 14.792 4H21", opts...)
 }
 
 // Radio creates a radio icon
 // Tags: signal, broadcast, connectivity, live, frequency
-func Radio(opts ...Option) g.Node {
+func Radio(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M16.247 7.761a6 6 0 0 1 0 8.478",
 		"M19.075 4.933a10 10 0 0 1 0 14.134",
@@ -12767,7 +12767,7 @@ func Radio(opts ...Option) g.Node {
 
 // RadioReceiver creates a radio-receiver icon
 // Tags: device, music, connect
-func RadioReceiver(opts ...Option) g.Node {
+func RadioReceiver(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M5 16v2",
 		"M19 16v2",
@@ -12778,7 +12778,7 @@ func RadioReceiver(opts ...Option) g.Node {
 
 // RadioTower creates a radio-tower icon
 // Tags: signal, broadcast, connectivity, live, frequency
-func RadioTower(opts ...Option) g.Node {
+func RadioTower(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M4.9 16.1C1 12.2 1 5.8 4.9 1.9",
 		"M7.8 4.7a6.14 6.14 0 0 0-.8 7.5",
@@ -12792,7 +12792,7 @@ func RadioTower(opts ...Option) g.Node {
 
 // Radius creates a radius icon
 // Tags: shape, circle, geometry, trigonometry, radii, calculate, measure, size
-func Radius(opts ...Option) g.Node {
+func Radius(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M20.34 17.52a10 10 0 1 0-2.82 2.82",
 		"M 17 19 a 2 2 0 1 0 4 0 a 2 2 0 1 0 -4 0",
@@ -12803,7 +12803,7 @@ func Radius(opts ...Option) g.Node {
 
 // RailSymbol creates a rail-symbol icon
 // Tags: railway, train, track, line
-func RailSymbol(opts ...Option) g.Node {
+func RailSymbol(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M5 15h14",
 		"M5 9h14",
@@ -12813,7 +12813,7 @@ func RailSymbol(opts ...Option) g.Node {
 
 // Rainbow creates a rainbow icon
 // Tags: colors, colours, spectrum, light, prism, arc, clear, sunshine
-func Rainbow(opts ...Option) g.Node {
+func Rainbow(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M22 17a10 10 0 0 0-20 0",
 		"M6 17a6 6 0 0 1 12 0",
@@ -12823,7 +12823,7 @@ func Rainbow(opts ...Option) g.Node {
 
 // Rat creates a rat icon
 // Tags: mouse, mice, gerbil, rodent, pet, pest, plague, disease
-func Rat(opts ...Option) g.Node {
+func Rat(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M13 22H4a2 2 0 0 1 0-4h12",
 		"M13.236 18a3 3 0 0 0-2.2-5",
@@ -12835,7 +12835,7 @@ func Rat(opts ...Option) g.Node {
 
 // Ratio creates a ratio icon
 // Tags: screens, sizes, rotate, rotation, adjust, aspect ratio, proportions, 16:9, widescreen, 4:3, resolution, responsive, mobile, desktop, dimensions, monitor, orientation, portrait, landscape
-func Ratio(opts ...Option) g.Node {
+func Ratio(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M 8 2 h 8 a 2 2 0 0 1 2 2 v 16 a 2 2 0 0 1 -2 2 h -8 a 2 2 0 0 1 -2 -2 v -16 a 2 2 0 0 1 2 -2 Z",
 		"M 4 6 h 16 a 2 2 0 0 1 2 2 v 8 a 2 2 0 0 1 -2 2 h -16 a 2 2 0 0 1 -2 -2 v -8 a 2 2 0 0 1 2 -2 Z",
@@ -12844,7 +12844,7 @@ func Ratio(opts ...Option) g.Node {
 
 // Receipt creates a receipt icon
 // Tags: bill, voucher, slip, check, counterfoil, currency, dollar, usd, $
-func Receipt(opts ...Option) g.Node {
+func Receipt(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M4 2v20l2-1 2 1 2-1 2 1 2-1 2 1 2-1 2 1V2l-2 1-2-1-2 1-2-1-2 1-2-1-2 1Z",
 		"M16 8h-6a2 2 0 1 0 0 4h4a2 2 0 1 1 0 4H8",
@@ -12854,7 +12854,7 @@ func Receipt(opts ...Option) g.Node {
 
 // ReceiptCent creates a receipt-cent icon
 // Tags: bill, voucher, slip, check, counterfoil, currency, cents, dollar, usd, $, ¢
-func ReceiptCent(opts ...Option) g.Node {
+func ReceiptCent(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M4 2v20l2-1 2 1 2-1 2 1 2-1 2 1 2-1 2 1V2l-2 1-2-1-2 1-2-1-2 1-2-1-2 1Z",
 		"M12 6.5v11",
@@ -12864,7 +12864,7 @@ func ReceiptCent(opts ...Option) g.Node {
 
 // ReceiptEuro creates a receipt-euro icon
 // Tags: bill, voucher, slip, check, counterfoil, currency, €
-func ReceiptEuro(opts ...Option) g.Node {
+func ReceiptEuro(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M4 2v20l2-1 2 1 2-1 2 1 2-1 2 1 2-1 2 1V2l-2 1-2-1-2 1-2-1-2 1-2-1-2 1Z",
 		"M8 12h5",
@@ -12874,7 +12874,7 @@ func ReceiptEuro(opts ...Option) g.Node {
 
 // ReceiptIndianRupee creates a receipt-indian-rupee icon
 // Tags: bill, voucher, slip, check, counterfoil, currency, inr, ₹
-func ReceiptIndianRupee(opts ...Option) g.Node {
+func ReceiptIndianRupee(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M4 2v20l2-1 2 1 2-1 2 1 2-1 2 1 2-1 2 1V2l-2 1-2-1-2 1-2-1-2 1-2-1-2 1Z",
 		"M8 7h8",
@@ -12885,7 +12885,7 @@ func ReceiptIndianRupee(opts ...Option) g.Node {
 
 // ReceiptJapaneseYen creates a receipt-japanese-yen icon
 // Tags: bill, voucher, slip, check, counterfoil, currency, jpy, ¥
-func ReceiptJapaneseYen(opts ...Option) g.Node {
+func ReceiptJapaneseYen(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M4 2v20l2-1 2 1 2-1 2 1 2-1 2 1 2-1 2 1V2l-2 1-2-1-2 1-2-1-2 1-2-1-2 1Z",
 		"m12 10 3-3",
@@ -12897,7 +12897,7 @@ func ReceiptJapaneseYen(opts ...Option) g.Node {
 
 // ReceiptPoundSterling creates a receipt-pound-sterling icon
 // Tags: bill, voucher, slip, check, counterfoil, british, currency, gbp, £
-func ReceiptPoundSterling(opts ...Option) g.Node {
+func ReceiptPoundSterling(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M4 2v20l2-1 2 1 2-1 2 1 2-1 2 1 2-1 2 1V2l-2 1-2-1-2 1-2-1-2 1-2-1-2 1Z",
 		"M8 13h5",
@@ -12908,7 +12908,7 @@ func ReceiptPoundSterling(opts ...Option) g.Node {
 
 // ReceiptRussianRuble creates a receipt-russian-ruble icon
 // Tags: bill, voucher, slip, check, counterfoil, currency, rub, ₽
-func ReceiptRussianRuble(opts ...Option) g.Node {
+func ReceiptRussianRuble(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M4 2v20l2-1 2 1 2-1 2 1 2-1 2 1 2-1 2 1V2l-2 1-2-1-2 1-2-1-2 1-2-1-2 1Z",
 		"M8 15h5",
@@ -12918,7 +12918,7 @@ func ReceiptRussianRuble(opts ...Option) g.Node {
 
 // ReceiptSwissFranc creates a receipt-swiss-franc icon
 // Tags: bill, voucher, slip, check, counterfoil, currency, chf, ₣
-func ReceiptSwissFranc(opts ...Option) g.Node {
+func ReceiptSwissFranc(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M4 2v20l2-1 2 1 2-1 2 1 2-1 2 1 2-1 2 1V2l-2 1-2-1-2 1-2-1-2 1-2-1-2 1Z",
 		"M10 17V7h5",
@@ -12929,7 +12929,7 @@ func ReceiptSwissFranc(opts ...Option) g.Node {
 
 // ReceiptText creates a receipt-text icon
 // Tags: bill, voucher, slip, check, counterfoil, details, small print, terms, conditions, contract
-func ReceiptText(opts ...Option) g.Node {
+func ReceiptText(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M13 16H8",
 		"M14 8H8",
@@ -12940,7 +12940,7 @@ func ReceiptText(opts ...Option) g.Node {
 
 // ReceiptTurkishLira creates a receipt-turkish-lira icon
 // Tags: bill, voucher, slip, check, counterfoil, currency, try, ₺
-func ReceiptTurkishLira(opts ...Option) g.Node {
+func ReceiptTurkishLira(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M10 6.5v11a5.5 5.5 0 0 0 5.5-5.5",
 		"m14 8-6 3",
@@ -12950,7 +12950,7 @@ func ReceiptTurkishLira(opts ...Option) g.Node {
 
 // RectangleCircle creates a rectangle-circle icon
 // Tags: compose, keyboard, key, button
-func RectangleCircle(opts ...Option) g.Node {
+func RectangleCircle(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M14 4v16H3a1 1 0 0 1-1-1V5a1 1 0 0 1 1-1z",
 		"M 6 12 a 8 8 0 1 0 16 0 a 8 8 0 1 0 -16 0",
@@ -12959,7 +12959,7 @@ func RectangleCircle(opts ...Option) g.Node {
 
 // RectangleEllipsis creates a rectangle-ellipsis icon
 // Tags: login, password, authenticate, 2fa, field, fill, ellipsis, et cetera, etc, loader, loading, progress, pending, throbber, menu, options, operator, code, spread, rest, more, further, extra, overflow, dots, …, ...
-func RectangleEllipsis(opts ...Option) g.Node {
+func RectangleEllipsis(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M 4 6 h 16 a 2 2 0 0 1 2 2 v 8 a 2 2 0 0 1 -2 2 h -16 a 2 2 0 0 1 -2 -2 v -8 a 2 2 0 0 1 2 -2 Z",
 		"M12 12h.01",
@@ -12970,25 +12970,25 @@ func RectangleEllipsis(opts ...Option) g.Node {
 
 // RectangleGoggles creates a rectangle-goggles icon
 // Tags: vr, virtual, augmented, reality, headset, goggles
-func RectangleGoggles(opts ...Option) g.Node {
+func RectangleGoggles(opts ...Option) templ.Component {
 	return Icon("M20 6a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2h-4a2 2 0 0 1-1.6-.8l-1.6-2.13a1 1 0 0 0-1.6 0L9.6 17.2A2 2 0 0 1 8 18H4a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2z", opts...)
 }
 
 // RectangleHorizontal creates a rectangle-horizontal icon
 // Tags: rectangle, aspect ratio, 16:9, horizontal, shape
-func RectangleHorizontal(opts ...Option) g.Node {
+func RectangleHorizontal(opts ...Option) templ.Component {
 	return Icon("M 4 6 h 16 a 2 2 0 0 1 2 2 v 8 a 2 2 0 0 1 -2 2 h -16 a 2 2 0 0 1 -2 -2 v -8 a 2 2 0 0 1 2 -2 Z", opts...)
 }
 
 // RectangleVertical creates a rectangle-vertical icon
 // Tags: rectangle, aspect ratio, 9:16, vertical, shape
-func RectangleVertical(opts ...Option) g.Node {
+func RectangleVertical(opts ...Option) templ.Component {
 	return Icon("M 8 2 h 8 a 2 2 0 0 1 2 2 v 16 a 2 2 0 0 1 -2 2 h -8 a 2 2 0 0 1 -2 -2 v -16 a 2 2 0 0 1 2 -2 Z", opts...)
 }
 
 // Recycle creates a recycle icon
 // Tags: sustainability, salvage, arrows
-func Recycle(opts ...Option) g.Node {
+func Recycle(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M7 19H4.815a1.83 1.83 0 0 1-1.57-.881 1.785 1.785 0 0 1-.004-1.784L7.196 9.5",
 		"M11 19h8.203a1.83 1.83 0 0 0 1.556-.89 1.784 1.784 0 0 0 0-1.775l-1.226-2.12",
@@ -13001,7 +13001,7 @@ func Recycle(opts ...Option) g.Node {
 
 // Redo creates a redo icon
 // Tags: undo, rerun, history
-func Redo(opts ...Option) g.Node {
+func Redo(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M21 7v6h-6",
 		"M3 17a9 9 0 0 1 9-9 9 9 0 0 1 6 2.3l3 2.7",
@@ -13010,7 +13010,7 @@ func Redo(opts ...Option) g.Node {
 
 // Redo2 creates a redo-2 icon
 // Tags: undo, rerun, history
-func Redo2(opts ...Option) g.Node {
+func Redo2(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"m15 14 5-5-5-5",
 		"M20 9H9.5A5.5 5.5 0 0 0 4 14.5A5.5 5.5 0 0 0 9.5 20H13",
@@ -13019,7 +13019,7 @@ func Redo2(opts ...Option) g.Node {
 
 // RedoDot creates a redo-dot icon
 // Tags: redo, history, step, over, forward
-func RedoDot(opts ...Option) g.Node {
+func RedoDot(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M 11 17 a 1 1 0 1 0 2 0 a 1 1 0 1 0 -2 0",
 		"M21 7v6h-6",
@@ -13029,7 +13029,7 @@ func RedoDot(opts ...Option) g.Node {
 
 // RefreshCcw creates a refresh-ccw icon
 // Tags: arrows, rotate, reload, rerun, synchronise, synchronize, circular, cycle
-func RefreshCcw(opts ...Option) g.Node {
+func RefreshCcw(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M21 12a9 9 0 0 0-9-9 9.75 9.75 0 0 0-6.74 2.74L3 8",
 		"M3 3v5h5",
@@ -13040,7 +13040,7 @@ func RefreshCcw(opts ...Option) g.Node {
 
 // RefreshCcwDot creates a refresh-ccw-dot icon
 // Tags: arrows, rotate, reload, synchronise, synchronize, circular, cycle, issue, code, coding, version control
-func RefreshCcwDot(opts ...Option) g.Node {
+func RefreshCcwDot(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M21 12a9 9 0 0 0-9-9 9.75 9.75 0 0 0-6.74 2.74L3 8",
 		"M3 3v5h5",
@@ -13052,7 +13052,7 @@ func RefreshCcwDot(opts ...Option) g.Node {
 
 // RefreshCw creates a refresh-cw icon
 // Tags: rotate, reload, rerun, synchronise, synchronize, arrows, circular, cycle
-func RefreshCw(opts ...Option) g.Node {
+func RefreshCw(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M3 12a9 9 0 0 1 9-9 9.75 9.75 0 0 1 6.74 2.74L21 8",
 		"M21 3v5h-5",
@@ -13063,7 +13063,7 @@ func RefreshCw(opts ...Option) g.Node {
 
 // RefreshCwOff creates a refresh-cw-off icon
 // Tags: rotate, reload, rerun, synchronise, synchronize, arrows, circular, cycle, cancel, no, stop, error, disconnect, ignore
-func RefreshCwOff(opts ...Option) g.Node {
+func RefreshCwOff(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M21 8L18.74 5.74A9.75 9.75 0 0 0 12 3C11 3 10.03 3.16 9.13 3.47",
 		"M8 16H3v5",
@@ -13077,7 +13077,7 @@ func RefreshCwOff(opts ...Option) g.Node {
 
 // Refrigerator creates a refrigerator icon
 // Tags: frigerator, fridge, freezer, cooler, icebox, chiller, cold storage
-func Refrigerator(opts ...Option) g.Node {
+func Refrigerator(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M5 6a4 4 0 0 1 4-4h6a4 4 0 0 1 4 4v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6Z",
 		"M5 10h14",
@@ -13087,7 +13087,7 @@ func Refrigerator(opts ...Option) g.Node {
 
 // Regex creates a regex icon
 // Tags: search, text, code
-func Regex(opts ...Option) g.Node {
+func Regex(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M17 3v10",
 		"m12.67 5.5 8.66 5",
@@ -13098,7 +13098,7 @@ func Regex(opts ...Option) g.Node {
 
 // RemoveFormatting creates a remove-formatting icon
 // Tags: text, font, typography, format, x, remove, delete, times, clear
-func RemoveFormatting(opts ...Option) g.Node {
+func RemoveFormatting(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M4 7V4h16v3",
 		"M5 20h6",
@@ -13110,7 +13110,7 @@ func RemoveFormatting(opts ...Option) g.Node {
 
 // Repeat creates a repeat icon
 // Tags: loop, arrows
-func Repeat(opts ...Option) g.Node {
+func Repeat(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"m17 2 4 4-4 4",
 		"M3 11v-1a4 4 0 0 1 4-4h14",
@@ -13121,7 +13121,7 @@ func Repeat(opts ...Option) g.Node {
 
 // Repeat1 creates a repeat-1 icon
 // Tags: replay
-func Repeat1(opts ...Option) g.Node {
+func Repeat1(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"m17 2 4 4-4 4",
 		"M3 11v-1a4 4 0 0 1 4-4h14",
@@ -13133,7 +13133,7 @@ func Repeat1(opts ...Option) g.Node {
 
 // Repeat2 creates a repeat-2 icon
 // Tags: arrows, retweet, repost, share, repeat, loop
-func Repeat2(opts ...Option) g.Node {
+func Repeat2(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"m2 9 3-3 3 3",
 		"M13 18H7a2 2 0 0 1-2-2V6",
@@ -13144,7 +13144,7 @@ func Repeat2(opts ...Option) g.Node {
 
 // Replace creates a replace icon
 // Tags: search, substitute, swap, change
-func Replace(opts ...Option) g.Node {
+func Replace(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M14 4a1 1 0 0 1 1-1",
 		"M15 10a1 1 0 0 1-1-1",
@@ -13158,7 +13158,7 @@ func Replace(opts ...Option) g.Node {
 
 // ReplaceAll creates a replace-all icon
 // Tags: search, substitute, swap, change
-func ReplaceAll(opts ...Option) g.Node {
+func ReplaceAll(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M14 14a1 1 0 0 1 1 1v5a1 1 0 0 1-1 1",
 		"M14 4a1 1 0 0 1 1-1",
@@ -13174,7 +13174,7 @@ func ReplaceAll(opts ...Option) g.Node {
 
 // Reply creates a reply icon
 // Tags: email
-func Reply(opts ...Option) g.Node {
+func Reply(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M20 18v-2a4 4 0 0 0-4-4H4",
 		"m9 17-5-5 5-5",
@@ -13183,7 +13183,7 @@ func Reply(opts ...Option) g.Node {
 
 // ReplyAll creates a reply-all icon
 // Tags: email
-func ReplyAll(opts ...Option) g.Node {
+func ReplyAll(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"m12 17-5-5 5-5",
 		"M22 18v-2a4 4 0 0 0-4-4H7",
@@ -13193,7 +13193,7 @@ func ReplyAll(opts ...Option) g.Node {
 
 // Rewind creates a rewind icon
 // Tags: music
-func Rewind(opts ...Option) g.Node {
+func Rewind(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M12 6a2 2 0 0 0-3.414-1.414l-6 6a2 2 0 0 0 0 2.828l6 6A2 2 0 0 0 12 18z",
 		"M22 6a2 2 0 0 0-3.414-1.414l-6 6a2 2 0 0 0 0 2.828l6 6A2 2 0 0 0 22 18z",
@@ -13202,7 +13202,7 @@ func Rewind(opts ...Option) g.Node {
 
 // Ribbon creates a ribbon icon
 // Tags: awareness, strip, band, tape, strap, cordon
-func Ribbon(opts ...Option) g.Node {
+func Ribbon(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M12 11.22C11 9.997 10 9 10 8a2 2 0 0 1 4 0c0 1-.998 2.002-2.01 3.22",
 		"m12 18 2.57-3.5",
@@ -13214,7 +13214,7 @@ func Ribbon(opts ...Option) g.Node {
 
 // Rocket creates a rocket icon
 // Tags: release, boost, launch, space, version
-func Rocket(opts ...Option) g.Node {
+func Rocket(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M4.5 16.5c-1.5 1.26-2 5-2 5s3.74-.5 5-2c.71-.84.7-2.13-.09-2.91a2.18 2.18 0 0 0-2.91-.09z",
 		"m12 15-3-3a22 22 0 0 1 2-3.95A12.88 12.88 0 0 1 22 2c0 2.72-.78 7.5-6 11a22.35 22.35 0 0 1-4 2z",
@@ -13225,7 +13225,7 @@ func Rocket(opts ...Option) g.Node {
 
 // RockingChair creates a rocking-chair icon
 // Tags: chair, furniture, seat
-func RockingChair(opts ...Option) g.Node {
+func RockingChair(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M 3.5 2 L 6.5 12.5 L 18 12.5",
 		"M 9.5 12.5 L 5.5 20",
@@ -13236,7 +13236,7 @@ func RockingChair(opts ...Option) g.Node {
 
 // RollerCoaster creates a roller-coaster icon
 // Tags: attraction, entertainment, amusement park, theme park, funfair
-func RollerCoaster(opts ...Option) g.Node {
+func RollerCoaster(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M6 19V5",
 		"M10 19V6.8",
@@ -13250,7 +13250,7 @@ func RollerCoaster(opts ...Option) g.Node {
 
 // Rose creates a rose icon
 // Tags: roses, thorns, petals, plant, stem, leaves, spring, bloom, blossom, gardening, botanical, flora, florist, bouquet, bunch, gift, date, romance, romantic, valentines day, special occasion
-func Rose(opts ...Option) g.Node {
+func Rose(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M17 10h-1a4 4 0 1 1 4-4v.534",
 		"M17 6h1a4 4 0 0 1 1.42 7.74l-2.29.87a6 6 0 0 1-5.339-10.68l2.069-1.31",
@@ -13262,7 +13262,7 @@ func Rose(opts ...Option) g.Node {
 
 // Rotate3d creates a rotate-3d icon
 // Tags: gizmo, transform, orientation, orbit, axis
-func Rotate3d(opts ...Option) g.Node {
+func Rotate3d(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M16.466 7.5C15.643 4.237 13.952 2 12 2 9.239 2 7 6.477 7 12s2.239 10 5 10c.342 0 .677-.069 1-.2",
 		"m15.194 13.707 3.814 1.86-1.86 3.814",
@@ -13272,7 +13272,7 @@ func Rotate3d(opts ...Option) g.Node {
 
 // RotateCcw creates a rotate-ccw icon
 // Tags: arrow, left, counter-clockwise, restart, reload, rerun, refresh, backup, undo, replay, redo, retry, rewind, reverse
-func RotateCcw(opts ...Option) g.Node {
+func RotateCcw(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8",
 		"M3 3v5h5",
@@ -13281,7 +13281,7 @@ func RotateCcw(opts ...Option) g.Node {
 
 // RotateCcwKey creates a rotate-ccw-key icon
 // Tags: password, key, refresh, change
-func RotateCcwKey(opts ...Option) g.Node {
+func RotateCcwKey(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"m14.5 9.5 1 1",
 		"m15.5 8.5-4 4",
@@ -13293,7 +13293,7 @@ func RotateCcwKey(opts ...Option) g.Node {
 
 // RotateCcwSquare creates a rotate-ccw-square icon
 // Tags: left, counter-clockwise, rotate, image, 90, 45, degrees, °
-func RotateCcwSquare(opts ...Option) g.Node {
+func RotateCcwSquare(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M20 9V7a2 2 0 0 0-2-2h-6",
 		"m15 2-3 3 3 3",
@@ -13303,7 +13303,7 @@ func RotateCcwSquare(opts ...Option) g.Node {
 
 // RotateCw creates a rotate-cw icon
 // Tags: arrow, right, clockwise, refresh, reload, rerun, redo
-func RotateCw(opts ...Option) g.Node {
+func RotateCw(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M21 12a9 9 0 1 1-9-9c2.52 0 4.93 1 6.74 2.74L21 8",
 		"M21 3v5h-5",
@@ -13312,7 +13312,7 @@ func RotateCw(opts ...Option) g.Node {
 
 // RotateCwSquare creates a rotate-cw-square icon
 // Tags: right, clockwise, rotate, image, 90, 45, degrees, °
-func RotateCwSquare(opts ...Option) g.Node {
+func RotateCwSquare(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M12 5H6a2 2 0 0 0-2 2v3",
 		"m9 8 3-3-3-3",
@@ -13322,7 +13322,7 @@ func RotateCwSquare(opts ...Option) g.Node {
 
 // Route creates a route icon
 // Tags: path, journey, planner, points, stops, stations
-func Route(opts ...Option) g.Node {
+func Route(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M 3 19 a 3 3 0 1 0 6 0 a 3 3 0 1 0 -6 0",
 		"M9 19h8.5a3.5 3.5 0 0 0 0-7h-11a3.5 3.5 0 0 1 0-7H15",
@@ -13332,7 +13332,7 @@ func Route(opts ...Option) g.Node {
 
 // RouteOff creates a route-off icon
 // Tags: path, journey, planner, points, stops, stations, reset, clear, cancelled, closed, blocked
-func RouteOff(opts ...Option) g.Node {
+func RouteOff(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M 3 19 a 3 3 0 1 0 6 0 a 3 3 0 1 0 -6 0",
 		"M9 19h8.5c.4 0 .9-.1 1.3-.2",
@@ -13346,7 +13346,7 @@ func RouteOff(opts ...Option) g.Node {
 
 // Router creates a router icon
 // Tags: computer, server, cloud
-func Router(opts ...Option) g.Node {
+func Router(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M 4 14 h 16 a 2 2 0 0 1 2 2 v 4 a 2 2 0 0 1 -2 2 h -16 a 2 2 0 0 1 -2 -2 v -4 a 2 2 0 0 1 2 -2 Z",
 		"M6.01 18H6",
@@ -13359,7 +13359,7 @@ func Router(opts ...Option) g.Node {
 
 // Rows2 creates a rows-2 icon
 // Tags: lines, list, queue, preview, panel, paragraphs, parallel, series, split, vertical, horizontal, half, center, middle, even, drawer
-func Rows2(opts ...Option) g.Node {
+func Rows2(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M 5 3 h 14 a 2 2 0 0 1 2 2 v 14 a 2 2 0 0 1 -2 2 h -14 a 2 2 0 0 1 -2 -2 v -14 a 2 2 0 0 1 2 -2 Z",
 		"M3 12h18",
@@ -13368,7 +13368,7 @@ func Rows2(opts ...Option) g.Node {
 
 // Rows3 creates a rows-3 icon
 // Tags: lines, list, queue, preview, paragraphs, parallel, series, split, vertical, horizontal, half, center, middle, even, drawers
-func Rows3(opts ...Option) g.Node {
+func Rows3(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M 5 3 h 14 a 2 2 0 0 1 2 2 v 14 a 2 2 0 0 1 -2 2 h -14 a 2 2 0 0 1 -2 -2 v -14 a 2 2 0 0 1 2 -2 Z",
 		"M21 9H3",
@@ -13378,7 +13378,7 @@ func Rows3(opts ...Option) g.Node {
 
 // Rows4 creates a rows-4 icon
 // Tags: lines, list, queue, preview, paragraphs, parallel, series, split, vertical, horizontal, half, center, middle, even, drawers, grill
-func Rows4(opts ...Option) g.Node {
+func Rows4(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M 5 3 h 14 a 2 2 0 0 1 2 2 v 14 a 2 2 0 0 1 -2 2 h -14 a 2 2 0 0 1 -2 -2 v -14 a 2 2 0 0 1 2 -2 Z",
 		"M21 7.5H3",
@@ -13389,7 +13389,7 @@ func Rows4(opts ...Option) g.Node {
 
 // Rss creates a rss icon
 // Tags: feed, subscribe, news, updates, notifications, content, blog, articles, broadcast, syndication, reader, channels, posts, publishing, digest, alert, following, inbox, newsletter, weblog, podcast
-func Rss(opts ...Option) g.Node {
+func Rss(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M4 11a9 9 0 0 1 9 9",
 		"M4 4a16 16 0 0 1 16 16",
@@ -13399,7 +13399,7 @@ func Rss(opts ...Option) g.Node {
 
 // Ruler creates a ruler icon
 // Tags: measurements, centimeters, cm, millimeters, mm, metre, foot, feet, inches, units, size, length, width, height, dimensions, depth, breadth, extent, stationery
-func Ruler(opts ...Option) g.Node {
+func Ruler(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M21.3 15.3a2.4 2.4 0 0 1 0 3.4l-2.6 2.6a2.4 2.4 0 0 1-3.4 0L2.7 8.7a2.41 2.41 0 0 1 0-3.4l2.6-2.6a2.41 2.41 0 0 1 3.4 0Z",
 		"m14.5 12.5 2-2",
@@ -13411,7 +13411,7 @@ func Ruler(opts ...Option) g.Node {
 
 // RulerDimensionLine creates a ruler-dimension-line icon
 // Tags: measurements, centimeters, cm, millimeters, mm, metre, foot, feet, inches, units, size, length, width, height, dimensions, depth, breadth, extent, stationery
-func RulerDimensionLine(opts ...Option) g.Node {
+func RulerDimensionLine(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M10 15v-3",
 		"M14 15v-3",
@@ -13426,7 +13426,7 @@ func RulerDimensionLine(opts ...Option) g.Node {
 
 // RussianRuble creates a russian-ruble icon
 // Tags: currency, money, payment
-func RussianRuble(opts ...Option) g.Node {
+func RussianRuble(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M6 11h8a4 4 0 0 0 0-8H9v18",
 		"M6 15h8",
@@ -13435,7 +13435,7 @@ func RussianRuble(opts ...Option) g.Node {
 
 // Sailboat creates a sailboat icon
 // Tags: ship, boat, harbor, harbour, dock
-func Sailboat(opts ...Option) g.Node {
+func Sailboat(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M10 2v15",
 		"M7 22a4 4 0 0 1-4-4 1 1 0 0 1 1-1h16a1 1 0 0 1 1 1 4 4 0 0 1-4 4z",
@@ -13445,7 +13445,7 @@ func Sailboat(opts ...Option) g.Node {
 
 // Salad creates a salad icon
 // Tags: food, vegetarian, dish, restaurant, course, meal, side, vegetables, health
-func Salad(opts ...Option) g.Node {
+func Salad(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M7 21h10",
 		"M12 21a9 9 0 0 0 9-9H3a9 9 0 0 0 9 9Z",
@@ -13457,7 +13457,7 @@ func Salad(opts ...Option) g.Node {
 
 // Sandwich creates a sandwich icon
 // Tags: food, snack, dish, restaurant, lunch, meal
-func Sandwich(opts ...Option) g.Node {
+func Sandwich(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"m2.37 11.223 8.372-6.777a2 2 0 0 1 2.516 0l8.371 6.777",
 		"M21 15a1 1 0 0 1 1 1v2a1 1 0 0 1-1 1h-5.25",
@@ -13469,7 +13469,7 @@ func Sandwich(opts ...Option) g.Node {
 
 // Satellite creates a satellite icon
 // Tags: space station, orbit, transmitter
-func Satellite(opts ...Option) g.Node {
+func Satellite(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"m13.5 6.5-3.148-3.148a1.205 1.205 0 0 0-1.704 0L6.352 5.648a1.205 1.205 0 0 0 0 1.704L9.5 10.5",
 		"M16.5 7.5 19 5",
@@ -13481,7 +13481,7 @@ func Satellite(opts ...Option) g.Node {
 
 // SatelliteDish creates a satellite-dish icon
 // Tags: antenna, receiver, dish aerial, saucer
-func SatelliteDish(opts ...Option) g.Node {
+func SatelliteDish(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M4 10a7.31 7.31 0 0 0 10 10Z",
 		"m9 15 3-3",
@@ -13492,7 +13492,7 @@ func SatelliteDish(opts ...Option) g.Node {
 
 // SaudiRiyal creates a saudi-riyal icon
 // Tags: currency, money, payment
-func SaudiRiyal(opts ...Option) g.Node {
+func SaudiRiyal(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"m20 19.5-5.5 1.2",
 		"M14.5 4v11.22a1 1 0 0 0 1.242.97L20 15.2",
@@ -13503,7 +13503,7 @@ func SaudiRiyal(opts ...Option) g.Node {
 
 // Save creates a save icon
 // Tags: floppy disk
-func Save(opts ...Option) g.Node {
+func Save(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M15.2 3a2 2 0 0 1 1.4.6l3.8 3.8a2 2 0 0 1 .6 1.4V19a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2z",
 		"M17 21v-7a1 1 0 0 0-1-1H8a1 1 0 0 0-1 1v7",
@@ -13513,7 +13513,7 @@ func Save(opts ...Option) g.Node {
 
 // SaveAll creates a save-all icon
 // Tags: floppy disks, copy
-func SaveAll(opts ...Option) g.Node {
+func SaveAll(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M10 2v3a1 1 0 0 0 1 1h5",
 		"M18 18v-6a1 1 0 0 0-1-1h-6a1 1 0 0 0-1 1v6",
@@ -13524,7 +13524,7 @@ func SaveAll(opts ...Option) g.Node {
 
 // SaveOff creates a save-off icon
 // Tags: floppy disk, unsalvageable
-func SaveOff(opts ...Option) g.Node {
+func SaveOff(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M13 13H8a1 1 0 0 0-1 1v7",
 		"M14 8h1",
@@ -13538,7 +13538,7 @@ func SaveOff(opts ...Option) g.Node {
 
 // Scale creates a scale icon
 // Tags: balance, legal, license, right, rule, law, justice, weight, measure, compare, judge, fair, ethics, decision
-func Scale(opts ...Option) g.Node {
+func Scale(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M12 3v18",
 		"m19 8 3 8a5 5 0 0 1-6 0zV7",
@@ -13550,7 +13550,7 @@ func Scale(opts ...Option) g.Node {
 
 // Scale3d creates a scale-3d icon
 // Tags: gizmo, transform, size, axis
-func Scale3d(opts ...Option) g.Node {
+func Scale3d(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M5 7v11a1 1 0 0 0 1 1h11",
 		"M5.293 18.707 11 13",
@@ -13561,7 +13561,7 @@ func Scale3d(opts ...Option) g.Node {
 
 // Scaling creates a scaling icon
 // Tags: scale, resize, design
-func Scaling(opts ...Option) g.Node {
+func Scaling(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M12 3H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7",
 		"M14 15H9v-5",
@@ -13572,7 +13572,7 @@ func Scaling(opts ...Option) g.Node {
 
 // Scan creates a scan icon
 // Tags: qr-code, barcode, checkout, augmented reality, ar, target, surveillance, camera, lens, focus, frame, select, box, boundary, bounds, area, square, dashed
-func Scan(opts ...Option) g.Node {
+func Scan(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M3 7V5a2 2 0 0 1 2-2h2",
 		"M17 3h2a2 2 0 0 1 2 2v2",
@@ -13583,7 +13583,7 @@ func Scan(opts ...Option) g.Node {
 
 // ScanBarcode creates a scan-barcode icon
 // Tags: checkout, till, cart, transaction, purchase, buy, product, packaging, retail, consumer
-func ScanBarcode(opts ...Option) g.Node {
+func ScanBarcode(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M3 7V5a2 2 0 0 1 2-2h2",
 		"M17 3h2a2 2 0 0 1 2 2v2",
@@ -13597,7 +13597,7 @@ func ScanBarcode(opts ...Option) g.Node {
 
 // ScanEye creates a scan-eye icon
 // Tags: preview, zoom, expand, fullscreen, gallery, image, camera, watch, surveillance, retina, focus, lens, biometric, identification, authentication, access, login
-func ScanEye(opts ...Option) g.Node {
+func ScanEye(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M3 7V5a2 2 0 0 1 2-2h2",
 		"M17 3h2a2 2 0 0 1 2 2v2",
@@ -13610,7 +13610,7 @@ func ScanEye(opts ...Option) g.Node {
 
 // ScanFace creates a scan-face icon
 // Tags: face, biometric, identification, authentication, 2fa, access, login, dashed
-func ScanFace(opts ...Option) g.Node {
+func ScanFace(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M3 7V5a2 2 0 0 1 2-2h2",
 		"M17 3h2a2 2 0 0 1 2 2v2",
@@ -13624,7 +13624,7 @@ func ScanFace(opts ...Option) g.Node {
 
 // ScanHeart creates a scan-heart icon
 // Tags: health, heart rate, pulse, monitoring, healthiness, screening, dashed
-func ScanHeart(opts ...Option) g.Node {
+func ScanHeart(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M17 3h2a2 2 0 0 1 2 2v2",
 		"M21 17v2a2 2 0 0 1-2 2h-2",
@@ -13636,7 +13636,7 @@ func ScanHeart(opts ...Option) g.Node {
 
 // ScanLine creates a scan-line icon
 // Tags: checkout, till, cart, transaction, purchase, buy, product, packaging, retail, consumer, qr-code, dashed
-func ScanLine(opts ...Option) g.Node {
+func ScanLine(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M3 7V5a2 2 0 0 1 2-2h2",
 		"M17 3h2a2 2 0 0 1 2 2v2",
@@ -13648,7 +13648,7 @@ func ScanLine(opts ...Option) g.Node {
 
 // ScanQrCode creates a scan-qr-code icon
 // Tags: barcode, scan, qrcode, url, information, digital, scanner
-func ScanQrCode(opts ...Option) g.Node {
+func ScanQrCode(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M17 12v4a1 1 0 0 1-1 1h-4",
 		"M17 3h2a2 2 0 0 1 2 2v2",
@@ -13663,7 +13663,7 @@ func ScanQrCode(opts ...Option) g.Node {
 
 // ScanSearch creates a scan-search icon
 // Tags: preview, zoom, expand, fullscreen, gallery, image, focus, lens
-func ScanSearch(opts ...Option) g.Node {
+func ScanSearch(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M3 7V5a2 2 0 0 1 2-2h2",
 		"M17 3h2a2 2 0 0 1 2 2v2",
@@ -13676,7 +13676,7 @@ func ScanSearch(opts ...Option) g.Node {
 
 // ScanText creates a scan-text icon
 // Tags: recognition, read, translate, copy, lines
-func ScanText(opts ...Option) g.Node {
+func ScanText(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M3 7V5a2 2 0 0 1 2-2h2",
 		"M17 3h2a2 2 0 0 1 2 2v2",
@@ -13690,7 +13690,7 @@ func ScanText(opts ...Option) g.Node {
 
 // School creates a school icon
 // Tags: building, education, childhood, university, learning, campus, scholar, student, lecture, degree, course, academia, study, knowledge, classroom, research, diploma, graduation, professor, tutorial, homework, assignment, exam
-func School(opts ...Option) g.Node {
+func School(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M14 21v-3a2 2 0 0 0-4 0v3",
 		"M18 5v16",
@@ -13703,7 +13703,7 @@ func School(opts ...Option) g.Node {
 
 // Scissors creates a scissors icon
 // Tags: cut, snip, chop, stationery, crafts
-func Scissors(opts ...Option) g.Node {
+func Scissors(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M 3 6 a 3 3 0 1 0 6 0 a 3 3 0 1 0 -6 0",
 		"M8.12 8.12 12 12",
@@ -13715,7 +13715,7 @@ func Scissors(opts ...Option) g.Node {
 
 // ScissorsLineDashed creates a scissors-line-dashed icon
 // Tags: cut here, along, snip, chop, stationery, crafts, instructions, diagram
-func ScissorsLineDashed(opts ...Option) g.Node {
+func ScissorsLineDashed(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M5.42 9.42 8 12",
 		"M 2 8 a 2 2 0 1 0 4 0 a 2 2 0 1 0 -4 0",
@@ -13729,7 +13729,7 @@ func ScissorsLineDashed(opts ...Option) g.Node {
 
 // Scooter creates a scooter icon
 // Tags: vehicle, drive, trip, journey, transport, electric, ride, urban, commute, speed
-func Scooter(opts ...Option) g.Node {
+func Scooter(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M21 4h-3.5l2 11.05",
 		"M6.95 17h5.142c.523 0 .95-.406 1.063-.916a6.5 6.5 0 0 1 5.345-5.009",
@@ -13740,7 +13740,7 @@ func Scooter(opts ...Option) g.Node {
 
 // ScreenShare creates a screen-share icon
 // Tags: host, desktop, monitor
-func ScreenShare(opts ...Option) g.Node {
+func ScreenShare(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M13 3H4a2 2 0 0 0-2 2v10a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2v-3",
 		"M8 21h8",
@@ -13752,7 +13752,7 @@ func ScreenShare(opts ...Option) g.Node {
 
 // ScreenShareOff creates a screen-share-off icon
 // Tags: desktop, disconnect, monitor
-func ScreenShareOff(opts ...Option) g.Node {
+func ScreenShareOff(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M13 3H4a2 2 0 0 0-2 2v10a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2v-3",
 		"M8 21h8",
@@ -13764,7 +13764,7 @@ func ScreenShareOff(opts ...Option) g.Node {
 
 // Scroll creates a scroll icon
 // Tags: paper, log, scripture, document, notes, parchment, list, long, script, story, code, coding
-func Scroll(opts ...Option) g.Node {
+func Scroll(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M19 17V5a2 2 0 0 0-2-2H4",
 		"M8 21h12a2 2 0 0 0 2-2v-1a1 1 0 0 0-1-1H11a1 1 0 0 0-1 1v1a2 2 0 1 1-4 0V5a2 2 0 1 0-4 0v2a1 1 0 0 0 1 1h3",
@@ -13773,7 +13773,7 @@ func Scroll(opts ...Option) g.Node {
 
 // ScrollText creates a scroll-text icon
 // Tags: paper, log, scripture, document, notes, parchment, list, long, script, story, code, coding
-func ScrollText(opts ...Option) g.Node {
+func ScrollText(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M15 12h-5",
 		"M15 8h-5",
@@ -13784,7 +13784,7 @@ func ScrollText(opts ...Option) g.Node {
 
 // Search creates a search icon
 // Tags: find, scan, magnifier, magnifying glass, lens
-func Search(opts ...Option) g.Node {
+func Search(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"m21 21-4.34-4.34",
 		"M 3 11 a 8 8 0 1 0 16 0 a 8 8 0 1 0 -16 0",
@@ -13793,7 +13793,7 @@ func Search(opts ...Option) g.Node {
 
 // SearchAlert creates a search-alert icon
 // Tags: find, scan, magnifier, magnifying glass, stop, warning, alert, error, anomaly, lens
-func SearchAlert(opts ...Option) g.Node {
+func SearchAlert(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M 3 11 a 8 8 0 1 0 16 0 a 8 8 0 1 0 -16 0",
 		"m21 21-4.3-4.3",
@@ -13804,7 +13804,7 @@ func SearchAlert(opts ...Option) g.Node {
 
 // SearchCheck creates a search-check icon
 // Tags: find, scan, magnifier, magnifying glass, found, correct, complete, tick, lens
-func SearchCheck(opts ...Option) g.Node {
+func SearchCheck(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"m8 11 2 2 4-4",
 		"M 3 11 a 8 8 0 1 0 16 0 a 8 8 0 1 0 -16 0",
@@ -13814,7 +13814,7 @@ func SearchCheck(opts ...Option) g.Node {
 
 // SearchCode creates a search-code icon
 // Tags: find, scan, magnifier, magnifying glass, grep, chevrons, <>, lens
-func SearchCode(opts ...Option) g.Node {
+func SearchCode(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"m13 13.5 2-2.5-2-2.5",
 		"m21 21-4.3-4.3",
@@ -13825,7 +13825,7 @@ func SearchCode(opts ...Option) g.Node {
 
 // SearchSlash creates a search-slash icon
 // Tags: find, scan, magnifier, magnifying glass, stop, clear, cancel, abort, /, lens
-func SearchSlash(opts ...Option) g.Node {
+func SearchSlash(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"m13.5 8.5-5 5",
 		"M 3 11 a 8 8 0 1 0 16 0 a 8 8 0 1 0 -16 0",
@@ -13835,7 +13835,7 @@ func SearchSlash(opts ...Option) g.Node {
 
 // SearchX creates a search-x icon
 // Tags: find, scan, magnifier, magnifying glass, stop, clear, cancel, abort, lens
-func SearchX(opts ...Option) g.Node {
+func SearchX(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"m13.5 8.5-5 5",
 		"m8.5 8.5 5 5",
@@ -13846,7 +13846,7 @@ func SearchX(opts ...Option) g.Node {
 
 // Section creates a section icon
 // Tags: mark, typography, punctuation, legal, type, text, prose, symbol
-func Section(opts ...Option) g.Node {
+func Section(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M16 5a4 3 0 0 0-8 0c0 4 8 3 8 7a4 3 0 0 1-8 0",
 		"M8 19a4 3 0 0 0 8 0c0-4-8-3-8-7a4 3 0 0 1 8 0",
@@ -13855,7 +13855,7 @@ func Section(opts ...Option) g.Node {
 
 // Send creates a send icon
 // Tags: email, message, mail, paper airplane, paper aeroplane, submit
-func Send(opts ...Option) g.Node {
+func Send(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M14.536 21.686a.5.5 0 0 0 .937-.024l6.5-19a.496.496 0 0 0-.635-.635l-19 6.5a.5.5 0 0 0-.024.937l7.93 3.18a2 2 0 0 1 1.112 1.11z",
 		"m21.854 2.147-10.94 10.939",
@@ -13864,7 +13864,7 @@ func Send(opts ...Option) g.Node {
 
 // SendHorizontal creates a send-horizontal icon
 // Tags: email, message, mail, paper airplane, paper aeroplane, submit
-func SendHorizontal(opts ...Option) g.Node {
+func SendHorizontal(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M3.714 3.048a.498.498 0 0 0-.683.627l2.843 7.627a2 2 0 0 1 0 1.396l-2.842 7.627a.498.498 0 0 0 .682.627l18-8.5a.5.5 0 0 0 0-.904z",
 		"M6 12h16",
@@ -13873,7 +13873,7 @@ func SendHorizontal(opts ...Option) g.Node {
 
 // SendToBack creates a send-to-back icon
 // Tags: bring, send, move, under, back, backwards, overlap, layer, order
-func SendToBack(opts ...Option) g.Node {
+func SendToBack(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M 16 14 h 4 a 2 2 0 0 1 2 2 v 4 a 2 2 0 0 1 -2 2 h -4 a 2 2 0 0 1 -2 -2 v -4 a 2 2 0 0 1 2 -2 Z",
 		"M 4 2 h 4 a 2 2 0 0 1 2 2 v 4 a 2 2 0 0 1 -2 2 h -4 a 2 2 0 0 1 -2 -2 v -4 a 2 2 0 0 1 2 -2 Z",
@@ -13884,7 +13884,7 @@ func SendToBack(opts ...Option) g.Node {
 
 // SeparatorHorizontal creates a separator-horizontal icon
 // Tags: move, split
-func SeparatorHorizontal(opts ...Option) g.Node {
+func SeparatorHorizontal(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"m16 16-4 4-4-4",
 		"M3 12h18",
@@ -13894,7 +13894,7 @@ func SeparatorHorizontal(opts ...Option) g.Node {
 
 // SeparatorVertical creates a separator-vertical icon
 // Tags: move, split
-func SeparatorVertical(opts ...Option) g.Node {
+func SeparatorVertical(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M12 3v18",
 		"m16 16 4-4-4-4",
@@ -13904,7 +13904,7 @@ func SeparatorVertical(opts ...Option) g.Node {
 
 // Server creates a server icon
 // Tags: cloud, storage
-func Server(opts ...Option) g.Node {
+func Server(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M 4 2 h 16 a 2 2 0 0 1 2 2 v 4 a 2 2 0 0 1 -2 2 h -16 a 2 2 0 0 1 -2 -2 v -4 a 2 2 0 0 1 2 -2 Z",
 		"M 4 14 h 16 a 2 2 0 0 1 2 2 v 4 a 2 2 0 0 1 -2 2 h -16 a 2 2 0 0 1 -2 -2 v -4 a 2 2 0 0 1 2 -2 Z",
@@ -13915,7 +13915,7 @@ func Server(opts ...Option) g.Node {
 
 // ServerCog creates a server-cog icon
 // Tags: cloud, storage, computing, cog, gear
-func ServerCog(opts ...Option) g.Node {
+func ServerCog(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"m10.852 14.772-.383.923",
 		"M13.148 14.772a3 3 0 1 0-2.296-5.544l-.383-.923",
@@ -13934,7 +13934,7 @@ func ServerCog(opts ...Option) g.Node {
 
 // ServerCrash creates a server-crash icon
 // Tags: cloud, storage, problem, error
-func ServerCrash(opts ...Option) g.Node {
+func ServerCrash(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M6 10H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v4a2 2 0 0 1-2 2h-2",
 		"M6 14H4a2 2 0 0 0-2 2v4a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2v-4a2 2 0 0 0-2-2h-2",
@@ -13946,7 +13946,7 @@ func ServerCrash(opts ...Option) g.Node {
 
 // ServerOff creates a server-off icon
 // Tags: cloud, storage
-func ServerOff(opts ...Option) g.Node {
+func ServerOff(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M7 2h13a2 2 0 0 1 2 2v4a2 2 0 0 1-2 2h-5",
 		"M10 10 2.5 2.5C2 2 2 2.5 2 5v3a2 2 0 0 0 2 2h6z",
@@ -13959,7 +13959,7 @@ func ServerOff(opts ...Option) g.Node {
 
 // Settings creates a settings icon
 // Tags: cog, edit, gear, preferences
-func Settings(opts ...Option) g.Node {
+func Settings(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M9.671 4.136a2.34 2.34 0 0 1 4.659 0 2.34 2.34 0 0 0 3.319 1.915 2.34 2.34 0 0 1 2.33 4.033 2.34 2.34 0 0 0 0 3.831 2.34 2.34 0 0 1-2.33 4.033 2.34 2.34 0 0 0-3.319 1.915 2.34 2.34 0 0 1-4.659 0 2.34 2.34 0 0 0-3.32-1.915 2.34 2.34 0 0 1-2.33-4.033 2.34 2.34 0 0 0 0-3.831A2.34 2.34 0 0 1 6.35 6.051a2.34 2.34 0 0 0 3.319-1.915",
 		"M 9 12 a 3 3 0 1 0 6 0 a 3 3 0 1 0 -6 0",
@@ -13968,7 +13968,7 @@ func Settings(opts ...Option) g.Node {
 
 // Settings2 creates a settings-2 icon
 // Tags: cog, edit, gear, preferences, slider
-func Settings2(opts ...Option) g.Node {
+func Settings2(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M14 17H5",
 		"M19 7h-9",
@@ -13979,7 +13979,7 @@ func Settings2(opts ...Option) g.Node {
 
 // Shapes creates a shapes icon
 // Tags: triangle, equilateral, square, circle, classification, different, collection, toy, blocks, learning
-func Shapes(opts ...Option) g.Node {
+func Shapes(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M8.3 10a.7.7 0 0 1-.626-1.079L11.4 3a.7.7 0 0 1 1.198-.043L16.3 8.9a.7.7 0 0 1-.572 1.1Z",
 		"M 4 14 h 5 a 1 1 0 0 1 1 1 v 5 a 1 1 0 0 1 -1 1 h -5 a 1 1 0 0 1 -1 -1 v -5 a 1 1 0 0 1 1 -1 Z",
@@ -13989,7 +13989,7 @@ func Shapes(opts ...Option) g.Node {
 
 // Share creates a share icon
 // Tags: network, connections
-func Share(opts ...Option) g.Node {
+func Share(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M12 2v13",
 		"m16 6-4-4-4 4",
@@ -13999,7 +13999,7 @@ func Share(opts ...Option) g.Node {
 
 // Share2 creates a share-2 icon
 // Tags: network, connections
-func Share2(opts ...Option) g.Node {
+func Share2(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M 15 5 a 3 3 0 1 0 6 0 a 3 3 0 1 0 -6 0",
 		"M 3 12 a 3 3 0 1 0 6 0 a 3 3 0 1 0 -6 0",
@@ -14011,7 +14011,7 @@ func Share2(opts ...Option) g.Node {
 
 // Sheet creates a sheet icon
 // Tags: spreadsheets, table, excel
-func Sheet(opts ...Option) g.Node {
+func Sheet(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M 5 3 h 14 a 2 2 0 0 1 2 2 v 14 a 2 2 0 0 1 -2 2 h -14 a 2 2 0 0 1 -2 -2 v -14 a 2 2 0 0 1 2 -2 Z",
 		"M 3 9 L 21 9",
@@ -14023,19 +14023,19 @@ func Sheet(opts ...Option) g.Node {
 
 // Shell creates a shell icon
 // Tags: beach, sand, holiday, sealife, fossil, ammonite, biology, ocean, terminal, command line, session, bash, zsh, roll, wrap, chewing gum, bubble gum, sweet, sugar, hosepipe, carpet, string, spiral, spinner, hypnotise, hypnosis
-func Shell(opts ...Option) g.Node {
+func Shell(opts ...Option) templ.Component {
 	return Icon("M14 11a2 2 0 1 1-4 0 4 4 0 0 1 8 0 6 6 0 0 1-12 0 8 8 0 0 1 16 0 10 10 0 1 1-20 0 11.93 11.93 0 0 1 2.42-7.22 2 2 0 1 1 3.16 2.44", opts...)
 }
 
 // Shield creates a shield icon
 // Tags: cybersecurity, secure, safety, protection, guardian, armored, armoured, defense, defence, defender, block, threat, prevention, antivirus, vigilance, vigilant, detection, scan, find, strength, strong, tough, invincible, invincibility, invulnerable, undamaged, audit, admin, verification, crest, bravery, knight, foot soldier, infantry, trooper, pawn, battle, war, military, army, cadet, scout
-func Shield(opts ...Option) g.Node {
+func Shield(opts ...Option) templ.Component {
 	return Icon("M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z", opts...)
 }
 
 // ShieldAlert creates a shield-alert icon
 // Tags: unshielded, cybersecurity, insecure, unsecured, safety, unsafe, protection, unprotected, guardian, unguarded, unarmored, unarmoured, defenseless, defenceless, undefended, defender, blocked, stopped, intercepted, interception, saved, thwarted, threat, prevention, unprevented, antivirus, vigilance, vigilant, detection, detected, scanned, found, exploit, vulnerability, vulnerable, weakness, infection, infected, comprimised, data leak, audited, admin, verification, unverified, uncertified, warning, emergency, attention, urgent, alarm, crest, bravery, strength, tough, attacked, damaged, injured, hit, expired, disabled, inactive, error, exclamation mark, !
-func ShieldAlert(opts ...Option) g.Node {
+func ShieldAlert(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z",
 		"M12 8v4",
@@ -14045,7 +14045,7 @@ func ShieldAlert(opts ...Option) g.Node {
 
 // ShieldBan creates a shield-ban icon
 // Tags: unshielded, cybersecurity, insecure, unsecured, safety, unsafe, protection, unprotected, guardian, unguarded, unarmored, unarmoured, defenseless, defenceless, undefended, defender, blocked, stopped, intercepted, interception, saved, thwarted, threat, prevention, unprevented, antivirus, vigilance, vigilant, detection, detected, scanned, found, exploit, vulnerability, vulnerable, weakness, infection, infected, comprimised, data leak, audited, admin, verification, unverified, uncertified, cancel, error, crest, bravery, attacked, damaged, injured, hit, expired, eliminated, disabled, inactive, /
-func ShieldBan(opts ...Option) g.Node {
+func ShieldBan(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z",
 		"m4.243 5.21 14.39 12.472",
@@ -14054,7 +14054,7 @@ func ShieldBan(opts ...Option) g.Node {
 
 // ShieldCheck creates a shield-check icon
 // Tags: cybersecurity, secured, safety, protection, protected, guardian, guarded, armored, armoured, defense, defence, defended, blocked, threat, prevention, prevented, antivirus, vigilance, vigilant, active, activated, enabled, detection, scanned, found, strength, strong, tough, invincible, invincibility, invulnerable, undamaged, audited, admin, verification, verified, certification, certified, tested, passed, qualified, cleared, cleaned, disinfected, uninfected, task, completed, todo, done, ticked, checked, crest, bravery
-func ShieldCheck(opts ...Option) g.Node {
+func ShieldCheck(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z",
 		"m9 12 2 2 4-4",
@@ -14063,7 +14063,7 @@ func ShieldCheck(opts ...Option) g.Node {
 
 // ShieldEllipsis creates a shield-ellipsis icon
 // Tags: cybersecurity, securing, protecting, guarding, armoring, armouring, defending, blocking, preventing, antivirus, detecting, scanning, finding, auditing, admin, verifying, crest, upgrading, loader, loading, throbber, progress, dots, more, etc, ..., …
-func ShieldEllipsis(opts ...Option) g.Node {
+func ShieldEllipsis(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z",
 		"M8 12h.01",
@@ -14074,7 +14074,7 @@ func ShieldEllipsis(opts ...Option) g.Node {
 
 // ShieldHalf creates a shield-half icon
 // Tags: cybersecurity, secure, safety, protection, guardian, armored, armoured, defense, defence, defender, block, threat, prevention, antivirus, vigilance, vigilant, detection, scan, strength, strong, tough, invincible, invincibility, invulnerable, undamaged, audit, admin, verification, crest, logo, sigil, flag, team, faction, fraternity, university, college, academy, school, education, uniform, bravery, knight, foot soldier, infantry, trooper, pawn, battle, war, military, ranking, army, cadet, scout
-func ShieldHalf(opts ...Option) g.Node {
+func ShieldHalf(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z",
 		"M12 22V2",
@@ -14083,7 +14083,7 @@ func ShieldHalf(opts ...Option) g.Node {
 
 // ShieldMinus creates a shield-minus icon
 // Tags: unshield, cybersecurity, unsecure, unguard, unblock, antivirus, clean, clear, disinfect, patch, fix, stop, cancel, remove, relax, admin, crest, bravery, weakened, damaged, hit, unarm, disable, deactivate, decommission, downgraded, minimum, -
-func ShieldMinus(opts ...Option) g.Node {
+func ShieldMinus(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z",
 		"M9 12h6",
@@ -14092,7 +14092,7 @@ func ShieldMinus(opts ...Option) g.Node {
 
 // ShieldOff creates a shield-off icon
 // Tags: unshielded, cybersecurity, insecure, unsecured, safety, unsafe, protection, unprotected, guardian, unguarded, unarmored, unarmoured, defenseless, defenceless, undefended, defender, interception, threat, prevention, unprevented, antivirus, detection, undetected, exploit, vulnerability, vulnerable, weakness, infected, infection, comprimised, data leak, unaudited, admin, verification, unverified, inactive, cancelled, error, crest, bravery, damaged, injured, hit, expired, eliminated
-func ShieldOff(opts ...Option) g.Node {
+func ShieldOff(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"m2 2 20 20",
 		"M5 5a1 1 0 0 0-1 1v7c0 5 3.5 7.5 7.67 8.94a1 1 0 0 0 .67.01c2.35-.82 4.48-1.97 5.9-3.71",
@@ -14102,7 +14102,7 @@ func ShieldOff(opts ...Option) g.Node {
 
 // ShieldPlus creates a shield-plus icon
 // Tags: cybersecurity, secure, safety, protection, guardian, armored, armoured, defense, defence, defender, block, threat, prevention, antivirus, vigilance, vigilant, detection, scan, strength, strong, tough, invincible, invincibility, invulnerable, undamaged, extra, added, professional, enterprise, full, maximum, upgraded, ultra, activate, enable, audit, admin, verification, crest, medic, +
-func ShieldPlus(opts ...Option) g.Node {
+func ShieldPlus(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z",
 		"M9 12h6",
@@ -14112,7 +14112,7 @@ func ShieldPlus(opts ...Option) g.Node {
 
 // ShieldQuestionMark creates a shield-question-mark icon
 // Tags: unshielded, cybersecurity, insecure, unsecured, safety, unsafe, protection, unprotected, guardian, unguarded, unarmored, unarmoured, defenseless, defenceless, undefended, defender, threat, prevention, unprevented, antivirus, vigilance, vigilant, detection, undetected, scan, find, exploit, vulnerability, vulnerable, weakness, infection, comprimised, data leak, audit, admin, verification, unverified, uncertified, uncertain, unknown, inactive, crest, question mark, ?
-func ShieldQuestionMark(opts ...Option) g.Node {
+func ShieldQuestionMark(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z",
 		"M9.1 9a3 3 0 0 1 5.82 1c0 2-3 3-3 3",
@@ -14122,7 +14122,7 @@ func ShieldQuestionMark(opts ...Option) g.Node {
 
 // ShieldUser creates a shield-user icon
 // Tags: shield, user, admin, protection, protected, safety, guard
-func ShieldUser(opts ...Option) g.Node {
+func ShieldUser(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z",
 		"M6.376 18.91a6 6 0 0 1 11.249.003",
@@ -14132,7 +14132,7 @@ func ShieldUser(opts ...Option) g.Node {
 
 // ShieldX creates a shield-x icon
 // Tags: unshielded, cybersecurity, insecure, unsecured, safety, unsafe, protection, unprotected, guardian, unguarded, unarmored, unarmoured, defenseless, defenceless, undefended, defender, blocked, stopped, intercepted, interception, saved, thwarted, threat, prevention, prevented, antivirus, vigilance, vigilant, detection, detected, scanned, found, exploit, vulnerability, vulnerable, weakness, infection, infected, comprimised, data leak, audited, admin, verification, unverified, inactive, cancel, error, wrong, false, crest, bravery, attacked, damaged, injured, hit, dead, deceased, expired, eliminated, exterminated
-func ShieldX(opts ...Option) g.Node {
+func ShieldX(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z",
 		"m14.5 9.5-5 5",
@@ -14142,7 +14142,7 @@ func ShieldX(opts ...Option) g.Node {
 
 // Ship creates a ship icon
 // Tags: boat, knots, nautical mile, maritime, sailing, yacht, cruise, ocean liner, tanker, vessel, navy, trip, releases
-func Ship(opts ...Option) g.Node {
+func Ship(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M12 10.189V14",
 		"M12 2v3",
@@ -14154,7 +14154,7 @@ func Ship(opts ...Option) g.Node {
 
 // ShipWheel creates a ship-wheel icon
 // Tags: steering, rudder, boat, knots, nautical mile, maritime, sailing, yacht, cruise, ocean liner, tanker, vessel, navy, trip
-func ShipWheel(opts ...Option) g.Node {
+func ShipWheel(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M 4 12 a 8 8 0 1 0 16 0 a 8 8 0 1 0 -16 0",
 		"M12 2v7.5",
@@ -14171,13 +14171,13 @@ func ShipWheel(opts ...Option) g.Node {
 
 // Shirt creates a shirt icon
 // Tags: t-shirt, shopping, store, clothing, clothes
-func Shirt(opts ...Option) g.Node {
+func Shirt(opts ...Option) templ.Component {
 	return Icon("M20.38 3.46 16 2a4 4 0 0 1-8 0L3.62 3.46a2 2 0 0 0-1.34 2.23l.58 3.47a1 1 0 0 0 .99.84H6v10c0 1.1.9 2 2 2h8a2 2 0 0 0 2-2V10h2.15a1 1 0 0 0 .99-.84l.58-3.47a2 2 0 0 0-1.34-2.23z", opts...)
 }
 
 // ShoppingBag creates a shopping-bag icon
 // Tags: ecommerce, cart, purchase, store
-func ShoppingBag(opts ...Option) g.Node {
+func ShoppingBag(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M16 10a4 4 0 0 1-8 0",
 		"M3.103 6.034h17.794",
@@ -14187,7 +14187,7 @@ func ShoppingBag(opts ...Option) g.Node {
 
 // ShoppingBasket creates a shopping-basket icon
 // Tags: cart, e-commerce, store, purchase, products, items, ingredients
-func ShoppingBasket(opts ...Option) g.Node {
+func ShoppingBasket(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"m15 11-1 9",
 		"m19 11-4-7",
@@ -14201,7 +14201,7 @@ func ShoppingBasket(opts ...Option) g.Node {
 
 // ShoppingCart creates a shopping-cart icon
 // Tags: trolley, cart, basket, e-commerce, store, purchase, products, items, ingredients
-func ShoppingCart(opts ...Option) g.Node {
+func ShoppingCart(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M 7 21 a 1 1 0 1 0 2 0 a 1 1 0 1 0 -2 0",
 		"M 18 21 a 1 1 0 1 0 2 0 a 1 1 0 1 0 -2 0",
@@ -14211,7 +14211,7 @@ func ShoppingCart(opts ...Option) g.Node {
 
 // Shovel creates a shovel icon
 // Tags: dig, spade, treasure
-func Shovel(opts ...Option) g.Node {
+func Shovel(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M21.56 4.56a1.5 1.5 0 0 1 0 2.122l-.47.47a3 3 0 0 1-4.212-.03 3 3 0 0 1 0-4.243l.44-.44a1.5 1.5 0 0 1 2.121 0z",
 		"M3 22a1 1 0 0 1-1-1v-3.586a1 1 0 0 1 .293-.707l3.355-3.355a1.205 1.205 0 0 1 1.704 0l3.296 3.296a1.205 1.205 0 0 1 0 1.704l-3.355 3.355a1 1 0 0 1-.707.293z",
@@ -14221,7 +14221,7 @@ func Shovel(opts ...Option) g.Node {
 
 // ShowerHead creates a shower-head icon
 // Tags: shower, bath, bathroom, amenities, services
-func ShowerHead(opts ...Option) g.Node {
+func ShowerHead(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"m4 4 2.5 2.5",
 		"M13.5 6.5a4.95 4.95 0 0 0-7 7",
@@ -14238,7 +14238,7 @@ func ShowerHead(opts ...Option) g.Node {
 
 // Shredder creates a shredder icon
 // Tags: file, paper, tear, cut, delete, destroy, remove, erase, document, destruction, secure, security, confidential, data, trash, dispose, disposal, information, waste, permanent
-func Shredder(opts ...Option) g.Node {
+func Shredder(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M4 13V4a2 2 0 0 1 2-2h8a2.4 2.4 0 0 1 1.706.706l3.588 3.588A2.4 2.4 0 0 1 20 8v5",
 		"M14 2v5a1 1 0 0 0 1 1h5",
@@ -14252,7 +14252,7 @@ func Shredder(opts ...Option) g.Node {
 
 // Shrimp creates a shrimp icon
 // Tags: seafood, shellfish, crustacean, prawn, scallop, whelk, arthropod, littleneck, quahog, cherrystone
-func Shrimp(opts ...Option) g.Node {
+func Shrimp(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M11 12h.01",
 		"M13 22c.5-.5 1.12-1 2.5-1-1.38 0-2-.5-2.5-1",
@@ -14264,7 +14264,7 @@ func Shrimp(opts ...Option) g.Node {
 
 // Shrink creates a shrink icon
 // Tags: scale, fullscreen
-func Shrink(opts ...Option) g.Node {
+func Shrink(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"m15 15 6 6m-6-6v4.8m0-4.8h4.8",
 		"M9 19.8V15m0 0H4.2M9 15l-6 6",
@@ -14275,7 +14275,7 @@ func Shrink(opts ...Option) g.Node {
 
 // Shrub creates a shrub icon
 // Tags: forest, undergrowth, park, nature
-func Shrub(opts ...Option) g.Node {
+func Shrub(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M12 22v-5.172a2 2 0 0 0-.586-1.414L9.5 13.5",
 		"M14.5 14.5 12 17",
@@ -14285,7 +14285,7 @@ func Shrub(opts ...Option) g.Node {
 
 // Shuffle creates a shuffle icon
 // Tags: music, random, reorder
-func Shuffle(opts ...Option) g.Node {
+func Shuffle(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"m18 14 4 4-4 4",
 		"m18 2 4 4-4 4",
@@ -14297,13 +14297,13 @@ func Shuffle(opts ...Option) g.Node {
 
 // Sigma creates a sigma icon
 // Tags: sum, calculate, formula, math, enumeration, enumerate
-func Sigma(opts ...Option) g.Node {
+func Sigma(opts ...Option) templ.Component {
 	return Icon("M18 7V5a1 1 0 0 0-1-1H6.5a.5.5 0 0 0-.4.8l4.5 6a2 2 0 0 1 0 2.4l-4.5 6a.5.5 0 0 0 .4.8H17a1 1 0 0 0 1-1v-2", opts...)
 }
 
 // Signal creates a signal icon
 // Tags: connection, wireless, gsm, phone, 2g, 3g, 4g, 5g
-func Signal(opts ...Option) g.Node {
+func Signal(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M2 20h.01",
 		"M7 20v-4",
@@ -14315,7 +14315,7 @@ func Signal(opts ...Option) g.Node {
 
 // SignalHigh creates a signal-high icon
 // Tags: connection, wireless, gsm, phone, 2g, 3g, 4g, 5g
-func SignalHigh(opts ...Option) g.Node {
+func SignalHigh(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M2 20h.01",
 		"M7 20v-4",
@@ -14326,7 +14326,7 @@ func SignalHigh(opts ...Option) g.Node {
 
 // SignalLow creates a signal-low icon
 // Tags: connection, wireless, gsm, phone, 2g, 3g, 4g, 5g
-func SignalLow(opts ...Option) g.Node {
+func SignalLow(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M2 20h.01",
 		"M7 20v-4",
@@ -14335,7 +14335,7 @@ func SignalLow(opts ...Option) g.Node {
 
 // SignalMedium creates a signal-medium icon
 // Tags: connection, wireless, gsm, phone, 2g, 3g, 4g, 5g
-func SignalMedium(opts ...Option) g.Node {
+func SignalMedium(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M2 20h.01",
 		"M7 20v-4",
@@ -14345,13 +14345,13 @@ func SignalMedium(opts ...Option) g.Node {
 
 // SignalZero creates a signal-zero icon
 // Tags: connection, wireless, gsm, phone, 2g, 3g, 4g, 5g, lost
-func SignalZero(opts ...Option) g.Node {
+func SignalZero(opts ...Option) templ.Component {
 	return Icon("M2 20h.01", opts...)
 }
 
 // Signature creates a signature icon
 // Tags: text, format, input, contract, autograph, handwriting, sign, cursive, ink, scribble, authorize, personal, agreement, legal, document, identity, authentic, approval, verification, unique
-func Signature(opts ...Option) g.Node {
+func Signature(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"m21 17-2.156-1.868A.5.5 0 0 0 18 15.5v.5a1 1 0 0 1-1 1h-2a1 1 0 0 1-1-1c0-2.545-3.991-3.97-8.5-4a1 1 0 0 0 0 5c4.153 0 4.745-11.295 5.708-13.5a2.5 2.5 0 1 1 3.31 3.284",
 		"M3 21h18",
@@ -14360,7 +14360,7 @@ func Signature(opts ...Option) g.Node {
 
 // Signpost creates a signpost icon
 // Tags: bidirectional, left, right, east, west
-func Signpost(opts ...Option) g.Node {
+func Signpost(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M12 13v8",
 		"M12 3v3",
@@ -14370,7 +14370,7 @@ func Signpost(opts ...Option) g.Node {
 
 // SignpostBig creates a signpost-big icon
 // Tags: bidirectional, left, right, east, west
-func SignpostBig(opts ...Option) g.Node {
+func SignpostBig(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M10 9H4L2 7l2-2h6",
 		"M14 5h6l2 2-2 2h-6",
@@ -14381,7 +14381,7 @@ func SignpostBig(opts ...Option) g.Node {
 
 // Siren creates a siren icon
 // Tags: police, ambulance, emergency, security, alert, alarm, light
-func Siren(opts ...Option) g.Node {
+func Siren(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M7 18v-6a5 5 0 1 1 10 0v6",
 		"M5 21a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-1a2 2 0 0 0-2-2H7a2 2 0 0 0-2 2z",
@@ -14396,7 +14396,7 @@ func Siren(opts ...Option) g.Node {
 
 // SkipBack creates a skip-back icon
 // Tags: arrow, previous, music
-func SkipBack(opts ...Option) g.Node {
+func SkipBack(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M17.971 4.285A2 2 0 0 1 21 6v12a2 2 0 0 1-3.029 1.715l-9.997-5.998a2 2 0 0 1-.003-3.432z",
 		"M3 20V4",
@@ -14405,7 +14405,7 @@ func SkipBack(opts ...Option) g.Node {
 
 // SkipForward creates a skip-forward icon
 // Tags: arrow, skip, next, music
-func SkipForward(opts ...Option) g.Node {
+func SkipForward(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M21 4v16",
 		"M6.029 4.285A2 2 0 0 0 3 6v12a2 2 0 0 0 3.029 1.715l9.997-5.998a2 2 0 0 0 .003-3.432z",
@@ -14414,7 +14414,7 @@ func SkipForward(opts ...Option) g.Node {
 
 // Skull creates a skull icon
 // Tags: death, danger, bone
-func Skull(opts ...Option) g.Node {
+func Skull(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"m12.5 17-.5-1-.5 1h1z",
 		"M15 22a1 1 0 0 0 1-1v-1a2 2 0 0 0 1.56-3.25 8 8 0 1 0-11.12 0A2 2 0 0 0 8 20v1a1 1 0 0 0 1 1z",
@@ -14425,7 +14425,7 @@ func Skull(opts ...Option) g.Node {
 
 // Slack creates a slack icon
 // Tags: logo
-func Slack(opts ...Option) g.Node {
+func Slack(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M 14.5 2 h 0 a 1.5 1.5 0 0 1 1.5 1.5 v 5 a 1.5 1.5 0 0 1 -1.5 1.5 h -0 a 1.5 1.5 0 0 1 -1.5 -1.5 v -5 a 1.5 1.5 0 0 1 1.5 -1.5 Z",
 		"M19 8.5V10h1.5A1.5 1.5 0 1 0 19 8.5",
@@ -14440,19 +14440,19 @@ func Slack(opts ...Option) g.Node {
 
 // Slash creates a slash icon
 // Tags: divide, division, or, /
-func Slash(opts ...Option) g.Node {
+func Slash(opts ...Option) templ.Component {
 	return Icon("M22 2 2 22", opts...)
 }
 
 // Slice creates a slice icon
 // Tags: cutter, scalpel, knife
-func Slice(opts ...Option) g.Node {
+func Slice(opts ...Option) templ.Component {
 	return Icon("M11 16.586V19a1 1 0 0 1-1 1H2L18.37 3.63a1 1 0 1 1 3 3l-9.663 9.663a1 1 0 0 1-1.414 0L8 14", opts...)
 }
 
 // SlidersHorizontal creates a sliders-horizontal icon
 // Tags: settings, filters, controls
-func SlidersHorizontal(opts ...Option) g.Node {
+func SlidersHorizontal(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M10 5H3",
 		"M12 19H3",
@@ -14468,7 +14468,7 @@ func SlidersHorizontal(opts ...Option) g.Node {
 
 // SlidersVertical creates a sliders-vertical icon
 // Tags: settings, controls
-func SlidersVertical(opts ...Option) g.Node {
+func SlidersVertical(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M10 8h4",
 		"M12 21v-9",
@@ -14484,7 +14484,7 @@ func SlidersVertical(opts ...Option) g.Node {
 
 // Smartphone creates a smartphone icon
 // Tags: phone, cellphone, device, screen
-func Smartphone(opts ...Option) g.Node {
+func Smartphone(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M 7 2 h 10 a 2 2 0 0 1 2 2 v 16 a 2 2 0 0 1 -2 2 h -10 a 2 2 0 0 1 -2 -2 v -16 a 2 2 0 0 1 2 -2 Z",
 		"M12 18h.01",
@@ -14493,7 +14493,7 @@ func Smartphone(opts ...Option) g.Node {
 
 // SmartphoneCharging creates a smartphone-charging icon
 // Tags: phone, cellphone, device, power, screen
-func SmartphoneCharging(opts ...Option) g.Node {
+func SmartphoneCharging(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M 7 2 h 10 a 2 2 0 0 1 2 2 v 16 a 2 2 0 0 1 -2 2 h -10 a 2 2 0 0 1 -2 -2 v -16 a 2 2 0 0 1 2 -2 Z",
 		"M12.667 8 10 12h4l-2.667 4",
@@ -14502,7 +14502,7 @@ func SmartphoneCharging(opts ...Option) g.Node {
 
 // SmartphoneNfc creates a smartphone-nfc icon
 // Tags: contactless, payment, near-field communication, screen
-func SmartphoneNfc(opts ...Option) g.Node {
+func SmartphoneNfc(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M 3 6 h 5 a 1 1 0 0 1 1 1 v 10 a 1 1 0 0 1 -1 1 h -5 a 1 1 0 0 1 -1 -1 v -10 a 1 1 0 0 1 1 -1 Z",
 		"M13 8.32a7.43 7.43 0 0 1 0 7.36",
@@ -14513,7 +14513,7 @@ func SmartphoneNfc(opts ...Option) g.Node {
 
 // Smile creates a smile icon
 // Tags: emoji, face, happy, good, emotion
-func Smile(opts ...Option) g.Node {
+func Smile(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M 2 12 a 10 10 0 1 0 20 0 a 10 10 0 1 0 -20 0",
 		"M8 14s1.5 2 4 2 4-2 4-2",
@@ -14524,7 +14524,7 @@ func Smile(opts ...Option) g.Node {
 
 // SmilePlus creates a smile-plus icon
 // Tags: emoji, face, happy, good, emotion, react, reaction, add
-func SmilePlus(opts ...Option) g.Node {
+func SmilePlus(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M22 11v1a10 10 0 1 1-9-10",
 		"M8 14s1.5 2 4 2 4-2 4-2",
@@ -14537,7 +14537,7 @@ func SmilePlus(opts ...Option) g.Node {
 
 // Snail creates a snail icon
 // Tags: animal, insect, slow, speed, delicacy, spiral
-func Snail(opts ...Option) g.Node {
+func Snail(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M2 13a6 6 0 1 0 12 0 4 4 0 1 0-8 0 2 2 0 0 0 4 0",
 		"M 2 13 a 8 8 0 1 0 16 0 a 8 8 0 1 0 -16 0",
@@ -14549,7 +14549,7 @@ func Snail(opts ...Option) g.Node {
 
 // Snowflake creates a snowflake icon
 // Tags: cold, weather, freeze, snow, winter
-func Snowflake(opts ...Option) g.Node {
+func Snowflake(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"m10 20-1.25-2.5L6 18",
 		"M10 4 8.75 6.5 6 6",
@@ -14568,7 +14568,7 @@ func Snowflake(opts ...Option) g.Node {
 
 // SoapDispenserDroplet creates a soap-dispenser-droplet icon
 // Tags: wash, bath, water, liquid, fluid, wet, moisture, damp, bead, globule
-func SoapDispenserDroplet(opts ...Option) g.Node {
+func SoapDispenserDroplet(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M10.5 2v4",
 		"M14 2H7a2 2 0 0 0-2 2",
@@ -14579,7 +14579,7 @@ func SoapDispenserDroplet(opts ...Option) g.Node {
 
 // Sofa creates a sofa icon
 // Tags: armchair, furniture, leisure, lounge, loveseat, couch
-func Sofa(opts ...Option) g.Node {
+func Sofa(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M20 9V6a2 2 0 0 0-2-2H6a2 2 0 0 0-2 2v3",
 		"M2 16a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2v-5a2 2 0 0 0-4 0v1.5a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5V11a2 2 0 0 0-4 0z",
@@ -14591,7 +14591,7 @@ func Sofa(opts ...Option) g.Node {
 
 // SolarPanel creates a solar-panel icon
 // Tags: solar panel, solar, panel, sun, energy, electricity, light
-func SolarPanel(opts ...Option) g.Node {
+func SolarPanel(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M11 2h2",
 		"m14.28 14-4.56 8",
@@ -14605,7 +14605,7 @@ func SolarPanel(opts ...Option) g.Node {
 
 // Soup creates a soup icon
 // Tags: food, dish, restaurant, course, meal, bowl, starter
-func Soup(opts ...Option) g.Node {
+func Soup(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M12 21a9 9 0 0 0 9-9H3a9 9 0 0 0 9 9Z",
 		"M7 21h10",
@@ -14618,13 +14618,13 @@ func Soup(opts ...Option) g.Node {
 
 // Space creates a space icon
 // Tags: text, selection, letters, characters, font, typography
-func Space(opts ...Option) g.Node {
+func Space(opts ...Option) templ.Component {
 	return Icon("M22 17v1c0 .5-.5 1-1 1H3c-.5 0-1-.5-1-1v-1", opts...)
 }
 
 // Spade creates a spade icon
 // Tags: shape, suit, playing, cards
-func Spade(opts ...Option) g.Node {
+func Spade(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M12 18v4",
 		"M2 14.499a5.5 5.5 0 0 0 9.591 3.675.6.6 0 0 1 .818.001A5.5 5.5 0 0 0 22 14.5c0-2.29-1.5-4-3-5.5l-5.492-5.312a2 2 0 0 0-3-.02L5 8.999c-1.5 1.5-3 3.2-3 5.5",
@@ -14633,13 +14633,13 @@ func Spade(opts ...Option) g.Node {
 
 // Sparkle creates a sparkle icon
 // Tags: star, effect, filter, night, magic, shiny, glitter, twinkle, celebration
-func Sparkle(opts ...Option) g.Node {
+func Sparkle(opts ...Option) templ.Component {
 	return Icon("M11.017 2.814a1 1 0 0 1 1.966 0l1.051 5.558a2 2 0 0 0 1.594 1.594l5.558 1.051a1 1 0 0 1 0 1.966l-5.558 1.051a2 2 0 0 0-1.594 1.594l-1.051 5.558a1 1 0 0 1-1.966 0l-1.051-5.558a2 2 0 0 0-1.594-1.594l-5.558-1.051a1 1 0 0 1 0-1.966l5.558-1.051a2 2 0 0 0 1.594-1.594z", opts...)
 }
 
 // Sparkles creates a sparkles icon
 // Tags: stars, effect, filter, night, magic
-func Sparkles(opts ...Option) g.Node {
+func Sparkles(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M11.017 2.814a1 1 0 0 1 1.966 0l1.051 5.558a2 2 0 0 0 1.594 1.594l5.558 1.051a1 1 0 0 1 0 1.966l-5.558 1.051a2 2 0 0 0-1.594 1.594l-1.051 5.558a1 1 0 0 1-1.966 0l-1.051-5.558a2 2 0 0 0-1.594-1.594l-5.558-1.051a1 1 0 0 1 0-1.966l5.558-1.051a2 2 0 0 0 1.594-1.594z",
 		"M20 2v4",
@@ -14650,7 +14650,7 @@ func Sparkles(opts ...Option) g.Node {
 
 // Speaker creates a speaker icon
 // Tags: sound, audio, music, tweeter, subwoofer, bass, production, producer, dj
-func Speaker(opts ...Option) g.Node {
+func Speaker(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M 6 2 h 12 a 2 2 0 0 1 2 2 v 16 a 2 2 0 0 1 -2 2 h -12 a 2 2 0 0 1 -2 -2 v -16 a 2 2 0 0 1 2 -2 Z",
 		"M12 6h.01",
@@ -14661,7 +14661,7 @@ func Speaker(opts ...Option) g.Node {
 
 // Speech creates a speech icon
 // Tags: disability, disabled, dda, human, accessibility, people, sound
-func Speech(opts ...Option) g.Node {
+func Speech(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M8.8 20v-4.1l1.9.2a2.3 2.3 0 0 0 2.164-2.1V8.3A5.37 5.37 0 0 0 2 8.25c0 2.8.656 3.054 1 4.55a5.77 5.77 0 0 1 .029 2.758L2 20",
 		"M19.8 17.8a7.5 7.5 0 0 0 .003-10.603",
@@ -14671,7 +14671,7 @@ func Speech(opts ...Option) g.Node {
 
 // SpellCheck creates a spell-check icon
 // Tags: spelling, error, mistake, oversight, typo, correction, code, linter, a
-func SpellCheck(opts ...Option) g.Node {
+func SpellCheck(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"m6 16 6-12 6 12",
 		"M8 12h8",
@@ -14681,7 +14681,7 @@ func SpellCheck(opts ...Option) g.Node {
 
 // SpellCheck2 creates a spell-check-2 icon
 // Tags: spelling, error, mistake, oversight, typo, correction, code, linter, a
-func SpellCheck2(opts ...Option) g.Node {
+func SpellCheck2(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"m6 16 6-12 6 12",
 		"M8 12h8",
@@ -14691,7 +14691,7 @@ func SpellCheck2(opts ...Option) g.Node {
 
 // Spline creates a spline icon
 // Tags: path, pen, tool, shape, curve, draw
-func Spline(opts ...Option) g.Node {
+func Spline(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M 17 5 a 2 2 0 1 0 4 0 a 2 2 0 1 0 -4 0",
 		"M 3 19 a 2 2 0 1 0 4 0 a 2 2 0 1 0 -4 0",
@@ -14701,7 +14701,7 @@ func Spline(opts ...Option) g.Node {
 
 // SplinePointer creates a spline-pointer icon
 // Tags: path, tool, curve, node, click, pointer, target, vector
-func SplinePointer(opts ...Option) g.Node {
+func SplinePointer(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M12.034 12.681a.498.498 0 0 1 .647-.647l9 3.5a.5.5 0 0 1-.033.943l-3.444 1.068a1 1 0 0 0-.66.66l-1.067 3.443a.5.5 0 0 1-.943.033z",
 		"M5 17A12 12 0 0 1 17 5",
@@ -14712,7 +14712,7 @@ func SplinePointer(opts ...Option) g.Node {
 
 // Split creates a split icon
 // Tags: break, disband, divide, separate, branch, disunite
-func Split(opts ...Option) g.Node {
+func Split(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M16 3h5v5",
 		"M8 3H3v5",
@@ -14723,7 +14723,7 @@ func Split(opts ...Option) g.Node {
 
 // Spool creates a spool icon
 // Tags: bobbin, spindle, yarn, thread, string, sewing, needlework
-func Spool(opts ...Option) g.Node {
+func Spool(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M17 13.44 4.442 17.082A2 2 0 0 0 4.982 21H19a2 2 0 0 0 .558-3.921l-1.115-.32A2 2 0 0 1 17 14.837V7.66",
 		"m7 10.56 12.558-3.642A2 2 0 0 0 19.018 3H5a2 2 0 0 0-.558 3.921l1.115.32A2 2 0 0 1 7 9.163v7.178",
@@ -14732,7 +14732,7 @@ func Spool(opts ...Option) g.Node {
 
 // Spotlight creates a spotlight icon
 // Tags: winner, soapbox, stage, entertainment, drama, podium, actor, actress, singer, light, beam, play, theatre, show, focus, concert, performance, lens, leaderboard, followspot, best, highlight
-func Spotlight(opts ...Option) g.Node {
+func Spotlight(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M15.295 19.562 16 22",
 		"m17 16 3.758 2.098",
@@ -14744,7 +14744,7 @@ func Spotlight(opts ...Option) g.Node {
 
 // SprayCan creates a spray-can icon
 // Tags: paint, color, graffiti, decoration, aerosol, deodorant, shaving foam, air freshener
-func SprayCan(opts ...Option) g.Node {
+func SprayCan(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M3 3h.01",
 		"M7 5h.01",
@@ -14761,7 +14761,7 @@ func SprayCan(opts ...Option) g.Node {
 
 // Sprout creates a sprout icon
 // Tags: eco, green, growth, leaf, nature, plant, seed, spring, sustainability
-func Sprout(opts ...Option) g.Node {
+func Sprout(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M14 9.536V7a4 4 0 0 1 4-4h1.5a.5.5 0 0 1 .5.5V5a4 4 0 0 1-4 4 4 4 0 0 0-4 4c0 2 1 3 1 5a5 5 0 0 1-1 3",
 		"M4 9a5 5 0 0 1 8 4 5 5 0 0 1-8-4",
@@ -14771,13 +14771,13 @@ func Sprout(opts ...Option) g.Node {
 
 // Square creates a square icon
 // Tags: stop, playback, music, audio, video, rectangle, aspect ratio, 1:1, shape
-func Square(opts ...Option) g.Node {
+func Square(opts ...Option) templ.Component {
 	return Icon("M 5 3 h 14 a 2 2 0 0 1 2 2 v 14 a 2 2 0 0 1 -2 2 h -14 a 2 2 0 0 1 -2 -2 v -14 a 2 2 0 0 1 2 -2 Z", opts...)
 }
 
 // SquareActivity creates a square-activity icon
 // Tags: pulse, action, motion, movement, exercise, fitness, healthcare, heart rate monitor, vital signs, vitals, emergency room, er, intensive care, hospital, defibrillator, earthquake, siesmic, magnitude, richter scale, aftershock, tremor, shockwave, audio, waveform, synthesizer, synthesiser, music
-func SquareActivity(opts ...Option) g.Node {
+func SquareActivity(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M 5 3 h 14 a 2 2 0 0 1 2 2 v 14 a 2 2 0 0 1 -2 2 h -14 a 2 2 0 0 1 -2 -2 v -14 a 2 2 0 0 1 2 -2 Z",
 		"M17 12h-2l-2 5-2-10-2 5H7",
@@ -14786,7 +14786,7 @@ func SquareActivity(opts ...Option) g.Node {
 
 // SquareArrowDown creates a square-arrow-down icon
 // Tags: backwards, reverse, direction, south, sign, keyboard, button
-func SquareArrowDown(opts ...Option) g.Node {
+func SquareArrowDown(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M 5 3 h 14 a 2 2 0 0 1 2 2 v 14 a 2 2 0 0 1 -2 2 h -14 a 2 2 0 0 1 -2 -2 v -14 a 2 2 0 0 1 2 -2 Z",
 		"M12 8v8",
@@ -14796,7 +14796,7 @@ func SquareArrowDown(opts ...Option) g.Node {
 
 // SquareArrowDownLeft creates a square-arrow-down-left icon
 // Tags: direction, south-west, diagonal, sign, turn, keyboard, button
-func SquareArrowDownLeft(opts ...Option) g.Node {
+func SquareArrowDownLeft(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M 5 3 h 14 a 2 2 0 0 1 2 2 v 14 a 2 2 0 0 1 -2 2 h -14 a 2 2 0 0 1 -2 -2 v -14 a 2 2 0 0 1 2 -2 Z",
 		"m16 8-8 8",
@@ -14806,7 +14806,7 @@ func SquareArrowDownLeft(opts ...Option) g.Node {
 
 // SquareArrowDownRight creates a square-arrow-down-right icon
 // Tags: direction, south-east, diagonal, sign, turn, keyboard, button
-func SquareArrowDownRight(opts ...Option) g.Node {
+func SquareArrowDownRight(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M 5 3 h 14 a 2 2 0 0 1 2 2 v 14 a 2 2 0 0 1 -2 2 h -14 a 2 2 0 0 1 -2 -2 v -14 a 2 2 0 0 1 2 -2 Z",
 		"m8 8 8 8",
@@ -14816,7 +14816,7 @@ func SquareArrowDownRight(opts ...Option) g.Node {
 
 // SquareArrowLeft creates a square-arrow-left icon
 // Tags: previous, back, direction, west, sign, keyboard, button, <-
-func SquareArrowLeft(opts ...Option) g.Node {
+func SquareArrowLeft(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M 5 3 h 14 a 2 2 0 0 1 2 2 v 14 a 2 2 0 0 1 -2 2 h -14 a 2 2 0 0 1 -2 -2 v -14 a 2 2 0 0 1 2 -2 Z",
 		"m12 8-4 4 4 4",
@@ -14826,7 +14826,7 @@ func SquareArrowLeft(opts ...Option) g.Node {
 
 // SquareArrowOutDownLeft creates a square-arrow-out-down-left icon
 // Tags: outwards, direction, south-west, diagonal
-func SquareArrowOutDownLeft(opts ...Option) g.Node {
+func SquareArrowOutDownLeft(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M13 21h6a2 2 0 0 0 2-2V5a2 2 0 0 0-2-2H5a2 2 0 0 0-2 2v6",
 		"m3 21 9-9",
@@ -14836,7 +14836,7 @@ func SquareArrowOutDownLeft(opts ...Option) g.Node {
 
 // SquareArrowOutDownRight creates a square-arrow-out-down-right icon
 // Tags: outwards, direction, south-east, diagonal
-func SquareArrowOutDownRight(opts ...Option) g.Node {
+func SquareArrowOutDownRight(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M21 11V5a2 2 0 0 0-2-2H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h6",
 		"m21 21-9-9",
@@ -14846,7 +14846,7 @@ func SquareArrowOutDownRight(opts ...Option) g.Node {
 
 // SquareArrowOutUpLeft creates a square-arrow-out-up-left icon
 // Tags: outwards, direction, north-west, diagonal
-func SquareArrowOutUpLeft(opts ...Option) g.Node {
+func SquareArrowOutUpLeft(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M13 3h6a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-6",
 		"m3 3 9 9",
@@ -14856,7 +14856,7 @@ func SquareArrowOutUpLeft(opts ...Option) g.Node {
 
 // SquareArrowOutUpRight creates a square-arrow-out-up-right icon
 // Tags: outwards, direction, north-east, diagonal, share, open, external, link
-func SquareArrowOutUpRight(opts ...Option) g.Node {
+func SquareArrowOutUpRight(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M21 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h6",
 		"m21 3-9 9",
@@ -14866,7 +14866,7 @@ func SquareArrowOutUpRight(opts ...Option) g.Node {
 
 // SquareArrowRight creates a square-arrow-right icon
 // Tags: next, forward, direction, west, sign, keyboard, button, ->
-func SquareArrowRight(opts ...Option) g.Node {
+func SquareArrowRight(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M 5 3 h 14 a 2 2 0 0 1 2 2 v 14 a 2 2 0 0 1 -2 2 h -14 a 2 2 0 0 1 -2 -2 v -14 a 2 2 0 0 1 2 -2 Z",
 		"M8 12h8",
@@ -14876,7 +14876,7 @@ func SquareArrowRight(opts ...Option) g.Node {
 
 // SquareArrowUp creates a square-arrow-up icon
 // Tags: forward, direction, north, sign, keyboard, button
-func SquareArrowUp(opts ...Option) g.Node {
+func SquareArrowUp(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M 5 3 h 14 a 2 2 0 0 1 2 2 v 14 a 2 2 0 0 1 -2 2 h -14 a 2 2 0 0 1 -2 -2 v -14 a 2 2 0 0 1 2 -2 Z",
 		"m16 12-4-4-4 4",
@@ -14886,7 +14886,7 @@ func SquareArrowUp(opts ...Option) g.Node {
 
 // SquareArrowUpLeft creates a square-arrow-up-left icon
 // Tags: direction, north-west, diagonal, sign, keyboard, button
-func SquareArrowUpLeft(opts ...Option) g.Node {
+func SquareArrowUpLeft(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M 5 3 h 14 a 2 2 0 0 1 2 2 v 14 a 2 2 0 0 1 -2 2 h -14 a 2 2 0 0 1 -2 -2 v -14 a 2 2 0 0 1 2 -2 Z",
 		"M8 16V8h8",
@@ -14896,7 +14896,7 @@ func SquareArrowUpLeft(opts ...Option) g.Node {
 
 // SquareArrowUpRight creates a square-arrow-up-right icon
 // Tags: direction, north-east, diagonal, sign, keyboard, button, share
-func SquareArrowUpRight(opts ...Option) g.Node {
+func SquareArrowUpRight(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M 5 3 h 14 a 2 2 0 0 1 2 2 v 14 a 2 2 0 0 1 -2 2 h -14 a 2 2 0 0 1 -2 -2 v -14 a 2 2 0 0 1 2 -2 Z",
 		"M8 8h8v8",
@@ -14906,7 +14906,7 @@ func SquareArrowUpRight(opts ...Option) g.Node {
 
 // SquareAsterisk creates a square-asterisk icon
 // Tags: password, secret, access, key, multiply, multiplication, glob pattern, wildcard, *
-func SquareAsterisk(opts ...Option) g.Node {
+func SquareAsterisk(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M 5 3 h 14 a 2 2 0 0 1 2 2 v 14 a 2 2 0 0 1 -2 2 h -14 a 2 2 0 0 1 -2 -2 v -14 a 2 2 0 0 1 2 -2 Z",
 		"M12 8v8",
@@ -14917,7 +14917,7 @@ func SquareAsterisk(opts ...Option) g.Node {
 
 // SquareBottomDashedScissors creates a square-bottom-dashed-scissors icon
 // Tags: cut, snippet, chop, stationery, crafts
-func SquareBottomDashedScissors(opts ...Option) g.Node {
+func SquareBottomDashedScissors(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M 5 3 L 19 3",
 		"M 3 5 L 3 19",
@@ -14938,7 +14938,7 @@ func SquareBottomDashedScissors(opts ...Option) g.Node {
 
 // SquareChartGantt creates a square-chart-gantt icon
 // Tags: projects, manage, overview, roadmap, plan, intentions, timeline, deadline, date, event, range, period, productivity, work, agile, code, coding, toolbar, button
-func SquareChartGantt(opts ...Option) g.Node {
+func SquareChartGantt(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M 5 3 h 14 a 2 2 0 0 1 2 2 v 14 a 2 2 0 0 1 -2 2 h -14 a 2 2 0 0 1 -2 -2 v -14 a 2 2 0 0 1 2 -2 Z",
 		"M9 8h7",
@@ -14949,7 +14949,7 @@ func SquareChartGantt(opts ...Option) g.Node {
 
 // SquareCheck creates a square-check icon
 // Tags: done, todo, tick, complete, task
-func SquareCheck(opts ...Option) g.Node {
+func SquareCheck(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M 5 3 h 14 a 2 2 0 0 1 2 2 v 14 a 2 2 0 0 1 -2 2 h -14 a 2 2 0 0 1 -2 -2 v -14 a 2 2 0 0 1 2 -2 Z",
 		"m9 12 2 2 4-4",
@@ -14958,7 +14958,7 @@ func SquareCheck(opts ...Option) g.Node {
 
 // SquareCheckBig creates a square-check-big icon
 // Tags: done, todo, tick, complete, task
-func SquareCheckBig(opts ...Option) g.Node {
+func SquareCheckBig(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M21 10.656V19a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h12.344",
 		"m9 11 3 3L22 4",
@@ -14967,7 +14967,7 @@ func SquareCheckBig(opts ...Option) g.Node {
 
 // SquareChevronDown creates a square-chevron-down icon
 // Tags: back, menu, panel
-func SquareChevronDown(opts ...Option) g.Node {
+func SquareChevronDown(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M 5 3 h 14 a 2 2 0 0 1 2 2 v 14 a 2 2 0 0 1 -2 2 h -14 a 2 2 0 0 1 -2 -2 v -14 a 2 2 0 0 1 2 -2 Z",
 		"m16 10-4 4-4-4",
@@ -14976,7 +14976,7 @@ func SquareChevronDown(opts ...Option) g.Node {
 
 // SquareChevronLeft creates a square-chevron-left icon
 // Tags: back, previous, less than, fewer, menu, panel, button, keyboard, <
-func SquareChevronLeft(opts ...Option) g.Node {
+func SquareChevronLeft(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M 5 3 h 14 a 2 2 0 0 1 2 2 v 14 a 2 2 0 0 1 -2 2 h -14 a 2 2 0 0 1 -2 -2 v -14 a 2 2 0 0 1 2 -2 Z",
 		"m14 16-4-4 4-4",
@@ -14985,7 +14985,7 @@ func SquareChevronLeft(opts ...Option) g.Node {
 
 // SquareChevronRight creates a square-chevron-right icon
 // Tags: forward, next, more than, greater, menu, panel, code, coding, command line, terminal, prompt, shell, console, >
-func SquareChevronRight(opts ...Option) g.Node {
+func SquareChevronRight(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M 5 3 h 14 a 2 2 0 0 1 2 2 v 14 a 2 2 0 0 1 -2 2 h -14 a 2 2 0 0 1 -2 -2 v -14 a 2 2 0 0 1 2 -2 Z",
 		"m10 8 4 4-4 4",
@@ -14994,7 +14994,7 @@ func SquareChevronRight(opts ...Option) g.Node {
 
 // SquareChevronUp creates a square-chevron-up icon
 // Tags: caret, keyboard, button, mac, control, ctrl, superscript, exponential, power, ahead, menu, panel, ^
-func SquareChevronUp(opts ...Option) g.Node {
+func SquareChevronUp(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M 5 3 h 14 a 2 2 0 0 1 2 2 v 14 a 2 2 0 0 1 -2 2 h -14 a 2 2 0 0 1 -2 -2 v -14 a 2 2 0 0 1 2 -2 Z",
 		"m8 14 4-4 4 4",
@@ -15003,7 +15003,7 @@ func SquareChevronUp(opts ...Option) g.Node {
 
 // SquareCode creates a square-code icon
 // Tags: gist, source, programming, html, xml, coding
-func SquareCode(opts ...Option) g.Node {
+func SquareCode(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"m10 9-3 3 3 3",
 		"m14 15 3-3-3-3",
@@ -15013,7 +15013,7 @@ func SquareCode(opts ...Option) g.Node {
 
 // SquareDashed creates a square-dashed icon
 // Tags: selection, square, rectangular, marquee, tool, dashed, box
-func SquareDashed(opts ...Option) g.Node {
+func SquareDashed(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M5 3a2 2 0 0 0-2 2",
 		"M19 3a2 2 0 0 1 2 2",
@@ -15032,7 +15032,7 @@ func SquareDashed(opts ...Option) g.Node {
 
 // SquareDashedBottom creates a square-dashed-bottom icon
 // Tags: rectangle, aspect ratio, 1:1, shape, snippet, code, coding
-func SquareDashedBottom(opts ...Option) g.Node {
+func SquareDashedBottom(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M5 21a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2",
 		"M9 21h1",
@@ -15042,7 +15042,7 @@ func SquareDashedBottom(opts ...Option) g.Node {
 
 // SquareDashedBottomCode creates a square-dashed-bottom-code icon
 // Tags: rectangle, aspect ratio, 1:1, shape, snippet, code, coding
-func SquareDashedBottomCode(opts ...Option) g.Node {
+func SquareDashedBottomCode(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M10 9.5 8 12l2 2.5",
 		"M14 21h1",
@@ -15054,7 +15054,7 @@ func SquareDashedBottomCode(opts ...Option) g.Node {
 
 // SquareDashedKanban creates a square-dashed-kanban icon
 // Tags: projects, manage, overview, board, tickets, issues, roadmap, plan, intentions, productivity, work, agile, draft, template, boilerplate, code, coding
-func SquareDashedKanban(opts ...Option) g.Node {
+func SquareDashedKanban(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M8 7v7",
 		"M12 7v4",
@@ -15076,7 +15076,7 @@ func SquareDashedKanban(opts ...Option) g.Node {
 
 // SquareDashedMousePointer creates a square-dashed-mouse-pointer icon
 // Tags: inspector, element, mouse, click, pointer, box, browser, selector, target, dom, node
-func SquareDashedMousePointer(opts ...Option) g.Node {
+func SquareDashedMousePointer(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M12.034 12.681a.498.498 0 0 1 .647-.647l9 3.5a.5.5 0 0 1-.033.943l-3.444 1.068a1 1 0 0 0-.66.66l-1.067 3.443a.5.5 0 0 1-.943.033z",
 		"M5 3a2 2 0 0 0-2 2",
@@ -15093,7 +15093,7 @@ func SquareDashedMousePointer(opts ...Option) g.Node {
 
 // SquareDashedTopSolid creates a square-dashed-top-solid icon
 // Tags: square, border, width, layout, style, design, rectangular, marquee, dashed, box, rectangle, aspect ratio, 1:1
-func SquareDashedTopSolid(opts ...Option) g.Node {
+func SquareDashedTopSolid(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M14 21h1",
 		"M21 14v1",
@@ -15109,7 +15109,7 @@ func SquareDashedTopSolid(opts ...Option) g.Node {
 
 // SquareDivide creates a square-divide icon
 // Tags: calculate, math, ÷, /
-func SquareDivide(opts ...Option) g.Node {
+func SquareDivide(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M 5 3 h 14 a 2 2 0 0 1 2 2 v 14 a 2 2 0 0 1 -2 2 h -14 a 2 2 0 0 1 -2 -2 v -14 a 2 2 0 0 1 2 -2 Z",
 		"M 8 12 L 16 12",
@@ -15120,7 +15120,7 @@ func SquareDivide(opts ...Option) g.Node {
 
 // SquareDot creates a square-dot icon
 // Tags: git, diff, modified, .
-func SquareDot(opts ...Option) g.Node {
+func SquareDot(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M 5 3 h 14 a 2 2 0 0 1 2 2 v 14 a 2 2 0 0 1 -2 2 h -14 a 2 2 0 0 1 -2 -2 v -14 a 2 2 0 0 1 2 -2 Z",
 		"M 11 12 a 1 1 0 1 0 2 0 a 1 1 0 1 0 -2 0",
@@ -15129,7 +15129,7 @@ func SquareDot(opts ...Option) g.Node {
 
 // SquareEqual creates a square-equal icon
 // Tags: calculate, =
-func SquareEqual(opts ...Option) g.Node {
+func SquareEqual(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M 5 3 h 14 a 2 2 0 0 1 2 2 v 14 a 2 2 0 0 1 -2 2 h -14 a 2 2 0 0 1 -2 -2 v -14 a 2 2 0 0 1 2 -2 Z",
 		"M7 10h10",
@@ -15139,7 +15139,7 @@ func SquareEqual(opts ...Option) g.Node {
 
 // SquareFunction creates a square-function icon
 // Tags: programming, code, automation, math
-func SquareFunction(opts ...Option) g.Node {
+func SquareFunction(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M 5 3 h 14 a 2 2 0 0 1 2 2 v 14 a 2 2 0 0 1 -2 2 h -14 a 2 2 0 0 1 -2 -2 v -14 a 2 2 0 0 1 2 -2 Z",
 		"M9 17c2 0 2.8-1 2.8-2.8V10c0-2 1-3.3 3.2-3",
@@ -15149,7 +15149,7 @@ func SquareFunction(opts ...Option) g.Node {
 
 // SquareKanban creates a square-kanban icon
 // Tags: projects, manage, overview, board, tickets, issues, roadmap, plan, intentions, productivity, work, agile, code, coding, toolbar, button
-func SquareKanban(opts ...Option) g.Node {
+func SquareKanban(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M 5 3 h 14 a 2 2 0 0 1 2 2 v 14 a 2 2 0 0 1 -2 2 h -14 a 2 2 0 0 1 -2 -2 v -14 a 2 2 0 0 1 2 -2 Z",
 		"M8 7v7",
@@ -15160,7 +15160,7 @@ func SquareKanban(opts ...Option) g.Node {
 
 // SquareLibrary creates a square-library icon
 // Tags: books, reading, written, authors, stories, fiction, novels, information, knowledge, education, high school, university, college, academy, learning, study, research, collection, vinyl, records, albums, music, package
-func SquareLibrary(opts ...Option) g.Node {
+func SquareLibrary(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M 5 3 h 14 a 2 2 0 0 1 2 2 v 14 a 2 2 0 0 1 -2 2 h -14 a 2 2 0 0 1 -2 -2 v -14 a 2 2 0 0 1 2 -2 Z",
 		"M7 7v10",
@@ -15171,7 +15171,7 @@ func SquareLibrary(opts ...Option) g.Node {
 
 // SquareM creates a square-m icon
 // Tags: metro, subway, underground, track, line
-func SquareM(opts ...Option) g.Node {
+func SquareM(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M8 16V8.5a.5.5 0 0 1 .9-.3l2.7 3.599a.5.5 0 0 0 .8 0l2.7-3.6a.5.5 0 0 1 .9.3V16",
 		"M 5 3 h 14 a 2 2 0 0 1 2 2 v 14 a 2 2 0 0 1 -2 2 h -14 a 2 2 0 0 1 -2 -2 v -14 a 2 2 0 0 1 2 -2 Z",
@@ -15180,7 +15180,7 @@ func SquareM(opts ...Option) g.Node {
 
 // SquareMenu creates a square-menu icon
 // Tags: bars, navigation, hamburger, options, menu bar, panel
-func SquareMenu(opts ...Option) g.Node {
+func SquareMenu(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M 5 3 h 14 a 2 2 0 0 1 2 2 v 14 a 2 2 0 0 1 -2 2 h -14 a 2 2 0 0 1 -2 -2 v -14 a 2 2 0 0 1 2 -2 Z",
 		"M7 8h10",
@@ -15191,7 +15191,7 @@ func SquareMenu(opts ...Option) g.Node {
 
 // SquareMinus creates a square-minus icon
 // Tags: subtract, remove, decrease, reduce, calculator, button, keyboard, line, divider, separator, horizontal rule, hr, html, markup, markdown, ---, toolbar, operator, code, coding, minimum, downgrade
-func SquareMinus(opts ...Option) g.Node {
+func SquareMinus(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M 5 3 h 14 a 2 2 0 0 1 2 2 v 14 a 2 2 0 0 1 -2 2 h -14 a 2 2 0 0 1 -2 -2 v -14 a 2 2 0 0 1 2 -2 Z",
 		"M8 12h8",
@@ -15200,7 +15200,7 @@ func SquareMinus(opts ...Option) g.Node {
 
 // SquareMousePointer creates a square-mouse-pointer icon
 // Tags: inspector, element, mouse, click, pointer, box, browser, selector, target, dom, node
-func SquareMousePointer(opts ...Option) g.Node {
+func SquareMousePointer(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M12.034 12.681a.498.498 0 0 1 .647-.647l9 3.5a.5.5 0 0 1-.033.943l-3.444 1.068a1 1 0 0 0-.66.66l-1.067 3.443a.5.5 0 0 1-.943.033z",
 		"M21 11V5a2 2 0 0 0-2-2H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h6",
@@ -15209,7 +15209,7 @@ func SquareMousePointer(opts ...Option) g.Node {
 
 // SquareParking creates a square-parking icon
 // Tags: parking lot, car park
-func SquareParking(opts ...Option) g.Node {
+func SquareParking(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M 5 3 h 14 a 2 2 0 0 1 2 2 v 14 a 2 2 0 0 1 -2 2 h -14 a 2 2 0 0 1 -2 -2 v -14 a 2 2 0 0 1 2 -2 Z",
 		"M9 17V7h4a3 3 0 0 1 0 6H9",
@@ -15218,7 +15218,7 @@ func SquareParking(opts ...Option) g.Node {
 
 // SquareParkingOff creates a square-parking-off icon
 // Tags: parking lot, car park, no parking
-func SquareParkingOff(opts ...Option) g.Node {
+func SquareParkingOff(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M3.6 3.6A2 2 0 0 1 5 3h14a2 2 0 0 1 2 2v14a2 2 0 0 1-.59 1.41",
 		"M3 8.7V19a2 2 0 0 0 2 2h10.3",
@@ -15230,7 +15230,7 @@ func SquareParkingOff(opts ...Option) g.Node {
 
 // SquarePause creates a square-pause icon
 // Tags: music, audio, stop
-func SquarePause(opts ...Option) g.Node {
+func SquarePause(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M 5 3 h 14 a 2 2 0 0 1 2 2 v 14 a 2 2 0 0 1 -2 2 h -14 a 2 2 0 0 1 -2 -2 v -14 a 2 2 0 0 1 2 -2 Z",
 		"M 10 15 L 10 9",
@@ -15240,7 +15240,7 @@ func SquarePause(opts ...Option) g.Node {
 
 // SquarePen creates a square-pen icon
 // Tags: pencil, edit, change, create, draw, sketch, draft, writer, writing, biro, ink, marker, felt tip, stationery, artist
-func SquarePen(opts ...Option) g.Node {
+func SquarePen(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M12 3H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7",
 		"M18.375 2.625a1 1 0 0 1 3 3l-9.013 9.014a2 2 0 0 1-.853.505l-2.873.84a.5.5 0 0 1-.62-.62l.84-2.873a2 2 0 0 1 .506-.852z",
@@ -15249,7 +15249,7 @@ func SquarePen(opts ...Option) g.Node {
 
 // SquarePercent creates a square-percent icon
 // Tags: verified, unverified, sale, discount, offer, marketing, sticker, price tag
-func SquarePercent(opts ...Option) g.Node {
+func SquarePercent(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M 5 3 h 14 a 2 2 0 0 1 2 2 v 14 a 2 2 0 0 1 -2 2 h -14 a 2 2 0 0 1 -2 -2 v -14 a 2 2 0 0 1 2 -2 Z",
 		"m15 9-6 6",
@@ -15260,7 +15260,7 @@ func SquarePercent(opts ...Option) g.Node {
 
 // SquarePi creates a square-pi icon
 // Tags: constant, code, coding, programming, symbol, trigonometry, geometry, formula
-func SquarePi(opts ...Option) g.Node {
+func SquarePi(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M 5 3 h 14 a 2 2 0 0 1 2 2 v 14 a 2 2 0 0 1 -2 2 h -14 a 2 2 0 0 1 -2 -2 v -14 a 2 2 0 0 1 2 -2 Z",
 		"M7 7h10",
@@ -15271,7 +15271,7 @@ func SquarePi(opts ...Option) g.Node {
 
 // SquarePilcrow creates a square-pilcrow icon
 // Tags: paragraph, mark, paraph, blind, typography, type, text, prose, symbol
-func SquarePilcrow(opts ...Option) g.Node {
+func SquarePilcrow(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M 5 3 h 14 a 2 2 0 0 1 2 2 v 14 a 2 2 0 0 1 -2 2 h -14 a 2 2 0 0 1 -2 -2 v -14 a 2 2 0 0 1 2 -2 Z",
 		"M12 12H9.5a2.5 2.5 0 0 1 0-5H17",
@@ -15282,7 +15282,7 @@ func SquarePilcrow(opts ...Option) g.Node {
 
 // SquarePlay creates a square-play icon
 // Tags: music, audio, video, start, run
-func SquarePlay(opts ...Option) g.Node {
+func SquarePlay(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M 5 3 h 14 a 2 2 0 0 1 2 2 v 14 a 2 2 0 0 1 -2 2 h -14 a 2 2 0 0 1 -2 -2 v -14 a 2 2 0 0 1 2 -2 Z",
 		"M9 9.003a1 1 0 0 1 1.517-.859l4.997 2.997a1 1 0 0 1 0 1.718l-4.997 2.997A1 1 0 0 1 9 14.996z",
@@ -15291,7 +15291,7 @@ func SquarePlay(opts ...Option) g.Node {
 
 // SquarePlus creates a square-plus icon
 // Tags: add, new, increase, increment, positive, calculate, calculator, button, keyboard, toolbar, maximum, upgrade, extra, operator, join, concatenate, code, coding, +
-func SquarePlus(opts ...Option) g.Node {
+func SquarePlus(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M 5 3 h 14 a 2 2 0 0 1 2 2 v 14 a 2 2 0 0 1 -2 2 h -14 a 2 2 0 0 1 -2 -2 v -14 a 2 2 0 0 1 2 -2 Z",
 		"M8 12h8",
@@ -15301,7 +15301,7 @@ func SquarePlus(opts ...Option) g.Node {
 
 // SquarePower creates a square-power icon
 // Tags: on, off, device, switch, toggle, binary, boolean, reboot, restart, button, keyboard, troubleshoot
-func SquarePower(opts ...Option) g.Node {
+func SquarePower(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M12 7v4",
 		"M7.998 9.003a5 5 0 1 0 8-.005",
@@ -15311,7 +15311,7 @@ func SquarePower(opts ...Option) g.Node {
 
 // SquareRadical creates a square-radical icon
 // Tags: calculate, formula, math, operator, root, square, symbol
-func SquareRadical(opts ...Option) g.Node {
+func SquareRadical(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M7 12h2l2 5 2-10h4",
 		"M 5 3 h 14 a 2 2 0 0 1 2 2 v 14 a 2 2 0 0 1 -2 2 h -14 a 2 2 0 0 1 -2 -2 v -14 a 2 2 0 0 1 2 -2 Z",
@@ -15320,7 +15320,7 @@ func SquareRadical(opts ...Option) g.Node {
 
 // SquareRoundCorner creates a square-round-corner icon
 // Tags: border, radius, style, design, corner, layout, round, rounded
-func SquareRoundCorner(opts ...Option) g.Node {
+func SquareRoundCorner(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M21 11a8 8 0 0 0-8-8",
 		"M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4",
@@ -15329,7 +15329,7 @@ func SquareRoundCorner(opts ...Option) g.Node {
 
 // SquareScissors creates a square-scissors icon
 // Tags: cut, snippet, chop, stationery, crafts, toolbar, button
-func SquareScissors(opts ...Option) g.Node {
+func SquareScissors(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M 5 3 h 14 a 2 2 0 0 1 2 2 v 14 a 2 2 0 0 1 -2 2 h -14 a 2 2 0 0 1 -2 -2 v -14 a 2 2 0 0 1 2 -2 Z",
 		"M 7 8.5 a 1.5 1.5 0 1 0 3 0 a 1.5 1.5 0 1 0 -3 0",
@@ -15342,7 +15342,7 @@ func SquareScissors(opts ...Option) g.Node {
 
 // SquareSigma creates a square-sigma icon
 // Tags: sum, calculate, formula, math, enumeration, enumerate
-func SquareSigma(opts ...Option) g.Node {
+func SquareSigma(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M 5 3 h 14 a 2 2 0 0 1 2 2 v 14 a 2 2 0 0 1 -2 2 h -14 a 2 2 0 0 1 -2 -2 v -14 a 2 2 0 0 1 2 -2 Z",
 		"M16 8.9V7H8l4 5-4 5h8v-1.9",
@@ -15351,7 +15351,7 @@ func SquareSigma(opts ...Option) g.Node {
 
 // SquareSlash creates a square-slash icon
 // Tags: git, diff, ignored, divide, division, shortcut, or, /
-func SquareSlash(opts ...Option) g.Node {
+func SquareSlash(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M 5 3 h 14 a 2 2 0 0 1 2 2 v 14 a 2 2 0 0 1 -2 2 h -14 a 2 2 0 0 1 -2 -2 v -14 a 2 2 0 0 1 2 -2 Z",
 		"M 9 15 L 15 9",
@@ -15360,7 +15360,7 @@ func SquareSlash(opts ...Option) g.Node {
 
 // SquareSplitHorizontal creates a square-split-horizontal icon
 // Tags: split, divide
-func SquareSplitHorizontal(opts ...Option) g.Node {
+func SquareSplitHorizontal(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M8 19H5c-1 0-2-1-2-2V7c0-1 1-2 2-2h3",
 		"M16 5h3c1 0 2 1 2 2v10c0 1-1 2-2 2h-3",
@@ -15370,7 +15370,7 @@ func SquareSplitHorizontal(opts ...Option) g.Node {
 
 // SquareSplitVertical creates a square-split-vertical icon
 // Tags: split, divide
-func SquareSplitVertical(opts ...Option) g.Node {
+func SquareSplitVertical(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M5 8V5c0-1 1-2 2-2h10c1 0 2 1 2 2v3",
 		"M19 16v3c0 1-1 2-2 2H7c-1 0-2-1-2-2v-3",
@@ -15380,7 +15380,7 @@ func SquareSplitVertical(opts ...Option) g.Node {
 
 // SquareSquare creates a square-square icon
 // Tags: float, center, rectangle
-func SquareSquare(opts ...Option) g.Node {
+func SquareSquare(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M 5 3 h 14 a 2 2 0 0 1 2 2 v 14 a 2 2 0 0 1 -2 2 h -14 a 2 2 0 0 1 -2 -2 v -14 a 2 2 0 0 1 2 -2 Z",
 		"M 9 8 h 6 a 1 1 0 0 1 1 1 v 6 a 1 1 0 0 1 -1 1 h -6 a 1 1 0 0 1 -1 -1 v -6 a 1 1 0 0 1 1 -1 Z",
@@ -15389,7 +15389,7 @@ func SquareSquare(opts ...Option) g.Node {
 
 // SquareStack creates a square-stack icon
 // Tags: versions, clone, copy, duplicate, multiple, revisions, version control, backup, history
-func SquareStack(opts ...Option) g.Node {
+func SquareStack(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M4 10c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h4c1.1 0 2 .9 2 2",
 		"M10 16c-1.1 0-2-.9-2-2v-4c0-1.1.9-2 2-2h4c1.1 0 2 .9 2 2",
@@ -15399,7 +15399,7 @@ func SquareStack(opts ...Option) g.Node {
 
 // SquareStar creates a square-star icon
 // Tags: badge, medal, honour, decoration, order, pin, laurel, trophy, medallion, insignia, bronze, silver, gold
-func SquareStar(opts ...Option) g.Node {
+func SquareStar(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M11.035 7.69a1 1 0 0 1 1.909.024l.737 1.452a1 1 0 0 0 .737.535l1.634.256a1 1 0 0 1 .588 1.806l-1.172 1.168a1 1 0 0 0-.282.866l.259 1.613a1 1 0 0 1-1.541 1.134l-1.465-.75a1 1 0 0 0-.912 0l-1.465.75a1 1 0 0 1-1.539-1.133l.258-1.613a1 1 0 0 0-.282-.866l-1.156-1.153a1 1 0 0 1 .572-1.822l1.633-.256a1 1 0 0 0 .737-.535z",
 		"M 5 3 h 14 a 2 2 0 0 1 2 2 v 14 a 2 2 0 0 1 -2 2 h -14 a 2 2 0 0 1 -2 -2 v -14 a 2 2 0 0 1 2 -2 Z",
@@ -15408,7 +15408,7 @@ func SquareStar(opts ...Option) g.Node {
 
 // SquareStop creates a square-stop icon
 // Tags: media, music
-func SquareStop(opts ...Option) g.Node {
+func SquareStop(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M 5 3 h 14 a 2 2 0 0 1 2 2 v 14 a 2 2 0 0 1 -2 2 h -14 a 2 2 0 0 1 -2 -2 v -14 a 2 2 0 0 1 2 -2 Z",
 		"M 10 9 h 4 a 1 1 0 0 1 1 1 v 4 a 1 1 0 0 1 -1 1 h -4 a 1 1 0 0 1 -1 -1 v -4 a 1 1 0 0 1 1 -1 Z",
@@ -15417,7 +15417,7 @@ func SquareStop(opts ...Option) g.Node {
 
 // SquareTerminal creates a square-terminal icon
 // Tags: code, command line, prompt, shell
-func SquareTerminal(opts ...Option) g.Node {
+func SquareTerminal(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"m7 11 2-2-2-2",
 		"M11 13h4",
@@ -15427,7 +15427,7 @@ func SquareTerminal(opts ...Option) g.Node {
 
 // SquareUser creates a square-user icon
 // Tags: person, account, contact
-func SquareUser(opts ...Option) g.Node {
+func SquareUser(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M 5 3 h 14 a 2 2 0 0 1 2 2 v 14 a 2 2 0 0 1 -2 2 h -14 a 2 2 0 0 1 -2 -2 v -14 a 2 2 0 0 1 2 -2 Z",
 		"M 9 10 a 3 3 0 1 0 6 0 a 3 3 0 1 0 -6 0",
@@ -15437,7 +15437,7 @@ func SquareUser(opts ...Option) g.Node {
 
 // SquareUserRound creates a square-user-round icon
 // Tags: person, account, contact
-func SquareUserRound(opts ...Option) g.Node {
+func SquareUserRound(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M18 21a6 6 0 0 0-12 0",
 		"M 8 11 a 4 4 0 1 0 8 0 a 4 4 0 1 0 -8 0",
@@ -15447,7 +15447,7 @@ func SquareUserRound(opts ...Option) g.Node {
 
 // SquareX creates a square-x icon
 // Tags: cancel, close, delete, remove, times, clear, math, multiply, multiplication
-func SquareX(opts ...Option) g.Node {
+func SquareX(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M 5 3 h 14 a 2 2 0 0 1 2 2 v 14 a 2 2 0 0 1 -2 2 h -14 a 2 2 0 0 1 -2 -2 v -14 a 2 2 0 0 1 2 -2 Z",
 		"m15 9-6 6",
@@ -15457,7 +15457,7 @@ func SquareX(opts ...Option) g.Node {
 
 // SquaresExclude creates a squares-exclude icon
 // Tags: square, pathfinder, path, exclude, invert, xor, shape, vector
-func SquaresExclude(opts ...Option) g.Node {
+func SquaresExclude(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M16 12v2a2 2 0 0 1-2 2H9a1 1 0 0 0-1 1v3a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V10a2 2 0 0 0-2-2h0",
 		"M4 16a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2v3a1 1 0 0 1-1 1h-5a2 2 0 0 0-2 2v2",
@@ -15466,7 +15466,7 @@ func SquaresExclude(opts ...Option) g.Node {
 
 // SquaresIntersect creates a squares-intersect icon
 // Tags: square, pathfinder, path, intersect, shape, include, vector
-func SquaresIntersect(opts ...Option) g.Node {
+func SquaresIntersect(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M10 22a2 2 0 0 1-2-2",
 		"M14 2a2 2 0 0 1 2 2",
@@ -15484,7 +15484,7 @@ func SquaresIntersect(opts ...Option) g.Node {
 
 // SquaresSubtract creates a squares-subtract icon
 // Tags: square, pathfinder, path, minus, subtract, subtraction, shape, front, vector
-func SquaresSubtract(opts ...Option) g.Node {
+func SquaresSubtract(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M10 22a2 2 0 0 1-2-2",
 		"M16 22h-2",
@@ -15497,19 +15497,19 @@ func SquaresSubtract(opts ...Option) g.Node {
 
 // SquaresUnite creates a squares-unite icon
 // Tags: square, pathfinder, path, unite, union, shape, merge, vector
-func SquaresUnite(opts ...Option) g.Node {
+func SquaresUnite(opts ...Option) templ.Component {
 	return Icon("M4 16a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2v3a1 1 0 0 0 1 1h3a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2H10a2 2 0 0 1-2-2v-3a1 1 0 0 0-1-1z", opts...)
 }
 
 // Squircle creates a squircle icon
 // Tags: shape
-func Squircle(opts ...Option) g.Node {
+func Squircle(opts ...Option) templ.Component {
 	return Icon("M12 3c7.2 0 9 1.8 9 9s-1.8 9-9 9-9-1.8-9-9 1.8-9 9-9", opts...)
 }
 
 // SquircleDashed creates a squircle-dashed icon
 // Tags: shape, pending, progress, issue, draft, code, coding, version control
-func SquircleDashed(opts ...Option) g.Node {
+func SquircleDashed(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M13.77 3.043a34 34 0 0 0-3.54 0",
 		"M13.771 20.956a33 33 0 0 1-3.541.001",
@@ -15524,7 +15524,7 @@ func SquircleDashed(opts ...Option) g.Node {
 
 // Squirrel creates a squirrel icon
 // Tags: animal, rodent, pet, pest, nuts, retrieve, updates, storage, stash
-func Squirrel(opts ...Option) g.Node {
+func Squirrel(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M15.236 22a3 3 0 0 0-2.2-5",
 		"M16 20a3 3 0 0 1 3-3h1a2 2 0 0 0 2-2v-2a4 4 0 0 0-4-4V4",
@@ -15535,7 +15535,7 @@ func Squirrel(opts ...Option) g.Node {
 
 // Stamp creates a stamp icon
 // Tags: mark, print, clone, loyalty, library
-func Stamp(opts ...Option) g.Node {
+func Stamp(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M14 13V8.5C14 7 15 7 15 5a3 3 0 0 0-6 0c0 2 1 2 1 3.5V13",
 		"M20 15.5a2.5 2.5 0 0 0-2.5-2.5h-11A2.5 2.5 0 0 0 4 15.5V17a1 1 0 0 0 1 1h14a1 1 0 0 0 1-1z",
@@ -15545,19 +15545,19 @@ func Stamp(opts ...Option) g.Node {
 
 // Star creates a star icon
 // Tags: bookmark, favorite, like, review, rating
-func Star(opts ...Option) g.Node {
+func Star(opts ...Option) templ.Component {
 	return Icon("M11.525 2.295a.53.53 0 0 1 .95 0l2.31 4.679a2.123 2.123 0 0 0 1.595 1.16l5.166.756a.53.53 0 0 1 .294.904l-3.736 3.638a2.123 2.123 0 0 0-.611 1.878l.882 5.14a.53.53 0 0 1-.771.56l-4.618-2.428a2.122 2.122 0 0 0-1.973 0L6.396 21.01a.53.53 0 0 1-.77-.56l.881-5.139a2.122 2.122 0 0 0-.611-1.879L2.16 9.795a.53.53 0 0 1 .294-.906l5.165-.755a2.122 2.122 0 0 0 1.597-1.16z", opts...)
 }
 
 // StarHalf creates a star-half icon
 // Tags: bookmark, favorite, like, review, rating
-func StarHalf(opts ...Option) g.Node {
+func StarHalf(opts ...Option) templ.Component {
 	return Icon("M12 18.338a2.1 2.1 0 0 0-.987.244L6.396 21.01a.53.53 0 0 1-.77-.56l.881-5.139a2.12 2.12 0 0 0-.611-1.879L2.16 9.795a.53.53 0 0 1 .294-.906l5.165-.755a2.12 2.12 0 0 0 1.597-1.16l2.309-4.679A.53.53 0 0 1 12 2", opts...)
 }
 
 // StarOff creates a star-off icon
 // Tags: dislike, unlike, remove, unrate
-func StarOff(opts ...Option) g.Node {
+func StarOff(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M8.34 8.34 2 9.27l5 4.87L5.82 21 12 17.77 18.18 21l-.59-3.43",
 		"M18.42 12.76 22 9.27l-6.91-1L12 2l-1.44 2.91",
@@ -15567,7 +15567,7 @@ func StarOff(opts ...Option) g.Node {
 
 // StepBack creates a step-back icon
 // Tags: arrow, previous, music, left, reverse
-func StepBack(opts ...Option) g.Node {
+func StepBack(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M13.971 4.285A2 2 0 0 1 17 6v12a2 2 0 0 1-3.029 1.715l-9.997-5.998a2 2 0 0 1-.003-3.432z",
 		"M21 20V4",
@@ -15576,7 +15576,7 @@ func StepBack(opts ...Option) g.Node {
 
 // StepForward creates a step-forward icon
 // Tags: arrow, next, music, right, continue
-func StepForward(opts ...Option) g.Node {
+func StepForward(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M10.029 4.285A2 2 0 0 0 7 6v12a2 2 0 0 0 3.029 1.715l9.997-5.998a2 2 0 0 0 .003-3.432z",
 		"M3 4v16",
@@ -15585,7 +15585,7 @@ func StepForward(opts ...Option) g.Node {
 
 // Stethoscope creates a stethoscope icon
 // Tags: phonendoscope, medical, heart, lungs, sound
-func Stethoscope(opts ...Option) g.Node {
+func Stethoscope(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M11 2v2",
 		"M5 2v2",
@@ -15597,7 +15597,7 @@ func Stethoscope(opts ...Option) g.Node {
 
 // Sticker creates a sticker icon
 // Tags: reaction, emotion, smile, happy, feedback
-func Sticker(opts ...Option) g.Node {
+func Sticker(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M21 9a2.4 2.4 0 0 0-.706-1.706l-3.588-3.588A2.4 2.4 0 0 0 15 3H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2z",
 		"M15 3v5a1 1 0 0 0 1 1h5",
@@ -15609,7 +15609,7 @@ func Sticker(opts ...Option) g.Node {
 
 // StickyNote creates a sticky-note icon
 // Tags: post-it, comment, annotation, reaction, memo, reminder, todo, task, idea, brainstorm, document, page, paper, sheet, stationary, office
-func StickyNote(opts ...Option) g.Node {
+func StickyNote(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M21 9a2.4 2.4 0 0 0-.706-1.706l-3.588-3.588A2.4 2.4 0 0 0 15 3H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2z",
 		"M15 3v5a1 1 0 0 0 1 1h5",
@@ -15618,7 +15618,7 @@ func StickyNote(opts ...Option) g.Node {
 
 // Stone creates a stone icon
 // Tags: mineral, geology, nature, solid, pebble, crystal, ore, hard, coal, stone, rock, boulder
-func Stone(opts ...Option) g.Node {
+func Stone(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M11.264 2.205A4 4 0 0 0 6.42 4.211l-4 8a4 4 0 0 0 1.359 5.117l6 4a4 4 0 0 0 4.438 0l6-4a4 4 0 0 0 1.576-4.592l-2-6a4 4 0 0 0-2.53-2.53z",
 		"M11.99 22 14 12l7.822 3.184",
@@ -15628,7 +15628,7 @@ func Stone(opts ...Option) g.Node {
 
 // Store creates a store icon
 // Tags: shop, supermarket, stand, boutique, building
-func Store(opts ...Option) g.Node {
+func Store(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M15 21v-5a1 1 0 0 0-1-1h-4a1 1 0 0 0-1 1v5",
 		"M17.774 10.31a1.12 1.12 0 0 0-1.549 0 2.5 2.5 0 0 1-3.451 0 1.12 1.12 0 0 0-1.548 0 2.5 2.5 0 0 1-3.452 0 1.12 1.12 0 0 0-1.549 0 2.5 2.5 0 0 1-3.77-3.248l2.889-4.184A2 2 0 0 1 7 2h10a2 2 0 0 1 1.653.873l2.895 4.192a2.5 2.5 0 0 1-3.774 3.244",
@@ -15638,7 +15638,7 @@ func Store(opts ...Option) g.Node {
 
 // StretchHorizontal creates a stretch-horizontal icon
 // Tags: items, flex, justify, distribute
-func StretchHorizontal(opts ...Option) g.Node {
+func StretchHorizontal(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M 4 4 h 16 a 2 2 0 0 1 2 2 v 2 a 2 2 0 0 1 -2 2 h -16 a 2 2 0 0 1 -2 -2 v -2 a 2 2 0 0 1 2 -2 Z",
 		"M 4 14 h 16 a 2 2 0 0 1 2 2 v 2 a 2 2 0 0 1 -2 2 h -16 a 2 2 0 0 1 -2 -2 v -2 a 2 2 0 0 1 2 -2 Z",
@@ -15647,7 +15647,7 @@ func StretchHorizontal(opts ...Option) g.Node {
 
 // StretchVertical creates a stretch-vertical icon
 // Tags: items, flex, justify, distribute
-func StretchVertical(opts ...Option) g.Node {
+func StretchVertical(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M 6 2 h 2 a 2 2 0 0 1 2 2 v 16 a 2 2 0 0 1 -2 2 h -2 a 2 2 0 0 1 -2 -2 v -16 a 2 2 0 0 1 2 -2 Z",
 		"M 16 2 h 2 a 2 2 0 0 1 2 2 v 16 a 2 2 0 0 1 -2 2 h -2 a 2 2 0 0 1 -2 -2 v -16 a 2 2 0 0 1 2 -2 Z",
@@ -15656,7 +15656,7 @@ func StretchVertical(opts ...Option) g.Node {
 
 // Strikethrough creates a strikethrough icon
 // Tags: cross out, delete, remove, format
-func Strikethrough(opts ...Option) g.Node {
+func Strikethrough(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M16 4H9a3 3 0 0 0-2.83 4",
 		"M14 12a4 4 0 0 1 0 8H6",
@@ -15666,7 +15666,7 @@ func Strikethrough(opts ...Option) g.Node {
 
 // Subscript creates a subscript icon
 // Tags: text
-func Subscript(opts ...Option) g.Node {
+func Subscript(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"m4 5 8 8",
 		"m12 5-8 8",
@@ -15676,7 +15676,7 @@ func Subscript(opts ...Option) g.Node {
 
 // Sun creates a sun icon
 // Tags: brightness, weather, light, summer
-func Sun(opts ...Option) g.Node {
+func Sun(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M 8 12 a 4 4 0 1 0 8 0 a 4 4 0 1 0 -8 0",
 		"M12 2v2",
@@ -15692,7 +15692,7 @@ func Sun(opts ...Option) g.Node {
 
 // SunDim creates a sun-dim icon
 // Tags: brightness, dim, low, brightness low
-func SunDim(opts ...Option) g.Node {
+func SunDim(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M 8 12 a 4 4 0 1 0 8 0 a 4 4 0 1 0 -8 0",
 		"M12 4h.01",
@@ -15708,7 +15708,7 @@ func SunDim(opts ...Option) g.Node {
 
 // SunMedium creates a sun-medium icon
 // Tags: brightness, medium
-func SunMedium(opts ...Option) g.Node {
+func SunMedium(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M 8 12 a 4 4 0 1 0 8 0 a 4 4 0 1 0 -8 0",
 		"M12 3v1",
@@ -15724,7 +15724,7 @@ func SunMedium(opts ...Option) g.Node {
 
 // SunMoon creates a sun-moon icon
 // Tags: dark, light, moon, sun, brightness, theme, auto theme, system theme, appearance
-func SunMoon(opts ...Option) g.Node {
+func SunMoon(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M12 2v2",
 		"M14.837 16.385a6 6 0 1 1-7.223-7.222c.624-.147.97.66.715 1.248a4 4 0 0 0 5.26 5.259c.589-.255 1.396.09 1.248.715",
@@ -15736,7 +15736,7 @@ func SunMoon(opts ...Option) g.Node {
 
 // SunSnow creates a sun-snow icon
 // Tags: weather, air conditioning, temperature, hot, cold, seasons
-func SunSnow(opts ...Option) g.Node {
+func SunSnow(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M10 21v-1",
 		"M10 4V3",
@@ -15754,7 +15754,7 @@ func SunSnow(opts ...Option) g.Node {
 
 // Sunrise creates a sunrise icon
 // Tags: weather, time, morning, day
-func Sunrise(opts ...Option) g.Node {
+func Sunrise(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M12 2v8",
 		"m4.93 10.93 1.41 1.41",
@@ -15769,7 +15769,7 @@ func Sunrise(opts ...Option) g.Node {
 
 // Sunset creates a sunset icon
 // Tags: weather, time, evening, night
-func Sunset(opts ...Option) g.Node {
+func Sunset(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M12 10V2",
 		"m4.93 10.93 1.41 1.41",
@@ -15784,7 +15784,7 @@ func Sunset(opts ...Option) g.Node {
 
 // Superscript creates a superscript icon
 // Tags: text, exponent
-func Superscript(opts ...Option) g.Node {
+func Superscript(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"m4 19 8-8",
 		"m12 19-8-8",
@@ -15794,7 +15794,7 @@ func Superscript(opts ...Option) g.Node {
 
 // SwatchBook creates a swatch-book icon
 // Tags: colors, colours, swatches, pantone, shades, tint, hue, saturation, brightness, theme, scheme, palette, samples, textile, carpet
-func SwatchBook(opts ...Option) g.Node {
+func SwatchBook(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M11 17a4 4 0 0 1-8 0V5a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2Z",
 		"M16.7 13H19a2 2 0 0 1 2 2v4a2 2 0 0 1-2 2H7",
@@ -15805,7 +15805,7 @@ func SwatchBook(opts ...Option) g.Node {
 
 // SwissFranc creates a swiss-franc icon
 // Tags: currency, money, payment
-func SwissFranc(opts ...Option) g.Node {
+func SwissFranc(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M10 21V3h8",
 		"M6 16h9",
@@ -15815,7 +15815,7 @@ func SwissFranc(opts ...Option) g.Node {
 
 // SwitchCamera creates a switch-camera icon
 // Tags: photo, selfie, front, back
-func SwitchCamera(opts ...Option) g.Node {
+func SwitchCamera(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M11 19H4a2 2 0 0 1-2-2V7a2 2 0 0 1 2-2h5",
 		"M13 5h7a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2h-5",
@@ -15827,7 +15827,7 @@ func SwitchCamera(opts ...Option) g.Node {
 
 // Sword creates a sword icon
 // Tags: battle, challenge, game, war, weapon
-func Sword(opts ...Option) g.Node {
+func Sword(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"m11 19-6-6",
 		"m5 21-2-2",
@@ -15838,7 +15838,7 @@ func Sword(opts ...Option) g.Node {
 
 // Swords creates a swords icon
 // Tags: battle, challenge, game, war, weapon
-func Swords(opts ...Option) g.Node {
+func Swords(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M 14.5 17.5 L 3 6 L 3 3 L 6 3 L 17.5 14.5",
 		"M 13 19 L 19 13",
@@ -15853,7 +15853,7 @@ func Swords(opts ...Option) g.Node {
 
 // Syringe creates a syringe icon
 // Tags: medicine, medical, needle, pump, plunger, nozzle, blood
-func Syringe(opts ...Option) g.Node {
+func Syringe(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"m18 2 4 4",
 		"m17 7 3-3",
@@ -15866,7 +15866,7 @@ func Syringe(opts ...Option) g.Node {
 
 // Table creates a table icon
 // Tags: spreadsheet, grid
-func Table(opts ...Option) g.Node {
+func Table(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M12 3v18",
 		"M 5 3 h 14 a 2 2 0 0 1 2 2 v 14 a 2 2 0 0 1 -2 2 h -14 a 2 2 0 0 1 -2 -2 v -14 a 2 2 0 0 1 2 -2 Z",
@@ -15877,13 +15877,13 @@ func Table(opts ...Option) g.Node {
 
 // Table2 creates a table-2 icon
 // Tags: spreadsheet, grid
-func Table2(opts ...Option) g.Node {
+func Table2(opts ...Option) templ.Component {
 	return Icon("M9 3H5a2 2 0 0 0-2 2v4m6-6h10a2 2 0 0 1 2 2v4M9 3v18m0 0h10a2 2 0 0 0 2-2V9M9 21H5a2 2 0 0 1-2-2V9m0 0h18", opts...)
 }
 
 // TableCellsMerge creates a table-cells-merge icon
 // Tags: spreadsheet, grid, row
-func TableCellsMerge(opts ...Option) g.Node {
+func TableCellsMerge(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M12 21v-6",
 		"M12 9V3",
@@ -15895,7 +15895,7 @@ func TableCellsMerge(opts ...Option) g.Node {
 
 // TableCellsSplit creates a table-cells-split icon
 // Tags: spreadsheet, grid, row
-func TableCellsSplit(opts ...Option) g.Node {
+func TableCellsSplit(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M12 15V9",
 		"M3 15h18",
@@ -15906,7 +15906,7 @@ func TableCellsSplit(opts ...Option) g.Node {
 
 // TableColumnsSplit creates a table-columns-split icon
 // Tags: spreadsheet, grid, cut, break, divide, separate, segment
-func TableColumnsSplit(opts ...Option) g.Node {
+func TableColumnsSplit(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M14 14v2",
 		"M14 20v2",
@@ -15924,7 +15924,7 @@ func TableColumnsSplit(opts ...Option) g.Node {
 
 // TableOfContents creates a table-of-contents icon
 // Tags: toc, outline, navigation, document structure, index, overview, sections, chapters, content, documentation, manual, knowledge base, faq
-func TableOfContents(opts ...Option) g.Node {
+func TableOfContents(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M16 5H3",
 		"M16 12H3",
@@ -15937,7 +15937,7 @@ func TableOfContents(opts ...Option) g.Node {
 
 // TableProperties creates a table-properties icon
 // Tags: property list, plist, spreadsheet, grid, dictionary, object, hash
-func TableProperties(opts ...Option) g.Node {
+func TableProperties(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M15 3v18",
 		"M 5 3 h 14 a 2 2 0 0 1 2 2 v 14 a 2 2 0 0 1 -2 2 h -14 a 2 2 0 0 1 -2 -2 v -14 a 2 2 0 0 1 2 -2 Z",
@@ -15948,7 +15948,7 @@ func TableProperties(opts ...Option) g.Node {
 
 // TableRowsSplit creates a table-rows-split icon
 // Tags: spreadsheet, grid, cut, break, divide, separate, segment
-func TableRowsSplit(opts ...Option) g.Node {
+func TableRowsSplit(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M14 10h2",
 		"M15 22v-8",
@@ -15966,7 +15966,7 @@ func TableRowsSplit(opts ...Option) g.Node {
 
 // Tablet creates a tablet icon
 // Tags: device
-func Tablet(opts ...Option) g.Node {
+func Tablet(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M 6 2 h 12 a 2 2 0 0 1 2 2 v 16 a 2 2 0 0 1 -2 2 h -12 a 2 2 0 0 1 -2 -2 v -16 a 2 2 0 0 1 2 -2 Z",
 		"M 12 18 L 12.01 18",
@@ -15975,7 +15975,7 @@ func Tablet(opts ...Option) g.Node {
 
 // TabletSmartphone creates a tablet-smartphone icon
 // Tags: responsive, screens, browser, testing, mobile
-func TabletSmartphone(opts ...Option) g.Node {
+func TabletSmartphone(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M 5 8 h 6 a 2 2 0 0 1 2 2 v 10 a 2 2 0 0 1 -2 2 h -6 a 2 2 0 0 1 -2 -2 v -10 a 2 2 0 0 1 2 -2 Z",
 		"M5 4a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v16a2 2 0 0 1-2 2h-2.4",
@@ -15985,7 +15985,7 @@ func TabletSmartphone(opts ...Option) g.Node {
 
 // Tablets creates a tablets icon
 // Tags: medicine, medication, drug, prescription, pills, pharmacy
-func Tablets(opts ...Option) g.Node {
+func Tablets(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M 2 7 a 5 5 0 1 0 10 0 a 5 5 0 1 0 -10 0",
 		"M 12 17 a 5 5 0 1 0 10 0 a 5 5 0 1 0 -10 0",
@@ -15996,7 +15996,7 @@ func Tablets(opts ...Option) g.Node {
 
 // Tag creates a tag icon
 // Tags: label, badge, ticket, mark
-func Tag(opts ...Option) g.Node {
+func Tag(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M12.586 2.586A2 2 0 0 0 11.172 2H4a2 2 0 0 0-2 2v7.172a2 2 0 0 0 .586 1.414l8.704 8.704a2.426 2.426 0 0 0 3.42 0l6.58-6.58a2.426 2.426 0 0 0 0-3.42z",
 		"M 7 7.5 a 0.5 0.5 0 1 0 1 0 a 0.5 0.5 0 1 0 -1 0",
@@ -16005,7 +16005,7 @@ func Tag(opts ...Option) g.Node {
 
 // Tags creates a tags icon
 // Tags: labels, badges, tickets, marks, copy, multiple
-func Tags(opts ...Option) g.Node {
+func Tags(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M13.172 2a2 2 0 0 1 1.414.586l6.71 6.71a2.4 2.4 0 0 1 0 3.408l-4.592 4.592a2.4 2.4 0 0 1-3.408 0l-6.71-6.71A2 2 0 0 1 6 9.172V3a1 1 0 0 1 1-1z",
 		"M2 7v6.172a2 2 0 0 0 .586 1.414l6.71 6.71a2.4 2.4 0 0 0 3.191.193",
@@ -16015,13 +16015,13 @@ func Tags(opts ...Option) g.Node {
 
 // Tally1 creates a tally-1 icon
 // Tags: count, score, enumerate, days, one, 1, first, bar, prison, cell, sentence
-func Tally1(opts ...Option) g.Node {
+func Tally1(opts ...Option) templ.Component {
 	return Icon("M4 4v16", opts...)
 }
 
 // Tally2 creates a tally-2 icon
 // Tags: count, score, enumerate, days, two, 2, second, double, bars, prison, cell, sentence
-func Tally2(opts ...Option) g.Node {
+func Tally2(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M4 4v16",
 		"M9 4v16",
@@ -16030,7 +16030,7 @@ func Tally2(opts ...Option) g.Node {
 
 // Tally3 creates a tally-3 icon
 // Tags: count, score, enumerate, days, three, 3, third, triple, bars, prison, cell, sentence
-func Tally3(opts ...Option) g.Node {
+func Tally3(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M4 4v16",
 		"M9 4v16",
@@ -16040,7 +16040,7 @@ func Tally3(opts ...Option) g.Node {
 
 // Tally4 creates a tally-4 icon
 // Tags: count, score, enumerate, days, 4, fourth, quadruple, bars, prison, cell, sentence
-func Tally4(opts ...Option) g.Node {
+func Tally4(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M4 4v16",
 		"M9 4v16",
@@ -16051,7 +16051,7 @@ func Tally4(opts ...Option) g.Node {
 
 // Tally5 creates a tally-5 icon
 // Tags: count, score, enumerate, days, five, 5, fifth, bars, prison, cell, sentence, slash, /
-func Tally5(opts ...Option) g.Node {
+func Tally5(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M4 4v16",
 		"M9 4v16",
@@ -16063,7 +16063,7 @@ func Tally5(opts ...Option) g.Node {
 
 // Tangent creates a tangent icon
 // Tags: tangential, shape, circle, geometry, trigonometry, bezier curve
-func Tangent(opts ...Option) g.Node {
+func Tangent(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M 15 4 a 2 2 0 1 0 4 0 a 2 2 0 1 0 -4 0",
 		"M15.59 5.41 5.41 15.59",
@@ -16074,7 +16074,7 @@ func Tangent(opts ...Option) g.Node {
 
 // Target creates a target icon
 // Tags: logo, bullseye, deadline, projects, overview, work, productivity
-func Target(opts ...Option) g.Node {
+func Target(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M 2 12 a 10 10 0 1 0 20 0 a 10 10 0 1 0 -20 0",
 		"M 6 12 a 6 6 0 1 0 12 0 a 6 6 0 1 0 -12 0",
@@ -16084,7 +16084,7 @@ func Target(opts ...Option) g.Node {
 
 // Telescope creates a telescope icon
 // Tags: astronomy, space, discovery, exploration, explore, vision, perspective, focus, stargazing, observe, view
-func Telescope(opts ...Option) g.Node {
+func Telescope(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"m10.065 12.493-6.18 1.318a.934.934 0 0 1-1.108-.702l-.537-2.15a1.07 1.07 0 0 1 .691-1.265l13.504-4.44",
 		"m13.56 11.747 4.332-.924",
@@ -16098,7 +16098,7 @@ func Telescope(opts ...Option) g.Node {
 
 // Tent creates a tent icon
 // Tags: tipi, teepee, wigwam, lodge, camping, campsite, holiday, retreat, nomadic, native american, indian, wilderness, outdoors
-func Tent(opts ...Option) g.Node {
+func Tent(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M3.5 21 14 3",
 		"M20.5 21 10 3",
@@ -16109,7 +16109,7 @@ func Tent(opts ...Option) g.Node {
 
 // TentTree creates a tent-tree icon
 // Tags: camping, campsite, holiday, retreat, nomadic, wilderness, outdoors
-func TentTree(opts ...Option) g.Node {
+func TentTree(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M 2 4 a 2 2 0 1 0 4 0 a 2 2 0 1 0 -4 0",
 		"m14 5 3-3 3 3",
@@ -16123,7 +16123,7 @@ func TentTree(opts ...Option) g.Node {
 
 // Terminal creates a terminal icon
 // Tags: code, command line, prompt, shell
-func Terminal(opts ...Option) g.Node {
+func Terminal(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M12 19h8",
 		"m4 17 6-6-6-6",
@@ -16132,7 +16132,7 @@ func Terminal(opts ...Option) g.Node {
 
 // TestTube creates a test-tube icon
 // Tags: tube, vial, phial, flask, ampoule, ampule, lab, chemistry, experiment, test
-func TestTube(opts ...Option) g.Node {
+func TestTube(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M14.5 2v17.5c0 1.4-1.1 2.5-2.5 2.5c-1.4 0-2.5-1.1-2.5-2.5V2",
 		"M8.5 2h7",
@@ -16142,7 +16142,7 @@ func TestTube(opts ...Option) g.Node {
 
 // TestTubeDiagonal creates a test-tube-diagonal icon
 // Tags: tube, vial, phial, flask, ampoule, ampule, lab, chemistry, experiment, test
-func TestTubeDiagonal(opts ...Option) g.Node {
+func TestTubeDiagonal(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M21 7 6.82 21.18a2.83 2.83 0 0 1-3.99-.01a2.83 2.83 0 0 1 0-4L17 3",
 		"m16 2 6 6",
@@ -16152,7 +16152,7 @@ func TestTubeDiagonal(opts ...Option) g.Node {
 
 // TestTubes creates a test-tubes icon
 // Tags: tubes, vials, phials, flasks, ampoules, ampules, lab, chemistry, experiment, test
-func TestTubes(opts ...Option) g.Node {
+func TestTubes(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M9 2v17.5A2.5 2.5 0 0 1 6.5 22A2.5 2.5 0 0 1 4 19.5V2",
 		"M20 2v17.5a2.5 2.5 0 0 1-2.5 2.5a2.5 2.5 0 0 1-2.5-2.5V2",
@@ -16165,7 +16165,7 @@ func TestTubes(opts ...Option) g.Node {
 
 // TextAlignCenter creates a text-align-center icon
 // Tags: text, alignment, center
-func TextAlignCenter(opts ...Option) g.Node {
+func TextAlignCenter(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M21 5H3",
 		"M17 12H7",
@@ -16175,7 +16175,7 @@ func TextAlignCenter(opts ...Option) g.Node {
 
 // TextAlignEnd creates a text-align-end icon
 // Tags: text, alignment, right
-func TextAlignEnd(opts ...Option) g.Node {
+func TextAlignEnd(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M21 5H3",
 		"M21 12H9",
@@ -16185,7 +16185,7 @@ func TextAlignEnd(opts ...Option) g.Node {
 
 // TextAlignJustify creates a text-align-justify icon
 // Tags: text, alignment, justified, menu, list
-func TextAlignJustify(opts ...Option) g.Node {
+func TextAlignJustify(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M3 5h18",
 		"M3 12h18",
@@ -16195,7 +16195,7 @@ func TextAlignJustify(opts ...Option) g.Node {
 
 // TextAlignStart creates a text-align-start icon
 // Tags: text, alignment, left, list
-func TextAlignStart(opts ...Option) g.Node {
+func TextAlignStart(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M21 5H3",
 		"M15 12H3",
@@ -16205,7 +16205,7 @@ func TextAlignStart(opts ...Option) g.Node {
 
 // TextCursor creates a text-cursor icon
 // Tags: select
-func TextCursor(opts ...Option) g.Node {
+func TextCursor(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M17 22h-1a4 4 0 0 1-4-4V6a4 4 0 0 1 4-4h1",
 		"M7 22h1a4 4 0 0 0 4-4v-1",
@@ -16215,7 +16215,7 @@ func TextCursor(opts ...Option) g.Node {
 
 // TextCursorInput creates a text-cursor-input icon
 // Tags: select
-func TextCursorInput(opts ...Option) g.Node {
+func TextCursorInput(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M12 20h-1a2 2 0 0 1-2-2 2 2 0 0 1-2 2H6",
 		"M13 8h7a2 2 0 0 1 2 2v4a2 2 0 0 1-2 2h-7",
@@ -16227,7 +16227,7 @@ func TextCursorInput(opts ...Option) g.Node {
 
 // TextInitial creates a text-initial icon
 // Tags: drop cap, text, format, typography, letter, font size
-func TextInitial(opts ...Option) g.Node {
+func TextInitial(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M15 5h6",
 		"M15 12h6",
@@ -16239,7 +16239,7 @@ func TextInitial(opts ...Option) g.Node {
 
 // TextQuote creates a text-quote icon
 // Tags: blockquote, quotation, indent, reply, response
-func TextQuote(opts ...Option) g.Node {
+func TextQuote(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M17 5H3",
 		"M21 12H8",
@@ -16250,7 +16250,7 @@ func TextQuote(opts ...Option) g.Node {
 
 // TextSearch creates a text-search icon
 // Tags: find, data, copy, txt, pdf, document, scan, magnifier, magnifying glass, lens
-func TextSearch(opts ...Option) g.Node {
+func TextSearch(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M21 5H3",
 		"M10 12H3",
@@ -16262,7 +16262,7 @@ func TextSearch(opts ...Option) g.Node {
 
 // TextSelect creates a text-select icon
 // Tags: find, search, selection, dashed
-func TextSelect(opts ...Option) g.Node {
+func TextSelect(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M14 21h1",
 		"M14 3h1",
@@ -16284,7 +16284,7 @@ func TextSelect(opts ...Option) g.Node {
 
 // TextWrap creates a text-wrap icon
 // Tags: words, lines, break, paragraph
-func TextWrap(opts ...Option) g.Node {
+func TextWrap(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"m16 16-3 3 3 3",
 		"M3 12h14.5a1 1 0 0 1 0 7H13",
@@ -16295,7 +16295,7 @@ func TextWrap(opts ...Option) g.Node {
 
 // Theater creates a theater icon
 // Tags: theater, theatre, entertainment, podium, stage, musical
-func Theater(opts ...Option) g.Node {
+func Theater(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M2 10s3-3 3-8",
 		"M22 10s-3-3-3-8",
@@ -16311,13 +16311,13 @@ func Theater(opts ...Option) g.Node {
 
 // Thermometer creates a thermometer icon
 // Tags: temperature, celsius, fahrenheit, weather
-func Thermometer(opts ...Option) g.Node {
+func Thermometer(opts ...Option) templ.Component {
 	return Icon("M14 4v10.54a4 4 0 1 1-4 0V4a2 2 0 0 1 4 0Z", opts...)
 }
 
 // ThermometerSnowflake creates a thermometer-snowflake icon
 // Tags: temperature, celsius, fahrenheit, weather, cold, freeze, freezing
-func ThermometerSnowflake(opts ...Option) g.Node {
+func ThermometerSnowflake(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"m10 20-1.25-2.5L6 18",
 		"M10 4 8.75 6.5 6 6",
@@ -16332,7 +16332,7 @@ func ThermometerSnowflake(opts ...Option) g.Node {
 
 // ThermometerSun creates a thermometer-sun icon
 // Tags: temperature, celsius, fahrenheit, weather, warm, hot
-func ThermometerSun(opts ...Option) g.Node {
+func ThermometerSun(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M12 2v2",
 		"M12 8a4 4 0 0 0-1.645 7.647",
@@ -16345,7 +16345,7 @@ func ThermometerSun(opts ...Option) g.Node {
 
 // ThumbsDown creates a thumbs-down icon
 // Tags: dislike, bad, emotion
-func ThumbsDown(opts ...Option) g.Node {
+func ThumbsDown(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M9 18.12 10 14H4.17a2 2 0 0 1-1.92-2.56l2.33-8A2 2 0 0 1 6.5 2H20a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2h-2.76a2 2 0 0 0-1.79 1.11L12 22a3.13 3.13 0 0 1-3-3.88Z",
 		"M17 14V2",
@@ -16354,7 +16354,7 @@ func ThumbsDown(opts ...Option) g.Node {
 
 // ThumbsUp creates a thumbs-up icon
 // Tags: like, good, emotion
-func ThumbsUp(opts ...Option) g.Node {
+func ThumbsUp(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M15 5.88 14 10h5.83a2 2 0 0 1 1.92 2.56l-2.33 8A2 2 0 0 1 17.5 22H4a2 2 0 0 1-2-2v-8a2 2 0 0 1 2-2h2.76a2 2 0 0 0 1.79-1.11L12 2a3.13 3.13 0 0 1 3 3.88Z",
 		"M7 10v12",
@@ -16363,7 +16363,7 @@ func ThumbsUp(opts ...Option) g.Node {
 
 // Ticket creates a ticket icon
 // Tags: entry, pass, voucher, event, concert, show, perforated, dashed
-func Ticket(opts ...Option) g.Node {
+func Ticket(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M2 9a3 3 0 0 1 0 6v2a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2v-2a3 3 0 0 1 0-6V7a2 2 0 0 0-2-2H4a2 2 0 0 0-2 2Z",
 		"M13 5v2",
@@ -16374,7 +16374,7 @@ func Ticket(opts ...Option) g.Node {
 
 // TicketCheck creates a ticket-check icon
 // Tags: entry, pass, voucher, event, concert, show, booked, purchased, receipt, redeemed, validated, verified, certified, checked, used
-func TicketCheck(opts ...Option) g.Node {
+func TicketCheck(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M2 9a3 3 0 0 1 0 6v2a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2v-2a3 3 0 0 1 0-6V7a2 2 0 0 0-2-2H4a2 2 0 0 0-2 2Z",
 		"m9 12 2 2 4-4",
@@ -16383,7 +16383,7 @@ func TicketCheck(opts ...Option) g.Node {
 
 // TicketMinus creates a ticket-minus icon
 // Tags: entry, pass, voucher, event, concert, show, remove, cancel, unbook, subtract, decrease, -
-func TicketMinus(opts ...Option) g.Node {
+func TicketMinus(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M2 9a3 3 0 0 1 0 6v2a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2v-2a3 3 0 0 1 0-6V7a2 2 0 0 0-2-2H4a2 2 0 0 0-2 2Z",
 		"M9 12h6",
@@ -16392,7 +16392,7 @@ func TicketMinus(opts ...Option) g.Node {
 
 // TicketPercent creates a ticket-percent icon
 // Tags: discount, reduced, offer, voucher, entry, pass, event, concert, show, book, purchase, %
-func TicketPercent(opts ...Option) g.Node {
+func TicketPercent(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M2 9a3 3 0 1 1 0 6v2a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2v-2a3 3 0 1 1 0-6V7a2 2 0 0 0-2-2H4a2 2 0 0 0-2 2Z",
 		"M9 9h.01",
@@ -16403,7 +16403,7 @@ func TicketPercent(opts ...Option) g.Node {
 
 // TicketPlus creates a ticket-plus icon
 // Tags: entry, pass, voucher, event, concert, show, book, purchase, add, +
-func TicketPlus(opts ...Option) g.Node {
+func TicketPlus(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M2 9a3 3 0 0 1 0 6v2a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2v-2a3 3 0 0 1 0-6V7a2 2 0 0 0-2-2H4a2 2 0 0 0-2 2Z",
 		"M9 12h6",
@@ -16413,7 +16413,7 @@ func TicketPlus(opts ...Option) g.Node {
 
 // TicketSlash creates a ticket-slash icon
 // Tags: entry, pass, voucher, event, concert, show, redeemed, used, marked, checked, verified, spoiled, invalidated, void, denied, refused, banned, barred, forbidden, prohibited, cancelled, cancellation, refunded, delete, remove, clear, error
-func TicketSlash(opts ...Option) g.Node {
+func TicketSlash(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M2 9a3 3 0 0 1 0 6v2a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2v-2a3 3 0 0 1 0-6V7a2 2 0 0 0-2-2H4a2 2 0 0 0-2 2Z",
 		"m9.5 14.5 5-5",
@@ -16422,7 +16422,7 @@ func TicketSlash(opts ...Option) g.Node {
 
 // TicketX creates a ticket-x icon
 // Tags: entry, pass, voucher, event, concert, show, cancelled, cancellation, refunded, used, void, invalidated, spoiled, denied, refused, banned, barred, forbidden, prohibited, delete, remove, clear, error, x
-func TicketX(opts ...Option) g.Node {
+func TicketX(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M2 9a3 3 0 0 1 0 6v2a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2v-2a3 3 0 0 1 0-6V7a2 2 0 0 0-2-2H4a2 2 0 0 0-2 2Z",
 		"m9.5 14.5 5-5",
@@ -16432,7 +16432,7 @@ func TicketX(opts ...Option) g.Node {
 
 // Tickets creates a tickets icon
 // Tags: trip, travel, pass, entry, voucher, event, concert, show, perforated, dashed
-func Tickets(opts ...Option) g.Node {
+func Tickets(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"m3.173 8.18 11-5a2 2 0 0 1 2.647.993L18.56 8",
 		"M6 10V8",
@@ -16444,7 +16444,7 @@ func Tickets(opts ...Option) g.Node {
 
 // TicketsPlane creates a tickets-plane icon
 // Tags: plane, trip, airplane, flight, travel, fly, takeoff, vacation, passenger, pass, check-in, airport
-func TicketsPlane(opts ...Option) g.Node {
+func TicketsPlane(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M10.5 17h1.227a2 2 0 0 0 1.345-.52L18 12",
 		"m12 13.5 3.75.5",
@@ -16458,7 +16458,7 @@ func TicketsPlane(opts ...Option) g.Node {
 
 // Timer creates a timer icon
 // Tags: time, timer, stopwatch
-func Timer(opts ...Option) g.Node {
+func Timer(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M 10 2 L 14 2",
 		"M 12 14 L 15 11",
@@ -16468,7 +16468,7 @@ func Timer(opts ...Option) g.Node {
 
 // TimerOff creates a timer-off icon
 // Tags: time, timer, stopwatch
-func TimerOff(opts ...Option) g.Node {
+func TimerOff(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M10 2h4",
 		"M4.6 11a8 8 0 0 0 1.7 8.7 8 8 0 0 0 8.7 1.7",
@@ -16480,7 +16480,7 @@ func TimerOff(opts ...Option) g.Node {
 
 // TimerReset creates a timer-reset icon
 // Tags: time, timer, stopwatch
-func TimerReset(opts ...Option) g.Node {
+func TimerReset(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M10 2h4",
 		"M12 14v-4",
@@ -16491,7 +16491,7 @@ func TimerReset(opts ...Option) g.Node {
 
 // ToggleLeft creates a toggle-left icon
 // Tags: on, off, switch, boolean
-func ToggleLeft(opts ...Option) g.Node {
+func ToggleLeft(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M 6 12 a 3 3 0 1 0 6 0 a 3 3 0 1 0 -6 0",
 		"M 9 5 h 6 a 7 7 0 0 1 7 7 v 0 a 7 7 0 0 1 -7 7 h -6 a 7 7 0 0 1 -7 -7 v -0 a 7 7 0 0 1 7 -7 Z",
@@ -16500,7 +16500,7 @@ func ToggleLeft(opts ...Option) g.Node {
 
 // ToggleRight creates a toggle-right icon
 // Tags: on, off, switch, boolean
-func ToggleRight(opts ...Option) g.Node {
+func ToggleRight(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M 12 12 a 3 3 0 1 0 6 0 a 3 3 0 1 0 -6 0",
 		"M 9 5 h 6 a 7 7 0 0 1 7 7 v 0 a 7 7 0 0 1 -7 7 h -6 a 7 7 0 0 1 -7 -7 v -0 a 7 7 0 0 1 7 -7 Z",
@@ -16509,7 +16509,7 @@ func ToggleRight(opts ...Option) g.Node {
 
 // Toilet creates a toilet icon
 // Tags: toilet, potty, bathroom, washroom
-func Toilet(opts ...Option) g.Node {
+func Toilet(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M7 12h13a1 1 0 0 1 1 1 5 5 0 0 1-5 5h-.598a.5.5 0 0 0-.424.765l1.544 2.47a.5.5 0 0 1-.424.765H5.402a.5.5 0 0 1-.424-.765L7 18",
 		"M8 18a5 5 0 0 1-5-5V4a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v8",
@@ -16518,7 +16518,7 @@ func Toilet(opts ...Option) g.Node {
 
 // ToolCase creates a tool-case icon
 // Tags: tools, maintenance, repair
-func ToolCase(opts ...Option) g.Node {
+func ToolCase(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M10 15h4",
 		"m14.817 10.995-.971-1.45 1.034-1.232a2 2 0 0 0-2.025-3.238l-1.82.364L9.91 3.885a2 2 0 0 0-3.625.748L6.141 6.55l-1.725.426a2 2 0 0 0-.19 3.756l.657.27",
@@ -16529,7 +16529,7 @@ func ToolCase(opts ...Option) g.Node {
 
 // Toolbox creates a toolbox icon
 // Tags: toolkit, tools, trunk, chest, box, storage, utility, utilities, container, kit, set, repair, fix, service, maintenance, mechanic, workshop, construction, hardware, equipment, gear, handyman, engineering, craft, diy
-func Toolbox(opts ...Option) g.Node {
+func Toolbox(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M16 12v4",
 		"M16 6a2 2 0 0 1 1.414.586l4 4A2 2 0 0 1 22 12v7a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2v-7a2 2 0 0 1 .586-1.414l4-4A2 2 0 0 1 8 6z",
@@ -16541,7 +16541,7 @@ func Toolbox(opts ...Option) g.Node {
 
 // Tornado creates a tornado icon
 // Tags: weather, wind, storm, hurricane
-func Tornado(opts ...Option) g.Node {
+func Tornado(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M21 4H3",
 		"M18 8H6",
@@ -16553,7 +16553,7 @@ func Tornado(opts ...Option) g.Node {
 
 // Torus creates a torus icon
 // Tags: donut, doughnut, ring, hollow, 3d, fast food, junk food, snack, treat, sweet, sugar, dessert
-func Torus(opts ...Option) g.Node {
+func Torus(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M 9 11 a 3 2 0 1 0 6 0 a 3 2 0 1 0 -6 0",
 		"M 2 12.5 a 10 8.5 0 1 0 20 0 a 10 8.5 0 1 0 -20 0",
@@ -16562,7 +16562,7 @@ func Torus(opts ...Option) g.Node {
 
 // Touchpad creates a touchpad icon
 // Tags: trackpad, cursor
-func Touchpad(opts ...Option) g.Node {
+func Touchpad(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M 4 4 h 16 a 2 2 0 0 1 2 2 v 12 a 2 2 0 0 1 -2 2 h -16 a 2 2 0 0 1 -2 -2 v -12 a 2 2 0 0 1 2 -2 Z",
 		"M2 14h20",
@@ -16572,7 +16572,7 @@ func Touchpad(opts ...Option) g.Node {
 
 // TouchpadOff creates a touchpad-off icon
 // Tags: trackpad, cursor
-func TouchpadOff(opts ...Option) g.Node {
+func TouchpadOff(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M12 20v-6",
 		"M19.656 14H22",
@@ -16585,7 +16585,7 @@ func TouchpadOff(opts ...Option) g.Node {
 
 // TowerControl creates a tower-control icon
 // Tags: airport, travel, tower, transportation, lighthouse
-func TowerControl(opts ...Option) g.Node {
+func TowerControl(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M18.2 12.27 20 6H4l1.8 6.27a1 1 0 0 0 .95.73h10.5a1 1 0 0 0 .96-.73Z",
 		"M8 13v9",
@@ -16599,7 +16599,7 @@ func TowerControl(opts ...Option) g.Node {
 
 // ToyBrick creates a toy-brick icon
 // Tags: lego, block, addon, plugin, integration
-func ToyBrick(opts ...Option) g.Node {
+func ToyBrick(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M 4 8 h 16 a 1 1 0 0 1 1 1 v 10 a 1 1 0 0 1 -1 1 h -16 a 1 1 0 0 1 -1 -1 v -10 a 1 1 0 0 1 1 -1 Z",
 		"M10 8V5c0-.6-.4-1-1-1H6a1 1 0 0 0-1 1v3",
@@ -16609,7 +16609,7 @@ func ToyBrick(opts ...Option) g.Node {
 
 // Tractor creates a tractor icon
 // Tags: farming, farmer, ranch, harvest, equipment, vehicle
-func Tractor(opts ...Option) g.Node {
+func Tractor(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"m10 11 11 .9a1 1 0 0 1 .8 1.1l-.665 4.158a1 1 0 0 1-.988.842H20",
 		"M16 18h-5",
@@ -16625,7 +16625,7 @@ func Tractor(opts ...Option) g.Node {
 
 // TrafficCone creates a traffic-cone icon
 // Tags: roadworks, tarmac, safety, block
-func TrafficCone(opts ...Option) g.Node {
+func TrafficCone(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M16.05 10.966a5 2.5 0 0 1-8.1 0",
 		"m16.923 14.049 4.48 2.04a1 1 0 0 1 .001 1.831l-8.574 3.9a2 2 0 0 1-1.66 0l-8.574-3.91a1 1 0 0 1 0-1.83l4.484-2.04",
@@ -16636,7 +16636,7 @@ func TrafficCone(opts ...Option) g.Node {
 
 // TrainFront creates a train-front icon
 // Tags: railway, metro, subway, underground, high-speed, bullet, fast, track, line
-func TrainFront(opts ...Option) g.Node {
+func TrainFront(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M8 3.1V7a4 4 0 0 0 8 0V3.1",
 		"m9 15-1-1",
@@ -16649,7 +16649,7 @@ func TrainFront(opts ...Option) g.Node {
 
 // TrainFrontTunnel creates a train-front-tunnel icon
 // Tags: railway, metro, subway, underground, speed, bullet, fast, track, line
-func TrainFrontTunnel(opts ...Option) g.Node {
+func TrainFrontTunnel(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M2 22V12a10 10 0 1 1 20 0v10",
 		"M15 6.8v1.4a3 2.8 0 1 1-6 0V6.8",
@@ -16663,7 +16663,7 @@ func TrainFrontTunnel(opts ...Option) g.Node {
 
 // TrainTrack creates a train-track icon
 // Tags: railway, line
-func TrainTrack(opts ...Option) g.Node {
+func TrainTrack(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M2 17 17 2",
 		"m2 14 8 8",
@@ -16677,7 +16677,7 @@ func TrainTrack(opts ...Option) g.Node {
 
 // TramFront creates a tram-front icon
 // Tags: railway, metro, subway, underground, track, line, tourism
-func TramFront(opts ...Option) g.Node {
+func TramFront(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M 6 3 h 12 a 2 2 0 0 1 2 2 v 12 a 2 2 0 0 1 -2 2 h -12 a 2 2 0 0 1 -2 -2 v -12 a 2 2 0 0 1 2 -2 Z",
 		"M4 11h16",
@@ -16691,7 +16691,7 @@ func TramFront(opts ...Option) g.Node {
 
 // Transgender creates a transgender icon
 // Tags: gender, inclusive
-func Transgender(opts ...Option) g.Node {
+func Transgender(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M12 16v6",
 		"M14 20h-4",
@@ -16706,7 +16706,7 @@ func Transgender(opts ...Option) g.Node {
 
 // Trash creates a trash icon
 // Tags: empty, deletion, cleanup, junk, clear, garbage, delete, remove, bin, waste, recycle, discard, binoculars, rubbish
-func Trash(opts ...Option) g.Node {
+func Trash(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6",
 		"M3 6h18",
@@ -16716,7 +16716,7 @@ func Trash(opts ...Option) g.Node {
 
 // Trash2 creates a trash-2 icon
 // Tags: garbage, delete, remove, bin
-func Trash2(opts ...Option) g.Node {
+func Trash2(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M10 11v6",
 		"M14 11v6",
@@ -16728,7 +16728,7 @@ func Trash2(opts ...Option) g.Node {
 
 // TreeDeciduous creates a tree-deciduous icon
 // Tags: tree, forest, park, nature
-func TreeDeciduous(opts ...Option) g.Node {
+func TreeDeciduous(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M8 19a4 4 0 0 1-2.24-7.32A3.5 3.5 0 0 1 9 6.03V6a3 3 0 1 1 6 0v.04a3.5 3.5 0 0 1 3.24 5.65A4 4 0 0 1 16 19Z",
 		"M12 19v3",
@@ -16737,7 +16737,7 @@ func TreeDeciduous(opts ...Option) g.Node {
 
 // TreePalm creates a tree-palm icon
 // Tags: vacation, leisure, island
-func TreePalm(opts ...Option) g.Node {
+func TreePalm(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M13 8c0-2.76-2.46-5-5.5-5S2 5.24 2 8h2l1-1 1 1h4",
 		"M13 7.14A5.82 5.82 0 0 1 16.5 6c3.04 0 5.5 2.24 5.5 5h-3l-1-1-1 1h-3",
@@ -16748,7 +16748,7 @@ func TreePalm(opts ...Option) g.Node {
 
 // TreePine creates a tree-pine icon
 // Tags: tree, pine, forest, park, nature
-func TreePine(opts ...Option) g.Node {
+func TreePine(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"m17 14 3 3.3a1 1 0 0 1-.7 1.7H4.7a1 1 0 0 1-.7-1.7L7 14h-.3a1 1 0 0 1-.7-1.7L9 9h-.2A1 1 0 0 1 8 7.3L12 3l4 4.3a1 1 0 0 1-.8 1.7H15l3 3.3a1 1 0 0 1-.7 1.7H17Z",
 		"M12 22v-3",
@@ -16757,7 +16757,7 @@ func TreePine(opts ...Option) g.Node {
 
 // Trees creates a trees icon
 // Tags: tree, forest, park, nature
-func Trees(opts ...Option) g.Node {
+func Trees(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M10 10v.2A3 3 0 0 1 8.9 16H5a3 3 0 0 1-1-5.8V10a3 3 0 0 1 6 0Z",
 		"M7 16v6",
@@ -16768,7 +16768,7 @@ func Trees(opts ...Option) g.Node {
 
 // Trello creates a trello icon
 // Tags: logo, brand
-func Trello(opts ...Option) g.Node {
+func Trello(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M 5 3 h 14 a 2 2 0 0 1 2 2 v 14 a 2 2 0 0 1 -2 2 h -14 a 2 2 0 0 1 -2 -2 v -14 a 2 2 0 0 1 2 -2 Z",
 		"M 7 7 h 3 v 9 h -3 Z",
@@ -16778,7 +16778,7 @@ func Trello(opts ...Option) g.Node {
 
 // TrendingDown creates a trending-down icon
 // Tags: statistics
-func TrendingDown(opts ...Option) g.Node {
+func TrendingDown(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M16 17h6v-6",
 		"m22 17-8.5-8.5-5 5L2 7",
@@ -16787,7 +16787,7 @@ func TrendingDown(opts ...Option) g.Node {
 
 // TrendingUp creates a trending-up icon
 // Tags: statistics
-func TrendingUp(opts ...Option) g.Node {
+func TrendingUp(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M16 7h6v6",
 		"m22 7-8.5 8.5-5-5L2 17",
@@ -16796,7 +16796,7 @@ func TrendingUp(opts ...Option) g.Node {
 
 // TrendingUpDown creates a trending-up-down icon
 // Tags: arrows, estimated, indeterminate, data fluctuation, uncertain, forecast, variable, prediction, dynamic, volatile
-func TrendingUpDown(opts ...Option) g.Node {
+func TrendingUpDown(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M14.828 14.828 21 21",
 		"M21 16v5h-5",
@@ -16807,13 +16807,13 @@ func TrendingUpDown(opts ...Option) g.Node {
 
 // Triangle creates a triangle icon
 // Tags: equilateral, delta, shape, pyramid, hierarchy
-func Triangle(opts ...Option) g.Node {
+func Triangle(opts ...Option) templ.Component {
 	return Icon("M13.73 4a2 2 0 0 0-3.46 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3Z", opts...)
 }
 
 // TriangleAlert creates a triangle-alert icon
 // Tags: warning, alert, danger, exclamation mark, linter
-func TriangleAlert(opts ...Option) g.Node {
+func TriangleAlert(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3",
 		"M12 9v4",
@@ -16823,7 +16823,7 @@ func TriangleAlert(opts ...Option) g.Node {
 
 // TriangleDashed creates a triangle-dashed icon
 // Tags: equilateral, delta, shape, pyramid, hierarchy, dashed
-func TriangleDashed(opts ...Option) g.Node {
+func TriangleDashed(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M10.17 4.193a2 2 0 0 1 3.666.013",
 		"M14 21h2",
@@ -16839,13 +16839,13 @@ func TriangleDashed(opts ...Option) g.Node {
 
 // TriangleRight creates a triangle-right icon
 // Tags: volume, controls, controller, tv remote, geometry, delta, ramp, slope, incline, increase
-func TriangleRight(opts ...Option) g.Node {
+func TriangleRight(opts ...Option) templ.Component {
 	return Icon("M22 18a2 2 0 0 1-2 2H3c-1.1 0-1.3-.6-.4-1.3L20.4 4.3c.9-.7 1.6-.4 1.6.7Z", opts...)
 }
 
 // Trophy creates a trophy icon
 // Tags: prize, sports, winner, achievement, award, champion, celebration, victory
-func Trophy(opts ...Option) g.Node {
+func Trophy(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M10 14.66v1.626a2 2 0 0 1-.976 1.696A5 5 0 0 0 7 21.978",
 		"M14 14.66v1.626a2 2 0 0 0 .976 1.696A5 5 0 0 1 17 21.978",
@@ -16858,7 +16858,7 @@ func Trophy(opts ...Option) g.Node {
 
 // Truck creates a truck icon
 // Tags: delivery, van, shipping, haulage, lorry
-func Truck(opts ...Option) g.Node {
+func Truck(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M14 18V6a2 2 0 0 0-2-2H4a2 2 0 0 0-2 2v11a1 1 0 0 0 1 1h2",
 		"M15 18H9",
@@ -16870,7 +16870,7 @@ func Truck(opts ...Option) g.Node {
 
 // TruckElectric creates a truck-electric icon
 // Tags: delivery, van, shipping, haulage, lorry, electric
-func TruckElectric(opts ...Option) g.Node {
+func TruckElectric(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M14 19V7a2 2 0 0 0-2-2H9",
 		"M15 19H9",
@@ -16884,7 +16884,7 @@ func TruckElectric(opts ...Option) g.Node {
 
 // TurkishLira creates a turkish-lira icon
 // Tags: currency, money, payment
-func TurkishLira(opts ...Option) g.Node {
+func TurkishLira(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M15 4 5 9",
 		"m15 8.5-10 5",
@@ -16894,7 +16894,7 @@ func TurkishLira(opts ...Option) g.Node {
 
 // Turntable creates a turntable icon
 // Tags: record player, gramophone, stereo, phonograph, vinyl, lp, disc, platter, cut, music, analog, retro, dj deck, disc jockey, scratch, spinning
-func Turntable(opts ...Option) g.Node {
+func Turntable(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M10 12.01h.01",
 		"M18 8v4a8 8 0 0 1-1.07 4",
@@ -16905,7 +16905,7 @@ func Turntable(opts ...Option) g.Node {
 
 // Turtle creates a turtle icon
 // Tags: animal, pet, tortoise, slow, speed
-func Turtle(opts ...Option) g.Node {
+func Turtle(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"m12 10 2 4v3a1 1 0 0 0 1 1h2a1 1 0 0 0 1-1v-3a8 8 0 1 0-16 0v3a1 1 0 0 0 1 1h2a1 1 0 0 0 1-1v-3l2-4h4Z",
 		"M4.82 7.9 8 10",
@@ -16916,7 +16916,7 @@ func Turtle(opts ...Option) g.Node {
 
 // Tv creates a tv icon
 // Tags: television, stream, display, widescreen, high-definition, hd, 1080p, 4k, 8k, smart, digital, video, entertainment, showtime, channels, terrestrial, satellite, cable, broadcast, live, frequency, tune, scan, aerial, receiver, transmission, signal, connection, connectivity
-func Tv(opts ...Option) g.Node {
+func Tv(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"m17 2-5 5-5-5",
 		"M 4 7 h 16 a 2 2 0 0 1 2 2 v 11 a 2 2 0 0 1 -2 2 h -16 a 2 2 0 0 1 -2 -2 v -11 a 2 2 0 0 1 2 -2 Z",
@@ -16925,7 +16925,7 @@ func Tv(opts ...Option) g.Node {
 
 // TvMinimal creates a tv-minimal icon
 // Tags: flatscreen, television, stream, display, widescreen, high-definition, hd, 1080p, 4k, 8k, smart, digital, video, home cinema, entertainment, showtime, channels, catchup
-func TvMinimal(opts ...Option) g.Node {
+func TvMinimal(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M7 21h10",
 		"M 4 3 h 16 a 2 2 0 0 1 2 2 v 10 a 2 2 0 0 1 -2 2 h -16 a 2 2 0 0 1 -2 -2 v -10 a 2 2 0 0 1 2 -2 Z",
@@ -16934,7 +16934,7 @@ func TvMinimal(opts ...Option) g.Node {
 
 // TvMinimalPlay creates a tv-minimal-play icon
 // Tags: flatscreen, television, stream, display, widescreen, high-definition, hd, 1080p, 4k, 8k, smart, digital, video, movie, live, ott, running, start, film, home cinema, entertainment, showtime, channels, catchup
-func TvMinimalPlay(opts ...Option) g.Node {
+func TvMinimalPlay(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M15.033 9.44a.647.647 0 0 1 0 1.12l-4.065 2.352a.645.645 0 0 1-.968-.56V7.648a.645.645 0 0 1 .967-.56z",
 		"M7 21h10",
@@ -16944,19 +16944,19 @@ func TvMinimalPlay(opts ...Option) g.Node {
 
 // Twitch creates a twitch icon
 // Tags: logo, social
-func Twitch(opts ...Option) g.Node {
+func Twitch(opts ...Option) templ.Component {
 	return Icon("M21 2H3v16h5v4l4-4h5l4-4V2zm-10 9V7m5 4V7", opts...)
 }
 
 // Twitter creates a twitter icon
 // Tags: logo, social
-func Twitter(opts ...Option) g.Node {
+func Twitter(opts ...Option) templ.Component {
 	return Icon("M22 4s-.7 2.1-2 3.4c1.6 10-9.4 17.3-18 11.6 2.2.1 4.4-.6 6-2C3 15.5.5 9.6 3 5c2.2 2.6 5.6 4.1 9 4-.9-4.2 4-6.6 7-3.8 1.1 0 3-1.2 3-1.2z", opts...)
 }
 
 // TypeIcon creates a type icon
 // Tags: text, font, typography
-func TypeIcon(opts ...Option) g.Node {
+func TypeIcon(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M12 4v16",
 		"M4 7V5a1 1 0 0 1 1-1h14a1 1 0 0 1 1 1v2",
@@ -16966,13 +16966,13 @@ func TypeIcon(opts ...Option) g.Node {
 
 // TypeOutline creates a type-outline icon
 // Tags: text, font, typography, silhouette, profile, contour, stroke, line
-func TypeOutline(opts ...Option) g.Node {
+func TypeOutline(opts ...Option) templ.Component {
 	return Icon("M14 16.5a.5.5 0 0 0 .5.5h.5a2 2 0 0 1 0 4H9a2 2 0 0 1 0-4h.5a.5.5 0 0 0 .5-.5v-9a.5.5 0 0 0-.5-.5h-3a.5.5 0 0 0-.5.5V8a2 2 0 0 1-4 0V5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v3a2 2 0 0 1-4 0v-.5a.5.5 0 0 0-.5-.5h-3a.5.5 0 0 0-.5.5Z", opts...)
 }
 
 // Umbrella creates a umbrella icon
 // Tags: rain, weather
-func Umbrella(opts ...Option) g.Node {
+func Umbrella(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M12 13v7a2 2 0 0 0 4 0",
 		"M12 2v2",
@@ -16982,7 +16982,7 @@ func Umbrella(opts ...Option) g.Node {
 
 // UmbrellaOff creates a umbrella-off icon
 // Tags: rain, weather, uncovered, uninsured, antivirus, unprotected, risky
-func UmbrellaOff(opts ...Option) g.Node {
+func UmbrellaOff(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M12 13v7a2 2 0 0 0 4 0",
 		"M12 2v2",
@@ -16994,7 +16994,7 @@ func UmbrellaOff(opts ...Option) g.Node {
 
 // Underline creates a underline icon
 // Tags: text, format
-func Underline(opts ...Option) g.Node {
+func Underline(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M6 4v6a6 6 0 0 0 12 0V4",
 		"M 4 20 L 20 20",
@@ -17003,7 +17003,7 @@ func Underline(opts ...Option) g.Node {
 
 // Undo creates a undo icon
 // Tags: redo, rerun, history
-func Undo(opts ...Option) g.Node {
+func Undo(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M3 7v6h6",
 		"M21 17a9 9 0 0 0-9-9 9 9 0 0 0-6 2.3L3 13",
@@ -17012,7 +17012,7 @@ func Undo(opts ...Option) g.Node {
 
 // Undo2 creates a undo-2 icon
 // Tags: redo, rerun, history, back, return, reverse, revert, direction, u-turn
-func Undo2(opts ...Option) g.Node {
+func Undo2(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M9 14 4 9l5-5",
 		"M4 9h10.5a5.5 5.5 0 0 1 5.5 5.5a5.5 5.5 0 0 1-5.5 5.5H11",
@@ -17021,7 +17021,7 @@ func Undo2(opts ...Option) g.Node {
 
 // UndoDot creates a undo-dot icon
 // Tags: redo, history, step, back
-func UndoDot(opts ...Option) g.Node {
+func UndoDot(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M21 17a9 9 0 0 0-15-6.7L3 13",
 		"M3 7v6h6",
@@ -17031,7 +17031,7 @@ func UndoDot(opts ...Option) g.Node {
 
 // UnfoldHorizontal creates a unfold-horizontal icon
 // Tags: arrow, collapse, fold, vertical, dashed
-func UnfoldHorizontal(opts ...Option) g.Node {
+func UnfoldHorizontal(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M16 12h6",
 		"M8 12H2",
@@ -17046,7 +17046,7 @@ func UnfoldHorizontal(opts ...Option) g.Node {
 
 // UnfoldVertical creates a unfold-vertical icon
 // Tags: arrow, expand, vertical, dashed
-func UnfoldVertical(opts ...Option) g.Node {
+func UnfoldVertical(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M12 22v-6",
 		"M12 8V2",
@@ -17061,7 +17061,7 @@ func UnfoldVertical(opts ...Option) g.Node {
 
 // Ungroup creates a ungroup icon
 // Tags: cubes, packages, parts, units, collection, cluster, separate
-func Ungroup(opts ...Option) g.Node {
+func Ungroup(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M 6 4 h 6 a 1 1 0 0 1 1 1 v 4 a 1 1 0 0 1 -1 1 h -6 a 1 1 0 0 1 -1 -1 v -4 a 1 1 0 0 1 1 -1 Z",
 		"M 12 14 h 6 a 1 1 0 0 1 1 1 v 4 a 1 1 0 0 1 -1 1 h -6 a 1 1 0 0 1 -1 -1 v -4 a 1 1 0 0 1 1 -1 Z",
@@ -17070,7 +17070,7 @@ func Ungroup(opts ...Option) g.Node {
 
 // University creates a university icon
 // Tags: building, education, childhood, school, college, academy, institute
-func University(opts ...Option) g.Node {
+func University(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M14 21v-3a2 2 0 0 0-4 0v3",
 		"M18 12h.01",
@@ -17084,7 +17084,7 @@ func University(opts ...Option) g.Node {
 
 // Unlink creates a unlink icon
 // Tags: url, unchain
-func Unlink(opts ...Option) g.Node {
+func Unlink(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"m18.84 12.25 1.72-1.71h-.02a5.004 5.004 0 0 0-.12-7.07 5.006 5.006 0 0 0-6.95 0l-1.72 1.71",
 		"m5.17 11.75-1.71 1.71a5.004 5.004 0 0 0 .12 7.07 5.006 5.006 0 0 0 6.95 0l1.71-1.71",
@@ -17097,13 +17097,13 @@ func Unlink(opts ...Option) g.Node {
 
 // Unlink2 creates a unlink-2 icon
 // Tags: url, unchain
-func Unlink2(opts ...Option) g.Node {
+func Unlink2(opts ...Option) templ.Component {
 	return Icon("M15 7h2a5 5 0 0 1 0 10h-2m-6 0H7A5 5 0 0 1 7 7h2", opts...)
 }
 
 // Unplug creates a unplug icon
 // Tags: electricity, energy, electronics, socket, outlet, disconnect
-func Unplug(opts ...Option) g.Node {
+func Unplug(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"m19 5 3-3",
 		"m2 22 3-3",
@@ -17116,7 +17116,7 @@ func Unplug(opts ...Option) g.Node {
 
 // Upload creates a upload icon
 // Tags: file
-func Upload(opts ...Option) g.Node {
+func Upload(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M12 3v12",
 		"m17 8-5-5-5 5",
@@ -17126,7 +17126,7 @@ func Upload(opts ...Option) g.Node {
 
 // Usb creates a usb icon
 // Tags: universal, serial, bus, controller, connector, interface
-func Usb(opts ...Option) g.Node {
+func Usb(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M 9 7 a 1 1 0 1 0 2 0 a 1 1 0 1 0 -2 0",
 		"M 3 20 a 1 1 0 1 0 2 0 a 1 1 0 1 0 -2 0",
@@ -17140,7 +17140,7 @@ func Usb(opts ...Option) g.Node {
 
 // User creates a user icon
 // Tags: person, account, contact
-func User(opts ...Option) g.Node {
+func User(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2",
 		"M 8 7 a 4 4 0 1 0 8 0 a 4 4 0 1 0 -8 0",
@@ -17149,7 +17149,7 @@ func User(opts ...Option) g.Node {
 
 // UserCheck creates a user-check icon
 // Tags: followed, subscribed, done, todo, tick, complete, task
-func UserCheck(opts ...Option) g.Node {
+func UserCheck(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"m16 11 2 2 4-4",
 		"M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2",
@@ -17159,7 +17159,7 @@ func UserCheck(opts ...Option) g.Node {
 
 // UserCog creates a user-cog icon
 // Tags: settings, edit, cog, gear
-func UserCog(opts ...Option) g.Node {
+func UserCog(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M10 15H6a4 4 0 0 0-4 4v2",
 		"m14.305 16.53.923-.382",
@@ -17177,7 +17177,7 @@ func UserCog(opts ...Option) g.Node {
 
 // UserLock creates a user-lock icon
 // Tags: person, lock, locked, account, secure
-func UserLock(opts ...Option) g.Node {
+func UserLock(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M 6 7 a 4 4 0 1 0 8 0 a 4 4 0 1 0 -8 0",
 		"M10.3 15H7a4 4 0 0 0-4 4v2",
@@ -17188,7 +17188,7 @@ func UserLock(opts ...Option) g.Node {
 
 // UserMinus creates a user-minus icon
 // Tags: delete, remove, unfollow, unsubscribe
-func UserMinus(opts ...Option) g.Node {
+func UserMinus(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2",
 		"M 5 7 a 4 4 0 1 0 8 0 a 4 4 0 1 0 -8 0",
@@ -17198,7 +17198,7 @@ func UserMinus(opts ...Option) g.Node {
 
 // UserPen creates a user-pen icon
 // Tags: person, account, contact, profile, edit, change
-func UserPen(opts ...Option) g.Node {
+func UserPen(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M11.5 15H7a4 4 0 0 0-4 4v2",
 		"M21.378 16.626a1 1 0 0 0-3.004-3.004l-4.01 4.012a2 2 0 0 0-.506.854l-.837 2.87a.5.5 0 0 0 .62.62l2.87-.837a2 2 0 0 0 .854-.506z",
@@ -17208,7 +17208,7 @@ func UserPen(opts ...Option) g.Node {
 
 // UserPlus creates a user-plus icon
 // Tags: new, add, create, follow, subscribe
-func UserPlus(opts ...Option) g.Node {
+func UserPlus(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2",
 		"M 5 7 a 4 4 0 1 0 8 0 a 4 4 0 1 0 -8 0",
@@ -17219,7 +17219,7 @@ func UserPlus(opts ...Option) g.Node {
 
 // UserRound creates a user-round icon
 // Tags: person, account, contact
-func UserRound(opts ...Option) g.Node {
+func UserRound(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M 7 8 a 5 5 0 1 0 10 0 a 5 5 0 1 0 -10 0",
 		"M20 21a8 8 0 0 0-16 0",
@@ -17228,7 +17228,7 @@ func UserRound(opts ...Option) g.Node {
 
 // UserRoundCheck creates a user-round-check icon
 // Tags: followed, subscribed, done, todo, tick, complete, task
-func UserRoundCheck(opts ...Option) g.Node {
+func UserRoundCheck(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M2 21a8 8 0 0 1 13.292-6",
 		"M 5 8 a 5 5 0 1 0 10 0 a 5 5 0 1 0 -10 0",
@@ -17238,7 +17238,7 @@ func UserRoundCheck(opts ...Option) g.Node {
 
 // UserRoundCog creates a user-round-cog icon
 // Tags: settings, edit, cog, gear
-func UserRoundCog(opts ...Option) g.Node {
+func UserRoundCog(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"m14.305 19.53.923-.382",
 		"m15.228 16.852-.923-.383",
@@ -17256,7 +17256,7 @@ func UserRoundCog(opts ...Option) g.Node {
 
 // UserRoundMinus creates a user-round-minus icon
 // Tags: delete, remove, unfollow, unsubscribe
-func UserRoundMinus(opts ...Option) g.Node {
+func UserRoundMinus(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M2 21a8 8 0 0 1 13.292-6",
 		"M 5 8 a 5 5 0 1 0 10 0 a 5 5 0 1 0 -10 0",
@@ -17266,7 +17266,7 @@ func UserRoundMinus(opts ...Option) g.Node {
 
 // UserRoundPen creates a user-round-pen icon
 // Tags: person, account, contact, profile, edit, change
-func UserRoundPen(opts ...Option) g.Node {
+func UserRoundPen(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M2 21a8 8 0 0 1 10.821-7.487",
 		"M21.378 16.626a1 1 0 0 0-3.004-3.004l-4.01 4.012a2 2 0 0 0-.506.854l-.837 2.87a.5.5 0 0 0 .62.62l2.87-.837a2 2 0 0 0 .854-.506z",
@@ -17276,7 +17276,7 @@ func UserRoundPen(opts ...Option) g.Node {
 
 // UserRoundPlus creates a user-round-plus icon
 // Tags: new, add, create, follow, subscribe
-func UserRoundPlus(opts ...Option) g.Node {
+func UserRoundPlus(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M2 21a8 8 0 0 1 13.292-6",
 		"M 5 8 a 5 5 0 1 0 10 0 a 5 5 0 1 0 -10 0",
@@ -17287,7 +17287,7 @@ func UserRoundPlus(opts ...Option) g.Node {
 
 // UserRoundSearch creates a user-round-search icon
 // Tags: person, account, contact, find, scan, magnifier, magnifying glass, lens
-func UserRoundSearch(opts ...Option) g.Node {
+func UserRoundSearch(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M 5 8 a 5 5 0 1 0 10 0 a 5 5 0 1 0 -10 0",
 		"M2 21a8 8 0 0 1 10.434-7.62",
@@ -17298,7 +17298,7 @@ func UserRoundSearch(opts ...Option) g.Node {
 
 // UserRoundX creates a user-round-x icon
 // Tags: delete, remove, unfollow, unsubscribe, unavailable
-func UserRoundX(opts ...Option) g.Node {
+func UserRoundX(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M2 21a8 8 0 0 1 11.873-7",
 		"M 5 8 a 5 5 0 1 0 10 0 a 5 5 0 1 0 -10 0",
@@ -17309,7 +17309,7 @@ func UserRoundX(opts ...Option) g.Node {
 
 // UserSearch creates a user-search icon
 // Tags: person, account, contact, find, scan, magnifier, magnifying glass, lens
-func UserSearch(opts ...Option) g.Node {
+func UserSearch(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M 6 7 a 4 4 0 1 0 8 0 a 4 4 0 1 0 -8 0",
 		"M10.3 15H7a4 4 0 0 0-4 4v2",
@@ -17320,7 +17320,7 @@ func UserSearch(opts ...Option) g.Node {
 
 // UserStar creates a user-star icon
 // Tags: person, account, favorite, contact, like, review, rating, admin
-func UserStar(opts ...Option) g.Node {
+func UserStar(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M16.051 12.616a1 1 0 0 1 1.909.024l.737 1.452a1 1 0 0 0 .737.535l1.634.256a1 1 0 0 1 .588 1.806l-1.172 1.168a1 1 0 0 0-.282.866l.259 1.613a1 1 0 0 1-1.541 1.134l-1.465-.75a1 1 0 0 0-.912 0l-1.465.75a1 1 0 0 1-1.539-1.133l.258-1.613a1 1 0 0 0-.282-.866l-1.156-1.153a1 1 0 0 1 .572-1.822l1.633-.256a1 1 0 0 0 .737-.535z",
 		"M8 15H7a4 4 0 0 0-4 4v2",
@@ -17330,7 +17330,7 @@ func UserStar(opts ...Option) g.Node {
 
 // UserX creates a user-x icon
 // Tags: delete, remove, unfollow, unsubscribe, unavailable
-func UserX(opts ...Option) g.Node {
+func UserX(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2",
 		"M 5 7 a 4 4 0 1 0 8 0 a 4 4 0 1 0 -8 0",
@@ -17341,7 +17341,7 @@ func UserX(opts ...Option) g.Node {
 
 // Users creates a users icon
 // Tags: group, people
-func Users(opts ...Option) g.Node {
+func Users(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2",
 		"M16 3.128a4 4 0 0 1 0 7.744",
@@ -17352,7 +17352,7 @@ func Users(opts ...Option) g.Node {
 
 // UsersRound creates a users-round icon
 // Tags: group, people
-func UsersRound(opts ...Option) g.Node {
+func UsersRound(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M18 21a8 8 0 0 0-16 0",
 		"M 5 8 a 5 5 0 1 0 10 0 a 5 5 0 1 0 -10 0",
@@ -17362,7 +17362,7 @@ func UsersRound(opts ...Option) g.Node {
 
 // Utensils creates a utensils icon
 // Tags: fork, knife, cutlery, flatware, tableware, silverware, food, restaurant, meal, breakfast, dinner, supper
-func Utensils(opts ...Option) g.Node {
+func Utensils(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M3 2v7c0 1.1.9 2 2 2h4a2 2 0 0 0 2-2V2",
 		"M7 2v20",
@@ -17372,7 +17372,7 @@ func Utensils(opts ...Option) g.Node {
 
 // UtensilsCrossed creates a utensils-crossed icon
 // Tags: fork, knife, cutlery, flatware, tableware, silverware, food, restaurant, meal, breakfast, dinner, supper
-func UtensilsCrossed(opts ...Option) g.Node {
+func UtensilsCrossed(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"m16 2-2.3 2.3a3 3 0 0 0 0 4.2l1.8 1.8a3 3 0 0 0 4.2 0L22 8",
 		"M15 15 3.3 3.3a4.2 4.2 0 0 0 0 6l7.3 7.3c.7.7 2 .7 2.8 0L15 15Zm0 0 7 7",
@@ -17383,7 +17383,7 @@ func UtensilsCrossed(opts ...Option) g.Node {
 
 // UtilityPole creates a utility-pole icon
 // Tags: electricity, energy, transmission line, telegraph pole, power lines, phone
-func UtilityPole(opts ...Option) g.Node {
+func UtilityPole(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M12 2v20",
 		"M2 5h20",
@@ -17397,7 +17397,7 @@ func UtilityPole(opts ...Option) g.Node {
 
 // Van creates a van icon
 // Tags: minivan, cart, wagon, truck, lorry, trailer, camper, vehicle, drive, trip, journey, van, transport, carriage, delivery, travel
-func Van(opts ...Option) g.Node {
+func Van(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M13 6v5a1 1 0 0 0 1 1h6.102a1 1 0 0 1 .712.298l.898.91a1 1 0 0 1 .288.702V17a1 1 0 0 1-1 1h-3",
 		"M5 18H3a1 1 0 0 1-1-1V8a2 2 0 0 1 2-2h12c1.1 0 2.1.8 2.4 1.8l1.176 4.2",
@@ -17409,7 +17409,7 @@ func Van(opts ...Option) g.Node {
 
 // Variable creates a variable icon
 // Tags: code, coding, programming, symbol, calculate, algebra, x, parentheses, parenthesis, brackets, parameter, (, )
-func Variable(opts ...Option) g.Node {
+func Variable(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M8 21s-4-3-4-9 4-9 4-9",
 		"M16 3s4 3 4 9-4 9-4 9",
@@ -17420,7 +17420,7 @@ func Variable(opts ...Option) g.Node {
 
 // Vault creates a vault icon
 // Tags: safe, lockbox, deposit, locker, coffer, strongbox, safety, secure, storage, valuables, bank
-func Vault(opts ...Option) g.Node {
+func Vault(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M 5 3 h 14 a 2 2 0 0 1 2 2 v 14 a 2 2 0 0 1 -2 2 h -14 a 2 2 0 0 1 -2 -2 v -14 a 2 2 0 0 1 2 -2 Z",
 		"M 7 7.5 a 0.5 0.5 0 1 0 1 0 a 0.5 0.5 0 1 0 -1 0",
@@ -17437,7 +17437,7 @@ func Vault(opts ...Option) g.Node {
 
 // VectorSquare creates a vector-square icon
 // Tags: shape, geometry, art, width, height, size, calculate, measure, select, graphics, box
-func VectorSquare(opts ...Option) g.Node {
+func VectorSquare(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M19.5 7a24 24 0 0 1 0 10",
 		"M4.5 7a24 24 0 0 0 0 10",
@@ -17452,7 +17452,7 @@ func VectorSquare(opts ...Option) g.Node {
 
 // Vegan creates a vegan icon
 // Tags: vegetarian, fruitarian, herbivorous, animal rights, diet
-func Vegan(opts ...Option) g.Node {
+func Vegan(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M16 8q6 0 6-6-6 0-6 6",
 		"M17.41 3.59a10 10 0 1 0 3 3",
@@ -17462,7 +17462,7 @@ func Vegan(opts ...Option) g.Node {
 
 // VenetianMask creates a venetian-mask icon
 // Tags: mask, masquerade, impersonate, secret, incognito
-func VenetianMask(opts ...Option) g.Node {
+func VenetianMask(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M18 11c-1.5 0-2.5.5-3 2",
 		"M4 6a2 2 0 0 0-2 2v4a5 5 0 0 0 5 5 8 8 0 0 1 5 2 8 8 0 0 1 5-2 5 5 0 0 0 5-5V8a2 2 0 0 0-2-2h-3a8 8 0 0 0-5 2 8 8 0 0 0-5-2z",
@@ -17472,7 +17472,7 @@ func VenetianMask(opts ...Option) g.Node {
 
 // Venus creates a venus icon
 // Tags: gender, sex, female, feminine, woman, girl
-func Venus(opts ...Option) g.Node {
+func Venus(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M12 15v7",
 		"M9 19h6",
@@ -17482,7 +17482,7 @@ func Venus(opts ...Option) g.Node {
 
 // VenusAndMars creates a venus-and-mars icon
 // Tags: gender, sex, intersex, androgynous, hermaphrodite
-func VenusAndMars(opts ...Option) g.Node {
+func VenusAndMars(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M10 20h4",
 		"M12 16v6",
@@ -17494,7 +17494,7 @@ func VenusAndMars(opts ...Option) g.Node {
 
 // Vibrate creates a vibrate icon
 // Tags: smartphone, notification, rumble, haptic feedback, screen
-func Vibrate(opts ...Option) g.Node {
+func Vibrate(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"m2 8 2 2-2 2 2 2-2 2",
 		"m22 8-2 2 2 2-2 2 2 2",
@@ -17504,7 +17504,7 @@ func Vibrate(opts ...Option) g.Node {
 
 // VibrateOff creates a vibrate-off icon
 // Tags: smartphone, notification, rumble, haptic feedback, notifications, screen
-func VibrateOff(opts ...Option) g.Node {
+func VibrateOff(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"m2 8 2 2-2 2 2 2-2 2",
 		"m22 8-2 2 2 2-2 2 2 2",
@@ -17516,7 +17516,7 @@ func VibrateOff(opts ...Option) g.Node {
 
 // Video creates a video icon
 // Tags: camera, movie, film, recording, motion picture, camcorder, reel
-func Video(opts ...Option) g.Node {
+func Video(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"m16 13 5.223 3.482a.5.5 0 0 0 .777-.416V7.87a.5.5 0 0 0-.752-.432L16 10.5",
 		"M 4 6 h 10 a 2 2 0 0 1 2 2 v 8 a 2 2 0 0 1 -2 2 h -10 a 2 2 0 0 1 -2 -2 v -8 a 2 2 0 0 1 2 -2 Z",
@@ -17525,7 +17525,7 @@ func Video(opts ...Option) g.Node {
 
 // VideoOff creates a video-off icon
 // Tags: camera, movie, film
-func VideoOff(opts ...Option) g.Node {
+func VideoOff(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M10.66 6H14a2 2 0 0 1 2 2v2.5l5.248-3.062A.5.5 0 0 1 22 7.87v8.196",
 		"M16 16a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h2",
@@ -17535,7 +17535,7 @@ func VideoOff(opts ...Option) g.Node {
 
 // Videotape creates a videotape icon
 // Tags: vhs, movie, film, recording, motion picture, showreel, cassette
-func Videotape(opts ...Option) g.Node {
+func Videotape(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M 4 4 h 16 a 2 2 0 0 1 2 2 v 12 a 2 2 0 0 1 -2 2 h -16 a 2 2 0 0 1 -2 -2 v -12 a 2 2 0 0 1 2 -2 Z",
 		"M2 8h20",
@@ -17547,7 +17547,7 @@ func Videotape(opts ...Option) g.Node {
 
 // View creates a view icon
 // Tags: eye, look
-func View(opts ...Option) g.Node {
+func View(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M21 17v2a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-2",
 		"M21 7V5a2 2 0 0 0-2-2H5a2 2 0 0 0-2 2v2",
@@ -17558,7 +17558,7 @@ func View(opts ...Option) g.Node {
 
 // Voicemail creates a voicemail icon
 // Tags: phone, cassette, tape, reel, recording, audio
-func Voicemail(opts ...Option) g.Node {
+func Voicemail(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M 2 12 a 4 4 0 1 0 8 0 a 4 4 0 1 0 -8 0",
 		"M 14 12 a 4 4 0 1 0 8 0 a 4 4 0 1 0 -8 0",
@@ -17568,7 +17568,7 @@ func Voicemail(opts ...Option) g.Node {
 
 // Volleyball creates a volleyball icon
 // Tags: beach, sand, net, holiday, vacation, summer, soccer, football, futbol, kick, pitch, goal, score, bounce, leather, wool, yarn, knitting, sewing, thread, embroidery, textile
-func Volleyball(opts ...Option) g.Node {
+func Volleyball(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M11.1 7.1a16.55 16.55 0 0 1 10.9 4",
 		"M12 12a12.6 12.6 0 0 1-8.7 5",
@@ -17581,13 +17581,13 @@ func Volleyball(opts ...Option) g.Node {
 
 // Volume creates a volume icon
 // Tags: music, sound, mute, speaker
-func Volume(opts ...Option) g.Node {
+func Volume(opts ...Option) templ.Component {
 	return Icon("M11 4.702a.705.705 0 0 0-1.203-.498L6.413 7.587A1.4 1.4 0 0 1 5.416 8H3a1 1 0 0 0-1 1v6a1 1 0 0 0 1 1h2.416a1.4 1.4 0 0 1 .997.413l3.383 3.384A.705.705 0 0 0 11 19.298z", opts...)
 }
 
 // Volume1 creates a volume-1 icon
 // Tags: music, sound, speaker
-func Volume1(opts ...Option) g.Node {
+func Volume1(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M11 4.702a.705.705 0 0 0-1.203-.498L6.413 7.587A1.4 1.4 0 0 1 5.416 8H3a1 1 0 0 0-1 1v6a1 1 0 0 0 1 1h2.416a1.4 1.4 0 0 1 .997.413l3.383 3.384A.705.705 0 0 0 11 19.298z",
 		"M16 9a5 5 0 0 1 0 6",
@@ -17596,7 +17596,7 @@ func Volume1(opts ...Option) g.Node {
 
 // Volume2 creates a volume-2 icon
 // Tags: music, sound, speaker
-func Volume2(opts ...Option) g.Node {
+func Volume2(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M11 4.702a.705.705 0 0 0-1.203-.498L6.413 7.587A1.4 1.4 0 0 1 5.416 8H3a1 1 0 0 0-1 1v6a1 1 0 0 0 1 1h2.416a1.4 1.4 0 0 1 .997.413l3.383 3.384A.705.705 0 0 0 11 19.298z",
 		"M16 9a5 5 0 0 1 0 6",
@@ -17606,7 +17606,7 @@ func Volume2(opts ...Option) g.Node {
 
 // VolumeOff creates a volume-off icon
 // Tags: music, sound, mute, speaker
-func VolumeOff(opts ...Option) g.Node {
+func VolumeOff(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M16 9a5 5 0 0 1 .95 2.293",
 		"M19.364 5.636a9 9 0 0 1 1.889 9.96",
@@ -17618,7 +17618,7 @@ func VolumeOff(opts ...Option) g.Node {
 
 // VolumeX creates a volume-x icon
 // Tags: music, sound, mute, speaker
-func VolumeX(opts ...Option) g.Node {
+func VolumeX(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M11 4.702a.705.705 0 0 0-1.203-.498L6.413 7.587A1.4 1.4 0 0 1 5.416 8H3a1 1 0 0 0-1 1v6a1 1 0 0 0 1 1h2.416a1.4 1.4 0 0 1 .997.413l3.383 3.384A.705.705 0 0 0 11 19.298z",
 		"M 22 9 L 16 15",
@@ -17628,7 +17628,7 @@ func VolumeX(opts ...Option) g.Node {
 
 // Vote creates a vote icon
 // Tags: vote, poll, ballot, political, social, check, tick
-func Vote(opts ...Option) g.Node {
+func Vote(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"m9 12 2 2 4-4",
 		"M5 7c0-1.1.9-2 2-2h10a2 2 0 0 1 2 2v12H5V7Z",
@@ -17638,7 +17638,7 @@ func Vote(opts ...Option) g.Node {
 
 // Wallet creates a wallet icon
 // Tags: money, finance, pocket
-func Wallet(opts ...Option) g.Node {
+func Wallet(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M19 7V4a1 1 0 0 0-1-1H5a2 2 0 0 0 0 4h15a1 1 0 0 1 1 1v4h-3a2 2 0 0 0 0 4h3a1 1 0 0 0 1-1v-2a1 1 0 0 0-1-1",
 		"M3 5v14a2 2 0 0 0 2 2h15a1 1 0 0 0 1-1v-4",
@@ -17647,7 +17647,7 @@ func Wallet(opts ...Option) g.Node {
 
 // WalletCards creates a wallet-cards icon
 // Tags: money, finance, pocket, credit, purchase, payment, shopping, retail, consumer, cc
-func WalletCards(opts ...Option) g.Node {
+func WalletCards(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M 5 3 h 14 a 2 2 0 0 1 2 2 v 14 a 2 2 0 0 1 -2 2 h -14 a 2 2 0 0 1 -2 -2 v -14 a 2 2 0 0 1 2 -2 Z",
 		"M3 9a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2",
@@ -17657,7 +17657,7 @@ func WalletCards(opts ...Option) g.Node {
 
 // WalletMinimal creates a wallet-minimal icon
 // Tags: finance, pocket
-func WalletMinimal(opts ...Option) g.Node {
+func WalletMinimal(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M17 14h.01",
 		"M7 7h12a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14",
@@ -17666,7 +17666,7 @@ func WalletMinimal(opts ...Option) g.Node {
 
 // Wallpaper creates a wallpaper icon
 // Tags: background, texture, image, art, design, visual, decor, pattern, screen, cover, lock screen
-func Wallpaper(opts ...Option) g.Node {
+func Wallpaper(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M12 17v4",
 		"M8 21h8",
@@ -17678,7 +17678,7 @@ func Wallpaper(opts ...Option) g.Node {
 
 // Wand creates a wand icon
 // Tags: magic, selection
-func Wand(opts ...Option) g.Node {
+func Wand(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M15 4V2",
 		"M15 16v-2",
@@ -17694,7 +17694,7 @@ func Wand(opts ...Option) g.Node {
 
 // WandSparkles creates a wand-sparkles icon
 // Tags: magic, wizard, magician
-func WandSparkles(opts ...Option) g.Node {
+func WandSparkles(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"m21.64 3.64-1.28-1.28a1.21 1.21 0 0 0-1.72 0L2.36 18.64a1.21 1.21 0 0 0 0 1.72l1.28 1.28a1.2 1.2 0 0 0 1.72 0L21.64 5.36a1.2 1.2 0 0 0 0-1.72",
 		"m14 7 3 3",
@@ -17709,7 +17709,7 @@ func WandSparkles(opts ...Option) g.Node {
 
 // Warehouse creates a warehouse icon
 // Tags: storage, storehouse, depot, depository, repository, stockroom, logistics, building
-func Warehouse(opts ...Option) g.Node {
+func Warehouse(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M18 21V10a1 1 0 0 0-1-1H7a1 1 0 0 0-1 1v11",
 		"M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V8a2 2 0 0 1 1.132-1.803l7.95-3.974a2 2 0 0 1 1.837 0l7.948 3.974A2 2 0 0 1 22 8z",
@@ -17720,7 +17720,7 @@ func Warehouse(opts ...Option) g.Node {
 
 // WashingMachine creates a washing-machine icon
 // Tags: tumble dryer, amenities, electronics, cycle, clothes, rinse, spin, drum
-func WashingMachine(opts ...Option) g.Node {
+func WashingMachine(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M3 6h3",
 		"M17 6h.01",
@@ -17732,7 +17732,7 @@ func WashingMachine(opts ...Option) g.Node {
 
 // Watch creates a watch icon
 // Tags: clock, time
-func Watch(opts ...Option) g.Node {
+func Watch(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M12 10v2.2l1.6 1",
 		"m16.13 7.66-.81-4.05a2 2 0 0 0-2-1.61h-2.68a2 2 0 0 0-2 1.61l-.78 4.05",
@@ -17743,7 +17743,7 @@ func Watch(opts ...Option) g.Node {
 
 // Waves creates a waves icon
 // Tags: water, sea, sound, hertz, wavelength, vibrate
-func Waves(opts ...Option) g.Node {
+func Waves(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M2 6c.6.5 1.2 1 2.5 1C7 7 7 5 9.5 5c2.6 0 2.4 2 5 2 2.5 0 2.5-2 5-2 1.3 0 1.9.5 2.5 1",
 		"M2 12c.6.5 1.2 1 2.5 1 2.5 0 2.5-2 5-2 2.6 0 2.4 2 5 2 2.5 0 2.5-2 5-2 1.3 0 1.9.5 2.5 1",
@@ -17753,7 +17753,7 @@ func Waves(opts ...Option) g.Node {
 
 // WavesArrowDown creates a waves-arrow-down icon
 // Tags: water, sea, level, sound, hertz, wavelength, vibrate, low, tide, ocean, rising, down, falling
-func WavesArrowDown(opts ...Option) g.Node {
+func WavesArrowDown(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M12 10L12 2",
 		"M16 6L12 10L8 6",
@@ -17764,7 +17764,7 @@ func WavesArrowDown(opts ...Option) g.Node {
 
 // WavesArrowUp creates a waves-arrow-up icon
 // Tags: water, sea, level, sound, hertz, wavelength, vibrate, high, tide, ocean, rising
-func WavesArrowUp(opts ...Option) g.Node {
+func WavesArrowUp(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M12 2v8",
 		"M2 15c.6.5 1.2 1 2.5 1 2.5 0 2.5-2 5-2 2.6 0 2.4 2 5 2 2.5 0 2.5-2 5-2 1.3 0 1.9.5 2.5 1",
@@ -17775,7 +17775,7 @@ func WavesArrowUp(opts ...Option) g.Node {
 
 // WavesLadder creates a waves-ladder icon
 // Tags: swimming, water, pool, lifeguard, ocean, 🌊, 🏊‍♂️, 🏊‍♀️, 🏊, 🥽
-func WavesLadder(opts ...Option) g.Node {
+func WavesLadder(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M19 5a2 2 0 0 0-2 2v11",
 		"M2 18c.6.5 1.2 1 2.5 1 2.5 0 2.5-2 5-2 2.6 0 2.4 2 5 2 2.5 0 2.5-2 5-2 1.3 0 1.9.5 2.5 1",
@@ -17787,7 +17787,7 @@ func WavesLadder(opts ...Option) g.Node {
 
 // Waypoints creates a waypoints icon
 // Tags: indirection, vpn, virtual private network, proxy, connections, bounce, reroute, path, journey, planner, stops, stations, shared, spread, viral
-func Waypoints(opts ...Option) g.Node {
+func Waypoints(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M 9.5 4.5 a 2.5 2.5 0 1 0 5 0 a 2.5 2.5 0 1 0 -5 0",
 		"m10.2 6.3-3.9 3.9",
@@ -17801,7 +17801,7 @@ func Waypoints(opts ...Option) g.Node {
 
 // Webcam creates a webcam icon
 // Tags: camera, security
-func Webcam(opts ...Option) g.Node {
+func Webcam(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M 4 10 a 8 8 0 1 0 16 0 a 8 8 0 1 0 -16 0",
 		"M 9 10 a 3 3 0 1 0 6 0 a 3 3 0 1 0 -6 0",
@@ -17812,7 +17812,7 @@ func Webcam(opts ...Option) g.Node {
 
 // Webhook creates a webhook icon
 // Tags: push api, interface, callback
-func Webhook(opts ...Option) g.Node {
+func Webhook(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M18 16.98h-5.99c-1.1 0-1.95.94-2.48 1.9A4 4 0 0 1 2 17c.01-.7.2-1.4.57-2",
 		"m6 17 3.13-5.78c.53-.97.1-2.18-.5-3.1a4 4 0 1 1 6.89-4.06",
@@ -17822,7 +17822,7 @@ func Webhook(opts ...Option) g.Node {
 
 // WebhookOff creates a webhook-off icon
 // Tags: push api, interface, callback
-func WebhookOff(opts ...Option) g.Node {
+func WebhookOff(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M17 17h-5c-1.09-.02-1.94.92-2.5 1.9A3 3 0 1 1 2.57 15",
 		"M9 3.4a4 4 0 0 1 6.52.66",
@@ -17836,7 +17836,7 @@ func WebhookOff(opts ...Option) g.Node {
 
 // Weight creates a weight icon
 // Tags: mass, heavy, lead, metal, measure, geometry, scales, balance
-func Weight(opts ...Option) g.Node {
+func Weight(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M 9 5 a 3 3 0 1 0 6 0 a 3 3 0 1 0 -6 0",
 		"M6.5 8a2 2 0 0 0-1.905 1.46L2.1 18.5A2 2 0 0 0 4 21h16a2 2 0 0 0 1.925-2.54L19.4 9.5A2 2 0 0 0 17.48 8Z",
@@ -17845,7 +17845,7 @@ func Weight(opts ...Option) g.Node {
 
 // WeightTilde creates a weight-tilde icon
 // Tags: measure, scale, estimate, load, balance, size, measurement, quantity, mass
-func WeightTilde(opts ...Option) g.Node {
+func WeightTilde(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M6.5 8a2 2 0 0 0-1.906 1.46L2.1 18.5A2 2 0 0 0 4 21h16a2 2 0 0 0 1.925-2.54L19.4 9.5A2 2 0 0 0 17.48 8z",
 		"M7.999 15a2.5 2.5 0 0 1 4 0 2.5 2.5 0 0 0 4 0",
@@ -17855,7 +17855,7 @@ func WeightTilde(opts ...Option) g.Node {
 
 // Wheat creates a wheat icon
 // Tags: corn, cereal, grain, gluten
-func Wheat(opts ...Option) g.Node {
+func Wheat(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M2 22 16 8",
 		"M3.47 12.53 5 11l1.53 1.53a3.5 3.5 0 0 1 0 4.94L5 19l-1.53-1.53a3.5 3.5 0 0 1 0-4.94Z",
@@ -17870,7 +17870,7 @@ func Wheat(opts ...Option) g.Node {
 
 // WheatOff creates a wheat-off icon
 // Tags: corn, cereal, grain, gluten free, allergy, intolerance, diet
-func WheatOff(opts ...Option) g.Node {
+func WheatOff(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"m2 22 10-10",
 		"m16 8-1.17 1.17",
@@ -17887,7 +17887,7 @@ func WheatOff(opts ...Option) g.Node {
 
 // WholeWord creates a whole-word icon
 // Tags: text, selection, letters, characters, font, typography
-func WholeWord(opts ...Option) g.Node {
+func WholeWord(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M 4 12 a 3 3 0 1 0 6 0 a 3 3 0 1 0 -6 0",
 		"M10 9v6",
@@ -17899,7 +17899,7 @@ func WholeWord(opts ...Option) g.Node {
 
 // Wifi creates a wifi icon
 // Tags: connection, signal, wireless
-func Wifi(opts ...Option) g.Node {
+func Wifi(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M12 20h.01",
 		"M2 8.82a15 15 0 0 1 20 0",
@@ -17910,7 +17910,7 @@ func Wifi(opts ...Option) g.Node {
 
 // WifiCog creates a wifi-cog icon
 // Tags: connection, signal, wireless, directory, settings, control, preferences, cog, edit, gear
-func WifiCog(opts ...Option) g.Node {
+func WifiCog(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"m14.305 19.53.923-.382",
 		"m15.228 16.852-.923-.383",
@@ -17929,7 +17929,7 @@ func WifiCog(opts ...Option) g.Node {
 
 // WifiHigh creates a wifi-high icon
 // Tags: connection, signal, wireless
-func WifiHigh(opts ...Option) g.Node {
+func WifiHigh(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M12 20h.01",
 		"M5 12.859a10 10 0 0 1 14 0",
@@ -17939,7 +17939,7 @@ func WifiHigh(opts ...Option) g.Node {
 
 // WifiLow creates a wifi-low icon
 // Tags: connection, signal, wireless
-func WifiLow(opts ...Option) g.Node {
+func WifiLow(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M12 20h.01",
 		"M8.5 16.429a5 5 0 0 1 7 0",
@@ -17948,7 +17948,7 @@ func WifiLow(opts ...Option) g.Node {
 
 // WifiOff creates a wifi-off icon
 // Tags: disabled
-func WifiOff(opts ...Option) g.Node {
+func WifiOff(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M12 20h.01",
 		"M8.5 16.429a5 5 0 0 1 7 0",
@@ -17962,7 +17962,7 @@ func WifiOff(opts ...Option) g.Node {
 
 // WifiPen creates a wifi-pen icon
 // Tags: edit, wifi, pen, change, network
-func WifiPen(opts ...Option) g.Node {
+func WifiPen(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M2 8.82a15 15 0 0 1 20 0",
 		"M21.378 16.626a1 1 0 0 0-3.004-3.004l-4.01 4.012a2 2 0 0 0-.506.854l-.837 2.87a.5.5 0 0 0 .62.62l2.87-.837a2 2 0 0 0 .854-.506z",
@@ -17973,7 +17973,7 @@ func WifiPen(opts ...Option) g.Node {
 
 // WifiSync creates a wifi-sync icon
 // Tags: connection, signal, wireless, synchronize, reconnect, reset, restart
-func WifiSync(opts ...Option) g.Node {
+func WifiSync(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M11.965 10.105v4L13.5 12.5a5 5 0 0 1 8 1.5",
 		"M11.965 14.105h4",
@@ -17987,13 +17987,13 @@ func WifiSync(opts ...Option) g.Node {
 
 // WifiZero creates a wifi-zero icon
 // Tags: connection, signal, wireless
-func WifiZero(opts ...Option) g.Node {
+func WifiZero(opts ...Option) templ.Component {
 	return Icon("M12 20h.01", opts...)
 }
 
 // Wind creates a wind icon
 // Tags: weather, air, blow
-func Wind(opts ...Option) g.Node {
+func Wind(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M12.8 19.6A2 2 0 1 0 14 16H2",
 		"M17.5 8a2.5 2.5 0 1 1 2 4H2",
@@ -18003,7 +18003,7 @@ func Wind(opts ...Option) g.Node {
 
 // WindArrowDown creates a wind-arrow-down icon
 // Tags: weather, air, pressure, blow
-func WindArrowDown(opts ...Option) g.Node {
+func WindArrowDown(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M10 2v8",
 		"M12.8 21.6A2 2 0 1 0 14 18H2",
@@ -18014,7 +18014,7 @@ func WindArrowDown(opts ...Option) g.Node {
 
 // Wine creates a wine icon
 // Tags: alcohol, beverage, bar, drink, glass, sommelier, vineyard, winery
-func Wine(opts ...Option) g.Node {
+func Wine(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M8 22h8",
 		"M7 10h10",
@@ -18025,7 +18025,7 @@ func Wine(opts ...Option) g.Node {
 
 // WineOff creates a wine-off icon
 // Tags: alcohol, beverage, drink, glass, alcohol free, abstinence, abstaining, teetotalism, allergy, intolerance
-func WineOff(opts ...Option) g.Node {
+func WineOff(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M8 22h8",
 		"M7 10h3m7 0h-1.343",
@@ -18037,7 +18037,7 @@ func WineOff(opts ...Option) g.Node {
 
 // Workflow creates a workflow icon
 // Tags: action, continuous integration, ci, automation, devops, network, node, connection
-func Workflow(opts ...Option) g.Node {
+func Workflow(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M 5 3 h 4 a 2 2 0 0 1 2 2 v 4 a 2 2 0 0 1 -2 2 h -4 a 2 2 0 0 1 -2 -2 v -4 a 2 2 0 0 1 2 -2 Z",
 		"M7 11v4a2 2 0 0 0 2 2h4",
@@ -18047,7 +18047,7 @@ func Workflow(opts ...Option) g.Node {
 
 // Worm creates a worm icon
 // Tags: invertebrate, grub, larva, snake, crawl, wiggle, slither, pest control, computer virus, malware
-func Worm(opts ...Option) g.Node {
+func Worm(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"m19 12-1.5 3",
 		"M19.63 18.81 22 20",
@@ -18057,13 +18057,13 @@ func Worm(opts ...Option) g.Node {
 
 // Wrench creates a wrench icon
 // Tags: account, settings, spanner, diy, toolbox, build, construction
-func Wrench(opts ...Option) g.Node {
+func Wrench(opts ...Option) templ.Component {
 	return Icon("M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.106-3.105c.32-.322.863-.22.983.218a6 6 0 0 1-8.259 7.057l-7.91 7.91a1 1 0 0 1-2.999-3l7.91-7.91a6 6 0 0 1 7.057-8.259c.438.12.54.662.219.984z", opts...)
 }
 
 // X creates a x icon
 // Tags: cancel, close, cross, delete, ex, remove, times, clear, math, multiply, multiplication
-func X(opts ...Option) g.Node {
+func X(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M18 6 6 18",
 		"m6 6 12 12",
@@ -18072,7 +18072,7 @@ func X(opts ...Option) g.Node {
 
 // Youtube creates a youtube icon
 // Tags: logo, social, video, play
-func Youtube(opts ...Option) g.Node {
+func Youtube(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M2.5 17a24.12 24.12 0 0 1 0-10 2 2 0 0 1 1.4-1.4 49.56 49.56 0 0 1 16.2 0A2 2 0 0 1 21.5 7a24.12 24.12 0 0 1 0 10 2 2 0 0 1-1.4 1.4 49.55 49.55 0 0 1-16.2 0A2 2 0 0 1 2.5 17",
 		"m10 15 5-3-5-3z",
@@ -18081,13 +18081,13 @@ func Youtube(opts ...Option) g.Node {
 
 // Zap creates a zap icon
 // Tags: flash, camera, lightning, electricity, energy
-func Zap(opts ...Option) g.Node {
+func Zap(opts ...Option) templ.Component {
 	return Icon("M4 14a1 1 0 0 1-.78-1.63l9.9-10.2a.5.5 0 0 1 .86.46l-1.92 6.02A1 1 0 0 0 13 10h7a1 1 0 0 1 .78 1.63l-9.9 10.2a.5.5 0 0 1-.86-.46l1.92-6.02A1 1 0 0 0 11 14z", opts...)
 }
 
 // ZapOff creates a zap-off icon
 // Tags: flash, camera, lightning, electricity, energy
-func ZapOff(opts ...Option) g.Node {
+func ZapOff(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M10.513 4.856 13.12 2.17a.5.5 0 0 1 .86.46l-1.377 4.317",
 		"M15.656 10H20a1 1 0 0 1 .78 1.63l-1.72 1.773",
@@ -18098,7 +18098,7 @@ func ZapOff(opts ...Option) g.Node {
 
 // ZoomIn creates a zoom-in icon
 // Tags: magnifying glass, plus
-func ZoomIn(opts ...Option) g.Node {
+func ZoomIn(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M 3 11 a 8 8 0 1 0 16 0 a 8 8 0 1 0 -16 0",
 		"M 21 21 L 16.65 16.65",
@@ -18109,7 +18109,7 @@ func ZoomIn(opts ...Option) g.Node {
 
 // ZoomOut creates a zoom-out icon
 // Tags: magnifying glass, plus
-func ZoomOut(opts ...Option) g.Node {
+func ZoomOut(opts ...Option) templ.Component {
 	return MultiPathIcon([]string{
 		"M 3 11 a 8 8 0 1 0 16 0 a 8 8 0 1 0 -16 0",
 		"M 21 21 L 16.65 16.65",

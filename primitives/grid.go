@@ -1,25 +1,26 @@
 package primitives
 
 import (
+	"context"
 	"fmt"
+	"io"
 
-	g "maragu.dev/gomponents"
-	"maragu.dev/gomponents/html"
+	"github.com/a-h/templ"
 
 	"github.com/xraph/forgeui"
 )
 
 // GridProps defines properties for the Grid component
 type GridProps struct {
-	Cols     int    // number of columns
-	ColsSM   int    // columns at sm breakpoint
-	ColsMD   int    // columns at md breakpoint
-	ColsLG   int    // columns at lg breakpoint
-	ColsXL   int    // columns at xl breakpoint
-	Gap      string // gap size
-	Class    string
-	Children []g.Node
-	Attrs    []g.Node
+	Cols       int    // number of columns
+	ColsSM     int    // columns at sm breakpoint
+	ColsMD     int    // columns at md breakpoint
+	ColsLG     int    // columns at lg breakpoint
+	ColsXL     int    // columns at xl breakpoint
+	Gap        string // gap size
+	Class      string
+	Children   []templ.Component
+	Attributes templ.Attributes
 }
 
 // GridOption is a functional option for configuring Grid
@@ -60,18 +61,55 @@ func GridClass(class string) GridOption {
 	return func(p *GridProps) { p.Class = class }
 }
 
-// GridChildren adds child nodes
-func GridChildren(children ...g.Node) GridOption {
+// GridChildren adds child components
+func GridChildren(children ...templ.Component) GridOption {
 	return func(p *GridProps) { p.Children = append(p.Children, children...) }
 }
 
 // GridAttrs adds custom attributes
-func GridAttrs(attrs ...g.Node) GridOption {
-	return func(p *GridProps) { p.Attrs = append(p.Attrs, attrs...) }
+func GridAttrs(attrs templ.Attributes) GridOption {
+	return func(p *GridProps) {
+		if p.Attributes == nil {
+			p.Attributes = templ.Attributes{}
+		}
+		for k, v := range attrs {
+			p.Attributes[k] = v
+		}
+	}
 }
 
-// Grid creates a CSS Grid container
-func Grid(opts ...GridOption) g.Node {
+// gridClasses computes the CSS classes for a Grid component.
+func gridClasses(props *GridProps) string {
+	classes := []string{"grid"}
+
+	if props.Cols > 0 {
+		classes = append(classes, fmt.Sprintf("grid-cols-%d", props.Cols))
+	}
+	if props.ColsSM > 0 {
+		classes = append(classes, fmt.Sprintf("sm:grid-cols-%d", props.ColsSM))
+	}
+	if props.ColsMD > 0 {
+		classes = append(classes, fmt.Sprintf("md:grid-cols-%d", props.ColsMD))
+	}
+	if props.ColsLG > 0 {
+		classes = append(classes, fmt.Sprintf("lg:grid-cols-%d", props.ColsLG))
+	}
+	if props.ColsXL > 0 {
+		classes = append(classes, fmt.Sprintf("xl:grid-cols-%d", props.ColsXL))
+	}
+
+	if props.Gap != "" {
+		classes = append(classes, "gap-"+props.Gap)
+	}
+	if props.Class != "" {
+		classes = append(classes, props.Class)
+	}
+
+	return forgeui.CN(classes...)
+}
+
+// Grid creates a CSS Grid container.
+func Grid(opts ...GridOption) templ.Component {
 	props := &GridProps{
 		Cols: 1,
 		Gap:  "4",
@@ -81,42 +119,15 @@ func Grid(opts ...GridOption) g.Node {
 		opt(props)
 	}
 
-	classes := []string{"grid"}
+	classes := gridClasses(props)
 
-	// Base columns
-	if props.Cols > 0 {
-		classes = append(classes, fmt.Sprintf("grid-cols-%d", props.Cols))
-	}
-
-	// Responsive columns
-	if props.ColsSM > 0 {
-		classes = append(classes, fmt.Sprintf("sm:grid-cols-%d", props.ColsSM))
-	}
-
-	if props.ColsMD > 0 {
-		classes = append(classes, fmt.Sprintf("md:grid-cols-%d", props.ColsMD))
-	}
-
-	if props.ColsLG > 0 {
-		classes = append(classes, fmt.Sprintf("lg:grid-cols-%d", props.ColsLG))
-	}
-
-	if props.ColsXL > 0 {
-		classes = append(classes, fmt.Sprintf("xl:grid-cols-%d", props.ColsXL))
-	}
-
-	// Gap
-	if props.Gap != "" {
-		classes = append(classes, "gap-"+props.Gap)
-	}
-
-	// Custom class
-	if props.Class != "" {
-		classes = append(classes, props.Class)
-	}
-
-	attrs := []g.Node{html.Class(forgeui.CN(classes...))}
-	attrs = append(attrs, props.Attrs...)
-
-	return html.Div(g.Group(attrs), g.Group(props.Children))
+	return templ.ComponentFunc(func(ctx context.Context, w io.Writer) error {
+		if err := writeOpenTag(w, "div", classes, props.Attributes); err != nil {
+			return err
+		}
+		if err := renderChildren(ctx, w, props.Children); err != nil {
+			return err
+		}
+		return writeCloseTag(w, "div")
+	})
 }

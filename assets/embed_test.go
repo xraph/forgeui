@@ -49,7 +49,7 @@ func TestEmbeddedHandler(t *testing.T) {
 	}
 
 	body, _ := io.ReadAll(w.Body)
-	if !strings.Contains(string(body), "renderNode") {
+	if !strings.Contains(string(body), "renderComponent") {
 		t.Error("Expected test_helpers.go content")
 	}
 }

@@ -1,8 +1,11 @@
 package theme
 
 import (
-	g "maragu.dev/gomponents"
-	"maragu.dev/gomponents/html"
+	"context"
+	"fmt"
+	"io"
+
+	"github.com/a-h/templ"
 )
 
 // ProviderProps defines configuration for the theme provider.
@@ -40,49 +43,37 @@ func DisableSystemSync() ProviderOption {
 
 // Provider wraps the application with theme support.
 // It injects CSS custom properties and dark mode script into the page.
-//
-// Usage:
-//
-//	Provider(children...)                           // Uses default light/dark themes
-//	Provider(children..., WithDefaultTheme("dark")) // Starts with dark theme
-func Provider(children ...g.Node) g.Node {
+func Provider(children ...templ.Component) templ.Component {
 	return ProviderWithThemes(DefaultLight(), DefaultDark(), children...)
 }
 
 // ProviderWithThemes wraps the application with custom light and dark themes.
-//
-// Usage:
-//
-//	ProviderWithThemes(theme.BlueLight(), theme.BlueDark(), children...)
-func ProviderWithThemes(lightTheme, darkTheme Theme, children ...g.Node) g.Node {
-	// Generate CSS for both themes
+func ProviderWithThemes(lightTheme, darkTheme Theme, children ...templ.Component) templ.Component {
 	css := GenerateCSS(lightTheme, darkTheme)
 
-	return g.Group([]g.Node{
-		// Inject theme CSS
-		g.El("style",
-			g.Attr("data-forgeui-theme", ""),
-			g.Raw(css),
-		),
-		// Add dark mode initialization script
-		DarkModeScript(),
-		// Add theme cloak styles
-		ThemeStyleCloak(),
-		// Render children
-		g.Group(children),
+	return templ.ComponentFunc(func(ctx context.Context, w io.Writer) error {
+		if _, err := fmt.Fprintf(w, `<style data-forgeui-theme>%s</style>`, css); err != nil {
+			return err
+		}
+		if err := DarkModeScript().Render(ctx, w); err != nil {
+			return err
+		}
+		if err := ThemeStyleCloak().Render(ctx, w); err != nil {
+			return err
+		}
+		for _, child := range children {
+			if child != nil {
+				if err := child.Render(ctx, w); err != nil {
+					return err
+				}
+			}
+		}
+		return nil
 	})
 }
 
 // ProviderWithOptions provides fine-grained control over theme configuration.
-//
-// Usage:
-//
-//	ProviderWithOptions(
-//	    children,
-//	    WithDefaultTheme("dark"),
-//	    WithStorageKey("app-theme"),
-//	)
-func ProviderWithOptions(children []g.Node, opts ...ProviderOption) g.Node {
+func ProviderWithOptions(children []templ.Component, opts ...ProviderOption) templ.Component {
 	props := &ProviderProps{
 		LightTheme:       DefaultLight(),
 		DarkTheme:        DefaultDark(),
@@ -95,84 +86,73 @@ func ProviderWithOptions(children []g.Node, opts ...ProviderOption) g.Node {
 		opt(props)
 	}
 
-	// Generate CSS for both themes
 	css := GenerateCSS(props.LightTheme, props.DarkTheme)
 
-	return g.Group([]g.Node{
-		// Inject theme CSS
-		g.El("style",
-			g.Attr("data-forgeui-theme", ""),
-			g.Raw(css),
-		),
-		// Add dark mode initialization script
-		DarkModeScriptWithDefault(props.DefaultTheme),
-		// Add theme cloak styles
-		ThemeStyleCloak(),
-		// Render children
-		g.Group(children),
+	return templ.ComponentFunc(func(ctx context.Context, w io.Writer) error {
+		if _, err := fmt.Fprintf(w, `<style data-forgeui-theme>%s</style>`, css); err != nil {
+			return err
+		}
+		if err := DarkModeScriptWithDefault(props.DefaultTheme).Render(ctx, w); err != nil {
+			return err
+		}
+		if err := ThemeStyleCloak().Render(ctx, w); err != nil {
+			return err
+		}
+		for _, child := range children {
+			if child != nil {
+				if err := child.Render(ctx, w); err != nil {
+					return err
+				}
+			}
+		}
+		return nil
 	})
 }
 
 // HTMLWrapper wraps the entire HTML document with proper theme attributes.
-// This is useful for server-rendered applications.
-//
-// Usage:
-//
-//	HTMLWrapper(
-//	    theme.DefaultLight(),
-//	    theme.DefaultDark(),
-//	    html.Head(...),
-//	    html.Body(...),
-//	)
-func HTMLWrapper(lightTheme, darkTheme Theme, children ...g.Node) g.Node {
-	return html.HTML(
-		html.Lang("en"),
-		// Class will be set by dark mode script
-		html.Class(""),
-		g.Group(children),
-	)
+func HTMLWrapper(lightTheme, darkTheme Theme, children ...templ.Component) templ.Component {
+	return templ.ComponentFunc(func(ctx context.Context, w io.Writer) error {
+		if _, err := io.WriteString(w, `<html lang="en" class="">`); err != nil {
+			return err
+		}
+		for _, child := range children {
+			if child != nil {
+				if err := child.Render(ctx, w); err != nil {
+					return err
+				}
+			}
+		}
+		_, err := io.WriteString(w, `</html>`)
+		return err
+	})
 }
 
 // HeadContent returns common <head> content for theme support.
-// Include this in your page's <head> section.
-//
-// It includes:
-//   - Theme color meta tag (adapts to theme)
-//   - Color scheme meta tag
-//   - Viewport meta tag
-func HeadContent(lightTheme, darkTheme Theme) g.Node {
-	return g.Group([]g.Node{
-		html.Meta(g.Attr("charset", "utf-8")),
-		html.Meta(
-			g.Attr("name", "viewport"),
-			g.Attr("content", "width=device-width, initial-scale=1"),
-		),
-		// Theme color for browser chrome
-		html.Meta(
-			g.Attr("name", "theme-color"),
-			g.Attr("content", "hsl("+lightTheme.Colors.Background+")"),
-			g.Attr("media", "(prefers-color-scheme: light)"),
-		),
-		html.Meta(
-			g.Attr("name", "theme-color"),
-			g.Attr("content", "hsl("+darkTheme.Colors.Background+")"),
-			g.Attr("media", "(prefers-color-scheme: dark)"),
-		),
-		// Color scheme
-		html.Meta(
-			g.Attr("name", "color-scheme"),
-			g.Attr("content", "light dark"),
-		),
+func HeadContent(lightTheme, darkTheme Theme) templ.Component {
+	return templ.ComponentFunc(func(_ context.Context, w io.Writer) error {
+		if _, err := io.WriteString(w, `<meta charset="utf-8">`); err != nil {
+			return err
+		}
+		if _, err := io.WriteString(w, `<meta name="viewport" content="width=device-width, initial-scale=1">`); err != nil {
+			return err
+		}
+		if _, err := fmt.Fprintf(w, `<meta name="theme-color" content="hsl(%s)" media="(prefers-color-scheme: light)">`, lightTheme.Colors.Background); err != nil {
+			return err
+		}
+		if _, err := fmt.Fprintf(w, `<meta name="theme-color" content="hsl(%s)" media="(prefers-color-scheme: dark)">`, darkTheme.Colors.Background); err != nil {
+			return err
+		}
+		_, err := io.WriteString(w, `<meta name="color-scheme" content="light dark">`)
+		return err
 	})
 }
 
 // StyleTag returns just the theme CSS as a style tag.
-// Useful if you want to manually place the theme CSS.
-func StyleTag(lightTheme, darkTheme Theme) g.Node {
+func StyleTag(lightTheme, darkTheme Theme) templ.Component {
 	css := GenerateCSS(lightTheme, darkTheme)
 
-	return g.El("style",
-		g.Attr("data-forgeui-theme", ""),
-		g.Raw(css),
-	)
+	return templ.ComponentFunc(func(_ context.Context, w io.Writer) error {
+		_, err := fmt.Fprintf(w, `<style data-forgeui-theme>%s</style>`, css)
+		return err
+	})
 }

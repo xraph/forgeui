@@ -1,13 +1,14 @@
 package router
 
 import (
+	"context"
 	"errors"
 	"net/http"
 	"net/http/httptest"
 	"strings"
 	"testing"
 
-	g "maragu.dev/gomponents"
+	"github.com/a-h/templ"
 )
 
 func TestLoaderErrorType(t *testing.T) {
@@ -112,7 +113,7 @@ func TestDefaultErrorPage(t *testing.T) {
 				ResponseWriter: httptest.NewRecorder(),
 			}
 
-			node, err := handler(ctx)
+			comp, err := handler(ctx)
 			if err != nil {
 				t.Errorf("Expected no error, got %v", err)
 			}
@@ -120,7 +121,7 @@ func TestDefaultErrorPage(t *testing.T) {
 			// Render and check output
 			var buf strings.Builder
 
-			_ = node.Render(&buf)
+			_ = comp.Render(context.Background(), &buf)
 			output := buf.String()
 
 			if !strings.Contains(output, tc.title) {
@@ -138,8 +139,8 @@ func TestSetErrorPage(t *testing.T) {
 	r := New()
 
 	// Set custom error page
-	customHandler := func(ctx *PageContext) (g.Node, error) {
-		return g.Text("Custom Error"), nil
+	customHandler := func(ctx *PageContext) (templ.Component, error) {
+		return templ.Raw("Custom Error"), nil
 	}
 	r.SetErrorPage(404, customHandler)
 
@@ -149,11 +150,11 @@ func TestSetErrorPage(t *testing.T) {
 		ResponseWriter: httptest.NewRecorder(),
 	}
 
-	node, _ := handler(ctx)
+	comp, _ := handler(ctx)
 
 	var buf strings.Builder
 
-	_ = node.Render(&buf)
+	_ = comp.Render(context.Background(), &buf)
 
 	if buf.String() != "Custom Error" {
 		t.Errorf("Expected 'Custom Error', got '%s'", buf.String())
@@ -173,11 +174,11 @@ func TestGetErrorPageDefault(t *testing.T) {
 		ResponseWriter: httptest.NewRecorder(),
 	}
 
-	node, _ := handler(ctx)
+	comp, _ := handler(ctx)
 
 	var buf strings.Builder
 
-	_ = node.Render(&buf)
+	_ = comp.Render(context.Background(), &buf)
 
 	if !strings.Contains(buf.String(), "404") {
 		t.Error("Expected default 404 error page")
@@ -188,12 +189,12 @@ func TestCustomErrorPageIntegration(t *testing.T) {
 	r := New()
 
 	// Set custom 500 error page
-	r.SetErrorPage(500, func(ctx *PageContext) (g.Node, error) {
-		return g.Text("Oops! Something went wrong."), nil
+	r.SetErrorPage(500, func(ctx *PageContext) (templ.Component, error) {
+		return templ.Raw("Oops! Something went wrong."), nil
 	})
 
 	// Create a route that triggers the error
-	r.Get("/error", func(ctx *PageContext) (g.Node, error) {
+	r.Get("/error", func(ctx *PageContext) (templ.Component, error) {
 		return nil, Error500("Test error", nil)
 	})
 

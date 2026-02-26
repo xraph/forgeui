@@ -6,14 +6,11 @@
 //
 // # Basic Usage
 //
-// Add HTMX attributes to your HTML elements:
+// Add HTMX attributes to your templ components:
 //
-//	html.Button(
-//	    htmx.HxGet("/api/users"),
-//	    htmx.HxTarget("#user-list"),
-//	    htmx.HxSwap("innerHTML"),
-//	    g.Text("Load Users"),
-//	)
+//	<button { htmx.HxGet("/api/users")... } { htmx.HxTarget("#user-list")... } { htmx.HxSwap("innerHTML")... }>
+//	    Load Users
+//	</button>
 //
 // # HTTP Methods
 //
@@ -29,11 +26,9 @@
 //
 // Control where and how responses are inserted:
 //
-//	html.Button(
-//	    htmx.HxGet("/content"),
-//	    htmx.HxTarget("#container"),
-//	    htmx.HxSwap("beforeend"),  // Append to container
-//	)
+//	<button { htmx.HxGet("/content")... } { htmx.HxTarget("#container")... } { htmx.HxSwap("beforeend")... }>
+//	    Load
+//	</button>
 //
 // Available swap strategies:
 //   - innerHTML (default): Replace inner HTML
@@ -49,19 +44,7 @@
 //
 // Specify when requests are made:
 //
-//	html.Input(
-//	    htmx.HxGet("/search"),
-//	    htmx.HxTriggerDebounce("keyup", "500ms"),
-//	    htmx.HxTarget("#results"),
-//	)
-//
-// Common triggers:
-//   - click: On element click
-//   - change: On input change
-//   - submit: On form submit
-//   - load: When element loads
-//   - revealed: When scrolled into view
-//   - intersect: When element intersects viewport
+//	<input { htmx.HxGet("/search")... } { htmx.HxTriggerDebounce("keyup", "500ms")... } { htmx.HxTarget("#results")... }/>
 //
 // # Server-Side Usage
 //
@@ -88,56 +71,37 @@
 //	    },
 //	})
 //
-// Available response headers:
-//   - HX-Trigger: Trigger client-side events
-//   - HX-Redirect: Perform client-side redirect
-//   - HX-Refresh: Force full page refresh
-//   - HX-Retarget: Change swap target
-//   - HX-Reswap: Change swap strategy
-//   - HX-Push-Url: Update browser URL
-//   - HX-Replace-Url: Replace browser URL
-//
 // # Progressive Enhancement
 //
 // Use hx-boost for seamless navigation:
 //
-//	html.Div(
-//	    htmx.HxBoost(true),
-//	    html.A(html.Href("/page1"), g.Text("Page 1")),
-//	    html.A(html.Href("/page2"), g.Text("Page 2")),
-//	)
+//	<div { htmx.HxBoost(true)... }>
+//	    <a href="/page1">Page 1</a>
+//	    <a href="/page2">Page 2</a>
+//	</div>
 //
 // # Loading States
 //
 // Show indicators during requests:
 //
-//	html.Button(
-//	    htmx.HxPost("/api/submit"),
-//	    htmx.HxIndicator("#spinner"),
-//	    htmx.HxDisabledElt("this"),
-//	    g.Text("Submit"),
-//	)
-//	html.Div(
-//	    html.ID("spinner"),
-//	    html.Class("htmx-indicator"),
-//	    g.Text("Loading..."),
-//	)
+//	<button { htmx.HxPost("/api/submit")... } { htmx.HxIndicator("#spinner")... } { htmx.HxDisabledElt("this")... }>
+//	    Submit
+//	</button>
+//	<div id="spinner" class="htmx-indicator">Loading...</div>
 //
 // # Extensions
 //
 // Load HTMX extensions for additional functionality:
 //
-//	htmx.ScriptsWithExtensions(
-//	    htmx.ExtensionSSE,
-//	    htmx.ExtensionWebSockets,
-//	)
+//	@htmx.ScriptsWithExtensions(htmx.ExtensionSSE, htmx.ExtensionWebSockets)
 package htmx
 
 import (
+	"context"
 	"fmt"
+	"io"
 
-	g "maragu.dev/gomponents"
-	"maragu.dev/gomponents/html"
+	"github.com/a-h/templ"
 )
 
 // DefaultVersion is the default HTMX version.
@@ -162,108 +126,86 @@ const (
 	ExtensionRestoreOnError  = "restored"
 )
 
-// Scripts returns a script tag that loads HTMX from CDN.
+// Scripts returns a templ.Component that renders the HTMX script tag from CDN.
 //
-// Example:
+// Example (in .templ files):
 //
-//	html.Head(
-//	    htmx.Scripts(),
-//	)
-func Scripts(version ...string) g.Node {
+//	@htmx.Scripts()
+func Scripts(version ...string) templ.Component {
 	ver := DefaultVersion
 	if len(version) > 0 && version[0] != "" {
 		ver = version[0]
 	}
 
-	return html.Script(
-		html.Src("https://unpkg.com/htmx.org@"+ver),
-		g.Attr("integrity", ""),
-		g.Attr("crossorigin", "anonymous"),
-	)
+	return templ.ComponentFunc(func(_ context.Context, w io.Writer) error {
+		_, err := fmt.Fprintf(w, `<script src="https://unpkg.com/htmx.org@%s" crossorigin="anonymous"></script>`, ver)
+		return err
+	})
 }
 
-// ScriptsWithExtensions loads HTMX with the specified extensions.
+// ScriptsWithExtensions returns a templ.Component that loads HTMX with the specified extensions.
 //
-// Example:
+// Example (in .templ files):
 //
-//	html.Head(
-//	    g.Group(htmx.ScriptsWithExtensions(
-//	        htmx.ExtensionSSE,
-//	        htmx.ExtensionWebSockets,
-//	    )),
-//	)
-func ScriptsWithExtensions(extensions ...string) []g.Node {
-	nodes := []g.Node{Scripts()}
+//	@htmx.ScriptsWithExtensions(htmx.ExtensionSSE, htmx.ExtensionWebSockets)
+func ScriptsWithExtensions(extensions ...string) templ.Component {
+	return templ.ComponentFunc(func(ctx context.Context, w io.Writer) error {
+		if err := Scripts().Render(ctx, w); err != nil {
+			return err
+		}
 
-	for _, ext := range extensions {
-		nodes = append(nodes, ExtensionScript(ext))
-	}
+		for _, ext := range extensions {
+			if err := ExtensionScript(ext).Render(ctx, w); err != nil {
+				return err
+			}
+		}
 
-	return nodes
+		return nil
+	})
 }
 
-// ExtensionScript returns a script tag for a specific HTMX extension.
+// ExtensionScript returns a templ.Component for a specific HTMX extension script tag.
 //
-// Example:
+// Example (in .templ files):
 //
-//	html.Head(
-//	    htmx.Scripts(),
-//	    htmx.ExtensionScript(htmx.ExtensionSSE),
-//	)
-func ExtensionScript(extension string) g.Node {
-	return html.Script(
-		html.Src(fmt.Sprintf("https://unpkg.com/htmx-ext-%s@2.0.0/ext/%s.js", extension, extension)),
-		g.Attr("crossorigin", "anonymous"),
-	)
+//	@htmx.ExtensionScript(htmx.ExtensionSSE)
+func ExtensionScript(extension string) templ.Component {
+	return templ.ComponentFunc(func(_ context.Context, w io.Writer) error {
+		_, err := fmt.Fprintf(w, `<script src="https://unpkg.com/htmx-ext-%s@2.0.0/ext/%s.js" crossorigin="anonymous"></script>`, extension, extension)
+		return err
+	})
 }
 
-// CloakCSS returns a style tag that prevents flash of unstyled content
+// CloakCSS returns a templ.Component with CSS to prevent flash of unstyled content
 // for elements with hx-cloak attribute.
 //
-// Add this to your page head and use HxCloak() on elements that should
-// be hidden until HTMX initializes.
+// Example (in .templ files):
 //
-// Example:
-//
-//	html.Head(
-//	    htmx.CloakCSS(),
-//	)
-//	html.Body(
-//	    html.Div(
-//	        htmx.HxCloak(),
-//	        htmx.HxGet("/content"),
-//	        htmx.HxTriggerLoad(),
-//	    ),
-//	)
-func CloakCSS() g.Node {
-	return html.StyleEl(g.Raw(`[hx-cloak] { display: none !important; }`))
+//	@htmx.CloakCSS()
+func CloakCSS() templ.Component {
+	return templ.ComponentFunc(func(_ context.Context, w io.Writer) error {
+		_, err := io.WriteString(w, `<style>[hx-cloak] { display: none !important; }</style>`)
+		return err
+	})
 }
 
 // HxCloak creates an hx-cloak attribute to hide elements until HTMX processes them.
 //
-// Example:
+// Example (in .templ files):
 //
-//	html.Div(
-//	    htmx.HxCloak(),
-//	    htmx.HxGet("/content"),
-//	    htmx.HxTriggerLoad(),
-//	)
-func HxCloak() g.Node {
-	return g.Attr("hx-cloak", "")
+//	<div { htmx.HxCloak()... } { htmx.HxGet("/content")... }>
+func HxCloak() templ.Attributes {
+	return templ.Attributes{"hx-cloak": ""}
 }
 
-// IndicatorCSS returns a style tag with default HTMX indicator styles.
+// IndicatorCSS returns a templ.Component with default HTMX indicator styles.
 //
-// Elements with class .htmx-indicator will be hidden by default and shown
-// during HTMX requests when targeted by hx-indicator.
+// Example (in .templ files):
 //
-// Example:
-//
-//	html.Head(
-//	    htmx.IndicatorCSS(),
-//	)
-func IndicatorCSS() g.Node {
-	return html.StyleEl(g.Raw(`
+//	@htmx.IndicatorCSS()
+func IndicatorCSS() templ.Component {
+	return templ.ComponentFunc(func(_ context.Context, w io.Writer) error {
+		_, err := io.WriteString(w, `<style>
 		.htmx-indicator {
 			opacity: 0;
 			transition: opacity 200ms ease-in;
@@ -276,61 +218,50 @@ func IndicatorCSS() g.Node {
 			opacity: 0;
 			transition: opacity 200ms ease-out;
 		}
-	`))
+	</style>`)
+		return err
+	})
 }
 
-// ConfigMeta returns meta tags for HTMX configuration.
+// ConfigMeta returns a templ.Component that renders meta tags for HTMX configuration.
 //
-// Example:
+// Example (in .templ files):
 //
-//	html.Head(
-//	    htmx.ConfigMeta(map[string]string{
-//	        "defaultSwapStyle": "outerHTML",
-//	        "timeout": "5000",
-//	    }),
-//	)
-func ConfigMeta(config map[string]string) []g.Node {
-	nodes := make([]g.Node, 0, len(config))
-	for key, value := range config {
-		nodes = append(nodes, html.Meta(
-			html.Name("htmx-config:"+key),
-			html.Content(value),
-		))
-	}
-
-	return nodes
+//	@htmx.ConfigMeta(map[string]string{"defaultSwapStyle": "outerHTML"})
+func ConfigMeta(config map[string]string) templ.Component {
+	return templ.ComponentFunc(func(_ context.Context, w io.Writer) error {
+		for key, value := range config {
+			if _, err := fmt.Fprintf(w, `<meta name="htmx-config:%s" content="%s"/>`, key, value); err != nil {
+				return err
+			}
+		}
+		return nil
+	})
 }
 
 // HxDisinherit creates an hx-disinherit attribute that prevents inheritance
 // of HTMX attributes from parent elements.
 //
-// Example:
+// Example (in .templ files):
 //
-//	html.Div(
-//	    htmx.HxDisinherit("hx-select hx-get"),
-//	    // child elements won't inherit hx-select or hx-get
-//	)
-func HxDisinherit(attributes string) g.Node {
+//	<div { htmx.HxDisinherit("hx-select hx-get")... }>
+func HxDisinherit(attributes string) templ.Attributes {
 	if attributes == "" {
-		return g.Attr("hx-disinherit", "*")
+		return templ.Attributes{"hx-disinherit": "*"}
 	}
 
-	return g.Attr("hx-disinherit", attributes)
+	return templ.Attributes{"hx-disinherit": attributes}
 }
 
 // HxHistory creates an hx-history attribute to control history behavior.
 //
-// Example:
+// Example (in .templ files):
 //
-//	html.Div(
-//	    htmx.HxHistory(false),
-//	    htmx.HxBoost(true),
-//	    // links won't be added to history
-//	)
-func HxHistory(enabled bool) g.Node {
+//	<div { htmx.HxHistory(false)... } { htmx.HxBoost(true)... }>
+func HxHistory(enabled bool) templ.Attributes {
 	if enabled {
-		return g.Attr("hx-history", "true")
+		return templ.Attributes{"hx-history": "true"}
 	}
 
-	return g.Attr("hx-history", "false")
+	return templ.Attributes{"hx-history": "false"}
 }

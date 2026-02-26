@@ -1,31 +1,16 @@
 // Package seo provides SEO meta tag and structured data management for ForgeUI.
-//
-// The SEO plugin generates Open Graph, Twitter Card, and JSON-LD structured data
-// to improve search engine visibility and social media sharing.
-//
-// # Basic Usage
-//
-//	registry := plugin.NewRegistry()
-//	registry.Use(seo.New())
-//
-// # Features
-//
-//   - Open Graph tags
-//   - Twitter Card tags
-//   - JSON-LD structured data
-//   - Canonical URL management
-//   - Robots meta tags
 package seo
 
 import (
 	"context"
 	"encoding/json"
 	"fmt"
+	stdhtml "html"
+	"io"
 	"maps"
 	"strings"
 
-	g "maragu.dev/gomponents"
-	"maragu.dev/gomponents/html"
+	"github.com/a-h/templ"
 
 	"github.com/xraph/forgeui/plugin"
 )
@@ -60,14 +45,12 @@ func (s *SEO) Shutdown(ctx context.Context) error {
 
 // MetaTags contains SEO meta tag configuration.
 type MetaTags struct {
-	// Basic meta tags
 	Title       string
 	Description string
 	Keywords    []string
 	Author      string
 	Canonical   string
 
-	// Open Graph
 	OGTitle       string
 	OGDescription string
 	OGImage       string
@@ -75,16 +58,14 @@ type MetaTags struct {
 	OGURL         string
 	OGSiteName    string
 
-	// Twitter Card
-	TwitterCard        string // summary, summary_large_image, app, player
-	TwitterSite        string // @username
-	TwitterCreator     string // @username
+	TwitterCard        string
+	TwitterSite        string
+	TwitterCreator     string
 	TwitterTitle       string
 	TwitterDescription string
 	TwitterImage       string
 
-	// Robots
-	Robots    string // index,follow or noindex,nofollow
+	Robots    string
 	GoogleBot string
 	BingBot   string
 }
@@ -99,173 +80,115 @@ func DefaultMetaTags() MetaTags {
 }
 
 // MetaTagsNode generates meta tag nodes.
-func MetaTagsNode(tags MetaTags) g.Node {
-	nodes := []g.Node{}
-
-	// Basic meta tags
-	if tags.Title != "" {
-		nodes = append(nodes, html.TitleEl(g.Text(tags.Title)))
-	}
-
-	if tags.Description != "" {
-		nodes = append(nodes,
-			html.Meta(html.Name("description"), html.Content(tags.Description)),
-		)
-	}
-
-	if len(tags.Keywords) > 0 {
-		keywords := ""
-
-		var keywordsSb116 strings.Builder
-
-		for i, kw := range tags.Keywords {
-			if i > 0 {
-				keywordsSb116.WriteString(", ")
+func MetaTagsNode(tags MetaTags) templ.Component {
+	return templ.ComponentFunc(func(_ context.Context, w io.Writer) error {
+		if tags.Title != "" {
+			if _, err := fmt.Fprintf(w, `<title>%s</title>`, stdhtml.EscapeString(tags.Title)); err != nil {
+				return err
 			}
-
-			keywordsSb116.WriteString(kw)
 		}
 
-		keywords += keywordsSb116.String()
+		if tags.Description != "" {
+			if _, err := fmt.Fprintf(w, `<meta name="description" content="%s">`, stdhtml.EscapeString(tags.Description)); err != nil {
+				return err
+			}
+		}
 
-		nodes = append(nodes,
-			html.Meta(html.Name("keywords"), html.Content(keywords)),
-		)
-	}
+		if len(tags.Keywords) > 0 {
+			keywords := strings.Join(tags.Keywords, ", ")
+			if _, err := fmt.Fprintf(w, `<meta name="keywords" content="%s">`, stdhtml.EscapeString(keywords)); err != nil {
+				return err
+			}
+		}
 
-	if tags.Author != "" {
-		nodes = append(nodes,
-			html.Meta(html.Name("author"), html.Content(tags.Author)),
-		)
-	}
+		if tags.Author != "" {
+			if _, err := fmt.Fprintf(w, `<meta name="author" content="%s">`, stdhtml.EscapeString(tags.Author)); err != nil {
+				return err
+			}
+		}
 
-	if tags.Canonical != "" {
-		nodes = append(nodes,
-			html.Link(html.Rel("canonical"), html.Href(tags.Canonical)),
-		)
-	}
+		if tags.Canonical != "" {
+			if _, err := fmt.Fprintf(w, `<link rel="canonical" href="%s">`, stdhtml.EscapeString(tags.Canonical)); err != nil {
+				return err
+			}
+		}
 
-	// Open Graph tags
-	if tags.OGTitle != "" {
-		nodes = append(nodes,
-			html.Meta(g.Attr("property", "og:title"), html.Content(tags.OGTitle)),
-		)
-	}
+		// Open Graph tags
+		ogTags := []struct{ property, content string }{
+			{"og:title", tags.OGTitle},
+			{"og:description", tags.OGDescription},
+			{"og:image", tags.OGImage},
+			{"og:type", tags.OGType},
+			{"og:url", tags.OGURL},
+			{"og:site_name", tags.OGSiteName},
+		}
+		for _, og := range ogTags {
+			if og.content != "" {
+				if _, err := fmt.Fprintf(w, `<meta property="%s" content="%s">`, og.property, stdhtml.EscapeString(og.content)); err != nil {
+					return err
+				}
+			}
+		}
 
-	if tags.OGDescription != "" {
-		nodes = append(nodes,
-			html.Meta(g.Attr("property", "og:description"), html.Content(tags.OGDescription)),
-		)
-	}
+		// Twitter Card tags
+		twitterTags := []struct{ name, content string }{
+			{"twitter:card", tags.TwitterCard},
+			{"twitter:site", tags.TwitterSite},
+			{"twitter:creator", tags.TwitterCreator},
+			{"twitter:title", tags.TwitterTitle},
+			{"twitter:description", tags.TwitterDescription},
+			{"twitter:image", tags.TwitterImage},
+		}
+		for _, tw := range twitterTags {
+			if tw.content != "" {
+				if _, err := fmt.Fprintf(w, `<meta name="%s" content="%s">`, tw.name, stdhtml.EscapeString(tw.content)); err != nil {
+					return err
+				}
+			}
+		}
 
-	if tags.OGImage != "" {
-		nodes = append(nodes,
-			html.Meta(g.Attr("property", "og:image"), html.Content(tags.OGImage)),
-		)
-	}
+		// Robots meta tags
+		robotsTags := []struct{ name, content string }{
+			{"robots", tags.Robots},
+			{"googlebot", tags.GoogleBot},
+			{"bingbot", tags.BingBot},
+		}
+		for _, rt := range robotsTags {
+			if rt.content != "" {
+				if _, err := fmt.Fprintf(w, `<meta name="%s" content="%s">`, rt.name, stdhtml.EscapeString(rt.content)); err != nil {
+					return err
+				}
+			}
+		}
 
-	if tags.OGType != "" {
-		nodes = append(nodes,
-			html.Meta(g.Attr("property", "og:type"), html.Content(tags.OGType)),
-		)
-	}
-
-	if tags.OGURL != "" {
-		nodes = append(nodes,
-			html.Meta(g.Attr("property", "og:url"), html.Content(tags.OGURL)),
-		)
-	}
-
-	if tags.OGSiteName != "" {
-		nodes = append(nodes,
-			html.Meta(g.Attr("property", "og:site_name"), html.Content(tags.OGSiteName)),
-		)
-	}
-
-	// Twitter Card tags
-	if tags.TwitterCard != "" {
-		nodes = append(nodes,
-			html.Meta(html.Name("twitter:card"), html.Content(tags.TwitterCard)),
-		)
-	}
-
-	if tags.TwitterSite != "" {
-		nodes = append(nodes,
-			html.Meta(html.Name("twitter:site"), html.Content(tags.TwitterSite)),
-		)
-	}
-
-	if tags.TwitterCreator != "" {
-		nodes = append(nodes,
-			html.Meta(html.Name("twitter:creator"), html.Content(tags.TwitterCreator)),
-		)
-	}
-
-	if tags.TwitterTitle != "" {
-		nodes = append(nodes,
-			html.Meta(html.Name("twitter:title"), html.Content(tags.TwitterTitle)),
-		)
-	}
-
-	if tags.TwitterDescription != "" {
-		nodes = append(nodes,
-			html.Meta(html.Name("twitter:description"), html.Content(tags.TwitterDescription)),
-		)
-	}
-
-	if tags.TwitterImage != "" {
-		nodes = append(nodes,
-			html.Meta(html.Name("twitter:image"), html.Content(tags.TwitterImage)),
-		)
-	}
-
-	// Robots meta tags
-	if tags.Robots != "" {
-		nodes = append(nodes,
-			html.Meta(html.Name("robots"), html.Content(tags.Robots)),
-		)
-	}
-
-	if tags.GoogleBot != "" {
-		nodes = append(nodes,
-			html.Meta(html.Name("googlebot"), html.Content(tags.GoogleBot)),
-		)
-	}
-
-	if tags.BingBot != "" {
-		nodes = append(nodes,
-			html.Meta(html.Name("bingbot"), html.Content(tags.BingBot)),
-		)
-	}
-
-	return g.Group(nodes)
+		return nil
+	})
 }
 
 // StructuredData contains JSON-LD structured data.
 type StructuredData struct {
-	Type string         // Schema.org type (e.g., "Organization", "Article")
-	Data map[string]any // Structured data fields
+	Type string
+	Data map[string]any
 }
 
 // JSONLDNode generates JSON-LD structured data node.
-func JSONLDNode(data StructuredData) g.Node {
-	schema := map[string]any{
-		"@context": "https://schema.org",
-		"@type":    data.Type,
-	}
+func JSONLDNode(data StructuredData) templ.Component {
+	return templ.ComponentFunc(func(_ context.Context, w io.Writer) error {
+		schema := map[string]any{
+			"@context": "https://schema.org",
+			"@type":    data.Type,
+		}
 
-	maps.Copy(schema, data.Data)
+		maps.Copy(schema, data.Data)
 
-	jsonData, err := json.MarshalIndent(schema, "", "  ")
-	if err != nil {
-		// Fallback to empty object on marshal error
-		jsonData = []byte("{}")
-	}
+		jsonData, err := json.MarshalIndent(schema, "", "  ")
+		if err != nil {
+			jsonData = []byte("{}")
+		}
 
-	return html.Script(
-		html.Type("application/ld+json"),
-		g.Raw(string(jsonData)),
-	)
+		_, werr := fmt.Fprintf(w, `<script type="application/ld+json">%s</script>`, string(jsonData))
+		return werr
+	})
 }
 
 // OrganizationSchema creates Organization structured data.
@@ -324,57 +247,53 @@ type BreadcrumbItem struct {
 }
 
 // SitemapLink generates a sitemap link tag.
-func SitemapLink(url string) g.Node {
-	return html.Link(
-		html.Rel("sitemap"),
-		html.Type("application/xml"),
-		html.Href(url),
-	)
+func SitemapLink(url string) templ.Component {
+	return templ.ComponentFunc(func(_ context.Context, w io.Writer) error {
+		_, err := fmt.Fprintf(w, `<link rel="sitemap" type="application/xml" href="%s">`, stdhtml.EscapeString(url))
+		return err
+	})
 }
 
 // AlternateLink generates an alternate language link tag.
-func AlternateLink(lang, url string) g.Node {
-	return html.Link(
-		html.Rel("alternate"),
-		g.Attr("hreflang", lang),
-		html.Href(url),
-	)
+func AlternateLink(lang, url string) templ.Component {
+	return templ.ComponentFunc(func(_ context.Context, w io.Writer) error {
+		_, err := fmt.Fprintf(w, `<link rel="alternate" hreflang="%s" href="%s">`, stdhtml.EscapeString(lang), stdhtml.EscapeString(url))
+		return err
+	})
 }
 
 // RSSLink generates an RSS feed link tag.
-func RSSLink(title, url string) g.Node {
-	return html.Link(
-		html.Rel("alternate"),
-		html.Type("application/rss+xml"),
-		g.Attr("title", title),
-		html.Href(url),
-	)
+func RSSLink(title, url string) templ.Component {
+	return templ.ComponentFunc(func(_ context.Context, w io.Writer) error {
+		_, err := fmt.Fprintf(w, `<link rel="alternate" type="application/rss+xml" title="%s" href="%s">`, stdhtml.EscapeString(title), stdhtml.EscapeString(url))
+		return err
+	})
 }
 
 // Preconnect generates a preconnect link tag for external domains.
-func Preconnect(url string) g.Node {
-	return html.Link(
-		html.Rel("preconnect"),
-		html.Href(url),
-	)
+func Preconnect(url string) templ.Component {
+	return templ.ComponentFunc(func(_ context.Context, w io.Writer) error {
+		_, err := fmt.Fprintf(w, `<link rel="preconnect" href="%s">`, stdhtml.EscapeString(url))
+		return err
+	})
 }
 
 // DNSPrefetch generates a DNS prefetch link tag.
-func DNSPrefetch(url string) g.Node {
-	return html.Link(
-		html.Rel("dns-prefetch"),
-		html.Href(url),
-	)
+func DNSPrefetch(url string) templ.Component {
+	return templ.ComponentFunc(func(_ context.Context, w io.Writer) error {
+		_, err := fmt.Fprintf(w, `<link rel="dns-prefetch" href="%s">`, stdhtml.EscapeString(url))
+		return err
+	})
 }
 
-// GenerateSitemap generates a basic sitemap structure (not a full implementation).
+// GenerateSitemap generates a basic sitemap structure.
 func GenerateSitemap(urls []SitemapURL) string {
 	sitemap := `<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">`
 
-	var sitemapSb368 strings.Builder
+	var sitemapSb strings.Builder
 	for _, url := range urls {
-		sitemapSb368.WriteString(fmt.Sprintf(`
+		sitemapSb.WriteString(fmt.Sprintf(`
   <url>
     <loc>%s</loc>
     <lastmod>%s</lastmod>
@@ -383,7 +302,7 @@ func GenerateSitemap(urls []SitemapURL) string {
   </url>`, url.Loc, url.LastMod, url.ChangeFreq, url.Priority))
 	}
 
-	sitemap += sitemapSb368.String()
+	sitemap += sitemapSb.String()
 
 	sitemap += `
 </urlset>`

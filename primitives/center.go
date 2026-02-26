@@ -1,10 +1,10 @@
 package primitives
 
-import g "maragu.dev/gomponents"
+import "github.com/a-h/templ"
 
-// Center creates a centered container using flexbox
-// Centers both horizontally and vertically
-func Center(children ...g.Node) g.Node {
+// Center creates a centered container using flexbox.
+// Centers both horizontally and vertically.
+func Center(children ...templ.Component) templ.Component {
 	return Flex(
 		FlexJustify("center"),
 		FlexAlign("center"),

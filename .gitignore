@@ -13,6 +13,9 @@ vendor/
 dist/
 __debug_bin
 
+# Generated templ files
+*_templ.go
+
 # Test coverage
 *.coverage
 *_coverage.out

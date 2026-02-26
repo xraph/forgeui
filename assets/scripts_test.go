@@ -1,11 +1,12 @@
 package assets
 
 import (
+	"context"
 	"strings"
 	"sync"
 	"testing"
 
-	g "maragu.dev/gomponents"
+	"github.com/a-h/templ"
 )
 
 func TestNewScriptManager(t *testing.T) {
@@ -94,13 +95,13 @@ func TestScriptManager_PrioritySorting(t *testing.T) {
 	sm.Add(ScriptEntry{Path: "/js/app.js", Priority: 50, Position: "body"})
 	sm.Add(ScriptEntry{Path: "/js/library.js", Priority: 30, Position: "body"})
 
-	nodes := sm.Render("body")
-	if len(nodes) != 4 {
-		t.Fatalf("Expected 4 script nodes, got %d", len(nodes))
+	components := sm.Render("body")
+	if len(components) != 4 {
+		t.Fatalf("Expected 4 script components, got %d", len(components))
 	}
 
 	// Render and check order
-	html := renderNodes(nodes)
+	html := renderComponents(components)
 
 	// Check that scripts appear in priority order
 	frameworkPos := strings.Index(html, "/js/framework.js")
@@ -126,14 +127,14 @@ func TestScriptManager_PositionFiltering(t *testing.T) {
 	sm.Add(ScriptEntry{Path: "/js/app.js", Priority: 50, Position: "body"})
 	sm.Add(ScriptEntry{Path: "/js/defer.js", Priority: 60, Position: "body"})
 
-	headNodes := sm.Render("head")
-	if len(headNodes) != 1 {
-		t.Errorf("Expected 1 head script, got %d", len(headNodes))
+	headComponents := sm.Render("head")
+	if len(headComponents) != 1 {
+		t.Errorf("Expected 1 head script, got %d", len(headComponents))
 	}
 
-	bodyNodes := sm.Render("body")
-	if len(bodyNodes) != 2 {
-		t.Errorf("Expected 2 body scripts, got %d", len(bodyNodes))
+	bodyComponents := sm.Render("body")
+	if len(bodyComponents) != 2 {
+		t.Errorf("Expected 2 body scripts, got %d", len(bodyComponents))
 	}
 }
 
@@ -143,12 +144,12 @@ func TestScriptManager_InlineScriptRendering(t *testing.T) {
 	content := "console.log('inline test');"
 	sm.AddInline(content, 50, "body")
 
-	nodes := sm.Render("body")
-	if len(nodes) != 1 {
-		t.Fatalf("Expected 1 script node, got %d", len(nodes))
+	components := sm.Render("body")
+	if len(components) != 1 {
+		t.Fatalf("Expected 1 script component, got %d", len(components))
 	}
 
-	html := renderNodes(nodes)
+	html := renderComponents(components)
 
 	if !strings.Contains(html, content) {
 		t.Errorf("Inline script content not found in output: %s", html)
@@ -169,12 +170,12 @@ func TestScriptManager_ExternalScriptRendering(t *testing.T) {
 		Position: "body",
 	})
 
-	nodes := sm.Render("body")
-	if len(nodes) != 1 {
-		t.Fatalf("Expected 1 script node, got %d", len(nodes))
+	components := sm.Render("body")
+	if len(components) != 1 {
+		t.Fatalf("Expected 1 script component, got %d", len(components))
 	}
 
-	html := renderNodes(nodes)
+	html := renderComponents(components)
 
 	if !strings.Contains(html, `src="/js/app.js"`) {
 		t.Errorf("Script src not found in output: %s", html)
@@ -194,8 +195,8 @@ func TestScriptManager_ScriptAttributes(t *testing.T) {
 		},
 	})
 
-	nodes := sm.Render("body")
-	html := renderNodes(nodes)
+	components := sm.Render("body")
+	html := renderComponents(components)
 
 	if !strings.Contains(html, `type="module"`) {
 		t.Error("Script should have type=module attribute")
@@ -219,8 +220,8 @@ func TestScriptManager_InlineScriptAttributes(t *testing.T) {
 		},
 	})
 
-	nodes := sm.Render("body")
-	html := renderNodes(nodes)
+	components := sm.Render("body")
+	html := renderComponents(components)
 
 	if !strings.Contains(html, `type="module"`) {
 		t.Error("Inline script should have type=module attribute")
@@ -241,14 +242,14 @@ func TestScriptManager_DefaultPosition(t *testing.T) {
 	})
 
 	// Should default to "body"
-	bodyNodes := sm.Render("body")
-	if len(bodyNodes) != 1 {
-		t.Errorf("Script should default to body position, got %d body scripts", len(bodyNodes))
+	bodyComponents := sm.Render("body")
+	if len(bodyComponents) != 1 {
+		t.Errorf("Script should default to body position, got %d body scripts", len(bodyComponents))
 	}
 
-	headNodes := sm.Render("head")
-	if len(headNodes) != 0 {
-		t.Errorf("Should have no head scripts, got %d", len(headNodes))
+	headComponents := sm.Render("head")
+	if len(headComponents) != 0 {
+		t.Errorf("Should have no head scripts, got %d", len(headComponents))
 	}
 }
 
@@ -340,17 +341,17 @@ func TestScriptManager_ConcurrentAccess(t *testing.T) {
 func TestScriptManager_EmptyRender(t *testing.T) {
 	sm := NewScriptManager()
 
-	nodes := sm.Render("body")
-	if len(nodes) != 0 {
-		t.Errorf("Empty manager should render 0 nodes, got %d", len(nodes))
+	components := sm.Render("body")
+	if len(components) != 0 {
+		t.Errorf("Empty manager should render 0 components, got %d", len(components))
 	}
 }
 
-// Helper function to render nodes to HTML string
-func renderNodes(nodes []g.Node) string {
+// Helper function to render components to HTML string
+func renderComponents(components []templ.Component) string {
 	var sb strings.Builder
-	for _, node := range nodes {
-		_ = node.Render(&sb)
+	for _, comp := range components {
+		_ = comp.Render(context.Background(), &sb)
 	}
 
 	return sb.String()

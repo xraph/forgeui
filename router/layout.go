@@ -1,30 +1,33 @@
 package router
 
 import (
-	g "maragu.dev/gomponents"
-	"maragu.dev/gomponents/html"
+	"context"
+	"fmt"
+	"io"
+
+	"github.com/a-h/templ"
 )
 
-// LayoutFunc wraps page content with a layout
-type LayoutFunc func(ctx *PageContext, content g.Node) g.Node
+// LayoutFunc wraps page content with a layout.
+type LayoutFunc func(ctx *PageContext, content templ.Component) templ.Component
 
-// LayoutConfig holds layout configuration including parent relationship
+// LayoutConfig holds layout configuration including parent relationship.
 type LayoutConfig struct {
 	Fn     LayoutFunc
 	Parent string
 }
 
-// LayoutOption configures a layout
+// LayoutOption configures a layout.
 type LayoutOption func(*LayoutConfig)
 
-// WithParentLayout sets the parent layout for composition
+// WithParentLayout sets the parent layout for composition.
 func WithParentLayout(parent string) LayoutOption {
 	return func(c *LayoutConfig) {
 		c.Parent = parent
 	}
 }
 
-// RegisterLayout registers a named layout with optional parent
+// RegisterLayout registers a named layout with optional parent.
 func (r *Router) RegisterLayout(name string, fn LayoutFunc, opts ...LayoutOption) {
 	r.mu.Lock()
 	defer r.mu.Unlock()
@@ -50,7 +53,7 @@ func (r *Router) RegisterLayout(name string, fn LayoutFunc, opts ...LayoutOption
 	r.layoutConfigs[name] = config
 }
 
-// SetDefaultLayout sets the default layout for all routes
+// SetDefaultLayout sets the default layout for all routes.
 func (r *Router) SetDefaultLayout(name string) {
 	r.mu.Lock()
 	defer r.mu.Unlock()
@@ -58,7 +61,7 @@ func (r *Router) SetDefaultLayout(name string) {
 	r.defaultLayout = name
 }
 
-// GetLayout retrieves a layout by name
+// GetLayout retrieves a layout by name.
 func (r *Router) GetLayout(name string) (LayoutFunc, bool) {
 	r.mu.RLock()
 	defer r.mu.RUnlock()
@@ -72,90 +75,114 @@ func (r *Router) GetLayout(name string) (LayoutFunc, bool) {
 	return fn, ok
 }
 
-// SetLayout sets the layout for a route
+// SetLayout sets the layout for a route.
 func (r *Route) SetLayout(name string) *Route {
 	r.Layout = name
 	return r
 }
 
-// NoLayout explicitly disables layout for a route
+// NoLayout explicitly disables layout for a route.
 func (r *Route) NoLayout() *Route {
 	r.Layout = "none"
 	return r
 }
 
-// DefaultLayout provides a basic HTML5 layout
-func DefaultLayout(ctx *PageContext, content g.Node) g.Node {
-	title := "ForgeUI Application"
-	if ctx.Meta != nil && ctx.Meta.Title != "" {
-		title = ctx.Meta.Title
-	}
+// DefaultLayout provides a basic HTML5 layout.
+var DefaultLayout LayoutFunc = func(ctx *PageContext, content templ.Component) templ.Component {
+	return templ.ComponentFunc(func(renderCtx context.Context, w io.Writer) error {
+		title := "ForgeUI Application"
+		if ctx.Meta != nil && ctx.Meta.Title != "" {
+			title = ctx.Meta.Title
+		}
 
-	return html.Doctype(
-		html.HTML(
-			html.Lang("en"),
-			html.Head(
-				html.Meta(g.Attr("charset", "UTF-8")),
-				html.Meta(
-					g.Attr("name", "viewport"),
-					g.Attr("content", "width=device-width, initial-scale=1.0"),
-				),
-				html.TitleEl(g.Text(title)),
-				g.If(ctx.Meta != nil, g.Group(ctx.Meta.MetaTags())),
-			),
-			html.Body(
-				content,
-			),
-		),
-	)
+		if _, err := io.WriteString(w, `<!doctype html><html lang="en"><head>`); err != nil {
+			return err
+		}
+		if _, err := io.WriteString(w, `<meta charset="UTF-8"/>`); err != nil {
+			return err
+		}
+		if _, err := io.WriteString(w, `<meta name="viewport" content="width=device-width, initial-scale=1.0"/>`); err != nil {
+			return err
+		}
+		if _, err := fmt.Fprintf(w, `<title>%s</title>`, title); err != nil {
+			return err
+		}
+
+		// Render meta tags
+		if ctx.Meta != nil {
+			if err := ctx.Meta.MetaTags().Render(renderCtx, w); err != nil {
+				return err
+			}
+		}
+
+		if _, err := io.WriteString(w, `</head><body>`); err != nil {
+			return err
+		}
+
+		// Render page content
+		if err := content.Render(renderCtx, w); err != nil {
+			return err
+		}
+
+		_, err := io.WriteString(w, `</body></html>`)
+		return err
+	})
 }
 
-// BlankLayout provides minimal layout (just wraps content in HTML structure)
-func BlankLayout(ctx *PageContext, content g.Node) g.Node {
-	return html.Doctype(
-		html.HTML(
-			html.Head(
-				html.Meta(g.Attr("charset", "UTF-8")),
-			),
-			html.Body(
-				content,
-			),
-		),
-	)
+// BlankLayout provides minimal layout (just wraps content in HTML structure).
+var BlankLayout LayoutFunc = func(_ *PageContext, content templ.Component) templ.Component {
+	return templ.ComponentFunc(func(renderCtx context.Context, w io.Writer) error {
+		if _, err := io.WriteString(w, `<!doctype html><html><head><meta charset="UTF-8"/></head><body>`); err != nil {
+			return err
+		}
+
+		if err := content.Render(renderCtx, w); err != nil {
+			return err
+		}
+
+		_, err := io.WriteString(w, `</body></html>`)
+		return err
+	})
 }
 
-// DashboardLayout provides a typical dashboard layout structure
-func DashboardLayout(ctx *PageContext, content g.Node) g.Node {
-	title := "Dashboard"
-	if ctx.Meta != nil && ctx.Meta.Title != "" {
-		title = ctx.Meta.Title
-	}
+// DashboardLayout provides a typical dashboard layout structure.
+var DashboardLayout LayoutFunc = func(ctx *PageContext, content templ.Component) templ.Component {
+	return templ.ComponentFunc(func(renderCtx context.Context, w io.Writer) error {
+		title := "Dashboard"
+		if ctx.Meta != nil && ctx.Meta.Title != "" {
+			title = ctx.Meta.Title
+		}
 
-	return html.Doctype(
-		html.HTML(
-			html.Lang("en"),
-			html.Head(
-				html.Meta(g.Attr("charset", "UTF-8")),
-				html.Meta(
-					g.Attr("name", "viewport"),
-					g.Attr("content", "width=device-width, initial-scale=1.0"),
-				),
-				html.TitleEl(g.Text(title)),
-			),
-			html.Body(
-				html.Class("dashboard-layout"),
-				html.Div(
-					html.Class("dashboard-container"),
-					html.Nav(
-						html.Class("dashboard-sidebar"),
-						html.H2(g.Text("Dashboard")),
-					),
-					html.Main(
-						html.Class("dashboard-content"),
-						content,
-					),
-				),
-			),
-		),
-	)
+		if _, err := io.WriteString(w, `<!doctype html><html lang="en"><head>`); err != nil {
+			return err
+		}
+		if _, err := io.WriteString(w, `<meta charset="UTF-8"/>`); err != nil {
+			return err
+		}
+		if _, err := io.WriteString(w, `<meta name="viewport" content="width=device-width, initial-scale=1.0"/>`); err != nil {
+			return err
+		}
+		if _, err := fmt.Fprintf(w, `<title>%s</title>`, title); err != nil {
+			return err
+		}
+		if _, err := io.WriteString(w, `</head><body class="dashboard-layout">`); err != nil {
+			return err
+		}
+		if _, err := io.WriteString(w, `<div class="dashboard-container">`); err != nil {
+			return err
+		}
+		if _, err := io.WriteString(w, `<nav class="dashboard-sidebar"><h2>Dashboard</h2></nav>`); err != nil {
+			return err
+		}
+		if _, err := io.WriteString(w, `<main class="dashboard-content">`); err != nil {
+			return err
+		}
+
+		if err := content.Render(renderCtx, w); err != nil {
+			return err
+		}
+
+		_, err := io.WriteString(w, `</main></div></body></html>`)
+		return err
+	})
 }

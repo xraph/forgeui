@@ -1,14 +1,14 @@
 package charts
 
 import (
-	g "maragu.dev/gomponents"
+	"github.com/a-h/templ"
 )
 
 // lineChart creates a line chart component.
-func (c *Charts) lineChart(props any, children ...g.Node) g.Node {
+func (c *Charts) lineChart(props any, children ...templ.Component) templ.Component {
 	data, ok := props.(LineChartData)
 	if !ok {
-		return g.Text("Invalid data for LineChart")
+		return textComponent("Invalid data for LineChart")
 	}
 
 	opts := DefaultOptions()
@@ -38,22 +38,7 @@ func (c *Charts) lineChart(props any, children ...g.Node) g.Node {
 }
 
 // LineChart creates a line chart with the given data.
-//
-// Example:
-//
-//	charts.LineChart(charts.LineChartData{
-//	    Labels: []string{"Jan", "Feb", "Mar", "Apr"},
-//	    Datasets: []charts.DatasetConfig{
-//	        {
-//	            Label: "Sales",
-//	            Data: []float64{12, 19, 3, 5},
-//	            BorderColor: "rgb(59, 130, 246)",
-//	            BackgroundColor: "rgba(59, 130, 246, 0.2)",
-//	            Tension: 0.4,
-//	        },
-//	    },
-//	})
-func LineChart(data LineChartData) g.Node {
+func LineChart(data LineChartData) templ.Component {
 	opts := DefaultOptions()
 
 	chartData := map[string]any{

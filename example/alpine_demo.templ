@@ -1,0 +1,214 @@
+package main
+
+import (
+	"github.com/xraph/forgeui/alpine"
+	"github.com/xraph/forgeui/htmx"
+	"github.com/xraph/forgeui/icons"
+)
+
+templ AlpinePageView() {
+	@PageLayout("Alpine.js Integration") {
+		<div class="container mx-auto px-4 py-12">
+			<div class="mb-8 space-y-2">
+				<h1 class="text-4xl font-bold">Alpine.js Integration</h1>
+				<p class="text-lg text-muted-foreground">
+					Alpine.js directives via templ.Attributes spread syntax
+				</p>
+			</div>
+
+			<div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+				<!-- Counter -->
+				@demoCard("Counter", "Basic state management with x-data") {
+					<div x-data="{ count: 0 }">
+						<div class="flex items-center gap-4">
+							<button
+								class="inline-flex items-center justify-center rounded-md bg-primary px-4 py-2 text-sm font-medium text-primary-foreground hover:bg-primary/90 transition-colors"
+								@click="count--"
+							>
+								@icons.Minus(icons.WithSize(16))
+							</button>
+							<span class="text-3xl font-bold tabular-nums w-16 text-center" x-text="count"></span>
+							<button
+								class="inline-flex items-center justify-center rounded-md bg-primary px-4 py-2 text-sm font-medium text-primary-foreground hover:bg-primary/90 transition-colors"
+								@click="count++"
+							>
+								@icons.Plus(icons.WithSize(16))
+							</button>
+						</div>
+					</div>
+				}
+
+				<!-- Toggle -->
+				@demoCard("Toggle Visibility", "Show/hide content with x-show") {
+					<div x-data="{ open: false }">
+						<button
+							class="inline-flex items-center gap-2 rounded-md bg-secondary px-4 py-2 text-sm font-medium text-secondary-foreground hover:bg-secondary/80 transition-colors mb-4"
+							@click="open = !open"
+						>
+							<span x-text="open ? 'Hide' : 'Show'"></span>
+							Content
+						</button>
+						<div { alpine.XShow("open")... } { alpine.XTransitionSimple()... } class="bg-accent rounded-lg p-4">
+							<p class="text-sm">This content toggles with Alpine.js transitions!</p>
+						</div>
+					</div>
+				}
+
+				<!-- Dropdown -->
+				@demoCard("Dropdown", "Click-away pattern with @click.outside") {
+					<div x-data="{ open: false }" class="relative">
+						<button
+							class="inline-flex items-center gap-2 rounded-md border border-input bg-background px-4 py-2 text-sm font-medium hover:bg-accent transition-colors"
+							@click="open = !open"
+						>
+							Options
+							@icons.ChevronDown(icons.WithSize(16))
+						</button>
+						<div
+							{ alpine.XShow("open")... }
+							@click.outside="open = false"
+							class="absolute left-0 mt-2 w-48 rounded-md border border-border bg-card shadow-lg z-10"
+						>
+							<div class="py-1">
+								<a href="#" class="block px-4 py-2 text-sm hover:bg-accent">Edit</a>
+								<a href="#" class="block px-4 py-2 text-sm hover:bg-accent">Duplicate</a>
+								<a href="#" class="block px-4 py-2 text-sm text-destructive hover:bg-destructive/10">Delete</a>
+							</div>
+						</div>
+					</div>
+				}
+
+				<!-- Form Binding -->
+				@demoCard("Two-Way Binding", "x-model for form inputs") {
+					<div x-data="{ name: '', email: '' }">
+						<div class="space-y-4">
+							<div>
+								<label class="text-sm font-medium mb-1 block">Name</label>
+								<input
+									type="text"
+									x-model="name"
+									placeholder="Enter your name"
+									class="w-full rounded-md border border-input bg-background px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-ring"
+								/>
+							</div>
+							<div>
+								<label class="text-sm font-medium mb-1 block">Email</label>
+								<input
+									type="email"
+									x-model="email"
+									placeholder="Enter your email"
+									class="w-full rounded-md border border-input bg-background px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-ring"
+								/>
+							</div>
+							<div class="bg-muted rounded-lg p-3">
+								<p class="text-sm">
+									<span class="text-muted-foreground">Preview:</span>
+									<span class="font-medium" x-text="name || 'Anonymous'"></span>
+									<span class="text-muted-foreground" x-show="email">
+										(<span x-text="email"></span>)
+									</span>
+								</p>
+							</div>
+						</div>
+					</div>
+				}
+
+				<!-- Tabs -->
+				@demoCard("Tabs", "Tab switching with Alpine.js state") {
+					<div x-data="{ tab: 'overview' }">
+						<div class="flex border-b border-border mb-4">
+							<button
+								class="px-4 py-2 text-sm font-medium border-b-2 transition-colors"
+								:class="tab === 'overview' ? 'border-primary text-primary' : 'border-transparent text-muted-foreground hover:text-foreground'"
+								@click="tab = 'overview'"
+							>
+								Overview
+							</button>
+							<button
+								class="px-4 py-2 text-sm font-medium border-b-2 transition-colors"
+								:class="tab === 'features' ? 'border-primary text-primary' : 'border-transparent text-muted-foreground hover:text-foreground'"
+								@click="tab = 'features'"
+							>
+								Features
+							</button>
+							<button
+								class="px-4 py-2 text-sm font-medium border-b-2 transition-colors"
+								:class="tab === 'code' ? 'border-primary text-primary' : 'border-transparent text-muted-foreground hover:text-foreground'"
+								@click="tab = 'code'"
+							>
+								Code
+							</button>
+						</div>
+						<div x-show="tab === 'overview'" class="text-sm">
+							<p>ForgeUI combines Go, templ, Alpine.js, and Tailwind CSS for server-rendered UIs with client-side interactivity.</p>
+						</div>
+						<div x-show="tab === 'features'" class="text-sm">
+							<ul class="list-disc list-inside space-y-1">
+								<li>Type-safe HTML with templ</li>
+								<li>Alpine.js attribute helpers</li>
+								<li>Theme system with dark mode</li>
+								<li>Icon library (Lucide)</li>
+							</ul>
+						</div>
+						<div x-show="tab === 'code'" class="text-sm">
+							<pre class="bg-muted rounded p-3 overflow-x-auto"><code>{ alpineTabsExample() }</code></pre>
+						</div>
+					</div>
+				}
+
+				<!-- HTMX Integration -->
+				@demoCard("HTMX Attributes", "HTMX helper functions for server requests") {
+					<div class="space-y-4">
+						<p class="text-sm text-muted-foreground">HTMX attributes via helper functions:</p>
+						<div class="bg-muted rounded-lg p-4">
+							<pre class="text-xs overflow-x-auto"><code>{ htmxExample() }</code></pre>
+						</div>
+						<div class="flex gap-2">
+							<button
+								class="inline-flex items-center gap-2 rounded-md bg-primary px-4 py-2 text-sm font-medium text-primary-foreground hover:bg-primary/90 transition-colors"
+								{ htmx.HxGet("/api/example")... }
+								{ htmx.HxTarget("#htmx-result")... }
+								{ htmx.HxSwap("innerHTML")... }
+							>
+								@icons.RefreshCw(icons.WithSize(14))
+								Load Data
+							</button>
+						</div>
+						<div id="htmx-result" class="bg-accent rounded-lg p-3 text-sm text-muted-foreground">
+							Click "Load Data" to fetch from server
+						</div>
+					</div>
+				}
+			</div>
+		</div>
+	}
+}
+
+templ demoCard(title, description string) {
+	<div class="rounded-lg border border-border bg-card">
+		<div class="border-b border-border px-6 py-4">
+			<h3 class="font-semibold">{ title }</h3>
+			<p class="text-sm text-muted-foreground">{ description }</p>
+		</div>
+		<div class="px-6 py-6">
+			{ children... }
+		</div>
+	</div>
+}
+
+func alpineTabsExample() string {
+	return `<div { alpine.XData("{ tab: 'a' }")... }>
+    <button @click="tab = 'a'">Tab A</button>
+    <div x-show="tab === 'a'">Content A</div>
+</div>`
+}
+
+func htmxExample() string {
+	return `<button
+    { htmx.HxGet("/api/data")... }
+    { htmx.HxTarget("#result")... }
+    { htmx.HxSwap("innerHTML")... }
+>
+    Load Data
+</button>`
+}

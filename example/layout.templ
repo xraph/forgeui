@@ -1,0 +1,61 @@
+package main
+
+import (
+	"github.com/xraph/forgeui/alpine"
+	"github.com/xraph/forgeui/theme"
+)
+
+templ PageLayout(title string) {
+	<!DOCTYPE html>
+	<html lang="en">
+		<head>
+			<meta charset="utf-8"/>
+			<meta name="viewport" content="width=device-width, initial-scale=1"/>
+			<title>{ title } - ForgeUI</title>
+			<script src="https://cdn.tailwindcss.com"></script>
+			@theme.TailwindConfigScript()
+			@theme.StyleTag(theme.DefaultLight(), theme.DefaultDark())
+			@alpine.CloakCSS()
+			<style>
+				@layer base {
+					* {
+						border-color: hsl(var(--border));
+					}
+				}
+			</style>
+		</head>
+		<body class="min-h-screen bg-background text-foreground" x-data="">
+			@theme.DarkModeScript()
+			@NavBar()
+			<main>
+				{ children... }
+			</main>
+			@Footer()
+			@alpine.Scripts()
+		</body>
+	</html>
+}
+
+templ NavBar() {
+	<nav class="bg-card border-b border-border py-4">
+		<div class="container mx-auto px-4 flex items-center justify-between">
+			<span class="text-lg font-semibold">ForgeUI</span>
+			<div class="flex items-center gap-6">
+				<a href="/" class="text-sm text-muted-foreground hover:text-foreground transition-colors">Home</a>
+				<a href="/theme" class="text-sm text-muted-foreground hover:text-foreground transition-colors">Theme</a>
+				<a href="/icons" class="text-sm text-muted-foreground hover:text-foreground transition-colors">Icons</a>
+				<a href="/alpine" class="text-sm text-muted-foreground hover:text-foreground transition-colors">Alpine.js</a>
+				@theme.SimpleToggle()
+			</div>
+		</div>
+	</nav>
+}
+
+templ Footer() {
+	<footer class="bg-gray-900 py-12 mt-16">
+		<div class="container mx-auto px-4 text-center">
+			<p class="text-2xl font-bold text-white mb-2">ForgeUI</p>
+			<p class="text-sm text-gray-400">Built with Go, templ, and Tailwind CSS</p>
+		</div>
+	</footer>
+}

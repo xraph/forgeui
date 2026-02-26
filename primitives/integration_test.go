@@ -2,10 +2,11 @@ package primitives
 
 import (
 	"bytes"
+	"context"
 	"strings"
 	"testing"
 
-	g "maragu.dev/gomponents"
+	"github.com/a-h/templ"
 )
 
 func TestIntegration_ComplexLayout(t *testing.T) {
@@ -16,7 +17,7 @@ func TestIntegration_ComplexLayout(t *testing.T) {
 				TextAs("h1"),
 				TextSize("text-4xl"),
 				TextWeight("font-bold"),
-				TextChildren(g.Text("Welcome")),
+				TextChildren(templ.Raw("Welcome")),
 			),
 			Flex(
 				FlexJustify("between"),
@@ -26,14 +27,14 @@ func TestIntegration_ComplexLayout(t *testing.T) {
 						WithPadding("p-4"),
 						WithBackground("bg-blue-500"),
 						WithRounded("rounded-lg"),
-						WithChildren(g.Text("Box 1")),
+						WithChildren(templ.Raw("Box 1")),
 					),
 					Spacer(),
 					Box(
 						WithPadding("p-4"),
 						WithBackground("bg-green-500"),
 						WithRounded("rounded-lg"),
-						WithChildren(g.Text("Box 2")),
+						WithChildren(templ.Raw("Box 2")),
 					),
 				),
 			),
@@ -42,17 +43,17 @@ func TestIntegration_ComplexLayout(t *testing.T) {
 				GridColsMD(4),
 				GridGap("4"),
 				GridChildren(
-					Box(WithChildren(g.Text("Item 1"))),
-					Box(WithChildren(g.Text("Item 2"))),
-					Box(WithChildren(g.Text("Item 3"))),
-					Box(WithChildren(g.Text("Item 4"))),
+					Box(WithChildren(templ.Raw("Item 1"))),
+					Box(WithChildren(templ.Raw("Item 2"))),
+					Box(WithChildren(templ.Raw("Item 3"))),
+					Box(WithChildren(templ.Raw("Item 4"))),
 				),
 			),
 		),
 	)
 
 	var buf bytes.Buffer
-	if err := layout.Render(&buf); err != nil {
+	if err := layout.Render(context.Background(), &buf); err != nil {
 		t.Fatalf("Render() error = %v", err)
 	}
 
@@ -89,12 +90,12 @@ func TestBox_WithAllOptions(t *testing.T) {
 		WithShadow("shadow-lg"),
 		WithWidth("w-full"),
 		WithHeight("h-64"),
-		WithAttrs(g.Attr("data-test", "value")),
-		WithChildren(g.Text("Content")),
+		WithAttrs(templ.Attributes{"data-test": "value"}),
+		WithChildren(templ.Raw("Content")),
 	)
 
 	var buf bytes.Buffer
-	_ = box.Render(&buf)
+	_ = box.Render(context.Background(), &buf)
 	html := buf.String()
 
 	expected := []string{
@@ -171,7 +172,7 @@ func TestFlex_AllVariants(t *testing.T) {
 			flex := Flex(tt.opts...)
 
 			var buf bytes.Buffer
-			_ = flex.Render(&buf)
+			_ = flex.Render(context.Background(), &buf)
 			html := buf.String()
 
 			for _, want := range tt.want {
@@ -192,14 +193,14 @@ func TestGrid_ResponsiveLayout(t *testing.T) {
 		GridColsXL(6),
 		GridGap("8"),
 		GridClass("custom-grid"),
-		GridAttrs(g.Attr("data-grid", "responsive")),
+		GridAttrs(templ.Attributes{"data-grid": "responsive"}),
 		GridChildren(
-			Box(WithChildren(g.Text("Item"))),
+			Box(WithChildren(templ.Raw("Item"))),
 		),
 	)
 
 	var buf bytes.Buffer
-	_ = grid.Render(&buf)
+	_ = grid.Render(context.Background(), &buf)
 	html := buf.String()
 
 	expected := []string{
@@ -228,12 +229,12 @@ func TestText_AllOptions(t *testing.T) {
 		TextColor("text-red-500"),
 		TextAlign("text-right"),
 		TextClass("custom-text"),
-		TextAttrs(g.Attr("data-text", "value")),
-		TextChildren(g.Text("Hello World")),
+		TextAttrs(templ.Attributes{"data-text": "value"}),
+		TextChildren(templ.Raw("Hello World")),
 	)
 
 	var buf bytes.Buffer
-	_ = text.Render(&buf)
+	_ = text.Render(context.Background(), &buf)
 	html := buf.String()
 
 	expected := []string{
@@ -255,16 +256,16 @@ func TestText_AllOptions(t *testing.T) {
 }
 
 func TestStack_WithMultipleChildren(t *testing.T) {
-	items := []g.Node{
-		g.Text("Item 1"),
-		g.Text("Item 2"),
-		g.Text("Item 3"),
+	items := []templ.Component{
+		templ.Raw("Item 1"),
+		templ.Raw("Item 2"),
+		templ.Raw("Item 3"),
 	}
 
 	vstack := VStack("4", items...)
 
 	var buf bytes.Buffer
-	_ = vstack.Render(&buf)
+	_ = vstack.Render(context.Background(), &buf)
 	html := buf.String()
 
 	if !strings.Contains(html, "Item 1") || !strings.Contains(html, "Item 2") || !strings.Contains(html, "Item 3") {
@@ -276,7 +277,7 @@ func TestCenter_EmptyChildren(t *testing.T) {
 	center := Center()
 
 	var buf bytes.Buffer
-	if err := center.Render(&buf); err != nil {
+	if err := center.Render(context.Background(), &buf); err != nil {
 		t.Fatalf("Render() error = %v", err)
 	}
 

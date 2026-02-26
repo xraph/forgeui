@@ -1,57 +1,12 @@
 package forgeui_test
 
 import (
-	"bytes"
 	"context"
 	"strings"
 	"testing"
 
 	"github.com/xraph/forgeui"
-	g "maragu.dev/gomponents"
 )
-
-func TestIntegration_NodeWithCVA(t *testing.T) {
-	// Test that Node and CVA work together
-	cva := forgeui.NewCVA("btn", "rounded").
-		Variant("size", map[string][]string{
-			"sm": {"h-8", "px-3", "text-sm"},
-			"lg": {"h-12", "px-6", "text-lg"},
-		}).
-		Default("size", "sm")
-
-	classes := cva.Classes(map[string]string{"size": "lg"})
-
-	node := forgeui.El("button").
-		Class(classes).
-		Attr("type", "button").
-		Children(g.Text("Click me")).
-		Build()
-
-	var buf bytes.Buffer
-	if err := node.Render(&buf); err != nil {
-		t.Fatalf("Render() error = %v", err)
-	}
-
-	html := buf.String()
-
-	// Verify all expected parts are present
-	expected := []string{
-		"<button",
-		"btn",
-		"rounded",
-		"h-12",
-		"px-6",
-		"text-lg",
-		`type="button"`,
-		"Click me",
-	}
-
-	for _, want := range expected {
-		if !strings.Contains(html, want) {
-			t.Errorf("expected %v in HTML output", want)
-		}
-	}
-}
 
 func TestIntegration_AppInitialization(t *testing.T) {
 	// Test that App initializes correctly with config
@@ -104,8 +59,8 @@ func TestIntegration_UtilsWithCVA(t *testing.T) {
 	}
 }
 
-func TestIntegration_ComplexComponent(t *testing.T) {
-	// Test building a complex component with all features
+func TestIntegration_CVAVariants(t *testing.T) {
+	// Test building a complex CVA configuration
 	buttonCVA := forgeui.NewCVA(
 		"inline-flex", "items-center", "justify-center", "rounded-md",
 		"font-medium", "transition-colors",
@@ -132,35 +87,21 @@ func TestIntegration_ComplexComponent(t *testing.T) {
 
 	finalClasses := forgeui.CN(classes, forgeui.If(isDisabled, "opacity-50 cursor-not-allowed"))
 
-	button := forgeui.El("button").
-		Class(finalClasses).
-		Attr("type", "button").
-		Children(g.Text("Delete")).
-		Build()
-
-	var buf bytes.Buffer
-	if err := button.Render(&buf); err != nil {
-		t.Fatalf("Render() error = %v", err)
-	}
-
-	html := buf.String()
-
 	expected := []string{
 		"inline-flex",
 		"bg-destructive",
 		"h-11",
 		"px-8",
-		"Delete",
 	}
 
 	for _, want := range expected {
-		if !strings.Contains(html, want) {
-			t.Errorf("expected %v in HTML output, got: %s", want, html)
+		if !strings.Contains(finalClasses, want) {
+			t.Errorf("expected %v in class output, got: %s", want, finalClasses)
 		}
 	}
 
 	// Should not contain disabled classes
-	if strings.Contains(html, "opacity-50") {
+	if strings.Contains(finalClasses, "opacity-50") {
 		t.Error("should not contain opacity-50 when not disabled")
 	}
 }

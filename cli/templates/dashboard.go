@@ -50,97 +50,119 @@ func main() {
 		return err
 	}
 
-	// Create pages/dashboard.go
-	dashGo := `package pages
+	// Create pages/handlers.go
+	handlersGo := `package pages
 
 import (
-	"github.com/xraph/forgeui"
-	g "maragu.dev/gomponents"
-	"maragu.dev/gomponents/html"
+	"github.com/a-h/templ"
+	"github.com/xraph/forgeui/router"
 )
 
-func Dashboard(ctx *forgeui.PageContext) g.Node {
-	return dashboardLayout("Dashboard", html.Div(
-		html.Class("stats"),
-		statCard("Users", "1,234"),
-		statCard("Revenue", "$56,789"),
-		statCard("Orders", "890"),
-		statCard("Growth", "+12.5%%"),
-	))
+func Dashboard(ctx *router.PageContext) (templ.Component, error) {
+	return DashboardPage(), nil
 }
 
-func Users(ctx *forgeui.PageContext) g.Node {
-	return dashboardLayout("Users", html.Div(
-		html.H2(g.Text("User Management")),
-		html.P(g.Text("User list and management tools will appear here.")),
-	))
+func Users(ctx *router.PageContext) (templ.Component, error) {
+	return UsersPage(), nil
 }
 
-func Analytics(ctx *forgeui.PageContext) g.Node {
-	return dashboardLayout("Analytics", html.Div(
-		html.H2(g.Text("Analytics Dashboard")),
-		html.P(g.Text("Charts and analytics data will appear here.")),
-	))
+func Analytics(ctx *router.PageContext) (templ.Component, error) {
+	return AnalyticsPage(), nil
 }
-
-func dashboardLayout(title string, content g.Node) g.Node {
-	return html.HTML(
-		html.Lang("en"),
-		html.Head(
-			html.Meta(html.Charset("utf-8")),
-			html.TitleEl(g.Text(title+" - Dashboard")),
-			html.StyleEl(g.Raw(dashStyles)),
-		),
-		html.Body(
-			html.Div(
-				html.Class("dashboard"),
-				html.Nav(
-					html.Class("sidebar"),
-					html.H2(g.Text("Dashboard")),
-					html.Ul(
-						html.Li(html.A(html.Href("/"), g.Text("Overview"))),
-						html.Li(html.A(html.Href("/users"), g.Text("Users"))),
-						html.Li(html.A(html.Href("/analytics"), g.Text("Analytics"))),
-					),
-				),
-				html.Main(
-					html.Class("content"),
-					html.H1(g.Text(title)),
-					content,
-				),
-			),
-		),
-	)
-}
-
-func statCard(label, value string) g.Node {
-	return html.Div(
-		html.Class("stat-card"),
-		html.Div(html.Class("stat-label"), g.Text(label)),
-		html.Div(html.Class("stat-value"), g.Text(value)),
-	)
-}
-
-const dashStyles = ` + "`" + `
-* { margin: 0; padding: 0; box-sizing: border-box; }
-body { font-family: system-ui, -apple-system, sans-serif; background: #f5f5f5; }
-.dashboard { display: flex; min-height: 100vh; }
-.sidebar { width: 250px; background: #2c3e50; color: white; padding: 2rem; }
-.sidebar h2 { margin-bottom: 2rem; }
-.sidebar ul { list-style: none; }
-.sidebar li { margin: 0.5rem 0; }
-.sidebar a { color: white; text-decoration: none; display: block; padding: 0.5rem; border-radius: 4px; }
-.sidebar a:hover { background: rgba(255,255,255,0.1); }
-.content { flex: 1; padding: 2rem; }
-.content h1 { margin-bottom: 2rem; color: #2c3e50; }
-.stats { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1.5rem; }
-.stat-card { background: white; padding: 1.5rem; border-radius: 8px; box-shadow: 0 2px 4px rgba(0,0,0,0.1); }
-.stat-label { color: #666; font-size: 0.875rem; margin-bottom: 0.5rem; }
-.stat-value { font-size: 2rem; font-weight: bold; color: #2c3e50; }
-` + "`" + `
 `
 
-	if err := util.CreateFile(filepath.Join(dir, "pages", "dashboard.go"), dashGo); err != nil {
+	if err := util.CreateFile(filepath.Join(dir, "pages", "handlers.go"), handlersGo); err != nil {
+		return err
+	}
+
+	// Create pages/dashboard.templ
+	dashTempl := `package pages
+
+templ DashboardPage() {
+	@dashboardLayout("Dashboard") {
+		<div class="stats">
+			@statCard("Users", "1,234")
+			@statCard("Revenue", "$56,789")
+			@statCard("Orders", "890")
+			@statCard("Growth", "+12.5%")
+		</div>
+	}
+}
+
+templ UsersPage() {
+	@dashboardLayout("Users") {
+		<div>
+			<h2>User Management</h2>
+			<p>User list and management tools will appear here.</p>
+		</div>
+	}
+}
+
+templ AnalyticsPage() {
+	@dashboardLayout("Analytics") {
+		<div>
+			<h2>Analytics Dashboard</h2>
+			<p>Charts and analytics data will appear here.</p>
+		</div>
+	}
+}
+
+templ dashboardLayout(title string) {
+	<!DOCTYPE html>
+	<html lang="en">
+		<head>
+			<meta charset="utf-8"/>
+			<title>{ title } - Dashboard</title>
+			@dashStyles()
+		</head>
+		<body>
+			<div class="dashboard">
+				<nav class="sidebar">
+					<h2>Dashboard</h2>
+					<ul>
+						<li><a href="/">Overview</a></li>
+						<li><a href="/users">Users</a></li>
+						<li><a href="/analytics">Analytics</a></li>
+					</ul>
+				</nav>
+				<main class="content">
+					<h1>{ title }</h1>
+					{ children... }
+				</main>
+			</div>
+		</body>
+	</html>
+}
+
+templ statCard(label, value string) {
+	<div class="stat-card">
+		<div class="stat-label">{ label }</div>
+		<div class="stat-value">{ value }</div>
+	</div>
+}
+
+templ dashStyles() {
+	<style>
+		* { margin: 0; padding: 0; box-sizing: border-box; }
+		body { font-family: system-ui, -apple-system, sans-serif; background: #f5f5f5; }
+		.dashboard { display: flex; min-height: 100vh; }
+		.sidebar { width: 250px; background: #2c3e50; color: white; padding: 2rem; }
+		.sidebar h2 { margin-bottom: 2rem; }
+		.sidebar ul { list-style: none; }
+		.sidebar li { margin: 0.5rem 0; }
+		.sidebar a { color: white; text-decoration: none; display: block; padding: 0.5rem; border-radius: 4px; }
+		.sidebar a:hover { background: rgba(255,255,255,0.1); }
+		.content { flex: 1; padding: 2rem; }
+		.content h1 { margin-bottom: 2rem; color: #2c3e50; }
+		.stats { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1.5rem; }
+		.stat-card { background: white; padding: 1.5rem; border-radius: 8px; box-shadow: 0 2px 4px rgba(0,0,0,0.1); }
+		.stat-label { color: #666; font-size: 0.875rem; margin-bottom: 0.5rem; }
+		.stat-value { font-size: 2rem; font-weight: bold; color: #2c3e50; }
+	</style>
+}
+`
+
+	if err := util.CreateFile(filepath.Join(dir, "pages", "dashboard.templ"), dashTempl); err != nil {
 		return err
 	}
 
@@ -161,6 +183,7 @@ dist/
 *.test
 *.out
 go.sum
+*_templ.go
 .vscode/
 .idea/
 *.swp
@@ -182,6 +205,12 @@ An admin dashboard built with ForgeUI.
 
 `+"```"+`bash
 forgeui dev
+`+"```"+`
+
+Or run directly:
+
+`+"```"+`bash
+templ generate && go run .
 `+"```"+`
 
 Visit http://localhost:3000 to see your dashboard.

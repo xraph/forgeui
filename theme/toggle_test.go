@@ -2,6 +2,7 @@ package theme_test
 
 import (
 	"bytes"
+	"context"
 	"strings"
 	"testing"
 
@@ -13,7 +14,7 @@ func TestToggle(t *testing.T) {
 
 	node := theme.Toggle()
 
-	if err := node.Render(&buf); err != nil {
+	if err := node.Render(context.Background(), &buf); err != nil {
 		t.Fatalf("render error: %v", err)
 	}
 
@@ -50,7 +51,7 @@ func TestToggleWithLabel(t *testing.T) {
 
 	node := theme.Toggle(theme.WithLabel(true))
 
-	if err := node.Render(&buf); err != nil {
+	if err := node.Render(context.Background(), &buf); err != nil {
 		t.Fatalf("render error: %v", err)
 	}
 
@@ -67,7 +68,7 @@ func TestToggleWithCustomLabels(t *testing.T) {
 
 	node := theme.Toggle(theme.WithLabels("☀️ Light", "🌙 Dark"))
 
-	if err := node.Render(&buf); err != nil {
+	if err := node.Render(context.Background(), &buf); err != nil {
 		t.Fatalf("render error: %v", err)
 	}
 
@@ -92,7 +93,7 @@ func TestToggleWithSize(t *testing.T) {
 
 			node := theme.Toggle(theme.WithToggleSize(size))
 
-			if err := node.Render(&buf); err != nil {
+			if err := node.Render(context.Background(), &buf); err != nil {
 				t.Fatalf("render error: %v", err)
 			}
 
@@ -110,7 +111,7 @@ func TestSimpleToggle(t *testing.T) {
 
 	node := theme.SimpleToggle()
 
-	if err := node.Render(&buf); err != nil {
+	if err := node.Render(context.Background(), &buf); err != nil {
 		t.Fatalf("render error: %v", err)
 	}
 
@@ -131,7 +132,7 @@ func TestToggleWithSystemOption(t *testing.T) {
 
 	node := theme.ToggleWithSystemOption()
 
-	if err := node.Render(&buf); err != nil {
+	if err := node.Render(context.Background(), &buf); err != nil {
 		t.Fatalf("render error: %v", err)
 	}
 
@@ -156,7 +157,7 @@ func TestToggleIcons(t *testing.T) {
 
 	node := theme.Toggle()
 
-	if err := node.Render(&buf); err != nil {
+	if err := node.Render(context.Background(), &buf); err != nil {
 		t.Fatalf("render error: %v", err)
 	}
 
@@ -178,7 +179,7 @@ func TestTogglePersistence(t *testing.T) {
 
 		node := theme.Toggle()
 
-		if err := node.Render(&buf); err != nil {
+		if err := node.Render(context.Background(), &buf); err != nil {
 			t.Fatalf("render error: %v", err)
 		}
 
@@ -200,7 +201,7 @@ func TestTogglePersistence(t *testing.T) {
 
 		node := theme.Toggle(theme.WithToggleStorageKey("my-app-theme"))
 
-		if err := node.Render(&buf); err != nil {
+		if err := node.Render(context.Background(), &buf); err != nil {
 			t.Fatalf("render error: %v", err)
 		}
 
@@ -216,7 +217,7 @@ func TestTogglePersistence(t *testing.T) {
 
 		node := theme.Toggle(theme.WithStorageType(theme.SessionStorage))
 
-		if err := node.Render(&buf); err != nil {
+		if err := node.Render(context.Background(), &buf); err != nil {
 			t.Fatalf("render error: %v", err)
 		}
 
@@ -232,7 +233,7 @@ func TestTogglePersistence(t *testing.T) {
 
 		node := theme.Toggle(theme.WithStorageType(theme.NoStorage))
 
-		if err := node.Render(&buf); err != nil {
+		if err := node.Render(context.Background(), &buf); err != nil {
 			t.Fatalf("render error: %v", err)
 		}
 
@@ -251,7 +252,7 @@ func TestToggleTabSync(t *testing.T) {
 
 		node := theme.Toggle()
 
-		if err := node.Render(&buf); err != nil {
+		if err := node.Render(context.Background(), &buf); err != nil {
 			t.Fatalf("render error: %v", err)
 		}
 
@@ -268,7 +269,7 @@ func TestToggleTabSync(t *testing.T) {
 
 		node := theme.Toggle(theme.WithTabSync(false))
 
-		if err := node.Render(&buf); err != nil {
+		if err := node.Render(context.Background(), &buf); err != nil {
 			t.Fatalf("render error: %v", err)
 		}
 
@@ -286,7 +287,7 @@ func TestToggleSystemPreference(t *testing.T) {
 
 	node := theme.Toggle(theme.WithSystemPreference(true))
 
-	if err := node.Render(&buf); err != nil {
+	if err := node.Render(context.Background(), &buf); err != nil {
 		t.Fatalf("render error: %v", err)
 	}
 
@@ -303,7 +304,7 @@ func TestPersistentToggle(t *testing.T) {
 
 	node := theme.PersistentToggle("custom-key")
 
-	if err := node.Render(&buf); err != nil {
+	if err := node.Render(context.Background(), &buf); err != nil {
 		t.Fatalf("render error: %v", err)
 	}
 
@@ -325,7 +326,7 @@ func TestDropdownToggle(t *testing.T) {
 
 	node := theme.DropdownToggle()
 
-	if err := node.Render(&buf); err != nil {
+	if err := node.Render(context.Background(), &buf); err != nil {
 		t.Fatalf("render error: %v", err)
 	}
 
@@ -357,7 +358,7 @@ func TestToggleWithSystemOptionPersistence(t *testing.T) {
 
 	node := theme.ToggleWithSystemOption(theme.WithToggleStorageKey("app-theme"))
 
-	if err := node.Render(&buf); err != nil {
+	if err := node.Render(context.Background(), &buf); err != nil {
 		t.Fatalf("render error: %v", err)
 	}
 
@@ -384,7 +385,7 @@ func TestThemeTransitionCSS(t *testing.T) {
 
 	node := theme.ThemeTransitionCSS()
 
-	if err := node.Render(&buf); err != nil {
+	if err := node.Render(context.Background(), &buf); err != nil {
 		t.Fatalf("render error: %v", err)
 	}
 

@@ -4,280 +4,203 @@ import (
 	"encoding/json"
 	"fmt"
 
-	g "maragu.dev/gomponents"
+	"github.com/a-h/templ"
 )
 
 // HxGet creates an hx-get attribute for GET requests.
 //
-// Example:
+// Example (in .templ files):
 //
-//	html.Button(
-//	    htmx.HxGet("/api/data"),
-//	    g.Text("Load Data"),
-//	)
-func HxGet(url string) g.Node {
-	return g.Attr("hx-get", url)
+//	<button { htmx.HxGet("/api/data")... }>Load Data</button>
+func HxGet(url string) templ.Attributes {
+	return templ.Attributes{"hx-get": url}
 }
 
 // HxPost creates an hx-post attribute for POST requests.
 //
-// Example:
+// Example (in .templ files):
 //
-//	html.Form(
-//	    htmx.HxPost("/api/submit"),
-//	    // form fields...
-//	)
-func HxPost(url string) g.Node {
-	return g.Attr("hx-post", url)
+//	<form { htmx.HxPost("/api/submit")... }>
+func HxPost(url string) templ.Attributes {
+	return templ.Attributes{"hx-post": url}
 }
 
 // HxPut creates an hx-put attribute for PUT requests.
 //
-// Example:
+// Example (in .templ files):
 //
-//	html.Button(
-//	    htmx.HxPut("/api/update/123"),
-//	    g.Text("Update"),
-//	)
-func HxPut(url string) g.Node {
-	return g.Attr("hx-put", url)
+//	<button { htmx.HxPut("/api/update/123")... }>Update</button>
+func HxPut(url string) templ.Attributes {
+	return templ.Attributes{"hx-put": url}
 }
 
 // HxPatch creates an hx-patch attribute for PATCH requests.
 //
-// Example:
+// Example (in .templ files):
 //
-//	html.Button(
-//	    htmx.HxPatch("/api/partial-update/123"),
-//	    g.Text("Patch"),
-//	)
-func HxPatch(url string) g.Node {
-	return g.Attr("hx-patch", url)
+//	<button { htmx.HxPatch("/api/partial-update/123")... }>Patch</button>
+func HxPatch(url string) templ.Attributes {
+	return templ.Attributes{"hx-patch": url}
 }
 
 // HxDelete creates an hx-delete attribute for DELETE requests.
 //
-// Example:
+// Example (in .templ files):
 //
-//	html.Button(
-//	    htmx.HxDelete("/api/delete/123"),
-//	    htmx.HxConfirm("Are you sure?"),
-//	    g.Text("Delete"),
-//	)
-func HxDelete(url string) g.Node {
-	return g.Attr("hx-delete", url)
+//	<button { htmx.HxDelete("/api/delete/123")... } { htmx.HxConfirm("Are you sure?")... }>Delete</button>
+func HxDelete(url string) templ.Attributes {
+	return templ.Attributes{"hx-delete": url}
 }
 
 // HxTarget creates an hx-target attribute to specify where to swap content.
 //
-// Example:
+// Example (in .templ files):
 //
-//	html.Button(
-//	    htmx.HxGet("/api/data"),
-//	    htmx.HxTarget("#results"),
-//	    g.Text("Load"),
-//	)
-func HxTarget(selector string) g.Node {
-	return g.Attr("hx-target", selector)
+//	<button { htmx.HxGet("/api/data")... } { htmx.HxTarget("#results")... }>Load</button>
+func HxTarget(selector string) templ.Attributes {
+	return templ.Attributes{"hx-target": selector}
 }
 
 // HxSwap creates an hx-swap attribute with a swap strategy.
 //
-// Strategies:
-//   - innerHTML (default): Replace the inner html of the target element
-//   - outerHTML: Replace the entire target element
-//   - beforebegin: Insert before the target element
-//   - afterbegin: Insert before the first child of the target element
-//   - beforeend: Insert after the last child of the target element
-//   - afterend: Insert after the target element
-//   - delete: Deletes the target element regardless of the response
-//   - none: Does not append content
+// Strategies: innerHTML, outerHTML, beforebegin, afterbegin, beforeend, afterend, delete, none
 //
-// Example:
+// Example (in .templ files):
 //
-//	html.Button(
-//	    htmx.HxGet("/api/item"),
-//	    htmx.HxSwap("outerHTML"),
-//	    g.Text("Replace"),
-//	)
-func HxSwap(strategy string) g.Node {
-	return g.Attr("hx-swap", strategy)
+//	<button { htmx.HxGet("/api/item")... } { htmx.HxSwap("outerHTML")... }>Replace</button>
+func HxSwap(strategy string) templ.Attributes {
+	return templ.Attributes{"hx-swap": strategy}
 }
 
 // HxSwapInnerHTML creates an hx-swap="innerHTML" attribute.
-func HxSwapInnerHTML() g.Node {
-	return g.Attr("hx-swap", "innerHTML")
+func HxSwapInnerHTML() templ.Attributes {
+	return templ.Attributes{"hx-swap": "innerHTML"}
 }
 
 // HxSwapOuterHTML creates an hx-swap="outerHTML" attribute.
-func HxSwapOuterHTML() g.Node {
-	return g.Attr("hx-swap", "outerHTML")
+func HxSwapOuterHTML() templ.Attributes {
+	return templ.Attributes{"hx-swap": "outerHTML"}
 }
 
 // HxSwapBeforeBegin creates an hx-swap="beforebegin" attribute.
-func HxSwapBeforeBegin() g.Node {
-	return g.Attr("hx-swap", "beforebegin")
+func HxSwapBeforeBegin() templ.Attributes {
+	return templ.Attributes{"hx-swap": "beforebegin"}
 }
 
 // HxSwapAfterBegin creates an hx-swap="afterbegin" attribute.
-func HxSwapAfterBegin() g.Node {
-	return g.Attr("hx-swap", "afterbegin")
+func HxSwapAfterBegin() templ.Attributes {
+	return templ.Attributes{"hx-swap": "afterbegin"}
 }
 
 // HxSwapBeforeEnd creates an hx-swap="beforeend" attribute.
-func HxSwapBeforeEnd() g.Node {
-	return g.Attr("hx-swap", "beforeend")
+func HxSwapBeforeEnd() templ.Attributes {
+	return templ.Attributes{"hx-swap": "beforeend"}
 }
 
 // HxSwapAfterEnd creates an hx-swap="afterend" attribute.
-func HxSwapAfterEnd() g.Node {
-	return g.Attr("hx-swap", "afterend")
+func HxSwapAfterEnd() templ.Attributes {
+	return templ.Attributes{"hx-swap": "afterend"}
 }
 
 // HxSwapDelete creates an hx-swap="delete" attribute.
-func HxSwapDelete() g.Node {
-	return g.Attr("hx-swap", "delete")
+func HxSwapDelete() templ.Attributes {
+	return templ.Attributes{"hx-swap": "delete"}
 }
 
 // HxSwapNone creates an hx-swap="none" attribute.
-func HxSwapNone() g.Node {
-	return g.Attr("hx-swap", "none")
+func HxSwapNone() templ.Attributes {
+	return templ.Attributes{"hx-swap": "none"}
 }
 
 // HxIndicator creates an hx-indicator attribute to specify a loading indicator.
 //
-// Example:
+// Example (in .templ files):
 //
-//	html.Button(
-//	    htmx.HxGet("/api/slow"),
-//	    htmx.HxIndicator("#spinner"),
-//	    g.Text("Load"),
-//	)
-//	html.Div(
-//	    html.ID("spinner"),
-//	    html.Class("htmx-indicator"),
-//	    g.Text("Loading..."),
-//	)
-func HxIndicator(selector string) g.Node {
-	return g.Attr("hx-indicator", selector)
+//	<button { htmx.HxGet("/api/slow")... } { htmx.HxIndicator("#spinner")... }>Load</button>
+func HxIndicator(selector string) templ.Attributes {
+	return templ.Attributes{"hx-indicator": selector}
 }
 
 // HxDisabledElt creates an hx-disabled-elt attribute to disable elements during requests.
 //
-// Example:
+// Example (in .templ files):
 //
-//	html.Button(
-//	    htmx.HxPost("/api/submit"),
-//	    htmx.HxDisabledElt("this"),
-//	    g.Text("Submit"),
-//	)
-func HxDisabledElt(selector string) g.Node {
-	return g.Attr("hx-disabled-elt", selector)
+//	<button { htmx.HxPost("/api/submit")... } { htmx.HxDisabledElt("this")... }>Submit</button>
+func HxDisabledElt(selector string) templ.Attributes {
+	return templ.Attributes{"hx-disabled-elt": selector}
 }
 
 // HxSync creates an hx-sync attribute for request synchronization.
 //
-// Strategies:
-//   - drop: Drop (ignore) the request if another is in flight
-//   - abort: Abort the current request if a new one is triggered
-//   - replace: Replace the current request if a new one is triggered
-//   - queue: Queue requests
-//   - queue first: Queue requests, but execute the first immediately
-//   - queue last: Queue requests, but execute the last immediately
-//   - queue all: Queue all requests
+// Strategies: drop, abort, replace, queue, queue first, queue last, queue all
 //
-// Example:
+// Example (in .templ files):
 //
-//	html.Input(
-//	    htmx.HxGet("/search"),
-//	    htmx.HxSync("this", "replace"),
-//	    html.Type("text"),
-//	)
-func HxSync(selector, strategy string) g.Node {
-	return g.Attr("hx-sync", fmt.Sprintf("%s:%s", selector, strategy))
+//	<input { htmx.HxGet("/search")... } { htmx.HxSync("this", "replace")... } type="text"/>
+func HxSync(selector, strategy string) templ.Attributes {
+	return templ.Attributes{"hx-sync": fmt.Sprintf("%s:%s", selector, strategy)}
 }
 
 // HxBoost creates an hx-boost attribute for progressive enhancement of links/forms.
 //
-// Example:
+// Example (in .templ files):
 //
-//	html.Div(
-//	    htmx.HxBoost(true),
-//	    html.A(html.Href("/page1"), g.Text("Page 1")),
-//	    html.A(html.Href("/page2"), g.Text("Page 2")),
-//	)
-func HxBoost(enabled bool) g.Node {
+//	<div { htmx.HxBoost(true)... }>
+func HxBoost(enabled bool) templ.Attributes {
 	if enabled {
-		return g.Attr("hx-boost", "true")
+		return templ.Attributes{"hx-boost": "true"}
 	}
 
-	return g.Attr("hx-boost", "false")
+	return templ.Attributes{"hx-boost": "false"}
 }
 
 // HxPushURL creates an hx-push-url attribute for history management.
 //
-// Example:
+// Example (in .templ files):
 //
-//	html.Button(
-//	    htmx.HxGet("/page/2"),
-//	    htmx.HxPushURL(true),
-//	    g.Text("Next Page"),
-//	)
-func HxPushURL(enabled bool) g.Node {
+//	<button { htmx.HxGet("/page/2")... } { htmx.HxPushURL(true)... }>Next Page</button>
+func HxPushURL(enabled bool) templ.Attributes {
 	if enabled {
-		return g.Attr("hx-push-url", "true")
+		return templ.Attributes{"hx-push-url": "true"}
 	}
 
-	return g.Attr("hx-push-url", "false")
+	return templ.Attributes{"hx-push-url": "false"}
 }
 
 // HxPushURLWithPath creates an hx-push-url attribute with a custom path.
 //
-// Example:
+// Example (in .templ files):
 //
-//	html.Button(
-//	    htmx.HxGet("/api/page/2"),
-//	    htmx.HxPushURLWithPath("/page/2"),
-//	    g.Text("Next Page"),
-//	)
-func HxPushURLWithPath(path string) g.Node {
-	return g.Attr("hx-push-url", path)
+//	<button { htmx.HxGet("/api/page/2")... } { htmx.HxPushURLWithPath("/page/2")... }>Next</button>
+func HxPushURLWithPath(path string) templ.Attributes {
+	return templ.Attributes{"hx-push-url": path}
 }
 
 // HxReplaceURL creates an hx-replace-url attribute to replace the current URL.
 //
-// Example:
+// Example (in .templ files):
 //
-//	html.Button(
-//	    htmx.HxGet("/search?q=test"),
-//	    htmx.HxReplaceURL(true),
-//	    g.Text("Search"),
-//	)
-func HxReplaceURL(enabled bool) g.Node {
+//	<button { htmx.HxGet("/search?q=test")... } { htmx.HxReplaceURL(true)... }>Search</button>
+func HxReplaceURL(enabled bool) templ.Attributes {
 	if enabled {
-		return g.Attr("hx-replace-url", "true")
+		return templ.Attributes{"hx-replace-url": "true"}
 	}
 
-	return g.Attr("hx-replace-url", "false")
+	return templ.Attributes{"hx-replace-url": "false"}
 }
 
 // HxReplaceURLWithPath creates an hx-replace-url attribute with a custom path.
-func HxReplaceURLWithPath(path string) g.Node {
-	return g.Attr("hx-replace-url", path)
+func HxReplaceURLWithPath(path string) templ.Attributes {
+	return templ.Attributes{"hx-replace-url": path}
 }
 
 // HxSelect creates an hx-select attribute for response filtering.
 //
-// Example:
+// Example (in .templ files):
 //
-//	html.Button(
-//	    htmx.HxGet("/full-page"),
-//	    htmx.HxSelect("#content"),
-//	    htmx.HxTarget("#main"),
-//	    g.Text("Load Content"),
-//	)
-func HxSelect(selector string) g.Node {
-	return g.Attr("hx-select", selector)
+//	<button { htmx.HxGet("/full-page")... } { htmx.HxSelect("#content")... }>Load Content</button>
+func HxSelect(selector string) templ.Attributes {
+	return templ.Attributes{"hx-select": selector}
 }
 
 // HxSelectOOB creates an hx-select-oob attribute for out-of-band swapping.
@@ -285,51 +208,36 @@ func HxSelect(selector string) g.Node {
 // Example:
 //
 //	htmx.HxSelectOOB("#notifications, #messages")
-func HxSelectOOB(selector string) g.Node {
-	return g.Attr("hx-select-oob", selector)
+func HxSelectOOB(selector string) templ.Attributes {
+	return templ.Attributes{"hx-select-oob": selector}
 }
 
 // HxHeaders creates an hx-headers attribute for custom headers.
 //
-// Example:
+// Example (in .templ files):
 //
-//	html.Button(
-//	    htmx.HxPost("/api/data"),
-//	    htmx.HxHeaders(map[string]string{
-//	        "X-API-Key": "secret",
-//	    }),
-//	    g.Text("Submit"),
-//	)
-func HxHeaders(headers map[string]string) g.Node {
+//	<button { htmx.HxPost("/api/data")... } { htmx.HxHeaders(map[string]string{"X-API-Key": "secret"})... }>
+func HxHeaders(headers map[string]string) templ.Attributes {
 	jsonData, err := json.Marshal(headers)
 	if err != nil {
-		// Fallback to empty object on marshal error
 		jsonData = []byte("{}")
 	}
 
-	return g.Attr("hx-headers", string(jsonData))
+	return templ.Attributes{"hx-headers": string(jsonData)}
 }
 
 // HxVals creates an hx-vals attribute for extra values to submit.
 //
-// Example:
+// Example (in .templ files):
 //
-//	html.Button(
-//	    htmx.HxPost("/api/data"),
-//	    htmx.HxVals(map[string]any{
-//	        "category": "urgent",
-//	        "priority": 1,
-//	    }),
-//	    g.Text("Submit"),
-//	)
-func HxVals(values map[string]any) g.Node {
+//	<button { htmx.HxPost("/api/data")... } { htmx.HxVals(map[string]any{"category": "urgent"})... }>
+func HxVals(values map[string]any) templ.Attributes {
 	jsonData, err := json.Marshal(values)
 	if err != nil {
-		// Fallback to empty object on marshal error
 		jsonData = []byte("{}")
 	}
 
-	return g.Attr("hx-vals", string(jsonData))
+	return templ.Attributes{"hx-vals": string(jsonData)}
 }
 
 // HxValsJS creates an hx-vals attribute with JavaScript evaluation.
@@ -337,122 +245,88 @@ func HxVals(values map[string]any) g.Node {
 // Example:
 //
 //	htmx.HxValsJS("js:{timestamp: Date.now()}")
-func HxValsJS(jsExpr string) g.Node {
-	return g.Attr("hx-vals", jsExpr)
+func HxValsJS(jsExpr string) templ.Attributes {
+	return templ.Attributes{"hx-vals": jsExpr}
 }
 
 // HxConfirm creates an hx-confirm attribute for confirmation dialogs.
 //
-// Example:
+// Example (in .templ files):
 //
-//	html.Button(
-//	    htmx.HxDelete("/api/item/123"),
-//	    htmx.HxConfirm("Are you sure you want to delete this item?"),
-//	    g.Text("Delete"),
-//	)
-func HxConfirm(message string) g.Node {
-	return g.Attr("hx-confirm", message)
+//	<button { htmx.HxDelete("/api/item/123")... } { htmx.HxConfirm("Are you sure?")... }>Delete</button>
+func HxConfirm(message string) templ.Attributes {
+	return templ.Attributes{"hx-confirm": message}
 }
 
 // HxPrompt creates an hx-prompt attribute for user input.
 //
-// Example:
+// Example (in .templ files):
 //
-//	html.Button(
-//	    htmx.HxPost("/api/comment"),
-//	    htmx.HxPrompt("Enter your comment"),
-//	    g.Text("Add Comment"),
-//	)
-func HxPrompt(message string) g.Node {
-	return g.Attr("hx-prompt", message)
+//	<button { htmx.HxPost("/api/comment")... } { htmx.HxPrompt("Enter your comment")... }>Add</button>
+func HxPrompt(message string) templ.Attributes {
+	return templ.Attributes{"hx-prompt": message}
 }
 
 // HxParams creates an hx-params attribute to filter parameters.
 //
-// Values:
-//   - "*": Include all parameters (default)
-//   - "none": Include no parameters
-//   - "param1,param2": Include only specified parameters
-//   - "not param1,param2": Include all except specified parameters
+// Values: "*" (all), "none", "param1,param2" (include), "not param1,param2" (exclude)
 //
-// Example:
+// Example (in .templ files):
 //
-//	html.Form(
-//	    htmx.HxPost("/api/submit"),
-//	    htmx.HxParams("email,name"),
-//	    // form fields...
-//	)
-func HxParams(params string) g.Node {
-	return g.Attr("hx-params", params)
+//	<form { htmx.HxPost("/api/submit")... } { htmx.HxParams("email,name")... }>
+func HxParams(params string) templ.Attributes {
+	return templ.Attributes{"hx-params": params}
 }
 
 // HxExt creates an hx-ext attribute to load HTMX extensions.
 //
-// Example:
+// Example (in .templ files):
 //
-//	html.Div(
-//	    htmx.HxExt("json-enc"),
-//	    htmx.HxPost("/api/data"),
-//	)
-func HxExt(extension string) g.Node {
-	return g.Attr("hx-ext", extension)
+//	<div { htmx.HxExt("json-enc")... } { htmx.HxPost("/api/data")... }>
+func HxExt(extension string) templ.Attributes {
+	return templ.Attributes{"hx-ext": extension}
 }
 
 // HxInclude creates an hx-include attribute to include additional elements in requests.
 //
-// Example:
+// Example (in .templ files):
 //
-//	html.Button(
-//	    htmx.HxPost("/api/submit"),
-//	    htmx.HxInclude("#extra-data"),
-//	    g.Text("Submit"),
-//	)
-func HxInclude(selector string) g.Node {
-	return g.Attr("hx-include", selector)
+//	<button { htmx.HxPost("/api/submit")... } { htmx.HxInclude("#extra-data")... }>Submit</button>
+func HxInclude(selector string) templ.Attributes {
+	return templ.Attributes{"hx-include": selector}
 }
 
 // HxPreserve creates an hx-preserve attribute to preserve elements across requests.
 //
-// Example:
+// Example (in .templ files):
 //
-//	html.Video(
-//	    htmx.HxPreserve(true),
-//	    html.Src("/video.mp4"),
-//	)
-func HxPreserve(enabled bool) g.Node {
+//	<video { htmx.HxPreserve(true)... } src="/video.mp4"></video>
+func HxPreserve(enabled bool) templ.Attributes {
 	if enabled {
-		return g.Attr("hx-preserve", "true")
+		return templ.Attributes{"hx-preserve": "true"}
 	}
 
-	return g.Attr("hx-preserve", "false")
+	return templ.Attributes{"hx-preserve": "false"}
 }
 
 // HxEncoding creates an hx-encoding attribute to set request encoding.
 //
-// Example:
+// Example (in .templ files):
 //
-//	html.Form(
-//	    htmx.HxPost("/api/upload"),
-//	    htmx.HxEncoding("multipart/form-data"),
-//	    // file input...
-//	)
-func HxEncoding(encoding string) g.Node {
-	return g.Attr("hx-encoding", encoding)
+//	<form { htmx.HxPost("/api/upload")... } { htmx.HxEncoding("multipart/form-data")... }>
+func HxEncoding(encoding string) templ.Attributes {
+	return templ.Attributes{"hx-encoding": encoding}
 }
 
 // HxValidate creates an hx-validate attribute to force validation before submit.
 //
-// Example:
+// Example (in .templ files):
 //
-//	html.Input(
-//	    html.Type("email"),
-//	    html.Required(),
-//	    htmx.HxValidate(true),
-//	)
-func HxValidate(enabled bool) g.Node {
+//	<input type="email" required { htmx.HxValidate(true)... }/>
+func HxValidate(enabled bool) templ.Attributes {
 	if enabled {
-		return g.Attr("hx-validate", "true")
+		return templ.Attributes{"hx-validate": "true"}
 	}
 
-	return g.Attr("hx-validate", "false")
+	return templ.Attributes{"hx-validate": "false"}
 }

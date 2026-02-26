@@ -21,7 +21,7 @@ func TestScript(t *testing.T) {
 	})
 
 	node := m.Script("test.js")
-	html := renderNode(node)
+	html := renderComponent(node)
 
 	if !strings.Contains(html, `<script`) {
 		t.Error("Expected script tag")
@@ -41,7 +41,7 @@ func TestScript_WithDefer(t *testing.T) {
 	})
 
 	node := m.Script("test.js", WithDefer())
-	html := renderNode(node)
+	html := renderComponent(node)
 
 	if !strings.Contains(html, `defer`) {
 		t.Error("Expected defer attribute")
@@ -57,7 +57,7 @@ func TestScript_WithAsync(t *testing.T) {
 	})
 
 	node := m.Script("test.js", WithAsync())
-	html := renderNode(node)
+	html := renderComponent(node)
 
 	if !strings.Contains(html, `async`) {
 		t.Error("Expected async attribute")
@@ -73,7 +73,7 @@ func TestScript_WithModule(t *testing.T) {
 	})
 
 	node := m.Script("test.js", WithModule())
-	html := renderNode(node)
+	html := renderComponent(node)
 
 	if !strings.Contains(html, `type="module"`) {
 		t.Error("Expected type=module attribute")
@@ -89,7 +89,7 @@ func TestScript_WithScriptIntegrity(t *testing.T) {
 	})
 
 	node := m.Script("test.js", WithScriptIntegrity("sha256-abc123"))
-	html := renderNode(node)
+	html := renderComponent(node)
 
 	if !strings.Contains(html, `integrity="sha256-abc123"`) {
 		t.Error("Expected integrity attribute")
@@ -105,7 +105,7 @@ func TestScript_WithScriptCrossOrigin(t *testing.T) {
 	})
 
 	node := m.Script("test.js", WithScriptCrossOrigin("anonymous"))
-	html := renderNode(node)
+	html := renderComponent(node)
 
 	if !strings.Contains(html, `crossorigin="anonymous"`) {
 		t.Error("Expected crossorigin attribute")
@@ -121,7 +121,7 @@ func TestScript_WithNoModule(t *testing.T) {
 	})
 
 	node := m.Script("test.js", WithNoModule())
-	html := renderNode(node)
+	html := renderComponent(node)
 
 	if !strings.Contains(html, `nomodule`) {
 		t.Error("Expected nomodule attribute")
@@ -137,7 +137,7 @@ func TestPreloadScript(t *testing.T) {
 	})
 
 	node := m.PreloadScript("test.js")
-	html := renderNode(node)
+	html := renderComponent(node)
 
 	if !strings.Contains(html, `rel="preload"`) {
 		t.Error("Expected preload rel attribute")
@@ -151,7 +151,7 @@ func TestPreloadScript(t *testing.T) {
 func TestInlineScript(t *testing.T) {
 	content := "console.log('test');"
 	node := InlineScript(content)
-	html := renderNode(node)
+	html := renderComponent(node)
 
 	if !strings.Contains(html, "<script>") {
 		t.Error("Expected script tag")

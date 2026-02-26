@@ -4,7 +4,7 @@ import (
 	"context"
 	"sync"
 
-	g "maragu.dev/gomponents"
+	"github.com/a-h/templ"
 )
 
 // Hook names for plugin lifecycle and rendering.
@@ -48,7 +48,7 @@ type HookFunc func(ctx *HookContext) error
 type HookContext struct {
 	Context context.Context //nolint:containedctx // Context is intentionally passed to hook handlers
 	Data    map[string]any
-	Nodes   []g.Node // For render hooks
+	Nodes   []templ.Component // For render hooks
 }
 
 // HookManager manages hook registration and execution.

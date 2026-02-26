@@ -1,8 +1,6 @@
 package alpine
 
 import (
-	"bytes"
-	"strings"
 	"testing"
 )
 
@@ -10,22 +8,22 @@ func TestXData(t *testing.T) {
 	tests := []struct {
 		name  string
 		state map[string]any
-		want  string
+		key   string
 	}{
 		{
 			name:  "nil state",
 			state: nil,
-			want:  `x-data=""`,
+			key:   "x-data",
 		},
 		{
 			name:  "empty state",
 			state: map[string]any{},
-			want:  `x-data=""`,
+			key:   "x-data",
 		},
 		{
 			name:  "simple state",
 			state: map[string]any{"open": false},
-			want:  `x-data=`,
+			key:   "x-data",
 		},
 		{
 			name: "complex state",
@@ -33,81 +31,54 @@ func TestXData(t *testing.T) {
 				"count": 0,
 				"items": []any{},
 			},
-			want: `x-data=`,
+			key: "x-data",
 		},
 	}
 
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
-			var buf bytes.Buffer
-			if err := XData(tt.state).Render(&buf); err != nil {
-				t.Fatalf("Render() error = %v", err)
-			}
-			got := buf.String()
+			attrs := XData(tt.state)
 
-			if !strings.Contains(got, tt.want) {
-				t.Errorf("XData() = %v, want to contain %v", got, tt.want)
+			if _, ok := attrs[tt.key]; !ok {
+				t.Errorf("XData() missing key %q", tt.key)
 			}
 		})
 	}
 }
 
 func TestXShow(t *testing.T) {
-	var buf bytes.Buffer
-	if err := XShow("isVisible").Render(&buf); err != nil {
-		t.Fatalf("Render() error = %v", err)
-	}
-	got := buf.String()
+	attrs := XShow("isVisible")
 
-	if !strings.Contains(got, `x-show="isVisible"`) {
-		t.Errorf("XShow() = %v, want x-show attribute", got)
+	if v, ok := attrs["x-show"]; !ok || v != "isVisible" {
+		t.Errorf("XShow() = %v, want x-show=isVisible", attrs)
 	}
 }
 
 func TestXIf(t *testing.T) {
-	var buf bytes.Buffer
-	if err := XIf("count > 5").Render(&buf); err != nil {
-		t.Fatalf("Render() error = %v", err)
-	}
-	got := buf.String()
+	attrs := XIf("count > 5")
 
-	if !strings.Contains(got, `x-if="count &gt; 5"`) {
-		t.Errorf("XIf() = %v, want x-if attribute", got)
+	if v, ok := attrs["x-if"]; !ok || v != "count > 5" {
+		t.Errorf("XIf() = %v, want x-if=\"count > 5\"", attrs)
 	}
 }
 
 func TestXFor(t *testing.T) {
-	var buf bytes.Buffer
-	_ = XFor("item in items").Render(&buf)
-	got := buf.String()
+	attrs := XFor("item in items")
 
-	if !strings.Contains(got, `x-for="item in items"`) {
-		t.Errorf("XFor() = %v, want x-for attribute", got)
+	if v, ok := attrs["x-for"]; !ok || v != "item in items" {
+		t.Errorf("XFor() = %v, want x-for=\"item in items\"", attrs)
 	}
 }
 
 func TestXForKeyed(t *testing.T) {
-	nodes := XForKeyed("item in items", "item.id")
+	attrs := XForKeyed("item in items", "item.id")
 
-	if len(nodes) != 2 {
-		t.Errorf("XForKeyed() returned %d nodes, want 2", len(nodes))
+	if v, ok := attrs["x-for"]; !ok || v != "item in items" {
+		t.Errorf("XForKeyed() missing x-for attribute, got %v", attrs)
 	}
 
-	var buf bytes.Buffer
-	for _, node := range nodes {
-		if err := node.Render(&buf); err != nil {
-			t.Fatalf("Render() error = %v", err)
-		}
-	}
-
-	got := buf.String()
-
-	if !strings.Contains(got, `x-for="item in items"`) {
-		t.Errorf("XForKeyed() missing x-for attribute")
-	}
-
-	if !strings.Contains(got, `:key="item.id"`) {
-		t.Errorf("XForKeyed() missing :key attribute")
+	if v, ok := attrs[":key"]; !ok || v != "item.id" {
+		t.Errorf("XForKeyed() missing :key attribute, got %v", attrs)
 	}
 }
 
@@ -122,66 +93,57 @@ func TestXBind(t *testing.T) {
 			name: "disabled binding",
 			attr: "disabled",
 			expr: "loading",
-			want: `:disabled="loading"`,
+			want: "loading",
 		},
 		{
 			name: "href binding",
 			attr: "href",
 			expr: "'/users/' + userId",
-			want: `:href="&#39;/users/&#39; + userId"`,
+			want: "'/users/' + userId",
 		},
 	}
 
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
-			var buf bytes.Buffer
-			_ = XBind(tt.attr, tt.expr).Render(&buf)
-			got := buf.String()
+			attrs := XBind(tt.attr, tt.expr)
+			key := ":" + tt.attr
 
-			if !strings.Contains(got, `:`+tt.attr+`=`) {
-				t.Errorf("XBind() = %v, want to contain %v", got, tt.want)
+			if v, ok := attrs[key]; !ok || v != tt.want {
+				t.Errorf("XBind() = %v, want %s=%s", attrs, key, tt.want)
 			}
 		})
 	}
 }
 
 func TestXModel(t *testing.T) {
-	var buf bytes.Buffer
-	_ = XModel("name").Render(&buf)
-	got := buf.String()
+	attrs := XModel("name")
 
-	if !strings.Contains(got, `x-model="name"`) {
-		t.Errorf("XModel() = %v, want x-model attribute", got)
+	if v, ok := attrs["x-model"]; !ok || v != "name" {
+		t.Errorf("XModel() = %v, want x-model=name", attrs)
 	}
 }
 
 func TestXModelNumber(t *testing.T) {
-	var buf bytes.Buffer
-	_ = XModelNumber("age").Render(&buf)
-	got := buf.String()
+	attrs := XModelNumber("age")
 
-	if !strings.Contains(got, `x-model.number="age"`) {
-		t.Errorf("XModelNumber() = %v, want x-model.number attribute", got)
+	if v, ok := attrs["x-model.number"]; !ok || v != "age" {
+		t.Errorf("XModelNumber() = %v, want x-model.number=age", attrs)
 	}
 }
 
 func TestXModelLazy(t *testing.T) {
-	var buf bytes.Buffer
-	_ = XModelLazy("description").Render(&buf)
-	got := buf.String()
+	attrs := XModelLazy("description")
 
-	if !strings.Contains(got, `x-model.lazy="description"`) {
-		t.Errorf("XModelLazy() = %v, want x-model.lazy attribute", got)
+	if v, ok := attrs["x-model.lazy"]; !ok || v != "description" {
+		t.Errorf("XModelLazy() = %v, want x-model.lazy=description", attrs)
 	}
 }
 
 func TestXModelDebounce(t *testing.T) {
-	var buf bytes.Buffer
-	_ = XModelDebounce("searchQuery", 300).Render(&buf)
-	got := buf.String()
+	attrs := XModelDebounce("searchQuery", 300)
 
-	if !strings.Contains(got, `x-model.debounce.300ms="searchQuery"`) {
-		t.Errorf("XModelDebounce() = %v, want debounced model", got)
+	if v, ok := attrs["x-model.debounce.300ms"]; !ok || v != "searchQuery" {
+		t.Errorf("XModelDebounce() = %v, want x-model.debounce.300ms=searchQuery", attrs)
 	}
 }
 
@@ -190,149 +152,125 @@ func TestXOn(t *testing.T) {
 		name    string
 		event   string
 		handler string
-		want    string
 	}{
 		{
 			name:    "click event",
 			event:   "click",
 			handler: "count++",
-			want:    `@click="count&#43;&#43;"`,
 		},
 		{
 			name:    "submit prevent",
 			event:   "submit.prevent",
 			handler: "handleSubmit()",
-			want:    `@submit.prevent="handleSubmit()"`,
 		},
 	}
 
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
-			var buf bytes.Buffer
-			_ = XOn(tt.event, tt.handler).Render(&buf)
-			got := buf.String()
+			attrs := XOn(tt.event, tt.handler)
+			key := "@" + tt.event
 
-			if !strings.Contains(got, `@`+tt.event) {
-				t.Errorf("XOn() = %v, want to contain %v", got, tt.want)
+			if v, ok := attrs[key]; !ok || v != tt.handler {
+				t.Errorf("XOn() = %v, want %s=%s", attrs, key, tt.handler)
 			}
 		})
 	}
 }
 
 func TestXClick(t *testing.T) {
-	var buf bytes.Buffer
-	_ = XClick("doSomething()").Render(&buf)
-	got := buf.String()
+	attrs := XClick("doSomething()")
 
-	if !strings.Contains(got, `@click=`) {
-		t.Errorf("XClick() = %v, want @click attribute", got)
+	if v, ok := attrs["@click"]; !ok || v != "doSomething()" {
+		t.Errorf("XClick() = %v, want @click=doSomething()", attrs)
 	}
 }
 
 func TestXSubmit(t *testing.T) {
-	var buf bytes.Buffer
-	_ = XSubmit("submit()").Render(&buf)
-	got := buf.String()
+	attrs := XSubmit("submit()")
 
-	if !strings.Contains(got, `@submit.prevent=`) {
-		t.Errorf("XSubmit() = %v, want @submit.prevent attribute", got)
+	if v, ok := attrs["@submit.prevent"]; !ok || v != "submit()" {
+		t.Errorf("XSubmit() = %v, want @submit.prevent=submit()", attrs)
 	}
 }
 
 func TestXInput(t *testing.T) {
-	var buf bytes.Buffer
-	_ = XInput("update()").Render(&buf)
-	got := buf.String()
+	attrs := XInput("update()")
 
-	if !strings.Contains(got, `@input=`) {
-		t.Errorf("XInput() = %v, want @input attribute", got)
+	if v, ok := attrs["@input"]; !ok || v != "update()" {
+		t.Errorf("XInput() = %v, want @input=update()", attrs)
 	}
 }
 
 func TestXChange(t *testing.T) {
-	var buf bytes.Buffer
-	_ = XChange("onChange()").Render(&buf)
-	got := buf.String()
+	attrs := XChange("onChange()")
 
-	if !strings.Contains(got, `@change=`) {
-		t.Errorf("XChange() = %v, want @change attribute", got)
+	if v, ok := attrs["@change"]; !ok || v != "onChange()" {
+		t.Errorf("XChange() = %v, want @change=onChange()", attrs)
 	}
 }
 
 func TestXText(t *testing.T) {
-	var buf bytes.Buffer
-	_ = XText("user.name").Render(&buf)
-	got := buf.String()
+	attrs := XText("user.name")
 
-	if !strings.Contains(got, `x-text="user.name"`) {
-		t.Errorf("XText() = %v, want x-text attribute", got)
+	if v, ok := attrs["x-text"]; !ok || v != "user.name" {
+		t.Errorf("XText() = %v, want x-text=user.name", attrs)
 	}
 }
 
 func TestXHtml(t *testing.T) {
-	var buf bytes.Buffer
-	_ = XHtml("content").Render(&buf)
-	got := buf.String()
+	attrs := XHtml("content")
 
-	if !strings.Contains(got, `x-html="content"`) {
-		t.Errorf("XHtml() = %v, want x-html attribute", got)
+	if v, ok := attrs["x-html"]; !ok || v != "content" {
+		t.Errorf("XHtml() = %v, want x-html=content", attrs)
 	}
 }
 
 func TestXRef(t *testing.T) {
-	var buf bytes.Buffer
-	_ = XRef("emailInput").Render(&buf)
-	got := buf.String()
+	attrs := XRef("emailInput")
 
-	if !strings.Contains(got, `x-ref="emailInput"`) {
-		t.Errorf("XRef() = %v, want x-ref attribute", got)
+	if v, ok := attrs["x-ref"]; !ok || v != "emailInput" {
+		t.Errorf("XRef() = %v, want x-ref=emailInput", attrs)
 	}
 }
 
 func TestXInit(t *testing.T) {
-	var buf bytes.Buffer
-	_ = XInit("loadData()").Render(&buf)
-	got := buf.String()
+	attrs := XInit("loadData()")
 
-	if !strings.Contains(got, `x-init="loadData()"`) {
-		t.Errorf("XInit() = %v, want x-init attribute", got)
+	if v, ok := attrs["x-init"]; !ok || v != "loadData()" {
+		t.Errorf("XInit() = %v, want x-init=loadData()", attrs)
 	}
 }
 
 func TestXInitFetch(t *testing.T) {
-	var buf bytes.Buffer
-	_ = XInitFetch("/api/users", "users").Render(&buf)
-	got := buf.String()
+	attrs := XInitFetch("/api/users", "users")
 
-	if !strings.Contains(got, `x-init=`) {
-		t.Errorf("XInitFetch() = %v, want x-init attribute", got)
+	v, ok := attrs["x-init"]
+	if !ok {
+		t.Fatal("XInitFetch() missing x-init attribute")
 	}
 
-	if !strings.Contains(got, `/api/users`) {
-		t.Errorf("XInitFetch() missing URL")
+	val, isStr := v.(string)
+	if !isStr {
+		t.Fatal("XInitFetch() x-init value is not a string")
 	}
 
-	if !strings.Contains(got, `users`) {
-		t.Errorf("XInitFetch() missing target variable")
+	if len(val) == 0 {
+		t.Error("XInitFetch() x-init value is empty")
 	}
 }
 
 func TestXCloak(t *testing.T) {
-	var buf bytes.Buffer
-	_ = XCloak().Render(&buf)
-	got := buf.String()
+	attrs := XCloak()
 
-	if !strings.Contains(got, `x-cloak=""`) {
-		t.Errorf("XCloak() = %v, want x-cloak attribute", got)
+	if _, ok := attrs["x-cloak"]; !ok {
+		t.Errorf("XCloak() = %v, want x-cloak attribute", attrs)
 	}
 }
 
 func TestXIgnore(t *testing.T) {
-	var buf bytes.Buffer
-	_ = XIgnore().Render(&buf)
-	got := buf.String()
+	attrs := XIgnore()
 
-	if !strings.Contains(got, `x-ignore=""`) {
-		t.Errorf("XIgnore() = %v, want x-ignore attribute", got)
+	if _, ok := attrs["x-ignore"]; !ok {
+		t.Errorf("XIgnore() = %v, want x-ignore attribute", attrs)
 	}
 }

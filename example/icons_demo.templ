@@ -1,0 +1,142 @@
+package main
+
+import "github.com/xraph/forgeui/icons"
+
+templ IconsPageView() {
+	@PageLayout("Icons Library") {
+		<div class="container mx-auto px-4 py-12">
+			<div class="mb-8 space-y-2">
+				<h1 class="text-4xl font-bold">Icons Library</h1>
+				<p class="text-lg text-muted-foreground">
+					Lucide icons integrated as templ components
+				</p>
+			</div>
+
+			<!-- Icon Sizes -->
+			<section class="mb-12">
+				<h2 class="text-2xl font-bold mb-6">Icon Sizes</h2>
+				<div class="flex items-end gap-6 bg-card rounded-lg border border-border p-6">
+					<div class="text-center">
+						@icons.Heart(icons.WithSize(12))
+						<p class="text-xs text-muted-foreground mt-2">12px</p>
+					</div>
+					<div class="text-center">
+						@icons.Heart(icons.WithSize(16))
+						<p class="text-xs text-muted-foreground mt-2">16px</p>
+					</div>
+					<div class="text-center">
+						@icons.Heart(icons.WithSize(20))
+						<p class="text-xs text-muted-foreground mt-2">20px</p>
+					</div>
+					<div class="text-center">
+						@icons.Heart(icons.WithSize(24))
+						<p class="text-xs text-muted-foreground mt-2">24px</p>
+					</div>
+					<div class="text-center">
+						@icons.Heart(icons.WithSize(32))
+						<p class="text-xs text-muted-foreground mt-2">32px</p>
+					</div>
+					<div class="text-center">
+						@icons.Heart(icons.WithSize(48))
+						<p class="text-xs text-muted-foreground mt-2">48px</p>
+					</div>
+				</div>
+			</section>
+
+			<!-- Icon Colors -->
+			<section class="mb-12">
+				<h2 class="text-2xl font-bold mb-6">Icon Colors</h2>
+				<div class="flex items-center gap-6 bg-card rounded-lg border border-border p-6">
+					<div class="text-foreground">
+						@icons.Star(icons.WithSize(24))
+					</div>
+					<div class="text-primary">
+						@icons.Star(icons.WithSize(24))
+					</div>
+					<div class="text-destructive">
+						@icons.Star(icons.WithSize(24))
+					</div>
+					<div class="text-green-500">
+						@icons.Star(icons.WithSize(24))
+					</div>
+					<div class="text-yellow-500">
+						@icons.Star(icons.WithSize(24))
+					</div>
+					<div class="text-muted-foreground">
+						@icons.Star(icons.WithSize(24))
+					</div>
+				</div>
+			</section>
+
+			<!-- Common Icons Grid -->
+			<section class="mb-12">
+				<h2 class="text-2xl font-bold mb-6">Common Icons</h2>
+				<div class="grid grid-cols-4 sm:grid-cols-6 md:grid-cols-8 lg:grid-cols-10 gap-4">
+					@iconCell("Home") { @icons.Home(icons.WithSize(20)) }
+					@iconCell("Search") { @icons.Search(icons.WithSize(20)) }
+					@iconCell("User") { @icons.User(icons.WithSize(20)) }
+					@iconCell("Settings") { @icons.Settings(icons.WithSize(20)) }
+					@iconCell("Mail") { @icons.Mail(icons.WithSize(20)) }
+					@iconCell("Bell") { @icons.Bell(icons.WithSize(20)) }
+					@iconCell("Heart") { @icons.Heart(icons.WithSize(20)) }
+					@iconCell("Star") { @icons.Star(icons.WithSize(20)) }
+					@iconCell("Plus") { @icons.Plus(icons.WithSize(20)) }
+					@iconCell("X") { @icons.X(icons.WithSize(20)) }
+					@iconCell("Check") { @icons.Check(icons.WithSize(20)) }
+					@iconCell("Pencil") { @icons.Pencil(icons.WithSize(20)) }
+					@iconCell("Trash") { @icons.Trash(icons.WithSize(20)) }
+					@iconCell("Copy") { @icons.Copy(icons.WithSize(20)) }
+					@iconCell("Download") { @icons.Download(icons.WithSize(20)) }
+					@iconCell("Upload") { @icons.Upload(icons.WithSize(20)) }
+					@iconCell("Folder") { @icons.Folder(icons.WithSize(20)) }
+					@iconCell("File") { @icons.File(icons.WithSize(20)) }
+					@iconCell("Calendar") { @icons.Calendar(icons.WithSize(20)) }
+					@iconCell("Clock") { @icons.Clock(icons.WithSize(20)) }
+					@iconCell("MapPin") { @icons.MapPin(icons.WithSize(20)) }
+					@iconCell("Globe") { @icons.Globe(icons.WithSize(20)) }
+					@iconCell("Lock") { @icons.Lock(icons.WithSize(20)) }
+					@iconCell("LockOpen") { @icons.LockOpen(icons.WithSize(20)) }
+					@iconCell("Eye") { @icons.Eye(icons.WithSize(20)) }
+					@iconCell("EyeOff") { @icons.EyeOff(icons.WithSize(20)) }
+					@iconCell("Code") { @icons.Code(icons.WithSize(20)) }
+					@iconCell("Terminal") { @icons.Terminal(icons.WithSize(20)) }
+					@iconCell("Zap") { @icons.Zap(icons.WithSize(20)) }
+					@iconCell("Menu") { @icons.Menu(icons.WithSize(20)) }
+				</div>
+			</section>
+
+			<!-- Usage Example -->
+			<section class="mb-12">
+				<h2 class="text-2xl font-bold mb-6">Usage</h2>
+				<div class="bg-gray-900 rounded-lg p-6 overflow-x-auto">
+					<pre class="text-sm text-gray-100"><code>{ iconUsageExample() }</code></pre>
+				</div>
+			</section>
+		</div>
+	}
+}
+
+templ iconCell(name string) {
+	<div class="flex flex-col items-center gap-2 p-3 rounded-lg border border-border bg-card hover:bg-accent transition-colors">
+		<div class="text-foreground">
+			{ children... }
+		</div>
+		<span class="text-[10px] text-muted-foreground">{ name }</span>
+	</div>
+}
+
+func iconUsageExample() string {
+	return `// Import icons
+import "github.com/xraph/forgeui/icons"
+
+// Use in templ files
+templ MyComponent() {
+    <div class="flex items-center gap-2">
+        @icons.Home(icons.WithSize(16))
+        <span>Home</span>
+    </div>
+
+    // With custom class
+    @icons.Star(icons.WithSize(20), icons.WithClass("text-yellow-500"))
+}`
+}

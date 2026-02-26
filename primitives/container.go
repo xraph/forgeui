@@ -1,10 +1,10 @@
 package primitives
 
-import g "maragu.dev/gomponents"
+import "github.com/a-h/templ"
 
-// Container creates a responsive container with max-width constraints
-// Commonly used for page layouts
-func Container(children ...g.Node) g.Node {
+// Container creates a responsive container with max-width constraints.
+// Commonly used for page layouts.
+func Container(children ...templ.Component) templ.Component {
 	return Box(
 		WithClass("container mx-auto px-4"),
 		WithChildren(children...),

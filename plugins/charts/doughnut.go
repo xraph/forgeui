@@ -1,14 +1,14 @@
 package charts
 
 import (
-	g "maragu.dev/gomponents"
+	"github.com/a-h/templ"
 )
 
 // doughnutChart creates a doughnut chart component (hollow pie chart).
-func (c *Charts) doughnutChart(props any, children ...g.Node) g.Node {
+func (c *Charts) doughnutChart(props any, children ...templ.Component) templ.Component {
 	data, ok := props.(DoughnutChartData)
 	if !ok {
-		return g.Text("Invalid data for DoughnutChart")
+		return textComponent("Invalid data for DoughnutChart")
 	}
 
 	opts := DefaultOptions()
@@ -30,17 +30,7 @@ func (c *Charts) doughnutChart(props any, children ...g.Node) g.Node {
 }
 
 // DoughnutChart creates a doughnut chart with the given data.
-//
-// Example:
-//
-//	charts.DoughnutChart(charts.DoughnutChartData{
-//	    Labels: []string{"Development", "Marketing", "Sales", "Operations"},
-//	    Data: []float64{35, 25, 20, 20},
-//	    BackgroundColor: charts.DefaultColors,
-//	    BorderColor: charts.BorderColors,
-//	    BorderWidth: 2,
-//	})
-func DoughnutChart(data DoughnutChartData) g.Node {
+func DoughnutChart(data DoughnutChartData) templ.Component {
 	opts := DefaultOptions()
 
 	chartData := map[string]any{

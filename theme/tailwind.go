@@ -1,8 +1,10 @@
 package theme
 
 import (
-	g "maragu.dev/gomponents"
-	"maragu.dev/gomponents/html"
+	"context"
+	"io"
+
+	"github.com/a-h/templ"
 )
 
 // TailwindConfigScript returns an inline script that configures Tailwind CSS
@@ -18,8 +20,9 @@ import (
 //	    theme.TailwindConfigScript(), // Add after Tailwind CDN
 //	    theme.StyleTag(lightTheme, darkTheme),
 //	)
-func TailwindConfigScript() g.Node {
-	config := `tailwind.config = {
+func TailwindConfigScript() templ.Component {
+	return templ.ComponentFunc(func(_ context.Context, w io.Writer) error {
+		_, err := io.WriteString(w, `<script>tailwind.config = {
   darkMode: 'class',
   theme: {
     extend: {
@@ -67,9 +70,7 @@ func TailwindConfigScript() g.Node {
       }
     }
   }
-}`
-
-	return html.Script(
-		g.Raw(config),
-	)
+}</script>`)
+		return err
+	})
 }

@@ -5,10 +5,9 @@ import (
 	"net/http"
 	"testing"
 
+	"github.com/a-h/templ"
 	"github.com/xraph/forgeui"
 	"github.com/xraph/forgeui/theme"
-	g "maragu.dev/gomponents"
-	"maragu.dev/gomponents/html"
 )
 
 // Multi-type plugin that implements multiple interfaces
@@ -29,8 +28,8 @@ func newMultiPlugin() *multiPlugin {
 			Version: "1.0.0",
 		}),
 		componentConstructors: map[string]ComponentConstructor{
-			"MultiComponent": func(props any, children ...g.Node) g.Node {
-				return html.Div(g.Group(children))
+			"MultiComponent": func(props any, children ...templ.Component) templ.Component {
+				return templ.NopComponent
 			},
 		},
 		alpineScripts: []Script{
@@ -110,7 +109,6 @@ func TestMultiTypePlugin(t *testing.T) {
 		t.Fatalf("Register() error = %v", err)
 	}
 
-	// Should be registered in all type-specific registries
 	if _, ok := registry.GetComponentPlugin("multi-plugin"); !ok {
 		t.Error("plugin not found in component registry")
 	}
@@ -123,7 +121,6 @@ func TestMultiTypePlugin(t *testing.T) {
 		t.Error("plugin not found in theme registry")
 	}
 
-	// Should appear in all collection methods
 	components := registry.CollectComponents()
 	if len(components) != 1 {
 		t.Errorf("expected 1 component, got %d", len(components))
@@ -144,12 +141,11 @@ func TestComplexPluginEcosystem(t *testing.T) {
 	registry := NewRegistry()
 	ctx := context.Background()
 
-	// Register multiple plugins of different types
 	compPlugin := NewComponentPluginBase(
 		PluginInfo{Name: "components", Version: "1.0.0"},
 		map[string]ComponentConstructor{
-			"Comp1": func(props any, children ...g.Node) g.Node {
-				return html.Div()
+			"Comp1": func(props any, children ...templ.Component) templ.Component {
+				return templ.NopComponent
 			},
 		},
 	)
@@ -181,13 +177,11 @@ func TestComplexPluginEcosystem(t *testing.T) {
 	_ = registry.Register(mwPlugin)
 	_ = registry.Register(multiP)
 
-	// Initialize all plugins
 	err := registry.Initialize(ctx)
 	if err != nil {
 		t.Fatalf("Initialize() error = %v", err)
 	}
 
-	// Verify all collections
 	if len(registry.CollectComponents()) != 2 {
 		t.Errorf("expected 2 components, got %d", len(registry.CollectComponents()))
 	}
@@ -200,7 +194,6 @@ func TestComplexPluginEcosystem(t *testing.T) {
 		t.Errorf("expected 2 middleware, got %d", len(registry.CollectMiddleware()))
 	}
 
-	// Shutdown all plugins
 	err = registry.Shutdown(ctx)
 	if err != nil {
 		t.Fatalf("Shutdown() error = %v", err)
@@ -210,20 +203,18 @@ func TestComplexPluginEcosystem(t *testing.T) {
 func TestPluginDependenciesWithTypes(t *testing.T) {
 	registry := NewRegistry()
 
-	// Plugin A provides components
 	pluginA := NewComponentPluginBase(
 		PluginInfo{
 			Name:    "plugin-a",
 			Version: "1.0.0",
 		},
 		map[string]ComponentConstructor{
-			"CompA": func(props any, children ...g.Node) g.Node {
-				return html.Div()
+			"CompA": func(props any, children ...templ.Component) templ.Component {
+				return templ.NopComponent
 			},
 		},
 	)
 
-	// Plugin B depends on Plugin A
 	pluginB := NewComponentPluginBase(
 		PluginInfo{
 			Name:    "plugin-b",
@@ -233,8 +224,8 @@ func TestPluginDependenciesWithTypes(t *testing.T) {
 			},
 		},
 		map[string]ComponentConstructor{
-			"CompB": func(props any, children ...g.Node) g.Node {
-				return html.Div()
+			"CompB": func(props any, children ...templ.Component) templ.Component {
+				return templ.NopComponent
 			},
 		},
 	)
@@ -247,7 +238,6 @@ func TestPluginDependenciesWithTypes(t *testing.T) {
 		t.Fatalf("ResolveDependencies() error = %v", err)
 	}
 
-	// Initialize should work
 	ctx := context.Background()
 
 	err = registry.Initialize(ctx)
@@ -259,18 +249,17 @@ func TestPluginDependenciesWithTypes(t *testing.T) {
 func TestPluginTypeCoexistence(t *testing.T) {
 	registry := NewRegistry()
 
-	// Multiple plugins of the same type should coexist
 	comp1 := NewComponentPluginBase(
 		PluginInfo{Name: "comp1", Version: "1.0.0"},
 		map[string]ComponentConstructor{
-			"C1": func(props any, children ...g.Node) g.Node { return html.Div() },
+			"C1": func(props any, children ...templ.Component) templ.Component { return templ.NopComponent },
 		},
 	)
 
 	comp2 := NewComponentPluginBase(
 		PluginInfo{Name: "comp2", Version: "1.0.0"},
 		map[string]ComponentConstructor{
-			"C2": func(props any, children ...g.Node) g.Node { return html.Div() },
+			"C2": func(props any, children ...templ.Component) templ.Component { return templ.NopComponent },
 		},
 	)
 
@@ -303,16 +292,13 @@ func TestAssetCollectionImmutability(t *testing.T) {
 
 	_ = registry.Register(plugin)
 
-	// Collect scripts
 	scripts1 := registry.CollectScripts()
 	scripts2 := registry.CollectScripts()
 
-	// Should be separate slices
 	if len(scripts1) != len(scripts2) {
 		t.Error("script collections have different lengths")
 	}
 
-	// Modifying one shouldn't affect the other
 	if len(scripts1) > 0 {
 		scripts1[0].Name = "modified"
 		if scripts2[0].Name == "modified" {

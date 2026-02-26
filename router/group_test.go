@@ -1,12 +1,14 @@
 package router
 
 import (
+	"context"
+	"io"
 	"net/http"
 	"net/http/httptest"
 	"strings"
 	"testing"
 
-	g "maragu.dev/gomponents"
+	"github.com/a-h/templ"
 )
 
 func TestRouteGroup(t *testing.T) {
@@ -14,8 +16,8 @@ func TestRouteGroup(t *testing.T) {
 
 	// Create a route group
 	api := r.Group("/api")
-	api.Get("/users", func(ctx *PageContext) (g.Node, error) {
-		return g.Text("users"), nil
+	api.Get("/users", func(ctx *PageContext) (templ.Component, error) {
+		return templ.Raw("users"), nil
 	})
 
 	// Test the grouped route
@@ -37,7 +39,7 @@ func TestRouteGroupWithMiddleware(t *testing.T) {
 
 	// Middleware that adds a header
 	addHeader := func(next PageHandler) PageHandler {
-		return func(ctx *PageContext) (g.Node, error) {
+		return func(ctx *PageContext) (templ.Component, error) {
 			ctx.SetHeader("X-Group", "true")
 			return next(ctx)
 		}
@@ -45,8 +47,8 @@ func TestRouteGroupWithMiddleware(t *testing.T) {
 
 	// Create a route group with middleware
 	api := r.Group("/api", GroupMiddleware(addHeader))
-	api.Get("/test", func(ctx *PageContext) (g.Node, error) {
-		return g.Text("test"), nil
+	api.Get("/test", func(ctx *PageContext) (templ.Component, error) {
+		return templ.Raw("test"), nil
 	})
 
 	// Test the grouped route
@@ -65,8 +67,8 @@ func TestNestedRouteGroups(t *testing.T) {
 	// Create nested groups
 	api := r.Group("/api")
 	v1 := api.Group("/v1")
-	v1.Get("/users", func(ctx *PageContext) (g.Node, error) {
-		return g.Text("v1 users"), nil
+	v1.Get("/users", func(ctx *PageContext) (templ.Component, error) {
+		return templ.Raw("v1 users"), nil
 	})
 
 	// Test the nested grouped route
@@ -87,14 +89,21 @@ func TestRouteGroupWithLayout(t *testing.T) {
 	r := New()
 
 	// Register a layout
-	r.RegisterLayout("api", func(ctx *PageContext, content g.Node) g.Node {
-		return g.El("div", g.Text("API: "), content)
+	r.RegisterLayout("api", func(ctx *PageContext, content templ.Component) templ.Component {
+		return templ.ComponentFunc(func(tCtx context.Context, w io.Writer) error {
+			io.WriteString(w, "<div>API: ")
+			if err := content.Render(tCtx, w); err != nil {
+				return err
+			}
+			io.WriteString(w, "</div>")
+			return nil
+		})
 	})
 
 	// Create a route group with layout
 	api := r.Group("/api", GroupLayout("api"))
-	api.Get("/test", func(ctx *PageContext) (g.Node, error) {
-		return g.Text("content"), nil
+	api.Get("/test", func(ctx *PageContext) (templ.Component, error) {
+		return templ.Raw("content"), nil
 	})
 
 	// Test the grouped route
@@ -112,14 +121,14 @@ func TestRouteGroupInheritance(t *testing.T) {
 
 	// Middleware that adds a header
 	middleware1 := func(next PageHandler) PageHandler {
-		return func(ctx *PageContext) (g.Node, error) {
+		return func(ctx *PageContext) (templ.Component, error) {
 			ctx.SetHeader("X-Parent", "true")
 			return next(ctx)
 		}
 	}
 
 	middleware2 := func(next PageHandler) PageHandler {
-		return func(ctx *PageContext) (g.Node, error) {
+		return func(ctx *PageContext) (templ.Component, error) {
 			ctx.SetHeader("X-Child", "true")
 			return next(ctx)
 		}
@@ -128,8 +137,8 @@ func TestRouteGroupInheritance(t *testing.T) {
 	// Create nested groups with middleware
 	parent := r.Group("/parent", GroupMiddleware(middleware1))
 	child := parent.Group("/child", GroupMiddleware(middleware2))
-	child.Get("/test", func(ctx *PageContext) (g.Node, error) {
-		return g.Text("test"), nil
+	child.Get("/test", func(ctx *PageContext) (templ.Component, error) {
+		return templ.Raw("test"), nil
 	})
 
 	// Test the nested grouped route

@@ -2,10 +2,11 @@ package icons
 
 import (
 	"bytes"
+	"context"
 	"strings"
 	"testing"
 
-	g "maragu.dev/gomponents"
+	"github.com/a-h/templ"
 )
 
 func TestIcon(t *testing.T) {
@@ -13,7 +14,7 @@ func TestIcon(t *testing.T) {
 		icon := Icon("M5 12h14")
 
 		var buf bytes.Buffer
-		if err := icon.Render(&buf); err != nil {
+		if err := icon.Render(context.Background(), &buf); err != nil {
 			t.Fatalf("Render() error = %v", err)
 		}
 
@@ -35,7 +36,7 @@ func TestIcon(t *testing.T) {
 		icon := Icon("M5 12h14", WithSize(32))
 
 		var buf bytes.Buffer
-		if err := icon.Render(&buf); err != nil {
+		if err := icon.Render(context.Background(), &buf); err != nil {
 			t.Fatalf("Render() error = %v", err)
 		}
 		html := buf.String()
@@ -53,7 +54,7 @@ func TestIcon(t *testing.T) {
 		icon := Icon("M5 12h14", WithColor("red"))
 
 		var buf bytes.Buffer
-		if err := icon.Render(&buf); err != nil {
+		if err := icon.Render(context.Background(), &buf); err != nil {
 			t.Fatalf("Render() error = %v", err)
 		}
 		html := buf.String()
@@ -67,7 +68,7 @@ func TestIcon(t *testing.T) {
 		icon := Icon("M5 12h14", WithStrokeWidth(3.0))
 
 		var buf bytes.Buffer
-		if err := icon.Render(&buf); err != nil {
+		if err := icon.Render(context.Background(), &buf); err != nil {
 			t.Fatalf("Render() error = %v", err)
 		}
 		html := buf.String()
@@ -81,7 +82,7 @@ func TestIcon(t *testing.T) {
 		icon := Icon("M5 12h14", WithClass("custom-icon"))
 
 		var buf bytes.Buffer
-		if err := icon.Render(&buf); err != nil {
+		if err := icon.Render(context.Background(), &buf); err != nil {
 			t.Fatalf("Render() error = %v", err)
 		}
 		html := buf.String()
@@ -98,11 +99,11 @@ func TestIcon(t *testing.T) {
 			WithColor("blue"),
 			WithStrokeWidth(2.5),
 			WithClass("my-icon"),
-			WithAttrs(g.Attr("data-test", "icon")),
+			WithAttrs(templ.Attributes{"data-test": "icon"}),
 		)
 
 		var buf bytes.Buffer
-		if err := icon.Render(&buf); err != nil {
+		if err := icon.Render(context.Background(), &buf); err != nil {
 			t.Fatalf("Render() error = %v", err)
 		}
 		html := buf.String()
@@ -132,7 +133,7 @@ func TestMultiPathIcon(t *testing.T) {
 		})
 
 		var buf bytes.Buffer
-		if err := icon.Render(&buf); err != nil {
+		if err := icon.Render(context.Background(), &buf); err != nil {
 			t.Fatalf("Render() error = %v", err)
 		}
 		html := buf.String()
@@ -150,7 +151,7 @@ func TestMultiPathIcon(t *testing.T) {
 func TestLucideIcons(t *testing.T) {
 	tests := []struct {
 		name string
-		icon func(...Option) g.Node
+		icon func(...Option) templ.Component
 	}{
 		{"Check", Check},
 		{"X", X},
@@ -176,7 +177,7 @@ func TestLucideIcons(t *testing.T) {
 			icon := tt.icon()
 
 			var buf bytes.Buffer
-			if err := icon.Render(&buf); err != nil {
+			if err := icon.Render(context.Background(), &buf); err != nil {
 				t.Fatalf("Render() error = %v", err)
 			}
 
@@ -210,7 +211,7 @@ func TestLucideIconsWithOptions(t *testing.T) {
 		)
 
 		var buf bytes.Buffer
-		if err := icon.Render(&buf); err != nil {
+		if err := icon.Render(context.Background(), &buf); err != nil {
 			t.Fatalf("Render() error = %v", err)
 		}
 		html := buf.String()

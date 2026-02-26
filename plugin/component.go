@@ -1,69 +1,26 @@
 package plugin
 
 import (
+	"github.com/a-h/templ"
 	"github.com/xraph/forgeui"
-	g "maragu.dev/gomponents"
 )
 
 // ComponentPlugin extends ForgeUI with new UI components.
-//
-// A ComponentPlugin provides:
-//   - Component constructors for creating new components
-//   - Optional CVA extensions for variant styling
-//
-// Example:
-//
-//	type ChartPlugin struct {
-//	    *ComponentPluginBase
-//	}
-//
-//	func NewChartPlugin() *ChartPlugin {
-//	    return &ChartPlugin{
-//	        ComponentPluginBase: NewComponentPluginBase(
-//	            PluginInfo{Name: "charts", Version: "1.0.0"},
-//	            map[string]ComponentConstructor{
-//	                "LineChart": lineChartConstructor,
-//	                "BarChart":  barChartConstructor,
-//	            },
-//	        ),
-//	    }
-//	}
 type ComponentPlugin interface {
 	Plugin
 
 	// Components returns a map of component names to their constructors.
-	// Component names should be CamelCase and unique.
 	Components() map[string]ComponentConstructor
 
 	// CVAExtensions returns CVA configurations for component variants.
-	// The keys should match component names from Components().
 	CVAExtensions() map[string]*forgeui.CVA
 }
 
 // ComponentConstructor is a function that creates a component.
-// It receives props (any type) and optional children nodes.
-//
-// Example:
-//
-//	func lineChartConstructor(props any, children ...g.Node) g.Node {
-//	    opts := props.(*ChartOptions)
-//	    return html.Div(
-//	        html.Class("chart-container"),
-//	        g.Attr("data-chart-type", "line"),
-//	        g.Attr("data-chart-data", opts.DataJSON()),
-//	        g.Group(children),
-//	    )
-//	}
-type ComponentConstructor func(props any, children ...g.Node) g.Node
+// It receives props (any type) and optional children components.
+type ComponentConstructor func(props any, children ...templ.Component) templ.Component
 
 // ComponentPluginBase provides a base implementation for component plugins.
-// Embed this in your plugin to inherit default behavior.
-//
-// Example:
-//
-//	type MyPlugin struct {
-//	    *ComponentPluginBase
-//	}
 type ComponentPluginBase struct {
 	*PluginBase
 
@@ -104,7 +61,6 @@ func (c *ComponentPluginBase) CVAExtensions() map[string]*forgeui.CVA {
 }
 
 // AddComponent adds a component constructor to the plugin.
-// This can be called during plugin initialization.
 func (c *ComponentPluginBase) AddComponent(name string, constructor ComponentConstructor) {
 	if c.components == nil {
 		c.components = make(map[string]ComponentConstructor)

@@ -1,4 +1,7 @@
 forgeui-demo
+forgeui-dashboard
+example
+example_new
 node_modules/
 static/output.css
-
+*_templ.go
