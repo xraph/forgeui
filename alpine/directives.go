@@ -72,7 +72,7 @@ func serializeXDataWithRawJS(state map[string]any) string {
 
 		// Add key (quote if necessary)
 		if needsQuoting(key) {
-			resultSb72.WriteString(fmt.Sprintf("%q", key))
+			fmt.Fprintf(&resultSb72, "%q", key)
 		} else {
 			resultSb72.WriteString(key)
 		}
@@ -84,7 +84,7 @@ func serializeXDataWithRawJS(state map[string]any) string {
 		case rawJS:
 			result.WriteString(v.code)
 		case string:
-			result.WriteString(fmt.Sprintf("%q", v))
+			fmt.Fprintf(&result, "%q", v)
 		case bool:
 			if v {
 				result.WriteString("true")
@@ -92,9 +92,9 @@ func serializeXDataWithRawJS(state map[string]any) string {
 				result.WriteString("false")
 			}
 		case int, int8, int16, int32, int64, uint, uint8, uint16, uint32, uint64:
-			result.WriteString(fmt.Sprintf("%d", v))
+			fmt.Fprintf(&result, "%d", v)
 		case float32, float64:
-			result.WriteString(fmt.Sprintf("%v", v))
+			fmt.Fprintf(&result, "%v", v)
 		case nil:
 			result.WriteString("null")
 		default:

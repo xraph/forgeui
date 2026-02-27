@@ -12,12 +12,16 @@ import (
 
 // Font defines a font family with its properties.
 type Font struct {
-	Family   string   // Font family name (e.g., "Inter", "Roboto")
-	Weights  []int    // Font weights to load (e.g., 400, 500, 600, 700)
-	Styles   []string // Font styles (e.g., "normal", "italic")
-	URL      string   // Custom font URL (if not using Google Fonts)
-	Display  string   // font-display strategy (swap, block, fallback, optional)
-	Fallback []string // Fallback font stack
+	Family      string   // Font family name (e.g., "Inter", "Roboto")
+	Weights     []int    // Font weights to load (e.g., 400, 500, 600, 700)
+	WeightRange [2]int   // Weight range for variable fonts (e.g., [100, 900])
+	Variable    bool     // True for variable fonts (uses WeightRange instead of Weights)
+	Styles      []string // Font styles (e.g., "normal", "italic")
+	URL         string   // Custom font URL or path (for self-hosted or remote fonts)
+	Format      string   // Font format (e.g., "woff2", "woff", "truetype")
+	Display     string   // font-display strategy (swap, block, fallback, optional)
+	Fallback    []string // Fallback font stack
+	Preload     bool     // Whether to generate <link rel="preload"> for this font
 }
 
 // FontConfig defines typography configuration for the theme.
@@ -158,16 +162,16 @@ func FontLink(fonts ...Font) templ.Component {
 }
 
 // GenerateFontFaceCSS generates @font-face CSS rules for custom fonts.
+// For variable fonts (Variable: true), it generates a single @font-face block
+// with a weight range. For non-variable fonts, it generates one block per weight.
 func GenerateFontFaceCSS(font Font) string {
 	if font.URL == "" {
 		return ""
 	}
 
-	var b strings.Builder
-
-	weights := font.Weights
-	if len(weights) == 0 {
-		weights = []int{400}
+	format := font.Format
+	if format == "" {
+		format = "woff2"
 	}
 
 	styles := font.Styles
@@ -175,19 +179,42 @@ func GenerateFontFaceCSS(font Font) string {
 		styles = []string{"normal"}
 	}
 
-	for _, weight := range weights {
+	var b strings.Builder
+
+	if font.Variable {
+		// Variable font: single @font-face with weight range
 		for _, style := range styles {
 			b.WriteString("@font-face {\n")
-			b.WriteString(fmt.Sprintf("  font-family: '%s';\n", font.Family))
-			b.WriteString(fmt.Sprintf("  font-weight: %d;\n", weight))
-			b.WriteString(fmt.Sprintf("  font-style: %s;\n", style))
-			b.WriteString(fmt.Sprintf("  src: url('%s') format('woff2');\n", font.URL))
-
-			if font.Display != "" {
-				b.WriteString(fmt.Sprintf("  font-display: %s;\n", font.Display))
+			fmt.Fprintf(&b, "  font-family: '%s';\n", font.Family)
+			fmt.Fprintf(&b, "  src: url('%s') format('%s');\n", font.URL, format)
+			if font.WeightRange[0] > 0 && font.WeightRange[1] > 0 {
+				fmt.Fprintf(&b, "  font-weight: %d %d;\n", font.WeightRange[0], font.WeightRange[1])
 			}
-
+			fmt.Fprintf(&b, "  font-style: %s;\n", style)
+			if font.Display != "" {
+				fmt.Fprintf(&b, "  font-display: %s;\n", font.Display)
+			}
 			b.WriteString("}\n\n")
+		}
+	} else {
+		// Non-variable font: one @font-face per weight
+		weights := font.Weights
+		if len(weights) == 0 {
+			weights = []int{400}
+		}
+
+		for _, weight := range weights {
+			for _, style := range styles {
+				b.WriteString("@font-face {\n")
+				fmt.Fprintf(&b, "  font-family: '%s';\n", font.Family)
+				fmt.Fprintf(&b, "  font-weight: %d;\n", weight)
+				fmt.Fprintf(&b, "  font-style: %s;\n", style)
+				fmt.Fprintf(&b, "  src: url('%s') format('%s');\n", font.URL, format)
+				if font.Display != "" {
+					fmt.Fprintf(&b, "  font-display: %s;\n", font.Display)
+				}
+				b.WriteString("}\n\n")
+			}
 		}
 	}
 
@@ -204,12 +231,12 @@ func GenerateFontCSS(config FontConfig) string {
 	serifFallback := formatFontStack(config.Serif.Family, config.Serif.Fallback)
 	monoFallback := formatFontStack(config.Mono.Family, config.Mono.Fallback)
 
-	b.WriteString(fmt.Sprintf("  --font-sans: %s;\n", sansFallback))
-	b.WriteString(fmt.Sprintf("  --font-serif: %s;\n", serifFallback))
-	b.WriteString(fmt.Sprintf("  --font-mono: %s;\n", monoFallback))
+	fmt.Fprintf(&b, "  --font-sans: %s;\n", sansFallback)
+	fmt.Fprintf(&b, "  --font-serif: %s;\n", serifFallback)
+	fmt.Fprintf(&b, "  --font-mono: %s;\n", monoFallback)
 
 	if config.BaseFontSize != "" {
-		b.WriteString(fmt.Sprintf("  --font-size-base: %s;\n", config.BaseFontSize))
+		fmt.Fprintf(&b, "  --font-size-base: %s;\n", config.BaseFontSize)
 	}
 
 	b.WriteString("}\n\n")
@@ -267,6 +294,86 @@ func formatFontStack(family string, fallbacks []string) string {
 	}
 
 	return strings.Join(quoted, ", ")
+}
+
+// fontMIME returns the MIME type for a font format string.
+func fontMIME(format string) string {
+	switch strings.ToLower(format) {
+	case "woff2":
+		return "font/woff2"
+	case "woff":
+		return "font/woff"
+	case "truetype", "ttf":
+		return "font/ttf"
+	case "opentype", "otf":
+		return "font/otf"
+	default:
+		return "font/woff2"
+	}
+}
+
+// FontPreloadLinks returns <link rel="preload"> tags for fonts that have Preload: true.
+// Place these in the <head> before stylesheets for optimal font loading.
+func FontPreloadLinks(fonts ...Font) templ.Component {
+	return templ.ComponentFunc(func(_ context.Context, w io.Writer) error {
+		for _, f := range fonts {
+			if !f.Preload || f.URL == "" {
+				continue
+			}
+			format := f.Format
+			if format == "" {
+				format = "woff2"
+			}
+			mime := fontMIME(format)
+			if _, err := fmt.Fprintf(w, `<link rel="preload" href="%s" as="font" type="%s" crossorigin="anonymous">`, f.URL, mime); err != nil {
+				return err
+			}
+		}
+		return nil
+	})
+}
+
+// FontPreloadLinksFromConfig returns <link rel="preload"> tags for all fonts
+// in a FontConfig that have Preload: true.
+func FontPreloadLinksFromConfig(config FontConfig) templ.Component {
+	var fonts []Font
+	for _, f := range []Font{config.Sans, config.Serif, config.Mono} {
+		if f.Preload && f.URL != "" {
+			fonts = append(fonts, f)
+		}
+	}
+	return FontPreloadLinks(fonts...)
+}
+
+// GeistFontConfig returns a font configuration using Geist variable fonts.
+// fontsBasePath is the URL path to the fonts directory (e.g., "/static/fonts").
+func GeistFontConfig(fontsBasePath string) FontConfig {
+	return FontConfig{
+		Sans: Font{
+			Family:      "Geist",
+			Variable:    true,
+			WeightRange: [2]int{100, 900},
+			URL:         fontsBasePath + "/geist/geist-variable.woff2",
+			Format:      "woff2",
+			Display:     "swap",
+			Preload:     true,
+			Fallback:    []string{"ui-sans-serif", "system-ui", "sans-serif"},
+		},
+		Mono: Font{
+			Family:      "Geist Mono",
+			Variable:    true,
+			WeightRange: [2]int{100, 900},
+			URL:         fontsBasePath + "/geist/geist-mono-variable.woff2",
+			Format:      "woff2",
+			Display:     "swap",
+			Preload:     true,
+			Fallback:    []string{"ui-monospace", "monospace"},
+		},
+		Body:         "sans",
+		Heading:      "sans",
+		Code:         "mono",
+		BaseFontSize: "16px",
+	}
 }
 
 // FontStyleTag returns a <style> tag with font configuration CSS.

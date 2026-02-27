@@ -224,12 +224,14 @@ func TestMetaInLayout(t *testing.T) {
 			if ctx.Meta != nil && ctx.Meta.Title != "" {
 				title = ctx.Meta.Title
 			}
-			io.WriteString(w, "<div>"+title+": ")
+			if _, err := io.WriteString(w, "<div>"+title+": "); err != nil {
+				return err
+			}
 			if err := content.Render(tCtx, w); err != nil {
 				return err
 			}
-			io.WriteString(w, "</div>")
-			return nil
+			_, err := io.WriteString(w, "</div>")
+			return err
 		})
 	})
 

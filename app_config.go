@@ -35,8 +35,18 @@ type AppConfig struct {
 	LightTheme *theme.Theme
 	DarkTheme  *theme.Theme
 
+	// FontConfig holds typography configuration (fonts, preloading, etc.)
+	FontConfig *theme.FontConfig
+
 	// DefaultLayout is the default layout name for all pages
 	DefaultLayout string
+
+	// InputCSS is an optional path to a custom Tailwind v4 input CSS file.
+	// When set, this is used instead of auto-generating one from themes.
+	InputCSS string
+
+	// Verbose enables detailed logging for asset processing and other subsystems.
+	Verbose bool
 
 	// BasePath is the base URL path for all ForgeUI routes (static, bridge, etc.)
 	// Example: "/api/identity/ui" results in:
@@ -146,6 +156,12 @@ func WithThemes(light, dark *theme.Theme) AppOption {
 	}
 }
 
+// WithFonts sets the font configuration for the application.
+// This enables font preloading and @font-face generation.
+func WithFonts(fc *theme.FontConfig) AppOption {
+	return func(c *AppConfig) { c.FontConfig = fc }
+}
+
 // WithDefaultLayout sets the default layout for all pages
 func WithDefaultLayout(layout string) AppOption {
 	return func(c *AppConfig) {
@@ -172,6 +188,17 @@ func WithStaticPath(path string) AppOption {
 //   - Bridge: /api/identity/ui/bridge/...
 func WithBasePath(path string) AppOption {
 	return func(c *AppConfig) { c.BasePath = path }
+}
+
+// WithInputCSS sets a custom Tailwind v4 input CSS file.
+// When set, this is used instead of auto-generating one from themes.
+func WithInputCSS(path string) AppOption {
+	return func(c *AppConfig) { c.InputCSS = path }
+}
+
+// WithVerbose enables verbose logging for asset processing
+func WithVerbose(verbose bool) AppOption {
+	return func(c *AppConfig) { c.Verbose = verbose }
 }
 
 // WithThemeName sets the theme name (legacy support)

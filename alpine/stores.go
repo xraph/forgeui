@@ -43,11 +43,11 @@ func RegisterStores(stores ...Store) templ.Component {
 			}
 
 			if store.Methods != "" {
-				js.WriteString(fmt.Sprintf("  Alpine.store('%s', { ...%s, %s });\n",
-					store.Name, stateJSON, strings.TrimSpace(store.Methods)))
+				fmt.Fprintf(&js, "  Alpine.store('%s', { ...%s, %s });\n",
+					store.Name, stateJSON, strings.TrimSpace(store.Methods))
 			} else {
-				js.WriteString(fmt.Sprintf("  Alpine.store('%s', %s);\n",
-					store.Name, stateJSON))
+				fmt.Fprintf(&js, "  Alpine.store('%s', %s);\n",
+					store.Name, stateJSON)
 			}
 		}
 

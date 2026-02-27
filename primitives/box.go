@@ -11,15 +11,15 @@ import (
 
 // BoxProps defines properties for the Box component
 type BoxProps struct {
-	As         string           // HTML tag (div, span, section, article, etc.)
-	Class      string           // custom classes
-	P          string           // padding
-	M          string           // margin
-	Bg         string           // background
-	Rounded    string           // border-radius
-	Shadow     string           // box-shadow
-	W          string           // width
-	H          string           // height
+	As         string // HTML tag (div, span, section, article, etc.)
+	Class      string // custom classes
+	P          string // padding
+	M          string // margin
+	Bg         string // background
+	Rounded    string // border-radius
+	Shadow     string // box-shadow
+	W          string // width
+	H          string // height
 	Children   []templ.Component
 	Attributes templ.Attributes
 }

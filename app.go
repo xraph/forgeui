@@ -2,7 +2,10 @@ package forgeui
 
 import (
 	"context"
+	"fmt"
 	"net/http"
+	"os"
+	"path/filepath"
 	"strings"
 
 	"github.com/a-h/templ"
@@ -22,6 +25,7 @@ type App struct {
 	lightTheme *theme.Theme
 	darkTheme  *theme.Theme
 	staticPath string
+	cssBuilt   bool // true when CSS was compiled via Tailwind CLI
 }
 
 // New creates a new ForgeUI application with enhanced initialization
@@ -215,16 +219,127 @@ func (a *App) RegisterLayout(name string, fn router.LayoutFunc, opts ...router.L
 // Initialize prepares the application (plugins, router, assets, etc.)
 // This will be expanded in later phases as more systems are added
 func (a *App) Initialize(ctx context.Context) error {
-	// Will be expanded in later phases:
-	// - Phase 11: Initialize plugin registry
+	// Auto-build CSS if themes are configured
+	if a.lightTheme != nil && a.darkTheme != nil {
+		if err := a.buildThemeCSS(ctx); err != nil {
+			// Non-fatal: fall back to CDN mode
+			fmt.Printf("[ForgeUI] CSS build skipped: %v (using CDN fallback)\n", err)
+		}
+	}
 
-	// Phase 15: Initialize asset manager
+	// Initialize asset manager for production
 	if !a.IsDev() && a.config.AssetManifest == "" {
 		// In production mode without a manifest, pre-generate all fingerprints
 		_ = a.Assets.FingerprintAll()
 	}
 
 	return nil
+}
+
+// buildThemeCSS generates input CSS from themes and compiles it with Tailwind CLI.
+// If Tailwind CLI is not available, falls back gracefully (CDN mode).
+func (a *App) buildThemeCSS(ctx context.Context) error {
+	outputDir := a.config.AssetOutputDir
+
+	// Ensure output directory exists
+	cssDir := filepath.Join(outputDir, "css")
+	if err := os.MkdirAll(cssDir, 0755); err != nil {
+		return fmt.Errorf("failed to create CSS output directory: %w", err)
+	}
+
+	// Determine input CSS path
+	inputCSS := a.config.InputCSS
+	if inputCSS == "" {
+		// Generate input CSS from themes
+		content := theme.GenerateInputCSS(*a.lightTheme, *a.darkTheme)
+		inputPath := filepath.Join(outputDir, "_forgeui_input.css")
+
+		if err := os.WriteFile(inputPath, []byte(content), 0644); err != nil {
+			return fmt.Errorf("failed to write input CSS: %w", err)
+		}
+
+		inputCSS = inputPath
+
+		defer func() { _ = os.Remove(inputPath) }()
+	}
+
+	// Create and configure Tailwind processor
+	tp := assets.NewTailwindProcessor().
+		WithInputCSS(inputCSS).
+		WithThemes(a.lightTheme, a.darkTheme).
+		WithOutputCSS("css/app.css")
+
+	if a.config.Verbose {
+		tp.WithVerbose(true)
+	}
+
+	// Process CSS
+	cfg := assets.ProcessorConfig{
+		InputDir:  a.config.AssetPublicDir,
+		OutputDir: outputDir,
+		IsDev:     a.IsDev(),
+		Minify:    !a.IsDev(),
+	}
+
+	if err := tp.Process(ctx, cfg); err != nil {
+		return err
+	}
+
+	a.cssBuilt = true
+
+	return nil
+}
+
+// StaticPath returns the full URL path prefix for static assets.
+func (a *App) StaticPath() string {
+	return a.staticPath
+}
+
+// CSSPath returns the URL path to the compiled CSS stylesheet.
+// This respects the BasePath and StaticPath configuration.
+func (a *App) CSSPath() string {
+	return a.staticPath + "/css/app.css"
+}
+
+// FontPreloadLinks returns a templ.Component that renders <link rel="preload">
+// tags for all configured fonts that have Preload: true.
+// Returns a nop component if no font config is set.
+func (a *App) FontPreloadLinks() templ.Component {
+	if a.config.FontConfig == nil {
+		return templ.NopComponent
+	}
+	return theme.FontPreloadLinksFromConfig(*a.config.FontConfig)
+}
+
+// FontFaceCSS returns the @font-face CSS rules for all configured fonts.
+// Returns an empty string if no font config is set.
+func (a *App) FontFaceCSS() string {
+	if a.config.FontConfig == nil {
+		return ""
+	}
+	var b strings.Builder
+	for _, f := range []theme.Font{a.config.FontConfig.Sans, a.config.FontConfig.Serif, a.config.FontConfig.Mono} {
+		if css := theme.GenerateFontFaceCSS(f); css != "" {
+			b.WriteString(css)
+		}
+	}
+	return b.String()
+}
+
+// IsCDNMode returns true if compiled CSS was not built (e.g., Tailwind CLI not available).
+// When in CDN mode, layouts should include the Tailwind CDN script and inline theme styles.
+func (a *App) IsCDNMode() bool {
+	return !a.cssBuilt
+}
+
+// ThemeStylesheet returns a <link rel="stylesheet"> templ.Component for the compiled CSS.
+// Returns a nop component if CSS was not compiled (CDN mode).
+func (a *App) ThemeStylesheet() templ.Component {
+	if a.IsCDNMode() {
+		return templ.NopComponent
+	}
+
+	return a.Assets.StyleSheet("css/app.css")
 }
 
 // Handler returns an http.Handler that serves the entire application
@@ -265,8 +380,16 @@ func (a *App) Handler() http.Handler {
 		}
 	}
 
-	// Serve all other requests through router
-	mux.Handle("/", a.router)
+	// Serve all other requests through router.
+	// When BasePath is set, mux routes (static, bridge, SSE) already include the
+	// basePath prefix and match before this catch-all. Page routes, however, are
+	// registered as relative paths (e.g., "/", "/health"). Strip the basePath
+	// so the router sees relative paths that match its compiled patterns.
+	if a.config.BasePath != "" {
+		mux.Handle("/", http.StripPrefix(a.config.BasePath, a.router))
+	} else {
+		mux.Handle("/", a.router)
+	}
 
 	return mux
 }

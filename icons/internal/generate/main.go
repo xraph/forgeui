@@ -478,29 +478,29 @@ func generateGoCode(icons []IconData) ([]byte, error) {
 	buf.WriteString("// To regenerate: cd icons/internal/generate && go run main.go\n\n")
 	buf.WriteString("package icons\n\n")
 	buf.WriteString("import \"github.com/a-h/templ\"\n\n")
-	buf.WriteString(fmt.Sprintf("// This file contains %d auto-generated icon functions from Lucide Icons\n", len(icons)))
+	fmt.Fprintf(&buf, "// This file contains %d auto-generated icon functions from Lucide Icons\n", len(icons))
 	buf.WriteString("// See https://lucide.dev for the complete icon reference\n\n")
 
 	// Generate function for each icon
 	for _, icon := range icons {
 		// Function documentation
-		buf.WriteString(fmt.Sprintf("// %s creates a %s icon\n", icon.FunctionName, icon.Name))
+		fmt.Fprintf(&buf, "// %s creates a %s icon\n", icon.FunctionName, icon.Name)
 		if len(icon.Tags) > 0 {
-			buf.WriteString(fmt.Sprintf("// Tags: %s\n", strings.Join(icon.Tags, ", ")))
+			fmt.Fprintf(&buf, "// Tags: %s\n", strings.Join(icon.Tags, ", "))
 		}
 
 		// Function signature
-		buf.WriteString(fmt.Sprintf("func %s(opts ...Option) templ.Component {\n", icon.FunctionName))
+		fmt.Fprintf(&buf, "func %s(opts ...Option) templ.Component {\n", icon.FunctionName)
 
 		// Function body
 		if len(icon.Paths) == 1 {
 			// Single path icon
-			buf.WriteString(fmt.Sprintf("\treturn Icon(%q, opts...)\n", icon.Paths[0]))
+			fmt.Fprintf(&buf, "\treturn Icon(%q, opts...)\n", icon.Paths[0])
 		} else {
 			// Multi-path icon
 			buf.WriteString("\treturn MultiPathIcon([]string{\n")
 			for _, path := range icon.Paths {
-				buf.WriteString(fmt.Sprintf("\t\t%q,\n", path))
+				fmt.Fprintf(&buf, "\t\t%q,\n", path)
 			}
 			buf.WriteString("\t}, opts...)\n")
 		}

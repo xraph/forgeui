@@ -6,7 +6,14 @@ import (
 	"path/filepath"
 	"strings"
 	"testing"
+
+	"github.com/xraph/forgeui/theme"
 )
+
+// defaultTestTheme returns a minimal theme for tests.
+func defaultTestTheme() theme.Theme {
+	return theme.DefaultLight()
+}
 
 func TestNewTailwindProcessor(t *testing.T) {
 	proc := NewTailwindProcessor()
@@ -179,11 +186,11 @@ func TestTailwindProcessor_GenerateConfigWithCustomPaths(t *testing.T) {
 	}
 }
 
-func TestTailwindProcessor_CreateInputCSS(t *testing.T) {
-	proc := NewTailwindProcessor()
+func TestTailwindProcessor_CreateInputCSSv3(t *testing.T) {
+	proc := NewTailwindProcessor().WithVersion(TailwindV3)
 	tempDir := t.TempDir()
 
-	inputPath, err := proc.createInputCSS(tempDir)
+	inputPath, err := proc.createInputCSSv3(tempDir)
 	if err != nil {
 		t.Fatalf("Failed to create input CSS: %v", err)
 	}
@@ -201,7 +208,7 @@ func TestTailwindProcessor_CreateInputCSS(t *testing.T) {
 
 	contentStr := string(content)
 
-	// Should contain Tailwind directives
+	// Should contain Tailwind v3 directives
 	if !strings.Contains(contentStr, "@tailwind base") {
 		t.Error("Input CSS should contain @tailwind base")
 	}
@@ -212,6 +219,124 @@ func TestTailwindProcessor_CreateInputCSS(t *testing.T) {
 
 	if !strings.Contains(contentStr, "@tailwind utilities") {
 		t.Error("Input CSS should contain @tailwind utilities")
+	}
+}
+
+func TestTailwindProcessor_CreateInputCSSv4_Minimal(t *testing.T) {
+	proc := NewTailwindProcessor() // Default is v4
+	tempDir := t.TempDir()
+
+	// No themes set — should generate minimal v4 input
+	inputPath, err := proc.createInputCSSv4(tempDir)
+	if err != nil {
+		t.Fatalf("Failed to create v4 input CSS: %v", err)
+	}
+	defer func() { _ = os.Remove(inputPath) }()
+
+	content, err := os.ReadFile(inputPath)
+	if err != nil {
+		t.Fatalf("Failed to read input CSS: %v", err)
+	}
+
+	contentStr := string(content)
+
+	if !strings.Contains(contentStr, `@import "tailwindcss"`) {
+		t.Error("v4 input CSS should contain @import \"tailwindcss\"")
+	}
+
+	// Minimal v4 should NOT contain @theme inline (no themes configured)
+	if strings.Contains(contentStr, "@theme inline") {
+		t.Error("Minimal v4 input CSS should not contain @theme inline when no themes are set")
+	}
+}
+
+func TestTailwindProcessor_CreateInputCSSv4_WithThemes(t *testing.T) {
+	proc := NewTailwindProcessor()
+
+	light := defaultTestTheme()
+	dark := defaultTestTheme()
+	proc.WithThemes(&light, &dark)
+
+	tempDir := t.TempDir()
+
+	inputPath, err := proc.createInputCSSv4(tempDir)
+	if err != nil {
+		t.Fatalf("Failed to create v4 input CSS: %v", err)
+	}
+	defer func() { _ = os.Remove(inputPath) }()
+
+	content, err := os.ReadFile(inputPath)
+	if err != nil {
+		t.Fatalf("Failed to read input CSS: %v", err)
+	}
+
+	contentStr := string(content)
+
+	expectedParts := []string{
+		`@import "tailwindcss"`,
+		"@custom-variant dark",
+		"@theme inline {",
+		"--color-background: var(--background)",
+		"--color-primary: var(--primary)",
+		":root {",
+		"--radius:",
+		"--background: oklch(",
+		".dark {",
+		"@layer base {",
+		"@apply border-border",
+		"@apply bg-background text-foreground",
+	}
+
+	for _, part := range expectedParts {
+		if !strings.Contains(contentStr, part) {
+			t.Errorf("v4 input CSS with themes should contain %q", part)
+		}
+	}
+}
+
+func TestTailwindProcessor_DefaultVersion(t *testing.T) {
+	proc := NewTailwindProcessor()
+
+	if proc.Version != TailwindV4 {
+		t.Errorf("Default version should be TailwindV4 (4), got %d", proc.Version)
+	}
+}
+
+func TestTailwindProcessor_WithVersion(t *testing.T) {
+	proc := NewTailwindProcessor().WithVersion(TailwindV3)
+
+	if proc.Version != TailwindV3 {
+		t.Errorf("Version should be TailwindV3 (3), got %d", proc.Version)
+	}
+}
+
+func TestTailwindProcessor_WithThemes(t *testing.T) {
+	proc := NewTailwindProcessor()
+
+	if proc.LightTheme != nil || proc.DarkTheme != nil {
+		t.Error("Themes should be nil by default")
+	}
+
+	light := defaultTestTheme()
+	dark := defaultTestTheme()
+	proc.WithThemes(&light, &dark)
+
+	if proc.LightTheme == nil || proc.DarkTheme == nil {
+		t.Error("Themes should be set after WithThemes")
+	}
+}
+
+func TestTailwindProcessor_WithCDNFallback(t *testing.T) {
+	proc := NewTailwindProcessor()
+
+	if !proc.UseCDN {
+		t.Error("UseCDN should be true by default")
+	}
+
+	proc.WithCDNFallback(false)
+
+	if proc.UseCDN {
+		t.Error("UseCDN should be false after WithCDNFallback(false)")
 	}
 }
 
@@ -252,7 +377,6 @@ func TestTailwindProcessor_GenerateCDNFallback(t *testing.T) {
 func TestTailwindProcessor_Process_CDNFallback(t *testing.T) {
 	proc := NewTailwindProcessor()
 	proc.UseCDN = true
-	proc.ConfigPath = "/nonexistent/config.js" // Force CDN fallback
 
 	tempDir := t.TempDir()
 	outputDir := filepath.Join(tempDir, "output")
@@ -289,9 +413,48 @@ func TestTailwindProcessor_Process_CDNFallback(t *testing.T) {
 	}
 }
 
+func TestTailwindProcessor_Process_V3CDNFallback(t *testing.T) {
+	proc := NewTailwindProcessor().WithVersion(TailwindV3)
+	proc.UseCDN = true
+	proc.ConfigPath = "/nonexistent/config.js" // Force CDN fallback
+
+	tempDir := t.TempDir()
+	outputDir := filepath.Join(tempDir, "output")
+
+	cfg := ProcessorConfig{
+		InputDir:  tempDir,
+		OutputDir: outputDir,
+		IsDev:     true,
+		Minify:    false,
+	}
+
+	ctx := context.Background()
+
+	err := proc.Process(ctx, cfg)
+
+	// Should either succeed with CDN fallback or fail gracefully
+	if err != nil && !strings.Contains(err.Error(), "tailwind") {
+		t.Errorf("Unexpected error: %v", err)
+	}
+
+	outputPath := filepath.Join(outputDir, proc.OutputCSS)
+	if _, err := os.Stat(outputPath); err == nil {
+		content, err := os.ReadFile(outputPath)
+		if err != nil {
+			t.Fatalf("Failed to read output: %v", err)
+		}
+
+		if len(content) == 0 {
+			t.Error("Output file is empty")
+		}
+	}
+}
+
 func TestTailwindProcessor_Process_CreatesOutputDir(t *testing.T) {
-	proc := NewTailwindProcessor()
-	proc.UseCDN = true // Force CDN fallback to avoid Tailwind CLI dependency
+	// Use v3 mode with CDN fallback to avoid Tailwind CLI dependency,
+	// since the v4 CLI might be available but fail due to missing tailwindcss package.
+	proc := NewTailwindProcessor().WithVersion(TailwindV3)
+	proc.UseCDN = true
 	proc.OutputCSS = "nested/path/app.css"
 
 	tempDir := t.TempDir()

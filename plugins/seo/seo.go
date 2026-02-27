@@ -293,13 +293,13 @@ func GenerateSitemap(urls []SitemapURL) string {
 
 	var sitemapSb strings.Builder
 	for _, url := range urls {
-		sitemapSb.WriteString(fmt.Sprintf(`
+		fmt.Fprintf(&sitemapSb, `
   <url>
     <loc>%s</loc>
     <lastmod>%s</lastmod>
     <changefreq>%s</changefreq>
     <priority>%.1f</priority>
-  </url>`, url.Loc, url.LastMod, url.ChangeFreq, url.Priority))
+  </url>`, url.Loc, url.LastMod, url.ChangeFreq, url.Priority)
 	}
 
 	sitemap += sitemapSb.String()

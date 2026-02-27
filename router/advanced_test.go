@@ -18,12 +18,14 @@ func TestAdvancedIntegration(t *testing.T) {
 	// Register layouts
 	r.RegisterLayout("main", func(ctx *PageContext, content templ.Component) templ.Component {
 		return templ.ComponentFunc(func(tCtx context.Context, w io.Writer) error {
-			io.WriteString(w, "<div><main>")
+			if _, err := io.WriteString(w, "<div><main>"); err != nil {
+				return err
+			}
 			if err := content.Render(tCtx, w); err != nil {
 				return err
 			}
-			io.WriteString(w, "</main></div>")
-			return nil
+			_, err := io.WriteString(w, "</main></div>")
+			return err
 		})
 	})
 
@@ -156,16 +158,22 @@ func TestAdvancedLayoutWithMetadata(t *testing.T) {
 	// Register layout that uses metadata
 	r.RegisterLayout("seo", func(ctx *PageContext, content templ.Component) templ.Component {
 		return templ.ComponentFunc(func(tCtx context.Context, w io.Writer) error {
-			io.WriteString(w, "<div><head>")
-			if ctx.Meta != nil {
-				ctx.Meta.MetaTags().Render(tCtx, w)
+			if _, err := io.WriteString(w, "<div><head>"); err != nil {
+				return err
 			}
-			io.WriteString(w, "</head><body>")
+			if ctx.Meta != nil {
+				if err := ctx.Meta.MetaTags().Render(tCtx, w); err != nil {
+					return err
+				}
+			}
+			if _, err := io.WriteString(w, "</head><body>"); err != nil {
+				return err
+			}
 			if err := content.Render(tCtx, w); err != nil {
 				return err
 			}
-			io.WriteString(w, "</body></div>")
-			return nil
+			_, err := io.WriteString(w, "</body></div>")
+			return err
 		})
 	})
 
@@ -272,12 +280,14 @@ func TestAdvancedLoaderWithLayout(t *testing.T) {
 	r.RegisterLayout("data-layout", func(ctx *PageContext, content templ.Component) templ.Component {
 		return templ.ComponentFunc(func(tCtx context.Context, w io.Writer) error {
 			data := ctx.LoaderData().(string)
-			io.WriteString(w, "<div>["+data+"]")
+			if _, err := io.WriteString(w, "<div>["+data+"]"); err != nil {
+				return err
+			}
 			if err := content.Render(tCtx, w); err != nil {
 				return err
 			}
-			io.WriteString(w, "</div>")
-			return nil
+			_, err := io.WriteString(w, "</div>")
+			return err
 		})
 	})
 
@@ -309,22 +319,26 @@ func TestAdvancedGroupLayoutOverride(t *testing.T) {
 	// Register layouts
 	r.RegisterLayout("group-layout", func(ctx *PageContext, content templ.Component) templ.Component {
 		return templ.ComponentFunc(func(tCtx context.Context, w io.Writer) error {
-			io.WriteString(w, "<div>GROUP:")
+			if _, err := io.WriteString(w, "<div>GROUP:"); err != nil {
+				return err
+			}
 			if err := content.Render(tCtx, w); err != nil {
 				return err
 			}
-			io.WriteString(w, "</div>")
-			return nil
+			_, err := io.WriteString(w, "</div>")
+			return err
 		})
 	})
 	r.RegisterLayout("route-layout", func(ctx *PageContext, content templ.Component) templ.Component {
 		return templ.ComponentFunc(func(tCtx context.Context, w io.Writer) error {
-			io.WriteString(w, "<div>ROUTE:")
+			if _, err := io.WriteString(w, "<div>ROUTE:"); err != nil {
+				return err
+			}
 			if err := content.Render(tCtx, w); err != nil {
 				return err
 			}
-			io.WriteString(w, "</div>")
-			return nil
+			_, err := io.WriteString(w, "</div>")
+			return err
 		})
 	})
 

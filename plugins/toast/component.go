@@ -144,9 +144,9 @@ func renderToastItem(ctx context.Context, w io.Writer) error {
 func writeAlpineAttrs(w io.Writer, attrs templ.Attributes) {
 	for k, v := range attrs {
 		if s, ok := v.(string); ok {
-			fmt.Fprintf(w, ` %s="%s"`, k, s)
+			_, _ = fmt.Fprintf(w, ` %s="%s"`, k, s)
 		} else if v == true {
-			fmt.Fprintf(w, ` %s`, k)
+			_, _ = fmt.Fprintf(w, ` %s`, k)
 		}
 	}
 }

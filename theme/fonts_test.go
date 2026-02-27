@@ -216,3 +216,174 @@ func TestFontStyleTag(t *testing.T) {
 		t.Error("Style tag should contain font CSS variables")
 	}
 }
+
+func TestGenerateFontFaceCSSVariable(t *testing.T) {
+	font := theme.Font{
+		Family:      "Geist",
+		Variable:    true,
+		WeightRange: [2]int{100, 900},
+		URL:         "/fonts/geist/geist-variable.woff2",
+		Format:      "woff2",
+		Display:     "swap",
+	}
+
+	css := theme.GenerateFontFaceCSS(font)
+
+	if css == "" {
+		t.Fatal("GenerateFontFaceCSS should return non-empty CSS for variable font")
+	}
+
+	if !strings.Contains(css, "@font-face") {
+		t.Error("CSS should contain @font-face rule")
+	}
+
+	if !strings.Contains(css, "font-family: 'Geist'") {
+		t.Error("CSS should contain font-family declaration")
+	}
+
+	// Variable font should have weight range, not individual weight
+	if !strings.Contains(css, "font-weight: 100 900") {
+		t.Errorf("CSS should contain weight range '100 900', got:\n%s", css)
+	}
+
+	if strings.Contains(css, "font-weight: 400") {
+		t.Error("Variable font CSS should NOT contain individual weight like 400")
+	}
+
+	if !strings.Contains(css, "format('woff2')") {
+		t.Error("CSS should contain format declaration")
+	}
+
+	if !strings.Contains(css, "font-display: swap") {
+		t.Error("CSS should contain font-display declaration")
+	}
+}
+
+func TestFontPreloadLinks(t *testing.T) {
+	var buf bytes.Buffer
+
+	fonts := []theme.Font{
+		{
+			Family:  "Geist",
+			URL:     "/fonts/geist/geist-variable.woff2",
+			Format:  "woff2",
+			Preload: true,
+		},
+		{
+			Family:  "Geist Mono",
+			URL:     "/fonts/geist/geist-mono-variable.woff2",
+			Format:  "woff2",
+			Preload: true,
+		},
+		{
+			Family:  "NoPreload",
+			URL:     "/fonts/no-preload.woff2",
+			Preload: false,
+		},
+	}
+
+	comp := theme.FontPreloadLinks(fonts...)
+	if err := comp.Render(context.Background(), &buf); err != nil {
+		t.Fatalf("render error: %v", err)
+	}
+
+	html := buf.String()
+
+	// Should have two preload links
+	if strings.Count(html, `rel="preload"`) != 2 {
+		t.Errorf("expected 2 preload links, got %d in:\n%s", strings.Count(html, `rel="preload"`), html)
+	}
+
+	// Check for correct href values
+	if !strings.Contains(html, `href="/fonts/geist/geist-variable.woff2"`) {
+		t.Error("should contain href for geist-variable.woff2")
+	}
+
+	if !strings.Contains(html, `href="/fonts/geist/geist-mono-variable.woff2"`) {
+		t.Error("should contain href for geist-mono-variable.woff2")
+	}
+
+	// Check font MIME type
+	if !strings.Contains(html, `type="font/woff2"`) {
+		t.Error("should contain type='font/woff2'")
+	}
+
+	// Check crossorigin
+	if !strings.Contains(html, `crossorigin="anonymous"`) {
+		t.Error("should contain crossorigin='anonymous'")
+	}
+
+	// NoPreload font should NOT appear
+	if strings.Contains(html, "no-preload") {
+		t.Error("font with Preload: false should not appear in preload links")
+	}
+}
+
+func TestFontPreloadLinksFromConfig(t *testing.T) {
+	var buf bytes.Buffer
+
+	config := theme.GeistFontConfig("/static/fonts")
+
+	comp := theme.FontPreloadLinksFromConfig(config)
+	if err := comp.Render(context.Background(), &buf); err != nil {
+		t.Fatalf("render error: %v", err)
+	}
+
+	html := buf.String()
+
+	if strings.Count(html, `rel="preload"`) != 2 {
+		t.Errorf("expected 2 preload links from GeistFontConfig, got %d", strings.Count(html, `rel="preload"`))
+	}
+
+	if !strings.Contains(html, "/static/fonts/geist/geist-variable.woff2") {
+		t.Error("should contain geist-variable.woff2 path")
+	}
+
+	if !strings.Contains(html, "/static/fonts/geist/geist-mono-variable.woff2") {
+		t.Error("should contain geist-mono-variable.woff2 path")
+	}
+}
+
+func TestGeistFontConfig(t *testing.T) {
+	config := theme.GeistFontConfig("/assets/fonts")
+
+	if config.Sans.Family != "Geist" {
+		t.Error("GeistFontConfig should use Geist for sans")
+	}
+
+	if !config.Sans.Variable {
+		t.Error("Geist sans should be a variable font")
+	}
+
+	if config.Sans.WeightRange != [2]int{100, 900} {
+		t.Errorf("Geist sans weight range should be [100, 900], got %v", config.Sans.WeightRange)
+	}
+
+	if config.Sans.URL != "/assets/fonts/geist/geist-variable.woff2" {
+		t.Errorf("Geist sans URL should include base path, got %s", config.Sans.URL)
+	}
+
+	if !config.Sans.Preload {
+		t.Error("Geist sans should have Preload: true")
+	}
+
+	if config.Mono.Family != "Geist Mono" {
+		t.Error("GeistFontConfig should use Geist Mono for mono")
+	}
+
+	if !config.Mono.Variable {
+		t.Error("Geist Mono should be a variable font")
+	}
+
+	if config.Mono.URL != "/assets/fonts/geist/geist-mono-variable.woff2" {
+		t.Errorf("Geist mono URL should include base path, got %s", config.Mono.URL)
+	}
+
+	if config.Body != "sans" {
+		t.Error("GeistFontConfig body should be 'sans'")
+	}
+
+	if config.Code != "mono" {
+		t.Error("GeistFontConfig code should be 'mono'")
+	}
+}

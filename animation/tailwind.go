@@ -105,18 +105,18 @@ func (tc *TailwindConfig) ToJavaScript() string {
 	var jsSb102 strings.Builder
 
 	for name := range tc.Keyframes {
-		jsSb98.WriteString(fmt.Sprintf("        '%s': {\n", name))
+		fmt.Fprintf(&jsSb98, "        '%s': {\n", name)
 
 		var jsSb100 strings.Builder
 
 		var jsSb105 strings.Builder
 
 		for selector, props := range tc.Keyframes[name] {
-			jsSb100.WriteString(fmt.Sprintf("          '%s': {\n", selector))
+			fmt.Fprintf(&jsSb100, "          '%s': {\n", selector)
 
 			var jsSb102 strings.Builder
 			for key, value := range props {
-				jsSb102.WriteString(fmt.Sprintf("            %s: '%s',\n", key, value))
+				fmt.Fprintf(&jsSb102, "            %s: '%s',\n", key, value)
 			}
 
 			jsSb105.WriteString(jsSb102.String())
@@ -142,7 +142,7 @@ func (tc *TailwindConfig) ToJavaScript() string {
 
 	var jsSb113 strings.Builder
 	for name, value := range tc.Animations {
-		jsSb113.WriteString(fmt.Sprintf("        '%s': '%s',\n", name, value))
+		fmt.Fprintf(&jsSb113, "        '%s': '%s',\n", name, value)
 	}
 
 	js.WriteString(jsSb113.String())

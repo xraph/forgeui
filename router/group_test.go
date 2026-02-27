@@ -91,12 +91,14 @@ func TestRouteGroupWithLayout(t *testing.T) {
 	// Register a layout
 	r.RegisterLayout("api", func(ctx *PageContext, content templ.Component) templ.Component {
 		return templ.ComponentFunc(func(tCtx context.Context, w io.Writer) error {
-			io.WriteString(w, "<div>API: ")
+			if _, err := io.WriteString(w, "<div>API: "); err != nil {
+				return err
+			}
 			if err := content.Render(tCtx, w); err != nil {
 				return err
 			}
-			io.WriteString(w, "</div>")
-			return nil
+			_, err := io.WriteString(w, "</div>")
+			return err
 		})
 	})
 

@@ -20,7 +20,7 @@ func (t *MinimalTemplate) Description() string {
 
 func (t *MinimalTemplate) Generate(dir, projectName, modulePath string) error {
 	// Create main.go
-	mainGo := fmt.Sprintf(`package main
+	mainGo := `package main
 
 import (
 	"fmt"
@@ -53,7 +53,7 @@ func main() {
 func homePage(ctx *router.PageContext) (templ.Component, error) {
 	return HomePageView(ctx), nil
 }
-`)
+`
 
 	if err := util.CreateFile(filepath.Join(dir, "main.go"), mainGo); err != nil {
 		return err

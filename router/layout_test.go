@@ -16,12 +16,14 @@ func TestLayoutRegistration(t *testing.T) {
 	// Register a layout
 	r.RegisterLayout("test", func(ctx *PageContext, content templ.Component) templ.Component {
 		return templ.ComponentFunc(func(tCtx context.Context, w io.Writer) error {
-			io.WriteString(w, "<div>Layout: ")
+			if _, err := io.WriteString(w, "<div>Layout: "); err != nil {
+				return err
+			}
 			if err := content.Render(tCtx, w); err != nil {
 				return err
 			}
-			io.WriteString(w, "</div>")
-			return nil
+			_, err := io.WriteString(w, "</div>")
+			return err
 		})
 	})
 
@@ -42,12 +44,14 @@ func TestLayoutApplication(t *testing.T) {
 	// Register a layout
 	r.RegisterLayout("wrapper", func(ctx *PageContext, content templ.Component) templ.Component {
 		return templ.ComponentFunc(func(tCtx context.Context, w io.Writer) error {
-			io.WriteString(w, "<div>[")
+			if _, err := io.WriteString(w, "<div>["); err != nil {
+				return err
+			}
 			if err := content.Render(tCtx, w); err != nil {
 				return err
 			}
-			io.WriteString(w, "]</div>")
-			return nil
+			_, err := io.WriteString(w, "]</div>")
+			return err
 		})
 	})
 
@@ -72,7 +76,9 @@ func TestDefaultLayout(t *testing.T) {
 	// Register and set default layout
 	r.RegisterLayout("default", func(ctx *PageContext, content templ.Component) templ.Component {
 		return templ.ComponentFunc(func(tCtx context.Context, w io.Writer) error {
-			io.WriteString(w, "Default: ")
+			if _, err := io.WriteString(w, "Default: "); err != nil {
+				return err
+			}
 			return content.Render(tCtx, w)
 		})
 	})
@@ -99,13 +105,17 @@ func TestLayoutOverride(t *testing.T) {
 	// Register layouts
 	r.RegisterLayout("default", func(ctx *PageContext, content templ.Component) templ.Component {
 		return templ.ComponentFunc(func(tCtx context.Context, w io.Writer) error {
-			io.WriteString(w, "Default: ")
+			if _, err := io.WriteString(w, "Default: "); err != nil {
+				return err
+			}
 			return content.Render(tCtx, w)
 		})
 	})
 	r.RegisterLayout("custom", func(ctx *PageContext, content templ.Component) templ.Component {
 		return templ.ComponentFunc(func(tCtx context.Context, w io.Writer) error {
-			io.WriteString(w, "Custom: ")
+			if _, err := io.WriteString(w, "Custom: "); err != nil {
+				return err
+			}
 			return content.Render(tCtx, w)
 		})
 	})
@@ -132,7 +142,9 @@ func TestNoLayout(t *testing.T) {
 	// Register and set default layout
 	r.RegisterLayout("default", func(ctx *PageContext, content templ.Component) templ.Component {
 		return templ.ComponentFunc(func(tCtx context.Context, w io.Writer) error {
-			io.WriteString(w, "Default: ")
+			if _, err := io.WriteString(w, "Default: "); err != nil {
+				return err
+			}
 			return content.Render(tCtx, w)
 		})
 	})
