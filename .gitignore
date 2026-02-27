@@ -13,8 +13,10 @@ vendor/
 dist/
 __debug_bin
 
-# Generated templ files
-*_templ.go
+# Generated templ files (only ignore in non-library dirs)
+# Library packages must commit _templ.go for Go module consumers
+/cmd/**/*_templ.go
+/example/**/*_templ.go
 
 # Test coverage
 *.coverage

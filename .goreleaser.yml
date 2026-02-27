@@ -145,17 +145,17 @@ release:
 # Homebrew cask (replaces deprecated brews)
 homebrew_casks:
   - name: forgeui
+    binaries:
+      - forgeui
     repository:
       owner: xraph
       name: homebrew-tap
     commit_author:
       name: goreleaserbot
       email: bot@goreleaser.com
-    directory: Casks
     homepage: https://github.com/xraph/forgeui
     description: "SSR-first UI framework for Go with 35+ components, Tailwind CSS, and Alpine.js integration"
-    url:
-      verified: github.com/xraph/forgeui
+    caveats: "Run 'forgeui --help' to get started"
     hooks:
       post:
         install: |
