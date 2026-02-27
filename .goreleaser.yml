@@ -49,10 +49,12 @@ archives:
       - README.md
       - LICENSE
       - CHANGELOG.md
-    format: tar.gz
+    formats:
+      - tar.gz
     format_overrides:
       - goos: windows
-        format: zip
+        formats:
+          - zip
 
 checksum:
   name_template: 'checksums.txt'
@@ -140,25 +142,26 @@ release:
     - [Quick Start](https://github.com/xraph/forgeui/blob/{{ .Tag }}/QUICKSTART.md)
     - [Examples](https://github.com/xraph/forgeui/tree/{{ .Tag }}/example)
 
-# Homebrew tap
-brews:
-  - repository:
+# Homebrew cask (replaces deprecated brews)
+homebrew_casks:
+  - name: forgeui
+    repository:
       owner: xraph
       name: homebrew-tap
     commit_author:
       name: goreleaserbot
       email: bot@goreleaser.com
-    directory: Formula
+    directory: Casks
     homepage: https://github.com/xraph/forgeui
     description: "SSR-first UI framework for Go with 35+ components, Tailwind CSS, and Alpine.js integration"
-    license: MIT
-    dependencies:
-      - name: go
-        type: optional
-    install: |
-      bin.install "forgeui"
-    test: |
-      system "#{bin}/forgeui", "--version"
+    url:
+      verified: github.com/xraph/forgeui
+    hooks:
+      post:
+        install: |
+          if OS.mac?
+            system_command "/usr/bin/xattr", args: ["-dr", "com.apple.quarantine", "#{staged_path}/forgeui"]
+          end
 
 # Git settings
 git:
