@@ -127,7 +127,7 @@ jobs:
           git push origin ${{ inputs.version }}
 
       - name: Verify GoReleaser config
-        uses: goreleaser/goreleaser-action@v6
+        uses: goreleaser/goreleaser-action@v7
         with:
           distribution: goreleaser
           version: '~> v2'
@@ -135,7 +135,7 @@ jobs:
 
       - name: Run GoReleaser (Dry Run / Snapshot)
         if: needs.prepare.outputs.is_prerelease == 'true'
-        uses: goreleaser/goreleaser-action@v6
+        uses: goreleaser/goreleaser-action@v7
         with:
           distribution: goreleaser
           version: '~> v2'
@@ -145,7 +145,7 @@ jobs:
 
       - name: Run GoReleaser (Production Release)
         if: needs.prepare.outputs.is_prerelease == 'false'
-        uses: goreleaser/goreleaser-action@v6
+        uses: goreleaser/goreleaser-action@v7
         with:
           distribution: goreleaser
           version: '~> v2'
