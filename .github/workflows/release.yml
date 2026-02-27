@@ -127,21 +127,19 @@ jobs:
           git push origin ${{ inputs.version }}
 
       - name: Verify GoReleaser config
-        run: |
-          go install github.com/goreleaser/goreleaser/v2@latest
-          # goreleaser check exits with code 2 for deprecation warnings (acceptable)
-          goreleaser check || EXIT_CODE=$?
-          if [ -n "$EXIT_CODE" ] && [ "$EXIT_CODE" != "2" ]; then
-            echo "❌ GoReleaser config validation failed"
-            exit "$EXIT_CODE"
-          fi
-          echo "✅ GoReleaser config is valid"
+        uses: goreleaser/goreleaser-action@v6
+        with:
+          distribution: goreleaser
+          version: '~> v2'
+          args: check
 
       - name: Run GoReleaser (Dry Run / Snapshot)
         if: needs.prepare.outputs.is_prerelease == 'true'
-        run: |
-          echo "📦 Running snapshot build for pre-release ${{ needs.prepare.outputs.tag_name }}"
-          goreleaser release --snapshot --clean --skip=publish
+        uses: goreleaser/goreleaser-action@v6
+        with:
+          distribution: goreleaser
+          version: '~> v2'
+          args: release --snapshot --clean --skip=publish
         env:
           GITHUB_TOKEN: ${{ secrets.GORELEASER_TOKEN || secrets.GITHUB_TOKEN }}
 
