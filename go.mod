@@ -4,7 +4,7 @@ go 1.24.0
 
 require (
 	github.com/Oudwins/tailwind-merge-go v0.2.1
-	github.com/a-h/templ v0.3.977
+	github.com/a-h/templ v0.3.1001
 	github.com/fsnotify/fsnotify v1.9.0
 	golang.org/x/text v0.33.0
 	nhooyr.io/websocket v1.8.17
