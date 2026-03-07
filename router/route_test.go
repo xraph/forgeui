@@ -58,6 +58,28 @@ func TestRouteMatch_MultipleParameters(t *testing.T) {
 	}
 }
 
+func TestRouteMatch_RootPath(t *testing.T) {
+	route := newRoute("/", MethodGet, nil)
+
+	tests := []struct {
+		path        string
+		shouldMatch bool
+	}{
+		{"/", true},
+		{"", true}, // Empty string from http.StripPrefix should match root
+		{"/users", false},
+	}
+
+	for _, tt := range tests {
+		t.Run("path="+tt.path, func(t *testing.T) {
+			_, ok := route.Match(tt.path)
+			if ok != tt.shouldMatch {
+				t.Errorf("Match(%q) = %v, want %v", tt.path, ok, tt.shouldMatch)
+			}
+		})
+	}
+}
+
 func TestRouteMatch_Wildcard(t *testing.T) {
 	route := newRoute("/files/*filepath", MethodGet, nil)
 

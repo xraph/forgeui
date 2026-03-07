@@ -186,8 +186,14 @@ func (r *Router) SetApp(app any) {
 
 // ServeHTTP implements http.Handler interface.
 func (r *Router) ServeHTTP(w http.ResponseWriter, req *http.Request) {
+	// Normalize empty path (e.g. from http.StripPrefix) to root
+	path := req.URL.Path
+	if path == "" {
+		path = "/"
+	}
+
 	// Find matching route
-	route, params := r.findRoute(req.Method, req.URL.Path)
+	route, params := r.findRoute(req.Method, path)
 
 	// Create page context
 	ctx := &PageContext{
@@ -225,7 +231,7 @@ func (r *Router) ServeHTTP(w http.ResponseWriter, req *http.Request) {
 							ctx.ResponseWriter.Header().Set("Content-Type", "text/html; charset=utf-8")
 						}
 
-						_ = comp.Render(req.Context(), ctx.ResponseWriter)
+						_ = comp.Render(ctx.Context(), ctx.ResponseWriter)
 					}
 
 					return
@@ -279,7 +285,7 @@ func (r *Router) ServeHTTP(w http.ResponseWriter, req *http.Request) {
 			ctx.ResponseWriter.Header().Set("Content-Type", "text/html; charset=utf-8")
 		}
 
-		_ = comp.Render(req.Context(), ctx.ResponseWriter)
+		_ = comp.Render(ctx.Context(), ctx.ResponseWriter)
 	}
 }
 

@@ -51,106 +51,106 @@ func generateColorVars(colors ColorTokens) string {
 	var b strings.Builder
 
 	// Core colors
-	fmt.Fprintf(&b,"  --background: %s;\n", colors.Background)
-	fmt.Fprintf(&b,"  --foreground: %s;\n", colors.Foreground)
+	fmt.Fprintf(&b, "  --background: %s;\n", colors.Background)
+	fmt.Fprintf(&b, "  --foreground: %s;\n", colors.Foreground)
 
 	// Card colors
-	fmt.Fprintf(&b,"  --card: %s;\n", colors.Card)
-	fmt.Fprintf(&b,"  --card-foreground: %s;\n", colors.CardForeground)
+	fmt.Fprintf(&b, "  --card: %s;\n", colors.Card)
+	fmt.Fprintf(&b, "  --card-foreground: %s;\n", colors.CardForeground)
 
 	// Popover colors
-	fmt.Fprintf(&b,"  --popover: %s;\n", colors.Popover)
-	fmt.Fprintf(&b,"  --popover-foreground: %s;\n", colors.PopoverForeground)
+	fmt.Fprintf(&b, "  --popover: %s;\n", colors.Popover)
+	fmt.Fprintf(&b, "  --popover-foreground: %s;\n", colors.PopoverForeground)
 
 	// Primary colors
-	fmt.Fprintf(&b,"  --primary: %s;\n", colors.Primary)
-	fmt.Fprintf(&b,"  --primary-foreground: %s;\n", colors.PrimaryForeground)
+	fmt.Fprintf(&b, "  --primary: %s;\n", colors.Primary)
+	fmt.Fprintf(&b, "  --primary-foreground: %s;\n", colors.PrimaryForeground)
 
 	// Secondary colors
-	fmt.Fprintf(&b,"  --secondary: %s;\n", colors.Secondary)
-	fmt.Fprintf(&b,"  --secondary-foreground: %s;\n", colors.SecondaryForeground)
+	fmt.Fprintf(&b, "  --secondary: %s;\n", colors.Secondary)
+	fmt.Fprintf(&b, "  --secondary-foreground: %s;\n", colors.SecondaryForeground)
 
 	// Muted colors
-	fmt.Fprintf(&b,"  --muted: %s;\n", colors.Muted)
-	fmt.Fprintf(&b,"  --muted-foreground: %s;\n", colors.MutedForeground)
+	fmt.Fprintf(&b, "  --muted: %s;\n", colors.Muted)
+	fmt.Fprintf(&b, "  --muted-foreground: %s;\n", colors.MutedForeground)
 
 	// Accent colors
-	fmt.Fprintf(&b,"  --accent: %s;\n", colors.Accent)
-	fmt.Fprintf(&b,"  --accent-foreground: %s;\n", colors.AccentForeground)
+	fmt.Fprintf(&b, "  --accent: %s;\n", colors.Accent)
+	fmt.Fprintf(&b, "  --accent-foreground: %s;\n", colors.AccentForeground)
 
 	// Destructive colors
-	fmt.Fprintf(&b,"  --destructive: %s;\n", colors.Destructive)
-	fmt.Fprintf(&b,"  --destructive-foreground: %s;\n", colors.DestructiveForeground)
+	fmt.Fprintf(&b, "  --destructive: %s;\n", colors.Destructive)
+	fmt.Fprintf(&b, "  --destructive-foreground: %s;\n", colors.DestructiveForeground)
 
 	// Success colors
 	if colors.Success != "" {
-		fmt.Fprintf(&b,"  --success: %s;\n", colors.Success)
+		fmt.Fprintf(&b, "  --success: %s;\n", colors.Success)
 	}
 
 	// Border and input colors
-	fmt.Fprintf(&b,"  --border: %s;\n", colors.Border)
-	fmt.Fprintf(&b,"  --input: %s;\n", colors.Input)
-	fmt.Fprintf(&b,"  --ring: %s;\n", colors.Ring)
+	fmt.Fprintf(&b, "  --border: %s;\n", colors.Border)
+	fmt.Fprintf(&b, "  --input: %s;\n", colors.Input)
+	fmt.Fprintf(&b, "  --ring: %s;\n", colors.Ring)
 
 	// Chart colors for data visualization (1-12)
 	if colors.Chart1 != "" {
-		fmt.Fprintf(&b,"  --chart-1: %s;\n", colors.Chart1)
+		fmt.Fprintf(&b, "  --chart-1: %s;\n", colors.Chart1)
 	}
 
 	if colors.Chart2 != "" {
-		fmt.Fprintf(&b,"  --chart-2: %s;\n", colors.Chart2)
+		fmt.Fprintf(&b, "  --chart-2: %s;\n", colors.Chart2)
 	}
 
 	if colors.Chart3 != "" {
-		fmt.Fprintf(&b,"  --chart-3: %s;\n", colors.Chart3)
+		fmt.Fprintf(&b, "  --chart-3: %s;\n", colors.Chart3)
 	}
 
 	if colors.Chart4 != "" {
-		fmt.Fprintf(&b,"  --chart-4: %s;\n", colors.Chart4)
+		fmt.Fprintf(&b, "  --chart-4: %s;\n", colors.Chart4)
 	}
 
 	if colors.Chart5 != "" {
-		fmt.Fprintf(&b,"  --chart-5: %s;\n", colors.Chart5)
+		fmt.Fprintf(&b, "  --chart-5: %s;\n", colors.Chart5)
 	}
 
 	if colors.Chart6 != "" {
-		fmt.Fprintf(&b,"  --chart-6: %s;\n", colors.Chart6)
+		fmt.Fprintf(&b, "  --chart-6: %s;\n", colors.Chart6)
 	}
 
 	if colors.Chart7 != "" {
-		fmt.Fprintf(&b,"  --chart-7: %s;\n", colors.Chart7)
+		fmt.Fprintf(&b, "  --chart-7: %s;\n", colors.Chart7)
 	}
 
 	if colors.Chart8 != "" {
-		fmt.Fprintf(&b,"  --chart-8: %s;\n", colors.Chart8)
+		fmt.Fprintf(&b, "  --chart-8: %s;\n", colors.Chart8)
 	}
 
 	if colors.Chart9 != "" {
-		fmt.Fprintf(&b,"  --chart-9: %s;\n", colors.Chart9)
+		fmt.Fprintf(&b, "  --chart-9: %s;\n", colors.Chart9)
 	}
 
 	if colors.Chart10 != "" {
-		fmt.Fprintf(&b,"  --chart-10: %s;\n", colors.Chart10)
+		fmt.Fprintf(&b, "  --chart-10: %s;\n", colors.Chart10)
 	}
 
 	if colors.Chart11 != "" {
-		fmt.Fprintf(&b,"  --chart-11: %s;\n", colors.Chart11)
+		fmt.Fprintf(&b, "  --chart-11: %s;\n", colors.Chart11)
 	}
 
 	if colors.Chart12 != "" {
-		fmt.Fprintf(&b,"  --chart-12: %s;\n", colors.Chart12)
+		fmt.Fprintf(&b, "  --chart-12: %s;\n", colors.Chart12)
 	}
 
 	// Sidebar colors for independent theming
 	if colors.Sidebar != "" {
-		fmt.Fprintf(&b,"  --sidebar: %s;\n", colors.Sidebar)
-		fmt.Fprintf(&b,"  --sidebar-foreground: %s;\n", colors.SidebarForeground)
-		fmt.Fprintf(&b,"  --sidebar-primary: %s;\n", colors.SidebarPrimary)
-		fmt.Fprintf(&b,"  --sidebar-primary-foreground: %s;\n", colors.SidebarPrimaryForeground)
-		fmt.Fprintf(&b,"  --sidebar-accent: %s;\n", colors.SidebarAccent)
-		fmt.Fprintf(&b,"  --sidebar-accent-foreground: %s;\n", colors.SidebarAccentForeground)
-		fmt.Fprintf(&b,"  --sidebar-border: %s;\n", colors.SidebarBorder)
-		fmt.Fprintf(&b,"  --sidebar-ring: %s;\n", colors.SidebarRing)
+		fmt.Fprintf(&b, "  --sidebar: %s;\n", colors.Sidebar)
+		fmt.Fprintf(&b, "  --sidebar-foreground: %s;\n", colors.SidebarForeground)
+		fmt.Fprintf(&b, "  --sidebar-primary: %s;\n", colors.SidebarPrimary)
+		fmt.Fprintf(&b, "  --sidebar-primary-foreground: %s;\n", colors.SidebarPrimaryForeground)
+		fmt.Fprintf(&b, "  --sidebar-accent: %s;\n", colors.SidebarAccent)
+		fmt.Fprintf(&b, "  --sidebar-accent-foreground: %s;\n", colors.SidebarAccentForeground)
+		fmt.Fprintf(&b, "  --sidebar-border: %s;\n", colors.SidebarBorder)
+		fmt.Fprintf(&b, "  --sidebar-ring: %s;\n", colors.SidebarRing)
 	}
 
 	return b.String()
@@ -161,25 +161,25 @@ func generateRadiusVars(radius RadiusTokens) string {
 	var b strings.Builder
 
 	if radius.SM != "" {
-		fmt.Fprintf(&b,"  --radius-sm: %s;\n", radius.SM)
+		fmt.Fprintf(&b, "  --radius-sm: %s;\n", radius.SM)
 	}
 
 	if radius.MD != "" {
-		fmt.Fprintf(&b,"  --radius-md: %s;\n", radius.MD)
+		fmt.Fprintf(&b, "  --radius-md: %s;\n", radius.MD)
 	}
 
 	if radius.LG != "" {
-		fmt.Fprintf(&b,"  --radius-lg: %s;\n", radius.LG)
+		fmt.Fprintf(&b, "  --radius-lg: %s;\n", radius.LG)
 		// Default radius for components (using LG as per modern shadcn/ui)
-		fmt.Fprintf(&b,"  --radius: %s;\n", radius.LG)
+		fmt.Fprintf(&b, "  --radius: %s;\n", radius.LG)
 	}
 
 	if radius.XL != "" {
-		fmt.Fprintf(&b,"  --radius-xl: %s;\n", radius.XL)
+		fmt.Fprintf(&b, "  --radius-xl: %s;\n", radius.XL)
 	}
 
 	if radius.Full != "" {
-		fmt.Fprintf(&b,"  --radius-full: %s;\n", radius.Full)
+		fmt.Fprintf(&b, "  --radius-full: %s;\n", radius.Full)
 	}
 
 	return b.String()
@@ -190,29 +190,29 @@ func generateSpacingVars(spacing SpacingTokens) string {
 	var b strings.Builder
 
 	if spacing.XS != "" {
-		fmt.Fprintf(&b,"  --spacing-xs: %s;\n", spacing.XS)
+		fmt.Fprintf(&b, "  --spacing-xs: %s;\n", spacing.XS)
 	}
 
 	if spacing.SM != "" {
-		fmt.Fprintf(&b,"  --spacing-sm: %s;\n", spacing.SM)
+		fmt.Fprintf(&b, "  --spacing-sm: %s;\n", spacing.SM)
 	}
 
 	if spacing.MD != "" {
-		fmt.Fprintf(&b,"  --spacing-md: %s;\n", spacing.MD)
+		fmt.Fprintf(&b, "  --spacing-md: %s;\n", spacing.MD)
 		// Default spacing
-		fmt.Fprintf(&b,"  --spacing: %s;\n", spacing.MD)
+		fmt.Fprintf(&b, "  --spacing: %s;\n", spacing.MD)
 	}
 
 	if spacing.LG != "" {
-		fmt.Fprintf(&b,"  --spacing-lg: %s;\n", spacing.LG)
+		fmt.Fprintf(&b, "  --spacing-lg: %s;\n", spacing.LG)
 	}
 
 	if spacing.XL != "" {
-		fmt.Fprintf(&b,"  --spacing-xl: %s;\n", spacing.XL)
+		fmt.Fprintf(&b, "  --spacing-xl: %s;\n", spacing.XL)
 	}
 
 	if spacing.XXL != "" {
-		fmt.Fprintf(&b,"  --spacing-xxl: %s;\n", spacing.XXL)
+		fmt.Fprintf(&b, "  --spacing-xxl: %s;\n", spacing.XXL)
 	}
 
 	return b.String()
@@ -223,31 +223,31 @@ func generateFontSizeVars(fontSize FontSizeTokens) string {
 	var b strings.Builder
 
 	if fontSize.XS != "" {
-		fmt.Fprintf(&b,"  --font-size-xs: %s;\n", fontSize.XS)
+		fmt.Fprintf(&b, "  --font-size-xs: %s;\n", fontSize.XS)
 	}
 
 	if fontSize.SM != "" {
-		fmt.Fprintf(&b,"  --font-size-sm: %s;\n", fontSize.SM)
+		fmt.Fprintf(&b, "  --font-size-sm: %s;\n", fontSize.SM)
 	}
 
 	if fontSize.Base != "" {
-		fmt.Fprintf(&b,"  --font-size-base: %s;\n", fontSize.Base)
+		fmt.Fprintf(&b, "  --font-size-base: %s;\n", fontSize.Base)
 	}
 
 	if fontSize.LG != "" {
-		fmt.Fprintf(&b,"  --font-size-lg: %s;\n", fontSize.LG)
+		fmt.Fprintf(&b, "  --font-size-lg: %s;\n", fontSize.LG)
 	}
 
 	if fontSize.XL != "" {
-		fmt.Fprintf(&b,"  --font-size-xl: %s;\n", fontSize.XL)
+		fmt.Fprintf(&b, "  --font-size-xl: %s;\n", fontSize.XL)
 	}
 
 	if fontSize.XXL != "" {
-		fmt.Fprintf(&b,"  --font-size-xxl: %s;\n", fontSize.XXL)
+		fmt.Fprintf(&b, "  --font-size-xxl: %s;\n", fontSize.XXL)
 	}
 
 	if fontSize.XXXL != "" {
-		fmt.Fprintf(&b,"  --font-size-xxxl: %s;\n", fontSize.XXXL)
+		fmt.Fprintf(&b, "  --font-size-xxxl: %s;\n", fontSize.XXXL)
 	}
 
 	return b.String()
@@ -258,21 +258,21 @@ func generateShadowVars(shadow ShadowTokens) string {
 	var b strings.Builder
 
 	if shadow.SM != "" {
-		fmt.Fprintf(&b,"  --shadow-sm: %s;\n", shadow.SM)
+		fmt.Fprintf(&b, "  --shadow-sm: %s;\n", shadow.SM)
 	}
 
 	if shadow.MD != "" {
-		fmt.Fprintf(&b,"  --shadow-md: %s;\n", shadow.MD)
+		fmt.Fprintf(&b, "  --shadow-md: %s;\n", shadow.MD)
 		// Default shadow
-		fmt.Fprintf(&b,"  --shadow: %s;\n", shadow.MD)
+		fmt.Fprintf(&b, "  --shadow: %s;\n", shadow.MD)
 	}
 
 	if shadow.LG != "" {
-		fmt.Fprintf(&b,"  --shadow-lg: %s;\n", shadow.LG)
+		fmt.Fprintf(&b, "  --shadow-lg: %s;\n", shadow.LG)
 	}
 
 	if shadow.XL != "" {
-		fmt.Fprintf(&b,"  --shadow-xl: %s;\n", shadow.XL)
+		fmt.Fprintf(&b, "  --shadow-xl: %s;\n", shadow.XL)
 	}
 
 	return b.String()
@@ -315,7 +315,7 @@ func GenerateInputCSS(lightTheme, darkTheme Theme) string {
 
 	// :root — light theme values (wrapped in oklch())
 	b.WriteString(":root {\n")
-	fmt.Fprintf(&b,"  --radius: %s;\n", resolveRadius(lightTheme.Radius))
+	fmt.Fprintf(&b, "  --radius: %s;\n", resolveRadius(lightTheme.Radius))
 	b.WriteString(generateOKLCHColorVars(lightTheme.Colors))
 	b.WriteString("}\n\n")
 
@@ -387,7 +387,7 @@ func generateThemeColorMappings() string {
 	}
 
 	for _, m := range mappings {
-		fmt.Fprintf(&b,"  --color-%s: var(--%s);\n", m.tw, m.css)
+		fmt.Fprintf(&b, "  --color-%s: var(--%s);\n", m.tw, m.css)
 	}
 
 	return b.String()
@@ -401,7 +401,7 @@ func generateOKLCHColorVars(colors ColorTokens) string {
 
 	oklch := func(name, value string) {
 		if value != "" {
-			fmt.Fprintf(&b,"  --%s: oklch(%s);\n", name, value)
+			fmt.Fprintf(&b, "  --%s: oklch(%s);\n", name, value)
 		}
 	}
 

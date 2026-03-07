@@ -86,8 +86,10 @@ func (r *Route) compile() {
 
 // Match checks if the given path matches this route and extracts parameters
 func (r *Route) Match(path string) (params Params, ok bool) {
-	// Normalize path
-	if path != "/" {
+	// Normalize path: empty string (e.g. from http.StripPrefix) is root
+	if path == "" {
+		path = "/"
+	} else if path != "/" {
 		path = strings.TrimSuffix(path, "/")
 	}
 
