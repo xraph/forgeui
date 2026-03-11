@@ -7,17 +7,6 @@ import (
 	"testing"
 )
 
-func renderComponent(t *testing.T, c interface {
-	Render(context.Context, *bytes.Buffer) error
-}) string {
-	t.Helper()
-	var buf bytes.Buffer
-	if err := c.Render(context.Background(), &buf); err != nil {
-		t.Fatalf("Render error: %v", err)
-	}
-	return buf.String()
-}
-
 func TestBridgeScripts_BasicInline(t *testing.T) {
 	comp := BridgeScripts(ScriptConfig{
 		Endpoint: "/api/bridge",

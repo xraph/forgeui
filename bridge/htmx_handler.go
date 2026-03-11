@@ -181,7 +181,7 @@ func (h *HTMXHandler) renderResponse(w http.ResponseWriter, r *http.Request, fn 
 	if isHTMXRequest(r) {
 		w.Header().Set("Content-Type", "text/html; charset=utf-8")
 		jsonBytes, _ := json.MarshalIndent(result, "", "  ")
-		fmt.Fprintf(w, "<pre>%s</pre>", jsonBytes)
+		_, _ = fmt.Fprintf(w, "<pre>%s</pre>", jsonBytes)
 		return
 	}
 
