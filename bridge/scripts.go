@@ -17,11 +17,15 @@ var bridgeJS string
 //go:embed client/alpine-bridge.js
 var alpineJS string
 
+//go:embed client/htmx-bridge.js
+var htmxBridgeJS string
+
 // ScriptConfig configures the bridge scripts
 type ScriptConfig struct {
 	Endpoint      string
 	CSRFToken     string
 	IncludeAlpine bool
+	IncludeHTMX   bool   // Include HTMX bridge integration script
 	StaticPath    string // Base path for static assets (e.g., "/static" or "/api/identity/ui/static")
 }
 
@@ -40,10 +44,23 @@ func BridgeScripts(config ScriptConfig) templ.Component {
 			}
 		}
 
+		// Add HTMX bridge integration if requested
+		if config.IncludeHTMX {
+			if _, err := fmt.Fprintf(w, `<script type="text/javascript">%s</script>`, htmxBridgeJS); err != nil {
+				return err
+			}
+		}
+
 		// Add configuration script
 		configScript := fmt.Sprintf(`
 window.BRIDGE_ENDPOINT = %q;
 `, config.Endpoint)
+
+		if config.IncludeHTMX {
+			configScript += fmt.Sprintf(`
+window.BRIDGE_FN_ENDPOINT = %q;
+`, config.Endpoint+"/fn/")
+		}
 
 		if config.CSRFToken != "" {
 			configScript += fmt.Sprintf(`
@@ -80,10 +97,23 @@ func BridgeScriptsExternal(config ScriptConfig) templ.Component {
 			}
 		}
 
+		// Add HTMX bridge integration if requested
+		if config.IncludeHTMX {
+			if _, err := fmt.Fprintf(w, `<script type="text/javascript" src="%s/js/htmx-bridge.js"></script>`, staticPath); err != nil {
+				return err
+			}
+		}
+
 		// Add configuration script
 		configScript := fmt.Sprintf(`
 window.BRIDGE_ENDPOINT = %q;
 `, config.Endpoint)
+
+		if config.IncludeHTMX {
+			configScript += fmt.Sprintf(`
+window.BRIDGE_FN_ENDPOINT = %q;
+`, config.Endpoint+"/fn/")
+		}
 
 		if config.CSRFToken != "" {
 			configScript += fmt.Sprintf(`
@@ -106,6 +136,11 @@ func GetBridgeJS() string {
 // GetAlpineJS returns the Alpine integration JavaScript code
 func GetAlpineJS() string {
 	return alpineJS
+}
+
+// GetHTMXBridgeJS returns the HTMX bridge integration JavaScript code
+func GetHTMXBridgeJS() string {
+	return htmxBridgeJS
 }
 
 // ScriptTemplate generates a custom script with configuration

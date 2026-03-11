@@ -175,6 +175,46 @@ func validateWithTag(fieldName string, value reflect.Value, tag string) error {
 	return nil
 }
 
+// validateParamsLax validates parameters with lax rules.
+// Only fields with explicit validate:"required" tags are enforced.
+func validateParamsLax(value reflect.Value, targetType reflect.Type) error {
+	if value.Type() != targetType {
+		return &Error{
+			Code:    ErrCodeInvalidParams,
+			Message: fmt.Sprintf("Parameter type mismatch: expected %s, got %s", targetType, value.Type()),
+		}
+	}
+
+	if targetType.Kind() == reflect.Struct {
+		return validateStructLax(value, targetType)
+	}
+
+	return nil
+}
+
+// validateStructLax validates struct fields with lax rules
+func validateStructLax(value reflect.Value, structType reflect.Type) error {
+	numFields := structType.NumField()
+	for i := range numFields {
+		field := structType.Field(i)
+		if !field.IsExported() {
+			continue
+		}
+
+		// In lax mode, only check explicit validate tags
+		validateTag := field.Tag.Get("validate")
+		if validateTag == "" {
+			continue
+		}
+
+		if err := validateWithTag(field.Name, value.Field(i), validateTag); err != nil {
+			return err
+		}
+	}
+
+	return nil
+}
+
 // isValidEmail performs basic email validation
 func isValidEmail(email string) bool {
 	if len(email) < 3 || len(email) > 254 {

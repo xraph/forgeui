@@ -4,6 +4,22 @@ import (
 	"fmt"
 	"reflect"
 	"time"
+
+	"github.com/a-h/templ"
+)
+
+// SignatureType describes the function signature shape
+type SignatureType int
+
+const (
+	// SigInputOutput: func(Context, Input) (Output, error)
+	SigInputOutput SignatureType = iota
+	// SigOutput: func(Context) (Output, error) - no input
+	SigOutput
+	// SigInputOnly: func(Context, Input) error - no output value
+	SigInputOnly
+	// SigVoid: func(Context) error - no input, no output
+	SigVoid
 )
 
 // Function represents a registered bridge function
@@ -14,10 +30,10 @@ type Function struct {
 	// Handler is the actual function to call
 	Handler reflect.Value
 
-	// InputType is the type of the input parameter
+	// InputType is the type of the input parameter (nil if no input)
 	InputType reflect.Type
 
-	// OutputType is the type of the output value
+	// OutputType is the type of the output value (nil if no output)
 	OutputType reflect.Type
 
 	// Description is the function's documentation
@@ -40,6 +56,39 @@ type Function struct {
 
 	// CacheTTL is the cache time-to-live
 	CacheTTL time.Duration
+
+	// SignatureType describes the handler's signature shape
+	SignatureType SignatureType
+
+	// HasInput indicates the handler accepts an input parameter
+	HasInput bool
+
+	// HasOutput indicates the handler returns an output value (beyond error)
+	HasOutput bool
+
+	// ReturnsHTML indicates the output type implements templ.Component
+	ReturnsHTML bool
+
+	// AllowedMethods restricts which HTTP methods the HTMX handler accepts
+	AllowedMethods []string
+
+	// Renderer converts output data to a templ.Component for HTMX rendering
+	Renderer func(any) templ.Component
+
+	// HTMXTriggers are event names to set in the HX-Trigger response header
+	HTMXTriggers []string
+
+	// HTMXRedirect is a URL to set in the HX-Redirect response header
+	HTMXRedirect string
+
+	// HTMXReswap overrides the swap method via HX-Reswap response header
+	HTMXReswap string
+
+	// HTMXRetarget overrides the target element via HX-Retarget response header
+	HTMXRetarget string
+
+	// LaxValidation skips auto-required field validation
+	LaxValidation bool
 }
 
 // FunctionOption configures a Function
@@ -88,54 +137,160 @@ func WithDescription(desc string) FunctionOption {
 	}
 }
 
-// validateFunction validates a function signature
-// Expected signature: func(Context, InputType) (OutputType, error)
-func validateFunction(fn any) error {
+// WithHTTPMethod restricts which HTTP methods the HTMX handler accepts.
+// If not set, methods are auto-detected: GET+POST for functions without input,
+// POST only for functions with input.
+func WithHTTPMethod(methods ...string) FunctionOption {
+	return func(f *Function) {
+		f.AllowedMethods = methods
+	}
+}
+
+// WithHTMXTrigger sets event names for the HX-Trigger response header
+func WithHTMXTrigger(events ...string) FunctionOption {
+	return func(f *Function) {
+		f.HTMXTriggers = events
+	}
+}
+
+// WithHTMXRedirect sets a URL for the HX-Redirect response header
+func WithHTMXRedirect(url string) FunctionOption {
+	return func(f *Function) {
+		f.HTMXRedirect = url
+	}
+}
+
+// WithHTMXReswap overrides the swap method via HX-Reswap response header
+func WithHTMXReswap(swap string) FunctionOption {
+	return func(f *Function) {
+		f.HTMXReswap = swap
+	}
+}
+
+// WithHTMXRetarget overrides the target element via HX-Retarget response header
+func WithHTMXRetarget(target string) FunctionOption {
+	return func(f *Function) {
+		f.HTMXRetarget = target
+	}
+}
+
+// WithLaxValidation skips auto-required field validation.
+// In lax mode, only fields with an explicit validate:"required" tag are validated.
+func WithLaxValidation() FunctionOption {
+	return func(f *Function) {
+		f.LaxValidation = true
+	}
+}
+
+// WithRenderer sets a renderer function that converts output data to a templ.Component
+// for HTMX HTML responses. The type parameter T must match the handler's output type.
+func WithRenderer[T any](renderer func(T) templ.Component) FunctionOption {
+	return func(f *Function) {
+		f.Renderer = func(data any) templ.Component {
+			return renderer(data.(T))
+		}
+	}
+}
+
+// validateFunction validates a function signature and returns its shape.
+//
+// Supported signatures:
+//   - func(Context, Input) (Output, error)  → SigInputOutput
+//   - func(Context) (Output, error)         → SigOutput
+//   - func(Context, Input) error            → SigInputOnly
+//   - func(Context) error                   → SigVoid
+func validateFunction(fn any) (SignatureType, error) {
 	fnType := reflect.TypeOf(fn)
 
-	// Must be a function
 	if fnType.Kind() != reflect.Func {
-		return fmt.Errorf("handler must be a function, got %s", fnType.Kind())
+		return 0, fmt.Errorf("handler must be a function, got %s", fnType.Kind())
 	}
 
-	// Must have exactly 2 parameters
-	if fnType.NumIn() != 2 {
-		return fmt.Errorf("handler must have 2 parameters (Context, Input), got %d", fnType.NumIn())
+	numIn := fnType.NumIn()
+	numOut := fnType.NumOut()
+
+	if numIn < 1 || numIn > 2 {
+		return 0, fmt.Errorf("handler must have 1 or 2 parameters (Context[, Input]), got %d", numIn)
 	}
 
-	// First parameter must implement Context interface
 	contextType := reflect.TypeFor[Context]()
 	if !fnType.In(0).Implements(contextType) {
-		return fmt.Errorf("first parameter must implement bridge.Context, got %s", fnType.In(0))
+		return 0, fmt.Errorf("first parameter must implement bridge.Context, got %s", fnType.In(0))
 	}
 
-	// Must return exactly 2 values
-	if fnType.NumOut() != 2 {
-		return fmt.Errorf("handler must return 2 values (result, error), got %d", fnType.NumOut())
+	if numOut < 1 || numOut > 2 {
+		return 0, fmt.Errorf("handler must return 1 or 2 values ([Output, ]error), got %d", numOut)
 	}
 
-	// Second return value must be error
 	errorType := reflect.TypeFor[error]()
-	if !fnType.Out(1).Implements(errorType) {
-		return fmt.Errorf("second return value must be error, got %s", fnType.Out(1))
+
+	switch {
+	case numIn == 2 && numOut == 2:
+		// func(Context, Input) (Output, error)
+		if !fnType.Out(1).Implements(errorType) {
+			return 0, fmt.Errorf("second return value must be error, got %s", fnType.Out(1))
+		}
+		return SigInputOutput, nil
+
+	case numIn == 1 && numOut == 2:
+		// func(Context) (Output, error)
+		if !fnType.Out(1).Implements(errorType) {
+			return 0, fmt.Errorf("second return value must be error, got %s", fnType.Out(1))
+		}
+		return SigOutput, nil
+
+	case numIn == 2 && numOut == 1:
+		// func(Context, Input) error
+		if !fnType.Out(0).Implements(errorType) {
+			return 0, fmt.Errorf("return value must be error, got %s", fnType.Out(0))
+		}
+		return SigInputOnly, nil
+
+	case numIn == 1 && numOut == 1:
+		// func(Context) error
+		if !fnType.Out(0).Implements(errorType) {
+			return 0, fmt.Errorf("return value must be error, got %s", fnType.Out(0))
+		}
+		return SigVoid, nil
 	}
 
-	return nil
+	return 0, fmt.Errorf("unsupported signature: %d inputs, %d outputs", numIn, numOut)
 }
 
 // analyzeFunction extracts type information from a function
 func analyzeFunction(fn any) (*Function, error) {
-	if err := validateFunction(fn); err != nil {
+	sigType, err := validateFunction(fn)
+	if err != nil {
 		return nil, err
 	}
 
 	fnType := reflect.TypeOf(fn)
+	templComponentType := reflect.TypeFor[templ.Component]()
 
 	f := &Function{
-		Handler:    reflect.ValueOf(fn),
-		InputType:  fnType.In(1),
-		OutputType: fnType.Out(0),
-		// Timeout is 0 by default - executeWithTimeout will use bridge config timeout
+		Handler:       reflect.ValueOf(fn),
+		SignatureType: sigType,
+	}
+
+	switch sigType {
+	case SigInputOutput:
+		f.InputType = fnType.In(1)
+		f.OutputType = fnType.Out(0)
+		f.HasInput = true
+		f.HasOutput = true
+	case SigOutput:
+		f.OutputType = fnType.Out(0)
+		f.HasOutput = true
+	case SigInputOnly:
+		f.InputType = fnType.In(1)
+		f.HasInput = true
+	case SigVoid:
+		// no input, no output
+	}
+
+	// Detect if output type implements templ.Component
+	if f.HasOutput && f.OutputType.Implements(templComponentType) {
+		f.ReturnsHTML = true
 	}
 
 	return f, nil
@@ -160,16 +315,21 @@ type FieldInfo struct {
 // GetTypeInfo returns type information for the function
 func (f *Function) GetTypeInfo() TypeInfo {
 	info := TypeInfo{
-		Name:       f.Name,
-		InputType:  f.InputType.String(),
-		OutputType: f.OutputType.String(),
+		Name: f.Name,
 	}
 
-	// Extract field information from input struct
-	if f.InputType.Kind() == reflect.Struct {
-		info.Fields = extractFields(f.InputType)
-	} else if f.InputType.Kind() == reflect.Ptr && f.InputType.Elem().Kind() == reflect.Struct {
-		info.Fields = extractFields(f.InputType.Elem())
+	if f.InputType != nil {
+		info.InputType = f.InputType.String()
+		// Extract field information from input struct
+		if f.InputType.Kind() == reflect.Struct {
+			info.Fields = extractFields(f.InputType)
+		} else if f.InputType.Kind() == reflect.Ptr && f.InputType.Elem().Kind() == reflect.Struct {
+			info.Fields = extractFields(f.InputType.Elem())
+		}
+	}
+
+	if f.OutputType != nil {
+		info.OutputType = f.OutputType.String()
 	}
 
 	return info

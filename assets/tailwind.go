@@ -108,8 +108,24 @@ func (tp *TailwindProcessor) processV4(ctx context.Context, cfg ProcessorConfig)
 		defer func() { _ = os.Remove(inputCSS) }()
 	}
 
+	// Convert to absolute paths to avoid cmd.Dir vs -i/-o arg mismatch.
+	// processV4 sets cmd.Dir to the input file's parent directory so that
+	// npm/node can resolve the tailwindcss package. Without absolute paths,
+	// the relative -i and -o args would be resolved against cmd.Dir, yielding
+	// incorrect double-nested paths.
+	if !filepath.IsAbs(inputCSS) {
+		if abs, err := filepath.Abs(inputCSS); err == nil {
+			inputCSS = abs
+		}
+	}
+
 	// Determine output path
 	outputCSS := filepath.Join(cfg.OutputDir, tp.OutputCSS)
+	if !filepath.IsAbs(outputCSS) {
+		if abs, err := filepath.Abs(outputCSS); err == nil {
+			outputCSS = abs
+		}
+	}
 
 	// Ensure output directory exists
 	outputDir := filepath.Dir(outputCSS)

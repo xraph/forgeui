@@ -28,6 +28,9 @@ func (i *Integration) RegisterHTTPRoutes(mux *http.ServeMux) {
 
 	// Introspection endpoint
 	mux.Handle("/api/bridge/functions", i.bridge.IntrospectionHandler())
+
+	// HTMX function endpoints (GET/POST returning HTML)
+	mux.Handle("/api/bridge/fn/", i.bridge.HTMXHandler())
 }
 
 // BridgeMiddleware creates a standard http.Handler middleware

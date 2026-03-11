@@ -7,12 +7,33 @@ import (
 
 // FunctionInfo contains information about a registered function
 type FunctionInfo struct {
-	Name         string   `json:"name"`
-	Description  string   `json:"description,omitempty"`
-	RequireAuth  bool     `json:"requireAuth"`
-	RequireRoles []string `json:"requireRoles,omitempty"`
-	RateLimit    int      `json:"rateLimit,omitempty"`
-	TypeInfo     TypeInfo `json:"typeInfo"`
+	Name           string   `json:"name"`
+	Description    string   `json:"description,omitempty"`
+	RequireAuth    bool     `json:"requireAuth"`
+	RequireRoles   []string `json:"requireRoles,omitempty"`
+	RateLimit      int      `json:"rateLimit,omitempty"`
+	TypeInfo       TypeInfo `json:"typeInfo"`
+	SignatureType  string   `json:"signatureType"`
+	AllowedMethods []string `json:"allowedMethods,omitempty"`
+	ReturnsHTML    bool     `json:"returnsHTML"`
+	HasRenderer    bool     `json:"hasRenderer"`
+	HTMXEndpoint   string   `json:"htmxEndpoint,omitempty"`
+}
+
+// signatureTypeName returns a human-readable name for a SignatureType
+func signatureTypeName(st SignatureType) string {
+	switch st {
+	case SigInputOutput:
+		return "input-output"
+	case SigOutput:
+		return "output-only"
+	case SigInputOnly:
+		return "input-only"
+	case SigVoid:
+		return "void"
+	default:
+		return "unknown"
+	}
 }
 
 // IntrospectionHandler handles introspection requests
@@ -41,12 +62,17 @@ func (h *IntrospectionHandler) ServeHTTP(w http.ResponseWriter, r *http.Request)
 		}
 
 		info := FunctionInfo{
-			Name:         fn.Name,
-			Description:  fn.Description,
-			RequireAuth:  fn.RequireAuth,
-			RequireRoles: fn.RequireRoles,
-			RateLimit:    fn.RateLimit,
-			TypeInfo:     fn.GetTypeInfo(),
+			Name:           fn.Name,
+			Description:    fn.Description,
+			RequireAuth:    fn.RequireAuth,
+			RequireRoles:   fn.RequireRoles,
+			RateLimit:      fn.RateLimit,
+			TypeInfo:       fn.GetTypeInfo(),
+			SignatureType:  signatureTypeName(fn.SignatureType),
+			AllowedMethods: fn.AllowedMethods,
+			ReturnsHTML:    fn.ReturnsHTML,
+			HasRenderer:    fn.Renderer != nil,
+			HTMXEndpoint:   "/api/bridge/fn/" + fn.Name,
 		}
 
 		functions = append(functions, info)
@@ -76,12 +102,17 @@ func (b *Bridge) GetFunctionInfo(name string) (*FunctionInfo, error) {
 	}
 
 	info := &FunctionInfo{
-		Name:         fn.Name,
-		Description:  fn.Description,
-		RequireAuth:  fn.RequireAuth,
-		RequireRoles: fn.RequireRoles,
-		RateLimit:    fn.RateLimit,
-		TypeInfo:     fn.GetTypeInfo(),
+		Name:           fn.Name,
+		Description:    fn.Description,
+		RequireAuth:    fn.RequireAuth,
+		RequireRoles:   fn.RequireRoles,
+		RateLimit:      fn.RateLimit,
+		TypeInfo:       fn.GetTypeInfo(),
+		SignatureType:  signatureTypeName(fn.SignatureType),
+		AllowedMethods: fn.AllowedMethods,
+		ReturnsHTML:    fn.ReturnsHTML,
+		HasRenderer:    fn.Renderer != nil,
+		HTMXEndpoint:   "/api/bridge/fn/" + fn.Name,
 	}
 
 	return info, nil
