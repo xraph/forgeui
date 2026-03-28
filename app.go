@@ -51,8 +51,8 @@ func New(opts ...AppOption) *App {
 		FileSystem: config.AssetFileSystem,
 	})
 
-	// Initialize router
-	r := router.New()
+	// Initialize router (pass basePath so page routes are prefixed correctly)
+	r := router.New(router.WithBasePath(config.BasePath))
 	if config.DefaultLayout != "" {
 		r.SetDefaultLayout(config.DefaultLayout)
 	}

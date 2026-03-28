@@ -259,3 +259,21 @@ func TestRouter_CustomNotFound(t *testing.T) {
 		t.Errorf("Expected 'Custom 404', got %q", body)
 	}
 }
+
+func TestRouter_PanicRecovery(t *testing.T) {
+	r := New()
+
+	r.Get("/panic", func(_ *PageContext) (templ.Component, error) {
+		panic("test panic in handler")
+	})
+
+	req := httptest.NewRequest(http.MethodGet, "/panic", nil)
+	w := httptest.NewRecorder()
+
+	// Should not panic — recovery should catch it.
+	r.ServeHTTP(w, req)
+
+	if w.Code != http.StatusInternalServerError {
+		t.Errorf("Expected status 500, got %d", w.Code)
+	}
+}

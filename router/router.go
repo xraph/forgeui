@@ -3,7 +3,9 @@ package router
 import (
 	"errors"
 	"fmt"
+	"log"
 	"net/http"
+	"runtime"
 	"sort"
 	"sync"
 
@@ -186,6 +188,22 @@ func (r *Router) SetApp(app any) {
 
 // ServeHTTP implements http.Handler interface.
 func (r *Router) ServeHTTP(w http.ResponseWriter, req *http.Request) {
+	// Recover from panics in page handlers/layouts to prevent crashing the server.
+	defer func() {
+		if rv := recover(); rv != nil {
+			buf := make([]byte, 4096)
+			n := runtime.Stack(buf, false)
+			log.Printf("forgeui: panic serving %s %s: %v\n%s", req.Method, req.URL.Path, rv, buf[:n])
+
+			// Return a 500 error page if the response hasn't been written yet.
+			if w.Header().Get("Content-Type") == "" {
+				w.Header().Set("Content-Type", "text/html; charset=utf-8")
+				w.WriteHeader(http.StatusInternalServerError)
+				_, _ = fmt.Fprintf(w, "<h1>Internal Server Error</h1><p>An unexpected error occurred.</p>")
+			}
+		}
+	}()
+
 	// Normalize empty path (e.g. from http.StripPrefix) to root
 	path := req.URL.Path
 	if path == "" {

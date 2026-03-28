@@ -9,18 +9,18 @@ package selectbox
 
 //lint:file-ignore SA4006 This context is only used if a nested component is present.
 
+import "github.com/a-h/templ"
+import templruntime "github.com/a-h/templ/runtime"
+
 import (
 	"context"
 	"fmt"
-	"strconv"
-
-	"github.com/a-h/templ"
-	templruntime "github.com/a-h/templ/runtime"
 	"github.com/xraph/forgeui/components/button"
 	"github.com/xraph/forgeui/components/icon"
 	"github.com/xraph/forgeui/components/input"
 	"github.com/xraph/forgeui/components/popover"
 	"github.com/xraph/forgeui/utils"
+	"strconv"
 )
 
 type contextKey string
